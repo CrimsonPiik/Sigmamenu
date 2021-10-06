@@ -80,16 +80,8 @@ class _ItemCardDataState extends State<ItemCardData> {
                   itemBuilder: (context, index) => ItemCard(
                         product: productsList[index],
                         isBordered: true,
-                        // product: products[index], isBordered: true,
-                        // product: , isBordered: true,
-
-                        // press: () => Navigator.push(
-                        //     context,
-                        //     MaterialPageRoute(
-                        //       builder: (context) => DetailsScreen(
-                        //         product: products[index],
-                        //       ),
-                        //     )),
+                    
+                        //  press: () =>),
                       )),
             ),
           );

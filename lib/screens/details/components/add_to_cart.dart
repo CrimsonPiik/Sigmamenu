@@ -41,12 +41,13 @@ class AddToCart extends StatelessWidget {
               height: 50,
               child: TextButton(
                 style: ButtonStyle(
+                  backgroundColor:
+                      MaterialStateProperty.all<Color>(Colors.brown),
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                     RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(18)),
                   ),
                 ),
-                // color: product.color,
                 onPressed: () {},
                 child: Text(
                   "Buy  Now".toUpperCase(),

@@ -19,41 +19,41 @@ class ProductTitleWithImage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text(
-            "Aristocratic Hand Bag",
-            style: TextStyle(color: Colors.white),
-          ),
-          Text(
             product.descriptionEn,
             style: Theme.of(context)
                 .textTheme
                 .headline4!
-                .copyWith(color: Colors.white, fontWeight: FontWeight.bold),
+                .copyWith(color: Colors.black, fontWeight: FontWeight.bold),
           ),
-          SizedBox(height: kDefaultPaddin),
+          // SizedBox(height: kDefaultPaddin),
           Row(
             children: <Widget>[
-              RichText(
-                text: TextSpan(
-                  children: [
-                    TextSpan(text: "Price\n"),
-                    TextSpan(
-                      text: "\$${product.price}",
-                      style: Theme.of(context).textTheme.headline4!.copyWith(
-                          color: Colors.white, fontWeight: FontWeight.bold),
-                    ),
-                  ],
-                ),
-              ),
+              //   RichText(
+              //     text: TextSpan(
+              //       children: [
+              //         TextSpan(text: "Price\n"),
+              //         TextSpan(
+              //           text: "\$${product.price}",
+              //           style: Theme.of(context).textTheme.headline4!.copyWith(
+              //               color: Colors.black, fontWeight: FontWeight.bold),
+              //         ),
+              //       ],
+              //     ),
+              //   ),
               SizedBox(width: kDefaultPaddin),
+
               Expanded(
+              
                 child: Hero(
                   tag: "${product.id}",
-                  child: Image.asset(
+                  child: Image.network(
                     product.image,
-                    fit: BoxFit.fill,
+                    width: 300,
+                    height: 200,
+                    // fit: BoxFit.fill,
                   ),
                 ),
-              )
+              ),
             ],
           )
         ],

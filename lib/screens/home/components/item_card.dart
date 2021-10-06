@@ -1,5 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shop_app/models/product.dart';
+import 'package:shop_app/screens/details/details_screen.dart';
 import 'package:shop_app/style/AssetsManager.dart';
 import 'package:shop_app/style/CommonUI.dart';
 import '../../../style/Style.dart';
@@ -39,11 +41,16 @@ class ItemCard extends StatelessWidget {
       child: Stack(
         children: [
           GestureDetector(
-            // onTap: () => application.navigatePush(
-            //     context,
-            //     ItemDetailScreen(
-            //       product: product,
-            //     )),
+            onTap: () => {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => DetailsScreen(
+                    product: product,
+                  ),
+                ),
+              ),
+            },
             child: Container(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
