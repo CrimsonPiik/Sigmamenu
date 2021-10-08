@@ -5,10 +5,10 @@ import 'package:shop_app/models/rating.dart';
 class Product {
   String id = generateId();
   double price = 0.00;
-  String image = 'https://dummyimage.com/800x800/888/fff';
+  String image = 'assets/images/placeholder.jpg';
   String nameEn = 'productNameEn';
   String nameAr = 'productNameAr';
-  String categoryId = 'categoryId';
+  String category = 'categoryId';
   String descriptionEn = 'descriptionEn';
   String descriptionAr = 'descriptionAr';
   bool isPublished = true;
@@ -25,7 +25,7 @@ class Product {
       'image': image,
       'nameEn': nameEn,
       'nameAr': nameAr,
-      'categoryId': categoryId,
+      'category': category,
       'descriptionEn': descriptionEn,
       'descriptionAr': descriptionAr,
       'isPublished': isPublished,
@@ -42,7 +42,7 @@ class Product {
       'image': image,
       'nameEn': nameEn,
       'nameAr': nameAr,
-      'categoryId': categoryId,
+      'category': category,
       'descriptionEn': descriptionEn,
       'descriptionAr': descriptionAr,
       'isPublished': isPublished,
@@ -58,7 +58,7 @@ class Product {
         image = map['image'] ?? '',
         nameEn = map['nameEn'] ?? '',
         nameAr = map['nameAr'] ?? '',
-        categoryId = map['categoryId'] ?? '',
+        category = map['category'] ?? '',
         descriptionEn = map['descriptionEn'] ?? '',
         descriptionAr = map['descriptionAr'] ?? '',
         isPublished = map['isPublished'] ?? true,

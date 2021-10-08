@@ -47,6 +47,7 @@ class _ItemCardDataState extends State<ItemCardData> {
             .where('isPublished', isEqualTo: true)
             // .where('category',.....)
             .snapshots(),
+            // .asBroadcastStream(onCancel: (sub) => sub.cancel()),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasError) {
             return CommonUI.error(context, snapshot.error.toString());
@@ -80,7 +81,7 @@ class _ItemCardDataState extends State<ItemCardData> {
                   itemBuilder: (context, index) => ItemCard(
                         product: productsList[index],
                         isBordered: true,
-                    
+
                         //  press: () =>),
                       )),
             ),
