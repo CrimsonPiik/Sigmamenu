@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:shop_app/constants.dart';
+import 'package:shop_app/constaints.dart';
 import 'package:shop_app/models/product.dart';
 
-import 'add_to_cart.dart';
 import 'color_and_size.dart';
 import 'counter_with_fav_btn.dart';
 import 'product_title_with_image.dart';
@@ -45,7 +44,7 @@ class Body extends StatelessWidget {
                       SizedBox(height: kDefaultPaddin / 2),
                       CounterWithFavBtn(),
                       SizedBox(height: kDefaultPaddin / 2),
-                      AddToCart(product: product)
+                      // AddToCart(product: product)
                     ],
                   ),
                 ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../constants.dart';
+import 'package:shop_app/constaints.dart';
 
 class CartCounter extends StatefulWidget {
   @override

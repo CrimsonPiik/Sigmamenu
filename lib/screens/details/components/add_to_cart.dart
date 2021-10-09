@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shop_app/models/product.dart';
 
-import '../../../constants.dart';
+import 'package:shop_app/constaints.dart';
 
 class AddToCart extends StatelessWidget {
   const AddToCart({

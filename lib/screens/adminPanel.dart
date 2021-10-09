@@ -17,7 +17,7 @@ class AdminPanel extends StatelessWidget {
             .where('isPublished', isEqualTo: true)
             // .where('category',.....)
             .snapshots(),
-            // .asBroadcastStream(onCancel: (sub) => sub.cancel()),
+        // .asBroadcastStream(onCancel: (sub) => sub.cancel()),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasError) {
             return CommonUI.error(context, snapshot.error.toString());

@@ -5,6 +5,11 @@ const primary = Color(0xff89B5A2);
 const primaryLight = Color(0xffCCECDF);
 const primaryAncient = Color(0xff618777);
 
+const kTextColor = Color(0xFF535353);
+const kTextLightColor = Color(0xFFACACAC);
+
+const kDefaultPaddin = 20.0;
+
 // breakpoint
 const double screenSm = 576;
 const double screenMd = 768;

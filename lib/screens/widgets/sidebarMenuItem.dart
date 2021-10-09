@@ -1,3 +1,4 @@
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:shop_app/GeneralFunction/random_id_generator.dart';
@@ -15,6 +16,12 @@ class SideBarMenuItem extends StatefulWidget {
 class _MenuItemState extends State<SideBarMenuItem> {
   var _bgColor = Colors.transparent;
   var _iconColor = Colors.white;
+  String id = generateId();
+  String imageURL = 'assets/images/placeholder.jpg';
+  TextEditingController nameEnController = TextEditingController();
+  TextEditingController priceController = TextEditingController();
+  TextEditingController descriptionEnController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return MouseRegion(
@@ -32,22 +39,10 @@ class _MenuItemState extends State<SideBarMenuItem> {
         },
         child: InkWell(
           onTap: () {
+            // showDialog(
+            //     context: context,
+            //     builder: (BuildContext context) => CustomDialog());
             showDialogWithFields();
-            String id = generateId();
-            FirebaseFirestore.instance.collection('drinks').doc(id).set({
-              'id': id,
-              'nameEn': 'nameEn',
-              'nameAr': 'nameAr',
-              'category': 'category',
-              'descriptionAr': 'descriptionAr',
-              'descriptionEn': 'descriptionEn',
-              'isPublished': true,
-              'image':
-                  'https://images.pexels.com/photos/2878711/pexels-photo-2878711.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-              'price': 4,
-              'rate': 0,
-              'weight': 0,
-            });
           },
           child: Container(
             width: widget.isDesktop ? null : 44,
@@ -99,29 +94,36 @@ class _MenuItemState extends State<SideBarMenuItem> {
                   children: <Widget>[
                     TextFormField(
                       // style: TextStyle(color: Colors.brown),
+                      controller: nameEnController,
                       decoration: InputDecoration(
                         labelText: 'Product Name',
                         icon: Icon(Icons.account_box),
                       ),
                     ),
                     TextFormField(
+                      controller: priceController,
                       decoration: InputDecoration(
                         labelText: 'Product Price',
                         icon: Icon(Icons.money),
                       ),
                     ),
                     TextFormField(
+                      controller: descriptionEnController,
                       decoration: InputDecoration(
                         labelText: 'Product Description',
                         icon: Icon(Icons.message),
                       ),
                     ),
-                    TextFormField(
-                      decoration: InputDecoration(
-                        labelText: 'Product Image',
-                        icon: Icon(Icons.image),
-                      ),
-                    ),
+                    // TextFormField(
+                    //   decoration: InputDecoration(
+                    //     labelText: 'Product Image',
+                    //     icon: Icon(Icons.image),
+                    //   ),
+                    // ),
+                    TextButton(
+                        onPressed: () async {
+                        },
+                        child: Text('Import a photo'))
                   ],
                 ),
               ),
@@ -130,10 +132,43 @@ class _MenuItemState extends State<SideBarMenuItem> {
               TextButton(
                   child: Center(child: Text("Create")),
                   onPressed: () {
-                    // your code
+                    FirebaseFirestore.instance
+                        .collection('drinks')
+                        .doc(id)
+                        .set({
+                      'id': id,
+                      'nameEn': nameEnController.text,
+                      'nameAr': 'nameAr',
+                      'category': 'category',
+                      'descriptionAr': 'descriptionAr',
+                      'descriptionEn': descriptionEnController.text,
+                      'isPublished': true,
+                      'image': imageURL,
+                      'price': priceController.text,
+                      'rate': 0,
+                      'weight': 0,
+                    });
+                    Navigator.of(context).pop();
                   })
             ],
           );
         });
-  }
+//   }
+
+// Future uploadProfilePhotoToFirebase() async {
+//     FilePickerResult? result =
+//       await FilePicker.platform.pickFiles(withData: true);
+
+//     String extension0 = result!.files.first.extension!;
+//     // print(extension0);
+//     String imageId = id + (".") + extension0;
+//   // String fileName = basename(_image.path);  //Get File Name - Or set one
+//   Reference firebaseStorageRef = FirebaseStorage.instance.ref().child('images/$imageId');
+//   TaskSnapshot uploadTask = await firebaseStorageRef.putFile();
+//   String url = await uploadTask.ref.getDownloadURL(); //Get URL
+//   return await FirebaseFirestore.instance.collection('drinks').doc(id).update({ //Update url in Firestore (if required)
+//     'image': url,
+//   });
+}
+
 }

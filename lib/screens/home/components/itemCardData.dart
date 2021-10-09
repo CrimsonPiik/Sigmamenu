@@ -1,9 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:shop_app/constants.dart';
 import 'package:shop_app/models/product.dart';
-import 'package:shop_app/screens/home/components/item_card.dart';
+import 'package:shop_app/screens/home/components/itemCard.dart';
 import 'package:shop_app/style/CommonUI.dart';
+import 'package:shop_app/constaints.dart';
+
 import 'package:shop_app/style/ScreenUtil.dart';
 
 class ItemCardData extends StatefulWidget {
@@ -47,7 +48,7 @@ class _ItemCardDataState extends State<ItemCardData> {
             .where('isPublished', isEqualTo: true)
             // .where('category',.....)
             .snapshots(),
-            // .asBroadcastStream(onCancel: (sub) => sub.cancel()),
+        // .asBroadcastStream(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasError) {
             return CommonUI.error(context, snapshot.error.toString());
