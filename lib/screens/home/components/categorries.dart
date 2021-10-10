@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:shop_app/screens/home/components/body.dart';
 import 'package:shop_app/constaints.dart';
 
-// We need satefull widget for our categories
-
 class Categories extends StatefulWidget {
   @override
   _CategoriesState createState() => _CategoriesState();

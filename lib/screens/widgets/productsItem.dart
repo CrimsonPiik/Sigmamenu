@@ -1,8 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:shop_app/constaints.dart';
 import 'package:shop_app/models/product.dart';
 import 'package:shop_app/style/AssetsManager.dart';
 import 'package:shop_app/style/CommonUI.dart';
+import 'package:shop_app/style/ScreenUtil.dart';
 
 class ProductsItem extends StatefulWidget {
   final Product data;
@@ -31,8 +33,8 @@ class _ProductsItemState extends State<ProductsItem> {
       child: Row(
         children: [
           Container(
-              width: 60,
-              height: 70,
+              width: 80,
+              height: 80,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(4),
               ),
@@ -72,17 +74,18 @@ class _ProductsItemState extends State<ProductsItem> {
                       fontSize: 12),
                 ),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    TextButton(
-                        onPressed: () {
-                          _showDeleteDialog(context);
-                        },
-                        child: Icon(Icons.delete, color: Colors.red)),
                     TextButton(
                         onPressed: () {
                           _showEditDialog(context);
                         },
                         child: Icon(Icons.edit, color: Colors.blue)),
+                    TextButton(
+                        onPressed: () {
+                          _showDeleteDialog(context);
+                        },
+                        child: Icon(Icons.delete, color: Colors.red)),
                   ],
                 )
               ],
@@ -177,7 +180,7 @@ class _ProductsItemState extends State<ProductsItem> {
                             //     :
                             Container(
                               height: 50,
-                              width: 200,
+                              width: ScreenUtil.isDesktop(context) ? 200 : 70,
                               child: CommonUI.textField(
                                   context: context,
                                   name: "NameEn",
@@ -223,7 +226,7 @@ class _ProductsItemState extends State<ProductsItem> {
                             // ),
                             Container(
                               height: 50,
-                              width: 200,
+                              width: ScreenUtil.isDesktop(context) ? 200 : 70,
                               child: CommonUI.textField(
                                   context: context,
                                   name: "descriptionEn",
@@ -250,7 +253,7 @@ class _ProductsItemState extends State<ProductsItem> {
                             // ),
                             Container(
                               height: 50,
-                              width: 200,
+                              width: ScreenUtil.isDesktop(context) ? 200 : 70,
                               child: CommonUI.textField(
                                   context: context,
                                   name: "price",

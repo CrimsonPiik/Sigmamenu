@@ -1,21 +1,19 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:shop_app/models/product.dart';
-import 'package:shop_app/screens/home/components/itemCard.dart';
-import 'package:shop_app/style/CommonUI.dart';
 import 'package:shop_app/constaints.dart';
+import 'package:shop_app/models/product.dart';
+import 'package:shop_app/screens/widgets/productsItem.dart';
+import 'package:shop_app/style/CommonUI.dart';
 
-import 'package:shop_app/style/ScreenUtil.dart';
-
-class ItemCardData extends StatefulWidget {
+class ItemCardDataAdmin extends StatefulWidget {
   final Stream<int> stream;
-  ItemCardData(this.stream);
+  ItemCardDataAdmin(this.stream);
 
   @override
   _ItemCardDataState createState() => _ItemCardDataState();
 }
 
-class _ItemCardDataState extends State<ItemCardData> {
+class _ItemCardDataState extends State<ItemCardDataAdmin> {
   String category = 'drinks';
 
   @override
@@ -55,35 +53,35 @@ class _ItemCardDataState extends State<ItemCardData> {
           }
           if (snapshot.connectionState == ConnectionState.waiting)
             return CommonUI.loading();
-          List<Product> productsList = [];
+          List<Product> products = [];
 
           List<DocumentSnapshot> shots = snapshot.data!.docs;
           for (var item in shots) {
-            productsList
-                .add(Product.fromMap(item.data() as Map<String, dynamic>));
+            products.add(Product.fromMap(item.data() as Map<String, dynamic>));
           }
 
-          print("Client Side : " + productsList.toString());
+          print("Admin Side : " + products.toString());
           return Expanded(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: kDefaultPaddin),
-              child: GridView.builder(
-                  itemCount: productsList.length,
+                padding: const EdgeInsets.symmetric(horizontal: kDefaultPaddin),
+                child: GridView.builder(
+                  itemCount: products.length,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: ScreenUtil.isDesktop(context)
-                        ? 7
-                        : ScreenUtil.isTablet(context)
-                            ? 4
-                            : 2,
-                    mainAxisSpacing: kDefaultPaddin,
-                    crossAxisSpacing: kDefaultPaddin,
-                    childAspectRatio: 0.75,
+                    crossAxisCount: 1,
+                    childAspectRatio: MediaQuery.of(context).size.width /
+                        (MediaQuery.of(context).size.height / 2.8),
+                    //       //               // ScreenUtil.isDesktop(context)
+                    //       //               // ? 7
+                    //       //               // : ScreenUtil.isTablet(context)
+                    //       //               // ? 4
+                    //       //               //  : 2,
+                    //       //               // mainAxisSpacing: kDefaultPaddin,
+                    //       //               // crossAxisSpacing: kDefaultPaddin,
+                    // childAspectRatio: 130.0,
                   ),
-                  itemBuilder: (context, index) => ItemCard(
-                        product: productsList[index],
-                        isBordered: true,
-                      )),
-            ),
+                  itemBuilder: (context, index) =>
+                      ProductsItem(products[index]),
+                )),
           );
         });
   }
