@@ -1,7 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:shop_app/screens/home/components/body.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  @override
+  void initState() {
+    // getCategoriesFromFirebase();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -9,34 +20,4 @@ class HomeScreen extends StatelessWidget {
       body: Body(),
     );
   }
-
-  // AppBar buildAppBar() {
-    // return AppBar(
-      // backgroundColor: Colors.grey[100],
-      // elevation: 0,
-      // leading: IconButton(
-    //   // icon: SvgPicture.asset("assets/icons/back.svg"),
-    //   // onPressed: () {},
-    //   // ),
-    //   actions: <Widget>[
-    //     IconButton(
-    //       icon: SvgPicture.asset(
-    //         "assets/icons/search.svg",
-    //         // By default our  icon color is white
-    //         color: kTextColor,
-    //       ),
-    //       onPressed: () {},
-    //     ),
-    //     // IconButton(
-    //     //   icon: SvgPicture.asset(
-    //     //     "assets/icons/cart.svg",
-    //     //     // By default our  icon color is white
-    //     //     color: kTextColor,
-    //     //   ),
-    //     //   onPressed: () {},
-    //     // ),
-    //     SizedBox(width: kDefaultPaddin / 2)
-    //   ],
-    // );
-  // }
 }

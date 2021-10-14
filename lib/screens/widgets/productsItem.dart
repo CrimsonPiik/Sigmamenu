@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:shop_app/constaints.dart';
+import 'package:shop_app/GeneralFunction/firebase_uploader_web.dart';
 import 'package:shop_app/models/product.dart';
 import 'package:shop_app/style/AssetsManager.dart';
 import 'package:shop_app/style/CommonUI.dart';
@@ -15,9 +15,11 @@ class ProductsItem extends StatefulWidget {
 }
 
 class _ProductsItemState extends State<ProductsItem> {
-  TextEditingController nameController = TextEditingController();
-  TextEditingController descriptionEnController = TextEditingController();
-  TextEditingController priceController = TextEditingController();
+  TextEditingController _nameEnController = TextEditingController();
+  TextEditingController _descriptionEnController = TextEditingController();
+  TextEditingController _priceController = TextEditingController();
+  TextEditingController _imageController = TextEditingController();
+  ValueNotifier<String?> _image = ValueNotifier<String?>(null);
 
   bool editText = false;
 
@@ -25,74 +27,214 @@ class _ProductsItemState extends State<ProductsItem> {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(16),
-      margin: EdgeInsets.only(bottom: 24),
+      margin: EdgeInsets.only(bottom: 20),
       decoration: BoxDecoration(
         color: Colors.grey.withOpacity(0.1),
         borderRadius: BorderRadius.circular(12),
       ),
-      child: Row(
-        children: [
-          Container(
-              width: 80,
-              height: 80,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(4),
-              ),
-              child: CommonUI.cachedImage(
-                  widget.data.image, ImageAssets.placeholder,
-                  fit: BoxFit.cover)),
-          SizedBox(
-            width: 14,
-          ),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+      child: ScreenUtil.isDesktop(context)
+          ? Row(
               children: [
-                Text(
-                  widget.data.nameEn,
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 1,
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                ),
+                Container(
+                    width: 80,
+                    height: 80,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(4),
+                    ),
+                    child: CommonUI.cachedImage(
+                        widget.data.image, ImageAssets.placeholder,
+                        fit: BoxFit.cover)),
                 SizedBox(
-                  height: 4,
+                  width: 14,
                 ),
-                Text(
-                  widget.data.descriptionEn,
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 2,
-                  style: TextStyle(fontWeight: FontWeight.w400, fontSize: 14),
-                ),
-                SizedBox(
-                  height: 4,
-                ),
-                Text(
-                  widget.data.price.toString(),
-                  style: TextStyle(
-                      fontWeight: FontWeight.w300,
-                      fontStyle: FontStyle.italic,
-                      fontSize: 12),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    TextButton(
-                        onPressed: () {
-                          _showEditDialog(context);
-                        },
-                        child: Icon(Icons.edit, color: Colors.blue)),
-                    TextButton(
-                        onPressed: () {
-                          _showDeleteDialog(context);
-                        },
-                        child: Icon(Icons.delete, color: Colors.red)),
-                  ],
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        widget.data.nameEn,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 16),
+                      ),
+                      SizedBox(
+                        height: 4,
+                      ),
+                      Text(
+                        widget.data.descriptionEn,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 2,
+                        style: TextStyle(
+                            fontWeight: FontWeight.w400, fontSize: 14),
+                      ),
+                      SizedBox(
+                        height: 4,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            widget.data.price.toString(),
+                            style: TextStyle(
+                                fontWeight: FontWeight.w300,
+                                fontStyle: FontStyle.italic,
+                                fontSize: 12),
+                          ),
+                          Container(
+                            child: Row(
+                              children: [
+                                widget.data.isPublished == true
+                                    ? IconButton(
+                                        icon: Icon(
+                                          Icons.toggle_on,
+                                          color: Colors.green,
+                                          size: 35,
+                                        ),
+                                        onPressed: () {
+                                          FirebaseFirestore.instance
+                                              .collection('drinks')
+                                              .doc(widget.data.id)
+                                              .update({'isPublished': false});
+                                        })
+                                    : IconButton(
+                                        icon: Icon(
+                                          Icons.toggle_off,
+                                          color: Colors.red,
+                                          size: 35,
+                                        ),
+                                        onPressed: () {
+                                          FirebaseFirestore.instance
+                                              .collection('drinks')
+                                              .doc(widget.data.id)
+                                              .update({'isPublished': true});
+                                        }),
+                                SizedBox(width: 20),
+                                TextButton(
+                                    onPressed: () {
+                                      _showEditDialog(context);
+                                    },
+                                    child:
+                                        Icon(Icons.edit, color: Colors.brown)),
+                                TextButton(
+                                    onPressed: () {
+                                      _showDeleteDialog(context);
+                                    },
+                                    child:
+                                        Icon(Icons.delete, color: Colors.red)),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 )
               ],
+            )
+          : Row(
+              children: [
+                Container(
+                    width: 55,
+                    height: 55,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(4),
+                    ),
+                    child: CommonUI.cachedImage(
+                        widget.data.image, ImageAssets.placeholder,
+                        fit: BoxFit.cover)),
+                SizedBox(
+                  width: 14,
+                ),
+
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(height: 18),
+                      Text(
+                        widget.data.nameEn,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 16),
+                      ),
+                      SizedBox(
+                        height: 4,
+                      ),
+                      Text(
+                        widget.data.descriptionEn,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 2,
+                        style: TextStyle(
+                            fontWeight: FontWeight.w400, fontSize: 14),
+                      ),
+                      SizedBox(
+                        height: 4,
+                      ),
+                      Text(
+                        widget.data.price.toString(),
+                        style: TextStyle(
+                            fontWeight: FontWeight.w300,
+                            fontStyle: FontStyle.italic,
+                            fontSize: 12),
+                      ),
+                      // SizedBox(height: 2),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          widget.data.isPublished == true
+                              ? IconButton(
+                                  icon: Icon(
+                                    Icons.toggle_on,
+                                    color: Colors.green,
+                                    size: 30,
+                                  ),
+                                  onPressed: () {
+                                    FirebaseFirestore.instance
+                                        .collection('drinks')
+                                        .doc(widget.data.id)
+                                        .update({'isPublished': false});
+                                  })
+                              : IconButton(
+                                  icon: Icon(
+                                    Icons.toggle_off,
+                                    color: Colors.red,
+                                    size: 30,
+                                  ),
+                                  onPressed: () {
+                                    FirebaseFirestore.instance
+                                        .collection('drinks')
+                                        .doc(widget.data.id)
+                                        .update({'isPublished': true});
+                                  }),
+
+                          SizedBox(
+                            width: 45,
+                            child: TextButton(
+                                onPressed: () {
+                                  _showEditDialog(context);
+                                },
+                                child: Icon(Icons.edit, color: Colors.brown)),
+                          ),
+                          SizedBox(
+                            width: 45,
+                            child: TextButton(
+                                onPressed: () {
+                                  _showDeleteDialog(context);
+                                },
+                                child: Icon(Icons.delete, color: Colors.red)),
+                          ),
+                          // ),
+                        ],
+                      ),
+                      // ),
+                    ],
+                  ),
+                ),
+                // )
+              ],
             ),
-          )
-        ],
-      ),
     );
   }
 
@@ -109,7 +251,7 @@ class _ProductsItemState extends State<ProductsItem> {
                   Navigator.of(context).pop();
 
                   FirebaseFirestore.instance
-                      .collection('drinks')
+                      .collection(widget.data.category)
                       .doc(widget.data.id)
                       .delete();
                 },
@@ -139,27 +281,57 @@ class _ProductsItemState extends State<ProductsItem> {
           return AlertDialog(
             title: Text("Edit"),
             content: Container(
-              height: 200,
+              height: 215,
               // WIDTH IS ALREADY DEFINED
               padding: EdgeInsets.all(16),
-              margin: EdgeInsets.only(bottom: 24),
+              margin: EdgeInsets.only(bottom: 26),
               decoration: BoxDecoration(
                 color: Colors.grey.withOpacity(0.1),
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Row(
                 children: [
-                  Container(
-                      width: 120,
-                      height: 120,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(4),
-                      ),
-                      child: CommonUI.cachedImage(
-                          widget.data.image, ImageAssets.placeholder,
-                          fit: BoxFit.cover)),
+                  Expanded(
+                    child: ValueListenableBuilder(
+                      valueListenable: _image,
+                      builder:
+                          (BuildContext context, dynamic value, Widget? child) {
+                        return InkWell(
+                          onTap: () async {
+                            _imageController.text =
+                                await fireBaseUploadFileWeb(widget.data.id);
+                          },
+                          child: Container(
+                            child: Column(children: [
+                              value != null
+                                  ? Container(
+                                      // color: Color(0x00FFFFFF),
+                                      height: 180,
+                                      // width: 180,
+                                      child: InteractiveViewer(
+                                        child: Image.network(value,
+                                            fit: BoxFit.fitWidth),
+                                      ),
+                                    )
+                                  : Container(
+                                      // color: Color(0x00FFFFFF),
+                                      height: 180,
+                                      // width: 180,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(4),
+                                      ),
+                                      child: CommonUI.cachedImage(
+                                          widget.data.image,
+                                          ImageAssets.placeholder,
+                                          fit: BoxFit.fitWidth)),
+                            ]),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
                   SizedBox(
-                    width: 18,
+                    width: 10,
                   ),
                   Expanded(
                     child: Column(
@@ -183,8 +355,8 @@ class _ProductsItemState extends State<ProductsItem> {
                               width: ScreenUtil.isDesktop(context) ? 200 : 70,
                               child: CommonUI.textField(
                                   context: context,
-                                  name: "NameEn",
-                                  controller: nameController,
+                                  name: "Name",
+                                  controller: _nameEnController,
                                   hint: widget.data.nameEn),
                             ),
                             // : TextFormField(
@@ -230,7 +402,7 @@ class _ProductsItemState extends State<ProductsItem> {
                               child: CommonUI.textField(
                                   context: context,
                                   name: "descriptionEn",
-                                  controller: descriptionEnController,
+                                  controller: _descriptionEnController,
                                   hint: widget.data.descriptionEn),
                             ),
                             // TextButton(
@@ -258,7 +430,7 @@ class _ProductsItemState extends State<ProductsItem> {
                                   context: context,
                                   name: "price",
                                   // keyboardType: TextInputType(number),
-                                  controller: priceController,
+                                  controller: _priceController,
                                   hint: widget.data.price.toString()),
                             ),
                             // TextButton(
@@ -276,12 +448,13 @@ class _ProductsItemState extends State<ProductsItem> {
               TextButton(
                 onPressed: () {
                   FirebaseFirestore.instance
-                      .collection('drinks')
+                      .collection(widget.data.category)
                       .doc(widget.data.id)
                       .update({
-                    'nameEn': nameController.text,
-                    'descriptionEn': descriptionEnController.text,
-                    'price': priceController.text
+                    'nameEn': _nameEnController.text,
+                    'descriptionEn': _descriptionEnController.text,
+                    'price': _priceController.text,
+                    'image': _imageController.text
                   });
                   Navigator.of(context).pop();
                 },

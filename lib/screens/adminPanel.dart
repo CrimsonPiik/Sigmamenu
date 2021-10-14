@@ -18,6 +18,12 @@ class _AdminPanelState extends State<AdminPanel> {
   TextEditingController newCollectionNameController = TextEditingController();
 
   @override
+  void initState() {
+    // getCategoriesFromFirebase();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Row(
@@ -58,7 +64,7 @@ class _AdminPanelState extends State<AdminPanel> {
                               onPressed: () {
                                 _showAddCollectionDialog(context);
                               },
-                              child: Text("Add Category"))
+                              child: Text("Add "))
                         ],
                       ))
                     ],

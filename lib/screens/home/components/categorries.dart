@@ -7,6 +7,8 @@ class Categories extends StatefulWidget {
   _CategoriesState createState() => _CategoriesState();
 }
 
+// List<String> categories = [];
+
 class _CategoriesState extends State<Categories> {
   List<String> categories = [
     "Drinks",

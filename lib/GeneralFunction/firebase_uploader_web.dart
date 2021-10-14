@@ -5,7 +5,6 @@ import 'package:file_picker/file_picker.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 
-// import 'random_id_generator.dart';
 
 FirebaseStorage storage = FirebaseStorage.instance;
 
@@ -15,7 +14,6 @@ Future<String> fireBaseUploadFileWeb(String uid) async {
 
   if (result != null) {
     String extension0 = result.files.first.extension!;
-    print(extension0);
     String imageId = uid + (".") + extension0;
 
     FirebaseStorage storage = FirebaseStorage.instance;
@@ -25,11 +23,6 @@ Future<String> fireBaseUploadFileWeb(String uid) async {
     try {
       await ref.putData(data);
       final _finalImageUrl = await ref.getDownloadURL();
-      
-      FirebaseFirestore.instance
-          .collection('drinks')
-          .doc(uid)
-          .update({'image': _finalImageUrl});
       return _finalImageUrl;
     } on FirebaseException catch (e) {
       print(e);
@@ -37,9 +30,3 @@ Future<String> fireBaseUploadFileWeb(String uid) async {
   }
   return "";
 }
-        
-             
-        
-        
-        
-           

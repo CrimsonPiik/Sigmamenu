@@ -4,6 +4,7 @@ import 'package:shop_app/constaints.dart';
 import 'package:shop_app/models/product.dart';
 import 'package:shop_app/screens/widgets/productsItem.dart';
 import 'package:shop_app/style/CommonUI.dart';
+import 'package:shop_app/style/ScreenUtil.dart';
 
 class ItemCardDataAdmin extends StatefulWidget {
   final Stream<int> stream;
@@ -43,7 +44,7 @@ class _ItemCardDataState extends State<ItemCardDataAdmin> {
     return StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance
             .collection(category)
-            .where('isPublished', isEqualTo: true)
+            // .where('isPublished', isEqualTo: true)
             // .where('category',.....)
             .snapshots(),
         // .asBroadcastStream(),
@@ -67,18 +68,21 @@ class _ItemCardDataState extends State<ItemCardDataAdmin> {
                 child: GridView.builder(
                   itemCount: products.length,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 1,
-                    childAspectRatio: MediaQuery.of(context).size.width /
-                        (MediaQuery.of(context).size.height / 2.8),
-                    //       //               // ScreenUtil.isDesktop(context)
-                    //       //               // ? 7
-                    //       //               // : ScreenUtil.isTablet(context)
-                    //       //               // ? 4
-                    //       //               //  : 2,
-                    //       //               // mainAxisSpacing: kDefaultPaddin,
-                    //       //               // crossAxisSpacing: kDefaultPaddin,
-                    // childAspectRatio: 130.0,
-                  ),
+                      crossAxisCount: 1,
+                      childAspectRatio: ScreenUtil.isDesktop(context)
+                          ? MediaQuery.of(context).size.width /
+                              (MediaQuery.of(context).size.height / 4)
+                          : MediaQuery.of(context).size.width /
+                              (MediaQuery.of(context).size.height / 2.7)
+                      //       //               // ScreenUtil.isDesktop(context)
+                      //       //               // ? 7
+                      //       //               // : ScreenUtil.isTablet(context)
+                      //       //               // ? 4
+                      //       //               //  : 2,
+                      //       //               // mainAxisSpacing: kDefaultPaddin,
+                      //       //               // crossAxisSpacing: kDefaultPaddin,
+                      // childAspectRatio: 130.0,
+                      ),
                   itemBuilder: (context, index) =>
                       ProductsItem(products[index]),
                 )),

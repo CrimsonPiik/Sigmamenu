@@ -38,7 +38,7 @@ class SideBar extends StatelessWidget {
               child: Text(
                 'Coffee Shop',
                 style: TextStyle(
-                    fontSize: _isDesktop ? 30 : 15,
+                    fontSize: _isDesktop ? 30 : 12,
                     fontWeight: FontWeight.bold,
                     color: Colors.white),
               ),

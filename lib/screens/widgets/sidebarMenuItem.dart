@@ -1,6 +1,6 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:shop_app/GeneralFunction/firebase_uploader_web.dart';
 import 'package:shop_app/GeneralFunction/random_id_generator.dart';
 import 'package:shop_app/models/model.dart';
 
@@ -18,9 +18,12 @@ class _MenuItemState extends State<SideBarMenuItem> {
   var _iconColor = Colors.white;
   String id = generateId();
   String imageURL = 'assets/images/placeholder.jpg';
-  TextEditingController nameEnController = TextEditingController();
-  TextEditingController priceController = TextEditingController();
-  TextEditingController descriptionEnController = TextEditingController();
+  TextEditingController _nameEnController = TextEditingController();
+  TextEditingController _priceController = TextEditingController();
+  TextEditingController _descriptionEnController = TextEditingController();
+  TextEditingController _imageController = TextEditingController();
+  ValueNotifier<String?> _image = ValueNotifier<String?>(null);
+  String _validatorText = "This field can't be empty";
 
   @override
   Widget build(BuildContext context) {
@@ -92,38 +95,97 @@ class _MenuItemState extends State<SideBarMenuItem> {
               child: Form(
                 child: Column(
                   children: <Widget>[
-                    TextFormField(
-                      // style: TextStyle(color: Colors.brown),
-                      controller: nameEnController,
-                      decoration: InputDecoration(
-                        labelText: 'Product Name',
-                        icon: Icon(Icons.account_box),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.40,
+                      child: TextFormField(
+                        validator: (value) => value!.isEmpty
+                            ? _validatorText
+                            : null, // style: TextStyle(color: Colors.brown),
+                        controller: _nameEnController,
+                        decoration: InputDecoration(
+                          labelText: 'Product Name',
+                          icon: Icon(Icons.account_box),
+                        ),
                       ),
                     ),
-                    TextFormField(
-                      controller: priceController,
-                      decoration: InputDecoration(
-                        labelText: 'Product Price',
-                        icon: Icon(Icons.money),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.40,
+                      child: TextFormField(
+                        validator: (value) =>
+                            value!.isEmpty ? _validatorText : null,
+                        controller: _priceController,
+                        decoration: InputDecoration(
+                          labelText: 'Product Price',
+                          icon: Icon(Icons.money),
+                        ),
                       ),
                     ),
-                    TextFormField(
-                      controller: descriptionEnController,
-                      decoration: InputDecoration(
-                        labelText: 'Product Description',
-                        icon: Icon(Icons.message),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.40,
+                      child: TextFormField(
+                        validator: (value) =>
+                            value!.isEmpty ? _validatorText : null,
+                        controller: _descriptionEnController,
+                        decoration: InputDecoration(
+                          labelText: 'Product Description',
+                          icon: Icon(Icons.message),
+                        ),
                       ),
                     ),
-                    // TextFormField(
-                    //   decoration: InputDecoration(
-                    //     labelText: 'Product Image',
-                    //     icon: Icon(Icons.image),
-                    //   ),
-                    // ),
-                    TextButton(
-                        onPressed: () async {
-                        },
-                        child: Text('Import a photo'))
+                    Row(
+                      children: [
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.40,
+                          child: TextFormField(
+                            validator: (value) =>
+                                value!.isEmpty ? _validatorText : null,
+                            controller: _imageController,
+                            onChanged: (value) {
+                              _image.value = value;
+                            },
+                            decoration: InputDecoration(
+                              icon: Icon(Icons.image),
+                              labelText: "Product Image",
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: ValueListenableBuilder(
+                            valueListenable: _image,
+                            builder: (BuildContext context, dynamic value,
+                                Widget? child) {
+                              return Container(
+                                child: Column(children: [
+                                  _image.value != null
+                                      ? Container(
+                                          height: 60,
+                                          width: 70,
+                                          child: InteractiveViewer(
+                                            child: Image.network(value,
+                                                fit: BoxFit.fitHeight),
+                                          ),
+                                        )
+                                      : Container(
+                                          height: 60,
+                                          width: 70,
+                                          color: Colors.black,
+                                        ),
+                                  TextButton(
+                                      onPressed: () async {
+                                        _imageController.text =
+                                            await fireBaseUploadFileWeb(id);
+                                        _image.value = _imageController.text;
+                                        print(_imageController.text);
+                                      },
+                                      child: Text('Upload Image'))
+                                ]),
+                              );
+                            },
+                          ),
+                        ),
+                        // SizedBox(width: 10),
+                      ],
+                    ),
                   ],
                 ),
               ),
@@ -137,38 +199,22 @@ class _MenuItemState extends State<SideBarMenuItem> {
                         .doc(id)
                         .set({
                       'id': id,
-                      'nameEn': nameEnController.text,
+                      'nameEn': _nameEnController.text,
                       'nameAr': 'nameAr',
-                      'category': 'category',
+                      'category': 'drinks',
                       'descriptionAr': 'descriptionAr',
-                      'descriptionEn': descriptionEnController.text,
+                      'descriptionEn': _descriptionEnController.text,
                       'isPublished': true,
-                      'image': imageURL,
-                      'price': priceController.text,
+                      'image': _imageController.text,
+                      'price': _priceController.text,
                       'rate': 0,
                       'weight': 0,
+                      //subCategory: ---
                     });
                     Navigator.of(context).pop();
                   })
             ],
           );
         });
-//   }
-
-// Future uploadProfilePhotoToFirebase() async {
-//     FilePickerResult? result =
-//       await FilePicker.platform.pickFiles(withData: true);
-
-//     String extension0 = result!.files.first.extension!;
-//     // print(extension0);
-//     String imageId = id + (".") + extension0;
-//   // String fileName = basename(_image.path);  //Get File Name - Or set one
-//   Reference firebaseStorageRef = FirebaseStorage.instance.ref().child('images/$imageId');
-//   TaskSnapshot uploadTask = await firebaseStorageRef.putFile();
-//   String url = await uploadTask.ref.getDownloadURL(); //Get URL
-//   return await FirebaseFirestore.instance.collection('drinks').doc(id).update({ //Update url in Firestore (if required)
-//     'image': url,
-//   });
-}
-
+  }
 }

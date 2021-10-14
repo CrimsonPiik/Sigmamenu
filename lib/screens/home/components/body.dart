@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shop_app/constaints.dart';
@@ -7,6 +6,15 @@ import 'package:shop_app/screens/home/components/itemCardData.dart';
 import 'categorries.dart';
 
 StreamController<int> streamController = StreamController<int>.broadcast();
+
+// void getCategoriesFromFirebase() async {
+//   var result = await FirebaseFirestore.instance.collection('categories').get();
+//   result.docs.forEach((element) {
+//     print(element.id);
+//     categories.add(element.id);
+//     categories.toSet().toList();
+//   });
+// }
 
 class Body extends StatelessWidget {
   @override
@@ -28,7 +36,6 @@ class Body extends StatelessWidget {
                         .textTheme
                         .headline5!
                         .copyWith(fontWeight: FontWeight.bold),
-              
                   ),
                 ),
                 Container(

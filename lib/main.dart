@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:shop_app/screens/adminPanel.dart';
 import 'package:shop_app/screens/home/home_screen.dart';
@@ -9,6 +8,7 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
