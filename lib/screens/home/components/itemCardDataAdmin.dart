@@ -50,10 +50,10 @@ class _ItemCardDataState extends State<ItemCardDataAdmin> {
         // .asBroadcastStream(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasError) {
-            return CommonUI.error(context, snapshot.error.toString());
+            return CommonUI.error(snapshot.error.toString());
           }
           if (snapshot.connectionState == ConnectionState.waiting)
-            return CommonUI.loading();
+            return CommonUI.loading(context);
           List<Product> products = [];
 
           List<DocumentSnapshot> shots = snapshot.data!.docs;
@@ -69,7 +69,7 @@ class _ItemCardDataState extends State<ItemCardDataAdmin> {
                   itemCount: products.length,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 1,
-                      childAspectRatio: ScreenUtil.isDesktop(context)
+                      childAspectRatio: Responsive.isDesktop(context)
                           ? MediaQuery.of(context).size.width /
                               (MediaQuery.of(context).size.height / 4)
                           : MediaQuery.of(context).size.width /

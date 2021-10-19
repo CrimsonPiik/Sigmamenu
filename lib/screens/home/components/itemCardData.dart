@@ -35,9 +35,16 @@ class _ItemCardDataState extends State<ItemCardData> {
       'salads',
       'brunch'
     ];
+    // if (this.mounted) {
     setState(() {
       category = categoryMenu[index];
     });
+    // }
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 
   @override
@@ -46,15 +53,16 @@ class _ItemCardDataState extends State<ItemCardData> {
         stream: FirebaseFirestore.instance
             .collection(category)
             .where('isPublished', isEqualTo: true)
+            // .where('weight',)
             // .where('category',.....)
             .snapshots(),
         // .asBroadcastStream(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasError) {
-            return CommonUI.error(context, snapshot.error.toString());
+            return CommonUI.error(snapshot.error.toString());
           }
           if (snapshot.connectionState == ConnectionState.waiting)
-            return CommonUI.loading();
+            return CommonUI.loading(context);
           List<Product> productsList = [];
 
           List<DocumentSnapshot> shots = snapshot.data!.docs;
@@ -70,9 +78,9 @@ class _ItemCardDataState extends State<ItemCardData> {
               child: GridView.builder(
                   itemCount: productsList.length,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: ScreenUtil.isDesktop(context)
+                    crossAxisCount: Responsive.isDesktop(context)
                         ? 7
-                        : ScreenUtil.isTablet(context)
+                        : Responsive.isTablet(context)
                             ? 4
                             : 2,
                     mainAxisSpacing: kDefaultPaddin,

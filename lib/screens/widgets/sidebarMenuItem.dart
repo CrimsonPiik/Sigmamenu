@@ -95,6 +95,52 @@ class _MenuItemState extends State<SideBarMenuItem> {
               child: Form(
                 child: Column(
                   children: <Widget>[
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        ValueListenableBuilder(
+                          valueListenable: _image,
+                          builder: (BuildContext context, dynamic value,
+                              Widget? child) {
+                            return value != null
+                                ? InkWell(
+                                    onTap: () async {
+                                      CircularProgressIndicator();
+                                      _imageController.text =
+                                          await fireBaseUploadFileWeb(id);
+                                      _image.value = _imageController.text;
+                                      // print(_imageController.text);
+                                    },
+                                    child: Container(
+                                      height: 100,
+                                      // width: 120,
+                                      child: InteractiveViewer(
+                                        child: Image.network(value,
+                                            fit: BoxFit.fitWidth),
+                                      ),
+                                    ),
+                                  )
+                                : InkWell(
+                                    onTap: () async {
+                                      CircularProgressIndicator();
+                                      _imageController.text =
+                                          await fireBaseUploadFileWeb(id);
+                                      _image.value = _imageController.text;
+                                      // print(_imageController.text);
+                                    },
+                                    child: Container(
+                                      height: 100,
+                                      // width: 120,
+                                      child: Image.asset(
+                                        'assets/images/placeholder.jpg',
+                                        fit: BoxFit.fitWidth,
+                                      ),
+                                    ),
+                                  );
+                          },
+                        ),
+                      ],
+                    ),
                     SizedBox(
                       width: MediaQuery.of(context).size.width * 0.40,
                       child: TextFormField(
@@ -131,60 +177,6 @@ class _MenuItemState extends State<SideBarMenuItem> {
                           icon: Icon(Icons.message),
                         ),
                       ),
-                    ),
-                    Row(
-                      children: [
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.40,
-                          child: TextFormField(
-                            validator: (value) =>
-                                value!.isEmpty ? _validatorText : null,
-                            controller: _imageController,
-                            onChanged: (value) {
-                              _image.value = value;
-                            },
-                            decoration: InputDecoration(
-                              icon: Icon(Icons.image),
-                              labelText: "Product Image",
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          child: ValueListenableBuilder(
-                            valueListenable: _image,
-                            builder: (BuildContext context, dynamic value,
-                                Widget? child) {
-                              return Container(
-                                child: Column(children: [
-                                  _image.value != null
-                                      ? Container(
-                                          height: 60,
-                                          width: 70,
-                                          child: InteractiveViewer(
-                                            child: Image.network(value,
-                                                fit: BoxFit.fitHeight),
-                                          ),
-                                        )
-                                      : Container(
-                                          height: 60,
-                                          width: 70,
-                                          color: Colors.black,
-                                        ),
-                                  TextButton(
-                                      onPressed: () async {
-                                        _imageController.text =
-                                            await fireBaseUploadFileWeb(id);
-                                        _image.value = _imageController.text;
-                                        print(_imageController.text);
-                                      },
-                                      child: Text('Upload Image'))
-                                ]),
-                              );
-                            },
-                          ),
-                        ),
-                        // SizedBox(width: 10),
-                      ],
                     ),
                   ],
                 ),

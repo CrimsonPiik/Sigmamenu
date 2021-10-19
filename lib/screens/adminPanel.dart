@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shop_app/layout/sidebar.dart';
 import 'package:shop_app/screens/home/components/body.dart';
@@ -19,6 +20,8 @@ class _AdminPanelState extends State<AdminPanel> {
 
   @override
   void initState() {
+    // getCategories();
+
     // getCategoriesFromFirebase();
     super.initState();
   }
@@ -38,18 +41,9 @@ class _AdminPanelState extends State<AdminPanel> {
                   height: 70,
                   child: Row(
                     children: [
-                      this.widget.showDesktop
-                          ? SizedBox.shrink()
-                          : IconButton(
-                              icon: Icon(
-                                Icons.arrow_back,
-                              ),
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                            ),
                       SizedBox(
                         height: 10,
+                        width: 30,
                       ),
                       Expanded(
                           child: Row(

@@ -32,7 +32,7 @@ class _ProductsItemState extends State<ProductsItem> {
         color: Colors.grey.withOpacity(0.1),
         borderRadius: BorderRadius.circular(12),
       ),
-      child: ScreenUtil.isDesktop(context)
+      child: Responsive.isDesktop(context)
           ? Row(
               children: [
                 Container(
@@ -45,7 +45,7 @@ class _ProductsItemState extends State<ProductsItem> {
                         widget.data.image, ImageAssets.placeholder,
                         fit: BoxFit.cover)),
                 SizedBox(
-                  width: 14,
+                  width: 16,
                 ),
                 Expanded(
                   child: Column(
@@ -151,7 +151,7 @@ class _ProductsItemState extends State<ProductsItem> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(height: 18),
+                      SizedBox(height: 16),
                       Text(
                         widget.data.nameEn,
                         overflow: TextOverflow.ellipsis,
@@ -160,7 +160,7 @@ class _ProductsItemState extends State<ProductsItem> {
                             fontWeight: FontWeight.bold, fontSize: 16),
                       ),
                       SizedBox(
-                        height: 4,
+                        height: 3,
                       ),
                       Text(
                         widget.data.descriptionEn,
@@ -170,7 +170,7 @@ class _ProductsItemState extends State<ProductsItem> {
                             fontWeight: FontWeight.w400, fontSize: 14),
                       ),
                       SizedBox(
-                        height: 4,
+                        height: 3,
                       ),
                       Text(
                         widget.data.price.toString(),
@@ -352,7 +352,7 @@ class _ProductsItemState extends State<ProductsItem> {
                             //     :
                             Container(
                               height: 50,
-                              width: ScreenUtil.isDesktop(context) ? 200 : 70,
+                              width: Responsive.isDesktop(context) ? 200 : 70,
                               child: CommonUI.textField(
                                   context: context,
                                   name: "Name",
@@ -398,7 +398,7 @@ class _ProductsItemState extends State<ProductsItem> {
                             // ),
                             Container(
                               height: 50,
-                              width: ScreenUtil.isDesktop(context) ? 200 : 70,
+                              width: Responsive.isDesktop(context) ? 200 : 70,
                               child: CommonUI.textField(
                                   context: context,
                                   name: "descriptionEn",
@@ -425,7 +425,7 @@ class _ProductsItemState extends State<ProductsItem> {
                             // ),
                             Container(
                               height: 50,
-                              width: ScreenUtil.isDesktop(context) ? 200 : 70,
+                              width: Responsive.isDesktop(context) ? 200 : 70,
                               child: CommonUI.textField(
                                   context: context,
                                   name: "price",

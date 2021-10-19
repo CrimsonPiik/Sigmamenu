@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shop_app/constaints.dart';
 import 'package:shop_app/screens/home/components/itemCardData.dart';
+import 'package:shop_app/screens/widgets/bannerWithDotsIndicator.dart';
 import 'categorries.dart';
 
 StreamController<int> streamController = StreamController<int>.broadcast();
@@ -31,27 +32,29 @@ class Body extends StatelessWidget {
               children: [
                 Container(
                   child: Text(
-                    "Coffee Shop",
+                    "Sigma Menu",
                     style: Theme.of(context)
                         .textTheme
                         .headline5!
                         .copyWith(fontWeight: FontWeight.bold),
                   ),
                 ),
-                Container(
-                  child: IconButton(
-                    icon: SvgPicture.asset(
-                      "assets/icons/search.svg",
-                      // By default our  icon color is white
-                      color: kTextColor,
-                    ),
-                    onPressed: () {},
-                  ),
-                ),
+                // Container(
+                // color: Colors.black,
+                // child: IconButton(
+                // icon: SvgPicture.asset(
+                // "assets/icons/search.svg",
+                // By default our  icon color is white
+                // color: Colors.black,
+                // ),
+                // onPressed: () {},
+                // ),
+                // ),
               ],
             ),
           ),
         ),
+        BannerWithDotsIndicator(),
         Categories(),
         ItemCardData(streamController.stream),
       ],

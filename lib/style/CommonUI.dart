@@ -1,17 +1,152 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:lottie/lottie.dart';
-import 'Style.dart';
-import 'AssetsManager.dart';
-import 'CommonShape.dart';
-import 'ScreenUtil.dart';
+import 'package:shop_app/animation/loading_spinner.dart';
+import 'package:shop_app/style/AssetsManager.dart';
+import 'package:shop_app/style/ScreenUtil.dart';
+import 'package:shop_app/style/Style.dart';
 
-//~~ Zuhair
-// this is for common UI widgets
 class CommonUI {
-  ///Zuhair: this widget used for showing alert
+  static Widget profileImage({
+    required VoidCallback click,
+    required Color color,
+    required String image,
+    double boarder = 25.0,
+  }) {
+    return Center(
+      child: Stack(
+        children: [
+          Container(
+            height: 120,
+            width: 120,
+            decoration: BoxDecoration(
+                border: Border.all(width: 2, color: Colors.white),
+                boxShadow: [
+                  BoxShadow(
+                    spreadRadius: 1,
+                    blurRadius: 5,
+                    color: Colors.black.withOpacity(0.1),
+                  )
+                ],
+                shape: BoxShape.circle,
+                image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: NetworkImage(image),
+                )),
+            child: ClipRRect(
+              borderRadius: const BorderRadius.all(
+                Radius.circular(120),
+              ),
+              child: Image.network(
+                image,
+                fit: BoxFit.cover,
+                loadingBuilder: (context, child, loadingProgress) {
+                  if (loadingProgress == null) return child;
+                  return LoadingSpinner();
+                },
+              ),
+            ),
+          ),
+          Positioned(
+              bottom: 0,
+              right: 0,
+              child: InkWell(
+                onTap: click,
+                child: Container(
+                  height: 40,
+                  width: 40,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      width: 4,
+                      color: Colors.white,
+                    ),
+                    color: color,
+                  ),
+                  child: Icon(
+                    Icons.photo_camera,
+                    color: Colors.white,
+                  ),
+                ),
+              )),
+        ],
+      ),
+    );
+  }
+
+  static Widget loading(BuildContext context) {
+    return Column(
+      children: [
+        SizedBox(height: MediaQuery.of(context).size.height / 5),
+        Center(
+          child: LottieBuilder.asset(
+            AnimAssets.loadingCoffee,
+            height: 90,
+            // repeat: false,
+          ),
+        ),
+      ],
+    );
+  }
+
+  static Widget userImage({
+    required String image,
+  }) {
+    return Center(
+      child: Container(
+        height: 120,
+        width: 120,
+        decoration: BoxDecoration(
+            border: Border.all(width: 2, color: Colors.white),
+            boxShadow: [
+              BoxShadow(
+                spreadRadius: 1,
+                blurRadius: 5,
+                color: Colors.black.withOpacity(0.1),
+              )
+            ],
+            shape: BoxShape.circle,
+            image: DecorationImage(
+              fit: BoxFit.cover,
+              image: NetworkImage(image),
+            )),
+        child: ClipRRect(
+          borderRadius: const BorderRadius.all(
+            Radius.circular(120),
+          ),
+          child: Image.network(
+            image,
+            fit: BoxFit.cover,
+            loadingBuilder: (context, child, loadingProgress) {
+              if (loadingProgress == null) return child;
+              return LoadingSpinner();
+            },
+          ),
+        ),
+      ),
+      //  Container(
+      //   width: 120,
+      //   height: 120,
+      //   decoration: BoxDecoration(
+      //       border: Border.all(width: 2, color: Colors.white),
+      //       boxShadow: [
+      //         BoxShadow(
+      //           spreadRadius: 1,
+      //           blurRadius: 5,
+      //           color: Colors.black.withOpacity(0.1),
+      //         )
+      //       ],
+      //       shape: BoxShape.circle,
+      //       image: DecorationImage(
+      //         fit: BoxFit.cover,
+      //         image: NetworkImage(image),
+      //       )),
+      // ),
+    );
+  }
+
   static Future<void> alert(BuildContext context,
       {String title = '',
       required String msg,
@@ -25,16 +160,16 @@ class CommonUI {
           content: Text(msg),
           actions: <Widget>[
             TextButton(
+              child: Text(
+                MaterialLocalizations.of(context).okButtonLabel,
+                style: FontStyle.normal(context: context, color: Colors.red),
+              ),
               onPressed: () {
                 if (onDone != null) {
                   onDone();
                 }
                 Navigator.of(context).pop();
               },
-              child: Text(
-                MaterialLocalizations.of(context).okButtonLabel,
-                style: FontStyle.normal(context: context, color: Colors.red),
-              ),
             ),
           ],
         );
@@ -46,7 +181,6 @@ class CommonUI {
     }
   }
 
-  ///Zuhair: this widget used for showing dialog when some functions complete successfully
   static Future<void> successDialog(
     BuildContext context, {
     required String message,
@@ -82,102 +216,138 @@ class CommonUI {
     );
   }
 
-  ///Zuhair: this widget used for textField
   static Widget textField(
       {required BuildContext context,
       required String name,
-      String? label,
-      String? hint,
+      label,
+      hint,
       required TextEditingController? controller,
       Widget? icon,
-      int? maxLines,
-      Function(String?)? onFieldSubmitted,
-      bool obscureText = false,
-      Widget? suffixIcon,
-      Widget? prefixIcon,
-      Color borderColor = const Color(0xffD8D7D3),
       bool isEdit = false,
-      TextInputType keyboardType = TextInputType.multiline,
       String? Function(String?)? validate,
       Function(String?)? onChange}) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8),
+      padding: const EdgeInsets.only(bottom: 15),
       child: FormBuilderTextField(
-          onSubmitted: onFieldSubmitted,
           name: name,
-          obscureText: obscureText,
           controller: controller,
           decoration: InputDecoration(
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(16),
-                borderSide: BorderSide(
-                  color: borderColor,
-                ),
-              ),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(16),
-                borderSide: BorderSide(color: borderColor),
-              ),
-              labelText: label,
-              hintText: hint,
               icon: icon,
-              prefixIcon: prefixIcon,
-              suffixIcon: isEdit ? const Icon(Icons.edit) : suffixIcon,
-              hintStyle:
-                  FontStyle.normal(context: context, color: Style.beigeCoffee)),
-          keyboardType: keyboardType,
-          minLines: 1,
-          maxLines: maxLines ?? 1,
+              suffixIcon: isEdit ? Icon(Icons.edit) : null,
+              labelText: hint,
+              hintText: label,
+              hintStyle: FontStyle.normal(context: context),
+              enabled: true),
           onChanged: onChange,
           validator: validate),
     );
   }
 
-  ///Zuhair: dropDownButton
-  static Widget dropDownButton({
-    required BuildContext context,
-    required List<DropdownMenuItem<Object>> items,
-    required Function(Object?)? onChanged,
-    Widget? icon,
-    required String text,
-  }) {
+  static Widget profilDataCard(
+      {required BuildContext context,
+      String? labelText,
+      String? hintText,
+      String? initialValue,
+      TextInputType? textInputType,
+      TextEditingController? controller,
+      IconData? prefixIcon,
+      IconButton? suffixIcon,
+      int maxLines = 1,
+      bool obscureText = false,
+      TextCapitalization textCapitalization = TextCapitalization.none,
+      String? Function(String?)? validator,
+      Function(String)? onChanged,
+      Function(String?)? onSaved}) {
     return Padding(
-      padding: EdgeInsets.only(
-          bottom: 15,
-          left: ScreenUtil.isDesktop(context) ? 16 : 0,
-          right: ScreenUtil.isDesktop(context) ? 16 : 0),
-      child: SizedBox(
-        width: ScreenUtil.isDesktop(context) ? 300 : null,
-        child: DropdownButtonFormField(
-            icon: icon, items: items, onChanged: onChanged, hint: Text(text)),
+      padding: const EdgeInsets.only(top: 10),
+      child: Container(
+        height: 60,
+        decoration: new BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(8),
+          boxShadow: [
+            BoxShadow(
+              color: Color(0x29000000),
+              offset: Offset(0, 3),
+              blurRadius: 6,
+              spreadRadius: 0,
+            ),
+          ],
+        ),
+        child: Center(
+          child: TextFormField(
+            onSaved: onSaved,
+            onChanged: onChanged,
+            validator: validator,
+            controller: controller,
+            maxLines: 1,
+            keyboardType: textInputType,
+            decoration: InputDecoration(
+              contentPadding: const EdgeInsets.only(bottom: 1.0),
+              border: InputBorder.none,
+              disabledBorder: InputBorder.none,
+              enabledBorder: InputBorder.none,
+              focusedBorder: InputBorder.none,
+              labelText: labelText,
+              labelStyle: FontStyle.normal(
+                  fontWeight: FontWeight.bold, context: context),
+              floatingLabelBehavior: FloatingLabelBehavior.always,
+              prefixIcon: Padding(
+                padding: const EdgeInsets.only(top: 6),
+                child: Icon(
+                  prefixIcon,
+                  color: Color(0xff454f63),
+                ),
+              ),
+              suffixIcon: suffixIcon,
+              hintText: hintText,
+              hintStyle: FontStyle.normal(context: context),
+            ),
+          ),
+        ),
       ),
     );
   }
 
-  ///Zuhair: this widget used for showing toast
-  // static void toast(BuildContext context, String msg,
-  //     {Color bgColor = const Color(0xAA000000),
-  //     Color textColor = Colors.white}) {
-  //   Fluttertoast.showToast(
-  //       msg: msg,
-  //       toastLength: Toast.LENGTH_LONG,
-  //       backgroundColor: bgColor,
-  //       textColor: textColor,
-  //       fontSize: 16.0);
-  // }
-  static void snackBar(BuildContext context, String msg,
-      {Color bgColor = Style.beigeCoffee, Color textColor = Colors.white}) {
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      content: Text(msg),
-      shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(top: Radius.circular(8))),
-      backgroundColor: bgColor,
-      duration: const Duration(milliseconds: 1000),
-    ));
+  static Widget text({
+    required BuildContext context,
+    required String text,
+    TextStyle? style,
+    int? minLines,
+    int? maxLines,
+    TextAlign? textAlign = TextAlign.start,
+  }) {
+    if (Responsive.isDesktop(context) || Responsive.isTablet(context)) {
+      return SelectableText(
+        text,
+        minLines: minLines,
+        maxLines: maxLines,
+        textAlign: textAlign,
+        style: style ?? FontStyle.normal(context: context, color: Colors.white),
+      );
+    } else {
+      return Text(
+        text,
+        maxLines: maxLines,
+        textAlign: textAlign,
+        softWrap: true,
+        style: style ?? FontStyle.normal(context: context, color: Colors.white),
+      );
+    }
   }
 
-  ///Zuhair: this widget used for showing empty status
-  static Center empty(String text) {
+  static void toast(BuildContext context, String msg,
+      {Color bgColor = const Color(0xAA000000),
+      Color textColor = Colors.white}) {
+    Fluttertoast.showToast(
+        msg: msg,
+        toastLength: Toast.LENGTH_LONG,
+        backgroundColor: bgColor,
+        textColor: textColor,
+        fontSize: 16.0);
+  }
+
+  static empty(String text) {
     return Center(
         child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -192,18 +362,7 @@ class CommonUI {
     ));
   }
 
-  ///Zuhair: this widget used for loading
-  static Center loading() {
-    return Center(
-        child: LottieBuilder.asset(
-      AnimAssets.loadingCoffee,
-      height: 90,
-      // repeat: false,
-    ));
-  }
-
-  ///Zuhair: this widget used for showing error
-  static Center error(BuildContext context, String error) {
+  static error(String error) {
     return Center(
         child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -213,9 +372,16 @@ class CommonUI {
           height: 190,
           // repeat: false,
         ),
-        ScreenUtil.isDesktop(context) ? SelectableText(error) : Text(error),
+        Text(error),
       ],
     ));
+  }
+
+  static void postDelayed(
+      {int milliseconds = 500, required VoidCallback callbak}) {
+    Future.delayed(Duration(milliseconds: milliseconds), () {
+      callbak();
+    });
   }
 
   static Widget textButton(
@@ -225,7 +391,7 @@ class CommonUI {
       TextStyle? textStyle,
       EdgeInsetsGeometry? padding,
       required String text,
-      double boarder = 15, //10
+      double boarder = 40.0, //10
       Color textColor = Colors.white,
       required VoidCallback? click}) {
     return TextButton(
@@ -261,10 +427,8 @@ class CommonUI {
         onPrimary: textColor,
         // shadowColor: color,
         elevation: elevation,
-        textStyle: FontStyle.normal(
-          context: context,
-        ),
-        shape: CommonShapes.outlinedBorder(radius),
+        textStyle: FontStyle.headline6(context: context),
+        // shape: CommonShapes.obRounded(radius),
         minimumSize: Size(minWidth, minHight));
     return icon != null
         ? ElevatedButton.icon(
@@ -272,91 +436,27 @@ class CommonUI {
         : ElevatedButton(style: style, onPressed: click, child: Text(text));
   }
 
-  ///Zuhair: basicly this outlineButton
   static Widget outlineBtn(
-      {required BuildContext context,
-      required String text,
+      {required String text,
       double radius = 40, //16.0,
       Color? textColor,
-      double? minWidth = 140,
-      double? minHight = 40,
       Color? color,
-      bool withIcon = false,
       Color? borderColor,
       TextStyle? textStyle,
-      Size? fixedSize,
-      IconData? icon,
-      EdgeInsetsGeometry? padding,
       required void Function() onPressed}) {
     return OutlinedButton(
-        style: OutlinedButton.styleFrom(
-          minimumSize: Size(minWidth!, minHight!),
-          fixedSize: fixedSize,
-          animationDuration: const Duration(milliseconds: 300),
-          primary: textColor,
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(radius))),
-          backgroundColor: color ?? Colors.transparent,
-          side: BorderSide(color: borderColor ?? Style.primary, width: 1.1),
-        ),
-        onPressed: onPressed,
-        child: withIcon
-            ? Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      icon ?? null,
-                      color: borderColor ?? Style.primary,
-                      size: 16,
-                    ),
-                    SizedBox(width: 8),
-                    Text(text, style: textStyle)
-                    // Spacer(),
-                  ],
-                ),
-              )
-            : Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(text, style: textStyle),
-              ));
+      style: OutlinedButton.styleFrom(
+        primary: textColor,
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(radius))),
+        backgroundColor: color ?? Colors.transparent,
+        side: BorderSide(color: borderColor ?? Style.background, width: 1.1),
+      ),
+      onPressed: onPressed,
+      child: Text(text, style: textStyle),
+    );
   }
 
-  static Widget outlineBtnIcon({
-    required BuildContext context,
-    double radius = 50, //16.0,
-    Color? textColor,
-    double minWidth = 50,
-    double minHight = 50,
-    Color? color,
-    Color? borderColor,
-    Size? fixedSize,
-    required IconData icon,
-    Color? iconColor,
-    EdgeInsetsGeometry? padding,
-    required void Function() onPressed,
-  }) {
-    return OutlinedButton(
-        style: OutlinedButton.styleFrom(
-          minimumSize: Size(minWidth, minHight),
-          fixedSize: fixedSize,
-          animationDuration: const Duration(milliseconds: 300),
-          primary: textColor,
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(radius))),
-          backgroundColor: color ?? Colors.transparent,
-          side: BorderSide(color: borderColor ?? Style.primary, width: 1.1),
-        ),
-        onPressed: onPressed,
-        child: Icon(
-          icon,
-          color: borderColor ?? iconColor,
-          size: ScreenUtil.isDesktop(context) ? 32 : 25,
-        ));
-  }
-
-  ///Zuhair: this widget loading image and cached it for mobile cachedImage
   static Widget cachedImage(String? url, String ph,
       {Color? color, BoxFit fit = BoxFit.cover}) {
     return url == null
@@ -372,7 +472,7 @@ class CommonUI {
                 Center(
                     child: CircularProgressIndicator(
                   value: downloadProgress.progress,
-                  color: Style.primary,
+                  color: Theme.of(context).primaryColor,
                 )),
             errorWidget: (context, url, error) => Image.asset(
                   ph,
@@ -380,48 +480,28 @@ class CommonUI {
                 ),
             imageUrl: url);
   }
+  // static Widget cachedImage(String? url, String ph,
+  //     {Color? color, BoxFit fit = BoxFit.cover}) {
+  //   return url == null
+  //       ? Image.asset(
+  //           ph,
+  //           fit: fit,
+  //         )
+  //       : CachedNetworkImage(
+  //           maxHeightDiskCache: 300,
+  //           fit: fit,
+  //           color: color,
+  //           progressIndicatorBuilder: (context, url, downloadProgress) =>
+  //               Center(
+  //                   child: CircularProgressIndicator(
+  //                 value: downloadProgress.progress,
+  //                 color: Style.primary,
+  //               )),
+  //           errorWidget: (context, url, error) => Image.asset(
+  //                 ph,
+  //                 fit: fit,
+  //               ),
+  //           imageUrl: url);
+  // }
 
-  ///Zuhair: ignore this right now
-  static Widget webMenuButton({
-    required String text,
-    required VoidCallback onPress,
-  }) {
-    return InkWell(
-      onTap: onPress,
-      child: Container(
-        padding: const EdgeInsets.all(20),
-        child: Text(text,
-            style: const TextStyle(
-                color: Colors.white, fontWeight: FontWeight.w500)),
-      ),
-    );
-  }
-
-  ///Zuhair: this widget make text SelectableText for web and non-SelectableText for mobile
-  static Widget text({
-    required BuildContext context,
-    required String text,
-    TextStyle? style,
-    int? minLines,
-    int? maxLines,
-    TextAlign? textAlign = TextAlign.start,
-  }) {
-    if (ScreenUtil.isDesktop(context) || ScreenUtil.isTablet(context)) {
-      return SelectableText(
-        text,
-        minLines: minLines,
-        maxLines: maxLines,
-        textAlign: textAlign,
-        style: style ?? FontStyle.normal(context: context, color: Colors.white),
-      );
-    } else {
-      return Text(
-        text,
-        maxLines: maxLines,
-        textAlign: textAlign,
-        softWrap: true,
-        style: style ?? FontStyle.normal(context: context, color: Colors.white),
-      );
-    }
-  }
 }

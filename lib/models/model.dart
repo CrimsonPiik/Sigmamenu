@@ -5,6 +5,10 @@ class MenuItem {
   final IconData icon;
 
   MenuItem(this.name, this.icon);
+
+  MenuItem.fromMap(Map<String, dynamic> map)
+      : name = map['name'] ?? '',
+        icon = map['icon'] ?? 0;
 }
 
 class Order {

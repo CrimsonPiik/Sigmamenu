@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 
-//~~ Zuhair
-// to choose what screen type we have
-class ScreenUtil extends StatelessWidget {
+
+class Responsive extends StatelessWidget {
   final Widget mobile;
   final Widget tablet;
   final Widget desktop;
 
-  /// to know screens type if it mobile, tablet, web
-  const ScreenUtil({
+  const Responsive({
     Key? key,
     required this.mobile,
     required this.tablet,
@@ -25,17 +23,13 @@ class ScreenUtil extends StatelessWidget {
   static bool isDesktop(BuildContext context) =>
       MediaQuery.of(context).size.width >= 1100;
 
-  static double height(BuildContext context) =>
-      MediaQuery.of(context).size.height;
-  static double width(BuildContext context) =>
-      MediaQuery.of(context).size.width;
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
         if (constraints.maxWidth >= 1100) {
           return desktop;
-        } else if (constraints.maxWidth >= 600) {
+        } else if (constraints.maxWidth >= 650) {
           return tablet;
         } else {
           return mobile;
@@ -61,7 +55,7 @@ class ScreenRowColumn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (ScreenUtil.isDesktop(context)) {
+    if (Responsive.isDesktop(context)) {
       return Row(
         mainAxisAlignment: mainAxisAlignment ?? MainAxisAlignment.start,
         crossAxisAlignment: crossAxisAlignment ?? CrossAxisAlignment.center,
@@ -96,7 +90,7 @@ class ListGridLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (ScreenUtil.isDesktop(context)) {
+    if (Responsive.isDesktop(context)) {
       return GridView.builder(
         itemCount: itemCount,
         itemBuilder: itemBuilder,
@@ -137,7 +131,7 @@ class ListForWebGridForMobileLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (ScreenUtil.isMobile(context)) {
+    if (Responsive.isMobile(context)) {
       return GridView.builder(
         itemCount: itemCount,
         itemBuilder: itemBuilder,
