@@ -33,105 +33,109 @@ class _ProductsItemState extends State<ProductsItem> {
         borderRadius: BorderRadius.circular(12),
       ),
       child: Responsive.isDesktop(context)
-          ? Row(
-              children: [
-                Container(
-                    width: 80,
-                    height: 80,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(4),
+          ?
+        
+              Row(
+                  children: [
+                    Container(
+                        width: 80,
+                        height: 80,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(4),
+                        ),
+                        child: CommonUI.cachedImage(
+                            widget.data.image, ImageAssets.placeholder,
+                            fit: BoxFit.cover)),
+                    SizedBox(
+                      width: 16,
                     ),
-                    child: CommonUI.cachedImage(
-                        widget.data.image, ImageAssets.placeholder,
-                        fit: BoxFit.cover)),
-                SizedBox(
-                  width: 16,
-                ),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        widget.data.nameEn,
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 1,
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 16),
-                      ),
-                      SizedBox(
-                        height: 4,
-                      ),
-                      Text(
-                        widget.data.descriptionEn,
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 2,
-                        style: TextStyle(
-                            fontWeight: FontWeight.w400, fontSize: 14),
-                      ),
-                      SizedBox(
-                        height: 4,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            widget.data.price.toString(),
+                            widget.data.nameEn,
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 1,
                             style: TextStyle(
-                                fontWeight: FontWeight.w300,
-                                fontStyle: FontStyle.italic,
-                                fontSize: 12),
+                                fontWeight: FontWeight.bold, fontSize: 16),
                           ),
-                          Container(
-                            child: Row(
-                              children: [
-                                widget.data.isPublished == true
-                                    ? IconButton(
-                                        icon: Icon(
-                                          Icons.toggle_on,
-                                          color: Colors.green,
-                                          size: 35,
-                                        ),
+                          SizedBox(
+                            height: 4,
+                          ),
+                          Text(
+                            widget.data.descriptionEn,
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 2,
+                            style: TextStyle(
+                                fontWeight: FontWeight.w400, fontSize: 14),
+                          ),
+                          SizedBox(
+                            height: 4,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                widget.data.price.toString(),
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w300,
+                                    fontStyle: FontStyle.italic,
+                                    fontSize: 12),
+                              ),
+                              Container(
+                                child: Row(
+                                  children: [
+                                    widget.data.isPublished == true
+                                        ? IconButton(
+                                            icon: Icon(
+                                              Icons.toggle_on,
+                                              color: Colors.green,
+                                              size: 35,
+                                            ),
+                                            onPressed: () {
+                                              FirebaseFirestore.instance
+                                                  .collection('drinks')
+                                                  .doc(widget.data.id)
+                                                  .update({'isPublished': false});
+                                            })
+                                        : IconButton(
+                                            icon: Icon(
+                                              Icons.toggle_off,
+                                              color: Colors.red,
+                                              size: 35,
+                                            ),
+                                            onPressed: () {
+                                              FirebaseFirestore.instance
+                                                  .collection('drinks')
+                                                  .doc(widget.data.id)
+                                                  .update({'isPublished': true});
+                                            }),
+                                    SizedBox(width: 20),
+                                    TextButton(
                                         onPressed: () {
-                                          FirebaseFirestore.instance
-                                              .collection('drinks')
-                                              .doc(widget.data.id)
-                                              .update({'isPublished': false});
-                                        })
-                                    : IconButton(
-                                        icon: Icon(
-                                          Icons.toggle_off,
-                                          color: Colors.red,
-                                          size: 35,
-                                        ),
+                                          _showEditDialog(context);
+                                        },
+                                        child:
+                                            Icon(Icons.edit, color: Colors.brown)),
+                                    TextButton(
                                         onPressed: () {
-                                          FirebaseFirestore.instance
-                                              .collection('drinks')
-                                              .doc(widget.data.id)
-                                              .update({'isPublished': true});
-                                        }),
-                                SizedBox(width: 20),
-                                TextButton(
-                                    onPressed: () {
-                                      _showEditDialog(context);
-                                    },
-                                    child:
-                                        Icon(Icons.edit, color: Colors.brown)),
-                                TextButton(
-                                    onPressed: () {
-                                      _showDeleteDialog(context);
-                                    },
-                                    child:
-                                        Icon(Icons.delete, color: Colors.red)),
-                              ],
-                            ),
+                                          _showDeleteDialog(context);
+                                        },
+                                        child:
+                                            Icon(Icons.delete, color: Colors.red)),
+                                  ],
+                                ),
+                              ),
+                            ],
                           ),
                         ],
                       ),
-                    ],
-                  ),
-                )
-              ],
-            )
+                    )
+                
+      
+            ],
+          )
           : Row(
               children: [
                 Container(

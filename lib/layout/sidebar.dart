@@ -8,7 +8,6 @@ final List<MenuItem> menuItems = [
   MenuItem('Dashboard', Icons.dashboard_outlined),
   MenuItem('User', Icons.person),
   MenuItem('Contact', Icons.contact_mail),
-  MenuItem('Add a Product', Icons.add),
 ];
 // late List<MenuItem> menuItems = [];
 

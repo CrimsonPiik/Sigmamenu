@@ -42,6 +42,7 @@ class ItemCard extends StatelessWidget {
       ),
       child: Stack(
         children: [
+          
           GestureDetector(
             onTap: () => {
               Navigator.push(
@@ -64,6 +65,7 @@ class ItemCard extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
+                  
                   // isBordered
                   // ?
                   ClipRRect(

@@ -1,11 +1,10 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shop_app/layout/sidebar.dart';
 import 'package:shop_app/screens/home/components/body.dart';
 import 'package:shop_app/screens/home/components/categorries.dart';
 import 'package:shop_app/screens/home/components/itemCardDataAdmin.dart';
-import 'package:shop_app/style/CommonUI.dart';
+import 'package:shop_app/screens/widgets/addProductButton.dart';
 
 class AdminPanel extends StatefulWidget {
   final bool showDesktop;
@@ -54,11 +53,11 @@ class _AdminPanelState extends State<AdminPanel> {
                             style: TextStyle(
                                 fontSize: 18, fontWeight: FontWeight.w600),
                           ),
-                          TextButton(
-                              onPressed: () {
-                                _showAddCollectionDialog(context);
-                              },
-                              child: Text("Add "))
+                          // TextButton(
+                          //     onPressed: () {
+                          //       _showAddCollectionDialog(context);
+                          //     },
+                          //     child: Text("Add "))
                         ],
                       ))
                     ],
@@ -67,6 +66,7 @@ class _AdminPanelState extends State<AdminPanel> {
                 SizedBox(height: 15),
                 Categories(),
                 SizedBox(height: 15),
+                AddProductButton(streamController.stream),
                 ItemCardDataAdmin(streamController.stream),
               ],
             ),
@@ -76,7 +76,7 @@ class _AdminPanelState extends State<AdminPanel> {
     );
     // });
   }
-
+/*
   _showAddCollectionDialog(BuildContext context) {
     showDialog(
         context: context,
@@ -124,5 +124,5 @@ class _AdminPanelState extends State<AdminPanel> {
             ],
           );
         });
-  }
+  }*/
 }
