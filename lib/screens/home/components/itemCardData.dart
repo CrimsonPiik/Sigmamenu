@@ -53,7 +53,8 @@ class _ItemCardDataState extends State<ItemCardData> {
         stream: FirebaseFirestore.instance
             .collection(category)
             .where('isPublished', isEqualTo: true)
-            // .where('weight',)
+            // .where('weight',)18
+            
             // .where('category',.....)
             .snapshots(),
         // .asBroadcastStream(),

@@ -6,20 +6,8 @@ void main() async {
   runApp(MyApp());
 }
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
   // This widget is the root of your application.
-
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  @override
-  void initState() {
-    // getCategories();
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -30,6 +18,7 @@ class _MyAppState extends State<MyApp> {
         colorScheme: ColorScheme.fromSwatch(
           primarySwatch: Colors.green,
         ).copyWith(),
+
         textTheme: Theme.of(context).textTheme.apply(
             // displayColor: Colors.brown,
             // decorationColor: Colors.brown,

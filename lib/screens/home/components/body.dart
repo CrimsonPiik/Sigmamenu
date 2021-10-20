@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shop_app/constaints.dart';
 import 'package:shop_app/screens/home/components/itemCardData.dart';
 import 'package:shop_app/screens/widgets/bannerWithDotsIndicator.dart';

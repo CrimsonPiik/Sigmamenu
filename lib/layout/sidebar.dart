@@ -1,9 +1,7 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:shop_app/constaints.dart';
 import 'package:shop_app/models/model.dart';
 import 'package:shop_app/screens/widgets/sidebarMenuItem.dart';
-import 'package:shop_app/style/CommonUI.dart';
 
 final List<MenuItem> menuItems = [
   MenuItem('Home', Icons.home_outlined),
