@@ -1,20 +1,26 @@
 import 'package:flutter/material.dart';
 
-
 class Responsive extends StatelessWidget {
   final Widget mobile;
+  final Widget miniMobile;
+
   final Widget tablet;
   final Widget desktop;
 
   const Responsive({
     Key? key,
     required this.mobile,
+    required this.miniMobile,
     required this.tablet,
     required this.desktop,
   }) : super(key: key);
 
+  static bool isMiniMobile(BuildContext context) =>
+      MediaQuery.of(context).size.width < 370;
+
   static bool isMobile(BuildContext context) =>
-      MediaQuery.of(context).size.width < 650;
+      MediaQuery.of(context).size.width < 650 &&
+      MediaQuery.of(context).size.width >= 370;
 
   static bool isTablet(BuildContext context) =>
       MediaQuery.of(context).size.width < 1100 &&
@@ -31,8 +37,10 @@ class Responsive extends StatelessWidget {
           return desktop;
         } else if (constraints.maxWidth >= 650) {
           return tablet;
-        } else {
+        } else if (constraints.maxWidth >= 370) {
           return mobile;
+        } else {
+          return miniMobile;
         }
       },
     );

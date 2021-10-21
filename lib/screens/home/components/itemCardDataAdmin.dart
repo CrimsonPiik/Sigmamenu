@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shop_app/constaints.dart';
 import 'package:shop_app/models/product.dart';
+import 'package:shop_app/screens/adminPanel.dart';
 import 'package:shop_app/screens/widgets/productsItem.dart';
 import 'package:shop_app/style/CommonUI.dart';
 import 'package:shop_app/style/ScreenUtil.dart';
@@ -16,7 +17,7 @@ class ItemCardDataAdmin extends StatefulWidget {
 }
 
 class _ItemCardDataState extends State<ItemCardDataAdmin> {
-  String category = 'drinks';
+  String category = 'Drinks';
 
   @override
   void initState() {
@@ -27,16 +28,17 @@ class _ItemCardDataState extends State<ItemCardDataAdmin> {
   }
 
   void mySetState(int index) {
-    List categoryMenu = [
-      'drinks',
-      'maincourses',
-      'appetizers',
-      'desserts',
-      'salads',
-      'brunch'
-    ];
+    // List categoryMenu = [
+    //   'drinks',
+    //   'maincourses',
+    //   'appetizers',
+    //   'desserts',
+    //   'salads',
+    //   'brunch'
+    // ];
     setState(() {
-      category = categoryMenu[index];
+      category = categoriesList.elementAt(index);
+      // category = categoryMenu[index];
     });
   }
 

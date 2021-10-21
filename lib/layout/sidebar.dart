@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:shop_app/constaints.dart';
 import 'package:shop_app/models/model.dart';
@@ -7,7 +8,7 @@ final List<MenuItem> menuItems = [
   MenuItem('Home', Icons.home_outlined),
   MenuItem('Dashboard', Icons.dashboard_outlined),
   MenuItem('User', Icons.person),
-  MenuItem('Contact', Icons.contact_mail),
+  MenuItem('Banners', Icons.photo_size_select_actual_outlined),
 ];
 // late List<MenuItem> menuItems = [];
 
@@ -18,6 +19,7 @@ final List<MenuItem> menuItems = [
 //   final List<DocumentSnapshot> documents = result.docs;
 
 //   for (int i = 0; i < documents.length; i++) {
+
 //     menuItems.add(MenuItem(documents[i].id, Icons.home_outlined));
 //   }
 // }

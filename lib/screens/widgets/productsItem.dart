@@ -5,6 +5,7 @@ import 'package:shop_app/models/product.dart';
 import 'package:shop_app/style/AssetsManager.dart';
 import 'package:shop_app/style/CommonUI.dart';
 import 'package:shop_app/style/ScreenUtil.dart';
+import 'package:shop_app/style/Style.dart';
 
 class ProductsItem extends StatefulWidget {
   final Product data;
@@ -33,109 +34,142 @@ class _ProductsItemState extends State<ProductsItem> {
         borderRadius: BorderRadius.circular(12),
       ),
       child: Responsive.isDesktop(context)
-          ?
-        
-              Row(
-                  children: [
-                    Container(
-                        width: 80,
-                        height: 80,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(4),
-                        ),
-                        child: CommonUI.cachedImage(
-                            widget.data.image, ImageAssets.placeholder,
-                            fit: BoxFit.cover)),
-                    SizedBox(
-                      width: 16,
+          ? Row(
+              children: [
+                Container(
+                    width: 80,
+                    height: 80,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(4),
                     ),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                    child: CommonUI.cachedImage(
+                        widget.data.image, ImageAssets.placeholder,
+                        fit: BoxFit.cover)),
+                SizedBox(
+                  width: 16,
+                ),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      //   // SizedBox(
+                      //   //   height: 20,
+                      //   // ),
+                      Text(
+                        widget.data.nameEn,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 16),
+                      ),
+                      // CommonUI.text(
+                      //   context: context,
+                      //   text: widget.data.nameEn,
+                      //   // RhinoLanguage.isLTR()
+                      //   //     ? product.nameEn
+                      //   //     : product.nameAr,
+                      //   textAlign: TextAlign.center,
+                      //   style: FontStyle.normal(
+                      //       context: context, fontWeight: FontWeight.bold),
+                      // ),
+
+                      SizedBox(
+                        height: 4,
+                      ),
+                      Text(
+                        widget.data.descriptionEn,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 2,
+                        style: TextStyle(
+                            fontWeight: FontWeight.w400, fontSize: 14),
+                      ),
+                      // CommonUI.text(
+                      //   context: context,
+                      //   text: widget.data.descriptionEn,
+                      //   // RhinoLanguage.isLTR()
+                      //   //     ? product.nameEn
+                      //   //     : product.nameAr,
+                      //   textAlign: TextAlign.center,
+                      //   style: FontStyle.normal(
+                      //     context: context,
+                      //     // fontWeight: FontWeight.bold
+                      //   ),
+                      // ),
+
+                      SizedBox(
+                        height: 4,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            widget.data.nameEn,
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 1,
+                            widget.data.price.toString(),
                             style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 16),
+                                fontWeight: FontWeight.w300,
+                                // fontStyle: FontStyle.italic,
+                                fontSize: 12),
                           ),
-                          SizedBox(
-                            height: 4,
-                          ),
-                          Text(
-                            widget.data.descriptionEn,
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 2,
-                            style: TextStyle(
-                                fontWeight: FontWeight.w400, fontSize: 14),
-                          ),
-                          SizedBox(
-                            height: 4,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                widget.data.price.toString(),
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w300,
-                                    fontStyle: FontStyle.italic,
-                                    fontSize: 12),
-                              ),
-                              Container(
-                                child: Row(
-                                  children: [
-                                    widget.data.isPublished == true
-                                        ? IconButton(
-                                            icon: Icon(
-                                              Icons.toggle_on,
-                                              color: Colors.green,
-                                              size: 35,
-                                            ),
-                                            onPressed: () {
-                                              FirebaseFirestore.instance
-                                                  .collection('drinks')
-                                                  .doc(widget.data.id)
-                                                  .update({'isPublished': false});
-                                            })
-                                        : IconButton(
-                                            icon: Icon(
-                                              Icons.toggle_off,
-                                              color: Colors.red,
-                                              size: 35,
-                                            ),
-                                            onPressed: () {
-                                              FirebaseFirestore.instance
-                                                  .collection('drinks')
-                                                  .doc(widget.data.id)
-                                                  .update({'isPublished': true});
-                                            }),
-                                    SizedBox(width: 20),
-                                    TextButton(
+                          // CommonUI.text(
+                          //   context: context,
+                          //   text: widget.data.price.toString(),
+                          //   // RhinoLanguage.isLTR()
+                          //   //     ? product.nameEn
+                          //   //     : product.nameAr,
+                          //   textAlign: TextAlign.center,
+                          //   style: FontStyle.normasl(
+                          //       context: context, fontWeight: FontWeight.bold),
+                          // ),
+                          Container(
+                            child: Row(
+                              children: [
+                                widget.data.isPublished == true
+                                    ? IconButton(
+                                        icon: Icon(
+                                          Icons.toggle_on,
+                                          color: Colors.green,
+                                          size: 35,
+                                        ),
                                         onPressed: () {
-                                          _showEditDialog(context);
-                                        },
-                                        child:
-                                            Icon(Icons.edit, color: Colors.brown)),
-                                    TextButton(
+                                          FirebaseFirestore.instance
+                                              .collection('Drinks')
+                                              .doc(widget.data.id)
+                                              .update({'isPublished': false});
+                                        })
+                                    : IconButton(
+                                        icon: Icon(
+                                          Icons.toggle_off,
+                                          color: Colors.red,
+                                          size: 35,
+                                        ),
                                         onPressed: () {
-                                          _showDeleteDialog(context);
-                                        },
-                                        child:
-                                            Icon(Icons.delete, color: Colors.red)),
-                                  ],
-                                ),
-                              ),
-                            ],
+                                          FirebaseFirestore.instance
+                                              .collection('Drinks')
+                                              .doc(widget.data.id)
+                                              .update({'isPublished': true});
+                                        }),
+                                SizedBox(width: 20),
+                                TextButton(
+                                    onPressed: () {
+                                      _showEditDialog(context);
+                                    },
+                                    child:
+                                        Icon(Icons.edit, color: Colors.brown)),
+                                TextButton(
+                                    onPressed: () {
+                                      _showDeleteDialog(context);
+                                    },
+                                    child:
+                                        Icon(Icons.delete, color: Colors.red)),
+                              ],
+                            ),
                           ),
                         ],
                       ),
-                    )
-                
-      
-            ],
-          )
+                    ],
+                  ),
+                )
+              ],
+            )
           : Row(
               children: [
                 Container(
@@ -156,32 +190,65 @@ class _ProductsItemState extends State<ProductsItem> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SizedBox(height: 16),
-                      Text(
-                        widget.data.nameEn,
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 1,
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 16),
+                      CommonUI.text(
+                        context: context,
+                        text: widget.data.nameEn,
+                        // RhinoLanguage.isLTR()
+                        //     ? product.nameEn
+                        //     : product.nameAr,
+                        textAlign: TextAlign.center,
+                        style: FontStyle.normal(
+                            context: context, fontWeight: FontWeight.bold),
+                      ),
+
+                      // Text(
+                      //   widget.data.nameEn,
+                      //   overflow: TextOverflow.ellipsis,
+                      //   maxLines: 1,
+                      //   style: TextStyle(
+                      //       fontWeight: FontWeight.bold, fontSize: 16),
+                      // ),
+                      SizedBox(
+                        height: 3,
+                      ),
+                      // Text(
+                      //   widget.data.descriptionEn,
+                      //   overflow: TextOverflow.ellipsis,
+                      //   maxLines: 2,
+                      //   style: TextStyle(
+                      //       fontWeight: FontWeight.w400, fontSize: 14),
+                      // ),
+                      CommonUI.text(
+                        context: context,
+                        text: widget.data.descriptionEn,
+                        // RhinoLanguage.isLTR()
+                        //     ? product.nameEn
+                        //     : product.nameAr,
+                        textAlign: TextAlign.center,
+                        style: FontStyle.normal(
+                          context: context,
+                          //  fontWeight: FontWeight.bold
+                        ),
                       ),
                       SizedBox(
                         height: 3,
                       ),
-                      Text(
-                        widget.data.descriptionEn,
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 2,
-                        style: TextStyle(
-                            fontWeight: FontWeight.w400, fontSize: 14),
-                      ),
-                      SizedBox(
-                        height: 3,
-                      ),
-                      Text(
-                        widget.data.price.toString(),
-                        style: TextStyle(
-                            fontWeight: FontWeight.w300,
-                            fontStyle: FontStyle.italic,
-                            fontSize: 12),
+                      // Text(
+                      //   widget.data.price.toString(),
+                      //   style: TextStyle(
+                      //       fontWeight: FontWeight.w300,
+                      //       // fontStyle: FontStyle.italic,
+                      //       fontSize: 12),
+                      // ),
+                      CommonUI.text(
+                        context: context,
+                        text: widget.data.price.toString(),
+                        // RhinoLanguage.isLTR()
+                        //     ? product.nameEn
+                        //     : product.nameAr,
+                        textAlign: TextAlign.center,
+                        style: FontStyle.normal(
+                            context: context, fontWeight: FontWeight.bold),
                       ),
                       // SizedBox(height: 2),
                       Row(
@@ -196,7 +263,7 @@ class _ProductsItemState extends State<ProductsItem> {
                                   ),
                                   onPressed: () {
                                     FirebaseFirestore.instance
-                                        .collection('drinks')
+                                        .collection('Drinks')
                                         .doc(widget.data.id)
                                         .update({'isPublished': false});
                                   })
@@ -208,7 +275,7 @@ class _ProductsItemState extends State<ProductsItem> {
                                   ),
                                   onPressed: () {
                                     FirebaseFirestore.instance
-                                        .collection('drinks')
+                                        .collection('Drinks')
                                         .doc(widget.data.id)
                                         .update({'isPublished': true});
                                   }),

@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shop_app/models/product.dart';
@@ -42,7 +41,6 @@ class ItemCard extends StatelessWidget {
       ),
       child: Stack(
         children: [
-          
           GestureDetector(
             onTap: () => {
               Navigator.push(
@@ -65,7 +63,6 @@ class ItemCard extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  
                   // isBordered
                   // ?
                   ClipRRect(
@@ -76,7 +73,9 @@ class ItemCard extends StatelessWidget {
                           ? cardHeight * 0.8
                           : Responsive.isDesktop(context)
                               ? cardHeight * 0.85
-                              : cardHeight * 0.5,
+                              : Responsive.isMiniMobile(context)
+                                  ? cardHeight * 0.5
+                                  : cardHeight * 0.5,
                       width: double.maxFinite,
                       child: CommonUI.cachedImage(
                           product.image, ImageAssets.placeholder,

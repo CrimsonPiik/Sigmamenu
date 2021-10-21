@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shop_app/GeneralFunction/firebase_uploader_web.dart';
 import 'package:shop_app/GeneralFunction/random_id_generator.dart';
+import 'package:shop_app/screens/adminPanel.dart';
 
 class AddProductButton extends StatefulWidget {
   final Stream<int> stream;
@@ -23,7 +24,7 @@ class _AddProductButtonState extends State<AddProductButton> {
   ValueNotifier<String?> _image = ValueNotifier<String?>(null);
   String _validatorText = "This field can't be empty";
 
-  String category = 'drinks';
+  String category = 'Drinks';
 
   @override
   void initState() {
@@ -34,27 +35,37 @@ class _AddProductButtonState extends State<AddProductButton> {
   }
 
   void mySetState(int index) {
-    List categoryMenu = [
-      'drinks',
-      'maincourses',
-      'appetizers',
-      'desserts',
-      'salads',
-      'brunch'
-    ];
+    // List categoryMenu = [
+    //   'drinks',
+    //   'maincourses',
+    //   'appetizers',
+    //   'desserts',
+    //   'salads',
+    //   'brunch'
+    // ];
     setState(() {
-      category = categoryMenu[index];
+            category = categoriesList.elementAt(index);
+
+      // category = categoryMenu[index];
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return TextButton.icon(
-        onPressed: () {
-          showDialogWithFields();
-        },
-        icon: Icon(Icons.add),
-        label: Text('Add'));
+    return Row(
+      children: [
+        SizedBox(width: 21),
+        Align(
+          alignment: Alignment.topLeft,
+          child: TextButton.icon(
+              onPressed: () {
+                showDialogWithFields();
+              },
+              icon: Icon(Icons.add),
+              label: Text('Product')),
+        ),
+      ],
+    );
   }
 
   void showDialogWithFields() {
@@ -168,7 +179,7 @@ class _AddProductButtonState extends State<AddProductButton> {
                       'id': id,
                       'nameEn': _nameEnController.text,
                       'nameAr': 'nameAr',
-                      'category': 'drinks',
+                      'category': category,
                       'descriptionAr': 'descriptionAr',
                       'descriptionEn': _descriptionEnController.text,
                       'isPublished': true,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shop_app/screens/adminPanel.dart';
 import 'package:shop_app/screens/home/components/body.dart';
 import 'package:shop_app/constaints.dart';
 
@@ -9,17 +10,33 @@ class Categories extends StatefulWidget {
 
 // List<String> categories = [];
 
+// void getCategories() async {
+//   final QuerySnapshot result =
+//       await FirebaseFirestore.instance.collection('categories').get();
+//   final List<DocumentSnapshot> documents = result.docs;
+//   // categories.toSet().toList();
+
+//   // for (int i = 0; i < documents.length; i++) {
+//   categories.add(documents[documents.length - 1].id);
+//   // }
+// }
+
 class _CategoriesState extends State<Categories> {
-  List<String> categories = [
-    "Drinks",
-    "Food",
-    "Appetizers",
-    "Desserts",
-    "Salads",
-    "Brunch"
-  ];
+  // List<String> categories = [
+  //   "Drinks",
+  //   "Food",
+  //   "Appetizers",
+  //   "Desserts",
+  //   "Salads",
+  //   "Brunch"
+  // ];
   // By default our first item will be selected
   int selectedIndex = 0;
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -28,7 +45,7 @@ class _CategoriesState extends State<Categories> {
         height: 25,
         child: ListView.builder(
           scrollDirection: Axis.horizontal,
-          itemCount: categories.length,
+          itemCount: categoriesList.length,
           itemBuilder: (context, index) => buildCategory(index),
         ),
       ),
@@ -51,7 +68,7 @@ class _CategoriesState extends State<Categories> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Text(
-              categories[index],
+              categoriesList.elementAt(index),
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 color: selectedIndex == index ? kTextColor : kTextLightColor,

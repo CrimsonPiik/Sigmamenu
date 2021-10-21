@@ -1,10 +1,13 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shop_app/layout/sidebar.dart';
 import 'package:shop_app/screens/home/components/body.dart';
 import 'package:shop_app/screens/home/components/categorries.dart';
 import 'package:shop_app/screens/home/components/itemCardDataAdmin.dart';
+import 'package:shop_app/screens/widgets/addCategoryButton.dart';
 import 'package:shop_app/screens/widgets/addProductButton.dart';
+import 'package:shop_app/style/CommonUI.dart';
 
 class AdminPanel extends StatefulWidget {
   final bool showDesktop;
@@ -14,115 +17,118 @@ class AdminPanel extends StatefulWidget {
   State<AdminPanel> createState() => _AdminPanelState();
 }
 
+Set<String> categoriesList = {};
+
 class _AdminPanelState extends State<AdminPanel> {
   TextEditingController newCollectionNameController = TextEditingController();
 
   @override
   void initState() {
     // getCategories();
-
     // getCategoriesFromFirebase();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Row(
-        children: [
-          SideBar(),
-          Expanded(
-            // color: primaryLight.withAlpha(100),
-            // padding: EdgeInsets.symmetric(horizontal: ),
-            child: Column(
+    return StreamBuilder<QuerySnapshot>(
+        stream: FirebaseFirestore.instance.collection('Categories').snapshots(),
+        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          if (snapshot.hasError) {
+            return CommonUI.error(snapshot.error.toString());
+          }
+          if (snapshot.connectionState == ConnectionState.waiting)
+            return CommonUI.loading(context);
+
+          List<DocumentSnapshot> shots = snapshot.data!.docs;
+          for (var item in shots) {
+            categoriesList.add(item.id.toString());
+          }
+
+          print("Categories : " + categoriesList.toString());
+
+          return Scaffold(
+            // appBar: AppBar(
+            //   backgroundColor: Colors.white,
+            //   elevation: 0,
+            //   leading: CircleAvatar(),
+            //   // leading: IconButton(
+            //   //   icon: SvgPicture.asset('assets/icons/back.svg', color: kTextColor),
+            //   //   onPressed: () => Navigator.pop(context),
+            //   // ),
+            //   // actions: <Widget>[
+            //   //   IconButton(
+            //   //     icon: SvgPicture.asset("assets/icons/search.svg"),
+            //   //     onPressed: () {},
+            //   //   ),
+            //   //   IconButton(
+            //   //     icon: SvgPicture.asset("assets/icons/cart.svg"),
+            //   //     onPressed: () {},
+            //   //   ),
+            //   //   SizedBox(width: kDefaultPaddin / 2)
+            //   // ],
+            // ),
+            body: Row(
               children: [
-                Container(
-                  height: 70,
-                  child: Row(
+                SideBar(),
+                Expanded(
+                  // color: primaryLight.withAlpha(100),
+                  // padding: EdgeInsets.symmetric(horizontal: ),
+                  child: Column(
                     children: [
-                      SizedBox(
-                        height: 10,
-                        width: 30,
+                      Container(
+                        height: 70,
+                        child: Row(
+                          children: [
+                            SizedBox(
+                              height: 10,
+                              width: 30,
+                            ),
+                            Expanded(
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'WELCOME BACK MOE !',
+                                    style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w600),
+                                  ),
+
+                                  CircleAvatar(
+                                    backgroundColor: Colors.brown,
+                                  ),
+
+                                  // TextButton(
+                                  //     onPressed: () {
+                                  //       _showAddCollectionDialog(context);
+                                  //     },
+                                  //     child: Text("Add "))
+                                ],
+                              ),
+                            ),
+                            SizedBox(width: 25),
+                          ],
+                        ),
                       ),
-                      Expanded(
-                          child: Row(
+                      SizedBox(height: 15),
+                      Categories(),
+                      Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            'Admin Dashboard',
-                            style: TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.w600),
-                          ),
-                          // TextButton(
-                          //     onPressed: () {
-                          //       _showAddCollectionDialog(context);
-                          //     },
-                          //     child: Text("Add "))
+                          AddProductButton(streamController.stream),
+                          AddCategoryButton(),
                         ],
-                      ))
+                      ),
+                      SizedBox(height: 12),
+                      ItemCardDataAdmin(streamController.stream),
                     ],
                   ),
                 ),
-                SizedBox(height: 15),
-                Categories(),
-                SizedBox(height: 15),
-                AddProductButton(streamController.stream),
-                ItemCardDataAdmin(streamController.stream),
               ],
             ),
-          ),
-        ],
-      ),
-    );
-    // });
-  }
-/*
-  _showAddCollectionDialog(BuildContext context) {
-    showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text('Add'),
-            content: Text('Category name'),
-            actions: [
-              Container(
-                height: 50,
-                width: 200,
-                child: CommonUI.textField(
-                  context: context,
-                  name: "Category Name",
-                  controller: newCollectionNameController,
-                  //hint: widget.data.descriptionEn
-                ),
-              ),
-              TextButton(
-                onPressed: () {
-                  // categories.add(newCollectionNameController.text);
-                  FirebaseFirestore.instance
-                      .collection('categories')
-                      .doc(newCollectionNameController.text)
-                      .set({});
-                  FirebaseFirestore.instance
-                      .collection(newCollectionNameController.text)
-                      .add({});
-                  Navigator.of(context).pop();
-                },
-                child: Text(
-                  'Add',
-                  style: TextStyle(color: Colors.black),
-                ),
-              ),
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: Text(
-                  'Cancel',
-                  style: TextStyle(color: Colors.black),
-                ),
-              ),
-            ],
           );
         });
-  }*/
+  }
 }

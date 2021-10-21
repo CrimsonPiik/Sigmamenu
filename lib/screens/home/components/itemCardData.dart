@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:shop_app/models/product.dart';
+import 'package:shop_app/screens/adminPanel.dart';
 import 'package:shop_app/screens/home/components/itemCard.dart';
 import 'package:shop_app/style/CommonUI.dart';
 import 'package:shop_app/constaints.dart';
@@ -16,7 +17,7 @@ class ItemCardData extends StatefulWidget {
 }
 
 class _ItemCardDataState extends State<ItemCardData> {
-  String category = 'drinks';
+  String category = 'Drinks';
 
   @override
   void initState() {
@@ -26,25 +27,25 @@ class _ItemCardDataState extends State<ItemCardData> {
     });
   }
 
+  /// 1 create a dart file containing the whole arrays into 1 array getting categoryies from Firebase
+  /// 2 make it staful
+  /// 3 inculde the file everywhere we need(the 3 files)
+  /// 4 add Streambuilder once for bothe admin adnd user
+  /// 5 conect my + category to add and delete categories
+  ///
   void mySetState(int index) {
-    List categoryMenu = [
-      'drinks',
-      'maincourses',
-      'appetizers',
-      'desserts',
-      'salads',
-      'brunch'
-    ];
-    // if (this.mounted) {
+    // List categoryMenu = [
+    //   'drinks',
+    //   'maincourses',
+    //   'appetizers',
+    //   'desserts',
+    //   'salads',
+    //   'brunch'
+    // ];
     setState(() {
-      category = categoryMenu[index];
+      category = categoriesList.elementAt(index);
+      // category = categoryMenu[index];
     });
-    // }
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
   }
 
   @override
@@ -54,7 +55,7 @@ class _ItemCardDataState extends State<ItemCardData> {
             .collection(category)
             .where('isPublished', isEqualTo: true)
             // .where('weight',)18
-            
+
             // .where('category',.....)
             .snapshots(),
         // .asBroadcastStream(),
