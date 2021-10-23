@@ -24,7 +24,7 @@ class _AddProductButtonState extends State<AddProductButton> {
   ValueNotifier<String?> _image = ValueNotifier<String?>(null);
   String _validatorText = "This field can't be empty";
 
-  String category = 'Drinks';
+  String category = categoriesList.elementAt(0);
 
   @override
   void initState() {
@@ -44,7 +44,7 @@ class _AddProductButtonState extends State<AddProductButton> {
     //   'brunch'
     // ];
     setState(() {
-            category = categoriesList.elementAt(index);
+      category = categoriesList.elementAt(index);
 
       // category = categoryMenu[index];
     });

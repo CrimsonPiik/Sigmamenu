@@ -21,7 +21,7 @@ class _BannerWithDotsIndicatorState extends State<BannerWithDotsIndicator> {
 
   void getBanners() {
     FirebaseFirestore.instance
-        .collection('banner')
+        .collection('Banner')
         .where('isPublished', isEqualTo: true)
         .snapshots()
         .listen((event) {

@@ -31,6 +31,16 @@ class _MenuItemState extends State<SideBarMenuItem> {
         },
         child: InkWell(
           onTap: () {
+            if (widget.item.name == 'Banners') {
+              print('Banners');
+            } else if (widget.item.name == 'User') {
+              print('User');
+            } else if (widget.item.name == 'Dashboard') {
+              print('Dashboard');
+            } else if (widget.item.name == 'Home') {
+              print('Home');
+            }
+
             // showDialog(
             //     context: context,
             //     builder: (BuildContext context) => CustomDialog());

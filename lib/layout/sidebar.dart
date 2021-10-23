@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:shop_app/constaints.dart';
 import 'package:shop_app/models/model.dart';
@@ -10,8 +9,6 @@ final List<MenuItem> menuItems = [
   MenuItem('User', Icons.person),
   MenuItem('Banners', Icons.photo_size_select_actual_outlined),
 ];
-// late List<MenuItem> menuItems = [];
-
 // void getCategories() async {
 //   final QuerySnapshot result =
 //       await FirebaseFirestore.instance.collection('categories').get();
@@ -25,18 +22,36 @@ final List<MenuItem> menuItems = [
 // }
 
 class SideBar extends StatefulWidget {
-  const SideBar({Key? key}) : super(key: key);
+  // final Stream<MenuItem> stream;
+  // SideBar(this.stream);
 
   @override
   State<SideBar> createState() => _SideBarState();
 }
 
 class _SideBarState extends State<SideBar> {
-  @override
-  void initState() {
-    // getCategories();
-    super.initState();
-  }
+  // String menuItemsdefault = menuItems.elementAt(0);
+
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   widget.stream.listen((index) {
+  //     mySetState(index);
+  //   });
+  // }
+
+  // void mySetState(int index) {
+  //   final List<MenuItem> menuItems = [
+  //     MenuItem('Home', Icons.home_outlined),
+  //     MenuItem('Dashboard', Icons.dashboard_outlined),
+  //     MenuItem('User', Icons.person),
+  //     MenuItem('Banners', Icons.photo_size_select_actual_outlined),
+  //   ];
+  //   setState(() {
+  //     category = menuItems.elementAt(index) as String;
+  //     // category = categoryMenu[index];
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {

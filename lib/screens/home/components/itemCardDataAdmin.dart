@@ -17,7 +17,7 @@ class ItemCardDataAdmin extends StatefulWidget {
 }
 
 class _ItemCardDataState extends State<ItemCardDataAdmin> {
-  String category = 'Drinks';
+  String category = categoriesList.elementAt(0);
 
   @override
   void initState() {

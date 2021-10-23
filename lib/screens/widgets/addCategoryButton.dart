@@ -55,18 +55,25 @@ class _AddCategoryButtonState extends State<AddCategoryButton> {
                     children: [
                       TextButton(
                         onPressed: () async {
-                         
-                          FirebaseFirestore.instance
+                          await FirebaseFirestore.instance
                               .collection('Categories')
                               .doc(newCollectionNameController.text
+                                  .toLowerCase()
                                   .toTitleCase())
                               .set({});
-                          FirebaseFirestore.instance
+                          await FirebaseFirestore.instance
                               .collection(newCollectionNameController.text
-                                  .toTitleCase()
-                                  .substring(0)
-                                  .toUpperCase())
+                                  .toLowerCase()
+                                  .toTitleCase())
                               .add({});
+
+                          // var collection = FirebaseFirestore.instance
+                          //     .collection(newCollectionNameController.text);
+                          // var snapshots = await collection.get();
+                          // for (var doc in snapshots.docs) {
+                          //   await doc.reference.delete();
+                          // }
+
                           Navigator.of(context).pop();
                         },
                         child: Text(

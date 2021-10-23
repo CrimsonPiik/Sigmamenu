@@ -7,6 +7,7 @@ import 'package:shop_app/screens/home/components/categorries.dart';
 import 'package:shop_app/screens/home/components/itemCardDataAdmin.dart';
 import 'package:shop_app/screens/widgets/addCategoryButton.dart';
 import 'package:shop_app/screens/widgets/addProductButton.dart';
+import 'package:shop_app/screens/widgets/deleteCategoryButton.dart';
 import 'package:shop_app/style/CommonUI.dart';
 
 class AdminPanel extends StatefulWidget {
@@ -118,6 +119,7 @@ class _AdminPanelState extends State<AdminPanel> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           AddProductButton(streamController.stream),
+                          DeleteCategoryButton(streamController.stream),
                           AddCategoryButton(),
                         ],
                       ),
