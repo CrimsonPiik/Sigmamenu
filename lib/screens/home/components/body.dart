@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:shop_app/constaints.dart';
-import 'package:shop_app/models/model.dart';
 import 'package:shop_app/screens/adminPanel.dart';
 import 'package:shop_app/screens/home/components/itemCardData.dart';
 import 'package:shop_app/screens/widgets/bannerWithDotsIndicator.dart';
@@ -10,7 +9,7 @@ import 'package:shop_app/style/CommonUI.dart';
 import 'categorries.dart';
 
 StreamController<int> streamController = StreamController<int>.broadcast();
-// StreamController<MenuItem> streamControllerMenuItem = StreamController<MenuItem>.broadcast();
+StreamController<String> streamControllerSideBar = StreamController<String>.broadcast();
 
 // void getCategoriesFromFirebase() async {
 //   var result = await FirebaseFirestore.instance.collection('categories').get();
@@ -20,6 +19,7 @@ StreamController<int> streamController = StreamController<int>.broadcast();
 //     categories.toSet().toList();
 //   });
 // }
+
 
 class Body extends StatelessWidget {
   @override

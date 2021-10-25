@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shop_app/models/model.dart';
-
+import 'package:shop_app/screens/home/components/body.dart';
 class SideBarMenuItem extends StatefulWidget {
   final MenuItem item;
   final bool isDesktop;
@@ -11,8 +11,24 @@ class SideBarMenuItem extends StatefulWidget {
 }
 
 class _MenuItemState extends State<SideBarMenuItem> {
+  String selectedChoice = 'Home';
+  String banner = 'Banners';
+  String home = 'Home';
+  String user = 'User';
+  String dashboard = 'Dashboard';
+  String selectedMenu = 'Banners';
+
   var _bgColor = Colors.transparent;
   var _iconColor = Colors.white;
+  
+
+  void myState(String menu) {
+    setState(() {
+      selectedMenu = menu;
+    });
+    streamControllerSideBar.add(selectedMenu);
+    print(menu.toString());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,19 +48,14 @@ class _MenuItemState extends State<SideBarMenuItem> {
         child: InkWell(
           onTap: () {
             if (widget.item.name == 'Banners') {
-              print('Banners');
+              myState(banner);
             } else if (widget.item.name == 'User') {
-              print('User');
+              myState(user);
             } else if (widget.item.name == 'Dashboard') {
-              print('Dashboard');
+              myState(dashboard);
             } else if (widget.item.name == 'Home') {
-              print('Home');
+              myState(home);
             }
-
-            // showDialog(
-            //     context: context,
-            //     builder: (BuildContext context) => CustomDialog());
-            // showDialogWithFields();
           },
           child: Container(
             width: widget.isDesktop ? null : 44,
