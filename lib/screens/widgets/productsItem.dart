@@ -330,7 +330,7 @@ class _ProductsItemState extends State<ProductsItem> {
                       .delete();
                 },
                 child: Container(
-                  margin: EdgeInsets.all(10),
+                  // margin: EdgeInsets.all(10),
                   padding: EdgeInsets.all(10),
                   child: Text(
                     'YES',
@@ -347,7 +347,7 @@ class _ProductsItemState extends State<ProductsItem> {
                   Navigator.of(context).pop();
                 },
                 child: Container(
-                  margin: EdgeInsets.all(10),
+                  // margin: EdgeInsets.all(10),
                   padding: EdgeInsets.all(10),
                   child: Text(
                     'NO',
@@ -594,7 +594,7 @@ class _ProductsItemState extends State<ProductsItem> {
                   Navigator.of(context).pop();
                 },
                 child: Container(
-                  margin: EdgeInsets.all(10),
+                  // margin: EdgeInsets.all(10),
                   padding: EdgeInsets.all(10),
                   child: Text(
                     'Save',
@@ -611,7 +611,7 @@ class _ProductsItemState extends State<ProductsItem> {
                   Navigator.of(context).pop();
                 },
                 child: Container(
-                  margin: EdgeInsets.all(10),
+                  // margin: EdgeInsets.all(10),
                   padding: EdgeInsets.all(10),
                   child: Text(
                     'Cancel',
