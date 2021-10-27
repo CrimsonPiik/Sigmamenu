@@ -4,9 +4,10 @@ import 'package:shop_app/models/model.dart';
 import 'package:shop_app/screens/widgets/sidebarMenuItem.dart';
 
 final List<MenuItem> menuItems = [
-  MenuItem('Home', Icons.home_outlined),
-  MenuItem('Dashboard', Icons.dashboard_outlined),
+  // MenuItem('Home', Icons.home_outlined),
   MenuItem('User', Icons.person),
+
+  MenuItem('Dashboard', Icons.dashboard_outlined),
   MenuItem('Banners', Icons.photo_size_select_actual_outlined),
 ];
 // void getCategories() async {

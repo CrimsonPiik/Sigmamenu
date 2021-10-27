@@ -47,6 +47,10 @@ class _ItemCardDataState extends State<ItemCardData> {
       // category = categoryMenu[index];
     });
   }
+  // @override
+  // void dispose() {
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {

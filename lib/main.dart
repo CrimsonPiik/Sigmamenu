@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shop_app/screens/adminPanel.dart';
 import 'package:shop_app/screens/home/home_screen.dart';
+import 'package:shop_app/screens/staggeredGridView.dart';
 
 void main() async {
   runApp(MyApp());
@@ -32,6 +33,7 @@ class MyApp extends StatelessWidget {
         // '/': (context) => const FirstScreen(),
         // When navigating to the "/second" route, build the SecondScreen widget.
         '/admin': (context) => AdminPanel(),
+        '/dashboard': (context) => StaggerdGridView(),
       },
       home: HomeScreen(),
     );

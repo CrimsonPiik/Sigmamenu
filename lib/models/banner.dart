@@ -1,46 +1,52 @@
 import 'dart:convert';
 
-
 class BannerModel {
   String image = 'assets/images/placeholder.jpg';
-  String nameEn = 'AdsNameEn';
-  String nameAr = 'AdsNameAr';
+  String name = 'AdsName';
+  String id = 'id';
+  // String nameAr = 'AdsNameAr';
   String subCategoryId = 'subCategoryId';
-  String categoryId = 'categoryId';
-  String descriptionEn = 'descriptionEn';
-  String descriptionAr = 'descriptionAr';
+  String category = 'category';
+  // String descriptionEn = 'descriptionEn';
+  // String descriptionAr = 'descriptionAr';
   bool isPublished = true;
 
   Map<String, dynamic> toMap() {
     return {
       'image': image,
-      'nameEn': nameEn,
-      'nameAr': nameAr,
+      'name': name,
+
+      'id': id,
+
+      // 'nameAr': nameAr/,
       'subCategoryId': subCategoryId,
-      'categoryId': categoryId,
-      'descriptionEn': descriptionEn,
-      'descriptionAr': descriptionAr,
+      'category': category,
+      // 'descriptionEn': descriptionEn,
+      // 'descriptionAr': descriptionAr,
       'isPublished': isPublished.toString() == 'true' ? true : false,
     };
   }
 
   BannerModel.fromMap(Map<String, dynamic> map)
-      : image = map['image'] == null || map['image'] == 'image' ? 'assets/images/placeholder.jpg' : map['image'],
-        nameEn = map['nameEn'] ?? '',
-        nameAr = map['nameAr'] ?? '',
+      : image = map['image'] == null || map['image'] == 'image'
+            ? 'assets/images/placeholder.jpg'
+            : map['image'],
+        name = map['name'] ?? '',
+        id = map['id'] ?? '',
         subCategoryId = map['subCategoryId'] ?? '',
-        categoryId = map['categoryId'] ?? '',
-        descriptionEn = map['descriptionEn'] ?? '',
-        descriptionAr = map['descriptionAr'] ?? '',
+        category = map['category'] ?? '',
+        // descriptionEn = map['descriptionEn'] ?? '',
+        // descriptionAr = map['descriptionAr'] ?? '',
         isPublished = map['isPublished'].toString() == 'true' ? true : false;
 
   String toJson() => json.encode(toMap());
 
-  factory BannerModel.fromJson(String source) => BannerModel.fromMap(json.decode(source));
+  factory BannerModel.fromJson(String source) =>
+      BannerModel.fromMap(json.decode(source));
 
   @override
   String toString() {
-    return 'BannerModel(  image: $image, nameEn: $nameEn, nameAr: $nameAr, subCategoryId: $subCategoryId, descriptionEn: $descriptionEn, descriptionAr: $descriptionAr)';
+    return 'BannerModel( image: $image, name: $name, subCategoryId: $subCategoryId,id: $id, category: $category )';
   }
 
   @override
@@ -49,22 +55,26 @@ class BannerModel {
 
     return other is BannerModel &&
         other.image == image &&
-        other.nameEn == nameEn &&
-        other.nameAr == nameAr &&
+        other.name == name &&
+        other.id == id &&
         other.subCategoryId == subCategoryId &&
-        other.descriptionEn == descriptionEn &&
-        other.descriptionAr == descriptionAr &&
+        other.category == category &&
+
+        // other.descriptionEn == descriptionEn &&
+        // other.descriptionAr == descriptionAr &&
         other.isPublished == isPublished;
   }
 
   @override
   int get hashCode {
     return image.hashCode ^
-        nameEn.hashCode ^
-        nameAr.hashCode ^
+        name.hashCode ^
+        id.hashCode ^
         subCategoryId.hashCode ^
-        descriptionEn.hashCode ^
-        descriptionAr.hashCode ^
+        category.hashCode ^
+
+        // descriptionEn.hashCode ^
+        // descriptionAr.hashCode ^
         isPublished.hashCode;
   }
 }

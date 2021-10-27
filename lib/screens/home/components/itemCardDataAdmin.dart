@@ -13,10 +13,10 @@ class ItemCardDataAdmin extends StatefulWidget {
   ItemCardDataAdmin(this.stream);
 
   @override
-  _ItemCardDataState createState() => _ItemCardDataState();
+  _ItemCardDataAdminState createState() => _ItemCardDataAdminState();
 }
 
-class _ItemCardDataState extends State<ItemCardDataAdmin> {
+class _ItemCardDataAdminState extends State<ItemCardDataAdmin> {
   String category = categoriesList.elementAt(0);
 
   @override
@@ -47,10 +47,8 @@ class _ItemCardDataState extends State<ItemCardDataAdmin> {
     return StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance
             .collection(category)
-            // .where('isPublished', isEqualTo: true)
-            // .where('category',.....)
+            .where('category', isEqualTo: category)
             .snapshots(),
-        // .asBroadcastStream(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasError) {
             return CommonUI.error(snapshot.error.toString());
@@ -74,7 +72,7 @@ class _ItemCardDataState extends State<ItemCardDataAdmin> {
                       crossAxisCount: 1,
                       childAspectRatio: Responsive.isDesktop(context)
                           ? MediaQuery.of(context).size.width /
-                              (MediaQuery.of(context).size.height / 4)
+                              (MediaQuery.of(context).size.height / 3.6)
                           : MediaQuery.of(context).size.width /
                               (MediaQuery.of(context).size.height / 2.7)
                       //       //               // ScreenUtil.isDesktop(context)

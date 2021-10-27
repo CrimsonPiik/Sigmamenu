@@ -1,25 +1,24 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:shop_app/GeneralFunction/firebase_uploader_web.dart';
-import 'package:shop_app/models/product.dart';
+import 'package:shop_app/models/banner.dart';
 import 'package:shop_app/style/AssetsManager.dart';
 import 'package:shop_app/style/CommonUI.dart';
 import 'package:shop_app/style/ScreenUtil.dart';
 import 'package:shop_app/style/Style.dart';
 
-class ProductsItem extends StatefulWidget {
-  final Product data;
-  ProductsItem(this.data);
+class BannersItem extends StatefulWidget {
+  final BannerModel data;
+  BannersItem(this.data);
 
   @override
-  State<ProductsItem> createState() => _ProductsItemState();
+  State<BannersItem> createState() => _BannersItemState();
 }
 
-class _ProductsItemState extends State<ProductsItem> {
-  TextEditingController _nameEnController = TextEditingController();
-  TextEditingController _descriptionEnController = TextEditingController();
-  TextEditingController _priceController = TextEditingController();
-  TextEditingController _imageController = TextEditingController();
+class _BannersItemState extends State<BannersItem> {
+  TextEditingController _nameBannerController = TextEditingController();
+  TextEditingController _categoryBannerController = TextEditingController();
+  TextEditingController _imageBannerController = TextEditingController();
   ValueNotifier<String?> _image = ValueNotifier<String?>(null);
 
   bool editText = false;
@@ -37,8 +36,8 @@ class _ProductsItemState extends State<ProductsItem> {
           ? Row(
               children: [
                 Container(
-                    width: 120,
-                    // height: 120,
+                    width: 250,
+                    height: 100,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(4),
                     ),
@@ -56,7 +55,7 @@ class _ProductsItemState extends State<ProductsItem> {
                       //   //   height: 20,
                       //   // ),
                       Text(
-                        widget.data.nameEn,
+                        widget.data.name,
                         overflow: TextOverflow.ellipsis,
                         maxLines: 1,
                         style: TextStyle(
@@ -77,21 +76,10 @@ class _ProductsItemState extends State<ProductsItem> {
                         height: 4,
                       ),
                       Text(
-                        widget.data.descriptionEn,
+                        widget.data.category,
                         overflow: TextOverflow.ellipsis,
-                        maxLines: 2,
                         style: TextStyle(
                             fontWeight: FontWeight.w400, fontSize: 14),
-                      ),
-                      SizedBox(
-                        height: 4,
-                      ),
-                      Text(
-                        widget.data.price.toString(),
-                        style: TextStyle(
-                            fontWeight: FontWeight.w300,
-                            // fontStyle: FontStyle.italic,
-                            fontSize: 12),
                       ),
                       // CommonUI.text(
                       //   context: context,
@@ -106,12 +94,19 @@ class _ProductsItemState extends State<ProductsItem> {
                       //   ),
                       // ),
 
-                      // SizedBox(
-                      //   height: 4,
-                      // ),
+                      SizedBox(
+                        height: 4,
+                      ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
+                          // Text(
+                          //   " widget.data.price.toString()",
+                          //   style: TextStyle(
+                          //       fontWeight: FontWeight.w300,
+                          //       // fontStyle: FontStyle.italic,
+                          //       fontSize: 12),
+                          // ),
                           // CommonUI.text(
                           //   context: context,
                           //   text: widget.data.price.toString(),
@@ -134,7 +129,7 @@ class _ProductsItemState extends State<ProductsItem> {
                                         ),
                                         onPressed: () {
                                           FirebaseFirestore.instance
-                                              .collection('Drinks')
+                                              .collection('Banner')
                                               .doc(widget.data.id)
                                               .update({'isPublished': false});
                                         })
@@ -146,7 +141,7 @@ class _ProductsItemState extends State<ProductsItem> {
                                         ),
                                         onPressed: () {
                                           FirebaseFirestore.instance
-                                              .collection('Drinks')
+                                              .collection('Banner')
                                               .doc(widget.data.id)
                                               .update({'isPublished': true});
                                         }),
@@ -195,7 +190,7 @@ class _ProductsItemState extends State<ProductsItem> {
                       SizedBox(height: 16),
                       CommonUI.text(
                         context: context,
-                        text: widget.data.nameEn,
+                        text: widget.data.name,
                         // RhinoLanguage.isLTR()
                         //     ? product.nameEn
                         //     : product.nameAr,
@@ -223,7 +218,7 @@ class _ProductsItemState extends State<ProductsItem> {
                       // ),
                       CommonUI.text(
                         context: context,
-                        text: widget.data.descriptionEn,
+                        text: widget.data.category,
                         // RhinoLanguage.isLTR()
                         //     ? product.nameEn
                         //     : product.nameAr,
@@ -243,16 +238,16 @@ class _ProductsItemState extends State<ProductsItem> {
                       //       // fontStyle: FontStyle.italic,
                       //       fontSize: 12),
                       // ),
-                      CommonUI.text(
-                        context: context,
-                        text: widget.data.price.toString(),
-                        // RhinoLanguage.isLTR()
-                        //     ? product.nameEn
-                        //     : product.nameAr,
-                        textAlign: TextAlign.center,
-                        style: FontStyle.normal(
-                            context: context, fontWeight: FontWeight.bold),
-                      ),
+                      // CommonUI.text(
+                      //   context: context,
+                      //   text: 'widget.data.price.toString()',
+                      //   // RhinoLanguage.isLTR()
+                      //   //     ? product.nameEn
+                      //   //     : product.nameAr,
+                      //   textAlign: TextAlign.center,
+                      //   style: FontStyle.normal(
+                      //       context: context, fontWeight: FontWeight.bold),
+                      // ),
                       // SizedBox(height: 2),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
@@ -266,7 +261,7 @@ class _ProductsItemState extends State<ProductsItem> {
                                   ),
                                   onPressed: () {
                                     FirebaseFirestore.instance
-                                        .collection('Drinks')
+                                        .collection('Banner')
                                         .doc(widget.data.id)
                                         .update({'isPublished': false});
                                   })
@@ -278,7 +273,7 @@ class _ProductsItemState extends State<ProductsItem> {
                                   ),
                                   onPressed: () {
                                     FirebaseFirestore.instance
-                                        .collection('Drinks')
+                                        .collection('Banner')
                                         .doc(widget.data.id)
                                         .update({'isPublished': true});
                                   }),
@@ -324,10 +319,10 @@ class _ProductsItemState extends State<ProductsItem> {
                 onPressed: () {
                   Navigator.of(context).pop();
 
-                  FirebaseFirestore.instance
-                      .collection(widget.data.category)
-                      .doc(widget.data.id)
-                      .delete();
+                  // FirebaseFirestore.instance
+                  //     .collection(widget.data.category)
+                  //     .doc(widget.data.id)
+                  //     .delete();
                 },
                 child: Text(
                   'YES',
@@ -372,7 +367,7 @@ class _ProductsItemState extends State<ProductsItem> {
                           (BuildContext context, dynamic value, Widget? child) {
                         return InkWell(
                           onTap: () async {
-                            _imageController.text =
+                            _imageBannerController.text =
                                 await fireBaseUploadFileWeb(widget.data.id);
                           },
                           child: Container(
@@ -430,8 +425,8 @@ class _ProductsItemState extends State<ProductsItem> {
                               child: CommonUI.textField(
                                   context: context,
                                   name: "Name",
-                                  controller: _nameEnController,
-                                  hint: widget.data.nameEn),
+                                  controller: _nameBannerController,
+                                  hint: widget.data.name),
                             ),
                             // : TextFormField(
                             //     decoration: const InputDecoration(
@@ -475,9 +470,9 @@ class _ProductsItemState extends State<ProductsItem> {
                               width: Responsive.isDesktop(context) ? 200 : 70,
                               child: CommonUI.textField(
                                   context: context,
-                                  name: "descriptionEn",
-                                  controller: _descriptionEnController,
-                                  hint: widget.data.descriptionEn),
+                                  name: "category",
+                                  controller: _categoryBannerController,
+                                  hint: widget.data.category),
                             ),
                             // TextButton(
                             //     onPressed: () {},
@@ -487,31 +482,31 @@ class _ProductsItemState extends State<ProductsItem> {
                         SizedBox(
                           height: 4,
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            // Text(
-                            //   widget.data.price.toString(),
-                            //   style: TextStyle(
-                            //       fontWeight: FontWeight.w300,
-                            //       // fontStyle: FontStyle.italic,
-                            //       fontSize: 17),
-                            // ),
-                            Container(
-                              height: 50,
-                              width: Responsive.isDesktop(context) ? 200 : 70,
-                              child: CommonUI.textField(
-                                  context: context,
-                                  name: "price",
-                                  // keyboardType: TextInputType(number),
-                                  controller: _priceController,
-                                  hint: widget.data.price.toString()),
-                            ),
-                            // TextButton(
-                            //     onPressed: () {},
-                            //     child: Icon(Icons.edit, color: Colors.brown)),
-                          ],
-                        ),
+                        // Row(
+                        //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        //   children: [
+                        //     // Text(
+                        //     //   widget.data.price.toString(),
+                        //     //   style: TextStyle(
+                        //     //       fontWeight: FontWeight.w300,
+                        //     //       // fontStyle: FontStyle.italic,
+                        //     //       fontSize: 17),
+                        //     // ),
+                        //     Container(
+                        //       height: 50,
+                        //       width: Responsive.isDesktop(context) ? 200 : 70,
+                        //       child: CommonUI.textField(
+                        //           context: context,
+                        //           name: "price",
+                        //           // keyboardType: TextInputType(number),
+                        //           controller: _priceController,
+                        //           hint: ' widget.data.price.toString()'),
+                        //     ),
+                        //     // TextButton(
+                        //     //     onPressed: () {},
+                        //     //     child: Icon(Icons.edit, color: Colors.brown)),
+                        //   ],
+                        // ),
                       ],
                     ),
                   )
@@ -521,15 +516,15 @@ class _ProductsItemState extends State<ProductsItem> {
             actions: [
               TextButton(
                 onPressed: () {
-                  FirebaseFirestore.instance
-                      .collection(widget.data.category)
-                      .doc(widget.data.id)
-                      .update({
-                    'nameEn': _nameEnController.text,
-                    'descriptionEn': _descriptionEnController.text,
-                    'price': _priceController.text,
-                    'image': _imageController.text
-                  });
+                  // FirebaseFirestore.instance
+                  //     .collection(widget.data.category)
+                  //     .doc(widget.data.id)
+                  //     .update({
+                  //   'nameEn': _nameEnController.text,
+                  //   'descriptionEn': _descriptionEnController.text,
+                  //   'price': _priceController.text,
+                  //   'image': _imageController.text
+                  // });
                   Navigator.of(context).pop();
                 },
                 child: Text(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shop_app/models/model.dart';
 import 'package:shop_app/screens/home/components/body.dart';
+
 class SideBarMenuItem extends StatefulWidget {
   final MenuItem item;
   final bool isDesktop;
@@ -18,9 +19,10 @@ class _MenuItemState extends State<SideBarMenuItem> {
   String dashboard = 'Dashboard';
   String selectedMenu = 'Banners';
 
+  bool isSelected = false;
+
   var _bgColor = Colors.transparent;
   var _iconColor = Colors.white;
-  
 
   void myState(String menu) {
     setState(() {
@@ -28,6 +30,19 @@ class _MenuItemState extends State<SideBarMenuItem> {
     });
     streamControllerSideBar.add(selectedMenu);
     print(menu.toString());
+  }
+
+  void changeColor(bool isSelected) {
+    if (isSelected == true) {
+      setState(() {
+        _bgColor = Colors.white;
+        _iconColor = Colors.brown;
+      });
+    } else
+      setState(() {
+        _bgColor = Colors.transparent;
+        _iconColor = Colors.white;
+      });
   }
 
   @override
@@ -45,16 +60,26 @@ class _MenuItemState extends State<SideBarMenuItem> {
             _iconColor = Colors.white;
           });
         },
+        // cursor: SystemMouseCursors.click,
+
         child: InkWell(
           onTap: () {
-            if (widget.item.name == 'Banners') {
-              myState(banner);
-            } else if (widget.item.name == 'User') {
+            isSelected = false;
+
+            if (widget.item.name == 'User') {
+              // isSelected = true;
+              changeColor(true);
               myState(user);
             } else if (widget.item.name == 'Dashboard') {
+              // isSelected = true;
+              changeColor(true);
+
               myState(dashboard);
-            } else if (widget.item.name == 'Home') {
-              myState(home);
+            } else if (widget.item.name == 'Banners') {
+              // isSelected = true;
+              changeColor(true);
+
+              myState(banner);
             }
           },
           child: Container(
