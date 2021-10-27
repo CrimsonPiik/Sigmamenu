@@ -79,12 +79,15 @@ class CommonUI {
   static Widget loading(BuildContext context) {
     return Column(
       children: [
-        SizedBox(height: MediaQuery.of(context).size.height / 5),
-        Center(
-          child: LottieBuilder.asset(
-            AnimAssets.loadingCoffee,
-            height: 90,
-            // repeat: false,
+        Padding(
+          padding:  EdgeInsets.only(
+              top: MediaQuery.of(context).size.height / 2),
+          child: Center(
+            child: LottieBuilder.asset(
+              AnimAssets.loadingCoffee,
+              height: 90,
+              // repeat: false,
+            ),
           ),
         ),
       ],

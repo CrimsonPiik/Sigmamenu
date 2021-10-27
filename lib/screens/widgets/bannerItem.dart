@@ -373,26 +373,71 @@ class _BannersItemState extends State<BannersItem> {
                           child: Container(
                             child: Column(children: [
                               value != null
-                                  ? Container(
-                                      // color: Color(0x00FFFFFF),
-                                      height: 180,
-                                      // width: 180,
-                                      child: InteractiveViewer(
-                                        child: Image.network(value,
-                                            fit: BoxFit.fitWidth),
+                                  ? Stack(children: [
+                                      Container(
+                                        height: 180,
+                                        // width: 180,
+                                        child: InteractiveViewer(
+                                          child: Image.network(value,
+                                              fit: BoxFit.fitWidth),
+                                        ),
                                       ),
-                                    )
-                                  : Container(
-                                      // color: Color(0x00FFFFFF),
-                                      height: 180,
-                                      // width: 180,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(4),
+                                      Container(
+                                        decoration: BoxDecoration(
+                                            color: Color(0x4D303030)),
+                                        height: 180,
+                                        // width: 180,
                                       ),
-                                      child: CommonUI.cachedImage(
-                                          widget.data.image,
-                                          ImageAssets.placeholder,
-                                          fit: BoxFit.fitWidth)),
+                                      Padding(
+                                        padding: EdgeInsets.only(top: 145),
+                                        child: Container(
+                                            height: 35,
+                                            // width: 180,
+                                            decoration: BoxDecoration(
+                                                color: Color(0x4D000000)),
+                                            child: Center(
+                                              child: Text(
+                                                'Edit',
+                                                style: TextStyle(
+                                                    color: Colors.white),
+                                              ),
+                                            )),
+                                      ),
+                                    ])
+                                  : Stack(children: [
+                                      Container(
+                                          height: 180,
+                                          // width: 180,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(4),
+                                          ),
+                                          child: CommonUI.cachedImage(
+                                              widget.data.image,
+                                              ImageAssets.placeholder,
+                                              fit: BoxFit.fitWidth)),
+                                      Container(
+                                        decoration: BoxDecoration(
+                                            color: Color(0x4D303030)),
+                                        height: 180,
+                                        // width: 180,
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.only(top: 145),
+                                        child: Container(
+                                            height: 35,
+                                            // width: 180,
+                                            decoration: BoxDecoration(
+                                                color: Color(0x4D000000)),
+                                            child: Center(
+                                              child: Text(
+                                                'Edit',
+                                                style: TextStyle(
+                                                    color: Colors.white),
+                                              ),
+                                            )),
+                                      ),
+                                    ]),
                             ]),
                           ),
                         );
@@ -423,6 +468,7 @@ class _BannersItemState extends State<BannersItem> {
                               height: 50,
                               width: Responsive.isDesktop(context) ? 200 : 70,
                               child: CommonUI.textField(
+                                  isEdit: true,
                                   context: context,
                                   name: "Name",
                                   controller: _nameBannerController,
@@ -469,6 +515,7 @@ class _BannersItemState extends State<BannersItem> {
                               height: 50,
                               width: Responsive.isDesktop(context) ? 200 : 70,
                               child: CommonUI.textField(
+                                  isEdit: true,
                                   context: context,
                                   name: "category",
                                   controller: _categoryBannerController,
@@ -527,18 +574,34 @@ class _BannersItemState extends State<BannersItem> {
                   // });
                   Navigator.of(context).pop();
                 },
-                child: Text(
-                  'Save',
-                  style: TextStyle(color: Colors.black),
+                child: Container(
+                  // margin: EdgeInsets.all(10),
+                  padding: EdgeInsets.all(10),
+                  child: Text(
+                    'Save',
+                    style: TextStyle(color: Colors.black),
+                  ),
+                  decoration: BoxDecoration(
+                    color: Colors.grey.withOpacity(0.5),
+                    borderRadius: BorderRadius.circular(16),
+                  ),
                 ),
               ),
               TextButton(
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                child: Text(
-                  'Cancel',
-                  style: TextStyle(color: Colors.black),
+                child: Container(
+                  // margin: EdgeInsets.all(10),
+                  padding: EdgeInsets.all(10),
+                  child: Text(
+                    'Cancel',
+                    style: TextStyle(color: Colors.black),
+                  ),
+                  decoration: BoxDecoration(
+                    color: Colors.grey.withOpacity(0.5),
+                    borderRadius: BorderRadius.circular(16),
+                  ),
                 ),
               ),
             ],

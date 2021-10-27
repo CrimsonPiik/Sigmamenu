@@ -489,6 +489,8 @@ class _ProductsItemState extends State<ProductsItem> {
                               height: 50,
                               width: Responsive.isDesktop(context) ? 200 : 70,
                               child: CommonUI.textField(
+                                      
+                                  isEdit: true,
                                   context: context,
                                   name: "Name",
                                   controller: _nameEnController,
@@ -536,7 +538,9 @@ class _ProductsItemState extends State<ProductsItem> {
                               width: Responsive.isDesktop(context) ? 200 : 70,
                               child: CommonUI.textField(
                                   context: context,
+                                  isEdit: true,
                                   name: "descriptionEn",
+                                  // label: widget.data.descriptionEn,
                                   controller: _descriptionEnController,
                                   hint: widget.data.descriptionEn),
                             ),
@@ -564,6 +568,7 @@ class _ProductsItemState extends State<ProductsItem> {
                               child: CommonUI.textField(
                                   context: context,
                                   name: "price",
+                                  isEdit: true,
                                   // keyboardType: TextInputType(number),
                                   controller: _priceController,
                                   hint: widget.data.price.toString()),
