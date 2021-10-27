@@ -11,8 +11,8 @@ List<StaggeredTile> _cardTile = <StaggeredTile>[
   StaggeredTile.count(2, 2),
   StaggeredTile.count(2, 3),
   StaggeredTile.count(2, 2),
-  StaggeredTile.count(2, 3),
-  StaggeredTile.count(2, 2),
+  // StaggeredTile.count(2, 3),
+  // StaggeredTile.count(2, 2),
 ];
 
 //List of Cards with color and icon
@@ -25,12 +25,13 @@ List<Widget> _listTile = <Widget>[
       backgroundColor: Colors.deepPurpleAccent, icondata: Icons.music_note),
   BackGroundTile(backgroundColor: Colors.blue, icondata: Icons.access_alarms),
   BackGroundTile(
-      backgroundColor: Colors.indigo, icondata: Icons.satellite_outlined),
-  BackGroundTile(backgroundColor: Colors.cyan, icondata: Icons.search_sharp),
+      backgroundColor: Colors.yellowAccent, icondata: Icons.satellite_outlined),
   BackGroundTile(
-      backgroundColor: Colors.yellowAccent, icondata: Icons.adjust_rounded),
-  BackGroundTile(
-      backgroundColor: Colors.deepOrange, icondata: Icons.attach_money),
+      backgroundColor: Colors.deepOrange, icondata: Icons.search_sharp),
+//   BackGroundTile(
+//       backgroundColor: Colors.yellowAccent, icondata: Icons.adjust_rounded),
+//   BackGroundTile(
+//       backgroundColor: Colors.deepOrange, icondata: Icons.attach_money),
 ];
 
 class StaggerdGridView extends StatelessWidget {

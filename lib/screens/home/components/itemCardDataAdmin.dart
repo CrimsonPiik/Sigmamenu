@@ -72,7 +72,7 @@ class _ItemCardDataAdminState extends State<ItemCardDataAdmin> {
                       crossAxisCount: 1,
                       childAspectRatio: Responsive.isDesktop(context)
                           ? MediaQuery.of(context).size.width /
-                              (MediaQuery.of(context).size.height / 3.6)
+                              (MediaQuery.of(context).size.height / 3.5)
                           : MediaQuery.of(context).size.width /
                               (MediaQuery.of(context).size.height / 2.7)
                       //       //               // ScreenUtil.isDesktop(context)
