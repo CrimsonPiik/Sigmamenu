@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:shop_app/constaints.dart';
 import 'package:shop_app/models/product.dart';
-import 'package:shop_app/screens/details/components/body.dart';
+import 'package:shop_app/screens/details/body.dart';
 
 class DetailsScreen extends StatelessWidget {
   final Product product;
@@ -23,20 +23,23 @@ class DetailsScreen extends StatelessWidget {
       backgroundColor: Colors.white,
       elevation: 0,
       leading: IconButton(
+        // color: Colors.black,
         icon: SvgPicture.asset('assets/icons/back.svg', color: kTextColor),
         onPressed: () => Navigator.pop(context),
       ),
-      actions: <Widget>[
-        IconButton(
-          icon: SvgPicture.asset("assets/icons/search.svg"),
-          onPressed: () {},
-        ),
-        IconButton(
-          icon: SvgPicture.asset("assets/icons/cart.svg"),
-          onPressed: () {},
-        ),
-        SizedBox(width: kDefaultPaddin / 2)
-      ],
+      // actions: <Widget>[
+      //   IconButton(
+      //     color: Colors.black,
+      //     icon: SvgPicture.asset("assets/icons/search.svg"),
+      //     onPressed: () {},
+      //   ),
+      //   IconButton(
+      //     color: Colors.black,
+      //     icon: SvgPicture.asset("assets/icons/cart.svg"),
+      //     onPressed: () {},
+      //   ),
+      //   SizedBox(width: kDefaultPaddin / 2)
+      // ],
     );
   }
 }
