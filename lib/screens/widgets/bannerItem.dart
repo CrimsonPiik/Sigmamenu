@@ -323,10 +323,10 @@ class _BannersItemState extends State<BannersItem> {
                 onPressed: () {
                   Navigator.of(context).pop();
 
-                  // FirebaseFirestore.instance
-                  //     .collection(widget.data.category)
-                  //     .doc(widget.data.id)
-                  //     .delete();
+                  FirebaseFirestore.instance
+                      .collection('Banner')
+                      .doc(widget.data.id)
+                      .delete();
                 },
                 child: Container(
                   // margin: EdgeInsets.all(10),
@@ -607,15 +607,14 @@ class _BannersItemState extends State<BannersItem> {
             actions: [
               TextButton(
                 onPressed: () {
-                  // FirebaseFirestore.instance
-                  //     .collection(widget.data.category)
-                  //     .doc(widget.data.id)
-                  //     .update({
-                  //   'nameEn': _nameEnController.text,
-                  //   'descriptionEn': _descriptionEnController.text,
-                  //   'price': _priceController.text,
-                  //   'image': _imageController.text
-                  // });
+                  FirebaseFirestore.instance
+                      .collection('Banner')
+                      .doc(widget.data.id)
+                      .update({
+                    'name': _nameBannerController.text,
+                    'category': _categoryBannerController.text,
+                    'image': _imageBannerController.text
+                  });
                   Navigator.of(context).pop();
                 },
                 child: Container(

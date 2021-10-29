@@ -23,7 +23,7 @@ class _MenuItemState extends State<SideBarMenuItem> {
   void myState(String menu) {
     setState(() {
       selectedMenu = menu;
-      // menu = selectedMenu;
+
     });
     streamControllerSideBar.add(selectedMenu);
 

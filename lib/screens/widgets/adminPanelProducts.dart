@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:shop_app/screens/home/components/body.dart';
 import 'package:shop_app/screens/home/components/categorries.dart';
 import 'package:shop_app/screens/home/components/itemCardDataAdmin.dart';
+import 'package:shop_app/screens/widgets/addBannerButton.dart';
 import 'package:shop_app/screens/widgets/addCategoryButton.dart';
 import 'package:shop_app/screens/widgets/addProductButton.dart';
 import 'package:shop_app/screens/widgets/adminPanelBanners.dart';
@@ -122,6 +123,8 @@ class _AdminPanelProductsState extends State<AdminPanelProducts> {
                     ],
                   ),
                 ),
+                AddBannerButton(),
+                SizedBox(height: 15),
                 AdminPanelBanners()
               ],
             ),
