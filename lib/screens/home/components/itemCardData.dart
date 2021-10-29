@@ -60,7 +60,6 @@ class _ItemCardDataState extends State<ItemCardData> {
             .collection(category)
             .where('isPublished', isEqualTo: true)
             // .where('weight',)18
-
             .snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasError) {
@@ -77,6 +76,7 @@ class _ItemCardDataState extends State<ItemCardData> {
           }
 
           print("Client Side : " + productsList.toString());
+          // DateTime.now().millisecondsSinceEpoch.toString());
           return Expanded(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: kDefaultPaddin),

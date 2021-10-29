@@ -1,10 +1,14 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shop_app/layout/sidebar.dart';
-import 'package:shop_app/screens/home/components/body.dart';
 import 'package:shop_app/screens/widgets/adminPanelProducts.dart';
 import 'package:shop_app/style/CommonUI.dart';
+
+StreamController<String> streamControllerSideBar =
+    StreamController<String>.broadcast();
 
 class AdminPanel extends StatefulWidget {
   final bool showDesktop;
@@ -29,13 +33,14 @@ class _AdminPanelState extends State<AdminPanel> {
           }
           if (snapshot.connectionState == ConnectionState.waiting)
             return CommonUI.loading(context);
-
+          // if (snapshot.connectionState == ConnectionState.active) {
           List<DocumentSnapshot> shots = snapshot.data!.docs;
           for (var item in shots) {
             categoriesList.add(item.id.toString());
+            // }
           }
-
           print("Categories : " + categoriesList.toString());
+          // DateTime.now().millisecondsSinceEpoch.toString());
 
           return Scaffold(
             body: Row(

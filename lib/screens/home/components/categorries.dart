@@ -17,6 +17,22 @@ class _CategoriesState extends State<Categories> {
 
   @override
   Widget build(BuildContext context) {
+    // return StreamBuilder<QuerySnapshot>(
+    //     stream: FirebaseFirestore.instance.collection('Categories').snapshots(),
+    //     builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+    //       if (snapshot.hasError) {
+    //         return CommonUI.error(snapshot.error.toString());
+    //       }
+    //       if (snapshot.connectionState == ConnectionState.waiting)
+    //         return CommonUI.loading(context);
+
+    //       List<DocumentSnapshot> shots = snapshot.data!.docs;
+    //       for (var item in shots) {
+    //         categoriesList.add(item.id.toString());
+    //       }
+
+    //       print("Categories : " + categoriesList.toString());
+
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: kDefaultPaddin),
       child: SizedBox(
@@ -28,6 +44,7 @@ class _CategoriesState extends State<Categories> {
         ),
       ),
     );
+    // });
   }
 
   Widget buildCategory(int index) {

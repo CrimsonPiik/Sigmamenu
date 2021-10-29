@@ -318,7 +318,11 @@ class _ProductsItemState extends State<ProductsItem> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: Text('Delete'),
+            title: Text(
+              'Delete',
+              style:
+                  TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
+            ),
             content: Text('Are you sure you want to delete this product?'),
             actions: [
               TextButton(
@@ -335,7 +339,8 @@ class _ProductsItemState extends State<ProductsItem> {
                   padding: EdgeInsets.all(10),
                   child: Text(
                     'YES',
-                    style: TextStyle(color: Colors.black),
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold, color: Colors.black),
                   ),
                   decoration: BoxDecoration(
                     color: Colors.grey.withOpacity(0.5),
@@ -352,7 +357,8 @@ class _ProductsItemState extends State<ProductsItem> {
                   padding: EdgeInsets.all(10),
                   child: Text(
                     'NO',
-                    style: TextStyle(color: Colors.black),
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold, color: Colors.black),
                   ),
                   decoration: BoxDecoration(
                     color: Colors.grey.withOpacity(0.5),
@@ -370,7 +376,11 @@ class _ProductsItemState extends State<ProductsItem> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: Text("Edit"),
+            title: Text(
+              "Edit",
+              style:
+                  TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
+            ),
             content: Container(
               height: 215,
               // WIDTH IS ALREADY DEFINED
@@ -427,7 +437,8 @@ class _ProductsItemState extends State<ProductsItem> {
                                                   style: TextStyle(
                                                       color: Colors.white),
                                                 ),
-                                                Icon(Icons.edit, color: Colors.white)
+                                                Icon(Icons.edit,
+                                                    color: Colors.white)
                                               ],
                                               // ),
                                             )),
@@ -468,7 +479,8 @@ class _ProductsItemState extends State<ProductsItem> {
                                                   style: TextStyle(
                                                       color: Colors.white),
                                                 ),
-                                                Icon(Icons.edit, color: Colors.white)
+                                                Icon(Icons.edit,
+                                                    color: Colors.white)
                                               ],
                                               // ),
                                             )),
@@ -617,7 +629,8 @@ class _ProductsItemState extends State<ProductsItem> {
                   padding: EdgeInsets.all(10),
                   child: Text(
                     'Save',
-                    style: TextStyle(color: Colors.black),
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold, color: Colors.black),
                   ),
                   decoration: BoxDecoration(
                     color: Colors.grey.withOpacity(0.5),
@@ -634,7 +647,8 @@ class _ProductsItemState extends State<ProductsItem> {
                   padding: EdgeInsets.all(10),
                   child: Text(
                     'Cancel',
-                    style: TextStyle(color: Colors.black),
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold, color: Colors.black),
                   ),
                   decoration: BoxDecoration(
                     color: Colors.grey.withOpacity(0.5),

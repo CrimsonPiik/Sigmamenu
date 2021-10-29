@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'Sigma Menu',
       theme: ThemeData(
         // primaryColor: Colors.brown,
         colorScheme: ColorScheme.fromSwatch(

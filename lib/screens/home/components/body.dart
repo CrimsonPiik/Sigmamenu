@@ -9,8 +9,7 @@ import 'package:shop_app/style/CommonUI.dart';
 import 'categorries.dart';
 
 StreamController<int> streamController = StreamController<int>.broadcast();
-StreamController<String> streamControllerSideBar =
-    StreamController<String>.broadcast();
+
 
 class Body extends StatelessWidget {
   @override
@@ -30,6 +29,7 @@ class Body extends StatelessWidget {
           }
 
           print("Categories : " + categoriesList.toString());
+          // DateTime.now().millisecondsSinceEpoch.toString());
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
