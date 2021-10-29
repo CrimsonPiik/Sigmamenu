@@ -8,22 +8,17 @@ import 'package:shop_app/screens/widgets/addCategoryButton.dart';
 import 'package:shop_app/screens/widgets/addProductButton.dart';
 import 'package:shop_app/screens/widgets/adminPanelBanners.dart';
 import 'package:shop_app/screens/widgets/deleteCategoryButton.dart';
+import 'package:shop_app/screens/widgets/userProfile.dart';
 
 class AdminPanelProducts extends StatefulWidget {
-  final Stream<String> menu;
+  final Stream<int> menu;
   AdminPanelProducts(this.menu);
   @override
   _AdminPanelProductsState createState() => _AdminPanelProductsState();
 }
 
 class _AdminPanelProductsState extends State<AdminPanelProducts> {
-  String item = 'Dashboard';
-
-  // @override
-  // void dispose() {
-  //   streamController.close();
-  //   super.dispose();
-  // }
+  int item = 0;
 
   @override
   void initState() {
@@ -33,7 +28,7 @@ class _AdminPanelProductsState extends State<AdminPanelProducts> {
     });
   }
 
-  void mySetState(String whichMenu) {
+  void mySetState(int whichMenu) {
     if (!mounted) return;
 
     setState(() {
@@ -43,55 +38,8 @@ class _AdminPanelProductsState extends State<AdminPanelProducts> {
 
   @override
   Widget build(BuildContext context) {
-    return item == 'Dashboard'
+    return item == 0
         ? Expanded(
-            // color: primaryLight.withAlpha(100),
-            // padding: EdgeInsets.symmetric(horizontal: ),
-            child: Column(
-              children: [
-                Container(
-                  height: 70,
-                  child: Row(
-                    children: [
-                      SizedBox(
-                        height: 20,
-                        width: 30,
-                      ),
-                      Expanded(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'WELCOME BACK MOE !',
-                              style: TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.w600),
-                            ),
-                            CircleAvatar(
-                              backgroundColor: Colors.brown,
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(width: 25),
-                    ],
-                  ),
-                ),
-                SizedBox(height: 15),
-                Categories(),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    AddProductButton(streamController.stream),
-                    DeleteCategoryButton(streamController.stream),
-                    AddCategoryButton(),
-                  ],
-                ),
-                SizedBox(height: 12),
-                ItemCardDataAdmin(streamController.stream),
-              ],
-            ),
-          )
-        : Expanded(
             // color: primaryLight.withAlpha(100),
             // padding: EdgeInsets.symmetric(horizontal: ),
             child: Column(
@@ -123,11 +71,98 @@ class _AdminPanelProductsState extends State<AdminPanelProducts> {
                     ],
                   ),
                 ),
-                AddBannerButton(),
                 SizedBox(height: 15),
-                AdminPanelBanners()
+                EditProfileInformation()
               ],
             ),
-          );
+          )
+        : item == 1
+            ? Expanded(
+                // color: primaryLight.withAlpha(100),
+                // padding: EdgeInsets.symmetric(horizontal: ),
+                child: Column(
+                  children: [
+                    Container(
+                      height: 70,
+                      child: Row(
+                        children: [
+                          SizedBox(
+                            height: 20,
+                            width: 30,
+                          ),
+                          Expanded(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'WELCOME BACK MOE !',
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                                CircleAvatar(
+                                  backgroundColor: Colors.brown,
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(width: 25),
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: 15),
+                    Categories(),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        AddProductButton(streamController.stream),
+                        DeleteCategoryButton(streamController.stream),
+                        AddCategoryButton(),
+                      ],
+                    ),
+                    SizedBox(height: 12),
+                    ItemCardDataAdmin(streamController.stream),
+                  ],
+                ),
+              )
+            : Expanded(
+                // color: primaryLight.withAlpha(100),
+                // padding: EdgeInsets.symmetric(horizontal: ),
+                child: Column(
+                  children: [
+                    Container(
+                      height: 70,
+                      child: Row(
+                        children: [
+                          SizedBox(
+                            height: 10,
+                            width: 30,
+                          ),
+                          Expanded(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'WELCOME BACK MOE !',
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                                CircleAvatar(
+                                  backgroundColor: Colors.brown,
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(width: 35),
+                        ],
+                      ),
+                    ),
+                    AddBannerButton(),
+                    SizedBox(height: 15),
+                    AdminPanelBanners()
+                  ],
+                ),
+              );
   }
 }

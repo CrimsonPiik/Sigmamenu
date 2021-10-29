@@ -7,8 +7,8 @@ import 'package:shop_app/layout/sidebar.dart';
 import 'package:shop_app/screens/widgets/adminPanelProducts.dart';
 import 'package:shop_app/style/CommonUI.dart';
 
-StreamController<String> streamControllerSideBar =
-    StreamController<String>.broadcast();
+StreamController<int> streamControllerSideBar =
+    StreamController<int>.broadcast();
 
 class AdminPanel extends StatefulWidget {
   final bool showDesktop;

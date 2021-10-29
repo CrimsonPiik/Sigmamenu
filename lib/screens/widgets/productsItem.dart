@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:shop_app/GeneralFunction/firebase_uploader_web.dart';
 import 'package:shop_app/models/product.dart';
 import 'package:shop_app/style/AssetsManager.dart';
@@ -22,6 +23,7 @@ class _ProductsItemState extends State<ProductsItem> {
   TextEditingController _priceController = TextEditingController();
   TextEditingController _imageController = TextEditingController();
   ValueNotifier<String?> _image = ValueNotifier<String?>(null);
+  final _formKey = GlobalKey<FormBuilderState>();
 
   bool editText = false;
 
@@ -516,11 +518,16 @@ class _ProductsItemState extends State<ProductsItem> {
                               height: 50,
                               width: Responsive.isDesktop(context) ? 200 : 70,
                               child: CommonUI.textField(
-                                  isEdit: true,
-                                  context: context,
-                                  name: "Name",
-                                  controller: _nameEnController,
-                                  hint: widget.data.nameEn),
+                                isEdit: true,
+                                context: context,
+                                name: "Name",
+                                controller: _nameEnController,
+                                hint: widget.data.nameEn,
+                                validate: FormBuilderValidators.compose([
+                                  FormBuilderValidators.required(context),
+                                  // FormBuilderValidators.numeric(context),
+                                ]),
+                              ),
                             ),
                             // : TextFormField(
                             //     decoration: const InputDecoration(
@@ -563,12 +570,17 @@ class _ProductsItemState extends State<ProductsItem> {
                               height: 50,
                               width: Responsive.isDesktop(context) ? 200 : 70,
                               child: CommonUI.textField(
-                                  context: context,
-                                  isEdit: true,
-                                  name: "descriptionEn",
-                                  // label: widget.data.descriptionEn,
-                                  controller: _descriptionEnController,
-                                  hint: widget.data.descriptionEn),
+                                context: context,
+                                isEdit: true,
+                                name: "descriptionEn",
+                                // label: widget.data.descriptionEn,
+                                controller: _descriptionEnController,
+                                hint: widget.data.descriptionEn,
+                                validate: FormBuilderValidators.compose([
+                                  FormBuilderValidators.required(context),
+                                  // FormBuilderValidators.numeric(context),
+                                ]),
+                              ),
                             ),
                             // TextButton(
                             //     onPressed: () {},
@@ -592,12 +604,17 @@ class _ProductsItemState extends State<ProductsItem> {
                               height: 50,
                               width: Responsive.isDesktop(context) ? 200 : 70,
                               child: CommonUI.textField(
-                                  context: context,
-                                  name: "price",
-                                  isEdit: true,
-                                  // keyboardType: TextInputType(number),
-                                  controller: _priceController,
-                                  hint: widget.data.price.toString()),
+                                context: context,
+                                name: "price",
+                                isEdit: true,
+                                // keyboardType: TextInputType(number),
+                                controller: _priceController,
+                                hint: widget.data.price.toString(),
+                                validate: FormBuilderValidators.compose([
+                                  FormBuilderValidators.required(context),
+                                  FormBuilderValidators.numeric(context),
+                                ]),
+                              ),
                             ),
                             // TextButton(
                             //     onPressed: () {},

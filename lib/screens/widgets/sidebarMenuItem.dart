@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:shop_app/constaints.dart';
+import 'package:shop_app/layout/sidebar.dart';
 import 'package:shop_app/models/model.dart';
 import 'package:shop_app/screens/adminPanel.dart';
+import 'package:shop_app/screens/home/components/body.dart';
 
 class SideBarMenuItem extends StatefulWidget {
   final MenuItem item;
@@ -12,94 +15,105 @@ class SideBarMenuItem extends StatefulWidget {
 }
 
 class _MenuItemState extends State<SideBarMenuItem> {
-  String selectedMenu = 'User';
+  int selectedIndex = 0;
 
-  // bool isSelected = false;
-  // int selectedIndex = 1;
+  var _bgColor = Colors.transparent;
+  var _iconColor = Colors.white;
 
-  // var _bgColor = Colors.transparent;
-  // var _iconColor = Colors.white;
+  void myState(int index) {
+    // if (selectedIndex == index) return;
 
-  void myState(String menu) {
+    // if(selectedIndex == 0){}
     setState(() {
-      selectedMenu = menu;
-
+      selectedIndex = index;
     });
-    streamControllerSideBar.add(selectedMenu);
-
+    streamControllerSideBar.add(selectedIndex);
     // print(menu.toString());
   }
 
   @override
   Widget build(BuildContext context) {
-    // Widget buildMenu(int index) {
-    // return MouseRegion(
-    //     onEnter: (e) {
-    //       setState(() {
-    //         _bgColor = Colors.white;
-    //         _iconColor = Colors.brown;
-    //       });
-    //     },
-    //     onExit: (e) {
-    //       setState(() {
-    //         _bgColor = Colors.transparent;
-    //         _iconColor = Colors.white;
-    //       });
-    //     },
-    // child:
-    return InkWell(
-        onTap: () {
-          if (selectedMenu != widget.item.name) {
-            myState(widget.item.name);
-            // setState(() {
-            //   selectedMenu = "s";
-            // });
-          } else
-            setState(() {
-              selectedMenu = "s";
-            });
+    return SizedBox(
+      height: 56,
+      child: ListView.builder(
+        // scrollDirection: Axis.vertical,
+        itemCount: menuItems.length,
+        itemBuilder: (context, index) => buildMenu(index),
+      ),
+    );
+  }
 
-          print(selectedMenu);
+  Widget buildMenu(int index) {
+    return MouseRegion(
+        onEnter: (e) {
+          setState(() {
+            _bgColor = Colors.white;
+            _iconColor = Colors.brown;
+          });
         },
-        child: Container(
-          width: widget.isDesktop ? null : 44,
-          height: 44,
-          padding: EdgeInsets.symmetric(horizontal: 8),
-          margin: EdgeInsets.symmetric(vertical: 8),
-          decoration: BoxDecoration(
-              color: selectedMenu == widget.item.name
-                  ? Colors.white
-                  : Colors.transparent,
-              borderRadius: BorderRadius.circular(8)),
-          child: Row(
-            mainAxisAlignment: widget.isDesktop
-                ? MainAxisAlignment.start
-                : MainAxisAlignment.center,
-            children: [
-              Icon(
-                widget.item.icon,
-                size: 20,
-                color: selectedMenu == widget.item.name
-                    ? Colors.brown
-                    : Colors.white,
-              ),
-              if (widget.isDesktop) ...[
-                SizedBox(
-                  width: 16,
+        onExit: (e) {
+          setState(() {
+            _bgColor = Colors.transparent;
+            _iconColor = Colors.white;
+          });
+        },
+        child: InkWell(
+          onTap: () {
+            if (widget.item.name == 'User') {
+              setState(() {
+                selectedIndex = index;
+              });
+              myState(0);
+              print(index);
+            } else if (widget.item.name == 'Dashboard') {
+              setState(() {
+                selectedIndex = index;
+              });
+
+              myState(1);
+              print(index);
+            } else if (widget.item.name == 'Banners') {
+              setState(() {
+                selectedIndex = index;
+              });
+              myState(2);
+              print(index);
+            }
+          },
+          child: Container(
+            width: widget.isDesktop ? null : 44,
+            height: 44,
+            padding: EdgeInsets.symmetric(horizontal: 8),
+            margin: EdgeInsets.symmetric(vertical: 8),
+            decoration: BoxDecoration(
+                color: _bgColor, borderRadius: BorderRadius.circular(8)),
+            child: Row(
+              mainAxisAlignment: widget.isDesktop
+                  ? MainAxisAlignment.start
+                  : MainAxisAlignment.center,
+              children: [
+                Icon(
+                  widget.item.icon,
+                  size: 20,
+                  color: _iconColor,
+                  // selectedIndex == index ? Colors.white : Colors.brown,
                 ),
-                Text(
-                  widget.item.name,
-                  style: TextStyle(
-                    color: selectedMenu == widget.item.name
-                        ? Colors.brown
-                        : Colors.white,
+                if (widget.isDesktop) ...[
+                  SizedBox(
+                    width: 16,
                   ),
-                )
-              ] else
-                SizedBox.shrink(),
-            ],
+                  Text(
+                    widget.item.name,
+                    style: TextStyle(color: _iconColor),
+                    // selectedIndex == index
+                    // ? Colors.white
+                    // : Colors.brown),
+                  ),
+                ] else
+                  SizedBox.shrink(),
+              ],
+            ),
           ),
-          // ),
         ));
   }
 }

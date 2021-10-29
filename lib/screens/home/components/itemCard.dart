@@ -24,7 +24,7 @@ class ItemCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double cardHeight = 200; //300
+    // final double cardHeight = 200; //300
     final double cardWidth = 130;
     return Container(
       decoration: BoxDecoration(
@@ -69,13 +69,13 @@ class ItemCard extends StatelessWidget {
                     // borderRadius:
                     //     BorderRadius.vertical(top: Radius.circular(28)),
                     child: Container(
-                      height: Responsive.isMobile(context)
-                          ? cardHeight * 0.8
-                          : Responsive.isDesktop(context)
-                              ? cardHeight * 0.85
-                              : Responsive.isMiniMobile(context)
-                                  ? cardHeight * 0.5
-                                  : cardHeight * 0.5,
+                      height: Responsive.isDesktop(context)
+                          ? 160
+                          : Responsive.isTablet(context)
+                              ? 155
+                              : Responsive.isMobile(context)
+                                  ? 150
+                                  : 100,
                       width: double.maxFinite,
                       child: CommonUI.cachedImage(
                           product.image, ImageAssets.placeholder,
@@ -96,7 +96,7 @@ class ItemCard extends StatelessWidget {
                   // ),
                   Expanded(
                     child: Container(
-                      height: isBordered ? cardHeight * 1.2 : null,
+                      // height: 240,
                       // width: isWithFavorite ? ScreenUtil.width(context) * 0.7 : null,
                       decoration: BoxDecoration(
                         color:
