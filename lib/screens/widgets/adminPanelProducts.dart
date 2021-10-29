@@ -33,6 +33,8 @@ class _AdminPanelProductsState extends State<AdminPanelProducts> {
   }
 
   void mySetState(String whichMenu) {
+        if (!mounted) return;
+
     setState(() {
       item = whichMenu;
     });
@@ -51,7 +53,7 @@ class _AdminPanelProductsState extends State<AdminPanelProducts> {
                   child: Row(
                     children: [
                       SizedBox(
-                        height: 10,
+                        height: 20,
                         width: 30,
                       ),
                       Expanded(

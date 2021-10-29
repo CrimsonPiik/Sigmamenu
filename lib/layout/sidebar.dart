@@ -6,78 +6,15 @@ import 'package:shop_app/screens/widgets/sidebarMenuItem.dart';
 final List<MenuItem> menuItems = [
   // MenuItem('Home', Icons.home_outlined),
   MenuItem('User', Icons.person),
-
   MenuItem('Dashboard', Icons.dashboard_outlined),
   MenuItem('Banners', Icons.photo_size_select_actual_outlined),
 ];
-// void getCategories() async {
-//   final QuerySnapshot result =
-//       await FirebaseFirestore.instance.collection('categories').get();
-//   // print(res)
-//   final List<DocumentSnapshot> documents = result.docs;
 
-//   for (int i = 0; i < documents.length; i++) {
-
-//     menuItems.add(MenuItem(documents[i].id, Icons.home_outlined));
-//   }
-// }
-
-class SideBar extends StatefulWidget {
-  // final Stream<MenuItem> stream;
-  // SideBar(this.stream);
-
-  @override
-  State<SideBar> createState() => _SideBarState();
-}
-
-class _SideBarState extends State<SideBar> {
-  // String menuItemsdefault = menuItems.elementAt(0);
-
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   widget.stream.listen((index) {
-  //     mySetState(index);
-  //   });
-  // }
-
-  // void mySetState(int index) {
-  //   final List<MenuItem> menuItems = [
-  //     MenuItem('Home', Icons.home_outlined),
-  //     MenuItem('Dashboard', Icons.dashboard_outlined),
-  //     MenuItem('User', Icons.person),
-  //     MenuItem('Banners', Icons.photo_size_select_actual_outlined),
-  //   ];
-  //   setState(() {
-  //     category = menuItems.elementAt(index) as String;
-  //     // category = categoryMenu[index];
-  //   });
-  // }
-
+class SideBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size _size = MediaQuery.of(context).size;
     final bool _isDesktop = _size.width >= screenLg;
-
-    // return StreamBuilder<QuerySnapshot>(
-    //     stream: FirebaseFirestore.instance.collection('categories').snapshots(),
-    //     builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-    //       if (snapshot.hasError) {
-    //         return CommonUI.error(snapshot.error.toString());
-    //       }
-    //       if (snapshot.connectionState == ConnectionState.waiting)
-    //         return CommonUI.loading();
-
-    //       late List<MenuItem> menuItems = [];
-
-    //       List<DocumentSnapshot> shots = snapshot.data!.docs;
-    //       for (var item in shots) {
-    //         menuItems.add(MenuItem.
-    //             // MenuItem.fromMap(item.data() as Map<String, dynamic>)
-    //             // .toString(),
-    //             // Icons.ac_unit));
-    //             fromMap(item.data() as Map<String, dynamic>));
-    //       }
 
     return Container(
       decoration: BoxDecoration(color: Colors.brown),

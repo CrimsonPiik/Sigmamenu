@@ -324,18 +324,34 @@ class _BannersItemState extends State<BannersItem> {
                   //     .doc(widget.data.id)
                   //     .delete();
                 },
-                child: Text(
-                  'YES',
-                  style: TextStyle(color: Colors.black),
+                child: Container(
+                  // margin: EdgeInsets.all(10),
+                  padding: EdgeInsets.all(10),
+                  child: Text(
+                    'YES',
+                    style: TextStyle(color: Colors.black),
+                  ),
+                  decoration: BoxDecoration(
+                    color: Colors.grey.withOpacity(0.5),
+                    borderRadius: BorderRadius.circular(16),
+                  ),
                 ),
               ),
               TextButton(
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                child: Text(
-                  'NO',
-                  style: TextStyle(color: Colors.black),
+                child: Container(
+                  // margin: EdgeInsets.all(10),
+                  padding: EdgeInsets.all(10),
+                  child: Text(
+                    'NO',
+                    style: TextStyle(color: Colors.black),
+                  ),
+                  decoration: BoxDecoration(
+                    color: Colors.grey.withOpacity(0.5),
+                    borderRadius: BorderRadius.circular(16),
+                  ),
                 ),
               ),
             ],
@@ -395,12 +411,21 @@ class _BannersItemState extends State<BannersItem> {
                                             // width: 180,
                                             decoration: BoxDecoration(
                                                 color: Color(0x4D000000)),
-                                            child: Center(
-                                              child: Text(
-                                                'Edit',
-                                                style: TextStyle(
-                                                    color: Colors.white),
-                                              ),
+                                            // child: Center(
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+
+                                              children: [
+                                                Text(
+                                                  'Edit ',
+                                                  style: TextStyle(
+                                                      color: Colors.white),
+                                                ),
+                                                Icon(Icons.edit,
+                                                    color: Colors.white)
+                                              ],
+                                              // ),
                                             )),
                                       ),
                                     ])
@@ -425,17 +450,26 @@ class _BannersItemState extends State<BannersItem> {
                                       Padding(
                                         padding: EdgeInsets.only(top: 145),
                                         child: Container(
-                                            height: 35,
-                                            // width: 180,
-                                            decoration: BoxDecoration(
-                                                color: Color(0x4D000000)),
-                                            child: Center(
-                                              child: Text(
-                                                'Edit',
+                                          height: 35,
+                                          // width: 180,
+                                          decoration: BoxDecoration(
+                                              color: Color(0x4D000000)),
+                                          // child: Center(
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Text(
+                                                'Edit ',
                                                 style: TextStyle(
                                                     color: Colors.white),
                                               ),
-                                            )),
+                                              Icon(Icons.edit,
+                                                  color: Colors.white)
+                                            ],
+                                          ),
+                                          // ),
+                                        ),
                                       ),
                                     ]),
                             ]),

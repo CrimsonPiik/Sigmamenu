@@ -4,42 +4,80 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 //List of Cards with size
 List<StaggeredTile> _cardTile = <StaggeredTile>[
   StaggeredTile.count(2, 3),
-  StaggeredTile.count(2, 2),
+  StaggeredTile.count(2, 2.5),
   StaggeredTile.count(2, 3),
-  StaggeredTile.count(2, 2),
   StaggeredTile.count(2, 3),
+  StaggeredTile.count(2, 2.5),
   StaggeredTile.count(2, 2),
-  StaggeredTile.count(2, 3),
-  StaggeredTile.count(2, 2),
-  // StaggeredTile.count(2, 3),
-  // StaggeredTile.count(2, 2),
 ];
 
 //List of Cards with color and icon
 List<Widget> _listTile = <Widget>[
-  BackGroundTile(backgroundColor: Colors.red, icondata: Icons.home),
-  BackGroundTile(backgroundColor: Colors.orange, icondata: Icons.ac_unit),
-  BackGroundTile(backgroundColor: Colors.pink, icondata: Icons.landscape),
-  BackGroundTile(backgroundColor: Colors.green, icondata: Icons.portrait),
   BackGroundTile(
-      backgroundColor: Colors.deepPurpleAccent, icondata: Icons.music_note),
-  BackGroundTile(backgroundColor: Colors.blue, icondata: Icons.access_alarms),
+      background:
+          'https://images.pexels.com/photos/842571/pexels-photo-842571.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+      text: 'Food'),
   BackGroundTile(
-      backgroundColor: Colors.yellowAccent, icondata: Icons.satellite_outlined),
+      background:
+          'https://images.pexels.com/photos/1283219/pexels-photo-1283219.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+      text: 'Hard Drinks'),
   BackGroundTile(
-      backgroundColor: Colors.deepOrange, icondata: Icons.search_sharp),
-//   BackGroundTile(
-//       backgroundColor: Colors.yellowAccent, icondata: Icons.adjust_rounded),
-//   BackGroundTile(
-//       backgroundColor: Colors.deepOrange, icondata: Icons.attach_money),
+      background:
+          'https://images.pexels.com/photos/2130134/pexels-photo-2130134.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+      text: 'Brunch'),
+  BackGroundTile(
+      background:
+          'https://images.pexels.com/photos/1200348/pexels-photo-1200348.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
+      text: 'Beverages'),
+  BackGroundTile(
+      background:
+          'https://images.pexels.com/photos/6062039/pexels-photo-6062039.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+      text: 'Desserts'),
+  BackGroundTile(
+      background:
+          'https://images.pexels.com/photos/3637608/pexels-photo-3637608.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+      text: 'Appetizers'),
 ];
 
-class StaggerdGridView extends StatelessWidget {
+class StaggerdGridView extends StatefulWidget {
+  @override
+  State<StaggerdGridView> createState() => _StaggerdGridViewState();
+}
+
+class _StaggerdGridViewState
+    extends State<StaggerdGridView> /* with SingleTickerProviderStateMixin */ {
+  // AnimationController? _animationContainer;
+
+  // void animationLogin() {
+  //   _animationContainer = AnimationController(
+  //       vsync: this,
+  //       duration: Duration(milliseconds: 1500),
+  //       animationBehavior: AnimationBehavior.preserve);
+  //   _animationContainer?.forward();
+  // }
+
+  // @override
+  // void initState() {
+  //   super.initState();
+
+  //   // analytics.setCurrentScreen(screenName: '/loginScreen');
+  //   // _privacyPolicy = TapGestureRecognizer()..onTap = _handlePrivacyPress;
+  //   // _termsAndConditions = TapGestureRecognizer()..onTap = _handleTermsPress;
+  //   animationLogin();
+  // }
+
+  // @override
+  // void dispose() {
+  //   _animationContainer?.dispose();
+
+  //   super.dispose();
+  // }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       // appBar: AppBar(
-      //   title: Text("GFG App"),
+      //   title: Center(child: Text("YOUR LOGO")),
       // ),
       body: Container(
         // Staggered Grid View starts here
@@ -56,16 +94,36 @@ class StaggerdGridView extends StatelessWidget {
 }
 
 class BackGroundTile extends StatelessWidget {
-  final Color backgroundColor;
-  final IconData icondata;
+  final String background;
+  final String text;
 
-  BackGroundTile({required this.backgroundColor, required this.icondata});
+  BackGroundTile({required this.background, required this.text});
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      color: backgroundColor,
-      child: Icon(icondata, color: Colors.white),
+    return InkWell(
+      onTap: () {},
+      child: Stack(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: NetworkImage(background), fit: BoxFit.fill),
+            ),
+          ),
+          Container(
+            decoration: BoxDecoration(color: Color(0x4D303030)),
+            child: Center(
+                child: Text(
+              text,
+              style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white),
+            )),
+          ),
+        ],
+      ),
     );
   }
 }

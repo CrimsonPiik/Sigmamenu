@@ -9,17 +9,8 @@ import 'package:shop_app/style/CommonUI.dart';
 import 'categorries.dart';
 
 StreamController<int> streamController = StreamController<int>.broadcast();
-StreamController<String> streamControllerSideBar = StreamController<String>.broadcast();
-
-// void getCategoriesFromFirebase() async {
-//   var result = await FirebaseFirestore.instance.collection('categories').get();
-//   result.docs.forEach((element) {
-//     print(element.id);
-//     categories.add(element.id);
-//     categories.toSet().toList();
-//   });
-// }
-
+StreamController<String> streamControllerSideBar =
+    StreamController<String>.broadcast();
 
 class Body extends StatelessWidget {
   @override
@@ -45,7 +36,7 @@ class Body extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: kDefaultPaddin),
                 child: Container(
-                  height: 100,
+                  height: 75,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [

@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:shop_app/GeneralFunction/firebase_uploader_web.dart';
 import 'package:shop_app/models/product.dart';
@@ -134,7 +135,7 @@ class _ProductsItemState extends State<ProductsItem> {
                                         ),
                                         onPressed: () {
                                           FirebaseFirestore.instance
-                                              .collection('Drinks')
+                                              .collection(widget.data.category)
                                               .doc(widget.data.id)
                                               .update({'isPublished': false});
                                         })
@@ -146,7 +147,7 @@ class _ProductsItemState extends State<ProductsItem> {
                                         ),
                                         onPressed: () {
                                           FirebaseFirestore.instance
-                                              .collection('Drinks')
+                                              .collection(widget.data.category)
                                               .doc(widget.data.id)
                                               .update({'isPublished': true});
                                         }),
@@ -266,7 +267,7 @@ class _ProductsItemState extends State<ProductsItem> {
                                   ),
                                   onPressed: () {
                                     FirebaseFirestore.instance
-                                        .collection('Drinks')
+                                        .collection(widget.data.category)
                                         .doc(widget.data.id)
                                         .update({'isPublished': false});
                                   })
@@ -278,7 +279,7 @@ class _ProductsItemState extends State<ProductsItem> {
                                   ),
                                   onPressed: () {
                                     FirebaseFirestore.instance
-                                        .collection('Drinks')
+                                        .collection(widget.data.category)
                                         .doc(widget.data.id)
                                         .update({'isPublished': true});
                                   }),
@@ -416,12 +417,19 @@ class _ProductsItemState extends State<ProductsItem> {
                                             width: 180,
                                             decoration: BoxDecoration(
                                                 color: Color(0x4D000000)),
-                                            child: Center(
-                                              child: Text(
-                                                'Edit',
-                                                style: TextStyle(
-                                                    color: Colors.white),
-                                              ),
+                                            // child: Center(
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Text(
+                                                  'Edit ',
+                                                  style: TextStyle(
+                                                      color: Colors.white),
+                                                ),
+                                                Icon(Icons.edit, color: Colors.white)
+                                              ],
+                                              // ),
                                             )),
                                       ),
                                     ])
@@ -450,12 +458,19 @@ class _ProductsItemState extends State<ProductsItem> {
                                             width: 180,
                                             decoration: BoxDecoration(
                                                 color: Color(0x4D000000)),
-                                            child: Center(
-                                              child: Text(
-                                                'Edit',
-                                                style: TextStyle(
-                                                    color: Colors.white),
-                                              ),
+                                            // child: Center(
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Text(
+                                                  'Edit ',
+                                                  style: TextStyle(
+                                                      color: Colors.white),
+                                                ),
+                                                Icon(Icons.edit, color: Colors.white)
+                                              ],
+                                              // ),
                                             )),
                                       ),
                                     ]),
@@ -489,7 +504,6 @@ class _ProductsItemState extends State<ProductsItem> {
                               height: 50,
                               width: Responsive.isDesktop(context) ? 200 : 70,
                               child: CommonUI.textField(
-                                      
                                   isEdit: true,
                                   context: context,
                                   name: "Name",

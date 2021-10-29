@@ -42,9 +42,10 @@ class _ItemCardDataState extends State<ItemCardData> {
     //   'salads',
     //   'brunch'
     // ];
+    if (!mounted) return;
+
     setState(() {
       category = categoriesList.elementAt(index);
-      // category = categoryMenu[index];
     });
   }
   // @override
@@ -60,9 +61,7 @@ class _ItemCardDataState extends State<ItemCardData> {
             .where('isPublished', isEqualTo: true)
             // .where('weight',)18
 
-            // .where('category',.....)
             .snapshots(),
-        // .asBroadcastStream(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasError) {
             return CommonUI.error(snapshot.error.toString());

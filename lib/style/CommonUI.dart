@@ -80,8 +80,7 @@ class CommonUI {
     return Column(
       children: [
         Padding(
-          padding:  EdgeInsets.only(
-              top: MediaQuery.of(context).size.height / 2),
+          padding: EdgeInsets.only(top: MediaQuery.of(context).size.height / 5),
           child: Center(
             child: LottieBuilder.asset(
               AnimAssets.loadingCoffee,

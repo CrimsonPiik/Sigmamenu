@@ -35,18 +35,11 @@ class _AddProductButtonState extends State<AddProductButton> {
   }
 
   void mySetState(int index) {
-    // List categoryMenu = [
-    //   'drinks',
-    //   'maincourses',
-    //   'appetizers',
-    //   'desserts',
-    //   'salads',
-    //   'brunch'
-    // ];
+       if (!mounted) return;
+
     setState(() {
       category = categoriesList.elementAt(index);
 
-      // category = categoryMenu[index];
     });
   }
 

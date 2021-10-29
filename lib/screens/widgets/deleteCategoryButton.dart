@@ -10,8 +10,6 @@ class DeleteCategoryButton extends StatefulWidget {
   State<DeleteCategoryButton> createState() => _DeleteCategoryButtonState();
 }
 
-// Set<String> s = {};
-
 class _DeleteCategoryButtonState extends State<DeleteCategoryButton> {
   String category = categoriesList.elementAt(0);
 
@@ -25,18 +23,10 @@ class _DeleteCategoryButtonState extends State<DeleteCategoryButton> {
   }
 
   void mySetState(int index) {
-    // List categoryMenu = [
-    //   'drinks',
-    //   'maincourses',
-    //   'appetizers',
-    //   'desserts',
-    //   'salads',
-    //   'brunch'
-    // ];
+    if (!mounted) return;
+
     setState(() {
       category = categoriesList.elementAt(index);
-      // s = categoriesList;
-      // category = categoryMenu[index];
     });
   }
 

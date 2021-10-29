@@ -64,7 +64,7 @@ class _BannerWithDotsIndicatorState extends State<BannerWithDotsIndicator> {
               .toList(),
           options: CarouselOptions(
             viewportFraction: 1,
-            height: Responsive.isMobile(context) ? 100 : 170,
+            height: Responsive.isMobile(context) ? 80 : 120,
             aspectRatio: 16 / 9,
             autoPlayAnimationDuration: const Duration(milliseconds: 4000),
             autoPlayInterval: const Duration(milliseconds: 5000),
@@ -86,7 +86,7 @@ class _BannerWithDotsIndicatorState extends State<BannerWithDotsIndicator> {
               return Container(
                 width: 8.0,
                 height: 8.0,
-                margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
+                margin: EdgeInsets.symmetric(vertical: 5.0, horizontal: 2.0),
                 decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     color: currentImage == indexx
