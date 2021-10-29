@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:shop_app/constaints.dart';
 import 'package:shop_app/models/product.dart';
 
-class Body extends StatelessWidget {
+class ProductDescription extends StatelessWidget {
   final Product product;
 
-  const Body({Key? key, required this.product}) : super(key: key);
+  const ProductDescription({Key? key, required this.product}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     // It provide us total height and width
@@ -89,13 +89,7 @@ class Body extends StatelessWidget {
                           ),
                         ],
                       ),
-                      // /ColorAndSize(product: product),
-                      // SizedBox(height: kDefaultPaddin / 2),
-                      // Description(product: product),
-                      // SizedBox(height: kDefaultPaddin / 2),
-                      // CounterWithFavBtn(),
                       SizedBox(height: kDefaultPaddin / 2),
-                      // AddToCart(product: product)
                     ],
                   ),
                 ),
