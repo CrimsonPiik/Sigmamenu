@@ -55,9 +55,8 @@ class _ItemCardDataAdminState extends State<ItemCardDataAdmin> {
             products.add(Product.fromMap(item.data() as Map<String, dynamic>));
           }
 
-          print("Admin Side : " +
-              products.toString() );
-              // DateTime.now().millisecondsSinceEpoch.toString());
+          print("Admin Side : " + products.toString());
+          // DateTime.now().millisecondsSinceEpoch.toString());
           return Expanded(
             child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: kDefaultPaddin),

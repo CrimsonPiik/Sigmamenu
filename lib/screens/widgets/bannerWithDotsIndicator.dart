@@ -64,7 +64,7 @@ class _BannerWithDotsIndicatorState extends State<BannerWithDotsIndicator> {
               .toList(),
           options: CarouselOptions(
             viewportFraction: 1,
-            height: Responsive.isMobile(context) ? 80 : 120,
+            height: Responsive.isMobile(context) ? 100 : 120,
             aspectRatio: 16 / 9,
             autoPlayAnimationDuration: const Duration(milliseconds: 4000),
             autoPlayInterval: const Duration(milliseconds: 5000),

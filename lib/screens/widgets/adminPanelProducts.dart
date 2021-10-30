@@ -50,7 +50,7 @@ class _AdminPanelProductsState extends State<AdminPanelProducts> {
                     children: [
                       SizedBox(
                         height: 10,
-                        width: 30,
+                        width: 25,
                       ),
                       Expanded(
                         child: Row(
@@ -61,13 +61,14 @@ class _AdminPanelProductsState extends State<AdminPanelProducts> {
                               style: TextStyle(
                                   fontSize: 18, fontWeight: FontWeight.w600),
                             ),
+                            SizedBox(width: 4),
                             CircleAvatar(
                               backgroundColor: Colors.brown,
                             ),
                           ],
                         ),
                       ),
-                      SizedBox(width: 35),
+                      SizedBox(width: 25),
                     ],
                   ),
                 ),
@@ -88,7 +89,7 @@ class _AdminPanelProductsState extends State<AdminPanelProducts> {
                         children: [
                           SizedBox(
                             height: 20,
-                            width: 30,
+                            width: 25,
                           ),
                           Expanded(
                             child: Row(
@@ -100,6 +101,7 @@ class _AdminPanelProductsState extends State<AdminPanelProducts> {
                                       fontSize: 18,
                                       fontWeight: FontWeight.w600),
                                 ),
+                                SizedBox(width: 4),
                                 CircleAvatar(
                                   backgroundColor: Colors.brown,
                                 ),
@@ -136,7 +138,7 @@ class _AdminPanelProductsState extends State<AdminPanelProducts> {
                         children: [
                           SizedBox(
                             height: 10,
-                            width: 30,
+                            width: 25,
                           ),
                           Expanded(
                             child: Row(
@@ -148,13 +150,14 @@ class _AdminPanelProductsState extends State<AdminPanelProducts> {
                                       fontSize: 18,
                                       fontWeight: FontWeight.w600),
                                 ),
+                                SizedBox(width: 4),
                                 CircleAvatar(
                                   backgroundColor: Colors.brown,
                                 ),
                               ],
                             ),
                           ),
-                          SizedBox(width: 35),
+                          SizedBox(width: 25),
                         ],
                       ),
                     ),

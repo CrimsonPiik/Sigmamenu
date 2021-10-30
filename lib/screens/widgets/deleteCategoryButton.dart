@@ -41,7 +41,7 @@ class _DeleteCategoryButtonState extends State<DeleteCategoryButton> {
                 _showDeleteCategoryDialog();
               },
               icon: Icon(Icons.remove),
-              label: Text('Delete Category')),
+              label: Text('Category')),
         ),
         SizedBox(width: 21),
       ],

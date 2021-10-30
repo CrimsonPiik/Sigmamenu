@@ -195,6 +195,8 @@ class _ProductsItemState extends State<ProductsItem> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+
+                      
                       SizedBox(height: 16),
                       CommonUI.text(
                         context: context,
@@ -224,9 +226,12 @@ class _ProductsItemState extends State<ProductsItem> {
                       //   style: TextStyle(
                       //       fontWeight: FontWeight.w400, fontSize: 14),
                       // ),
+                      // SingleChildScrollView(
+                      // child:
                       CommonUI.text(
                         context: context,
                         text: widget.data.descriptionEn,
+                        maxLines: 2,
                         // RhinoLanguage.isLTR()
                         //     ? product.nameEn
                         //     : product.nameAr,
@@ -234,6 +239,7 @@ class _ProductsItemState extends State<ProductsItem> {
                         style: FontStyle.normal(
                           context: context,
                           //  fontWeight: FontWeight.bold
+                          // ),
                         ),
                       ),
                       SizedBox(
