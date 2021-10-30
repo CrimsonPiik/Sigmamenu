@@ -20,7 +20,6 @@ class ProductDescription extends StatelessWidget {
           children: <Widget>[
             SingleChildScrollView(
               child: SizedBox(
-     
                 child: Stack(
                   children: <Widget>[
                     // SingleChildScrollView(
@@ -45,13 +44,15 @@ class ProductDescription extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          Hero(
-                            tag: "${product.id}",
-                            child: Image.network(
-                              product.image,
-                              width: 300,
-                              height: 250,
-                              fit: BoxFit.fill,
+                          Center(
+                            child: Hero(
+                              tag: "${product.id}",
+                              child: Image.network(
+                                product.image,
+                                width: 300,
+                                height: 250,
+                                fit: BoxFit.fill,
+                              ),
                             ),
                           ),
                           SizedBox(height: 12),
