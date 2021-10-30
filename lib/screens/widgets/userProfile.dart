@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_svg/svg.dart';
@@ -28,11 +27,11 @@ class EditProfileInformation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Future editUserProfile() async {
-      // await FirebaseFirestore.instance.collection("users").doc(user.id).update({
-      // "name": nameController.text,
-      // "phone": phoneController.text,
-      // "address": {'formattedAddress': addressController.text}
-      // }).catchError((onError) => print("Error with editing User"));
+      //   // await FirebaseFirestore.instance.collection("users").doc(user.id).update({
+      //   // "name": nameController.text,
+      //   // "phone": phoneController.text,
+      //   // "address": {'formattedAddress': addressController.text}
+      //   // }).catchError((onError) => print("Error with editing User"));
     }
 
     return FormBuilder(
@@ -114,7 +113,7 @@ class EditProfileInformation extends StatelessWidget {
                     SizedBox(height: 8),
                     CommonUI.textField(
                       context: context,
-                      name: "Name",
+                      name: "Shopping Address",
                       controller: addressController,
                       // hint: user.address.formattedAddress
                     ),

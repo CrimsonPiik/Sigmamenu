@@ -38,7 +38,7 @@ class _AdminPanelProductsState extends State<AdminPanelProducts> {
 
   @override
   Widget build(BuildContext context) {
-    return item == 0
+    return item == 0 //USER
         ? Expanded(
             // color: primaryLight.withAlpha(100),
             // padding: EdgeInsets.symmetric(horizontal: ),
@@ -77,7 +77,7 @@ class _AdminPanelProductsState extends State<AdminPanelProducts> {
               ],
             ),
           )
-        : item == 1
+        : item == 1 //DASHBOARD
             ? Expanded(
                 // color: primaryLight.withAlpha(100),
                 // padding: EdgeInsets.symmetric(horizontal: ),
@@ -128,6 +128,7 @@ class _AdminPanelProductsState extends State<AdminPanelProducts> {
                 ),
               )
             : Expanded(
+                // BANNERS
                 // color: primaryLight.withAlpha(100),
                 // padding: EdgeInsets.symmetric(horizontal: ),
                 child: Column(

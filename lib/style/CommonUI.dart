@@ -226,11 +226,13 @@ class CommonUI {
       required TextEditingController? controller,
       Widget? icon,
       bool isEdit = false,
+      // String initialtext = "ss",
       String? Function(String?)? validate,
       Function(String?)? onChange}) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 15),
       child: FormBuilderTextField(
+          // initialValue: initialtext,
           name: name,
           controller: controller,
           decoration: InputDecoration(

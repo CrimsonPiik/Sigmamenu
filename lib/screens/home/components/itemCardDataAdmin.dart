@@ -81,7 +81,7 @@ class _ItemCardDataAdminState extends State<ItemCardDataAdmin> {
                   itemBuilder: (context, index) =>
                       //  TextButton.icon(
                       //                   onPressed: () {}, icon: Icon(Icons.add), label: Text('Add')),
-                      ProductsItem(products[index]),
+                      ProductsItemAdmin(products[index]),
                 )),
             // ),
             // ],

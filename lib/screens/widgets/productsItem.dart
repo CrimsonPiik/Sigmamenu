@@ -9,23 +9,41 @@ import 'package:shop_app/style/CommonUI.dart';
 import 'package:shop_app/style/ScreenUtil.dart';
 import 'package:shop_app/style/Style.dart';
 
-class ProductsItem extends StatefulWidget {
+class ProductsItemAdmin extends StatefulWidget {
   final Product data;
-  ProductsItem(this.data);
+  ProductsItemAdmin(this.data);
 
   @override
-  State<ProductsItem> createState() => _ProductsItemState();
+  State<ProductsItemAdmin> createState() => _ProductsItemAdminState();
 }
 
-class _ProductsItemState extends State<ProductsItem> {
-  TextEditingController _nameEnController = TextEditingController();
-  TextEditingController _descriptionEnController = TextEditingController();
-  TextEditingController _priceController = TextEditingController();
-  TextEditingController _imageController = TextEditingController();
-  ValueNotifier<String?> _image = ValueNotifier<String?>(null);
-  final _formKey = GlobalKey<FormBuilderState>();
+class _ProductsItemAdminState extends State<ProductsItemAdmin> {
+  late TextEditingController _nameEnController =
+      TextEditingController(text: _name);
+  late TextEditingController _descriptionEnController =
+      TextEditingController(text: _description);
+  late TextEditingController _priceController =
+      TextEditingController(text: _price.toString());
+  late TextEditingController _imageController =
+      TextEditingController(text: _image);
+  ValueNotifier<String?> _imagevalue = ValueNotifier<String?>(null);
+  // final _formKey = GlobalKey<FormBuilderState>();
 
   bool editText = false;
+
+  late String _name;
+  late String _description;
+  late double _price;
+  late String _image;
+
+  @override
+  void initState() {
+    _name = widget.data.nameEn;
+    _description = widget.data.descriptionEn;
+    _price = widget.data.price;
+    _image = widget.data.image;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -195,8 +213,6 @@ class _ProductsItemState extends State<ProductsItem> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-
-                      
                       SizedBox(height: 16),
                       CommonUI.text(
                         context: context,
@@ -402,7 +418,7 @@ class _ProductsItemState extends State<ProductsItem> {
                 children: [
                   Expanded(
                     child: ValueListenableBuilder(
-                      valueListenable: _image,
+                      valueListenable: _imagevalue,
                       builder:
                           (BuildContext context, dynamic value, Widget? child) {
                         return InkWell(
@@ -528,7 +544,7 @@ class _ProductsItemState extends State<ProductsItem> {
                                 context: context,
                                 name: "Name",
                                 controller: _nameEnController,
-                                hint: widget.data.nameEn,
+                                // hint: widget.data.nameEn,
                                 validate: FormBuilderValidators.compose([
                                   FormBuilderValidators.required(context),
                                   // FormBuilderValidators.numeric(context),
@@ -581,7 +597,7 @@ class _ProductsItemState extends State<ProductsItem> {
                                 name: "descriptionEn",
                                 // label: widget.data.descriptionEn,
                                 controller: _descriptionEnController,
-                                hint: widget.data.descriptionEn,
+                                // hint: widget.data.descriptionEn,
                                 validate: FormBuilderValidators.compose([
                                   FormBuilderValidators.required(context),
                                   // FormBuilderValidators.numeric(context),
@@ -615,7 +631,7 @@ class _ProductsItemState extends State<ProductsItem> {
                                 isEdit: true,
                                 // keyboardType: TextInputType(number),
                                 controller: _priceController,
-                                hint: widget.data.price.toString(),
+                                // hint: widget.data.price.toString(),
                                 validate: FormBuilderValidators.compose([
                                   FormBuilderValidators.required(context),
                                   FormBuilderValidators.numeric(context),
@@ -640,7 +656,9 @@ class _ProductsItemState extends State<ProductsItem> {
                       .collection(widget.data.category)
                       .doc(widget.data.id)
                       .update({
-                    'nameEn': _nameEnController.text,
+                    'nameEn': _nameEnController
+                        .text, // TextEditingController _nameEnController = TextEditingController();moh
+
                     'descriptionEn': _descriptionEnController.text,
                     'price': _priceController.text,
                     'image': _imageController.text

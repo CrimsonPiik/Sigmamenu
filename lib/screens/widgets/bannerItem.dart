@@ -17,13 +17,28 @@ class BannersItem extends StatefulWidget {
 }
 
 class _BannersItemState extends State<BannersItem> {
-  TextEditingController _nameBannerController = TextEditingController();
-  TextEditingController _categoryBannerController = TextEditingController();
-  TextEditingController _imageBannerController = TextEditingController();
-  ValueNotifier<String?> _image = ValueNotifier<String?>(null);
+  late TextEditingController _nameBannerController =
+      TextEditingController(text: _name);
+  late TextEditingController _categoryBannerController =
+      TextEditingController(text: _category);
+  late TextEditingController _imageBannerController =
+      TextEditingController(text: _image);
+  ValueNotifier<String?> _imagevalue = ValueNotifier<String?>(null);
   final _formKey = GlobalKey<FormBuilderState>();
 
   bool editText = false;
+  late String _name;
+  late String _image;
+  late String _category;
+
+  @override
+  void initState() {
+    _name = widget.data.name;
+    _image = widget.data.image;
+    _category = widget.data.category;
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -392,7 +407,7 @@ class _BannersItemState extends State<BannersItem> {
                   children: [
                     Expanded(
                       child: ValueListenableBuilder(
-                        valueListenable: _image,
+                        valueListenable: _imagevalue,
                         builder: (BuildContext context, dynamic value,
                             Widget? child) {
                           return InkWell(
@@ -520,7 +535,7 @@ class _BannersItemState extends State<BannersItem> {
                                   context: context,
                                   name: "Name",
                                   controller: _nameBannerController,
-                                  hint: widget.data.name,
+                                  // hint: widget.data.name,
                                   validate: FormBuilderValidators.compose([
                                     FormBuilderValidators.required(context),
                                     // FormBuilderValidators.numeric(context),
@@ -572,7 +587,7 @@ class _BannersItemState extends State<BannersItem> {
                                   context: context,
                                   name: "category",
                                   controller: _categoryBannerController,
-                                  hint: widget.data.category,
+                                  // hint: widget.data.category,
                                   validate: FormBuilderValidators.compose([
                                     FormBuilderValidators.required(context),
                                     // FormBuilderValidators.numeric(context),
@@ -620,29 +635,31 @@ class _BannersItemState extends State<BannersItem> {
               ),
               actions: [
                 TextButton(
-                  onPressed: () async {
-                    _formKey.currentState!.save();
-                    if (_formKey.currentState!.validate()) {
-                      FocusScope.of(context).unfocus();
-                      await FirebaseFirestore.instance
-                          .collection('Banner')
-                          .doc(widget.data.id)
-                          .update({
-                        'name': _nameBannerController.text,
-                        'category': _categoryBannerController.text,
-                        'image': _imageBannerController.text
-                      }).whenComplete(() {
-                        CommonUI.successDialog(context,
-                            message: "Saved successfully");
-                      }).onError((error, stackTrace) => showDialog(
-                                context: context,
-                                builder: (_) {
-                                  return AlertDialog(
-                                    content: Text(error.toString()),
-                                  );
-                                },
-                              ));
-                    }
+                  onPressed: () /*async*/ {
+                    // _formKey.currentState!.save();
+                    // if (_formKey.currentState!.validate()) {
+                    //   FocusScope.of(context).unfocus();
+                    //   await
+                    FirebaseFirestore.instance
+                        .collection('Banner')
+                        .doc(widget.data.id)
+                        .update({
+                      'name': _nameBannerController.text,
+                      'category': _categoryBannerController.text,
+                      'image': _imageBannerController.text
+                    });
+                    //   }).whenComplete(() {
+                    //     CommonUI.successDialog(context,
+                    //         message: "Saved successfully");
+                    //   }).onError((error, stackTrace) => showDialog(
+                    //             context: context,
+                    //             builder: (_) {
+                    //               return AlertDialog(
+                    //                 content: Text(error.toString()),
+                    //               );
+                    //             },
+                    // ));
+
                     Navigator.of(context).pop();
                   },
                   child: Container(
