@@ -81,17 +81,16 @@ class CommonUI {
   static Widget loading(BuildContext context) {
     return Column(
       children: [
-        // Padding(
-        // padding: EdgeInsets.only(top: MediaQuery.of(context).size.height / 5),
-        // child:
-        Center(
-          child: LottieBuilder.asset(
-            AnimAssets.loadingCoffee,
-            height: 90,
-            // repeat: false,
+        Padding(
+          padding: EdgeInsets.only(top: MediaQuery.of(context).size.height / 5),
+          child: Center(
+            child: LottieBuilder.asset(
+              AnimAssets.loadingCoffee,
+              height: 90,
+              // repeat: false,
+            ),
           ),
         ),
-        // ),
       ],
     );
   }
