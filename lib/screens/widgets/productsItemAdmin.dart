@@ -448,8 +448,8 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                                   }
                                                   return Center(
                                                     child:
-                                                        CircularProgressIndicator(),                                               
-                                                  );                                            
+                                                        CircularProgressIndicator(),
+                                                  );
                                                 },
                                               ),
                                             ),
@@ -467,7 +467,6 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                                 width: 180,
                                                 decoration: BoxDecoration(
                                                     color: Color(0x4D000000)),
-                                                // child: Center(
                                                 child: Row(
                                                   mainAxisAlignment:
                                                       MainAxisAlignment.center,
@@ -480,7 +479,6 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                                     Icon(Icons.edit,
                                                         color: Colors.white)
                                                   ],
-                                                  // ),
                                                 )),
                                           ),
                                         ])

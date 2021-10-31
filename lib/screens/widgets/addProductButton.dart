@@ -89,29 +89,52 @@ class _AddProductButtonState extends State<AddProductButton> {
                           (BuildContext context, dynamic value, Widget? child) {
                         return InkWell(
                           onTap: () async {
-                            // CircularProgressIndicator();
                             _imageController.text =
                                 await fireBaseUploadFileWeb(id);
-                                    setState(() {
-                                _imagevalue.value = _imageController.text;
-                              });
+                            _imagevalue.value = _imageController.text;
                           },
                           child: Center(
                             child: Container(
                               width: 180,
                               height: 180,
                               child: Stack(children: [
-                                Container(
-                                  height: 180,
-                                  width: 180,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(4),
-                                  ),
-                                  child: Image.asset(
-                                    'assets/images/placeholder.jpg',
-                                    fit: BoxFit.fitWidth,
-                                  ),
-                                ),
+                                _imagevalue.value != null
+                                    ? Container(
+                                        height: 180,
+                                        width: 180,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(4),
+                                        ),
+                                        child: InteractiveViewer(
+                                          child: Image.network(
+                                            value,
+                                            fit: BoxFit.fitWidth,
+                                            loadingBuilder: (context, child,
+                                                loadingProgress) {
+                                              if (loadingProgress == null) {
+                                                return child;
+                                              }
+                                              return Center(
+                                                child:
+                                                    CircularProgressIndicator(),
+                                              );
+                                            },
+                                          ),
+                                        ),
+                                      )
+                                    : Container(
+                                        height: 180,
+                                        width: 180,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(4),
+                                        ),
+                                        child: Image.asset(
+                                          'assets/images/placeholder.jpg',
+                                          fit: BoxFit.fitWidth,
+                                        ),
+                                      ),
                                 Container(
                                   decoration:
                                       BoxDecoration(color: Color(0x4D303030)),
@@ -144,7 +167,7 @@ class _AddProductButtonState extends State<AddProductButton> {
                         );
                       },
                     ),
-                    SizedBox(height: 40),
+                    SizedBox(height: 50),
                     Container(
                       child: CommonUI.textField(
                         context: context,
