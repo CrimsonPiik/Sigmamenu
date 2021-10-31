@@ -27,7 +27,7 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
   late TextEditingController _imageController =
       TextEditingController(text: _image);
   ValueNotifier<String?> _imagevalue = ValueNotifier<String?>(null);
-  // final _formKey = GlobalKey<FormBuilderState>();
+  final _formKey = GlobalKey<FormBuilderState>();
 
   bool editText = false;
 
@@ -244,23 +244,7 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                       // ),
                       // SingleChildScrollView(
                       // child:
-                      CommonUI.text(
-                        context: context,
-                        text: widget.data.descriptionEn,
-                        maxLines: 2,
-                        // RhinoLanguage.isLTR()
-                        //     ? product.nameEn
-                        //     : product.nameAr,
-                        textAlign: TextAlign.center,
-                        style: FontStyle.normal(
-                          context: context,
-                          //  fontWeight: FontWeight.bold
-                          // ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 3,
-                      ),
+
                       // Text(
                       //   widget.data.price.toString(),
                       //   style: TextStyle(
@@ -278,6 +262,24 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                         style: FontStyle.normal(
                             context: context, fontWeight: FontWeight.bold),
                       ),
+                      SizedBox(
+                        height: 3,
+                      ),
+                      CommonUI.text(
+                        context: context,
+                        text: widget.data.descriptionEn,
+                        maxLines: 2,
+                        // RhinoLanguage.isLTR()
+                        //     ? product.nameEn
+                        //     : product.nameAr,
+                        textAlign: TextAlign.center,
+                        style: FontStyle.normal(
+                          context: context,
+                          //  fontWeight: FontWeight.bold
+                          // ),
+                        ),
+                      ),
+
                       // SizedBox(height: 2),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
@@ -359,7 +361,6 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                       .delete();
                 },
                 child: Container(
-                  // margin: EdgeInsets.all(10),
                   padding: EdgeInsets.all(10),
                   child: Text(
                     'YES',
@@ -367,7 +368,7 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                         fontWeight: FontWeight.bold, color: Colors.black),
                   ),
                   decoration: BoxDecoration(
-                    color: Colors.grey.withOpacity(0.5),
+                    color: Colors.grey.withOpacity(0.2),
                     borderRadius: BorderRadius.circular(16),
                   ),
                 ),
@@ -377,7 +378,6 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                   Navigator.of(context).pop();
                 },
                 child: Container(
-                  // margin: EdgeInsets.all(10),
                   padding: EdgeInsets.all(10),
                   child: Text(
                     'NO',
@@ -385,7 +385,7 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                         fontWeight: FontWeight.bold, color: Colors.black),
                   ),
                   decoration: BoxDecoration(
-                    color: Colors.grey.withOpacity(0.5),
+                    color: Colors.grey.withOpacity(0.2),
                     borderRadius: BorderRadius.circular(16),
                   ),
                 ),
@@ -399,224 +399,241 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
     showDialog(
         context: context,
         builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text(
-              "Edit",
-              style:
-                  TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
-            ),
-            content: SingleChildScrollView(
-              child: Container(
-                // height: 215,
-                // WIDTH IS ALREADY DEFINED
-                padding: EdgeInsets.all(16),
-                margin: EdgeInsets.only(bottom: 26),
-                decoration: BoxDecoration(
-                  color: Colors.grey.withOpacity(0.1),
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    // Expanded(
-                    // child:
-                    ValueListenableBuilder(
-                      valueListenable: _imagevalue,
-                      builder:
-                          (BuildContext context, dynamic value, Widget? child) {
-                        return InkWell(
-                          onTap: () async {
-                            _imageController.text =
-                                await fireBaseUploadFileWeb(widget.data.id);
-                          },
-                          child: Center(
-                            child: Container(
-                              height: 180,
-                              child: Column(children: [
-                                // value != null
-                                // ? Stack(children: [
-                                //     Container(
-                                //       height: 180,
-                                //       width: 180,
-                                //       child: InteractiveViewer(
-                                //         child: Image.network(value,
-                                //             fit: BoxFit.fitWidth),
-                                //       ),
-                                //     ),
-                                //     Container(
-                                //       decoration: BoxDecoration(
-                                //           color: Color(0x4D303030)),
-                                //       height: 180,
-                                //       width: 180,
-                                //     ),
-                                //     Padding(
-                                //       padding: EdgeInsets.only(top: 145),
-                                //       child: Container(
-                                //           height: 35,
-                                //           width: 180,
-                                //           decoration: BoxDecoration(
-                                //               color: Color(0x4D000000)),
-                                //           // child: Center(
-                                //           child: Row(
-                                //             mainAxisAlignment:
-                                //                 MainAxisAlignment.center,
-                                //             children: [
-                                //               Text(
-                                //                 'Edit ',
-                                //                 style: TextStyle(
-                                //                     color: Colors.white),
-                                //               ),
-                                //               Icon(Icons.edit,
-                                //                   color: Colors.white)
-                                //             ],
-                                //             // ),
-                                //           )),
-                                //     ),
-                                //   ])
-                                // :
-                                Stack(children: [
-                                  Container(
-                                      height: 180,
-                                      width: 180,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(4),
-                                      ),
-                                      child: CommonUI.cachedImage(
-                                          widget.data.image,
-                                          ImageAssets.placeholder,
-                                          fit: BoxFit.fitWidth)),
-                                  Container(
-                                    decoration:
-                                        BoxDecoration(color: Color(0x4D303030)),
-                                    height: 180,
-                                    width: 180,
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.only(top: 145),
-                                    child: Container(
-                                        height: 35,
+          return FormBuilder(
+            key: _formKey,
+            child: AlertDialog(
+              title: Text(
+                "Edit",
+                style:
+                    TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
+              ),
+              content: SingleChildScrollView(
+                child: Container(
+                  // WIDTH IS ALREADY DEFINED
+                  padding: EdgeInsets.all(16),
+                  // margin: EdgeInsets.only(bottom: 26),
+                  decoration: BoxDecoration(
+                    color: Colors.grey.withOpacity(0.1),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      ValueListenableBuilder(
+                        valueListenable: _imagevalue,
+                        builder: (BuildContext context, dynamic value,
+                            Widget? child) {
+                          return InkWell(
+                            onTap: () async {
+                              _imageController.text =
+                                  await fireBaseUploadFileWeb(widget.data.id);
+                            },
+                            child: Center(
+                              child: Container(
+                                height: 180,
+                                child: Column(children: [
+                                  // value != null
+                                  // ? Stack(children: [
+                                  //     Container(
+                                  //       height: 180,
+                                  //       width: 180,
+                                  //       child: InteractiveViewer(
+                                  //         child: Image.network(value,
+                                  //             fit: BoxFit.fitWidth),
+                                  //       ),
+                                  //     ),
+                                  //     Container(
+                                  //       decoration: BoxDecoration(
+                                  //           color: Color(0x4D303030)),
+                                  //       height: 180,
+                                  //       width: 180,
+                                  //     ),
+                                  //     Padding(
+                                  //       padding: EdgeInsets.only(top: 145),
+                                  //       child: Container(
+                                  //           height: 35,
+                                  //           width: 180,
+                                  //           decoration: BoxDecoration(
+                                  //               color: Color(0x4D000000)),
+                                  //           // child: Center(
+                                  //           child: Row(
+                                  //             mainAxisAlignment:
+                                  //                 MainAxisAlignment.center,
+                                  //             children: [
+                                  //               Text(
+                                  //                 'Edit ',
+                                  //                 style: TextStyle(
+                                  //                     color: Colors.white),
+                                  //               ),
+                                  //               Icon(Icons.edit,
+                                  //                   color: Colors.white)
+                                  //             ],
+                                  //             // ),
+                                  //           )),
+                                  //     ),
+                                  //   ])
+                                  // :
+                                  Stack(children: [
+                                    Container(
+                                        height: 180,
                                         width: 180,
                                         decoration: BoxDecoration(
-                                            color: Color(0x4D000000)),
-                                        // child: Center(
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Text(
-                                              'Edit ',
-                                              style: TextStyle(
-                                                  color: Colors.white),
-                                            ),
-                                            Icon(Icons.edit,
-                                                color: Colors.white)
-                                          ],
-                                        )),
-                                  ),
+                                          borderRadius:
+                                              BorderRadius.circular(4),
+                                        ),
+                                        child: CommonUI.cachedImage(
+                                            widget.data.image,
+                                            ImageAssets.placeholder,
+                                            fit: BoxFit.fitWidth)),
+                                    Container(
+                                      decoration: BoxDecoration(
+                                          color: Color(0x4D303030)),
+                                      height: 180,
+                                      width: 180,
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(top: 145),
+                                      child: Container(
+                                          height: 35,
+                                          width: 180,
+                                          decoration: BoxDecoration(
+                                              color: Color(0x4D000000)),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Text(
+                                                'Edit ',
+                                                style: TextStyle(
+                                                    color: Colors.white),
+                                              ),
+                                              Icon(Icons.edit,
+                                                  color: Colors.white)
+                                            ],
+                                          )),
+                                    ),
+                                  ]),
                                 ]),
-                              ]),
+                              ),
                             ),
-                          ),
-                        );
-                      },
-                    ),
-                    SizedBox(height: 50),
-                    Container(
-                      child: CommonUI.textField(
-                        isEdit: true,
-                        context: context,
-                        name: "Name",
-                        hint: "Name",
-                        controller: _nameEnController,
-                        // validate: FormBuilderValidators.compose([
-                        //   FormBuilderValidators.required(context),
-                        // FormBuilderValidators.numeric(context),
-                        // ]),
+                          );
+                        },
                       ),
-                    ),
-                    SizedBox(height: 4),
-                    Container(
-                      child: CommonUI.textField(
-                        context: context,
-                        name: "price",
-                        isEdit: true,
-                        hint: "Price",
-                        keyboardtype: TextInputType.number,
-                        controller: _priceController,
-                        // validate: FormBuilderValidators.compose([
-                        //   FormBuilderValidators.required(context),
-                        //   FormBuilderValidators.numeric(context),
-                        // ]),
+                      SizedBox(height: 50),
+                      Container(
+                        child: CommonUI.textField(
+                          context: context,
+                          name: "Name",
+                          hint: "Name",
+                          isEdit: true,
+                          minlines: 1,
+                          controller: _nameEnController,
+                          validate: FormBuilderValidators.compose([
+                            FormBuilderValidators.required(context),
+                          ]),
+                        ),
                       ),
-                    ),
-                    SizedBox(height: 4),
-                    Container(
-                      child: CommonUI.textField(
-                        maxlength: 600,
-                        maxlines: 5,
-                        context: context,
-                        isEdit: true,
-                        name: "Description",
-                        hint: "Description",
-                        controller: _descriptionEnController,
+                      SizedBox(height: 4),
+                      Container(
+                        child: CommonUI.textField(
+                          context: context,
+                          name: "price",
+                          hint: "Price",
+                          isEdit: true,
+                          keyboardtype: TextInputType.number,
+                          controller: _priceController,
+                          validate: FormBuilderValidators.compose([
+                            FormBuilderValidators.required(context),
+                            FormBuilderValidators.numeric(context),
+                          ]),
+                        ),
+                      ),
+                      SizedBox(height: 4),
+                      Container(
+                        child: CommonUI.textField(
+                          context: context,
+                          name: "Description",
+                          hint: "Description",
+                          maxlength: 600,
+                          minlines: 2,
+                          controller: _descriptionEnController,
+                          validate: FormBuilderValidators.compose([
+                            FormBuilderValidators.required(context),
+                          ]),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () async {
+                    _formKey.currentState!.save();
+                    if (_formKey.currentState!.validate()) {
+                      FocusScope.of(context).unfocus();
+                      await FirebaseFirestore.instance
+                          .collection(widget.data.category)
+                          .doc(widget.data.id)
+                          .update({
+                        'nameEn': _nameEnController.text,
+                        'descriptionEn': _descriptionEnController.text,
+                        'price': _priceController.text,
+                        'image': _imageController.text
+                      }).whenComplete(() {
+                        Navigator.of(context).pop();
 
-                        // validate: FormBuilderValidators.compose([
-                        //   FormBuilderValidators.required(context),
-                        //   // FormBuilderValidators.numeric(context),
-                        // ]),
-                      ),
+                        CommonUI.successDialog(context,
+                            message: "Saved successfully");
+                      }).onError((error, stackTrrace) => showDialog(
+                                context: context,
+                                builder: (_) {
+                                  return AlertDialog(
+                                    content: Text(error.toString()),
+                                  );
+                                },
+                              ));
+                    }
+                  },
+                  child: Container(
+                    padding: EdgeInsets.all(10),
+                    child: Text(
+                      'Save',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, color: Colors.black),
                     ),
-                  ],
+                    decoration: BoxDecoration(
+                      color: Colors.grey.withOpacity(0.5),
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                  ),
                 ),
-              ),
+                TextButton(
+                  onPressed: () {
+                    _nameEnController = TextEditingController(text: _name);
+                    _descriptionEnController =
+                        TextEditingController(text: _description);
+                    _priceController =
+                        TextEditingController(text: _price.toString());
+                    _imageController = TextEditingController(text: _image);
+
+                    Navigator.of(context).pop();
+                  },
+                  child: Container(
+                    padding: EdgeInsets.all(10),
+                    child: Text(
+                      'Cancel',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, color: Colors.black),
+                    ),
+                    decoration: BoxDecoration(
+                      color: Colors.grey.withOpacity(0.5),
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                  ),
+                ),
+              ],
             ),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  FirebaseFirestore.instance
-                      .collection(widget.data.category)
-                      .doc(widget.data.id)
-                      .update({
-                    'nameEn': _nameEnController.text,
-                    'descriptionEn': _descriptionEnController.text,
-                    'price': _priceController.text,
-                    'image': _imageController.text
-                  });
-                  Navigator.of(context).pop();
-                },
-                child: Container(
-                  // margin: EdgeInsets.all(10),
-                  padding: EdgeInsets.all(10),
-                  child: Text(
-                    'Save',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold, color: Colors.black),
-                  ),
-                  decoration: BoxDecoration(
-                    color: Colors.grey.withOpacity(0.5),
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                ),
-              ),
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: Container(
-                  // margin: EdgeInsets.all(10),
-                  padding: EdgeInsets.all(10),
-                  child: Text(
-                    'Cancel',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold, color: Colors.black),
-                  ),
-                  decoration: BoxDecoration(
-                    color: Colors.grey.withOpacity(0.5),
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                ),
-              ),
-            ],
           );
         });
   }

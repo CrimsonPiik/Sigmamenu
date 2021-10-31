@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -25,6 +27,7 @@ class _BannersItemState extends State<BannersItem> {
       TextEditingController(text: _image);
   ValueNotifier<String?> _imagevalue = ValueNotifier<String?>(null);
   final _formKey = GlobalKey<FormBuilderState>();
+  // late OverlayEntry overlayEntry;
 
   bool editText = false;
   late String _name;
@@ -354,7 +357,7 @@ class _BannersItemState extends State<BannersItem> {
                         fontWeight: FontWeight.bold, color: Colors.black),
                   ),
                   decoration: BoxDecoration(
-                    color: Colors.grey.withOpacity(0.5),
+                    color: Colors.grey.withOpacity(0.2),
                     borderRadius: BorderRadius.circular(16),
                   ),
                 ),
@@ -372,7 +375,7 @@ class _BannersItemState extends State<BannersItem> {
                         fontWeight: FontWeight.bold, color: Colors.black),
                   ),
                   decoration: BoxDecoration(
-                    color: Colors.grey.withOpacity(0.5),
+                    color: Colors.grey.withOpacity(0.2),
                     borderRadius: BorderRadius.circular(16),
                   ),
                 ),
@@ -395,272 +398,183 @@ class _BannersItemState extends State<BannersItem> {
                     TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
               ),
               content: Container(
-                height: 215,
+                height: 410,
                 // WIDTH IS ALREADY DEFINED
                 padding: EdgeInsets.all(16),
-                margin: EdgeInsets.only(bottom: 26),
+                // margin: EdgeInsets.only(bottom: 26),
                 decoration: BoxDecoration(
                   color: Colors.grey.withOpacity(0.1),
                   borderRadius: BorderRadius.circular(12),
                 ),
-                child: Row(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Expanded(
-                      child: ValueListenableBuilder(
-                        valueListenable: _imagevalue,
-                        builder: (BuildContext context, dynamic value,
-                            Widget? child) {
-                          return InkWell(
-                            onTap: () async {
-                              _imageBannerController.text =
-                                  await fireBaseUploadFileWeb(widget.data.id);
-                            },
+                    ValueListenableBuilder(
+                      valueListenable: _imagevalue,
+                      builder:
+                          (BuildContext context, dynamic value, Widget? child) {
+                        return InkWell(
+                          onTap: () async {
+                            _imageBannerController.text =
+                                await fireBaseUploadFileWeb(widget.data.id);
+                          },
+                          child: Center(
                             child: Container(
+                              height: 130,
                               child: Column(children: [
-                                value != null
-                                    ? Stack(children: [
-                                        Container(
-                                          height: 180,
-                                          // width: 180,
-                                          child: InteractiveViewer(
-                                            child: Image.network(value,
-                                                fit: BoxFit.fitWidth),
-                                          ),
-                                        ),
-                                        Container(
-                                          decoration: BoxDecoration(
-                                              color: Color(0x4D303030)),
-                                          height: 180,
-                                          // width: 180,
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsets.only(top: 145),
-                                          child: Container(
-                                              height: 35,
-                                              // width: 180,
-                                              decoration: BoxDecoration(
-                                                  color: Color(0x4D000000)),
-                                              // child: Center(
-                                              child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
+                                // value != null
+                                //     ? Stack(children: [
+                                //         Container(
+                                //           height: 180,
+                                //           // width: 180,
+                                //           child: InteractiveViewer(
+                                //             child: Image.network(value,
+                                //                 fit: BoxFit.fitWidth),
+                                //           ),
+                                //         ),
+                                //         Container(
+                                //           decoration: BoxDecoration(
+                                //               color: Color(0x4D303030)),
+                                //           height: 180,
+                                //           // width: 180,
+                                //         ),
+                                //         Padding(
+                                //           padding: EdgeInsets.only(top: 145),
+                                //           child: Container(
+                                //               height: 35,
+                                //               // width: 180,
+                                //               decoration: BoxDecoration(
+                                //                   color: Color(0x4D000000)),
+                                //               // child: Center(
+                                //               child: Row(
+                                //                 mainAxisAlignment:
+                                //                     MainAxisAlignment.center,
 
-                                                children: [
-                                                  Text(
-                                                    'Edit ',
-                                                    style: TextStyle(
-                                                        color: Colors.white),
-                                                  ),
-                                                  Icon(Icons.edit,
-                                                      color: Colors.white)
-                                                ],
-                                                // ),
-                                              )),
-                                        ),
-                                      ])
-                                    : Stack(children: [
-                                        Container(
-                                            height: 180,
-                                            // width: 180,
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(4),
-                                            ),
-                                            child: CommonUI.cachedImage(
-                                                widget.data.image,
-                                                ImageAssets.placeholder,
-                                                fit: BoxFit.fitWidth)),
-                                        Container(
-                                          decoration: BoxDecoration(
-                                              color: Color(0x4D303030)),
-                                          height: 180,
-                                          // width: 180,
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsets.only(top: 145),
-                                          child: Container(
-                                            height: 35,
-                                            // width: 180,
-                                            decoration: BoxDecoration(
-                                                color: Color(0x4D000000)),
-                                            // child: Center(
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                Text(
-                                                  'Edit ',
-                                                  style: TextStyle(
-                                                      color: Colors.white),
-                                                ),
-                                                Icon(Icons.edit,
-                                                    color: Colors.white)
-                                              ],
-                                            ),
-                                            // ),
+                                //                 children: [
+                                //                   Text(
+                                //                     'Edit ',
+                                //                     style: TextStyle(
+                                //                         color: Colors.white),
+                                //                   ),
+                                //                   Icon(Icons.edit,
+                                //                       color: Colors.white)
+                                //                 ],
+                                //                 // ),
+                                //               )),
+                                //         ),
+                                //       ])
+                                // :
+                                Stack(children: [
+                                  Container(
+                                      height: 130,
+                                      width: 250,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(4),
+                                      ),
+                                      child: CommonUI.cachedImage(
+                                          widget.data.image,
+                                          ImageAssets.placeholder,
+                                          fit: BoxFit.fitWidth)),
+                                  Container(
+                                    decoration:
+                                        BoxDecoration(color: Color(0x4D303030)),
+                                    height: 130,
+                                    width: 250,
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(top: 95),
+                                    child: Container(
+                                      height: 35,
+                                      width: 250,
+                                      decoration: BoxDecoration(
+                                          color: Color(0x4D000000)),
+                                      // child: Center(
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            'Edit ',
+                                            style:
+                                                TextStyle(color: Colors.white),
                                           ),
-                                        ),
-                                      ]),
+                                          Icon(Icons.edit, color: Colors.white)
+                                        ],
+                                      ),
+                                      // ),
+                                    ),
+                                  ),
+                                ]),
                               ]),
                             ),
-                          );
-                        },
+                          ),
+                        );
+                      },
+                    ),
+                    SizedBox(height: 50),
+                    Container(
+                      child: CommonUI.textField(
+                        context: context,
+                        name: "Name",
+                        hint: "Name",
+                        isEdit: true,
+                        minlines: 1,
+                        controller: _nameBannerController,
+                        validate: FormBuilderValidators.compose([
+                          FormBuilderValidators.required(context),
+                        ]),
                       ),
                     ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              // editText
-                              //     ? Text(
-                              //         widget.data.nameEn,
-                              //         overflow: TextOverflow.ellipsis,
-                              //         maxLines: 1,
-                              //         style: TextStyle(
-                              //             fontWeight: FontWeight.bold,
-                              //             fontSize: 21),
-                              //       )
-                              //     :
-                              Container(
-                                height: 50,
-                                width: Responsive.isDesktop(context) ? 200 : 70,
-                                child: CommonUI.textField(
-                                  isEdit: true,
-                                  context: context,
-                                  name: "Name",
-                                  controller: _nameBannerController,
-                                  // hint: widget.data.name,
-                                  validate: FormBuilderValidators.compose([
-                                    FormBuilderValidators.required(context),
-                                    // FormBuilderValidators.numeric(context),
-                                  ]),
-                                ),
-                              ),
-                              // : TextFormField(
-                              //     decoration: const InputDecoration(
-                              //       icon: Icon(Icons.person),
-                              //       hintText: 'What do people call you?',
-                              //       labelText: 'Name *',
-                              //     ),
-                              // onSaved: (String? value) {
-                              // This optional block of code can be used to run
-                              // code when the user saves the form.
-                              // },
-                              // validator: (String? value) {
-                              //   return (value != null &&
-                              //           value.contains('@'))
-                              //       ? 'Do not use the @ char.'
-                              //       : null;
-                              // },
-                              // ),
-                              // TextButton(
-                              //     onPressed: () {
-                              //       editText = true;
-                              //     },
-                              //     child: Icon(Icons.edit, color: Colors.brown)),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 4,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              // Text(
-                              //   widget.data.descriptionEn,
-                              //   overflow: TextOverflow.ellipsis,
-                              //   maxLines: 2,
-                              //   style: TextStyle(
-                              //       fontWeight: FontWeight.w400, fontSize: 19),
-                              // ),
-                              Container(
-                                height: 50,
-                                width: Responsive.isDesktop(context) ? 200 : 70,
-                                child: CommonUI.textField(
-                                  isEdit: true,
-                                  context: context,
-                                  name: "category",
-                                  controller: _categoryBannerController,
-                                  // hint: widget.data.category,
-                                  validate: FormBuilderValidators.compose([
-                                    FormBuilderValidators.required(context),
-                                    // FormBuilderValidators.numeric(context),
-                                  ]),
-                                ),
-                              ),
-                              // TextButton(
-                              //     onPressed: () {},
-                              //     child: Icon(Icons.edit, color: Colors.brown)),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 4,
-                          ),
-                          // Row(
-                          //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          //   children: [
-                          //     // Text(
-                          //     //   widget.data.price.toString(),
-                          //     //   style: TextStyle(
-                          //     //       fontWeight: FontWeight.w300,
-                          //     //       // fontStyle: FontStyle.italic,
-                          //     //       fontSize: 17),
-                          //     // ),
-                          //     Container(
-                          //       height: 50,
-                          //       width: Responsive.isDesktop(context) ? 200 : 70,
-                          //       child: CommonUI.textField(
-                          //           context: context,
-                          //           name: "price",
-                          //           // keyboardType: TextInputType(number),
-                          //           controller: _priceController,
-                          //           hint: ' widget.data.price.toString()'),
-                          //     ),
-                          //     // TextButton(
-                          //     //     onPressed: () {},
-                          //     //     child: Icon(Icons.edit, color: Colors.brown)),
-                          //   ],
-                          // ),
-                        ],
+                    SizedBox(height: 4),
+                    Container(
+                      child: CommonUI.textField(
+                        context: context,
+                        name: "Category",
+                        hint: "Category",
+                        isEdit: true,
+                        controller: _categoryBannerController,
+                        validate: FormBuilderValidators.compose([
+                          FormBuilderValidators.required(context),
+                        ]),
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),
               actions: [
                 TextButton(
-                  onPressed: () /*async*/ {
-                    // _formKey.currentState!.save();
-                    // if (_formKey.currentState!.validate()) {
-                    //   FocusScope.of(context).unfocus();
-                    //   await
-                    FirebaseFirestore.instance
-                        .collection('Banner')
-                        .doc(widget.data.id)
-                        .update({
-                      'name': _nameBannerController.text,
-                      'category': _categoryBannerController.text,
-                      'image': _imageBannerController.text
-                    });
-                    //   }).whenComplete(() {
-                    //     CommonUI.successDialog(context,
-                    //         message: "Saved successfully");
-                    //   }).onError((error, stackTrace) => showDialog(
-                    //             context: context,
-                    //             builder: (_) {
-                    //               return AlertDialog(
-                    //                 content: Text(error.toString()),
-                    //               );
-                    //             },
-                    // ));
-
-                    Navigator.of(context).pop();
+                  onPressed: () async {
+                    _formKey.currentState!.save();
+                    if (_formKey.currentState!.validate()) {
+                      FocusScope.of(context).unfocus();
+                      await FirebaseFirestore.instance
+                          .collection('Banner')
+                          .doc(widget.data.id)
+                          .update({
+                        'name': _nameBannerController.text,
+                        'category': _categoryBannerController.text,
+                        'image': _imageBannerController.text
+                      }).whenComplete(() {
+                        Navigator.of(context).pop();
+                        // Future.delayed(Duration(seconds: 1)).then((value) => {
+                        // Overlay.of(context)!.insert(overlayEntry);
+                        // Timer(
+                        // Duration(seconds: 1),
+                        // () => OverlayEntry(
+                        // builder: (context) =>
+                        CommonUI.successDialog(context,
+                            message: "Saved successfully");
+                        // .remove()));
+                        // });
+                      }).onError((error, stackTrace) => showDialog(
+                                context: context,
+                                builder: (_) {
+                                  return AlertDialog(
+                                    content: Text(error.toString()),
+                                  );
+                                },
+                              ));
+                    }
                   },
                   child: Container(
                     // margin: EdgeInsets.all(10),
@@ -678,6 +592,11 @@ class _BannersItemState extends State<BannersItem> {
                 ),
                 TextButton(
                   onPressed: () {
+                    _categoryBannerController =
+                        TextEditingController(text: _category);
+                    _nameBannerController = TextEditingController(text: _name);
+                    _imageBannerController =
+                        TextEditingController(text: _image);
                     Navigator.of(context).pop();
                   },
                   child: Container(

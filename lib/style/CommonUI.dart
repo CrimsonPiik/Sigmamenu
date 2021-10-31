@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -182,15 +184,28 @@ class CommonUI {
       onDismiss();
     }
   }
+//  static void showToast({
+//     @required BuildContext context,
+//   }) {
 
+//     OverlayEntry overlayEntry;
+
+//     overlayEntry = OverlayEntry(
+//         builder: (context) => ToastWidget(
+//         )
+//     );
+//     Overlay.of(context)!.insert(overlayEntry);
+//     Timer(Duration(seconds: 1), () =>  overlayEntry.remove());
+
+//   }
   static Future<void> successDialog(
     BuildContext context, {
     required String message,
   }) {
-    return showDialog(
+    return  showDialog(
       context: context,
       builder: (BuildContext context) {
-        return AlertDialog(
+        return   AlertDialog(
           content: SizedBox(
             height: 150,
             child: Column(
@@ -205,15 +220,17 @@ class CommonUI {
                   message,
                   style: FontStyle.normal(context: context),
                 ),
-                TextButton(
-                    onPressed: () => Navigator.pop(context),
-                    child: Text(
-                      MaterialLocalizations.of(context).okButtonLabel,
-                    ))
+                // TextButton(
+                //     onPressed: () => Navigator.pop(context),
+                //     child: Text(
+                //       MaterialLocalizations.of(context).okButtonLabel,
+                //     ))
               ],
             ),
           ),
         );
+        // });
+        // return Container();
       },
     );
   }
@@ -225,6 +242,7 @@ class CommonUI {
       hint,
       int? maxlength,
       int? maxlines,
+      int? minlines,
       required TextEditingController? controller,
       Widget? icon,
       bool isEdit = false,
@@ -237,6 +255,7 @@ class CommonUI {
       child: FormBuilderTextField(
         maxLines: maxlines,
         maxLength: maxlength,
+        minLines: minlines,
         name: name,
         controller: controller,
         decoration: InputDecoration(
