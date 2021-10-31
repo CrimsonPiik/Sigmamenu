@@ -202,7 +202,7 @@ class CommonUI {
     BuildContext context, {
     required String message,
   }) {
-    return  showDialog(
+    return showDialog(
       context: context,
       builder: (BuildContext context) {
         return   AlertDialog(

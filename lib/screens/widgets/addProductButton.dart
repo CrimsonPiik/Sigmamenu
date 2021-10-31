@@ -1,9 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:shop_app/GeneralFunction/firebase_uploader_web.dart';
 import 'package:shop_app/GeneralFunction/random_id_generator.dart';
 import 'package:shop_app/screens/adminPanel.dart';
+import 'package:shop_app/style/CommonUI.dart';
 
 class AddProductButton extends StatefulWidget {
   final Stream<int> stream;
@@ -22,8 +24,7 @@ class _AddProductButtonState extends State<AddProductButton> {
   TextEditingController _descriptionEnController = TextEditingController();
   TextEditingController _imageController = TextEditingController();
   ValueNotifier<String?> _image = ValueNotifier<String?>(null);
-  String _validatorText = "This field can't be empty";
-
+  final _formKey = GlobalKey<FormBuilderState>();
   String category = categoriesList.elementAt(0);
 
   @override
@@ -35,11 +36,10 @@ class _AddProductButtonState extends State<AddProductButton> {
   }
 
   void mySetState(int index) {
-       if (!mounted) return;
+    if (!mounted) return;
 
     setState(() {
       category = categoriesList.elementAt(index);
-
     });
   }
 
@@ -65,126 +65,198 @@ class _AddProductButtonState extends State<AddProductButton> {
     showDialog(
         context: context,
         builder: (BuildContext context) {
-          return AlertDialog(
-            // backgroundColor: Colors.brown,
-            scrollable: true,
-            title: Center(child: Text('Create a new Product')),
-            content: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Form(
+          return FormBuilder(
+            key: _formKey,
+            child: AlertDialog(
+              scrollable: true,
+              title: Text('Create a new Product',
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold, color: Colors.black)),
+              content: Container(
+                // WIDTH IS ALREADY DEFINED
+                padding: EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: Colors.grey.withOpacity(0.1),
+                  borderRadius: BorderRadius.circular(12),
+                ),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        ValueListenableBuilder(
-                          valueListenable: _image,
-                          builder: (BuildContext context, dynamic value,
-                              Widget? child) {
-                            return value != null
-                                ? InkWell(
-                                    onTap: () async {
-                                      CircularProgressIndicator();
-                                      _imageController.text =
-                                          await fireBaseUploadFileWeb(id);
-                                      _image.value = _imageController.text;
-                                      // print(_imageController.text);
-                                    },
-                                    child: Container(
-                                      height: 100,
-                                      // width: 120,
-                                      child: InteractiveViewer(
-                                        child: Image.network(value,
-                                            fit: BoxFit.fitWidth),
-                                      ),
-                                    ),
-                                  )
-                                : InkWell(
-                                    onTap: () async {
-                                      CircularProgressIndicator();
-                                      _imageController.text =
-                                          await fireBaseUploadFileWeb(id);
-                                      _image.value = _imageController.text;
-                                      // print(_imageController.text);
-                                    },
-                                    child: Container(
-                                      height: 100,
-                                      // width: 120,
-                                      child: Image.asset(
-                                        'assets/images/placeholder.jpg',
-                                        fit: BoxFit.fitWidth,
-                                      ),
-                                    ),
-                                  );
+                    ValueListenableBuilder(
+                      valueListenable: _image,
+                      builder:
+                          (BuildContext context, dynamic value, Widget? child) {
+                        return InkWell(
+                          onTap: () async {
+                            CircularProgressIndicator();
+                            _imageController.text =
+                                await fireBaseUploadFileWeb(id);
+                            _image.value = _imageController.text;
                           },
-                        ),
-                      ],
+                          child: Center(
+                            child: Container(
+                              height: 180,
+                              child: Stack(children: [
+                                Container(
+                                  height: 180,
+                                  width: 180,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(4),
+                                  ),
+                                  child: Image.asset(
+                                    'assets/images/placeholder.jpg',
+                                    fit: BoxFit.fitWidth,
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(top: 145),
+                                  child: Container(
+                                      height: 35,
+                                      width: 180,
+                                      decoration: BoxDecoration(
+                                          color: Color(0x4D000000)),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            'ADD ',
+                                            style:
+                                                TextStyle(color: Colors.white),
+                                          ),
+                                          Icon(Icons.add, color: Colors.white)
+                                        ],
+                                      )),
+                                ),
+                              ]),
+                            ),
+                          ),
+                        );
+                      },
                     ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.40,
-                      child: TextFormField(
-                        validator: (value) => value!.isEmpty
-                            ? _validatorText
-                            : null, // style: TextStyle(color: Colors.brown),
+                    SizedBox(height: 50),
+                    Container(
+                      child: CommonUI.textField(
+                        context: context,
+                        name: "Name",
+                        hint: "Name",
+                        isEdit: true,
+                        minlines: 1,
                         controller: _nameEnController,
-                        decoration: InputDecoration(
-                          labelText: 'Product Name',
-                          icon: Icon(Icons.account_box),
-                        ),
+                        validate: FormBuilderValidators.compose([
+                          FormBuilderValidators.required(context),
+                        ]),
                       ),
                     ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.40,
-                      child: TextFormField(
-                        validator: (value) =>
-                            value!.isEmpty ? _validatorText : null,
+                    SizedBox(height: 4),
+                    Container(
+                      child: CommonUI.textField(
+                        context: context,
+                        name: "price",
+                        hint: "Price",
+                        isEdit: true,
+                        keyboardtype: TextInputType.number,
                         controller: _priceController,
-                        decoration: InputDecoration(
-                          labelText: 'Product Price',
-                          icon: Icon(Icons.money),
-                        ),
+                        validate: FormBuilderValidators.compose([
+                          FormBuilderValidators.required(context),
+                          FormBuilderValidators.numeric(context),
+                        ]),
                       ),
                     ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.40,
-                      child: TextFormField(
-                        validator: (value) =>
-                            value!.isEmpty ? _validatorText : null,
+                    SizedBox(height: 4),
+                    Container(
+                      child: CommonUI.textField(
+                        context: context,
+                        name: "Description",
+                        hint: "Description",
+                        maxlength: 600,
+                        minlines: 2,
                         controller: _descriptionEnController,
-                        decoration: InputDecoration(
-                          labelText: 'Product Description',
-                          icon: Icon(Icons.message),
-                        ),
+                        validate: FormBuilderValidators.compose([
+                          FormBuilderValidators.required(context),
+                        ]),
                       ),
                     ),
                   ],
                 ),
               ),
-            ),
-            actions: [
-              TextButton(
-                  child: Center(child: Text("Create")),
+              actions: [
+                TextButton(
+                  onPressed: () async {
+                    _formKey.currentState!.save();
+                    if (_formKey.currentState!.validate()) {
+                      FocusScope.of(context).unfocus();
+                      await FirebaseFirestore.instance
+                          .collection(category)
+                          .doc(id)
+                          .set({
+                        'id': id,
+                        'nameEn': _nameEnController.text,
+                        'nameAr': 'nameAr',
+                        'category': category,
+                        'descriptionAr': 'descriptionAr',
+                        'descriptionEn': _descriptionEnController.text,
+                        'isPublished': true,
+                        'image': _imageController.text,
+                        'price': _priceController.text,
+                        'rate': 0,
+                        'weight': 0,
+                        //subCategory: ---
+                      }).whenComplete(() {
+                        Navigator.of(context).pop();
+                        _descriptionEnController.clear();
+                        _priceController.clear();
+                        _imageController.clear();
+                        _nameEnController.clear();
+
+                        CommonUI.successDialog(context,
+                            message: "Saved successfully");
+                      }).onError((error, stackTrrace) => showDialog(
+                                context: context,
+                                builder: (_) {
+                                  return AlertDialog(
+                                    content: Text(error.toString()),
+                                  );
+                                },
+                              ));
+                    }
+                  },
+                  child: Container(
+                    padding: EdgeInsets.all(10),
+                    child: Text(
+                      'Create',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, color: Colors.black),
+                    ),
+                    decoration: BoxDecoration(
+                      color: Colors.grey.withOpacity(0.5),
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                  ),
+                ),
+                TextButton(
                   onPressed: () {
-                    FirebaseFirestore.instance
-                        .collection(category)
-                        .doc(id)
-                        .set({
-                      'id': id,
-                      'nameEn': _nameEnController.text,
-                      'nameAr': 'nameAr',
-                      'category': category,
-                      'descriptionAr': 'descriptionAr',
-                      'descriptionEn': _descriptionEnController.text,
-                      'isPublished': true,
-                      'image': _imageController.text,
-                      'price': _priceController.text,
-                      'rate': 0,
-                      'weight': 0,
-                      //subCategory: ---
-                    });
+                    _descriptionEnController.clear();
+                    _priceController.clear();
+                    _imageController.clear();
+                    _nameEnController.clear();
                     Navigator.of(context).pop();
-                  })
-            ],
+                  },
+                  child: Container(
+                    padding: EdgeInsets.all(10),
+                    child: Text(
+                      'Cancel',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, color: Colors.black),
+                    ),
+                    decoration: BoxDecoration(
+                      color: Colors.grey.withOpacity(0.5),
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           );
         });
   }

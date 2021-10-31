@@ -347,7 +347,7 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
             title: Text(
               'Delete',
               style:
-                  TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
+                  TextStyle(fontWeight: FontWeight.bold, color: Colors.red),
             ),
             content: Text('Are you sure you want to delete this product?'),
             actions: [
@@ -365,7 +365,8 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                   child: Text(
                     'YES',
                     style: TextStyle(
-                        fontWeight: FontWeight.bold, color: Colors.black),
+                        fontWeight: FontWeight.bold, color: Colors.black
+                        ),
                   ),
                   decoration: BoxDecoration(
                     color: Colors.grey.withOpacity(0.2),

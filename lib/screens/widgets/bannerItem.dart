@@ -334,10 +334,9 @@ class _BannersItemState extends State<BannersItem> {
           return AlertDialog(
             title: Text(
               'Delete',
-              style:
-                  TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
+              style: TextStyle(fontWeight: FontWeight.bold, color: Colors.red),
             ),
-            content: Text('Are you sure you want to delete this product?'),
+            content: Text('Are you sure you want to delete this banner ?'),
             actions: [
               TextButton(
                 onPressed: () {
@@ -349,7 +348,6 @@ class _BannersItemState extends State<BannersItem> {
                       .delete();
                 },
                 child: Container(
-                  // margin: EdgeInsets.all(10),
                   padding: EdgeInsets.all(10),
                   child: Text(
                     'YES',
@@ -357,7 +355,7 @@ class _BannersItemState extends State<BannersItem> {
                         fontWeight: FontWeight.bold, color: Colors.black),
                   ),
                   decoration: BoxDecoration(
-                    color: Colors.grey.withOpacity(0.2),
+                    color: Colors.grey.withOpacity(0.1),
                     borderRadius: BorderRadius.circular(16),
                   ),
                 ),
@@ -367,7 +365,6 @@ class _BannersItemState extends State<BannersItem> {
                   Navigator.of(context).pop();
                 },
                 child: Container(
-                  // margin: EdgeInsets.all(10),
                   padding: EdgeInsets.all(10),
                   child: Text(
                     'NO',
@@ -577,7 +574,6 @@ class _BannersItemState extends State<BannersItem> {
                     }
                   },
                   child: Container(
-                    // margin: EdgeInsets.all(10),
                     padding: EdgeInsets.all(10),
                     child: Text(
                       'Save',
@@ -600,7 +596,6 @@ class _BannersItemState extends State<BannersItem> {
                     Navigator.of(context).pop();
                   },
                   child: Container(
-                    // margin: EdgeInsets.all(10),
                     padding: EdgeInsets.all(10),
                     child: Text(
                       'Cancel',

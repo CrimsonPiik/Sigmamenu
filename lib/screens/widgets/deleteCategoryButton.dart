@@ -53,7 +53,10 @@ class _DeleteCategoryButtonState extends State<DeleteCategoryButton> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: Text('Delete'),
+            title: Text(
+              'Delete',
+              style: TextStyle(fontWeight: FontWeight.bold, color: Colors.red),
+            ),
             content: Text('Are you sure you want to delete this category ?'),
             actions: [
               TextButton(
@@ -64,50 +67,37 @@ class _DeleteCategoryButtonState extends State<DeleteCategoryButton> {
                       .collection('Categories')
                       .doc(category)
                       .delete();
-                  // Categories();
-                  // setState(() {
-                  // s = categoriesList;
-                  // });
-                  // buildCategory(
-                  // categoriesList.elementAt(categoriesList.length));
 
-                  // StreamBuilder<QuerySnapshot>(
-                  //     stream: FirebaseFirestore.instance
-                  //         .collection('Categories')
-                  //         .snapshots(),
-                  //     builder: (BuildContext context,
-                  //         AsyncSnapshot<QuerySnapshot> snapshot) {
-                  //       if (snapshot.hasError) {
-                  //         return CommonUI.error(snapshot.error.toString());
-                  //       }
-                  //       if (snapshot.connectionState ==
-                  //           ConnectionState.waiting)
-                  //         return CommonUI.loading(context);
-                  //       Set<String> s = {};
-                  //       List<DocumentSnapshot> shots = snapshot.data!.docs;
-                  //       for (var item in shots) {
-                  //         s.add(item.id.toString());
-                  //       }
-                  //       setState(() {
-                  //         categoriesList = s;
-                  //       });
-                  //       return Container();
-                  //     });
                   Navigator.of(context).pop();
-                  // });
                 },
-                child: Text(
-                  'YES',
-                  style: TextStyle(color: Colors.black),
+                child: Container(
+                  padding: EdgeInsets.all(10),
+                  child: Text(
+                    'YES',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold, color: Colors.black),
+                  ),
+                  decoration: BoxDecoration(
+                    color: Colors.grey.withOpacity(0.1),
+                    borderRadius: BorderRadius.circular(16),
+                  ),
                 ),
               ),
               TextButton(
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                child: Text(
-                  'NO',
-                  style: TextStyle(color: Colors.black),
+                child: Container(
+                  padding: EdgeInsets.all(10),
+                  child: Text(
+                    'NO',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold, color: Colors.black),
+                  ),
+                  decoration: BoxDecoration(
+                    color: Colors.grey.withOpacity(0.1),
+                    borderRadius: BorderRadius.circular(16),
+                  ),
                 ),
               ),
             ],

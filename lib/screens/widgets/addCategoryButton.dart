@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:shop_app/GeneralFunction/Strings.dart';
 import 'package:shop_app/style/CommonUI.dart';
 
@@ -11,6 +12,7 @@ class AddCategoryButton extends StatefulWidget {
 
 class _AddCategoryButtonState extends State<AddCategoryButton> {
   TextEditingController newCollectionNameController = TextEditingController();
+  final _formKey = GlobalKey<FormBuilderState>();
 
   @override
   Widget build(BuildContext context) {
@@ -34,68 +36,107 @@ class _AddCategoryButtonState extends State<AddCategoryButton> {
     showDialog(
         context: context,
         builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text('Add Category'),
-            actions: [
-              Column(
-                children: [
-                  Container(
-                    height: 50,
-                    width: 200,
-                    child: CommonUI.textField(
-                      context: context,
-                      name: "Category Name",
-                      hint: 'Category Name',
-                      controller: newCollectionNameController,
-                      //hint: widget.data.descriptionEn
-                    ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      TextButton(
-                        onPressed: () async {
-                          await FirebaseFirestore.instance
-                              .collection('Categories')
-                              .doc(newCollectionNameController.text
-                                  .toLowerCase()
-                                  .toTitleCase())
-                              .set({});
-                          await FirebaseFirestore.instance
-                              .collection(newCollectionNameController.text
-                                  .toLowerCase()
-                                  .toTitleCase())
-                              .add({});
-
-                          // var collection = FirebaseFirestore.instance
-                          //     .collection(newCollectionNameController.text);
-                          // var snapshots = await collection.get();
-                          // for (var doc in snapshots.docs) {
-                          //   await doc.reference.delete();
-                          // }
-
-                          Navigator.of(context).pop();
-                        },
-                        child: Text(
-                          'Add',
-                          style: TextStyle(color: Colors.black),
-                        ),
-                      ),
-                      TextButton(
-                        onPressed: () {
-                          // getCategories();
-                          Navigator.of(context).pop();
-                        },
-                        child: Text(
-                          'Cancel',
-                          style: TextStyle(color: Colors.black),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
+          return FormBuilder(
+            key: _formKey,
+            child: AlertDialog(
+              title: Text(
+                'Add Category',
+                style: TextStyle(fontWeight: FontWeight.bold),
               ),
-            ],
+              actions: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      padding: EdgeInsets.all(16),
+                      child: CommonUI.textField(
+                        context: context,
+                        name: "Name",
+                        hint: 'Name',
+                        maxlines: 1,
+                        controller: newCollectionNameController,
+                        validate: FormBuilderValidators.compose([
+                          FormBuilderValidators.required(context),
+                        ]),
+                      ),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Container(
+                          padding: EdgeInsets.all(4),
+                          child: TextButton(
+                            onPressed: () async {
+                              _formKey.currentState!.save();
+
+                              if (_formKey.currentState!.validate()) {
+                                await FirebaseFirestore.instance
+                                    .collection(newCollectionNameController.text
+                                        .toLowerCase()
+                                        .toTitleCase())
+                                    .add({});
+                                FocusScope.of(context).unfocus();
+                                await FirebaseFirestore.instance
+                                    .collection('Categories')
+                                    .doc(newCollectionNameController.text
+                                        .toLowerCase()
+                                        .toTitleCase())
+                                    .set({}).whenComplete(() {
+                                  Navigator.of(context).pop();
+                                  newCollectionNameController.clear();
+
+                                  CommonUI.successDialog(context,
+                                      message: "Saved successfully");
+                                }).onError(
+                                  (error, stackTrrace) => showDialog(
+                                    context: context,
+                                    builder: (_) {
+                                      return AlertDialog(
+                                        content: Text(error.toString()),
+                                      );
+                                    },
+                                  ),
+                                );
+                              }
+                            },
+                            child: Text(
+                              'Add',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
+                            ),
+                          ),
+                          decoration: BoxDecoration(
+                            color: Colors.grey.withOpacity(0.2),
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                        ),
+                        SizedBox(width: 10),
+                        Container(
+                          padding: EdgeInsets.all(4),
+                          child: TextButton(
+                            onPressed: () {
+                              newCollectionNameController.clear();
+                              Navigator.of(context).pop();
+                            },
+                            child: Text(
+                              'Cancel',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
+                            ),
+                          ),
+                          decoration: BoxDecoration(
+                            color: Colors.grey.withOpacity(0.2),
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ],
+            ),
           );
         });
   }
