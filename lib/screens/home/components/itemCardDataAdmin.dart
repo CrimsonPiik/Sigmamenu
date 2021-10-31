@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:shop_app/constaints.dart';
 import 'package:shop_app/models/product.dart';
 import 'package:shop_app/screens/adminPanel.dart';
-import 'package:shop_app/screens/widgets/productsItem.dart';
+import 'package:shop_app/screens/widgets/productsItemAdmin.dart';
 import 'package:shop_app/style/CommonUI.dart';
 import 'package:shop_app/style/ScreenUtil.dart';
 

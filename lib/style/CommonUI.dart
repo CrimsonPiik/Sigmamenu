@@ -223,27 +223,33 @@ class CommonUI {
       required String name,
       label,
       hint,
+      int? maxlength,
+      int? maxlines,
       required TextEditingController? controller,
       Widget? icon,
       bool isEdit = false,
-      // String initialtext = "ss",
+      // keyboardType? keyboardtype = keyboardType
       String? Function(String?)? validate,
-      Function(String?)? onChange}) {
+      Function(String?)? onChange,
+      TextInputType? keyboardtype}) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 15),
       child: FormBuilderTextField(
-          // initialValue: initialtext,
-          name: name,
-          controller: controller,
-          decoration: InputDecoration(
-              icon: icon,
-              suffixIcon: isEdit ? Icon(Icons.edit) : null,
-              labelText: hint,
-              hintText: label,
-              hintStyle: FontStyle.normal(context: context),
-              enabled: true),
-          onChanged: onChange,
-          validator: validate),
+        maxLines: maxlines,
+        maxLength: maxlength,
+        name: name,
+        controller: controller,
+        decoration: InputDecoration(
+            icon: icon,
+            suffixIcon: isEdit ? Icon(Icons.edit) : null,
+            labelText: hint,
+            hintText: label,
+            hintStyle: FontStyle.normal(context: context),
+            enabled: true),
+        onChanged: onChange,
+        validator: validate,
+        keyboardType: keyboardtype,
+      ),
     );
   }
 

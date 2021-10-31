@@ -405,19 +405,22 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
               style:
                   TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
             ),
-            content: Container(
-              height: 215,
-              // WIDTH IS ALREADY DEFINED
-              padding: EdgeInsets.all(16),
-              margin: EdgeInsets.only(bottom: 26),
-              decoration: BoxDecoration(
-                color: Colors.grey.withOpacity(0.1),
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: ValueListenableBuilder(
+            content: SingleChildScrollView(
+              child: Container(
+                // height: 215,
+                // WIDTH IS ALREADY DEFINED
+                padding: EdgeInsets.all(16),
+                margin: EdgeInsets.only(bottom: 26),
+                decoration: BoxDecoration(
+                  color: Colors.grey.withOpacity(0.1),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // Expanded(
+                    // child:
+                    ValueListenableBuilder(
                       valueListenable: _imagevalue,
                       builder:
                           (BuildContext context, dynamic value, Widget? child) {
@@ -426,227 +429,145 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                             _imageController.text =
                                 await fireBaseUploadFileWeb(widget.data.id);
                           },
-                          child: Container(
-                            child: Column(children: [
-                              value != null
-                                  ? Stack(children: [
-                                      Container(
-                                        height: 180,
-                                        width: 180,
-                                        child: InteractiveViewer(
-                                          child: Image.network(value,
-                                              fit: BoxFit.fitWidth),
-                                        ),
+                          child: Center(
+                            child: Container(
+                              height: 180,
+                              child: Column(children: [
+                                // value != null
+                                // ? Stack(children: [
+                                //     Container(
+                                //       height: 180,
+                                //       width: 180,
+                                //       child: InteractiveViewer(
+                                //         child: Image.network(value,
+                                //             fit: BoxFit.fitWidth),
+                                //       ),
+                                //     ),
+                                //     Container(
+                                //       decoration: BoxDecoration(
+                                //           color: Color(0x4D303030)),
+                                //       height: 180,
+                                //       width: 180,
+                                //     ),
+                                //     Padding(
+                                //       padding: EdgeInsets.only(top: 145),
+                                //       child: Container(
+                                //           height: 35,
+                                //           width: 180,
+                                //           decoration: BoxDecoration(
+                                //               color: Color(0x4D000000)),
+                                //           // child: Center(
+                                //           child: Row(
+                                //             mainAxisAlignment:
+                                //                 MainAxisAlignment.center,
+                                //             children: [
+                                //               Text(
+                                //                 'Edit ',
+                                //                 style: TextStyle(
+                                //                     color: Colors.white),
+                                //               ),
+                                //               Icon(Icons.edit,
+                                //                   color: Colors.white)
+                                //             ],
+                                //             // ),
+                                //           )),
+                                //     ),
+                                //   ])
+                                // :
+                                Stack(children: [
+                                  Container(
+                                      height: 180,
+                                      width: 180,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(4),
                                       ),
-                                      Container(
+                                      child: CommonUI.cachedImage(
+                                          widget.data.image,
+                                          ImageAssets.placeholder,
+                                          fit: BoxFit.fitWidth)),
+                                  Container(
+                                    decoration:
+                                        BoxDecoration(color: Color(0x4D303030)),
+                                    height: 180,
+                                    width: 180,
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(top: 145),
+                                    child: Container(
+                                        height: 35,
+                                        width: 180,
                                         decoration: BoxDecoration(
-                                            color: Color(0x4D303030)),
-                                        height: 180,
-                                        width: 180,
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.only(top: 145),
-                                        child: Container(
-                                            height: 35,
-                                            width: 180,
-                                            decoration: BoxDecoration(
-                                                color: Color(0x4D000000)),
-                                            // child: Center(
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                Text(
-                                                  'Edit ',
-                                                  style: TextStyle(
-                                                      color: Colors.white),
-                                                ),
-                                                Icon(Icons.edit,
-                                                    color: Colors.white)
-                                              ],
-                                              // ),
-                                            )),
-                                      ),
-                                    ])
-                                  : Stack(children: [
-                                      Container(
-                                          height: 180,
-                                          width: 180,
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(4),
-                                          ),
-                                          child: CommonUI.cachedImage(
-                                              widget.data.image,
-                                              ImageAssets.placeholder,
-                                              fit: BoxFit.fitWidth)),
-                                      Container(
-                                        decoration: BoxDecoration(
-                                            color: Color(0x4D303030)),
-                                        height: 180,
-                                        width: 180,
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.only(top: 145),
-                                        child: Container(
-                                            height: 35,
-                                            width: 180,
-                                            decoration: BoxDecoration(
-                                                color: Color(0x4D000000)),
-                                            // child: Center(
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                Text(
-                                                  'Edit ',
-                                                  style: TextStyle(
-                                                      color: Colors.white),
-                                                ),
-                                                Icon(Icons.edit,
-                                                    color: Colors.white)
-                                              ],
-                                              // ),
-                                            )),
-                                      ),
-                                    ]),
-                            ]),
+                                            color: Color(0x4D000000)),
+                                        // child: Center(
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              'Edit ',
+                                              style: TextStyle(
+                                                  color: Colors.white),
+                                            ),
+                                            Icon(Icons.edit,
+                                                color: Colors.white)
+                                          ],
+                                        )),
+                                  ),
+                                ]),
+                              ]),
+                            ),
                           ),
                         );
                       },
                     ),
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            // editText
-                            //     ? Text(
-                            //         widget.data.nameEn,
-                            //         overflow: TextOverflow.ellipsis,
-                            //         maxLines: 1,
-                            //         style: TextStyle(
-                            //             fontWeight: FontWeight.bold,
-                            //             fontSize: 21),
-                            //       )
-                            //     :
-                            Container(
-                              height: 50,
-                              width: Responsive.isDesktop(context) ? 200 : 70,
-                              child: CommonUI.textField(
-                                isEdit: true,
-                                context: context,
-                                name: "Name",
-                                controller: _nameEnController,
-                                // hint: widget.data.nameEn,
-                                validate: FormBuilderValidators.compose([
-                                  FormBuilderValidators.required(context),
-                                  // FormBuilderValidators.numeric(context),
-                                ]),
-                              ),
-                            ),
-                            // : TextFormField(
-                            //     decoration: const InputDecoration(
-                            //       icon: Icon(Icons.person),
-                            //       hintText: 'What do people call you?',
-                            //       labelText: 'Name *',
-                            //     ),
-                            // onSaved: (String? value) {
-                            // This optional block of code can be used to run
-                            // code when the user saves the form.
-                            // },
-                            // validator: (String? value) {
-                            //   return (value != null &&
-                            //           value.contains('@'))
-                            //       ? 'Do not use the @ char.'
-                            //       : null;
-                            // },
-                            // ),
-                            // TextButton(
-                            //     onPressed: () {
-                            //       editText = true;
-                            //     },
-                            //     child: Icon(Icons.edit, color: Colors.brown)),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 4,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            // Text(
-                            //   widget.data.descriptionEn,
-                            //   overflow: TextOverflow.ellipsis,
-                            //   maxLines: 2,
-                            //   style: TextStyle(
-                            //       fontWeight: FontWeight.w400, fontSize: 19),
-                            // ),
-                            Container(
-                              height: 50,
-                              width: Responsive.isDesktop(context) ? 200 : 70,
-                              child: CommonUI.textField(
-                                context: context,
-                                isEdit: true,
-                                name: "descriptionEn",
-                                // label: widget.data.descriptionEn,
-                                controller: _descriptionEnController,
-                                // hint: widget.data.descriptionEn,
-                                validate: FormBuilderValidators.compose([
-                                  FormBuilderValidators.required(context),
-                                  // FormBuilderValidators.numeric(context),
-                                ]),
-                              ),
-                            ),
-                            // TextButton(
-                            //     onPressed: () {},
-                            //     child: Icon(Icons.edit, color: Colors.brown)),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 4,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            // Text(
-                            //   widget.data.price.toString(),
-                            //   style: TextStyle(
-                            //       fontWeight: FontWeight.w300,
-                            //       // fontStyle: FontStyle.italic,
-                            //       fontSize: 17),
-                            // ),
-                            Container(
-                              height: 50,
-                              width: Responsive.isDesktop(context) ? 200 : 70,
-                              child: CommonUI.textField(
-                                context: context,
-                                name: "price",
-                                isEdit: true,
-                                // keyboardType: TextInputType(number),
-                                controller: _priceController,
-                                // hint: widget.data.price.toString(),
-                                validate: FormBuilderValidators.compose([
-                                  FormBuilderValidators.required(context),
-                                  FormBuilderValidators.numeric(context),
-                                ]),
-                              ),
-                            ),
-                            // TextButton(
-                            //     onPressed: () {},
-                            //     child: Icon(Icons.edit, color: Colors.brown)),
-                          ],
-                        ),
-                      ],
+                    SizedBox(height: 50),
+                    Container(
+                      child: CommonUI.textField(
+                        isEdit: true,
+                        context: context,
+                        name: "Name",
+                        hint: "Name",
+                        controller: _nameEnController,
+                        // validate: FormBuilderValidators.compose([
+                        //   FormBuilderValidators.required(context),
+                        // FormBuilderValidators.numeric(context),
+                        // ]),
+                      ),
                     ),
-                  )
-                ],
+                    SizedBox(height: 4),
+                    Container(
+                      child: CommonUI.textField(
+                        context: context,
+                        name: "price",
+                        isEdit: true,
+                        hint: "Price",
+                        keyboardtype: TextInputType.number,
+                        controller: _priceController,
+                        // validate: FormBuilderValidators.compose([
+                        //   FormBuilderValidators.required(context),
+                        //   FormBuilderValidators.numeric(context),
+                        // ]),
+                      ),
+                    ),
+                    SizedBox(height: 4),
+                    Container(
+                      child: CommonUI.textField(
+                        maxlength: 600,
+                        maxlines: 5,
+                        context: context,
+                        isEdit: true,
+                        name: "Description",
+                        hint: "Description",
+                        controller: _descriptionEnController,
+
+                        // validate: FormBuilderValidators.compose([
+                        //   FormBuilderValidators.required(context),
+                        //   // FormBuilderValidators.numeric(context),
+                        // ]),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
             actions: [
@@ -656,9 +577,7 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                       .collection(widget.data.category)
                       .doc(widget.data.id)
                       .update({
-                    'nameEn': _nameEnController
-                        .text, // TextEditingController _nameEnController = TextEditingController();moh
-
+                    'nameEn': _nameEnController.text,
                     'descriptionEn': _descriptionEnController.text,
                     'price': _priceController.text,
                     'image': _imageController.text
