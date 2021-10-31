@@ -6,6 +6,7 @@ import 'package:shop_app/GeneralFunction/firebase_uploader_web.dart';
 import 'package:shop_app/GeneralFunction/random_id_generator.dart';
 import 'package:shop_app/screens/adminPanel.dart';
 import 'package:shop_app/style/CommonUI.dart';
+import 'package:shop_app/style/ScreenUtil.dart';
 
 class AddProductButton extends StatefulWidget {
   final Stream<int> stream;
@@ -73,7 +74,7 @@ class _AddProductButtonState extends State<AddProductButton> {
                   style: TextStyle(
                       fontWeight: FontWeight.bold, color: Colors.black)),
               content: Container(
-                // WIDTH IS ALREADY DEFINED
+                width: Responsive.isDesktop(context) ? 420 : 320,
                 padding: EdgeInsets.all(16),
                 decoration: BoxDecoration(
                   color: Colors.grey.withOpacity(0.1),
@@ -91,10 +92,10 @@ class _AddProductButtonState extends State<AddProductButton> {
                             CircularProgressIndicator();
                             _imageController.text =
                                 await fireBaseUploadFileWeb(id);
-                            _image.value = _imageController.text;
                           },
                           child: Center(
                             child: Container(
+                              width: 180,
                               height: 180,
                               child: Stack(children: [
                                 Container(

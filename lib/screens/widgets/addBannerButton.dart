@@ -6,6 +6,7 @@ import 'package:shop_app/GeneralFunction/firebase_uploader_web.dart';
 import 'package:shop_app/GeneralFunction/random_id_generator.dart';
 import 'package:shop_app/screens/adminPanel.dart';
 import 'package:shop_app/style/CommonUI.dart';
+import 'package:shop_app/style/ScreenUtil.dart';
 
 class AddBannerButton extends StatefulWidget {
   @override
@@ -53,7 +54,7 @@ class _AddBannerButtonState extends State<AddBannerButton> {
                   style: TextStyle(
                       fontWeight: FontWeight.bold, color: Colors.black)),
               content: Container(
-                // WIDTH IS ALREADY DEFINED
+                width: Responsive.isDesktop(context) ? 420 : 320,
                 padding: EdgeInsets.all(16),
                 decoration: BoxDecoration(
                   color: Colors.grey.withOpacity(0.1),
@@ -71,7 +72,6 @@ class _AddBannerButtonState extends State<AddBannerButton> {
                             CircularProgressIndicator();
                             _imageBannerController.text =
                                 await fireBaseUploadFileWeb(id);
-                            _image.value = _imageBannerController.text;
                           },
                           child: Center(
                             child: Container(

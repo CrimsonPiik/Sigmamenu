@@ -346,8 +346,7 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
           return AlertDialog(
             title: Text(
               'Delete',
-              style:
-                  TextStyle(fontWeight: FontWeight.bold, color: Colors.red),
+              style: TextStyle(fontWeight: FontWeight.bold, color: Colors.red),
             ),
             content: Text('Are you sure you want to delete this product?'),
             actions: [
@@ -365,8 +364,7 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                   child: Text(
                     'YES',
                     style: TextStyle(
-                        fontWeight: FontWeight.bold, color: Colors.black
-                        ),
+                        fontWeight: FontWeight.bold, color: Colors.black),
                   ),
                   decoration: BoxDecoration(
                     color: Colors.grey.withOpacity(0.2),
@@ -410,6 +408,8 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
               ),
               content: SingleChildScrollView(
                 child: Container(
+                  width: Responsive.isDesktop(context) ? 420 : 320,
+
                   // WIDTH IS ALREADY DEFINED
                   padding: EdgeInsets.all(16),
                   // margin: EdgeInsets.only(bottom: 26),
@@ -432,6 +432,7 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                             child: Center(
                               child: Container(
                                 height: 180,
+                                width: 180,
                                 child: Column(children: [
                                   // value != null
                                   // ? Stack(children: [
