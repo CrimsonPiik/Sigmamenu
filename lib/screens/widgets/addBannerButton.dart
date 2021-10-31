@@ -54,7 +54,7 @@ class _AddBannerButtonState extends State<AddBannerButton> {
                   style: TextStyle(
                       fontWeight: FontWeight.bold, color: Colors.black)),
               content: Container(
-                width: Responsive.isDesktop(context) ? 420 : 320,
+                width: Responsive.isDesktop(context) ? 350 : 290,
                 padding: EdgeInsets.all(16),
                 decoration: BoxDecoration(
                   color: Colors.grey.withOpacity(0.1),

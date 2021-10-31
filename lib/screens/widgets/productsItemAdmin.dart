@@ -408,11 +408,8 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
               ),
               content: SingleChildScrollView(
                 child: Container(
-                  width: Responsive.isDesktop(context) ? 420 : 320,
-
-                  // WIDTH IS ALREADY DEFINED
+                  width: Responsive.isDesktop(context) ? 350 : 290,
                   padding: EdgeInsets.all(16),
-                  // margin: EdgeInsets.only(bottom: 26),
                   decoration: BoxDecoration(
                     color: Colors.grey.withOpacity(0.1),
                     borderRadius: BorderRadius.circular(12),
@@ -428,93 +425,105 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                             onTap: () async {
                               _imageController.text =
                                   await fireBaseUploadFileWeb(widget.data.id);
+                              _imagevalue.value = _imageController.text;
                             },
                             child: Center(
                               child: Container(
                                 height: 180,
                                 width: 180,
                                 child: Column(children: [
-                                  // value != null
-                                  // ? Stack(children: [
-                                  //     Container(
-                                  //       height: 180,
-                                  //       width: 180,
-                                  //       child: InteractiveViewer(
-                                  //         child: Image.network(value,
-                                  //             fit: BoxFit.fitWidth),
-                                  //       ),
-                                  //     ),
-                                  //     Container(
-                                  //       decoration: BoxDecoration(
-                                  //           color: Color(0x4D303030)),
-                                  //       height: 180,
-                                  //       width: 180,
-                                  //     ),
-                                  //     Padding(
-                                  //       padding: EdgeInsets.only(top: 145),
-                                  //       child: Container(
-                                  //           height: 35,
-                                  //           width: 180,
-                                  //           decoration: BoxDecoration(
-                                  //               color: Color(0x4D000000)),
-                                  //           // child: Center(
-                                  //           child: Row(
-                                  //             mainAxisAlignment:
-                                  //                 MainAxisAlignment.center,
-                                  //             children: [
-                                  //               Text(
-                                  //                 'Edit ',
-                                  //                 style: TextStyle(
-                                  //                     color: Colors.white),
-                                  //               ),
-                                  //               Icon(Icons.edit,
-                                  //                   color: Colors.white)
-                                  //             ],
-                                  //             // ),
-                                  //           )),
-                                  //     ),
-                                  //   ])
-                                  // :
-                                  Stack(children: [
-                                    Container(
-                                        height: 180,
-                                        width: 180,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(4),
-                                        ),
-                                        child: CommonUI.cachedImage(
-                                            widget.data.image,
-                                            ImageAssets.placeholder,
-                                            fit: BoxFit.fitWidth)),
-                                    Container(
-                                      decoration: BoxDecoration(
-                                          color: Color(0x4D303030)),
-                                      height: 180,
-                                      width: 180,
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.only(top: 145),
-                                      child: Container(
-                                          height: 35,
-                                          width: 180,
-                                          decoration: BoxDecoration(
-                                              color: Color(0x4D000000)),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              Text(
-                                                'Edit ',
-                                                style: TextStyle(
-                                                    color: Colors.white),
+                                  _imagevalue.value != null
+                                      ? Stack(children: [
+                                          Container(
+                                            height: 180,
+                                            width: 180,
+                                            child: InteractiveViewer(
+                                              child: Image.network(
+                                                value,
+                                                fit: BoxFit.fitWidth,
+                                                loadingBuilder: (context, child,
+                                                    loadingProgress) {
+                                                  if (loadingProgress == null) {
+                                                    return child;
+                                                  }
+                                                  return Center(
+                                                    child:
+                                                        CircularProgressIndicator(),                                               
+                                                  );                                            
+                                                },
                                               ),
-                                              Icon(Icons.edit,
-                                                  color: Colors.white)
-                                            ],
-                                          )),
-                                    ),
-                                  ]),
+                                            ),
+                                          ),
+                                          Container(
+                                            decoration: BoxDecoration(
+                                                color: Color(0x4D303030)),
+                                            height: 180,
+                                            width: 180,
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.only(top: 145),
+                                            child: Container(
+                                                height: 35,
+                                                width: 180,
+                                                decoration: BoxDecoration(
+                                                    color: Color(0x4D000000)),
+                                                // child: Center(
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    Text(
+                                                      'Edit ',
+                                                      style: TextStyle(
+                                                          color: Colors.white),
+                                                    ),
+                                                    Icon(Icons.edit,
+                                                        color: Colors.white)
+                                                  ],
+                                                  // ),
+                                                )),
+                                          ),
+                                        ])
+                                      : Stack(children: [
+                                          Container(
+                                              height: 180,
+                                              width: 180,
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(4),
+                                              ),
+                                              child: CommonUI.cachedImage(
+                                                  widget.data.image,
+                                                  ImageAssets.placeholder,
+                                                  fit: BoxFit.fitWidth)),
+                                          Container(
+                                            decoration: BoxDecoration(
+                                                color: Color(0x4D303030)),
+                                            height: 180,
+                                            width: 180,
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.only(top: 145),
+                                            child: Container(
+                                                height: 35,
+                                                width: 180,
+                                                decoration: BoxDecoration(
+                                                    color: Color(0x4D000000)),
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    Text(
+                                                      'Edit ',
+                                                      style: TextStyle(
+                                                          color: Colors.white),
+                                                    ),
+                                                    Icon(Icons.edit,
+                                                        color: Colors.white)
+                                                  ],
+                                                )),
+                                          ),
+                                        ]),
                                 ]),
                               ),
                             ),

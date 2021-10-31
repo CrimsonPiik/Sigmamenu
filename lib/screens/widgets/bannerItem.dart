@@ -414,6 +414,9 @@ class _BannersItemState extends State<BannersItem> {
                           onTap: () async {
                             _imageBannerController.text =
                                 await fireBaseUploadFileWeb(widget.data.id);
+                            setState(() {
+                              _imagevalue.value = _imageBannerController.text;
+                            });
                           },
                           child: Center(
                             child: Container(

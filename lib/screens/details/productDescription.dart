@@ -26,7 +26,6 @@ class ProductDescription extends StatelessWidget {
                   // SingleChildScrollView(
                   // child:
                   Container(
-                    // margin: EdgeInsets.only(top: size.height * 0.3),
                     padding: EdgeInsets.only(
                         top: kDefaultPaddin * 2,
                         left: kDefaultPaddin,

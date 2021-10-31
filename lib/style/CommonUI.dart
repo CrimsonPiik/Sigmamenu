@@ -81,16 +81,17 @@ class CommonUI {
   static Widget loading(BuildContext context) {
     return Column(
       children: [
-        Padding(
-          padding: EdgeInsets.only(top: MediaQuery.of(context).size.height / 5),
-          child: Center(
-            child: LottieBuilder.asset(
-              AnimAssets.loadingCoffee,
-              height: 90,
-              // repeat: false,
-            ),
+        // Padding(
+        // padding: EdgeInsets.only(top: MediaQuery.of(context).size.height / 5),
+        // child:
+        Center(
+          child: LottieBuilder.asset(
+            AnimAssets.loadingCoffee,
+            height: 90,
+            // repeat: false,
           ),
         ),
+        // ),
       ],
     );
   }
@@ -205,7 +206,7 @@ class CommonUI {
     return showDialog(
       context: context,
       builder: (BuildContext context) {
-        return   AlertDialog(
+        return AlertDialog(
           content: SizedBox(
             height: 150,
             child: Column(

@@ -24,7 +24,7 @@ class _AddProductButtonState extends State<AddProductButton> {
   TextEditingController _priceController = TextEditingController();
   TextEditingController _descriptionEnController = TextEditingController();
   TextEditingController _imageController = TextEditingController();
-  ValueNotifier<String?> _image = ValueNotifier<String?>(null);
+  ValueNotifier<String?> _imagevalue = ValueNotifier<String?>(null);
   final _formKey = GlobalKey<FormBuilderState>();
   String category = categoriesList.elementAt(0);
 
@@ -74,7 +74,7 @@ class _AddProductButtonState extends State<AddProductButton> {
                   style: TextStyle(
                       fontWeight: FontWeight.bold, color: Colors.black)),
               content: Container(
-                width: Responsive.isDesktop(context) ? 420 : 320,
+                width: Responsive.isDesktop(context) ? 350 : 290,
                 padding: EdgeInsets.all(16),
                 decoration: BoxDecoration(
                   color: Colors.grey.withOpacity(0.1),
@@ -84,14 +84,17 @@ class _AddProductButtonState extends State<AddProductButton> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     ValueListenableBuilder(
-                      valueListenable: _image,
+                      valueListenable: _imagevalue,
                       builder:
                           (BuildContext context, dynamic value, Widget? child) {
                         return InkWell(
                           onTap: () async {
-                            CircularProgressIndicator();
+                            // CircularProgressIndicator();
                             _imageController.text =
                                 await fireBaseUploadFileWeb(id);
+                                    setState(() {
+                                _imagevalue.value = _imageController.text;
+                              });
                           },
                           child: Center(
                             child: Container(
