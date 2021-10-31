@@ -520,7 +520,7 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                           );
                         },
                       ),
-                      SizedBox(height: 50),
+                      SizedBox(height: 40),
                       Container(
                         child: CommonUI.textField(
                           context: context,

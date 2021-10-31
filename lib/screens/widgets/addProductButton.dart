@@ -108,6 +108,12 @@ class _AddProductButtonState extends State<AddProductButton> {
                                     fit: BoxFit.fitWidth,
                                   ),
                                 ),
+                                Container(
+                                  decoration:
+                                      BoxDecoration(color: Color(0x4D303030)),
+                                  height: 180,
+                                  width: 180,
+                                ),
                                 Padding(
                                   padding: EdgeInsets.only(top: 145),
                                   child: Container(
@@ -134,7 +140,7 @@ class _AddProductButtonState extends State<AddProductButton> {
                         );
                       },
                     ),
-                    SizedBox(height: 50),
+                    SizedBox(height: 40),
                     Container(
                       child: CommonUI.textField(
                         context: context,

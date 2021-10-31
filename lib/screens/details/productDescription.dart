@@ -86,7 +86,7 @@ class ProductDescription extends StatelessWidget {
                             ],
                           ),
                         ),
-                        SizedBox(height: 50),
+                        SizedBox(height: 40),
                         // RichText(
                         // text: TextSpan(
                         // style: TextStyle(color: kTextColor),
