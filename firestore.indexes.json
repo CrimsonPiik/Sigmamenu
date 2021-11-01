@@ -1,4 +1,93 @@
 {
-  "indexes": [],
-  "fieldOverrides": []
+  "indexes": [
+    {
+      "collectionId": "Drinks",
+      "fields": [
+        {
+          "fieldPath": "id",
+          "mode": "DESCENDING"
+        },
+        {
+          "fieldPath": "weight",
+          "mode": "DESCENDING"
+        }
+        
+      ]
+    },
+    {
+      "collectionId": "Appetizers",
+      "fields": [
+        {
+          "fieldPath": "id",
+          "mode": "DESCENDING"
+        },
+        {
+          "fieldPath": "weight",
+          "mode": "DESCENDING"
+        }
+      
+        
+      ]
+    },
+    {
+      "collectionId": "Brunch",
+      "fields": [
+        {
+          "fieldPath": "id",
+          "mode": "DESCENDING"
+        },
+        {
+          "fieldPath": "weight",
+          "mode": "DESCENDING"
+        }
+      
+        
+      ]
+    },
+    {
+      "collectionId": "Desserts",
+      "fields": [
+        {
+          "fieldPath": "id",
+          "mode": "DESCENDING"
+        },
+        {
+          "fieldPath": "weight",
+          "mode": "DESCENDING"
+        }
+      
+        
+      ]
+    },
+    {
+      "collectionId": "Main Courses",
+      "fields": [
+        {
+          "fieldPath": "id",
+          "mode": "DESCENDING"
+        },
+        {
+          "fieldPath": "weight",
+          "mode": "DESCENDING"
+        }
+      
+        
+      ]
+    },
+    {
+      "collectionId": "Salads",
+      "fields": [
+        {
+          "fieldPath": "id",
+          "mode": "DESCENDING"
+        },
+        {
+          "fieldPath": "weight",
+          "mode": "DESCENDING"
+        }
+      
+        
+      ]
+    }
+  ]
 }

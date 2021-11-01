@@ -44,10 +44,7 @@ class StaggerdGridView extends StatefulWidget {
   State<StaggerdGridView> createState() => _StaggerdGridViewState();
 }
 
-class _StaggerdGridViewState
-    extends State<StaggerdGridView> /* with SingleTickerProviderStateMixin */ {
-  // AnimationController? _animationContainer;
-
+class _StaggerdGridViewState extends State<StaggerdGridView> {
   // void animationLogin() {
   //   _animationContainer = AnimationController(
   //       vsync: this,
@@ -56,30 +53,24 @@ class _StaggerdGridViewState
   //   _animationContainer?.forward();
   // }
 
-  // @override
-  // void initState() {
-  //   super.initState();
-
-  //   // analytics.setCurrentScreen(screenName: '/loginScreen');
-  //   // _privacyPolicy = TapGestureRecognizer()..onTap = _handlePrivacyPress;
-  //   // _termsAndConditions = TapGestureRecognizer()..onTap = _handleTermsPress;
-  //   animationLogin();
-  // }
-
-  // @override
-  // void dispose() {
-  //   _animationContainer?.dispose();
-
-  //   super.dispose();
-  // }
-
   @override
   Widget build(BuildContext context) {
+    // final double width = MediaQuery.of(context).size.width;
+    // controller.forward();
+    // return AnimatedBuilder(
+    //     animation: controller,
+    //     builder: (context, child) {
     return Scaffold(
       // appBar: AppBar(
       //   title: Center(child: Text("YOUR LOGO")),
       // ),
-      body: Container(
+      body:
+
+          //  Transform(
+          //   transform:
+          //       Matrix4.translationValues(animation.value * width, 0.0, 0.0),
+          //   child:
+          Container(
         // Staggered Grid View starts here
         child: StaggeredGridView.count(
           crossAxisCount: 4,
@@ -90,40 +81,89 @@ class _StaggerdGridViewState
         ),
       ),
     );
+    //   );
+    // });
   }
 }
 
-class BackGroundTile extends StatelessWidget {
+class BackGroundTile extends StatefulWidget {
   final String background;
   final String text;
 
   BackGroundTile({required this.background, required this.text});
 
   @override
+  State<BackGroundTile> createState() => _BackGroundTileState();
+}
+
+class _BackGroundTileState extends State<BackGroundTile>
+    with SingleTickerProviderStateMixin {
+  late AnimationController controller;
+  late Animation growingAnimation;
+  late Animation animation;
+  @override
+  void initState() {
+    super.initState();
+    controller =
+        AnimationController(duration: const Duration(seconds: 2), vsync: this);
+    growingAnimation = Tween(begin: 10.0, end: 100.0)
+        .animate(CurvedAnimation(parent: controller, curve: Curves.easeIn));
+    animation = Tween(begin: -0.25, end: 0.0).animate(CurvedAnimation(
+      parent: controller,
+      curve: Curves.easeIn,
+    ))
+      ..addStatusListener((status) {
+        if (status == AnimationStatus.completed) {
+          controller.reverse();
+        }
+        if (status == AnimationStatus.dismissed) {
+          Navigator.pop(context);
+        }
+      });
+  }
+
+  @override
+  void dispose() {
+    // _controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {},
-      child: Stack(
-        children: [
-          Container(
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                  image: NetworkImage(background), fit: BoxFit.fill),
-            ),
-          ),
-          Container(
-            decoration: BoxDecoration(color: Color(0x4D303030)),
-            child: Center(
-                child: Text(
-              text,
-              style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white),
-            )),
-          ),
-        ],
-      ),
-    );
+    final double width = MediaQuery.of(context).size.width;
+
+    controller.forward();
+    return AnimatedBuilder(
+        animation: controller,
+        builder: (context, child) {
+          return Transform(
+              transform:
+                  Matrix4.translationValues(animation.value * width, 0.0, 0.0),
+              child: InkWell(
+                onTap: () {},
+                child: Stack(
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: NetworkImage(widget.background),
+                            fit: BoxFit.fill),
+                      ),
+                    ),
+                    Container(
+                      decoration: BoxDecoration(color: Color(0x4D303030)),
+                      child: Center(
+                          child: Text(
+                        widget.text,
+                        style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white),
+                      )),
+                    ),
+                  ],
+                ),
+              ));
+        });
   }
 }

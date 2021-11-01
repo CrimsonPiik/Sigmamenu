@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shop_app/constaints.dart';
+import 'package:shop_app/language/logic/ProjectLanguage.dart';
 import 'package:shop_app/models/product.dart';
 import 'package:shop_app/style/ScreenUtil.dart';
 
@@ -104,7 +105,9 @@ class ProductDescription extends StatelessWidget {
                                       ? size.width / 2
                                       : 1),
                               child: Text(
-                                "${product.descriptionEn}",
+                                ProjectLanguage.isLTR()
+                                    ? "${product.descriptionEn}"
+                                    : "${product.descriptionAr}",
                                 // style: Theme.of(context)
                                 // .textTheme
                                 // .headline5!

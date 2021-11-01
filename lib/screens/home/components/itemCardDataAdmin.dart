@@ -41,6 +41,7 @@ class _ItemCardDataAdminState extends State<ItemCardDataAdmin> {
         stream: FirebaseFirestore.instance
             .collection(category)
             .where('category', isEqualTo: category)
+            // .orderBy('weight', descending: true)
             .snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasError) {
@@ -49,12 +50,27 @@ class _ItemCardDataAdminState extends State<ItemCardDataAdmin> {
           if (snapshot.connectionState == ConnectionState.waiting)
             return CommonUI.loading(context);
           List<Product> products = [];
-
+          // List<Product> sortedProductsByWeight = [];
+          // List<int> productsWeight = [];
           List<DocumentSnapshot> shots = snapshot.data!.docs;
           for (var item in shots) {
             products.add(Product.fromMap(item.data() as Map<String, dynamic>));
           }
 
+          // for (int i = 0; i < products.length; i++) {
+          //   productsWeight.add(products[i].weight);
+          // }
+          // productsWeight.sort();
+
+          // for (int i = 0; i < products.length; i++) {
+          //   for (int k = 0; k < products.length; k++) {
+          //     if (products[i].weight == productsWeight[k]) {
+          //       sortedProductsByWeight.add(products[i]);
+          //       // sortedProductsByWeight.sort();
+          //     }
+          //   }
+          // }
+          // print("SORTEDPRODUCTSBYWEIGHT" + sortedProductsByWeight.toString());
           print("Admin Side : " + products.toString());
           // DateTime.now().millisecondsSinceEpoch.toString());
           return Expanded(

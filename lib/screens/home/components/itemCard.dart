@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shop_app/language/logic/ProjectLanguage.dart';
 import 'package:shop_app/models/product.dart';
 import 'package:shop_app/screens/details/details_screen.dart';
 import 'package:shop_app/style/AssetsManager.dart';
@@ -41,7 +42,7 @@ class ItemCard extends StatelessWidget {
       ),
       child: Stack(
         children: [
-          GestureDetector(
+          InkWell(
             onTap: () => {
               Navigator.push(
                 context,
@@ -121,10 +122,10 @@ class ItemCard extends StatelessWidget {
                                 // height: 10,
                                 child: CommonUI.text(
                                   context: context,
-                                  text: product.nameEn,
-                                  // RhinoLanguage.isLTR()
-                                  //     ? product.nameEn
-                                  //     : product.nameAr,
+                                  text: 
+                                  ProjectLanguage.isLTR()
+                                      ? product.nameEn
+                                      : product.nameAr,
                                   textAlign: TextAlign.center,
                                   style: FontStyle.small(
                                       context: context,
@@ -195,3 +196,4 @@ class ItemCard extends StatelessWidget {
     );
   }
 }
+

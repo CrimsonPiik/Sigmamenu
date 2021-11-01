@@ -59,7 +59,7 @@ class _ItemCardDataState extends State<ItemCardData> {
         stream: FirebaseFirestore.instance
             .collection(category)
             .where('isPublished', isEqualTo: true)
-            // .where('weight',)18
+            // .orderBy('weight',descending: true)
             .snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasError) {

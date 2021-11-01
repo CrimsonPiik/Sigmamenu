@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:shop_app/constaints.dart';
+import 'package:shop_app/language/widgets/changeLanguageButton.dart';
 import 'package:shop_app/screens/adminPanel.dart';
 import 'package:shop_app/screens/home/components/itemCardData.dart';
 import 'package:shop_app/screens/widgets/bannerWithDotsIndicator.dart';
@@ -9,7 +10,6 @@ import 'package:shop_app/style/CommonUI.dart';
 import 'categorries.dart';
 
 StreamController<int> streamController = StreamController<int>.broadcast();
-
 
 class Body extends StatelessWidget {
   @override
@@ -49,8 +49,10 @@ class Body extends StatelessWidget {
                               .copyWith(fontWeight: FontWeight.bold),
                         ),
                       ),
-                      // Container(
-                      // color: Colors.black,
+                      Container(
+                        // color: Colors.black,
+                        child: ChangeLanguageButton(),
+                      ),
                       // child: IconButton(
                       // icon: SvgPicture.asset(
                       // "assets/icons/search.svg",
