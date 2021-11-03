@@ -1,10 +1,12 @@
 import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:shop_app/animation/page_slide_widget.dart';
 import 'package:shop_app/constaints.dart';
 import 'package:shop_app/language/widgets/changeLanguageButton.dart';
 import 'package:shop_app/screens/adminPanel.dart';
 import 'package:shop_app/screens/home/components/itemCardData.dart';
+import 'package:shop_app/screens/widgets/SigningPopUp.dart';
 import 'package:shop_app/screens/widgets/bannerWithDotsIndicator.dart';
 import 'package:shop_app/style/CommonUI.dart';
 import 'categorries.dart';
@@ -53,15 +55,15 @@ class Body extends StatelessWidget {
                         // color: Colors.black,
                         child: ChangeLanguageButton(),
                       ),
-                      // child: IconButton(
-                      // icon: SvgPicture.asset(
-                      // "assets/icons/search.svg",
-                      // By default our  icon color is white
-                      // color: Colors.black,
-                      // ),
-                      // onPressed: () {},
-                      // ),
-                      // ),
+                      IconButton(
+                        icon: Icon(Icons.login),
+                        color: Colors.black,
+                        // ),
+                        onPressed: () {
+                          Navigator.of(context)
+                              .push(createRoute(SigningPopUp()));
+                        },
+                      ),
                     ],
                   ),
                 ),

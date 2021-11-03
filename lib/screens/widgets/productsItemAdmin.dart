@@ -146,7 +146,7 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                           Container(
                             child: Row(
                               children: [
-                                widget.data.isPublished == true
+                                widget.data.weight >= 1
                                     ? IconButton(
                                         icon: Icon(
                                           Icons.toggle_on,
@@ -157,7 +157,7 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                           FirebaseFirestore.instance
                                               .collection(widget.data.category)
                                               .doc(widget.data.id)
-                                              .update({'isPublished': false});
+                                              .update({'weight': 0});
                                         })
                                     : IconButton(
                                         icon: Icon(
@@ -169,7 +169,7 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                           FirebaseFirestore.instance
                                               .collection(widget.data.category)
                                               .doc(widget.data.id)
-                                              .update({'isPublished': true});
+                                              .update({'weight': 1});
                                         }),
                                 SizedBox(width: 20),
                                 TextButton(
@@ -284,7 +284,7 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          widget.data.isPublished == true
+                          widget.data.weight >= 1
                               ? IconButton(
                                   icon: Icon(
                                     Icons.toggle_on,
@@ -295,7 +295,7 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                     FirebaseFirestore.instance
                                         .collection(widget.data.category)
                                         .doc(widget.data.id)
-                                        .update({'isPublished': false});
+                                        .update({'weight': 0});
                                   })
                               : IconButton(
                                   icon: Icon(
@@ -307,7 +307,7 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                     FirebaseFirestore.instance
                                         .collection(widget.data.category)
                                         .doc(widget.data.id)
-                                        .update({'isPublished': true});
+                                        .update({'weight': 1});
                                   }),
 
                           SizedBox(

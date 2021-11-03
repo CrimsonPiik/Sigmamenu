@@ -233,7 +233,7 @@ class _AddProductButtonState extends State<AddProductButton> {
                         'image': _imageController.text,
                         'price': _priceController.text,
                         'rate': 0,
-                        'weight': 0,
+                        'weight': 1,
                         //subCategory: ---
                       }).whenComplete(() {
                         Navigator.of(context).pop();

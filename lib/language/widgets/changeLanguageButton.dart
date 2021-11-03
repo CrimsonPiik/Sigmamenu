@@ -19,8 +19,7 @@ class ChangeLanguageButton extends StatelessWidget {
         ///.~saleh
         ProjectLanguage.changeLanguage();
 
-        //TODO: uncomment this
-        // Provider.of<RhinoLanguageChangeNotifier>(context, listen: false).setlocale(RhinoLanguage.locale);
+     
       },
     );
   }

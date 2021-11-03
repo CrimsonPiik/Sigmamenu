@@ -15,7 +15,6 @@ class Product {
   bool isOnSale = false;
   Rating rating = Rating();
   int weight = 0;
-  Product();
 
   Map<String, dynamic> toMap() {
     return {

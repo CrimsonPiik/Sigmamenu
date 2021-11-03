@@ -1,41 +1,97 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shop_app/Authentication/authMonitor.dart';
+import 'package:shop_app/GeneralFunction/shared_preferences.dart';
+import 'package:shop_app/language/logic/ProjectLanguage.dart';
+import 'package:shop_app/provider/userStateProvider.dart';
 import 'package:shop_app/screens/adminPanel.dart';
-import 'package:shop_app/screens/home/home_screen.dart';
 import 'package:shop_app/screens/staggeredGridView.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   // This widget is the root of your application.
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Sigma Menu',
-      theme: ThemeData(
-        // primaryColor: Colors.brown,
-        colorScheme: ColorScheme.fromSwatch(
-          primarySwatch: Colors.brown,
-        ).copyWith(),
+  State<MyApp> createState() => _MyAppState();
+}
 
-        textTheme: Theme.of(context).textTheme.apply(
-            // displayColor: Colors.brown,
-            // decorationColor: Colors.brown,
-            // bodyColor: Colors.brown
+class _MyAppState extends State<MyApp> {
+  @override
+  void initState() {
+    super.initState();
+    getLocale();
+  }
+
+  ///This gets the last stored language setting for the user, and loads it up the first time the app starts.~Huthaifa
+  getLocale() async {
+    String language = await StorageProvider().getLanguage();
+
+    setState(() {
+      ProjectLanguage.locale =
+          language == "en" ? Locale("en", "US") : Locale("ar", "JO");
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MultiProvider(
+        providers: [
+          ChangeNotifierProvider<UserState>(
+            create: (_) => UserState(),
+          ),
+          // ChangeNotifierProvider<CategoryProvider>(
+          //     create: (_) => CategoryProvider()),
+        ],
+        builder: (context, child) {
+          // return MaterialApp(
+          // Provider.of<ProjectLanguageChangeNotifier>(context, listen: true)
+          //     .setlocale(ProjectLanguage.locale);
+          // return MultiProvider(
+          //     providers: [
+          //       // ChangeNotifierProvider<UserState>(
+          //       //   create: (_) => UserState(),
+          //       // ),
+          //       ChangeNotifierProvider<ProjectLanguageChangeNotifier>(
+          //         create: (_) => ProjectLanguageChangeNotifier(),
+          //       ),],
+          return MaterialApp(
+            // key: GlobalKey<FormState>(),
+            // locale: Provider.of<ProjectLanguageChangeNotifier>(context, listen: true)
+            //     .locale,
+            // localizationsDelegates: [
+            //   ProjectLanguage.delegate,
+            // ],
+            debugShowCheckedModeBanner: false,
+            title: 'Sigma Menu',
+            theme: ThemeData(
+              // primaryColor: Colors.brown,
+              colorScheme: ColorScheme.fromSwatch(
+                primarySwatch: Colors.brown,
+              ).copyWith(),
+
+              textTheme: Theme.of(context).textTheme.apply(
+                  // displayColor: Colors.brown,
+                  // decorationColor: Colors.brown,
+                  // bodyColor: Colors.brown
+                  ),
+              visualDensity: VisualDensity.adaptivePlatformDensity,
             ),
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      initialRoute: '/',
-      routes: {
-        // When navigating to the "/" route, build the FirstScreen widget.
-        // '/': (context) => const FirstScreen(),
-        // When navigating to the "/second" route, build the SecondScreen widget.
-        '/admin': (context) => AdminPanel(),
-        '/dashboard': (context) => StaggerdGridView(),
-      },
-      home: HomeScreen(),
-    );
+            initialRoute: '/',
+            routes: {
+              // When navigating to the "/" route, build the FirstScreen widget.
+              // '/': (context) => const FirstScreen(),
+              // When navigating to the "/second" route, build the SecondScreen widget.
+              '/admin': (context) => AdminPanel(),
+              '/dashboard': (context) => StaggerdGridView(),
+            },
+            home: AuthMonitor(),
+            // ),
+          );
+        });
   }
 }

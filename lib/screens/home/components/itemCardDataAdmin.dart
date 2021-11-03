@@ -40,8 +40,8 @@ class _ItemCardDataAdminState extends State<ItemCardDataAdmin> {
     return StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance
             .collection(category)
-            .where('category', isEqualTo: category)
-            // .orderBy('weight', descending: true)
+            // .where('category', isEqualTo: category)
+            .orderBy('weight', descending: true)
             .snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasError) {

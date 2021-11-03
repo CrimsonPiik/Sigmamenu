@@ -98,58 +98,109 @@ class BackGroundTile extends StatefulWidget {
 
 class _BackGroundTileState extends State<BackGroundTile>
     with SingleTickerProviderStateMixin {
-  late AnimationController controller;
-  late Animation growingAnimation;
-  late Animation animation;
+  late AnimationController _controller;
+  // late Animation growingAnimation;
+  // late Animation animation;
+
+  // AnimationController? _animationContainer;
+  // static FirebaseAnalytics analytics = FirebaseAnalytics();
+  late var transitionTween;
+  late var borderRadius;
+
   @override
   void initState() {
     super.initState();
-    controller =
-        AnimationController(duration: const Duration(seconds: 2), vsync: this);
-    growingAnimation = Tween(begin: 10.0, end: 100.0)
-        .animate(CurvedAnimation(parent: controller, curve: Curves.easeIn));
-    animation = Tween(begin: -0.25, end: 0.0).animate(CurvedAnimation(
-      parent: controller,
-      curve: Curves.easeIn,
-    ))
-      ..addStatusListener((status) {
-        if (status == AnimationStatus.completed) {
-          controller.reverse();
-        }
-        if (status == AnimationStatus.dismissed) {
-          Navigator.pop(context);
-        }
-      });
+
+    _controller =
+        AnimationController(duration: const Duration(seconds: 4), vsync: this)
+          ..addStatusListener((status) {
+            // if (status == AnimationStatus.completed) {
+            // Navigator.pop(context);
+            // }
+          });
+
+    transitionTween = Tween<double>(
+      begin: 10.0,
+      end: 300.0,
+    ).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: Curves.ease,
+      ),
+    );
+    borderRadius = BorderRadiusTween(
+      begin: BorderRadius.circular(75.0),
+      end: BorderRadius.circular(0.0),
+    ).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: Curves.ease,
+      ),
+    );
+    _controller.forward();
   }
 
   @override
   void dispose() {
-    // _controller.dispose();
+    _controller.dispose();
     super.dispose();
   }
 
+  // double containerMarginTop = 500;
+
+  // double loginButtonsMargin = 20;
+
+  // void animationLogin() {
+  //   _animationContainer = AnimationController(
+  //       vsync: this,
+  //       duration: Duration(milliseconds: 1500),
+  //       animationBehavior: AnimationBehavior.preserve);
+  //   _animationContainer?.forward();
+  // }
+
+  // @override
+  // void dispose() {
+  //   // _privacyPolicy.dispose();
+  //   // _termsAndConditions.dispose();
+  //   _animationContainer?.dispose();
+
+  //   super.dispose();
+  // }
+
   @override
   Widget build(BuildContext context) {
-    final double width = MediaQuery.of(context).size.width;
-
-    controller.forward();
     return AnimatedBuilder(
-        animation: controller,
-        builder: (context, child) {
-          return Transform(
-              transform:
-                  Matrix4.translationValues(animation.value * width, 0.0, 0.0),
+      animation: _controller,
+      builder: (context, child) {
+        return Scaffold(
+            body: Center(
+                child: Stack(
+          children: <Widget>[
+            // Center(
+            //     child: Container(
+            //   width: 200.0,
+            //   height: 200.0,
+            //   color: Colors.black12,
+            // )),
+            Center(
               child: InkWell(
                 onTap: () {},
                 child: Stack(
                   children: [
                     Container(
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image: NetworkImage(widget.background),
-                            fit: BoxFit.fill),
-                      ),
-                    ),
+                        alignment: Alignment.bottomCenter,
+                        width: transitionTween.value,
+                        height: transitionTween.value,
+                        // decoration: BoxDecoration(
+                        // color: Colors.black12,
+                        // borderRadius: borderRadius.value,
+                        // ),
+                        decoration: BoxDecoration(
+                          borderRadius: borderRadius.value,
+                          image: DecorationImage(
+                              image: NetworkImage(widget.background),
+                              fit: BoxFit.fill),
+                        )),
                     Container(
                       decoration: BoxDecoration(color: Color(0x4D303030)),
                       child: Center(
@@ -163,7 +214,38 @@ class _BackGroundTileState extends State<BackGroundTile>
                     ),
                   ],
                 ),
-              ));
-        });
+              ),
+            ),
+          ],
+        )));
+      },
+    );
   }
 }
+    // return InkWell(
+    //     onTap: () {},
+    //     child: Stack(
+    //       children: [
+    //         Container(
+    //           decoration: BoxDecoration(
+    //             image: DecorationImage(
+    //                 image: NetworkImage(widget.background), fit: BoxFit.fill),
+    //           ),
+    //         ),
+    //         Container(
+    //           decoration: BoxDecoration(color: Color(0x4D303030)),
+    //           child: Center(
+    //               child: Text(
+    //             widget.text,
+    //             style: TextStyle(
+    //                 fontSize: 20,
+    //                 fontWeight: FontWeight.bold,
+    //                 color: Colors.white),
+    //           )),
+    //         ),
+    //       ],
+    //       // ),
+    //     ));
+    // });
+  
+
