@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:shop_app/constaints.dart';
 import 'package:shop_app/language/logic/ProjectLanguage.dart';
 import 'package:shop_app/models/product.dart';
-import 'package:shop_app/screens/details/details_screen.dart';
 import 'package:shop_app/style/AssetsManager.dart';
 import 'package:shop_app/style/CommonUI.dart';
 import 'package:shop_app/style/ScreenUtil.dart';
@@ -222,6 +221,9 @@ class ItemCard extends StatelessWidget {
                           // SingleChildScrollView(
                           // child:
                           Container(
+                            width: Responsive.isDesktop(context)
+                                ? Responsive.width(context) / 2
+                                : Responsive.width(context),
                             padding: EdgeInsets.only(
                                 top: kDefaultPaddin * 2,
                                 left: kDefaultPaddin,
@@ -254,6 +256,7 @@ class ItemCard extends StatelessWidget {
                                   children: [
                                     SizedBox(width: 10),
                                     Column(
+                                      
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: <Widget>[
@@ -268,7 +271,7 @@ class ItemCard extends StatelessWidget {
                                                   fontWeight: FontWeight.bold,
                                                   fontSize: 24),
                                         ),
-                                        SizedBox(height: 15),
+                                        SizedBox(height: 12),
 
                                         RichText(
                                           text: TextSpan(
@@ -304,11 +307,13 @@ class ItemCard extends StatelessWidget {
                                             ),
                                             // SizedBox(height: 1),
                                             Container(
-                                              padding: EdgeInsets.only(
-                                                  right: Responsive.isDesktop(
-                                                          context)
-                                                      ? size.width / 2
-                                                      : 1),
+                                              // padding: EdgeInsets.only(right: 100),
+                                              width: Responsive.isDesktop(
+                                                      context)
+                                                  ? Responsive.width(context) /
+                                                      2.2
+                                                  : Responsive.width(context) /1.35,
+                                     
                                               child: Text(
                                                 ProjectLanguage.isLTR()
                                                     ? "${product.descriptionEn}"
