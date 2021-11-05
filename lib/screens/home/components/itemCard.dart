@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shop_app/constaints.dart';
 import 'package:shop_app/language/logic/ProjectLanguage.dart';
 import 'package:shop_app/models/product.dart';
 import 'package:shop_app/screens/details/details_screen.dart';
@@ -44,14 +45,16 @@ class ItemCard extends StatelessWidget {
         children: [
           InkWell(
             onTap: () => {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => DetailsScreen(
-                    product: product,
-                  ),
-                ),
-              ),
+              _itemDescriptionDialog(context)
+
+              // Navigator.push(
+              //   context,
+              //   MaterialPageRoute(
+              //     builder: (context) => DetailsScreen(
+              //       product: product,
+              //     ),
+              //   ),
+              // ),
             },
             child: Container(
               // decoration: BoxDecoration(
@@ -122,8 +125,7 @@ class ItemCard extends StatelessWidget {
                                 // height: 10,
                                 child: CommonUI.text(
                                   context: context,
-                                  text: 
-                                  ProjectLanguage.isLTR()
+                                  text: ProjectLanguage.isLTR()
                                       ? product.nameEn
                                       : product.nameAr,
                                   textAlign: TextAlign.center,
@@ -195,5 +197,152 @@ class ItemCard extends StatelessWidget {
       ),
     );
   }
-}
 
+// =====  =====  ===== =====  =====  ===== =====  =====  ===== =====  =====  ===== =====  =====
+// =====                                    DIALOG                                        =====
+// =====  =====  ===== =====  =====  ===== =====  =====  ===== =====  =====  ===== =====  =====
+
+  _itemDescriptionDialog(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return Center(
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  // crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    // SingleChildScrollView(
+                    // child:
+                    SizedBox(
+                      child: Stack(
+                        children: <Widget>[
+                          // SingleChildScrollView(
+                          // child:
+                          Container(
+                            padding: EdgeInsets.only(
+                                top: kDefaultPaddin * 2,
+                                left: kDefaultPaddin,
+                                right: kDefaultPaddin,
+                                bottom: kDefaultPaddin),
+                            // height: size.height *1.5,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(24),
+                                topRight: Radius.circular(24),
+                                bottomLeft: Radius.circular(24),
+                                bottomRight: Radius.circular(24),
+                              ),
+                            ),
+                            child: Column(
+                              children: [
+                                Center(
+                                  child: Hero(
+                                    tag: "${product.id}",
+                                    child: Image.network(
+                                      product.image,
+                                      width: 300,
+                                      height: 250,
+                                      fit: BoxFit.fill,
+                                    ),
+                                  ),
+                                ),
+                                Row(
+                                  children: [
+                                    SizedBox(width: 10),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: <Widget>[
+                                        SizedBox(height: 18),
+                                        Text(
+                                          product.nameEn,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .headline4!
+                                              .copyWith(
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 24),
+                                        ),
+                                        SizedBox(height: 15),
+
+                                        RichText(
+                                          text: TextSpan(
+                                            children: [
+                                              TextSpan(text: "Price\n"),
+                                              TextSpan(
+                                                text: "\$${product.price}",
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .headline4!
+                                                    .copyWith(
+                                                      color: Colors.black,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        SizedBox(height: 40),
+                                        // RichText(
+                                        // text: TextSpan(
+                                        // style: TextStyle(color: kTextColor),
+                                        Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            // SizedBox(height: 35),
+                                            Text(
+                                              "Description\n",
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            // SizedBox(height: 1),
+                                            Container(
+                                              padding: EdgeInsets.only(
+                                                  right: Responsive.isDesktop(
+                                                          context)
+                                                      ? size.width / 2
+                                                      : 1),
+                                              child: Text(
+                                                ProjectLanguage.isLTR()
+                                                    ? "${product.descriptionEn}"
+                                                    : "${product.descriptionAr}",
+                                                // style: Theme.of(context)
+                                                // .textTheme
+                                                // .headline5!
+                                                // .copyWith(
+                                                // fontWeight: FontWeight.bold),
+                                              ),
+                                            ),
+                                            SizedBox(height: kDefaultPaddin * 2)
+                                            // ],
+                                          ],
+                                        ),
+                                        // ),
+                                        // ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                          // ),
+                        ],
+                      ),
+                    ),
+                    // )
+                  ],
+                ),
+              ),
+            ),
+          );
+        });
+  }
+}
