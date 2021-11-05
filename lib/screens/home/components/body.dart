@@ -51,18 +51,23 @@ class Body extends StatelessWidget {
                               .copyWith(fontWeight: FontWeight.bold),
                         ),
                       ),
-                      Container(
-                        // color: Colors.black,
-                        child: ChangeLanguageButton(),
-                      ),
-                      IconButton(
-                        icon: Icon(Icons.login),
-                        color: Colors.black,
-                        // ),
-                        onPressed: () {
-                          Navigator.of(context)
-                              .push(createRoute(SigningPopUp()));
-                        },
+                      Row(
+                        children: [
+                          Container(
+                            // color: Colors.black,
+                            child: ChangeLanguageButton(),
+                          ),
+                          SizedBox(width: 5),
+                          IconButton(
+                            icon: Icon(Icons.login),
+                            color: Colors.black,
+                            // ),
+                            onPressed: () {
+                              Navigator.of(context)
+                                  .push(createRoute(SigningPopUp()));
+                            },
+                          ),
+                        ],
                       ),
                     ],
                   ),

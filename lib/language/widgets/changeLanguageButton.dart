@@ -10,7 +10,7 @@ class ChangeLanguageButton extends StatelessWidget {
       child: Row(
         children: [
           Icon(Icons.language),
-          Text(ProjectLanguage.isLTR() ? ar['language']! : en['language']!),
+          // Text(ProjectLanguage.isLTR() ? ar['language']! : en['language']!),
         ],
       ),
       onTap: () {
