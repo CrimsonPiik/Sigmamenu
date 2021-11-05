@@ -4,7 +4,7 @@
       "collectionId": "Drinks",
       "fields": [
         {
-          "fieldPath": "category",
+          "fieldPath": "isPublished",
           "mode": "DESCENDING"
         },
         {
@@ -17,7 +17,7 @@
       "collectionId": "Appetizers",
       "fields": [
         {
-          "fieldPath": "category",
+          "fieldPath": "isPublished",
           "mode": "DESCENDING"
         },
         {
@@ -32,7 +32,7 @@
       "collectionId": "Brunch",
       "fields": [
         {
-          "fieldPath": "category",
+          "fieldPath": "isPublished",
           "mode": "DESCENDING"
         },
         {
@@ -47,7 +47,7 @@
       "collectionId": "Desserts",
       "fields": [
         {
-          "fieldPath": "category",
+          "fieldPath": "isPublished",
           "mode": "DESCENDING"
         },
         {
@@ -62,7 +62,7 @@
       "collectionId": "Main Courses",
       "fields": [
         {
-          "fieldPath": "category",
+          "fieldPath": "isPublished",
           "mode": "DESCENDING"
         },
         {
@@ -77,7 +77,7 @@
       "collectionId": "Salads",
       "fields": [
         {
-          "fieldPath": "category",
+          "fieldPath": "isPublished",
           "mode": "DESCENDING"
         },
         {

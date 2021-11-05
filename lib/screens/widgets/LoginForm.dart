@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:shop_app/Authentication/ProjectFirebaseAuth.dart';
-import 'package:shop_app/Authentication/guest_signin_widget.dart';
 import 'package:shop_app/animation/fadeAnimation.dart';
 import 'package:shop_app/language/logic/ProjectLanguage.dart';
 import 'package:shop_app/screens/home/components/SigningButton.dart';

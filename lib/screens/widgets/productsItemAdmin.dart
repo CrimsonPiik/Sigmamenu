@@ -7,7 +7,6 @@ import 'package:shop_app/models/product.dart';
 import 'package:shop_app/style/AssetsManager.dart';
 import 'package:shop_app/style/CommonUI.dart';
 import 'package:shop_app/style/ScreenUtil.dart';
-import 'package:shop_app/style/Style.dart';
 
 class ProductsItemAdmin extends StatefulWidget {
   final Product data;
@@ -29,12 +28,11 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
   ValueNotifier<String?> _imagevalue = ValueNotifier<String?>(null);
   final _formKey = GlobalKey<FormBuilderState>();
 
-  bool editText = false;
-
   late String _name;
   late String _description;
   late double _price;
   late String _image;
+  late double _value; //= widget.data.weight.toDouble();
 
   @override
   void initState() {
@@ -42,302 +40,300 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
     _description = widget.data.descriptionEn;
     _price = widget.data.price;
     _image = widget.data.image;
+    _value = widget.data.weight.toDouble();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(16),
-      margin: EdgeInsets.only(bottom: 20),
-      decoration: BoxDecoration(
-        color: Colors.grey.withOpacity(0.1),
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: Responsive.isDesktop(context)
-          ? Row(
-              children: [
-                Container(
-                    width: 120,
-                    // height: 120,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(4),
-                    ),
-                    child: CommonUI.cachedImage(
-                        widget.data.image, ImageAssets.placeholder,
-                        fit: BoxFit.cover)),
-                SizedBox(
-                  width: 16,
+        padding: EdgeInsets.all(16),
+        margin: EdgeInsets.only(bottom: 20),
+        decoration: BoxDecoration(
+          color: Colors.grey.withOpacity(0.1),
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child:
+            //  Responsive.isDesktop(context)
+            // ?
+
+            Row(
+          children: [
+            Container(
+                width: 120,
+                // height: 120,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(4),
                 ),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      //   // SizedBox(
-                      //   //   height: 20,
-                      //   // ),
-                      Text(
-                        widget.data.nameEn,
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 1,
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 16),
-                      ),
-                      // CommonUI.text(
-                      //   context: context,
-                      //   text: widget.data.nameEn,
-                      //   // RhinoLanguage.isLTR()
-                      //   //     ? product.nameEn
-                      //   //     : product.nameAr,
-                      //   textAlign: TextAlign.center,
-                      //   style: FontStyle.normal(
-                      //       context: context, fontWeight: FontWeight.bold),
-                      // ),
-
-                      SizedBox(
-                        height: 4,
-                      ),
-                      Text(
-                        widget.data.descriptionEn,
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 2,
-                        style: TextStyle(
-                            fontWeight: FontWeight.w400, fontSize: 14),
-                      ),
-                      SizedBox(
-                        height: 4,
-                      ),
-                      Text(
-                        widget.data.price.toString(),
-                        style: TextStyle(
-                            fontWeight: FontWeight.w300,
-                            // fontStyle: FontStyle.italic,
-                            fontSize: 12),
-                      ),
-                      // CommonUI.text(
-                      //   context: context,
-                      //   text: widget.data.descriptionEn,
-                      //   // RhinoLanguage.isLTR()
-                      //   //     ? product.nameEn
-                      //   //     : product.nameAr,
-                      //   textAlign: TextAlign.center,
-                      //   style: FontStyle.normal(
-                      //     context: context,
-                      //     // fontWeight: FontWeight.bold
-                      //   ),
-                      // ),
-
-                      // SizedBox(
-                      //   height: 4,
-                      // ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          // CommonUI.text(
-                          //   context: context,
-                          //   text: widget.data.price.toString(),
-                          //   // RhinoLanguage.isLTR()
-                          //   //     ? product.nameEn
-                          //   //     : product.nameAr,
-                          //   textAlign: TextAlign.center,
-                          //   style: FontStyle.normasl(
-                          //       context: context, fontWeight: FontWeight.bold),
-                          // ),
-                          Container(
-                            child: Row(
-                              children: [
-                                widget.data.weight >= 1
-                                    ? IconButton(
-                                        icon: Icon(
-                                          Icons.toggle_on,
-                                          color: Colors.green,
-                                          size: 35,
-                                        ),
-                                        onPressed: () {
-                                          FirebaseFirestore.instance
-                                              .collection(widget.data.category)
-                                              .doc(widget.data.id)
-                                              .update({'weight': 0});
-                                        })
-                                    : IconButton(
-                                        icon: Icon(
-                                          Icons.toggle_off,
-                                          color: Colors.red,
-                                          size: 35,
-                                        ),
-                                        onPressed: () {
-                                          FirebaseFirestore.instance
-                                              .collection(widget.data.category)
-                                              .doc(widget.data.id)
-                                              .update({'weight': 1});
-                                        }),
-                                SizedBox(width: 20),
-                                TextButton(
-                                    onPressed: () {
-                                      _showEditDialog(context);
-                                    },
-                                    child:
-                                        Icon(Icons.edit, color: Colors.brown)),
-                                TextButton(
-                                    onPressed: () {
-                                      _showDeleteDialog(context);
-                                    },
-                                    child:
-                                        Icon(Icons.delete, color: Colors.red)),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                )
-              ],
-            )
-          : Row(
-              children: [
-                Container(
-                    width: 55,
-                    height: 55,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(4),
-                    ),
-                    child: CommonUI.cachedImage(
-                        widget.data.image, ImageAssets.placeholder,
-                        fit: BoxFit.cover)),
-                SizedBox(
-                  width: 14,
-                ),
-
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(height: 16),
-                      CommonUI.text(
-                        context: context,
-                        text: widget.data.nameEn,
-                        // RhinoLanguage.isLTR()
-                        //     ? product.nameEn
-                        //     : product.nameAr,
-                        textAlign: TextAlign.center,
-                        style: FontStyle.normal(
-                            context: context, fontWeight: FontWeight.bold),
-                      ),
-
-                      // Text(
-                      //   widget.data.nameEn,
-                      //   overflow: TextOverflow.ellipsis,
-                      //   maxLines: 1,
-                      //   style: TextStyle(
-                      //       fontWeight: FontWeight.bold, fontSize: 16),
-                      // ),
-                      SizedBox(
-                        height: 3,
-                      ),
-                      // Text(
-                      //   widget.data.descriptionEn,
-                      //   overflow: TextOverflow.ellipsis,
-                      //   maxLines: 2,
-                      //   style: TextStyle(
-                      //       fontWeight: FontWeight.w400, fontSize: 14),
-                      // ),
-                      // SingleChildScrollView(
-                      // child:
-
-                      // Text(
-                      //   widget.data.price.toString(),
-                      //   style: TextStyle(
-                      //       fontWeight: FontWeight.w300,
-                      //       // fontStyle: FontStyle.italic,
-                      //       fontSize: 12),
-                      // ),
-                      CommonUI.text(
-                        context: context,
-                        text: widget.data.price.toString(),
-                        // RhinoLanguage.isLTR()
-                        //     ? product.nameEn
-                        //     : product.nameAr,
-                        textAlign: TextAlign.center,
-                        style: FontStyle.normal(
-                            context: context, fontWeight: FontWeight.bold),
-                      ),
-                      SizedBox(
-                        height: 3,
-                      ),
-                      CommonUI.text(
-                        context: context,
-                        text: widget.data.descriptionEn,
-                        maxLines: 2,
-                        // RhinoLanguage.isLTR()
-                        //     ? product.nameEn
-                        //     : product.nameAr,
-                        textAlign: TextAlign.center,
-                        style: FontStyle.normal(
-                          context: context,
-                          //  fontWeight: FontWeight.bold
-                          // ),
-                        ),
-                      ),
-
-                      // SizedBox(height: 2),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          widget.data.weight >= 1
-                              ? IconButton(
-                                  icon: Icon(
-                                    Icons.toggle_on,
-                                    color: Colors.green,
-                                    size: 30,
-                                  ),
-                                  onPressed: () {
-                                    FirebaseFirestore.instance
-                                        .collection(widget.data.category)
-                                        .doc(widget.data.id)
-                                        .update({'weight': 0});
-                                  })
-                              : IconButton(
-                                  icon: Icon(
-                                    Icons.toggle_off,
-                                    color: Colors.red,
-                                    size: 30,
-                                  ),
-                                  onPressed: () {
-                                    FirebaseFirestore.instance
-                                        .collection(widget.data.category)
-                                        .doc(widget.data.id)
-                                        .update({'weight': 1});
-                                  }),
-
-                          SizedBox(
-                            width: 45,
-                            child: TextButton(
-                                onPressed: () {
-                                  _showEditDialog(context);
-                                },
-                                child: Icon(Icons.edit, color: Colors.brown)),
-                          ),
-                          SizedBox(
-                            width: 45,
-                            child: TextButton(
-                                onPressed: () {
-                                  _showDeleteDialog(context);
-                                },
-                                child: Icon(Icons.delete, color: Colors.red)),
-                          ),
-                          // ),
-                        ],
-                      ),
-                      // ),
-                    ],
-                  ),
-                ),
-                // )
-              ],
+                child: CommonUI.cachedImage(
+                    widget.data.image, ImageAssets.placeholder,
+                    fit: BoxFit.cover)),
+            SizedBox(
+              width: 16,
             ),
-    );
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  //   // SizedBox(
+                  //   //   height: 20,
+                  //   // ),
+                  Text(
+                    widget.data.nameEn,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                  ),
+                  // CommonUI.text(
+                  //   context: context,
+                  //   text: widget.data.nameEn,
+                  //   // RhinoLanguage.isLTR()
+                  //   //     ? product.nameEn
+                  //   //     : product.nameAr,
+                  //   textAlign: TextAlign.center,
+                  //   style: FontStyle.normal(
+                  //       context: context, fontWeight: FontWeight.bold),
+                  // ),
+
+                  SizedBox(
+                    height: 4,
+                  ),
+                  Text(
+                    widget.data.descriptionEn,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 2,
+                    style: TextStyle(fontWeight: FontWeight.w400, fontSize: 14),
+                  ),
+                  SizedBox(
+                    height: 4,
+                  ),
+                  Text(
+                    widget.data.price.toString(),
+                    style: TextStyle(
+                        fontWeight: FontWeight.w300,
+                        // fontStyle: FontStyle.italic,
+                        fontSize: 12),
+                  ),
+                  // CommonUI.text(
+                  //   context: context,
+                  //   text: widget.data.descriptionEn,
+                  //   // RhinoLanguage.isLTR()
+                  //   //     ? product.nameEn
+                  //   //     : product.nameAr,
+                  //   textAlign: TextAlign.center,
+                  //   style: FontStyle.normal(
+                  //     context: context,
+                  //     // fontWeight: FontWeight.bold
+                  //   ),
+                  // ),
+
+                  // SizedBox(
+                  //   height: 4,
+                  // ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      widget.data.weight >= 1
+                          ? IconButton(
+                              icon: Icon(
+                                Icons.toggle_on,
+                                color: Colors.green,
+                                size: 35,
+                              ),
+                              onPressed: () {
+                                FirebaseFirestore.instance
+                                    .collection(widget.data.category)
+                                    .doc(widget.data.id)
+                                    .update({'weight': 0});
+                              })
+                          : IconButton(
+                              icon: Icon(
+                                Icons.toggle_off,
+                                color: Colors.red,
+                                size: 35,
+                              ),
+                              onPressed: () {
+                                FirebaseFirestore.instance
+                                    .collection(widget.data.category)
+                                    .doc(widget.data.id)
+                                    .update({'weight': 1});
+                              }),
+                      SizedBox(width: 20),
+                      TextButton(
+                          onPressed: () {
+                            setState(() {
+                              _nameEnController = TextEditingController(
+                                  text: widget.data.nameEn);
+                              _descriptionEnController = TextEditingController(
+                                  text: widget.data.descriptionEn);
+                              _priceController = TextEditingController(
+                                  text: widget.data.price.toString());
+                              _imageController = TextEditingController(
+                                  text: widget.data.image);
+                              _value = widget.data.weight.toDouble();
+                            });
+                            _showEditDialog(context, widget.data);
+                          },
+                          child: Icon(Icons.edit, color: Colors.brown)),
+                      TextButton(
+                          onPressed: () {
+                            _showDeleteDialog(context);
+                          },
+                          child: Icon(Icons.delete, color: Colors.red)),
+                    ],
+                  ),
+                ],
+              ),
+            )
+          ],
+        )
+        // : Row(
+        //     children: [
+        //       Container(
+        //           width: 55,
+        //           height: 55,
+        //           decoration: BoxDecoration(
+        //             borderRadius: BorderRadius.circular(4),
+        //           ),
+        //           child: CommonUI.cachedImage(
+        //               widget.data.image, ImageAssets.placeholder,
+        //               fit: BoxFit.cover)),
+        //       SizedBox(
+        //         width: 14,
+        //       ),
+
+        //       Expanded(
+        //         child: Column(
+        //           crossAxisAlignment: CrossAxisAlignment.start,
+        //           children: [
+        //             SizedBox(height: 16),
+        //             CommonUI.text(
+        //               context: context,
+        //               text: widget.data.nameEn,
+        //               // RhinoLanguage.isLTR()
+        //               //     ? product.nameEn
+        //               //     : product.nameAr,
+        //               textAlign: TextAlign.center,
+        //               style: FontStyle.normal(
+        //                   context: context, fontWeight: FontWeight.bold),
+        //             ),
+
+        //             // Text(
+        //             //   widget.data.nameEn,
+        //             //   overflow: TextOverflow.ellipsis,
+        //             //   maxLines: 1,
+        //             //   style: TextStyle(
+        //             //       fontWeight: FontWeight.bold, fontSize: 16),
+        //             // ),
+        //             SizedBox(
+        //               height: 3,
+        //             ),
+        //             // Text(
+        //             //   widget.data.descriptionEn,
+        //             //   overflow: TextOverflow.ellipsis,
+        //             //   maxLines: 2,
+        //             //   style: TextStyle(
+        //             //       fontWeight: FontWeight.w400, fontSize: 14),
+        //             // ),
+        //             // SingleChildScrollView(
+        //             // child:
+
+        //             // Text(
+        //             //   widget.data.price.toString(),
+        //             //   style: TextStyle(
+        //             //       fontWeight: FontWeight.w300,
+        //             //       // fontStyle: FontStyle.italic,
+        //             //       fontSize: 12),
+        //             // ),
+        //             CommonUI.text(
+        //               context: context,
+        //               text: widget.data.price.toString(),
+        //               // RhinoLanguage.isLTR()
+        //               //     ? product.nameEn
+        //               //     : product.nameAr,
+        //               textAlign: TextAlign.center,
+        //               style: FontStyle.normal(
+        //                   context: context, fontWeight: FontWeight.bold),
+        //             ),
+        //             SizedBox(
+        //               height: 3,
+        //             ),
+        //             CommonUI.text(
+        //               context: context,
+        //               text: widget.data.descriptionEn,
+        //               maxLines: 2,
+        //               // RhinoLanguage.isLTR()
+        //               //     ? product.nameEn
+        //               //     : product.nameAr,
+        //               textAlign: TextAlign.center,
+        //               style: FontStyle.normal(
+        //                 context: context,
+        //                 //  fontWeight: FontWeight.bold
+        //                 // ),
+        //               ),
+        //             ),
+
+        //             // SizedBox(height: 2),
+        //             Row(
+        //               mainAxisAlignment: MainAxisAlignment.end,
+        //               children: [
+        //                 widget.data.weight >= 1
+        //                     ? IconButton(
+        //                         icon: Icon(
+        //                           Icons.toggle_on,
+        //                           color: Colors.green,
+        //                           size: 30,
+        //                         ),
+        //                         onPressed: () {
+        //                           FirebaseFirestore.instance
+        //                               .collection(widget.data.category)
+        //                               .doc(widget.data.id)
+        //                               .update({'weight': 0});
+        //                         })
+        //                     : IconButton(
+        //                         icon: Icon(
+        //                           Icons.toggle_off,
+        //                           color: Colors.red,
+        //                           size: 30,
+        //                         ),
+        //                         onPressed: () {
+        //                           FirebaseFirestore.instance
+        //                               .collection(widget.data.category)
+        //                               .doc(widget.data.id)
+        //                               .update({'weight': 2});
+        //                         }),
+
+        //                 SizedBox(
+        //                   width: 45,
+        //                   child: TextButton(
+        //                       onPressed: () {
+        //                         _showEditDialog(context, widget.data);
+        //                       },
+        //                       child: Icon(Icons.edit, color: Colors.brown)),
+        //                 ),
+        //                 SizedBox(
+        //                   width: 45,
+        //                   child: TextButton(
+        //                       onPressed: () {
+        //                         _showDeleteDialog(context);
+        //                       },
+        //                       child: Icon(Icons.delete, color: Colors.red)),
+        //                 ),
+        //                 // ),
+        //               ],
+        //             ),
+        //             // ),
+        //           ],
+        //         ),
+        //       ),
+        //       // )
+        //     ],
+        //   ),
+        );
   }
+// =====  =====  ===== =====  =====  ===== =====  =====  ===== =====  =====  ===== =====  =====
+// =====                                    DELETE                                        =====
+// =====  =====  ===== =====  =====  ===== =====  =====  ===== =====  =====  ===== =====  =====
 
   _showDeleteDialog(BuildContext context) {
     showDialog(
@@ -394,7 +390,11 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
         });
   }
 
-  _showEditDialog(BuildContext context) {
+// =====  =====  ===== =====  =====  ===== =====  =====  ===== =====  =====  ===== =====  =====
+// =====                                    EDIT                                          =====
+// =====  =====  ===== =====  =====  ===== =====  =====  ===== =====  =====  ===== =====  =====
+
+  _showEditDialog(BuildContext context, Product product) {
     showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -557,6 +557,52 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                           ]),
                         ),
                       ),
+                      product.weight != 0
+                          ? Column(
+                              children: [
+                                SizedBox(height: 4),
+                                Text(
+                                  "Value ",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 12,
+                                      color: Colors.brown[400]),
+                                ),
+                                SizedBox(height: 4),
+                                StatefulBuilder(
+                                  builder: (context, state) => Center(
+                                    child: SliderTheme(
+                                      data: SliderTheme.of(context).copyWith(
+                                        activeTrackColor: Colors.brown[700],
+                                        inactiveTrackColor: Colors.brown[100],
+                                        trackShape:
+                                            RectangularSliderTrackShape(),
+                                        trackHeight: 4.0,
+                                        thumbColor: Colors.brown[400],
+                                        thumbShape: RoundSliderThumbShape(
+                                            enabledThumbRadius: 12.0),
+                                        overlayColor:
+                                            Colors.brown.withAlpha(32),
+                                        overlayShape: RoundSliderOverlayShape(
+                                            overlayRadius: 28.0),
+                                      ),
+                                      child: Slider(
+                                        value: _value,
+                                        min: 1.0,
+                                        max: 101.0,
+                                        divisions: 2,
+                                        onChanged: (value) {
+                                          state(() {
+                                            _value = value;
+                                          });
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            )
+                          : Container(),
                       SizedBox(height: 4),
                       Container(
                         child: CommonUI.textField(
@@ -582,13 +628,14 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                     if (_formKey.currentState!.validate()) {
                       FocusScope.of(context).unfocus();
                       await FirebaseFirestore.instance
-                          .collection(widget.data.category)
-                          .doc(widget.data.id)
+                          .collection(product.category)
+                          .doc(product.id)
                           .update({
                         'nameEn': _nameEnController.text,
                         'descriptionEn': _descriptionEnController.text,
                         'price': _priceController.text,
-                        'image': _imageController.text
+                        'image': _imageController.text,
+                        'weight': _value
                       }).whenComplete(() {
                         Navigator.of(context).pop();
 
@@ -619,12 +666,16 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                 ),
                 TextButton(
                   onPressed: () {
-                    _nameEnController = TextEditingController(text: _name);
-                    _descriptionEnController =
-                        TextEditingController(text: _description);
-                    _priceController =
-                        TextEditingController(text: _price.toString());
-                    _imageController = TextEditingController(text: _image);
+                    setState(() {
+                      _nameEnController =
+                          TextEditingController(text: product.nameEn);
+                      _descriptionEnController =
+                          TextEditingController(text: product.descriptionEn);
+                      _priceController =
+                          TextEditingController(text: product.price.toString());
+                      _imageController =
+                          TextEditingController(text: product.image);
+                    });
 
                     Navigator.of(context).pop();
                   },

@@ -27,6 +27,7 @@ class _AddProductButtonState extends State<AddProductButton> {
   ValueNotifier<String?> _imagevalue = ValueNotifier<String?>(null);
   final _formKey = GlobalKey<FormBuilderState>();
   String category = categoriesList.elementAt(0);
+  double _value = 50.0;
 
   @override
   void initState() {
@@ -85,8 +86,7 @@ class _AddProductButtonState extends State<AddProductButton> {
                   children: <Widget>[
                     ValueListenableBuilder(
                       valueListenable: _imagevalue,
-                      builder:
-                          (BuildContext context, dynamic value, Widget? child) {
+                      builder: (context, dynamic value, Widget? child) {
                         return InkWell(
                           onTap: () async {
                             _imageController.text =
@@ -197,6 +197,44 @@ class _AddProductButtonState extends State<AddProductButton> {
                       ),
                     ),
                     SizedBox(height: 4),
+                    Text(
+                      "Value ",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 12,
+                          color: Colors.brown[400]),
+                    ),
+                    SizedBox(height: 4),
+                    StatefulBuilder(
+                      builder: (context, state) => Center(
+                        child: SliderTheme(
+                          data: SliderTheme.of(context).copyWith(
+                            activeTrackColor: Colors.brown[700],
+                            inactiveTrackColor: Colors.brown[100],
+                            trackShape: RectangularSliderTrackShape(),
+                            trackHeight: 4.0,
+                            thumbColor: Colors.brown[400],
+                            thumbShape:
+                                RoundSliderThumbShape(enabledThumbRadius: 12.0),
+                            overlayColor: Colors.brown.withAlpha(32),
+                            overlayShape:
+                                RoundSliderOverlayShape(overlayRadius: 28.0),
+                          ),
+                          child: Slider(
+                            value: _value,
+                            min: 1.0,
+                            max: 101.0,
+                            divisions: 2,
+                            onChanged: (value) {
+                              state(() {
+                                _value = value + 1;
+                              });
+                            },
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 4),
                     Container(
                       child: CommonUI.textField(
                         context: context,
@@ -209,7 +247,7 @@ class _AddProductButtonState extends State<AddProductButton> {
                           FormBuilderValidators.required(context),
                         ]),
                       ),
-                    ),
+                    )
                   ],
                 ),
               ),
@@ -233,14 +271,16 @@ class _AddProductButtonState extends State<AddProductButton> {
                         'image': _imageController.text,
                         'price': _priceController.text,
                         'rate': 0,
-                        'weight': 1,
+                        'weight': _value.round(),
                         //subCategory: ---
                       }).whenComplete(() {
-                        Navigator.of(context).pop();
+                        id = generateId();
+                        _imagevalue.value = 'assets/images/placeholder.jpg';
                         _descriptionEnController.clear();
                         _priceController.clear();
                         _imageController.clear();
                         _nameEnController.clear();
+                        Navigator.of(context).pop();
 
                         CommonUI.successDialog(context,
                             message: "Saved successfully");
@@ -269,6 +309,8 @@ class _AddProductButtonState extends State<AddProductButton> {
                 ),
                 TextButton(
                   onPressed: () {
+                    id = generateId();
+                    _imagevalue.value = 'assets/images/placeholder.jpg';
                     _descriptionEnController.clear();
                     _priceController.clear();
                     _imageController.clear();

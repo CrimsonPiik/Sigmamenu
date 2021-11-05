@@ -23,6 +23,17 @@ class ItemCardData extends StatefulWidget {
 
 class _ItemCardDataState extends State<ItemCardData> {
   String category = categoriesList.elementAt(0);
+  @override
+  void initState() {
+    widget.stream.listen((index) {
+      // mySetState(index);
+      if (!mounted) return;
+      setState(() {
+        category = categoriesList.elementAt(index);
+      });
+    });
+    super.initState();
+  }
   // List<DocumentSnapshot> products = [];
   // bool isLoading = false;
   // bool hasMore = true;
@@ -77,16 +88,6 @@ class _ItemCardDataState extends State<ItemCardData> {
   //   });
   // }
 
-  @override
-  void initState() {
-    widget.stream.listen((index) {
-      // mySetState(index);
-      if (!mounted) return;
-      setState(() {
-        category = categoriesList.elementAt(index);
-      });
-    });
-  }
   // });
   //   _scrollController.addListener(() {
   //     double maxScroll = _scrollController.position.maxScrollExtent;
@@ -113,6 +114,7 @@ class _ItemCardDataState extends State<ItemCardData> {
             FirebaseFirestore.instance
                 .collection(category)
                 .where('weight', isGreaterThan: 0)
+                // .where('isPublished', isEqualTo: 1)
                 .orderBy('weight', descending: true)
                 .snapshots(),
         builder: (context, snapshot) {
