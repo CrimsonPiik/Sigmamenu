@@ -14,7 +14,7 @@ class ItemCard extends StatelessWidget {
   final bool isWithFavorite;
   final bool isFavoriteScreen;
   final Color? color;
-  const ItemCard({
+  ItemCard({
     Key? key,
     required this.product,
     required this.isBordered,
@@ -44,8 +44,8 @@ class ItemCard extends StatelessWidget {
         children: [
           InkWell(
             onTap: () => {
-              _itemDescriptionDialog(context)
-
+              // _itemDescriptionDialog(context)
+              _animationDialog(context)
               // Navigator.push(
               //   context,
               //   MaterialPageRoute(
@@ -201,153 +201,176 @@ class ItemCard extends StatelessWidget {
 // =====                                    DIALOG                                        =====
 // =====  =====  ===== =====  =====  ===== =====  =====  ===== =====  =====  ===== =====  =====
 
-  _itemDescriptionDialog(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-    showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return Center(
-            child: SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  // crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    // SingleChildScrollView(
-                    // child:
-                    SizedBox(
-                      child: Stack(
-                        children: <Widget>[
-                          // SingleChildScrollView(
-                          // child:
-                          Container(
-                            width: Responsive.isDesktop(context)
-                                ? Responsive.width(context) / 2
-                                : Responsive.width(context),
-                            padding: EdgeInsets.only(
-                                top: kDefaultPaddin * 2,
-                                left: kDefaultPaddin,
-                                right: kDefaultPaddin,
-                                bottom: kDefaultPaddin),
-                            // height: size.height *1.5,
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(24),
-                                topRight: Radius.circular(24),
-                                bottomLeft: Radius.circular(24),
-                                bottomRight: Radius.circular(24),
-                              ),
-                            ),
-                            child: Column(
-                              children: [
-                                Center(
-                                  child: Hero(
-                                    tag: "${product.id}",
-                                    child: Image.network(
-                                      product.image,
-                                      width: 300,
-                                      height: 250,
-                                      fit: BoxFit.fill,
-                                    ),
-                                  ),
-                                ),
-                                Row(
-                                  children: [
-                                    SizedBox(width: 10),
-                                    Column(
-                                      
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: <Widget>[
-                                        SizedBox(height: 18),
-                                        Text(
-                                          product.nameEn,
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .headline4!
-                                              .copyWith(
-                                                  color: Colors.black,
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 24),
-                                        ),
-                                        SizedBox(height: 12),
 
-                                        RichText(
-                                          text: TextSpan(
-                                            children: [
-                                              TextSpan(text: "Price\n"),
-                                              TextSpan(
-                                                text: "\$${product.price}",
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .headline4!
-                                                    .copyWith(
-                                                      color: Colors.black,
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                    ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        SizedBox(height: 40),
-                                        // RichText(
-                                        // text: TextSpan(
-                                        // style: TextStyle(color: kTextColor),
-                                        Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            // SizedBox(height: 35),
-                                            Text(
-                                              "Description\n",
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                            // SizedBox(height: 1),
-                                            Container(
-                                              // padding: EdgeInsets.only(right: 100),
-                                              width: Responsive.isDesktop(
-                                                      context)
-                                                  ? Responsive.width(context) /
-                                                      2.2
-                                                  : Responsive.width(context) /1.35,
-                                     
-                                              child: Text(
-                                                ProjectLanguage.isLTR()
-                                                    ? "${product.descriptionEn}"
-                                                    : "${product.descriptionAr}",
-                                                // style: Theme.of(context)
-                                                // .textTheme
-                                                // .headline5!
-                                                // .copyWith(
-                                                // fontWeight: FontWeight.bold),
-                                              ),
-                                            ),
-                                            SizedBox(height: kDefaultPaddin * 2)
-                                            // ],
-                                          ],
-                                        ),
-                                        // ),
-                                        // ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ],
+  bool _fromTop = true;
+  _animationDialog(context) {
+    showGeneralDialog(
+      barrierDismissible: true,
+      barrierLabel: "Product Animation",
+      barrierColor: Colors.black.withOpacity(0.5),
+      transitionDuration: Duration(milliseconds: 600),
+      context: context,
+      pageBuilder: (context, anim1, anim2) {
+        //  return    showDialog(
+        // context: context,
+        // builder: (BuildContext context) {
+        return Center(
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                // crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  // SingleChildScrollView(
+                  // child:
+                  // Positioned(
+                  //   child: new CircleButton(
+                  //       onTap: () => print("Close"), iconData: Icons.close),
+                  //   top: 10.0,
+                  //   left: 130.0,
+                  // ),
+                  SizedBox(
+                    child: Stack(
+                      children: <Widget>[
+                        // SingleChildScrollView(
+                        // child:
+                        Container(
+                          width: Responsive.isDesktop(context)
+                              ? Responsive.width(context) / 2
+                              : Responsive.width(context),
+                          padding: EdgeInsets.only(
+                              top: kDefaultPaddin * 2,
+                              left: kDefaultPaddin,
+                              right: kDefaultPaddin,
+                              bottom: kDefaultPaddin),
+                          // height: size.height *1.5,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(24),
+                              topRight: Radius.circular(24),
+                              bottomLeft: Radius.circular(24),
+                              bottomRight: Radius.circular(24),
                             ),
                           ),
-                          // ),
-                        ],
-                      ),
+                          child: Column(
+                            children: [
+                              Center(
+                                child: Hero(
+                                  tag: "${product.id}",
+                                  child: Image.network(
+                                    product.image,
+                                    width: 300,
+                                    height: 250,
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+                              ),
+                              Row(
+                                children: [
+                                  SizedBox(width: 10),
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      SizedBox(height: 18),
+                                      Text(
+                                        product.nameEn,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline4!
+                                            .copyWith(
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 24),
+                                      ),
+                                      SizedBox(height: 12),
+
+                                      RichText(
+                                        text: TextSpan(
+                                          children: [
+                                            TextSpan(text: "Price\n"),
+                                            TextSpan(
+                                              text: "\$${product.price}",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headline4!
+                                                  .copyWith(
+                                                    color: Colors.black,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      SizedBox(height: 40),
+                                      // RichText(
+                                      // text: TextSpan(
+                                      // style: TextStyle(color: kTextColor),
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          // SizedBox(height: 35),
+                                          Container(
+                                            width: Responsive.isDesktop(context)
+                                                ? Responsive.width(context) /
+                                                    2.2
+                                                : Responsive.width(context) /
+                                                    1.35,
+                                            child: RichText(
+                                              text: TextSpan(
+                                                children: [
+                                                  TextSpan(
+                                                      text: "Description\n",
+                                                      style: TextStyle(
+                                                          fontSize: 15,
+                                                          color: Colors.black,
+                                                          fontWeight:
+                                                              FontWeight.bold)),
+                                                  TextSpan(
+                                                      text:
+                                                          "${product.descriptionEn}",
+                                                      style: TextStyle(
+                                                          fontSize: 14,
+                                                          color: Colors.black)),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        
+                                          SizedBox(height: kDefaultPaddin * 2)
+                                          
+                                        ],
+                                      ),
+                                      
+                                      
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      
+                      ],
                     ),
-                    // )
-                  ],
-                ),
+                  ),
+                  
+                ],
               ),
             ),
-          );
-        });
+          ),
+        );
+      },
+      transitionBuilder: (context, anim1, anim2, child) {
+        return SlideTransition(
+          position:
+              Tween(begin: Offset(0, _fromTop ? -1 : 1), end: Offset(0, 0))
+                  .animate(anim1),
+          child: child,
+        );
+      },
+    );
   }
 }
