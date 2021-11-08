@@ -31,8 +31,7 @@ class _EditProfileInformationState extends State<EditProfileInformation> {
 
   ValueNotifier<String?> _imagevalue = ValueNotifier<String?>(null);
 
-  
-   @override
+  @override
   Widget build(BuildContext context) {
     AppUser user = Provider.of<UserState>(context, listen: true).appUser;
 
@@ -67,101 +66,99 @@ class _EditProfileInformationState extends State<EditProfileInformation> {
                                 await fireBaseUploadFileWeb(user.id);
                             _imagevalue.value = _imageController.text;
                           },
-                          child:
-                              _imagevalue.value != null
-                                  ? Center(
-                                      child: Stack(children: [
-                                        Container(
-                                          height: 180,
-                                          width: 180,
-                                          child: InteractiveViewer(
-                                            child: Image.network(
-                                              _imageController.text,
-                                              fit: BoxFit.fitWidth,
-                                              loadingBuilder: (context, child,
-                                                  loadingProgress) {
-                                                if (loadingProgress == null) {
-                                                  return child;
-                                                }
-                                                return Center(
-                                                  child:
-                                                      CircularProgressIndicator(),
-                                                );
-                                              },
-                                            ),
-                                          ),
+                          child: _imagevalue.value != null
+                              ? Center(
+                                  child: Stack(children: [
+                                    Container(
+                                      height: 180,
+                                      width: 180,
+                                      child: InteractiveViewer(
+                                        child: Image.network(
+                                          _imageController.text,
+                                          fit: BoxFit.fitWidth,
+                                          loadingBuilder: (context, child,
+                                              loadingProgress) {
+                                            if (loadingProgress == null) {
+                                              return child;
+                                            }
+                                            return Center(
+                                              child:
+                                                  CircularProgressIndicator(),
+                                            );
+                                          },
                                         ),
-                                        Container(
-                                          decoration: BoxDecoration(
-                                              color: Color(0x4D303030)),
-                                          height: 180,
-                                          width: 180,
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsets.only(top: 145),
-                                          child: Container(
-                                              height: 35,
-                                              width: 180,
-                                              decoration: BoxDecoration(
-                                                  color: Color(0x4D000000)),
-                                              child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  Text(
-                                                    'Edit ',
-                                                    style: TextStyle(
-                                                        color: Colors.white),
-                                                  ),
-                                                  Icon(Icons.edit,
-                                                      color: Colors.white)
-                                                ],
-                                              )),
-                                        ),
-                                      ]),
-                                    )
-                                  : Center(
-                                      child: Stack(children: [
-                                        Container(
-                                            height: 180,
-                                            width: 180,
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(4),
-                                            ),
-                                            child: CommonUI.cachedImage(
-                                                user.image,
-                                                ImageAssets.placeholder,
-                                                fit: BoxFit.fitWidth)),
-                                        Container(
-                                          decoration: BoxDecoration(
-                                              color: Color(0x4D303030)),
-                                          height: 180,
-                                          width: 180,
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsets.only(top: 145),
-                                          child: Container(
-                                              height: 35,
-                                              width: 180,
-                                              decoration: BoxDecoration(
-                                                  color: Color(0x4D000000)),
-                                              child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  Text(
-                                                    'Edit ',
-                                                    style: TextStyle(
-                                                        color: Colors.white),
-                                                  ),
-                                                  Icon(Icons.edit,
-                                                      color: Colors.white)
-                                                ],
-                                              )),
-                                        ),
-                                      ]),
+                                      ),
                                     ),
+                                    Container(
+                                      decoration: BoxDecoration(
+                                          color: Color(0x4D303030)),
+                                      height: 180,
+                                      width: 180,
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(top: 145),
+                                      child: Container(
+                                          height: 35,
+                                          width: 180,
+                                          decoration: BoxDecoration(
+                                              color: Color(0x4D000000)),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Text(
+                                                'Edit ',
+                                                style: TextStyle(
+                                                    color: Colors.white),
+                                              ),
+                                              Icon(Icons.edit,
+                                                  color: Colors.white)
+                                            ],
+                                          )),
+                                    ),
+                                  ]),
+                                )
+                              : Center(
+                                  child: Stack(children: [
+                                    Container(
+                                        height: 180,
+                                        width: 180,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(4),
+                                        ),
+                                        child: CommonUI.cachedImage(
+                                            user.image, ImageAssets.placeholder,
+                                            fit: BoxFit.fitWidth)),
+                                    Container(
+                                      decoration: BoxDecoration(
+                                          color: Color(0x4D303030)),
+                                      height: 180,
+                                      width: 180,
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(top: 145),
+                                      child: Container(
+                                          height: 35,
+                                          width: 180,
+                                          decoration: BoxDecoration(
+                                              color: Color(0x4D000000)),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Text(
+                                                'Edit ',
+                                                style: TextStyle(
+                                                    color: Colors.white),
+                                              ),
+                                              Icon(Icons.edit,
+                                                  color: Colors.white)
+                                            ],
+                                          )),
+                                    ),
+                                  ]),
+                                ),
                         ),
                       ),
                     );
@@ -240,9 +237,10 @@ class _EditProfileInformationState extends State<EditProfileInformation> {
             children: [
               Center(
                 child: CircleAvatar(
-                  radius: Responsive.isDesktop(context) ? 80 : 50,
-                  backgroundImage: NetworkImage(user.image),
-                ),
+                    radius: Responsive.isDesktop(context) ? 80 : 50,
+                    backgroundImage:
+                        NetworkImage(user.image)
+                    ),
               ),
               SizedBox(height: 60),
               Center(
