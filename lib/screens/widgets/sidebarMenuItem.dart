@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:shop_app/layout/sidebar.dart';
-import 'package:shop_app/models/model.dart';
-import 'package:shop_app/screens/adminPanel.dart';
+import 'package:sigmamenu/layout/sidebar.dart';
+import 'package:sigmamenu/models/model.dart';
+import 'package:sigmamenu/screens/adminPanel.dart';
 
 class SideBarMenuItem extends StatefulWidget {
   final MenuItem item;

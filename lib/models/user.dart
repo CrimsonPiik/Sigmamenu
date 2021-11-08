@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:shop_app/GeneralFunction/random_id_generator.dart';
+import 'package:sigmamenu/GeneralFunction/random_id_generator.dart';
 
 class AppUser {
   String id = generateId();
@@ -83,7 +83,6 @@ class AppUser {
         other.orderId == orderId &&
         other.fcmToken == fcmToken &&
         other.favorites == favorites;
-    
   }
 
   @override

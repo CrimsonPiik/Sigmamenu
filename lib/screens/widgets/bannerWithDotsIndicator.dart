@@ -1,9 +1,9 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:shop_app/screens/widgets/AdsCard.dart';
-import 'package:shop_app/models/banner.dart';
-import 'package:shop_app/style/ScreenUtil.dart';
+import 'package:sigmamenu/screens/widgets/AdsCard.dart';
+import 'package:sigmamenu/models/banner.dart';
+import 'package:sigmamenu/style/ScreenUtil.dart';
 
 class BannerWithDotsIndicator extends StatefulWidget {
   BannerWithDotsIndicator({

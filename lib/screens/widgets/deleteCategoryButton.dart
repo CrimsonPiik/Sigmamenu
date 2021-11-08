@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:shop_app/screens/adminPanel.dart';
+import 'package:sigmamenu/screens/adminPanel.dart';
 
 class DeleteCategoryButton extends StatefulWidget {
   final Stream<int> stream;

@@ -1,14 +1,18 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:shop_app/screens/home/components/body.dart';
-import 'package:shop_app/screens/home/components/categorries.dart';
-import 'package:shop_app/screens/home/components/itemCardDataAdmin.dart';
-import 'package:shop_app/screens/widgets/addBannerButton.dart';
-import 'package:shop_app/screens/widgets/addCategoryButton.dart';
-import 'package:shop_app/screens/widgets/addProductButton.dart';
-import 'package:shop_app/screens/widgets/adminPanelBanners.dart';
-import 'package:shop_app/screens/widgets/deleteCategoryButton.dart';
-import 'package:shop_app/screens/widgets/userProfile.dart';
+import 'package:provider/provider.dart';
+import 'package:sigmamenu/models/user.dart';
+import 'package:sigmamenu/provider/userStateProvider.dart';
+import 'package:sigmamenu/screens/home/components/body.dart';
+import 'package:sigmamenu/screens/home/components/categorries.dart';
+import 'package:sigmamenu/screens/home/components/itemCardDataAdmin.dart';
+import 'package:sigmamenu/screens/widgets/addBannerButton.dart';
+import 'package:sigmamenu/screens/widgets/addCategoryButton.dart';
+import 'package:sigmamenu/screens/widgets/addProductButton.dart';
+import 'package:sigmamenu/screens/widgets/adminPanelBanners.dart';
+import 'package:sigmamenu/screens/widgets/deleteCategoryButton.dart';
+import 'package:sigmamenu/screens/widgets/userProfile.dart';
 
 class AdminPanelProducts extends StatefulWidget {
   final Stream<int> menu;
@@ -22,10 +26,10 @@ class _AdminPanelProductsState extends State<AdminPanelProducts> {
 
   @override
   void initState() {
-    super.initState();
     widget.menu.listen((whichMenu) {
       mySetState(whichMenu);
     });
+    super.initState();
   }
 
   void mySetState(int whichMenu) {
@@ -36,8 +40,14 @@ class _AdminPanelProductsState extends State<AdminPanelProducts> {
     });
   }
 
+  // getUserName() async {
+  //   await FirebaseFirestore.instance.collection('users');
+  // }
+
   @override
   Widget build(BuildContext context) {
+    AppUser user = Provider.of<UserState>(context, listen: true).appUser;
+
     return item == 0 //USER
         ? Expanded(
             // color: primaryLight.withAlpha(100),
@@ -57,13 +67,14 @@ class _AdminPanelProductsState extends State<AdminPanelProducts> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              'WELCOME BACK MOE !',
+                              'WELCOME BACK ${user.name} !',
                               style: TextStyle(
                                   fontSize: 18, fontWeight: FontWeight.w600),
                             ),
                             SizedBox(width: 4),
                             CircleAvatar(
-                              backgroundColor: Colors.brown,
+                              backgroundImage: NetworkImage(user.image),
+                              // backgroundColor: Colors.brown,
                             ),
                           ],
                         ),
@@ -96,14 +107,14 @@ class _AdminPanelProductsState extends State<AdminPanelProducts> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  'WELCOME BACK MOE !',
+                                  'WELCOME BACK ${user.name} !',
                                   style: TextStyle(
                                       fontSize: 18,
                                       fontWeight: FontWeight.w600),
                                 ),
                                 SizedBox(width: 4),
                                 CircleAvatar(
-                                  backgroundColor: Colors.brown,
+                                  backgroundImage: NetworkImage(user.image),
                                 ),
                               ],
                             ),
@@ -146,14 +157,14 @@ class _AdminPanelProductsState extends State<AdminPanelProducts> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  'WELCOME BACK MOE !',
+                                  'WELCOME BACK ${user.name} !',
                                   style: TextStyle(
                                       fontSize: 18,
                                       fontWeight: FontWeight.w600),
                                 ),
                                 SizedBox(width: 4),
                                 CircleAvatar(
-                                  backgroundColor: Colors.brown,
+                                  backgroundImage: NetworkImage(user.image),
                                 ),
                               ],
                             ),

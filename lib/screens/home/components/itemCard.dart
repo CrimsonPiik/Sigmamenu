@@ -1,14 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:shop_app/constaints.dart';
-import 'package:shop_app/language/logic/ProjectLanguage.dart';
-import 'package:shop_app/models/product.dart';
-import 'package:shop_app/style/AssetsManager.dart';
-import 'package:shop_app/style/CommonUI.dart';
-import 'package:shop_app/style/ScreenUtil.dart';
+import 'package:sigmamenu/constaints.dart';
+import 'package:sigmamenu/language/logic/ProjectLanguage.dart';
+import 'package:sigmamenu/models/product.dart';
+import 'package:sigmamenu/style/AssetsManager.dart';
+import 'package:sigmamenu/style/CommonUI.dart';
+import 'package:sigmamenu/style/ScreenUtil.dart';
 import '../../../style/Style.dart';
 
-class ItemCard extends StatelessWidget {
+class ItemCard extends StatefulWidget {
   final Product product;
   final bool isBordered;
   final bool isWithFavorite;
@@ -24,6 +24,11 @@ class ItemCard extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  State<ItemCard> createState() => _ItemCardState();
+}
+
+class _ItemCardState extends State<ItemCard> {
+  @override
   Widget build(BuildContext context) {
     // final double cardHeight = 200; //300
     final double cardWidth = 130;
@@ -34,8 +39,8 @@ class ItemCard extends StatelessWidget {
         boxShadow: [
           BoxShadow(
             color: Colors.grey.withOpacity(0.4),
-            spreadRadius: isBordered ? 2 : 1,
-            blurRadius: isBordered ? 9 : 9,
+            spreadRadius: widget.isBordered ? 2 : 1,
+            blurRadius: widget.isBordered ? 9 : 9,
             offset: Offset(0, 4),
           ),
         ],
@@ -81,7 +86,7 @@ class ItemCard extends StatelessWidget {
                                   : 100,
                       width: double.maxFinite,
                       child: CommonUI.cachedImage(
-                          product.image, ImageAssets.placeholder,
+                          widget.product.image, ImageAssets.placeholder,
                           fit: BoxFit.cover),
                     ),
                   ),
@@ -103,7 +108,7 @@ class ItemCard extends StatelessWidget {
                       // width: isWithFavorite ? ScreenUtil.width(context) * 0.7 : null,
                       decoration: BoxDecoration(
                         color:
-                            color ?? Theme.of(context).cardColor, //Style.cream,
+                            widget.color ?? Theme.of(context).cardColor, //Style.cream,
                         borderRadius: BorderRadius.vertical(
                           bottom: Radius.circular(14),
                           // top: Radius.circular(14),
@@ -116,7 +121,7 @@ class ItemCard extends StatelessWidget {
                               height: Responsive.isDesktop(context) ? 10 : 6),
 
                           SizedBox(
-                            width: isBordered ? double.maxFinite : cardWidth,
+                            width: widget.isBordered ? double.maxFinite : cardWidth,
                             child: Padding(
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 1),
@@ -125,8 +130,8 @@ class ItemCard extends StatelessWidget {
                                 child: CommonUI.text(
                                   context: context,
                                   text: ProjectLanguage.isLTR()
-                                      ? product.nameEn
-                                      : product.nameAr,
+                                      ? widget.product.nameEn
+                                      : widget.product.nameAr,
                                   textAlign: TextAlign.center,
                                   style: FontStyle.small(
                                       context: context,
@@ -157,7 +162,7 @@ class ItemCard extends StatelessWidget {
                           SizedBox(
                               height: Responsive.isDesktop(context) ? 9 : 5),
                           SizedBox(
-                            width: isBordered ? double.maxFinite : cardWidth,
+                            width: widget.isBordered ? double.maxFinite : cardWidth,
                             child: Padding(
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 1),
@@ -165,7 +170,7 @@ class ItemCard extends StatelessWidget {
                                 // height: 10,
                                 child: CommonUI.text(
                                     context: context,
-                                    text: ' JOD ' + product.price.toString(),
+                                    text: ' JOD ' + widget.product.price.toString(),
                                     // RhinoLanguage.isLTR()
                                     //     ? product.nameEn
                                     //     : product.nameAr,
@@ -197,11 +202,8 @@ class ItemCard extends StatelessWidget {
     );
   }
 
-// =====  =====  ===== =====  =====  ===== =====  =====  ===== =====  =====  ===== =====  =====
-// =====                                    DIALOG                                        =====
-// =====  =====  ===== =====  =====  ===== =====  =====  ===== =====  =====  ===== =====  =====
-
   bool _fromTop = true;
+
   _animationDialog(context) {
     showGeneralDialog(
       barrierDismissible: true,
@@ -253,9 +255,9 @@ class ItemCard extends StatelessWidget {
                                 children: [
                                   Center(
                                     child: Hero(
-                                      tag: "${product.id}",
+                                      tag: "${widget.product.id}",
                                       child: Image.network(
-                                        product.image,
+                                        widget.product.image,
                                         width: 300,
                                         height: 250,
                                         fit: BoxFit.fill,
@@ -271,7 +273,7 @@ class ItemCard extends StatelessWidget {
                                         children: <Widget>[
                                           SizedBox(height: 18),
                                           Text(
-                                            product.nameEn,
+                                            widget.product.nameEn,
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .headline4!
@@ -287,7 +289,7 @@ class ItemCard extends StatelessWidget {
                                               children: [
                                                 TextSpan(text: "Price\n"),
                                                 TextSpan(
-                                                  text: "\$${product.price}",
+                                                  text: "\$${widget.product.price}",
                                                   style: Theme.of(context)
                                                       .textTheme
                                                       .headline4!
@@ -332,7 +334,7 @@ class ItemCard extends StatelessWidget {
                                                                       .bold)),
                                                       TextSpan(
                                                           text:
-                                                              "${product.descriptionEn}",
+                                                              "${widget.product.descriptionEn}",
                                                           style: TextStyle(
                                                               fontSize: 14,
                                                               color: Colors

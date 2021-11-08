@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shop_app/style/ScreenUtil.dart';
+import 'package:sigmamenu/style/ScreenUtil.dart';
 
 class SigningButton extends StatelessWidget {
   final String text;

@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:shop_app/GeneralFunction/random_id_generator.dart';
-import 'package:shop_app/models/user.dart';
-import 'package:shop_app/style/AssetsManager.dart';
+import 'package:sigmamenu/GeneralFunction/random_id_generator.dart';
+import 'package:sigmamenu/models/user.dart';
+import 'package:sigmamenu/style/AssetsManager.dart';
 
 class ProjectFirebaseAuth {
   Future resetEmailPassword(String email) async {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:shop_app/style/CommonShape.dart';
-import 'package:shop_app/style/CommonUI.dart';
+import 'package:sigmamenu/style/CommonShape.dart';
+import 'package:sigmamenu/style/CommonUI.dart';
 
 // ignore: must_be_immutable
 class AdsCard extends StatelessWidget {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:shop_app/constaints.dart';
-import 'package:shop_app/models/model.dart';
-import 'package:shop_app/screens/widgets/sidebarMenuItem.dart';
+import 'package:sigmamenu/constaints.dart';
+import 'package:sigmamenu/models/model.dart';
+import 'package:sigmamenu/screens/widgets/sidebarMenuItem.dart';
 
 final List<MenuItem> menuItems = [
   // MenuItem('Home', Icons.home_outlined),

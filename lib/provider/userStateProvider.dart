@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:shop_app/models/user.dart';
+import 'package:sigmamenu/models/user.dart';
 
 class UserState with ChangeNotifier {
   /// [nice]

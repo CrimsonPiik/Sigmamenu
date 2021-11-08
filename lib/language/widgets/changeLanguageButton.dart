@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../logic/ProjectLanguage.dart';
-import '../logic/translatedWords.dart';
 
 class ChangeLanguageButton extends StatelessWidget {
   const ChangeLanguageButton({Key? key}) : super(key: key);

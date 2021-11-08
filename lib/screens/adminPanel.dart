@@ -3,9 +3,9 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:shop_app/layout/sidebar.dart';
-import 'package:shop_app/screens/widgets/adminPanelProducts.dart';
-import 'package:shop_app/style/CommonUI.dart';
+import 'package:sigmamenu/layout/sidebar.dart';
+import 'package:sigmamenu/screens/widgets/adminPanelProducts.dart';
+import 'package:sigmamenu/style/CommonUI.dart';
 
 StreamController<int> streamControllerSideBar =
     StreamController<int>.broadcast();

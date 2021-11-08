@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shop_app/screens/home/components/body.dart';
+import 'package:sigmamenu/screens/home/components/body.dart';
 
 class HomeScreen extends StatelessWidget {
   @override

@@ -1,19 +1,24 @@
 import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:shop_app/animation/page_slide_widget.dart';
-import 'package:shop_app/constaints.dart';
-import 'package:shop_app/language/widgets/changeLanguageButton.dart';
-import 'package:shop_app/screens/adminPanel.dart';
-import 'package:shop_app/screens/home/components/itemCardData.dart';
-import 'package:shop_app/screens/widgets/SigningPopUp.dart';
-import 'package:shop_app/screens/widgets/bannerWithDotsIndicator.dart';
-import 'package:shop_app/style/CommonUI.dart';
+import 'package:sigmamenu/animation/page_slide_widget.dart';
+import 'package:sigmamenu/constaints.dart';
+import 'package:sigmamenu/language/widgets/changeLanguageButton.dart';
+import 'package:sigmamenu/screens/adminPanel.dart';
+import 'package:sigmamenu/screens/home/components/itemCardData.dart';
+import 'package:sigmamenu/screens/widgets/SigningPopUp.dart';
+import 'package:sigmamenu/screens/widgets/bannerWithDotsIndicator.dart';
+import 'package:sigmamenu/style/CommonUI.dart';
 import 'categorries.dart';
 
 StreamController<int> streamController = StreamController<int>.broadcast();
 
-class Body extends StatelessWidget {
+class Body extends StatefulWidget {
+  @override
+  State<Body> createState() => _BodyState();
+}
+
+class _BodyState extends State<Body> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(

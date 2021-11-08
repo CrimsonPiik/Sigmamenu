@@ -2,11 +2,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:shop_app/GeneralFunction/firebase_uploader_web.dart';
-import 'package:shop_app/models/product.dart';
-import 'package:shop_app/style/AssetsManager.dart';
-import 'package:shop_app/style/CommonUI.dart';
-import 'package:shop_app/style/ScreenUtil.dart';
+import 'package:sigmamenu/GeneralFunction/firebase_uploader_web.dart';
+import 'package:sigmamenu/models/product.dart';
+import 'package:sigmamenu/style/AssetsManager.dart';
+import 'package:sigmamenu/style/CommonUI.dart';
+import 'package:sigmamenu/style/ScreenUtil.dart';
 
 class ProductsItemAdmin extends StatefulWidget {
   final Product data;
@@ -421,108 +421,121 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                         valueListenable: _imagevalue,
                         builder: (BuildContext context, dynamic value,
                             Widget? child) {
-                          return InkWell(
-                            onTap: () async {
-                              _imageController.text =
-                                  await fireBaseUploadFileWeb(widget.data.id);
-                              _imagevalue.value = _imageController.text;
-                            },
-                            child: Center(
-                              child: Container(
-                                height: 180,
-                                width: 180,
-                                child: Column(children: [
-                                  _imagevalue.value != null
-                                      ? Stack(children: [
-                                          Container(
-                                            height: 180,
-                                            width: 180,
-                                            child: InteractiveViewer(
-                                              child: Image.network(
-                                                value,
-                                                fit: BoxFit.fitWidth,
-                                                loadingBuilder: (context, child,
-                                                    loadingProgress) {
-                                                  if (loadingProgress == null) {
-                                                    return child;
-                                                  }
-                                                  return Center(
-                                                    child:
-                                                        CircularProgressIndicator(),
-                                                  );
-                                                },
-                                              ),
-                                            ),
-                                          ),
-                                          Container(
-                                            decoration: BoxDecoration(
-                                                color: Color(0x4D303030)),
-                                            height: 180,
-                                            width: 180,
-                                          ),
-                                          Padding(
-                                            padding: EdgeInsets.only(top: 145),
-                                            child: Container(
-                                                height: 35,
+                          return Center(
+                            child: Ink(
+                              width: 180,
+                              height: 180,
+                              child: InkWell(
+                                onTap: () async {
+                                  _imageController.text =
+                                      await fireBaseUploadFileWeb(widget.data.id);
+                                  _imagevalue.value = _imageController.text;
+                                },
+                                child: Center(
+                                  child: Container(
+                                    height: 180,
+                                    width: 180,
+                                    child: Column(children: [
+                                      _imagevalue.value != null
+                                          ? Stack(children: [
+                                              Container(
+                                                height: 180,
                                                 width: 180,
-                                                decoration: BoxDecoration(
-                                                    color: Color(0x4D000000)),
-                                                child: Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  children: [
-                                                    Text(
-                                                      'Edit ',
-                                                      style: TextStyle(
-                                                          color: Colors.white),
-                                                    ),
-                                                    Icon(Icons.edit,
-                                                        color: Colors.white)
-                                                  ],
-                                                )),
-                                          ),
-                                        ])
-                                      : Stack(children: [
-                                          Container(
-                                              height: 180,
-                                              width: 180,
-                                              decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(4),
+                                                child: InteractiveViewer(
+                                                  child: Image.network(
+                                                    value,
+                                                    fit: BoxFit.fitWidth,
+                                                    loadingBuilder: (context,
+                                                        child, loadingProgress) {
+                                                      if (loadingProgress ==
+                                                          null) {
+                                                        return child;
+                                                      }
+                                                      return Center(
+                                                        child:
+                                                            CircularProgressIndicator(),
+                                                      );
+                                                    },
+                                                  ),
+                                                ),
                                               ),
-                                              child: CommonUI.cachedImage(
-                                                  widget.data.image,
-                                                  ImageAssets.placeholder,
-                                                  fit: BoxFit.fitWidth)),
-                                          Container(
-                                            decoration: BoxDecoration(
-                                                color: Color(0x4D303030)),
-                                            height: 180,
-                                            width: 180,
-                                          ),
-                                          Padding(
-                                            padding: EdgeInsets.only(top: 145),
-                                            child: Container(
-                                                height: 35,
-                                                width: 180,
+                                              Container(
                                                 decoration: BoxDecoration(
-                                                    color: Color(0x4D000000)),
-                                                child: Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  children: [
-                                                    Text(
-                                                      'Edit ',
-                                                      style: TextStyle(
-                                                          color: Colors.white),
-                                                    ),
-                                                    Icon(Icons.edit,
-                                                        color: Colors.white)
-                                                  ],
-                                                )),
-                                          ),
-                                        ]),
-                                ]),
+                                                    color: Color(0x4D303030)),
+                                                height: 180,
+                                                width: 180,
+                                              ),
+                                              Padding(
+                                                padding:
+                                                    EdgeInsets.only(top: 145),
+                                                child: Container(
+                                                    height: 35,
+                                                    width: 180,
+                                                    decoration: BoxDecoration(
+                                                        color: Color(0x4D000000)),
+                                                    child: Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      children: [
+                                                        Text(
+                                                          'Edit ',
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.white),
+                                                        ),
+                                                        Icon(Icons.edit,
+                                                            color: Colors.white)
+                                                      ],
+                                                    )),
+                                              ),
+                                            ])
+                                          : Stack(children: [
+                                              Container(
+                                                  height: 180,
+                                                  width: 180,
+                                                  decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(4),
+                                                  ),
+                                                  child: CommonUI.cachedImage(
+                                                      widget.data.image,
+                                                      ImageAssets.placeholder,
+                                                      fit: BoxFit.fitWidth)),
+                                              Container(
+                                                decoration: BoxDecoration(
+                                                    color: Color(0x4D303030)),
+                                                height: 180,
+                                                width: 180,
+                                              ),
+                                              Padding(
+                                                padding:
+                                                    EdgeInsets.only(top: 145),
+                                                child: Container(
+                                                    height: 35,
+                                                    width: 180,
+                                                    decoration: BoxDecoration(
+                                                        color: Color(0x4D000000)),
+                                                    child: Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      children: [
+                                                        Text(
+                                                          'Edit ',
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.white),
+                                                        ),
+                                                        Icon(Icons.edit,
+                                                            color: Colors.white)
+                                                      ],
+                                                    )),
+                                              ),
+                                            ]),
+                                    ]),
+                                  ),
+                                ),
                               ),
                             ),
                           );

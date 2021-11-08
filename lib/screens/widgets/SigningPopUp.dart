@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:shop_app/screens/widgets/LoginForm.dart';
-import 'package:shop_app/screens/widgets/signUpForm.dart';
-import 'package:shop_app/screens/widgets/vSpace.dart';
-import 'package:shop_app/style/CommonUI.dart';
-import 'package:shop_app/style/ScreenUtil.dart';
-import 'package:shop_app/style/Style.dart';
+import 'package:sigmamenu/screens/widgets/LoginForm.dart';
+import 'package:sigmamenu/screens/widgets/signUpForm.dart';
+import 'package:sigmamenu/screens/widgets/vSpace.dart';
+import 'package:sigmamenu/style/CommonUI.dart';
+import 'package:sigmamenu/style/ScreenUtil.dart';
+import 'package:sigmamenu/style/Style.dart';
 
 class SigningPopUp extends StatefulWidget {
   const SigningPopUp({Key? key}) : super(key: key);

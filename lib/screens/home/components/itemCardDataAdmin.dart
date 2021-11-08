@@ -1,12 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:shop_app/constaints.dart';
-import 'package:shop_app/models/product.dart';
-import 'package:shop_app/screens/adminPanel.dart';
-import 'package:shop_app/screens/widgets/productsItemAdmin.dart';
-import 'package:shop_app/style/CommonUI.dart';
-import 'package:shop_app/style/ScreenUtil.dart';
+import 'package:sigmamenu/constaints.dart';
+import 'package:sigmamenu/models/product.dart';
+import 'package:sigmamenu/screens/adminPanel.dart';
+import 'package:sigmamenu/screens/widgets/productsItemAdmin.dart';
+import 'package:sigmamenu/style/CommonUI.dart';
+import 'package:sigmamenu/style/ScreenUtil.dart';
 
 class ItemCardDataAdmin extends StatefulWidget {
   final Stream<int> stream;

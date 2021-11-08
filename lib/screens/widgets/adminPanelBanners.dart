@@ -1,11 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:shop_app/constaints.dart';
-import 'package:shop_app/models/banner.dart';
-import 'package:shop_app/screens/widgets/bannerItem.dart';
-import 'package:shop_app/style/CommonUI.dart';
-import 'package:shop_app/style/ScreenUtil.dart';
+import 'package:sigmamenu/constaints.dart';
+import 'package:sigmamenu/models/banner.dart';
+import 'package:sigmamenu/screens/widgets/bannerItem.dart';
+import 'package:sigmamenu/style/CommonUI.dart';
+import 'package:sigmamenu/style/ScreenUtil.dart';
 
 class AdminPanelBanners extends StatefulWidget {
   AdminPanelBanners({Key? key}) : super(key: key);
@@ -36,9 +36,8 @@ class _AdminPanelBannersState extends State<AdminPanelBanners> {
                 .add(BannerModel.fromMap(item.data() as Map<String, dynamic>));
           }
 
-          print("Banner - Admin Side : " +
-              banners.toString() );
-              // DateTime.now().millisecondsSinceEpoch.toString());
+          print("Banner - Admin Side : " + banners.toString());
+          // DateTime.now().millisecondsSinceEpoch.toString());
           return Expanded(
             child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: kDefaultPaddin),

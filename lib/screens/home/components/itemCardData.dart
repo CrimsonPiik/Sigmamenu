@@ -1,17 +1,192 @@
+// import 'dart:async';
+
+// import 'package:cloud_firestore/cloud_firestore.dart';
+// import 'package:flutter/cupertino.dart';
+// import 'package:flutter/material.dart';
+// import 'package:sigmamenu/constaints.dart';
+// import 'package:sigmamenu/models/product.dart';
+// import 'package:sigmamenu/screens/adminPanel.dart';
+// import 'package:sigmamenu/screens/home/components/itemCard.dart';
+// import 'package:sigmamenu/style/CommonUI.dart';
+// import 'package:sigmamenu/style/ScreenUtil.dart';
+
+// class ItemCardData extends StatefulWidget {
+//   final Stream<int> stream;
+//   ItemCardData(this.stream);
+//   @override
+//   _ItemCardDataState createState() => _ItemCardDataState();
+// }
+
+// class _ItemCardDataState extends State<ItemCardData> {
+//   String category = categoriesList.elementAt(0);
+
+//   StreamController<List<DocumentSnapshot>> _streamController =
+//       StreamController<List<DocumentSnapshot>>();
+//   List<DocumentSnapshot> _products = [];
+
+//   bool _isRequesting = false;
+//   bool _isFinish = false;
+
+//   void onChangeData(List<DocumentChange> docChanges) {
+//     var isChange = false;
+//     docChanges.forEach((productChange) {
+//       if (productChange.type == DocumentChangeType.removed) {
+//         _products.removeWhere((product) {
+//           return productChange.doc.id == product.id;
+//         });
+//         isChange = true;
+//       } else {
+//         if (productChange.type == DocumentChangeType.modified) {
+//           int indexWhere = _products.indexWhere((product) {
+//             return productChange.doc.id == product.id;
+//           });
+
+//           if (indexWhere >= 0) {
+//             _products[indexWhere] = productChange.doc;
+//           }
+//           isChange = true;
+//         }
+//       }
+//     });
+
+//     if (isChange) {
+//       _streamController.add(_products);
+//     }
+//   }
+
+//   void requestNextPage() async {
+//     if (!_isRequesting && !_isFinish) {
+//       QuerySnapshot querySnapshot;
+//       _isRequesting = true;
+//       if (_products.isEmpty) {
+//         querySnapshot = await FirebaseFirestore.instance
+//             .collection(category)
+//             .where('weight', isGreaterThan: 0)
+//             .orderBy('weight', descending: true)
+//             .limit(4)
+//             .get();
+//       } else {
+//         querySnapshot = await FirebaseFirestore.instance
+//             .collection(category)
+//             .where('weight', isGreaterThan: 0)
+//             .orderBy('weight', descending: true)
+//             .startAfterDocument(_products[_products.length - 1])
+//             .limit(4)
+//             .get();
+//       }
+
+//       if (querySnapshot != null) {
+//         int oldSize = _products.length;
+//         _products.addAll(querySnapshot.docs);
+//         int newSize = _products.length;
+//         if (oldSize != newSize) {
+//           _streamController.add(_products);
+//         } else {
+//           _isFinish = true;
+//         }
+//       }
+//       _isRequesting = false;
+//     }
+//   }
+
+//   @override
+//   void initState() {
+//     widget.stream.listen((index) {
+//       if (!mounted) return;
+//       setState(() {
+//         category = categoriesList.elementAt(index);
+//         print(category);
+//       });
+//     });
+
+//     /// This listening to Firebase
+//     FirebaseFirestore.instance
+//         .collection(category)
+// //      .where('weight', isGreaterThan: 0)
+// //      .orderBy('weight', descending: true)
+//         .snapshots()
+//         .listen((data) => onChangeData(data.docChanges));
+
+//     requestNextPage();
+
+//     /// a listener to the index for categorries
+//     /// so it update it with a new list of products
+
+//     super.initState();
+//   }
+
+//   @override
+//   void dispose() {
+//     _streamController.close();
+//     super.dispose();
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return NotificationListener<ScrollNotification>(
+//         onNotification: (ScrollNotification scrollInfo) {
+//           if (scrollInfo.metrics.maxScrollExtent == scrollInfo.metrics.pixels) {
+//             requestNextPage();
+//           }
+//           return true;
+//         },
+//         child: StreamBuilder<List<DocumentSnapshot>>(
+//           stream: _streamController.stream,
+//           builder: (BuildContext context,
+//               AsyncSnapshot<List<DocumentSnapshot>> snapshot) {
+//             if (snapshot.hasError) {
+//               return CommonUI.error(snapshot.error.toString());
+//             }
+//             if (snapshot.connectionState == ConnectionState.waiting)
+//               return CommonUI.loading(context);
+//             List<Product> _productsList = [];
+
+//             List<DocumentSnapshot> shots = snapshot.data!;
+
+//             for (var item in shots) {
+//               _productsList
+//                   .add(Product.fromMap(item.data() as Map<String, dynamic>));
+//             }
+
+//             return Expanded(
+//                 child: Padding(
+//                     padding:
+//                         const EdgeInsets.symmetric(horizontal: kDefaultPaddin),
+//                     child: GridView.builder(
+//                       itemCount: snapshot.data!.length,
+//                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+//                         crossAxisCount: Responsive.isDesktop(context)
+//                             ? 7
+//                             : Responsive.isTablet(context)
+//                                 ? 4
+//                                 : 2,
+//                         mainAxisSpacing: kDefaultPaddin,
+//                         crossAxisSpacing: kDefaultPaddin,
+//                         childAspectRatio: 0.75,
+//                       ),
+//                       itemBuilder: (context, index) => ItemCard(
+//                         product: _productsList[index],
+//                         isBordered: true,
+//                       ),
+//                     )));
+//           },
+//         ));
+//   }
+// }
+
+// WORKS WITHOUT CATEGORIES
+
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:shop_app/models/product.dart';
-import 'package:shop_app/screens/adminPanel.dart';
-import 'package:shop_app/screens/home/components/itemCard.dart';
-import 'package:shop_app/style/CommonUI.dart';
-import 'package:shop_app/constaints.dart';
-import 'package:shop_app/style/ScreenUtil.dart';
-
-// StreamController<List<DocumentSnapshot>> _controller =
-//     StreamController<List<DocumentSnapshot>>.broadcast();
+import 'package:sigmamenu/constaints.dart';
+import 'package:sigmamenu/models/product.dart';
+import 'package:sigmamenu/screens/adminPanel.dart';
+import 'package:sigmamenu/screens/home/components/itemCard.dart';
+import 'package:sigmamenu/style/CommonUI.dart';
+import 'package:sigmamenu/style/ScreenUtil.dart'; 
 
 class ItemCardData extends StatefulWidget {
   final Stream<int> stream;
@@ -26,7 +201,6 @@ class _ItemCardDataState extends State<ItemCardData> {
   @override
   void initState() {
     widget.stream.listen((index) {
-      // mySetState(index);
       if (!mounted) return;
       setState(() {
         category = categoriesList.elementAt(index);
@@ -34,89 +208,15 @@ class _ItemCardDataState extends State<ItemCardData> {
     });
     super.initState();
   }
-  // List<DocumentSnapshot> products = [];
-  // bool isLoading = false;
-  // bool hasMore = true;
-  // int documentLimit = 6;
-  // ScrollController _scrollController = ScrollController();
-  // DocumentSnapshot? lastDocument;
-
-  // Stream<List<DocumentSnapshot>> get _streamController => _controller.stream;
-
-  // getProducts() async {
-  //   // category = categoriesList.elementAt(index);
-  //   if (!hasMore) {
-  //     print('No More Products');
-  //     return;
-  //   }
-  //   if (isLoading) {
-  //     return;
-  //   }
-  //   setState(() {
-  //     isLoading = true;
-  //   });
-  //   QuerySnapshot querySnapshot;
-
-  //   if (lastDocument == null) {
-  //     querySnapshot = await FirebaseFirestore.instance
-  //         .collection(category)
-  //         .where('weight', isGreaterThan: 0)
-  //         .orderBy('weight', descending: true)
-  //         .limit(documentLimit)
-  //         .get();
-  //   } else {
-  //     querySnapshot = await FirebaseFirestore.instance
-  //         .collection(category)
-  //         .where('weight', isGreaterThan: 0)
-  //         .orderBy('weight', descending: true)
-  //         .startAfterDocument(lastDocument!)
-  //         .limit(documentLimit)
-  //         .get();
-  //     print(1);
-  //   }
-  //   if (querySnapshot.docs.length < documentLimit) {
-  //     hasMore = false;
-  //   }
-
-  //   lastDocument = querySnapshot.docs[querySnapshot.docs.length - 1];
-
-  //   products.addAll(querySnapshot.docs);
-  //   _controller.sink.add(products);
-
-  //   setState(() {
-  //     isLoading = false;
-  //   });
-  // }
-
-  // });
-  //   _scrollController.addListener(() {
-  //     double maxScroll = _scrollController.position.maxScrollExtent;
-  //     double currentScroll = _scrollController.position.pixels;
-  //     double delta = MediaQuery.of(context).size.height * 0.20;
-  //     if (maxScroll - currentScroll <= delta) {
-  //       getProducts();
-  //     }
-  //   });
-  //   getProducts();
-
-  //   super.initState();
-  // }
-
-  // void mySetState(int index) {}
 
   @override
   Widget build(BuildContext context) {
-    // return StreamBuilder<List<DocumentSnapshot>>(
     return StreamBuilder<QuerySnapshot>(
-        stream:
-            // _streamController,
-
-            FirebaseFirestore.instance
-                .collection(category)
-                .where('weight', isGreaterThan: 0)
-                // .where('isPublished', isEqualTo: 1)
-                .orderBy('weight', descending: true)
-                .snapshots(),
+        stream: FirebaseFirestore.instance
+            .collection(category)
+            .where('weight', isGreaterThan: 0)
+            .orderBy('weight', descending: true)
+            .snapshots(),
         builder: (context, snapshot) {
           if (snapshot.hasError) {
             return CommonUI.error(snapshot.error.toString());
@@ -125,8 +225,6 @@ class _ItemCardDataState extends State<ItemCardData> {
             return CommonUI.loading(context);
 
           List<Product> productsList = [];
-          // if (snapshot.hasData && snapshot.data!.length > 0) {
-          // List<DocumentSnapshot> shots = snapshot.data!;
           List<DocumentSnapshot> shots = snapshot.data!.docs;
 
           for (var item in shots) {
@@ -140,8 +238,6 @@ class _ItemCardDataState extends State<ItemCardData> {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: kDefaultPaddin),
               child: GridView.builder(
-                  // controller: _scrollController,
-                  // itemCount: snapshot.data!.length,
                   itemCount: productsList.length,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: Responsive.isDesktop(context)
@@ -158,39 +254,7 @@ class _ItemCardDataState extends State<ItemCardData> {
                         isBordered: true,
                       )),
             ),
-            // ),
-            // isLoading
-            //     ? Container(
-            //         width: MediaQuery.of(context).size.width,
-            //         padding: EdgeInsets.all(5),
-            //         color: Colors.yellowAccent,
-            //         child: Text(
-            //           'Loading',
-            //           textAlign: TextAlign.center,
-            //           style: TextStyle(
-            //             fontWeight: FontWeight.bold,
-            //           ),
-            //         ),
-            //       )
-            //     : Container()
-            // ],
           );
-          // } else {
-          // return CircularProgressIndicator();
         });
   }
 }
-/// 1 create a dart file containing the whole arrays into 1 array getting categoryies from Firebase
-  /// 2 make it staful
-  /// 3 inculde the file everywhere we need(the 3 files)
-  /// 4 add Streambuilder once for bothe admin adnd user
-  /// 5 conect my + category to add and delete categories
-  ///
-  // List categoryMenu = [
-  //   'drinks',
-  //   'maincourses',
-  //   'appetizers',
-  //   'desserts',
-  //   'salads',
-  //   'brunch'
-  // ];

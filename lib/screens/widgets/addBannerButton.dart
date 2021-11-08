@@ -2,11 +2,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:shop_app/GeneralFunction/firebase_uploader_web.dart';
-import 'package:shop_app/GeneralFunction/random_id_generator.dart';
-import 'package:shop_app/screens/adminPanel.dart';
-import 'package:shop_app/style/CommonUI.dart';
-import 'package:shop_app/style/ScreenUtil.dart';
+import 'package:sigmamenu/GeneralFunction/firebase_uploader_web.dart';
+import 'package:sigmamenu/GeneralFunction/random_id_generator.dart';
+import 'package:sigmamenu/screens/adminPanel.dart';
+import 'package:sigmamenu/style/CommonUI.dart';
+import 'package:sigmamenu/style/ScreenUtil.dart';
 
 class AddBannerButton extends StatefulWidget {
   @override
@@ -66,85 +66,93 @@ class _AddBannerButtonState extends State<AddBannerButton> {
                       valueListenable: _imagevalue,
                       builder:
                           (BuildContext context, dynamic value, Widget? child) {
-                        return InkWell(
-                          onTap: () async {
-                            _imageBannerController.text =
-                                await fireBaseUploadFileWeb(id);
-                            _imagevalue.value = _imageBannerController.text;
-                          },
-                          child: Center(
-                            child: Container(
-                              height: 130,
-                              width: 250,
-                              child: Column(
-                                children: [
-                                  Stack(children: [
-                                    _imagevalue.value != null
-                                        ? Container(
-                                            height: 130,
-                                            width: 250,
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(4),
-                                            ),
-                                            child: InteractiveViewer(
-                                              child: Image.network(
-                                                value,
-                                                fit: BoxFit.fitWidth,
-                                                loadingBuilder: (context, child,
-                                                    loadingProgress) {
-                                                  if (loadingProgress == null) {
-                                                    return child;
-                                                  }
-                                                  return Center(
-                                                    child:
-                                                        CircularProgressIndicator(),
-                                                  );
-                                                },
+                        return Center(
+                          child: Ink(
+                            width: 180,
+                            height: 180,
+                            child: InkWell(
+                              onTap: () async {
+                                _imageBannerController.text =
+                                    await fireBaseUploadFileWeb(id);
+                                _imagevalue.value = _imageBannerController.text;
+                              },
+                              child: Center(
+                                child: Container(
+                                  height: 130,
+                                  width: 250,
+                                  child: Column(
+                                    children: [
+                                      Stack(children: [
+                                        _imagevalue.value != null
+                                            ? Container(
+                                                height: 130,
+                                                width: 250,
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(4),
+                                                ),
+                                                child: InteractiveViewer(
+                                                  child: Image.network(
+                                                    value,
+                                                    fit: BoxFit.fitWidth,
+                                                    loadingBuilder: (context,
+                                                        child,
+                                                        loadingProgress) {
+                                                      if (loadingProgress ==
+                                                          null) {
+                                                        return child;
+                                                      }
+                                                      return Center(
+                                                        child:
+                                                            CircularProgressIndicator(),
+                                                      );
+                                                    },
+                                                  ),
+                                                ),
+                                              )
+                                            : Container(
+                                                height: 130,
+                                                width: 250,
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(4),
+                                                ),
+                                                child: Image.asset(
+                                                  'assets/images/placeholder.jpg',
+                                                  fit: BoxFit.fitWidth,
+                                                ),
                                               ),
-                                            ),
-                                          )
-                                        : Container(
-                                            height: 130,
-                                            width: 250,
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(4),
-                                            ),
-                                            child: Image.asset(
-                                              'assets/images/placeholder.jpg',
-                                              fit: BoxFit.fitWidth,
-                                            ),
-                                          ),
-                                    Container(
-                                      decoration: BoxDecoration(
-                                          color: Color(0x4D303030)),
-                                      height: 130,
-                                      width: 250,
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.only(top: 95),
-                                      child: Container(
-                                          height: 35,
-                                          width: 250,
+                                        Container(
                                           decoration: BoxDecoration(
-                                              color: Color(0x4D000000)),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              Text(
-                                                'ADD ',
-                                                style: TextStyle(
-                                                    color: Colors.white),
-                                              ),
-                                              Icon(Icons.add,
-                                                  color: Colors.white)
-                                            ],
-                                          )),
-                                    ),
-                                  ]),
-                                ],
+                                              color: Color(0x4D303030)),
+                                          height: 130,
+                                          width: 250,
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.only(top: 95),
+                                          child: Container(
+                                              height: 35,
+                                              width: 250,
+                                              decoration: BoxDecoration(
+                                                  color: Color(0x4D000000)),
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Text(
+                                                    'ADD ',
+                                                    style: TextStyle(
+                                                        color: Colors.white),
+                                                  ),
+                                                  Icon(Icons.add,
+                                                      color: Colors.white)
+                                                ],
+                                              )),
+                                        ),
+                                      ]),
+                                    ],
+                                  ),
+                                ),
                               ),
                             ),
                           ),

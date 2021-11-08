@@ -1,14 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:shop_app/Authentication/ProjectFirebaseAuth.dart';
-import 'package:shop_app/animation/fadeAnimation.dart';
-import 'package:shop_app/language/logic/ProjectLanguage.dart';
-import 'package:shop_app/screens/home/components/SigningButton.dart';
-import 'package:shop_app/screens/widgets/vSpace.dart';
-import 'package:shop_app/style/CommonUI.dart';
-import 'package:shop_app/style/ScreenUtil.dart';
-import 'package:shop_app/style/Style.dart';
+import 'package:sigmamenu/Authentication/ProjectFirebaseAuth.dart';
+import 'package:sigmamenu/animation/fadeAnimation.dart';
+import 'package:sigmamenu/language/logic/ProjectLanguage.dart';
+import 'package:sigmamenu/screens/home/components/SigningButton.dart';
+import 'package:sigmamenu/screens/widgets/vSpace.dart';
+import 'package:sigmamenu/style/CommonUI.dart';
+import 'package:sigmamenu/style/ScreenUtil.dart';
+import 'package:sigmamenu/style/Style.dart';
 
 class SignUpForm extends StatefulWidget {
   final VoidCallback click;

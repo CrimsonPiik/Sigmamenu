@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:shop_app/Authentication/ProjectFirebaseAuth.dart';
-import 'package:shop_app/style/CommonUI.dart';
+import 'package:sigmamenu/Authentication/ProjectFirebaseAuth.dart';
+import 'package:sigmamenu/style/CommonUI.dart';
 
 class ForgotPasswordScreen extends StatelessWidget {
   final formKey = GlobalKey<FormState>();
@@ -74,7 +74,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                       click: () async {
                         if (formKey.currentState!.validate()) {
                           formKey.currentState!.save();
-                         ProjectFirebaseAuth()
+                          ProjectFirebaseAuth()
                               .resetEmailPassword(emailcontroller.text);
                           Navigator.pop(context);
                           return showDialog(

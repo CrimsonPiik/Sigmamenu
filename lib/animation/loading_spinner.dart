@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:shop_app/style/AssetsManager.dart';
+import 'package:sigmamenu/style/AssetsManager.dart';
 
 class LoadingSpinner extends StatelessWidget {
   @override
@@ -17,26 +17,26 @@ class LoadingSpinner extends StatelessWidget {
     //   ),
     // ));
     return Center(
-        child: Lottie.asset(AnimAssets.loading, height: 50),
+      child: Lottie.asset(AnimAssets.loading, height: 50),
 
-        // child: Card(
-        //   child: Padding(
-        //     padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
-        //     child: SizedBox(
-        //       width: 190,
-        //       child: Row(
-        //         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        //         children: [
-        //           Lottie.asset(AnimAssets.loading, height: 50),
-        //           Text(
-        //             RhinoLanguage.isLTR() ? "Please Wait" : "يرجى الانتظار",
-        //             style: FontStyle.normal(context: context),
-        //           )
-        //         ],
-        //       ),
-        //     ),
-        //   ),
-        // ),
-        );
+      // child: Card(
+      //   child: Padding(
+      //     padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+      //     child: SizedBox(
+      //       width: 190,
+      //       child: Row(
+      //         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      //         children: [
+      //           Lottie.asset(AnimAssets.loading, height: 50),
+      //           Text(
+      //             RhinoLanguage.isLTR() ? "Please Wait" : "يرجى الانتظار",
+      //             style: FontStyle.normal(context: context),
+      //           )
+      //         ],
+      //       ),
+      //     ),
+      //   ),
+      // ),
+    );
   }
 }

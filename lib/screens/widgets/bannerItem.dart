@@ -3,12 +3,12 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:shop_app/GeneralFunction/firebase_uploader_web.dart';
-import 'package:shop_app/models/banner.dart';
-import 'package:shop_app/style/AssetsManager.dart';
-import 'package:shop_app/style/CommonUI.dart';
-import 'package:shop_app/style/ScreenUtil.dart';
-import 'package:shop_app/style/Style.dart';
+import 'package:sigmamenu/GeneralFunction/firebase_uploader_web.dart';
+import 'package:sigmamenu/models/banner.dart';
+import 'package:sigmamenu/style/AssetsManager.dart';
+import 'package:sigmamenu/style/CommonUI.dart';
+import 'package:sigmamenu/style/ScreenUtil.dart';
+import 'package:sigmamenu/style/Style.dart';
 
 class BannersItem extends StatefulWidget {
   final BannerModel data;

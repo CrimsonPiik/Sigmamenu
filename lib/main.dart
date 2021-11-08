@@ -1,12 +1,12 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shop_app/Authentication/authMonitor.dart';
-import 'package:shop_app/GeneralFunction/shared_preferences.dart';
-import 'package:shop_app/language/logic/ProjectLanguage.dart';
-import 'package:shop_app/provider/userStateProvider.dart';
-import 'package:shop_app/screens/adminPanel.dart';
-import 'package:shop_app/screens/staggeredGridView.dart';
+import 'package:sigmamenu/Authentication/authMonitor.dart';
+import 'package:sigmamenu/GeneralFunction/shared_preferences.dart';
+import 'package:sigmamenu/language/logic/ProjectLanguage.dart';
+import 'package:sigmamenu/provider/userStateProvider.dart';
+import 'package:sigmamenu/screens/adminPanel.dart';
+import 'package:sigmamenu/screens/staggeredGridView.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

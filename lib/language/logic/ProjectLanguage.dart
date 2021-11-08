@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:shop_app/GeneralFunction/shared_preferences.dart';
+import 'package:sigmamenu/GeneralFunction/shared_preferences.dart';
 import 'translatedWords.dart';
 
 ///Installed flutter localizations,
@@ -15,7 +15,8 @@ class ProjectLanguage {
   ProjectLanguage(Locale locale) {
     ProjectLanguage.locale = locale;
   }
-///Add support for other LTR languages here
+
+  ///Add support for other LTR languages here
   static bool isLTR() {
     return locale.toString().contains("en");
   }
@@ -37,7 +38,8 @@ class ProjectLanguage {
   // Helper method to keep the code in the widgets concise
   // Localizations are accessed using an InheritedWidget "of" syntax
   static ProjectLanguage of(BuildContext context) {
-    return Localizations.of<ProjectLanguage>(context, ProjectLanguage) ?? ProjectLanguage(locale);
+    return Localizations.of<ProjectLanguage>(context, ProjectLanguage) ??
+        ProjectLanguage(locale);
   }
 
   Future<Locale> getSavedLocale() async {
@@ -55,7 +57,8 @@ class ProjectLanguage {
   get currentLocale => locale;
 
   // Static member to have a simple access to the delegate from the MaterialApp
-  static const LocalizationsDelegate<ProjectLanguage> delegate = _ProjectLanguageDelegate();
+  static const LocalizationsDelegate<ProjectLanguage> delegate =
+      _ProjectLanguageDelegate();
 
   Map<String, String> _localizedStrings = en;
 

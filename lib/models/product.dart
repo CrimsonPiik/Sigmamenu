@@ -1,6 +1,6 @@
 import 'dart:convert';
-import 'package:shop_app/GeneralFunction/random_id_generator.dart';
-import 'package:shop_app/models/rating.dart';
+import 'package:sigmamenu/GeneralFunction/random_id_generator.dart';
+import 'package:sigmamenu/models/rating.dart';
 
 class Product {
   String id = generateId();

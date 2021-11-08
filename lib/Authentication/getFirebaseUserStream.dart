@@ -3,11 +3,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shop_app/models/user.dart';
-import 'package:shop_app/provider/userStateProvider.dart';
-import 'package:shop_app/screens/adminPanel.dart';
-import 'package:shop_app/screens/home/home_screen.dart';
-import 'package:shop_app/style/CommonUI.dart';
+import 'package:sigmamenu/models/user.dart';
+import 'package:sigmamenu/provider/userStateProvider.dart';
+import 'package:sigmamenu/screens/adminPanel.dart';
+import 'package:sigmamenu/screens/home/home_screen.dart';
+import 'package:sigmamenu/style/CommonUI.dart';
 
 class FirebaseUserStreamBuilder extends StatelessWidget {
   const FirebaseUserStreamBuilder({Key? key}) : super(key: key);
@@ -51,7 +51,7 @@ class FirebaseUserStreamBuilder extends StatelessWidget {
                     return AdminPanel();
 
                   // default:
-                    // return AdminPanel();
+                  // return AdminPanel();
                 }
               }
               //  else {

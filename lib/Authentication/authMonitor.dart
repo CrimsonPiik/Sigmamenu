@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:shop_app/screens/home/home_screen.dart';
-import 'package:shop_app/style/CommonUI.dart';
+import 'package:sigmamenu/screens/home/home_screen.dart';
+import 'package:sigmamenu/style/CommonUI.dart';
 import 'getFirebaseUserStream.dart';
 
 class AuthMonitor extends StatelessWidget {

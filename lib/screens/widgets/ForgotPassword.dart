@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:shop_app/language/logic/ProjectLanguage.dart';
-import 'package:shop_app/screens/widgets/ForgotPasswordScreen.dart';
-import 'package:shop_app/style/Style.dart';
+import 'package:sigmamenu/language/logic/ProjectLanguage.dart';
+import 'package:sigmamenu/screens/widgets/ForgotPasswordScreen.dart';
+import 'package:sigmamenu/style/Style.dart';
 
 // ignore: must_be_immutable
 class FortgotPasswordButton extends StatelessWidget {

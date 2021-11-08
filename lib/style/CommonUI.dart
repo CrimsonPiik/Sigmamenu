@@ -5,10 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:lottie/lottie.dart';
-import 'package:shop_app/animation/loading_spinner.dart';
-import 'package:shop_app/style/AssetsManager.dart';
-import 'package:shop_app/style/ScreenUtil.dart';
-import 'package:shop_app/style/Style.dart';
+import 'package:sigmamenu/animation/loading_spinner.dart';
+import 'package:sigmamenu/style/AssetsManager.dart';
+import 'package:sigmamenu/style/ScreenUtil.dart';
+import 'package:sigmamenu/style/Style.dart';
 
 class CommonUI {
   static Widget profileImage({
@@ -452,7 +452,7 @@ class CommonUI {
       required void Function()? click}) {
     color ??= Style.primary;
     final ButtonStyle style = ElevatedButton.styleFrom(
-        primary: color,
+        primary: Colors.brown,
         onPrimary: textColor,
         // shadowColor: color,
         elevation: elevation,
