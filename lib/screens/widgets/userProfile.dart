@@ -199,30 +199,52 @@ class _EditProfileInformationState extends State<EditProfileInformation> {
                             ]),
                           ),
                           SizedBox(height: 32),
-                          Align(
-                            alignment: Alignment.bottomRight,
-                            child: CommonUI.elevatedButton(
-                                text: "Save",
-                                context: context,
-                                click: () async {
-                                  _formKey.currentState!.save();
-                                  if (_formKey.currentState!.validate()) {
-                                    FocusScope.of(context).unfocus();
-                                    await editUserProfile().whenComplete(() {
-                                      CommonUI.successDialog(context,
-                                          message: "Saved successfully");
-                                    }).onError((error, stackTrace) =>
-                                        showDialog(
-                                          context: context,
-                                          builder: (_) {
-                                            return AlertDialog(
-                                              content: Text(error.toString()),
-                                            );
-                                          },
-                                        ));
-                                  }
-                                },
-                                icon: Icon(Icons.save, color: Colors.white)),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Align(
+                                alignment: Alignment.bottomRight,
+                                child: CommonUI.elevatedButton(
+                                    text: "Cancel",
+                                    context: context,
+                                    click: () async {
+                                      setState(() {
+                                        editmode = false;
+                                      });
+                                    },
+                                    icon: Icon(Icons.cancel,
+                                        color: Colors.white)),
+                              ),
+                              SizedBox(width: 32),
+                              Align(
+                                alignment: Alignment.bottomRight,
+                                child: CommonUI.elevatedButton(
+                                    text: "Save",
+                                    context: context,
+                                    click: () async {
+                                      _formKey.currentState!.save();
+                                      if (_formKey.currentState!.validate()) {
+                                        FocusScope.of(context).unfocus();
+                                        await editUserProfile().whenComplete(
+                                            () {
+                                          CommonUI.successDialog(context,
+                                              message: "Saved successfully");
+                                        }).onError((error, stackTrace) =>
+                                            showDialog(
+                                              context: context,
+                                              builder: (_) {
+                                                return AlertDialog(
+                                                  content:
+                                                      Text(error.toString()),
+                                                );
+                                              },
+                                            ));
+                                      }
+                                    },
+                                    icon:
+                                        Icon(Icons.save, color: Colors.white)),
+                              ),
+                            ],
                           ),
                         ],
                       ),
@@ -238,9 +260,7 @@ class _EditProfileInformationState extends State<EditProfileInformation> {
               Center(
                 child: CircleAvatar(
                     radius: Responsive.isDesktop(context) ? 80 : 50,
-                    backgroundImage:
-                        NetworkImage(user.image)
-                    ),
+                    backgroundImage: NetworkImage(user.image)),
               ),
               SizedBox(height: 60),
               Center(

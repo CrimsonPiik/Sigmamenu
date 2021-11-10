@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 class MenuItem {
   final String name;
   final IconData icon;
+  bool isSelected;
 
-  MenuItem(this.name, this.icon);
+  MenuItem(this.name, this.icon, {this.isSelected = false});
 
   MenuItem.fromMap(Map<String, dynamic> map)
       : name = map['name'] ?? '',
+        isSelected = map[false] ?? '',
         icon = map['icon'] ?? 0;
 }
 

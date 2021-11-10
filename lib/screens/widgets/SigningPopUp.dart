@@ -76,10 +76,10 @@ class _SigningPopUpState extends State<SigningPopUp> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Container(
-                            width: 120,
-                            height: 120,
+                            width: 180,
+                            height: 180,
                             child: Image.asset(
-                              'assets/images/sigma.jpeg',
+                              'assets/images/sigmamenu.png',
                               // fit: BoxFit.fitWidth
                             ),
                           ),

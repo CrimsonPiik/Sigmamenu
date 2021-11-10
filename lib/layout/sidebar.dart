@@ -5,7 +5,7 @@ import 'package:sigmamenu/screens/widgets/sidebarMenuItem.dart';
 
 final List<MenuItem> menuItems = [
   // MenuItem('Home', Icons.home_outlined),
-  MenuItem('User', Icons.person),
+  MenuItem('User', Icons.person, isSelected: true),
   MenuItem('Dashboard', Icons.dashboard_outlined),
   MenuItem('Banners', Icons.photo_size_select_actual_outlined),
 ];
@@ -33,13 +33,18 @@ class SideBar extends StatelessWidget {
             width: 200,
             height: 90,
             child: Center(
-              child: Text(
-                'Sigma Menu',
-                style: TextStyle(
-                    fontSize: _isDesktop ? 30 : 12,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white),
-              ),
+              child: Container(
+                  width: _isDesktop ? 120 : 60,
+                  height: _isDesktop ? 120 : 60,
+                  child:
+                      Image(image: AssetImage('assets/images/sigmamenu.png'))),
+              // Text(
+              //   'Sigma Menu',
+              //   style: TextStyle(
+              //       fontSize: _isDesktop ? 30 : 12,
+              //       fontWeight: FontWeight.bold,
+              //       color: Colors.white),
+              // ),
             ),
           ),
           SizedBox(

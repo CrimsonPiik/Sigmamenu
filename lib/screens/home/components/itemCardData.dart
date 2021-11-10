@@ -241,8 +241,7 @@ class _ItemCardDataState extends State<ItemCardData> {
                   itemCount: productsList.length,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: Responsive.isDesktop(context)
-                        ? 7
-                        : Responsive.isTablet(context)
+                        ? 7                        : Responsive.isTablet(context)
                             ? 4
                             : 2,
                     mainAxisSpacing: kDefaultPaddin,

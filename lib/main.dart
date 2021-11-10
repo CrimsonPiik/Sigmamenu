@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:sigmamenu/Authentication/authMonitor.dart';
 import 'package:sigmamenu/GeneralFunction/shared_preferences.dart';
 import 'package:sigmamenu/language/logic/ProjectLanguage.dart';
+import 'package:sigmamenu/provider/ProjectLanguageProvider.dart';
 import 'package:sigmamenu/provider/userStateProvider.dart';
 import 'package:sigmamenu/screens/adminPanel.dart';
 import 'package:sigmamenu/screens/staggeredGridView.dart';
@@ -44,11 +45,15 @@ class _MyAppState extends State<MyApp> {
           ChangeNotifierProvider<UserState>(
             create: (_) => UserState(),
           ),
+
+          ChangeNotifierProvider<ProjectLanguageChangeNotifier>(
+            create: (_) => ProjectLanguageChangeNotifier(),
+          ),
           // ChangeNotifierProvider<CategoryProvider>(
           //     create: (_) => CategoryProvider()),
         ],
         builder: (context, child) {
-          // return MaterialApp(
+          return MaterialApp(
           // Provider.of<ProjectLanguageChangeNotifier>(context, listen: true)
           //     .setlocale(ProjectLanguage.locale);
           // return MultiProvider(
@@ -59,10 +64,10 @@ class _MyAppState extends State<MyApp> {
           //       ChangeNotifierProvider<ProjectLanguageChangeNotifier>(
           //         create: (_) => ProjectLanguageChangeNotifier(),
           //       ),],
-          return MaterialApp(
+          // return MaterialApp(
             // key: GlobalKey<FormState>(),
-            // locale: Provider.of<ProjectLanguageChangeNotifier>(context, listen: true)
-            //     .locale,
+            locale: Provider.of<ProjectLanguageChangeNotifier>(context, listen: true)
+                .locale,
             // localizationsDelegates: [
             //   ProjectLanguage.delegate,
             // ],
