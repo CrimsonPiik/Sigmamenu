@@ -14,12 +14,10 @@ class ChangeLanguageButton extends StatelessWidget {
       onTap: () {
         ///This will go to 'Provider of RhinoLanguageChangeNotifier'
         ///and change the locale to new one and notify the main to rebuild
-        ///.~saleh
         ProjectLanguage.changeLanguage();
         Provider.of<ProjectLanguageChangeNotifier>(context, listen: false)
             .setlocale(ProjectLanguage.locale);
 
-        // Navigator.of(context).push(createRoute(Body()));
       },
     );
   }

@@ -1,20 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sigmamenu/constaints.dart';
-import 'package:sigmamenu/language/logic/ProjectLanguage.dart';
 import 'package:sigmamenu/models/product.dart';
 import 'package:sigmamenu/style/AssetsManager.dart';
 import 'package:sigmamenu/style/CommonUI.dart';
 import 'package:sigmamenu/style/ScreenUtil.dart';
-import '../../../style/Style.dart';
 
-class ItemCard extends StatefulWidget {
+class ItemCardRectangle extends StatefulWidget {
   final Product product;
   final bool isBordered;
   final bool isWithFavorite;
   final bool isFavoriteScreen;
   final Color? color;
-  ItemCard({
+  ItemCardRectangle({
     Key? key,
     required this.product,
     required this.isBordered,
@@ -24,182 +22,155 @@ class ItemCard extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<ItemCard> createState() => _ItemCardState();
+  State<ItemCardRectangle> createState() => _ItemCardRectangleState();
 }
 
-class _ItemCardState extends State<ItemCard> {
+class _ItemCardRectangleState extends State<ItemCardRectangle> {
   @override
   Widget build(BuildContext context) {
     // final double cardHeight = 200; //300
-    final double cardWidth = 130;
+    // final double cardWidth = 130;
     return Container(
-      decoration: BoxDecoration(
-        // border: isBordered ? Border.all(color: Style.beigeBrown) : null,
-        borderRadius: BorderRadius.all(Radius.circular(32)),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.4),
-            spreadRadius: widget.isBordered ? 2 : 1,
-            blurRadius: widget.isBordered ? 9 : 9,
-            offset: Offset(0, 4),
-          ),
-        ],
-      ),
-      child: Stack(
-        children: [
-          InkWell(
-            onTap: () => {
-              // _itemDescriptionDialog(context)
-              _animationDialog(context)
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(
-              //     builder: (context) => DetailsScreen(
-              //       product: product,
-              //     ),
-              //   ),
-              // ),
-            },
-            child: Container(
-              // decoration: BoxDecoration(
-              //   color: color ?? Theme.of(context).cardColor, //Style.cream,
-              //   borderRadius: BorderRadius.vertical(
-              //     // bottom: Radius.circular(14),
-              //     top: Radius.circular(14),
-              //   ),
-              // ),
+        padding: EdgeInsets.all(16),
+        margin: EdgeInsets.only(bottom: 20),
+        decoration: BoxDecoration(
+          color: Colors.grey.withOpacity(0.1),
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child:
+            //  Responsive.isDesktop(context)
+            // ?
+
+            Row(
+          children: [
+            Container(
+                width: 120,
+                // height: 120,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(4),
+                ),
+                child: CommonUI.cachedImage(
+                    widget.product.image, ImageAssets.placeholder,
+                    fit: BoxFit.cover)),
+            SizedBox(
+              width: 16,
+            ),
+            Expanded(
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // isBordered
-                  // ?
-                  ClipRRect(
-                    // borderRadius:
-                    //     BorderRadius.vertical(top: Radius.circular(28)),
-                    child: Container(
-                      height: Responsive.isDesktop(context)
-                          ? 160
-                          : Responsive.isTablet(context)
-                              ? 155
-                              : Responsive.isMobile(context)
-                                  ? 150
-                                  : 100,
-                      width: double.maxFinite,
-                      child: CommonUI.cachedImage(
-                          widget.product.image, ImageAssets.placeholder,
-                          fit: BoxFit.cover),
-                    ),
+                  //   // SizedBox(
+                  //   //   height: 20,
+                  //   // ),
+                  Text(
+                    widget.product.nameEn,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                   ),
-                  // // :
-                  // Expanded(
-                  //   child: ConstrainedBox(
-                  //       constraints: BoxConstraints(
-                  //           minWidth: cardWidth, maxHeight: cardHeight * 0.7),
-                  //       // child: ClipRRect(
-                  //       //   borderRadius: const BorderRadius.vertical(
-                  //       //       top: Radius.circular(28)),
-                  //       child: CommonUI.cachedImage(
-                  //           product.image, ImageAssets.placeholder,
-                  //           fit: BoxFit.cover)),
+                  // CommonUI.text(
+                  //   context: context,
+                  //   text: widget.product.nameEn,
+                  //   // RhinoLanguage.isLTR()
+                  //   //     ? product.nameEn
+                  //   //     : product.nameAr,
+                  //   textAlign: TextAlign.center,
+                  //   style: FontStyle.normal(
+                  //       context: context, fontWeight: FontWeight.bold),
                   // ),
-                  Expanded(
-                    child: Container(
-                      // height: 240,
-                      // width: isWithFavorite ? ScreenUtil.width(context) * 0.7 : null,
-                      decoration: BoxDecoration(
-                        color:
-                            widget.color ?? Theme.of(context).cardColor, //Style.cream,
-                        borderRadius: BorderRadius.vertical(
-                          bottom: Radius.circular(14),
-                          // top: Radius.circular(14),
-                        ),
-                      ),
-                      child: Column(
-                        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          SizedBox(
-                              height: Responsive.isDesktop(context) ? 10 : 6),
 
-                          SizedBox(
-                            width: widget.isBordered ? double.maxFinite : cardWidth,
-                            child: Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 1),
-                              child: SizedBox(
-                                // height: 10,
-                                child: CommonUI.text(
-                                  context: context,
-                                  text: ProjectLanguage.isLTR()
-                                      ? widget.product.nameEn
-                                      : widget.product.nameAr,
-                                  textAlign: TextAlign.center,
-                                  style: FontStyle.small(
-                                      context: context,
-                                      fontWeight: FontWeight.bold),
-
-                                  // maxLines: 1
-                                ),
-                              ),
-                            ),
-                          ),
-                          // SizedBox(
-                          //   width: isBordered ? double.maxFinite : cardWidth,
-                          //   child: Padding(
-                          //     padding:
-                          //         const EdgeInsets.symmetric(horizontal: 1),
-                          //     child: SizedBox(
-                          //       height: 10,
-                          //       child: CommonUI.text(
-                          //           context: context,
-                          //           text: product.descriptionEn,
-                          //           textAlign: TextAlign.center,
-                          //           style: FontStyle.normal(
-                          //             context: context,
-                          //           )),
-                          //     ),
-                          //   ),
-                          // ),
-                          SizedBox(
-                              height: Responsive.isDesktop(context) ? 9 : 5),
-                          SizedBox(
-                            width: widget.isBordered ? double.maxFinite : cardWidth,
-                            child: Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 1),
-                              child: SizedBox(
-                                // height: 10,
-                                child: CommonUI.text(
-                                    context: context,
-                                    text: ' JOD ' + widget.product.price.toString(),
-                                    // RhinoLanguage.isLTR()
-                                    //     ? product.nameEn
-                                    //     : product.nameAr,
-                                    textAlign: TextAlign.center,
-                                    style: FontStyle.normal(
-                                        context: context,
-                                        fontWeight: FontWeight.bold)),
-                              ),
-                            ),
-                          ),
-                          // SelectableText("JOD 5",
-                          //     textAlign: TextAlign.center,
-                          //     style: TextStyle(
-                          //         // color: product.isOnSale ? Colors.red : null,
-                          //         // decoration: product.isOnSale
-                          //         //     ? TextDecoration.lineThrough
-                          //         //     : null,
-                          //         )),
-                        ],
-                      ),
-                    ),
+                  SizedBox(
+                    height: 4,
                   ),
+                  Text(
+                    widget.product.descriptionEn,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 2,
+                    style: TextStyle(fontWeight: FontWeight.w400, fontSize: 14),
+                  ),
+                  SizedBox(
+                    height: 4,
+                  ),
+                  Text(
+                    widget.product.price.toString(),
+                    style: TextStyle(
+                        fontWeight: FontWeight.w300,
+                        // fontStyle: FontStyle.italic,
+                        fontSize: 12),
+                  ),
+                  // CommonUI.text(
+                  //   context: context,
+                  //   text: widget.product.descriptionEn,
+                  //   // RhinoLanguage.isLTR()
+                  //   //     ? product.nameEn
+                  //   //     : product.nameAr,
+                  //   textAlign: TextAlign.center,
+                  //   style: FontStyle.normal(
+                  //     context: context,
+                  //     // fontWeight: FontWeight.bold
+                  //   ),
+                  // ),
+
+                  // SizedBox(
+                  //   height: 4,
+                  // ),
+                  // Row(
+                  //   mainAxisAlignment: MainAxisAlignment.end,
+                  //   children: [
+                  //     // widget.product.weight >= 1
+                  //     //     ? IconButton(
+                  //     //         icon: Icon(
+                  //     //           Icons.toggle_on,
+                  //     //           color: Colors.green,
+                  //     //           size: 35,
+                  //     //         ),
+                  //     //         onPressed: () {
+                  //     //           // FirebaseFirestore.instance
+                  //     //           //     .collection(widget.product.category)
+                  //     //           //     .doc(widget.product.id)
+                  //     //           //     .update({'weight': 0});
+                  //     //         })
+                  //     //     : IconButton(
+                  //     //         icon: Icon(
+                  //     //           Icons.toggle_off,
+                  //     //           color: Colors.red,
+                  //     //           size: 35,
+                  //     //         ),
+                  //     //         onPressed: () {
+                  //     //           // FirebaseFirestore.instance
+                  //     //           //     .collection(widget.product.category)
+                  //     //           //     .doc(widget.product.id)
+                  //     //           //     .update({'weight': 1});
+                  //     //         }),
+                  //     SizedBox(width: 20),
+                  //     TextButton(
+                  //         onPressed: () {
+                  //           // setState(() {
+                  //           //   _nameEnController = TextEditingController(
+                  //           //       text: widget.product.nameEn);
+                  //           //   _descriptionEnController = TextEditingController(
+                  //           //       text: widget.product.descriptionEn);
+                  //           //   _priceController = TextEditingController(
+                  //           //       text: widget.product.price.toString());
+                  //           //   _imageController = TextEditingController(
+                  //           //       text: widget.product.image);
+                  //           //   _value = widget.product.weight.toDouble();
+                  //           // });
+                  //           // _showEditDialog(context, widget.product);
+                  //         },
+                  //         child: Icon(Icons.edit, color: Colors.brown)),
+                  //     TextButton(
+                  //         onPressed: () {
+                  //           // _showDeleteDialog(context);
+                  //         },
+                  //         child: Icon(Icons.delete, color: Colors.red)),
+                  //   ],
+                  // ),
                 ],
               ),
-            ),
-          ),
-        ],
-      ),
-    );
+            )
+          ],
+        ));
   }
 
   bool _fromTop = true;
@@ -289,7 +260,8 @@ class _ItemCardState extends State<ItemCard> {
                                               children: [
                                                 TextSpan(text: "Price\n"),
                                                 TextSpan(
-                                                  text: "\$${widget.product.price}",
+                                                  text:
+                                                      "\$${widget.product.price}",
                                                   style: Theme.of(context)
                                                       .textTheme
                                                       .headline4!
