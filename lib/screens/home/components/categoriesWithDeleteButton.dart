@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:sigmamenu/screens/adminPanel.dart';
-import 'package:sigmamenu/screens/home/components/body.dart';
+import 'package:sigmamenu/screens/home/components/customerScreen.dart';
 import 'package:sigmamenu/constaints.dart';
 
 class CategoriesWithDeleteButton extends StatefulWidget {

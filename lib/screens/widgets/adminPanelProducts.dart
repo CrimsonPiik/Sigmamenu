@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sigmamenu/models/user.dart';
 import 'package:sigmamenu/provider/userStateProvider.dart';
-import 'package:sigmamenu/screens/home/components/body.dart';
+import 'package:sigmamenu/screens/home/components/customerScreen.dart';
 import 'package:sigmamenu/screens/home/components/categoriesWithDeleteButton.dart';
 import 'package:sigmamenu/screens/home/components/itemCardDataAdmin.dart';
 import 'package:sigmamenu/screens/home/components/users.dart';
@@ -11,8 +11,8 @@ import 'package:sigmamenu/screens/widgets/addBannerButton.dart';
 import 'package:sigmamenu/screens/widgets/addCategoryButton.dart';
 import 'package:sigmamenu/screens/widgets/addProductButton.dart';
 import 'package:sigmamenu/screens/widgets/adminPanelBanners.dart';
-import 'package:sigmamenu/screens/widgets/deleteCategoryButton.dart';
 import 'package:sigmamenu/screens/widgets/userProfile.dart';
+import 'package:sigmamenu/style/ScreenUtil.dart';
 
 class AdminPanelProducts extends StatefulWidget {
   final Stream<int> menu;
@@ -69,7 +69,9 @@ class _AdminPanelProductsState extends State<AdminPanelProducts> {
                             Text(
                               'WELCOME BACK ${user.name} !',
                               style: TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.w600),
+                                  fontSize:
+                                      Responsive.isDesktop(context) ? 18 : 12,
+                                  fontWeight: FontWeight.w600),
                             ),
                             SizedBox(width: 4),
                             CircleAvatar(
@@ -110,7 +112,9 @@ class _AdminPanelProductsState extends State<AdminPanelProducts> {
                                 Text(
                                   'WELCOME BACK ${user.name} !',
                                   style: TextStyle(
-                                      fontSize: 18,
+                                      fontSize: Responsive.isDesktop(context)
+                                          ? 18
+                                          : 12,
                                       fontWeight: FontWeight.w600),
                                 ),
                                 SizedBox(width: 4),
@@ -159,7 +163,9 @@ class _AdminPanelProductsState extends State<AdminPanelProducts> {
                                 Text(
                                   'WELCOME BACK ${user.name} !',
                                   style: TextStyle(
-                                      fontSize: 18,
+                                      fontSize: Responsive.isDesktop(context)
+                                          ? 18
+                                          : 12,
                                       fontWeight: FontWeight.w600),
                                 ),
                                 SizedBox(width: 4),

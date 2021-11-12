@@ -7,6 +7,7 @@ import 'package:sigmamenu/language/logic/ProjectLanguage.dart';
 import 'package:sigmamenu/provider/ProjectLanguageProvider.dart';
 import 'package:sigmamenu/provider/userStateProvider.dart';
 import 'package:sigmamenu/screens/adminPanel.dart';
+import 'package:sigmamenu/screens/home/components/shimmer.dart';
 import 'package:sigmamenu/screens/staggeredGridView.dart';
 
 void main() async {
@@ -93,6 +94,7 @@ class _MyAppState extends State<MyApp> {
               // When navigating to the "/second" route, build the SecondScreen widget.
               '/admin': (context) => AdminPanel(),
               '/dashboard': (context) => StaggerdGridView(),
+              '/loading':(context)=> LoadingListPage()
             },
             home: AuthMonitor(),
             // ),

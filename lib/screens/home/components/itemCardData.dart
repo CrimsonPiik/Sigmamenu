@@ -181,6 +181,7 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:sigmamenu/constaints.dart';
 import 'package:sigmamenu/models/product.dart';
 import 'package:sigmamenu/screens/adminPanel.dart';
@@ -200,6 +201,8 @@ class ItemCardData extends StatefulWidget {
 
 class _ItemCardDataState extends State<ItemCardData> {
   String category = categoriesList.elementAt(0);
+  bool _enabled = true;
+
   @override
   void initState() {
     widget.stream.listen((index) {
@@ -223,8 +226,12 @@ class _ItemCardDataState extends State<ItemCardData> {
           if (snapshot.hasError) {
             return CommonUI.error(snapshot.error.toString());
           }
-          if (snapshot.connectionState == ConnectionState.waiting)
-            return CommonUI.loading(context);
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            _enabled = true;
+          }
+          // return
+          // LoadingListPage();
+          // CommonUI.loading(context);
 
           List<Product> productsList = [];
           List<DocumentSnapshot> shots = snapshot.data!.docs;
@@ -242,7 +249,11 @@ class _ItemCardDataState extends State<ItemCardData> {
                   child: Padding(
                     padding:
                         const EdgeInsets.symmetric(horizontal: kDefaultPaddin),
-                    child: GridView.builder(
+                    // child: Shimmer.fromColors(
+                    //   baseColor: Colors.grey.withOpacity(0.7),
+                    //   highlightColor: Colors.grey.withOpacity(0.3),
+                    //   enabled: _enabled,
+                      child: GridView.builder(
                         itemCount: productsList.length,
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: Responsive.isDesktop(context)
@@ -255,28 +266,50 @@ class _ItemCardDataState extends State<ItemCardData> {
                           childAspectRatio: 0.75,
                         ),
                         itemBuilder: (context, index) => ItemCardSquares(
-                              product: productsList[index],
-                              isBordered: true,
-                            )),
-                  ),
+                          product: productsList[index],
+                          isBordered: true,
+                        ),
+                      ),
+                    ),
+                  // ),
                 )
               : Expanded(
                   child: Padding(
                     padding:
-                        const EdgeInsets.symmetric(vertical: kDefaultPaddin),
-                  child: ListView.builder(
-                      physics: ClampingScrollPhysics(),
-                      shrinkWrap: true,
-                      scrollDirection: Axis.vertical,
-                      itemCount: productsList.length,
-                      itemBuilder: (context, index) => ItemCardRectangle(
-                            product: productsList[index],
-                            isBordered: true,
-                          ),
+                        const EdgeInsets.symmetric(horizontal: kDefaultPaddin),
+                    // child: Shimmer.fromColors(
+                    //   baseColor: Colors.grey.withOpacity(0.7),
+                    //   highlightColor: Colors.grey.withOpacity(0.3),
+                    //   enabled: _enabled,
+                      child: GridView.builder(
+                        physics: ClampingScrollPhysics(),
+                        shrinkWrap: true,
+                        scrollDirection: Axis.vertical,
+                        itemCount: productsList.length,
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 1,
+                            childAspectRatio: Responsive.isDesktop(context)
+                                ? MediaQuery.of(context).size.width /
+                                    (MediaQuery.of(context).size.height / 3.5)
+                                : MediaQuery.of(context).size.width /
+                                    (MediaQuery.of(context).size.height / 4.5)
+                            //       //               // ScreenUtil.isDesktop(context)
+                            //       //               // ? 7
+                            //       //               // : ScreenUtil.isTablet(context)
+                            //       //               // ? 4
+                            //       //               //  : 2,
+                            //       //               // mainAxisSpacing: kDefaultPaddin,
+                            //       //               // crossAxisSpacing: kDefaultPaddin,
+                            // childAspectRatio: 130.0,
+                            ),
+                        itemBuilder: (context, index) => ItemCardRectangle(
+                          product: productsList[index],
+                          isBordered: true,
+                        ),
                       ),
-                      ),
+                    ),
+                  // ),
                 );
-
         });
   }
 }

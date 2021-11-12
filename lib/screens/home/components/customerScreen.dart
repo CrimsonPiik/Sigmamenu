@@ -14,19 +14,16 @@ import 'package:sigmamenu/style/Session.dart';
 
 StreamController<int> streamController = StreamController<int>.broadcast();
 
-class Body extends StatefulWidget {
+class CustomerScreen extends StatefulWidget {
   @override
-  State<Body> createState() => _BodyState();
+  State<CustomerScreen> createState() => _CustomerScreenState();
 }
 
-class _BodyState extends State<Body> with SingleTickerProviderStateMixin {
+class _CustomerScreenState extends State<CustomerScreen> with SingleTickerProviderStateMixin {
   late AnimationController animationController;
   bool isList = true;
   @override
   void initState() {
-    // Provider.of<MKHM>(context, listen: false).getSubCategories();
-    // isSearchON = false;
-
     super.initState();
     animationController =
         AnimationController(vsync: this, duration: Duration(milliseconds: 500));
@@ -118,7 +115,7 @@ class _BodyState extends State<Body> with SingleTickerProviderStateMixin {
               ),
               BannerWithDotsIndicator(),
               Categories(),
-              
+
               ItemCardData(streamController.stream),
             ],
           );
