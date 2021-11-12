@@ -49,16 +49,46 @@ class _AddProductButtonState extends State<AddProductButton> {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        SizedBox(width: 21),
+        SizedBox(width: 19),
         Align(
           alignment: Alignment.topLeft,
-          child: TextButton.icon(
-              onPressed: () {
-                showDialogWithFields();
-              },
-              icon: Icon(Icons.add),
-              label: Text('Product')),
-        ),
+          // child: Padding(
+            // padding: const EdgeInsets.symmetric(horizontal: 3.0),
+            child: Container(
+              padding: EdgeInsets.all(6),
+              child: TextButton.icon(
+                  onPressed: () {
+                    showDialogWithFields();
+                  },
+                  icon: Icon(
+                    Icons.add,
+                    color: Colors.white,
+                  ),
+                  label: Text(
+                    'Product ',
+                    style: TextStyle(
+                        color: Colors.white, fontWeight: FontWeight.bold),
+                  )),
+              decoration: BoxDecoration(
+                color: Colors.green[600],
+                borderRadius: BorderRadius.circular(16),
+              ),
+            ),
+          ),
+
+          //    Container(
+          //   height: 37,
+          //   padding: EdgeInsets.all(8),
+          //   child: InkWell(
+          //       onTap: () {
+          //         _showAddCollectionDialog();
+          //       },
+          //       child: Icon(Icons.add)),
+          //   decoration: BoxDecoration(
+          //     color: Colors.grey.withOpacity(0.3),
+          //     borderRadius: BorderRadius.circular(16),
+          //   ),
+        // ),
       ],
     );
   }

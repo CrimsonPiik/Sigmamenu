@@ -16,19 +16,21 @@ class _AddCategoryButtonState extends State<AddCategoryButton> {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Align(
-          alignment: Alignment.topRight,
-          child: TextButton.icon(
-              onPressed: () {
-                _showAddCollectionDialog();
-              },
-              icon: Icon(Icons.add),
-              label: Text('Category')),
+    return Padding(
+      padding: const EdgeInsets.only(left: 8.0),
+      child: Container(
+        height: 37,
+        padding: EdgeInsets.all(8),
+        child: InkWell(
+            onTap: () {
+              _showAddCollectionDialog();
+            },
+            child: Icon(Icons.add)),
+        decoration: BoxDecoration(
+          color: Colors.grey.withOpacity(0.3),
+          borderRadius: BorderRadius.circular(16),
         ),
-        SizedBox(width: 21),
-      ],
+      ),
     );
   }
 

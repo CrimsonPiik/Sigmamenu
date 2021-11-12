@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:sigmamenu/models/user.dart';
 import 'package:sigmamenu/provider/userStateProvider.dart';
 import 'package:sigmamenu/screens/home/components/body.dart';
-import 'package:sigmamenu/screens/home/components/categoriesDelete.dart';
+import 'package:sigmamenu/screens/home/components/categoriesWithDeleteButton.dart';
 import 'package:sigmamenu/screens/home/components/itemCardDataAdmin.dart';
 import 'package:sigmamenu/screens/home/components/users.dart';
 import 'package:sigmamenu/screens/widgets/addBannerButton.dart';
@@ -124,16 +124,15 @@ class _AdminPanelProductsState extends State<AdminPanelProducts> {
                         ],
                       ),
                     ),
-                    SizedBox(height: 15),
-                    CategoriesDelete(streamController.stream),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        AddProductButton(streamController.stream),
-                        DeleteCategoryButton(streamController.stream),
+                        SizedBox(width: 12),
+                        CategoriesWithDeleteButton(streamController.stream),
                         AddCategoryButton(),
                       ],
                     ),
+                    SizedBox(height: 12),
+                    AddProductButton(streamController.stream),
                     SizedBox(height: 12),
                     ItemCardDataAdmin(streamController.stream),
                   ],
