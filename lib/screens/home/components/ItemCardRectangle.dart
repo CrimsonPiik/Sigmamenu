@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sigmamenu/constaints.dart';
+import 'package:sigmamenu/language/logic/ProjectLanguage.dart';
 import 'package:sigmamenu/models/product.dart';
 import 'package:sigmamenu/style/AssetsManager.dart';
 import 'package:sigmamenu/style/CommonUI.dart';
@@ -30,7 +31,6 @@ class _ItemCardRectangleState extends State<ItemCardRectangle> {
       onTap: () {
         _animationDialog(context);
       },
-
       child: Container(
         padding: EdgeInsets.all(16),
         margin: EdgeInsets.only(bottom: 20),
@@ -59,7 +59,9 @@ class _ItemCardRectangleState extends State<ItemCardRectangle> {
                   //   //   height: 20,
                   //   // ),
                   Text(
-                    widget.product.nameEn,
+                    ProjectLanguage.isLTR()
+                        ? widget.product.nameEn
+                        : widget.product.nameAr,
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
@@ -79,7 +81,9 @@ class _ItemCardRectangleState extends State<ItemCardRectangle> {
                     height: 4,
                   ),
                   Text(
-                    widget.product.descriptionEn,
+                    ProjectLanguage.isLTR()
+                        ? widget.product.descriptionEn
+                        : widget.product.descriptionAr,
                     overflow: TextOverflow.ellipsis,
                     maxLines: 2,
                     style: TextStyle(fontWeight: FontWeight.w400, fontSize: 14),
@@ -94,7 +98,7 @@ class _ItemCardRectangleState extends State<ItemCardRectangle> {
                         // fontStyle: FontStyle.italic,
                         fontSize: 12),
                   ),
-                        ],
+                ],
               ),
             )
           ],
@@ -102,75 +106,74 @@ class _ItemCardRectangleState extends State<ItemCardRectangle> {
       ),
     );
   }
-                  // CommonUI.text(
-                  //   context: context,
-                  //   text: widget.product.descriptionEn,
-                  //   // RhinoLanguage.isLTR()
-                  //   //     ? product.nameEn
-                  //   //     : product.nameAr,
-                  //   textAlign: TextAlign.center,
-                  //   style: FontStyle.normal(
-                  //     context: context,
-                  //     // fontWeight: FontWeight.bold
-                  //   ),
-                  // ),
+  // CommonUI.text(
+  //   context: context,
+  //   text: widget.product.descriptionEn,
+  //   // RhinoLanguage.isLTR()
+  //   //     ? product.nameEn
+  //   //     : product.nameAr,
+  //   textAlign: TextAlign.center,
+  //   style: FontStyle.normal(
+  //     context: context,
+  //     // fontWeight: FontWeight.bold
+  //   ),
+  // ),
 
-                  // SizedBox(
-                  //   height: 4,
-                  // ),
-                  // Row(
-                  //   mainAxisAlignment: MainAxisAlignment.end,
-                  //   children: [
-                  //     // widget.product.weight >= 1
-                  //     //     ? IconButton(
-                  //     //         icon: Icon(
-                  //     //           Icons.toggle_on,
-                  //     //           color: Colors.green,
-                  //     //           size: 35,
-                  //     //         ),
-                  //     //         onPressed: () {
-                  //     //           // FirebaseFirestore.instance
-                  //     //           //     .collection(widget.product.category)
-                  //     //           //     .doc(widget.product.id)
-                  //     //           //     .update({'weight': 0});
-                  //     //         })
-                  //     //     : IconButton(
-                  //     //         icon: Icon(
-                  //     //           Icons.toggle_off,
-                  //     //           color: Colors.red,
-                  //     //           size: 35,
-                  //     //         ),
-                  //     //         onPressed: () {
-                  //     //           // FirebaseFirestore.instance
-                  //     //           //     .collection(widget.product.category)
-                  //     //           //     .doc(widget.product.id)
-                  //     //           //     .update({'weight': 1});
-                  //     //         }),
-                  //     SizedBox(width: 20),
-                  //     TextButton(
-                  //         onPressed: () {
-                  //           // setState(() {
-                  //           //   _nameEnController = TextEditingController(
-                  //           //       text: widget.product.nameEn);
-                  //           //   _descriptionEnController = TextEditingController(
-                  //           //       text: widget.product.descriptionEn);
-                  //           //   _priceController = TextEditingController(
-                  //           //       text: widget.product.price.toString());
-                  //           //   _imageController = TextEditingController(
-                  //           //       text: widget.product.image);
-                  //           //   _value = widget.product.weight.toDouble();
-                  //           // });
-                  //           // _showEditDialog(context, widget.product);
-                  //         },
-                  //         child: Icon(Icons.edit, color: Colors.brown)),
-                  //     TextButton(
-                  //         onPressed: () {
-                  //           // _showDeleteDialog(context);
-                  //         },
-                  //         child: Icon(Icons.delete, color: Colors.red)),
-                  //   ],
-                  // ),
-          
+  // SizedBox(
+  //   height: 4,
+  // ),
+  // Row(
+  //   mainAxisAlignment: MainAxisAlignment.end,
+  //   children: [
+  //     // widget.product.weight >= 1
+  //     //     ? IconButton(
+  //     //         icon: Icon(
+  //     //           Icons.toggle_on,
+  //     //           color: Colors.green,
+  //     //           size: 35,
+  //     //         ),
+  //     //         onPressed: () {
+  //     //           // FirebaseFirestore.instance
+  //     //           //     .collection(widget.product.category)
+  //     //           //     .doc(widget.product.id)
+  //     //           //     .update({'weight': 0});
+  //     //         })
+  //     //     : IconButton(
+  //     //         icon: Icon(
+  //     //           Icons.toggle_off,
+  //     //           color: Colors.red,
+  //     //           size: 35,
+  //     //         ),
+  //     //         onPressed: () {
+  //     //           // FirebaseFirestore.instance
+  //     //           //     .collection(widget.product.category)
+  //     //           //     .doc(widget.product.id)
+  //     //           //     .update({'weight': 1});
+  //     //         }),
+  //     SizedBox(width: 20),
+  //     TextButton(
+  //         onPressed: () {
+  //           // setState(() {
+  //           //   _nameEnController = TextEditingController(
+  //           //       text: widget.product.nameEn);
+  //           //   _descriptionEnController = TextEditingController(
+  //           //       text: widget.product.descriptionEn);
+  //           //   _priceController = TextEditingController(
+  //           //       text: widget.product.price.toString());
+  //           //   _imageController = TextEditingController(
+  //           //       text: widget.product.image);
+  //           //   _value = widget.product.weight.toDouble();
+  //           // });
+  //           // _showEditDialog(context, widget.product);
+  //         },
+  //         child: Icon(Icons.edit, color: Colors.brown)),
+  //     TextButton(
+  //         onPressed: () {
+  //           // _showDeleteDialog(context);
+  //         },
+  //         child: Icon(Icons.delete, color: Colors.red)),
+  //   ],
+  // ),
 
   bool _fromTop = true;
 
@@ -243,7 +246,9 @@ class _ItemCardRectangleState extends State<ItemCardRectangle> {
                                         children: <Widget>[
                                           SizedBox(height: 18),
                                           Text(
-                                            widget.product.nameEn,
+                                            ProjectLanguage.isLTR()
+                                                ? widget.product.nameEn
+                                                : widget.product.nameAr,
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .headline4!
@@ -304,8 +309,10 @@ class _ItemCardRectangleState extends State<ItemCardRectangle> {
                                                                   FontWeight
                                                                       .bold)),
                                                       TextSpan(
-                                                          text:
-                                                              "${widget.product.descriptionEn}",
+                                                          text: ProjectLanguage
+                                                                  .isLTR()
+                                                              ? "${widget.product.descriptionEn}"
+                                                              : "${widget.product.descriptionAr}",
                                                           style: TextStyle(
                                                               fontSize: 14,
                                                               color: Colors

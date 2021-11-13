@@ -19,17 +19,26 @@ class ProductsItemAdmin extends StatefulWidget {
 class _ProductsItemAdminState extends State<ProductsItemAdmin> {
   late TextEditingController _nameEnController =
       TextEditingController(text: _name);
+  late TextEditingController _nameArController =
+      TextEditingController(text: _nameAr);
   late TextEditingController _descriptionEnController =
       TextEditingController(text: _description);
+  late TextEditingController _descriptionArController =
+      TextEditingController(text: _descriptionAr);
   late TextEditingController _priceController =
       TextEditingController(text: _price.toString());
   late TextEditingController _imageController =
       TextEditingController(text: _image);
   ValueNotifier<String?> _imagevalue = ValueNotifier<String?>(null);
   final _formKey = GlobalKey<FormBuilderState>();
+  // bool en = true;
 
   late String _name;
+  late String _nameAr;
+
   late String _description;
+  late String _descriptionAr;
+
   late double _price;
   late String _image;
   late double _value; //= widget.data.weight.toDouble();
@@ -37,7 +46,10 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
   @override
   void initState() {
     _name = widget.data.nameEn;
+    _nameAr = widget.data.nameAr;
     _description = widget.data.descriptionEn;
+    _description = widget.data.descriptionAr;
+
     _price = widget.data.price;
     _image = widget.data.image;
     _value = widget.data.weight.toDouble();
@@ -164,20 +176,24 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                             setState(() {
                               _nameEnController = TextEditingController(
                                   text: widget.data.nameEn);
+                              _nameArController = TextEditingController(
+                                  text: widget.data.nameAr);
                               _descriptionEnController = TextEditingController(
                                   text: widget.data.descriptionEn);
+                              _descriptionArController = TextEditingController(
+                                  text: widget.data.descriptionAr);
                               _priceController = TextEditingController(
                                   text: widget.data.price.toString());
                               _imageController = TextEditingController(
                                   text: widget.data.image);
                               _value = widget.data.weight.toDouble();
                             });
-                            _showEditDialog(context, widget.data);
+                            _showEditDialog(widget.data);
                           },
                           child: Icon(Icons.edit, color: Colors.brown)),
                       TextButton(
                           onPressed: () {
-                            _showDeleteDialog(context);
+                            _showDeleteDialog();
                           },
                           child: Icon(Icons.delete, color: Colors.red)),
                     ],
@@ -335,7 +351,7 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
 // =====                                    DELETE                                        =====
 // =====  =====  ===== =====  =====  ===== =====  =====  ===== =====  =====  ===== =====  =====
 
-  _showDeleteDialog(BuildContext context) {
+  _showDeleteDialog() {
     showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -394,7 +410,8 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
 // =====                                    EDIT                                          =====
 // =====  =====  ===== =====  =====  ===== =====  =====  ===== =====  =====  ===== =====  =====
 
-  _showEditDialog(BuildContext context, Product product) {
+  _showEditDialog(Product product) {
+    // bool en = true;
     showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -428,7 +445,8 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                               child: InkWell(
                                 onTap: () async {
                                   _imageController.text =
-                                      await fireBaseUploadFileWeb(widget.data.id);
+                                      await fireBaseUploadFileWeb(
+                                          widget.data.id);
                                   _imagevalue.value = _imageController.text;
                                 },
                                 child: Center(
@@ -446,7 +464,8 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                                     value,
                                                     fit: BoxFit.fitWidth,
                                                     loadingBuilder: (context,
-                                                        child, loadingProgress) {
+                                                        child,
+                                                        loadingProgress) {
                                                       if (loadingProgress ==
                                                           null) {
                                                         return child;
@@ -472,7 +491,8 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                                     height: 35,
                                                     width: 180,
                                                     decoration: BoxDecoration(
-                                                        color: Color(0x4D000000)),
+                                                        color:
+                                                            Color(0x4D000000)),
                                                     child: Row(
                                                       mainAxisAlignment:
                                                           MainAxisAlignment
@@ -496,7 +516,8 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                                   width: 180,
                                                   decoration: BoxDecoration(
                                                     borderRadius:
-                                                        BorderRadius.circular(4),
+                                                        BorderRadius.circular(
+                                                            4),
                                                   ),
                                                   child: CommonUI.cachedImage(
                                                       widget.data.image,
@@ -515,7 +536,8 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                                     height: 35,
                                                     width: 180,
                                                     decoration: BoxDecoration(
-                                                        color: Color(0x4D000000)),
+                                                        color:
+                                                            Color(0x4D000000)),
                                                     child: Row(
                                                       mainAxisAlignment:
                                                           MainAxisAlignment
@@ -542,6 +564,43 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                         },
                       ),
                       SizedBox(height: 40),
+                      // Row(
+                      //   mainAxisAlignment: MainAxisAlignment.center,
+                      //   children: [
+                      //     InkWell(
+                      //         onTap: () {
+                      //           setState(() {
+                      //             en = true;
+                      //           });
+                      //         },
+                      //         child: Container(
+                      //             decoration: BoxDecoration(
+                      //                 color: en ? Colors.red : Colors.black),
+                      //             child: Text(
+                      //               'EN',
+                      //               style:
+                      //                   TextStyle(fontWeight: FontWeight.bold),
+                      //             ))),
+                      //     SizedBox(width: 12),
+                      //     InkWell(
+                      //         onTap: () {
+                      //           setState(() {
+                      //             en = false;
+                      //           });
+                      //         },
+                      //         child: Container(
+                      //             decoration: BoxDecoration(
+                      //                 color: en ? Colors.black : Colors.red),
+                      //             child: Text(
+                      //               'AR',
+                      //               style:
+                      //                   TextStyle(fontWeight: FontWeight.bold),
+                      //             ))),
+                      //   ],
+                      // ),
+                      // en == true
+                      // ? Column(
+                      // children: [
                       Container(
                         child: CommonUI.textField(
                           context: context,
@@ -556,6 +615,21 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                         ),
                       ),
                       SizedBox(height: 4),
+                      Container(
+                        child: CommonUI.textField(
+                          context: context,
+                          name: "Arabic Name (Optional)",
+                          hint: "Arabic Name (Optional)",
+                          isEdit: true,
+                          minlines: 1,
+                          controller: _nameArController,
+                          // validate: FormBuilderValidators.compose([
+                          //   FormBuilderValidators.required(context),
+                          // ]),
+                        ),
+                      ),
+                      SizedBox(height: 4),
+
                       Container(
                         child: CommonUI.textField(
                           context: context,
@@ -630,6 +704,21 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                           ]),
                         ),
                       ),
+
+                      SizedBox(height: 4),
+                      Container(
+                        child: CommonUI.textField(
+                          context: context,
+                          name: "Arabic Description (Optional)",
+                          hint: "Arabic Description (Optional)",
+                          maxlength: 600,
+                          minlines: 2,
+                          controller: _descriptionArController,
+                          // validate: FormBuilderValidators.compose([
+                          //   FormBuilderValidators.required(context),
+                          // ]),
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -645,7 +734,9 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                           .doc(product.id)
                           .update({
                         'nameEn': _nameEnController.text,
+                        'nameAr': _nameArController.text,
                         'descriptionEn': _descriptionEnController.text,
+                        'descriptionAr': _descriptionArController.text,
                         'price': _priceController.text,
                         'image': _imageController.text,
                         'weight': _value

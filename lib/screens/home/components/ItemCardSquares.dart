@@ -102,8 +102,8 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                       // height: 240,
                       // width: isWithFavorite ? ScreenUtil.width(context) * 0.7 : null,
                       decoration: BoxDecoration(
-                        color:
-                            widget.color ?? Theme.of(context).cardColor, //Style.cream,
+                        color: widget.color ??
+                            Theme.of(context).cardColor, //Style.cream,
                         borderRadius: BorderRadius.vertical(
                           bottom: Radius.circular(14),
                           // top: Radius.circular(14),
@@ -116,7 +116,7 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                               height: Responsive.isDesktop(context) ? 10 : 6),
 
                           SizedBox(
-                            width:  double.maxFinite,
+                            width: double.maxFinite,
                             child: Padding(
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 1),
@@ -156,7 +156,7 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                           SizedBox(
                               height: Responsive.isDesktop(context) ? 9 : 5),
                           SizedBox(
-                            width:  double.maxFinite,
+                            width: double.maxFinite,
                             child: Padding(
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 1),
@@ -164,7 +164,8 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                                 // height: 10,
                                 child: CommonUI.text(
                                     context: context,
-                                    text: ' JOD ' + widget.product.price.toString(),
+                                    text: ' JOD ' +
+                                        widget.product.price.toString(),
                                     // RhinoLanguage.isLTR()
                                     //     ? product.nameEn
                                     //     : product.nameAr,
@@ -267,7 +268,9 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                                         children: <Widget>[
                                           SizedBox(height: 18),
                                           Text(
-                                            widget.product.nameEn,
+                                            ProjectLanguage.isLTR()
+                                                ? widget.product.nameEn
+                                                : widget.product.nameAr,
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .headline4!
@@ -283,7 +286,8 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                                               children: [
                                                 TextSpan(text: "Price\n"),
                                                 TextSpan(
-                                                  text: "\$${widget.product.price}",
+                                                  text:
+                                                      "\$${widget.product.price}",
                                                   style: Theme.of(context)
                                                       .textTheme
                                                       .headline4!
@@ -327,8 +331,10 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                                                                   FontWeight
                                                                       .bold)),
                                                       TextSpan(
-                                                          text:
-                                                              "${widget.product.descriptionEn}",
+                                                          text: ProjectLanguage
+                                                                  .isLTR()
+                                                              ? "${widget.product.descriptionEn}"
+                                                              : "${widget.product.descriptionAr}",
                                                           style: TextStyle(
                                                               fontSize: 14,
                                                               color: Colors

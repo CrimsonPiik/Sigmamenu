@@ -1,11 +1,20 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:sigmamenu/models/user.dart';
 import 'package:sigmamenu/style/AssetsManager.dart';
 import 'package:sigmamenu/style/CommonUI.dart';
 
-class UsersCard extends StatelessWidget {
-  const UsersCard({Key? key}) : super(key: key);
+class UsersCard extends StatefulWidget {
+  final AppUser data;
 
+  const UsersCard({Key? key, required this.data}) : super(key: key);
+
+  @override
+  State<UsersCard> createState() => _UsersCardState();
+}
+
+class _UsersCardState extends State<UsersCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -15,20 +24,15 @@ class UsersCard extends StatelessWidget {
           color: Colors.grey.withOpacity(0.1),
           borderRadius: BorderRadius.circular(12),
         ),
-        child:
-            //  Responsive.isDesktop(context)
-            // ?
-
-            Row(
+        child: Row(
           children: [
             Container(
                 width: 120,
-                // height: 120,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(4),
                 ),
                 child: CommonUI.cachedImage(
-                   ' widget.data.image', ImageAssets.placeholder,
+                    widget.data.image, ImageAssets.placeholder,
                     fit: BoxFit.cover)),
             SizedBox(
               width: 16,
@@ -37,31 +41,17 @@ class UsersCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  //   // SizedBox(
-                  //   //   height: 20,
-                  //   // ),
                   Text(
-                    'widget.data.nameEn',
+                    widget.data.name,
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                   ),
-                  // CommonUI.text(
-                  //   context: context,
-                  //   text: widget.data.nameEn,
-                  //   // RhinoLanguage.isLTR()
-                  //   //     ? product.nameEn
-                  //   //     : product.nameAr,
-                  //   textAlign: TextAlign.center,
-                  //   style: FontStyle.normal(
-                  //       context: context, fontWeight: FontWeight.bold),
-                  // ),
-
                   SizedBox(
                     height: 4,
                   ),
                   Text(
-                    'widget.data.descriptionEn',
+                    widget.data.phone,
                     overflow: TextOverflow.ellipsis,
                     maxLines: 2,
                     style: TextStyle(fontWeight: FontWeight.w400, fontSize: 14),
@@ -70,76 +60,22 @@ class UsersCard extends StatelessWidget {
                     height: 4,
                   ),
                   Text(
-                   ' widget.data.price.toString()',
+                    widget.data.phone,
                     style: TextStyle(
                         fontWeight: FontWeight.w300,
                         // fontStyle: FontStyle.italic,
                         fontSize: 12),
                   ),
-                  // CommonUI.text(
-                  //   context: context,
-                  //   text: widget.data.descriptionEn,
-                  //   // RhinoLanguage.isLTR()
-                  //   //     ? product.nameEn
-                  //   //     : product.nameAr,
-                  //   textAlign: TextAlign.center,
-                  //   style: FontStyle.normal(
-                  //     context: context,
-                  //     // fontWeight: FontWeight.bold
-                  //   ),
-                  // ),
-
-                  // SizedBox(
-                  //   height: 4,
-                  // ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      // widget.data.weight >= 1
-                      //     ? IconButton(
-                      //         icon: Icon(
-                      //           Icons.toggle_on,
-                      //           color: Colors.green,
-                      //           size: 35,
-                      //         ),
-                      //         onPressed: () {
-                      //           // FirebaseFirestore.instance
-                      //           //     .collection(widget.data.category)
-                      //           //     .doc(widget.data.id)
-                      //           //     .update({'weight': 0});
-                      //         })
-                      //     : IconButton(
-                      //         icon: Icon(
-                      //           Icons.toggle_off,
-                      //           color: Colors.red,
-                      //           size: 35,
-                      //         ),
-                      //         onPressed: () {
-                      //           // FirebaseFirestore.instance
-                      //           //     .collection(widget.data.category)
-                      //           //     .doc(widget.data.id)
-                      //           //     .update({'weight': 1});
-                      //         }),
                       SizedBox(width: 20),
                       TextButton(
-                          onPressed: () {
-                            // setState(() {
-                            //   _nameEnController = TextEditingController(
-                            //       text: widget.data.nameEn);
-                            //   _descriptionEnController = TextEditingController(
-                            //       text: widget.data.descriptionEn);
-                            //   _priceController = TextEditingController(
-                            //       text: widget.data.price.toString());
-                            //   _imageController = TextEditingController(
-                            //       text: widget.data.image);
-                            //   _value = widget.data.weight.toDouble();
-                            // });
-                            // _showEditDialog(context, widget.data);
-                          },
+                          onPressed: () {},
                           child: Icon(Icons.edit, color: Colors.brown)),
                       TextButton(
                           onPressed: () {
-                            // _showDeleteDialog(context);
+                            _showDeleteCategoryDialog();
                           },
                           child: Icon(Icons.delete, color: Colors.red)),
                     ],
@@ -149,5 +85,61 @@ class UsersCard extends StatelessWidget {
             )
           ],
         ));
+  }
+
+  _showDeleteCategoryDialog() {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text(
+              'Delete',
+              style: TextStyle(fontWeight: FontWeight.bold, color: Colors.red),
+            ),
+            content:
+                Text('Are you sure you want to delete this user ?'),
+            actions: [
+              TextButton(
+                onPressed: () async {
+                  await FirebaseFirestore.instance
+                      .collection('users')
+                      .doc(widget.data.id)
+                      .delete();
+
+                  Navigator.of(context).pop();
+                },
+                child: Container(
+                  padding: EdgeInsets.all(10),
+                  child: Text(
+                    'YES',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold, color: Colors.black),
+                  ),
+                  decoration: BoxDecoration(
+                    color: Colors.grey.withOpacity(0.1),
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                ),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Container(
+                  padding: EdgeInsets.all(10),
+                  child: Text(
+                    'NO',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold, color: Colors.black),
+                  ),
+                  decoration: BoxDecoration(
+                    color: Colors.grey.withOpacity(0.1),
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                ),
+              ),
+            ],
+          );
+        });
   }
 }

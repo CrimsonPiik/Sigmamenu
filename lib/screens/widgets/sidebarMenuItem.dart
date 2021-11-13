@@ -43,7 +43,7 @@ class _MenuItemState extends State<SideBarMenuItem> {
 
   Widget buildMenu(int index) {
     return MouseRegion(
-      // opaque: ,
+        // opaque: ,
         onEnter: (e) {
           setState(() {
             _bgColor = Colors.white;

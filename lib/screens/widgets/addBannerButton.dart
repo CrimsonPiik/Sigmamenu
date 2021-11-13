@@ -30,12 +30,26 @@ class _AddBannerButtonState extends State<AddBannerButton> {
         SizedBox(width: 21),
         Align(
           alignment: Alignment.topLeft,
-          child: TextButton.icon(
-              onPressed: () {
-                showDialogWithFields();
-              },
-              icon: Icon(Icons.add),
-              label: Text('Banner')),
+          child: Container(
+            height: 40,
+            child: TextButton.icon(
+                onPressed: () {
+                  showDialogWithFields();
+                },
+                icon: Icon(
+                  Icons.add,
+                  color: Colors.white,
+                ),
+                label: Text(
+                  'Banner  ',
+                  style: TextStyle(
+                      color: Colors.white, fontWeight: FontWeight.bold),
+                )),
+            decoration: BoxDecoration(
+              color: Colors.green[600],
+              borderRadius: BorderRadius.circular(16),
+            ),
+          ),
         ),
       ],
     );

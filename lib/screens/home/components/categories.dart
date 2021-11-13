@@ -1,3 +1,4 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:sigmamenu/screens/adminPanel.dart';
 import 'package:sigmamenu/screens/home/components/customerScreen.dart';
@@ -18,12 +19,20 @@ class _CategoriesState extends State<Categories> {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 56,
-      child: ListView.builder(
-        physics: ScrollPhysics(),
-        shrinkWrap: true,
-        scrollDirection: Axis.horizontal,
-        itemCount: categoriesList.length,
-        itemBuilder: (context, index) => buildCategory(index),
+      child: ScrollConfiguration(
+        behavior: ScrollConfiguration.of(context).copyWith(
+          dragDevices: {
+            PointerDeviceKind.touch,
+            PointerDeviceKind.mouse,
+          },
+        ),
+        child: ListView.builder(
+          physics: ScrollPhysics(),
+          shrinkWrap: true,
+          scrollDirection: Axis.horizontal,
+          itemCount: categoriesList.length,
+          itemBuilder: (context, index) => buildCategory(index),
+        ),
       ),
     );
   }

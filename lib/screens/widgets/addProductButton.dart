@@ -75,21 +75,7 @@ class _AddProductButtonState extends State<AddProductButton> {
                 borderRadius: BorderRadius.circular(16),
               ),
             ),
-          ),
-
-          //    Container(
-          //   height: 37,
-          //   padding: EdgeInsets.all(8),
-          //   child: InkWell(
-          //       onTap: () {
-          //         _showAddCollectionDialog();
-          //       },
-          //       child: Icon(Icons.add)),
-          //   decoration: BoxDecoration(
-          //     color: Colors.grey.withOpacity(0.3),
-          //     borderRadius: BorderRadius.circular(16),
-            // ),
-        // ),
+          ),        
       ],
     );
   }

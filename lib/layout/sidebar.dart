@@ -6,8 +6,9 @@ import 'package:sigmamenu/screens/widgets/sidebarMenuItem.dart';
 final List<MenuItem> menuItems = [
   // MenuItem('Home', Icons.home_outlined),
   MenuItem('User', Icons.person, isSelected: true),
-  MenuItem('Dashboard', Icons.dashboard_outlined),
-  MenuItem('Banners', Icons.photo_size_select_actual_outlined),
+  MenuItem('Dashboard', Icons.dashboard_outlined, isSelected: false),
+  MenuItem('Banners', Icons.photo_size_select_actual_outlined,
+      isSelected: false),
 ];
 
 class SideBar extends StatelessWidget {
