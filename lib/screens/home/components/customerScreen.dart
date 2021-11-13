@@ -80,14 +80,12 @@ class _CustomerScreenState extends State<CustomerScreen>
                       Row(
                         children: [
                           Container(
-                            // color: Colors.black,
                             child: ChangeLanguageButton(),
                           ),
                           SizedBox(width: 5),
                           IconButton(
                             icon: Icon(Icons.login),
                             color: Colors.black,
-                            // ),
                             onPressed: () {
                               Navigator.of(context)
                                   .push(createRoute(SigningPopUp()));
@@ -120,7 +118,7 @@ class _CustomerScreenState extends State<CustomerScreen>
                           });
                         },
                       )),
-                  SizedBox(width: 10),
+                  SizedBox(width: 50),
                 ],
               ),
               ItemCardData(streamController.stream),

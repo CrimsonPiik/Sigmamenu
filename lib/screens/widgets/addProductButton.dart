@@ -53,9 +53,10 @@ class _AddProductButtonState extends State<AddProductButton> {
         Align(
           alignment: Alignment.topLeft,
           // child: Padding(
-            // padding: const EdgeInsets.symmetric(horizontal: 3.0),
+            // padding: const EdgeInsets.symmetric(horizontal: 6.0),
             child: Container(
-              padding: EdgeInsets.all(6),
+              height: 40,
+              // padding: EdgeInsets.all(2),
               child: TextButton.icon(
                   onPressed: () {
                     showDialogWithFields();
@@ -65,7 +66,7 @@ class _AddProductButtonState extends State<AddProductButton> {
                     color: Colors.white,
                   ),
                   label: Text(
-                    'Product ',
+                    'Product  ',
                     style: TextStyle(
                         color: Colors.white, fontWeight: FontWeight.bold),
                   )),
@@ -87,7 +88,7 @@ class _AddProductButtonState extends State<AddProductButton> {
           //   decoration: BoxDecoration(
           //     color: Colors.grey.withOpacity(0.3),
           //     borderRadius: BorderRadius.circular(16),
-          //   ),
+            // ),
         // ),
       ],
     );

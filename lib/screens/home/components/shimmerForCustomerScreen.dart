@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:sigmamenu/constaints.dart';
-import 'package:sigmamenu/style/AssetsManager.dart';
 import 'package:sigmamenu/style/ScreenUtil.dart';
 import 'package:sigmamenu/style/Session.dart';
 
@@ -118,23 +117,27 @@ class ShimmerForCustomerScreen extends StatelessWidget {
               child: GridView.builder(
                 itemCount: 6,
                 itemBuilder: (context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.only(bottom: 8.0),
+                  return Container(
+                    padding: EdgeInsets.all(16),
+                    margin: EdgeInsets.only(bottom: 20),
+                    decoration: BoxDecoration(
+                      color: Colors.grey.withOpacity(0.1),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
                     child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
+                      children: [
                         Container(
-                          width: 48.0,
-                          height: 48.0,
+                          width: 100.0,
+                          height: 100.0,
                           color: Colors.white,
                         ),
-                        const Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 8.0),
+                        SizedBox(
+                          width: 16,
                         ),
                         Expanded(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
+                            children: [
                               Container(
                                 width: double.infinity,
                                 height: 8.0,
@@ -145,14 +148,6 @@ class ShimmerForCustomerScreen extends StatelessWidget {
                               ),
                               Container(
                                 width: double.infinity,
-                                height: 8.0,
-                                color: Colors.white,
-                              ),
-                              const Padding(
-                                padding: EdgeInsets.symmetric(vertical: 2.0),
-                              ),
-                              Container(
-                                width: 40.0,
                                 height: 8.0,
                                 color: Colors.white,
                               ),
@@ -162,64 +157,6 @@ class ShimmerForCustomerScreen extends StatelessWidget {
                       ],
                     ),
                   );
-
-                  // Container(
-                  //   padding: EdgeInsets.all(16),
-                  //   margin: EdgeInsets.only(bottom: 20),
-                  //   decoration: BoxDecoration(
-                  //     color: Colors.grey.withOpacity(0.1),
-                  //     borderRadius: BorderRadius.circular(12),
-                  //   ),
-                  //   child: Row(
-                  //     children: [
-                  //       Container(
-                  //         width: 120,
-                  //         decoration: BoxDecoration(
-                  //           borderRadius: BorderRadius.circular(4),
-                  //         ),
-                  //         // child: ImageAssets(ImageAssets.placeholder),
-                  //         //  Icon(Icons.image),
-                  //         //     widget.product.image, ImageAssets.placeholder,
-                  //         //     fit: BoxFit.cover)
-                  //       ),
-                  //       SizedBox(
-                  //         width: 16,
-                  //       ),
-                  //       Expanded(
-                  //         child: Column(
-                  //           crossAxisAlignment: CrossAxisAlignment.start,
-                  //           children: [
-                  //             Text(
-                  //               'widget.product.nameEn,',
-                  //               overflow: TextOverflow.ellipsis,
-                  //               maxLines: 1,
-                  //               style: TextStyle(
-                  //                   fontWeight: FontWeight.bold, fontSize: 16),
-                  //             ),
-                  //             SizedBox(
-                  //               height: 4,
-                  //             ),
-                  //             Text(
-                  //               'widget.product.descriptionEn',
-                  //               overflow: TextOverflow.ellipsis,
-                  //               maxLines: 2,
-                  //               style: TextStyle(
-                  //                   fontWeight: FontWeight.w400, fontSize: 14),
-                  //             ),
-                  //             SizedBox(
-                  //               height: 4,
-                  //             ),
-                  //             Text(
-                  //               ' widget.product.price.toString()',
-                  //               style: TextStyle(
-                  //                   fontWeight: FontWeight.w300, fontSize: 12),
-                  //             ),
-                  //           ],
-                  //         ),
-                  //       )
-                  //     ],
-                  //   ),
-                  // );
                 },
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 1,

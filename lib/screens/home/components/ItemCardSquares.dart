@@ -29,7 +29,7 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
   @override
   Widget build(BuildContext context) {
     // final double cardHeight = 200; //300
-    final double cardWidth = 130;
+    // final double cardWidth = 130;
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(32)),

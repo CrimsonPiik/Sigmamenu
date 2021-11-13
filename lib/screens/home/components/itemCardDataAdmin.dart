@@ -50,27 +50,12 @@ class _ItemCardDataAdminState extends State<ItemCardDataAdmin> {
           if (snapshot.connectionState == ConnectionState.waiting)
             return CommonUI.loading(context);
           List<Product> products = [];
-          // List<Product> sortedProductsByWeight = [];
-          // List<int> productsWeight = [];
+
           List<DocumentSnapshot> shots = snapshot.data!.docs;
           for (var item in shots) {
             products.add(Product.fromMap(item.data() as Map<String, dynamic>));
           }
 
-          // for (int i = 0; i < products.length; i++) {
-          //   productsWeight.add(products[i].weight);
-          // }
-          // productsWeight.sort();
-
-          // for (int i = 0; i < products.length; i++) {
-          //   for (int k = 0; k < products.length; k++) {
-          //     if (products[i].weight == productsWeight[k]) {
-          //       sortedProductsByWeight.add(products[i]);
-          //       // sortedProductsByWeight.sort();
-          //     }
-          //   }
-          // }
-          // print("SORTEDPRODUCTSBYWEIGHT" + sortedProductsByWeight.toString());
           print("Admin Side : " + products.toString());
           // DateTime.now().millisecondsSinceEpoch.toString());
           return Expanded(
@@ -84,23 +69,10 @@ class _ItemCardDataAdminState extends State<ItemCardDataAdmin> {
                           ? MediaQuery.of(context).size.width /
                               (MediaQuery.of(context).size.height / 3.5)
                           : MediaQuery.of(context).size.width /
-                              (MediaQuery.of(context).size.height / 2.7)
-                      //       //               // ScreenUtil.isDesktop(context)
-                      //       //               // ? 7
-                      //       //               // : ScreenUtil.isTablet(context)
-                      //       //               // ? 4
-                      //       //               //  : 2,
-                      //       //               // mainAxisSpacing: kDefaultPaddin,
-                      //       //               // crossAxisSpacing: kDefaultPaddin,
-                      // childAspectRatio: 130.0,
-                      ),
+                              (MediaQuery.of(context).size.height / 4)),
                   itemBuilder: (context, index) =>
-                      //  TextButton.icon(
-                      //                   onPressed: () {}, icon: Icon(Icons.add), label: Text('Add')),
                       ProductsItemAdmin(products[index]),
                 )),
-            // ),
-            // ],
           );
         });
   }

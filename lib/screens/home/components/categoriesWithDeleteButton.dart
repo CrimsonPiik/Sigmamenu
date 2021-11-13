@@ -1,8 +1,10 @@
+import 'dart:ui';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:sigmamenu/screens/adminPanel.dart';
 import 'package:sigmamenu/screens/home/components/customerScreen.dart';
-import 'package:sigmamenu/constaints.dart';
+import 'package:sigmamenu/style/ScreenUtil.dart';
 
 class CategoriesWithDeleteButton extends StatefulWidget {
   final Stream<int> stream;
@@ -36,54 +38,65 @@ class _CategoriesWithDeleteButtonState
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+
     return Padding(
-      padding: const EdgeInsets.only(top: kDefaultPaddin),
+      padding: const EdgeInsets.only(top: 20.0),
       child: SizedBox(
-        height: 56,
-        child: ListView.builder(
-          shrinkWrap: true,
-          scrollDirection: Axis.horizontal,
-          itemCount: categoriesList.length,
-          itemBuilder: (context, index) => buildCategory(index),
+        height: 60,
+        width:
+            Responsive.isDesktop(context) ? size.width / 1.28 : size.width - 140,
+        child: ScrollConfiguration(
+          behavior: ScrollConfiguration.of(context).copyWith(
+            dragDevices: {
+              PointerDeviceKind.touch,
+              PointerDeviceKind.mouse,
+            },
+          ),
+          child: ListView.builder(
+            physics: AlwaysScrollableScrollPhysics(), // new
+            shrinkWrap: true,
+            scrollDirection: Axis.horizontal,
+            itemCount: categoriesList.length,
+            itemBuilder: (context, index) => buildCategory(index),
+          ),
         ),
       ),
     );
-    // });
   }
 
   Widget buildCategory(int index) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+      padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
       child: Stack(
         children: [
           Ink(
-              child: InkWell(
-            onTap: () {
-              setState(() {
-                selectedIndex = index;
-              });
-              streamController.add(selectedIndex);
-              print(index.toString());
-            },
-            child: Container(
-              padding: EdgeInsets.all(10),
-              child: Text(
-                categoriesList.elementAt(index),
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: selectedIndex == index ? Colors.white : Colors.black,
+            child: InkWell(
+              onTap: () {
+                setState(() {
+                  selectedIndex = index;
+                });
+                streamController.add(selectedIndex);
+                print(index.toString());
+              },
+              child: Container(
+                padding: EdgeInsets.all(10),
+                child: Text(
+                  categoriesList.elementAt(index),
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: selectedIndex == index ? Colors.white : Colors.black,
+                  ),
+                ),
+                decoration: BoxDecoration(
+                  color: selectedIndex == index
+                      ? Colors.brown[400]
+                      : Colors.grey.withOpacity(0.3),
+                  borderRadius: BorderRadius.circular(16),
                 ),
               ),
-              decoration: BoxDecoration(
-                color: selectedIndex == index
-                    ? Colors.brown[400]
-                    : Colors.grey.withOpacity(0.3),
-                borderRadius: BorderRadius.circular(16),
-              ),
             ),
-          )),
-          //   ],
-          // ),
+          ),
           Align(
             alignment: Alignment(1, -1.6),
             child: InkWell(
@@ -92,7 +105,6 @@ class _CategoriesWithDeleteButtonState
                   selectedIndex = index;
                 });
                 streamController.add(selectedIndex);
-
                 _showDeleteCategoryDialog();
               },
               child: Container(
@@ -111,7 +123,7 @@ class _CategoriesWithDeleteButtonState
             ),
           ),
         ],
-      ), // ElevatedButton(
+      ),
     );
   }
 

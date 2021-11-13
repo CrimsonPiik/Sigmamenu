@@ -98,7 +98,7 @@ class _AdminPanelProductsState extends State<AdminPanelProducts> {
                 child: Column(
                   children: [
                     Container(
-                      height: 70,
+                      height: 60,
                       child: Row(
                         children: [
                           SizedBox(
