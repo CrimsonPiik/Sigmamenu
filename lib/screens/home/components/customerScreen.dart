@@ -19,7 +19,8 @@ class CustomerScreen extends StatefulWidget {
   State<CustomerScreen> createState() => _CustomerScreenState();
 }
 
-class _CustomerScreenState extends State<CustomerScreen> with SingleTickerProviderStateMixin {
+class _CustomerScreenState extends State<CustomerScreen>
+    with SingleTickerProviderStateMixin {
   late AnimationController animationController;
   bool isList = true;
   @override
@@ -78,21 +79,6 @@ class _CustomerScreenState extends State<CustomerScreen> with SingleTickerProvid
                       ),
                       Row(
                         children: [
-                          Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 3),
-                              child: IconButton(
-                                icon: AnimatedIcon(
-                                  icon: AnimatedIcons.view_list,
-                                  progress: animationController,
-                                ),
-                                onPressed: () {
-                                  ///toggle controls the animation Forward and Backward
-                                  toggle();
-                                  setState(() {
-                                    Session.isList = !Session.isList;
-                                  });
-                                },
-                              )),
                           Container(
                             // color: Colors.black,
                             child: ChangeLanguageButton(),
@@ -115,7 +101,28 @@ class _CustomerScreenState extends State<CustomerScreen> with SingleTickerProvid
               ),
               BannerWithDotsIndicator(),
               Categories(),
-
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Align(
+                      alignment: Alignment.topRight,
+                      // padding: const EdgeInsets.symmetric(horizontal: 3),
+                      child: IconButton(
+                        icon: AnimatedIcon(
+                          icon: AnimatedIcons.view_list,
+                          progress: animationController,
+                        ),
+                        onPressed: () {
+                          ///toggle controls the animation Forward and Backward
+                          toggle();
+                          setState(() {
+                            Session.isList = !Session.isList;
+                          });
+                        },
+                      )),
+                  SizedBox(width: 10),
+                ],
+              ),
               ItemCardData(streamController.stream),
             ],
           );

@@ -10,14 +10,12 @@ import '../../../style/Style.dart';
 
 class ItemCardSquares extends StatefulWidget {
   final Product product;
-  final bool isBordered;
   final bool isWithFavorite;
   final bool isFavoriteScreen;
   final Color? color;
   ItemCardSquares({
     Key? key,
     required this.product,
-    required this.isBordered,
     this.color,
     this.isWithFavorite = false,
     this.isFavoriteScreen = false,
@@ -34,13 +32,12 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
     final double cardWidth = 130;
     return Container(
       decoration: BoxDecoration(
-        // border: isBordered ? Border.all(color: Style.beigeBrown) : null,
         borderRadius: BorderRadius.all(Radius.circular(32)),
         boxShadow: [
           BoxShadow(
             color: Colors.grey.withOpacity(0.4),
-            spreadRadius: widget.isBordered ? 2 : 1,
-            blurRadius: widget.isBordered ? 9 : 9,
+            spreadRadius: 2,
+            blurRadius: 9,
             offset: Offset(0, 4),
           ),
         ],
@@ -71,8 +68,6 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  // isBordered
-                  // ?
                   ClipRRect(
                     // borderRadius:
                     //     BorderRadius.vertical(top: Radius.circular(28)),
@@ -121,7 +116,7 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                               height: Responsive.isDesktop(context) ? 10 : 6),
 
                           SizedBox(
-                            width: widget.isBordered ? double.maxFinite : cardWidth,
+                            width:  double.maxFinite,
                             child: Padding(
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 1),
@@ -143,7 +138,6 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                             ),
                           ),
                           // SizedBox(
-                          //   width: isBordered ? double.maxFinite : cardWidth,
                           //   child: Padding(
                           //     padding:
                           //         const EdgeInsets.symmetric(horizontal: 1),
@@ -162,7 +156,7 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                           SizedBox(
                               height: Responsive.isDesktop(context) ? 9 : 5),
                           SizedBox(
-                            width: widget.isBordered ? double.maxFinite : cardWidth,
+                            width:  double.maxFinite,
                             child: Padding(
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 1),

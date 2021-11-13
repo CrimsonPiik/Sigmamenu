@@ -125,7 +125,7 @@ class _CategoriesWithDeleteButtonState
               style: TextStyle(fontWeight: FontWeight.bold, color: Colors.red),
             ),
             content:
-                Text('Are you sure you want to delete ${category} category ?'),
+                Text('Are you sure you want to delete $category category ?'),
             actions: [
               TextButton(
                 onPressed: () async {

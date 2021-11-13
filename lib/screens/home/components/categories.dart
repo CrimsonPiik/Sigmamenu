@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sigmamenu/screens/adminPanel.dart';
 import 'package:sigmamenu/screens/home/components/customerScreen.dart';
-import 'package:sigmamenu/constaints.dart';
 
 class Categories extends StatefulWidget {
   @override
@@ -33,9 +32,11 @@ class _CategoriesState extends State<Categories> {
 
     //       print("Categories : " + categoriesList.toString());
 
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: kDefaultPaddin),
-      child: SizedBox(
+    return 
+    // Padding(
+      // padding: const EdgeInsets.symmetric(vertical: kDefaultPaddin),
+      // child: 
+      SizedBox(
         height: 56,
         child: ListView.builder(
           shrinkWrap: true,
@@ -43,7 +44,7 @@ class _CategoriesState extends State<Categories> {
           itemCount: categoriesList.length,
           itemBuilder: (context, index) => buildCategory(index),
         ),
-      ),
+      // ),
     );
     // });
   }

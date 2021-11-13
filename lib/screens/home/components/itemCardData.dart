@@ -166,7 +166,6 @@
 //                       ),
 //                       itemBuilder: (context, index) => ItemCard(
 //                         product: _productsList[index],
-//                         isBordered: true,
 //                       ),
 //                     )));
 //           },
@@ -177,19 +176,14 @@
 // WORKS WITHOUT CATEGORIES
 
 import 'dart:async';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:shimmer/shimmer.dart';
-import 'package:sigmamenu/constaints.dart';
 import 'package:sigmamenu/models/product.dart';
 import 'package:sigmamenu/screens/adminPanel.dart';
-import 'package:sigmamenu/screens/home/components/ItemCardRectangle.dart';
-import 'package:sigmamenu/screens/home/components/ItemCardSquares.dart';
+import 'package:sigmamenu/screens/home/components/itemCardRectangleAndSquare.dart';
+import 'package:sigmamenu/screens/home/components/shimmerForCustomerScreen.dart';
 import 'package:sigmamenu/style/CommonUI.dart';
-import 'package:sigmamenu/style/ScreenUtil.dart';
-import 'package:sigmamenu/style/Session.dart';
 
 class ItemCardData extends StatefulWidget {
   final Stream<int> stream;
@@ -201,8 +195,6 @@ class ItemCardData extends StatefulWidget {
 
 class _ItemCardDataState extends State<ItemCardData> {
   String category = categoriesList.elementAt(0);
-  bool _enabled = true;
-
   @override
   void initState() {
     widget.stream.listen((index) {
@@ -226,12 +218,8 @@ class _ItemCardDataState extends State<ItemCardData> {
           if (snapshot.hasError) {
             return CommonUI.error(snapshot.error.toString());
           }
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            _enabled = true;
-          }
-          // return
-          // LoadingListPage();
-          // CommonUI.loading(context);
+          if (snapshot.connectionState == ConnectionState.waiting)
+            return ShimmerForCustomerScreen();
 
           List<Product> productsList = [];
           List<DocumentSnapshot> shots = snapshot.data!.docs;
@@ -242,74 +230,7 @@ class _ItemCardDataState extends State<ItemCardData> {
           }
 
           print("Client Side : " + productsList.toString());
-
-          // return
-          return Session.isList
-              ? Expanded(
-                  child: Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: kDefaultPaddin),
-                    // child: Shimmer.fromColors(
-                    //   baseColor: Colors.grey.withOpacity(0.7),
-                    //   highlightColor: Colors.grey.withOpacity(0.3),
-                    //   enabled: _enabled,
-                      child: GridView.builder(
-                        itemCount: productsList.length,
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: Responsive.isDesktop(context)
-                              ? 7
-                              : Responsive.isTablet(context)
-                                  ? 4
-                                  : 2,
-                          mainAxisSpacing: kDefaultPaddin,
-                          crossAxisSpacing: kDefaultPaddin,
-                          childAspectRatio: 0.75,
-                        ),
-                        itemBuilder: (context, index) => ItemCardSquares(
-                          product: productsList[index],
-                          isBordered: true,
-                        ),
-                      ),
-                    ),
-                  // ),
-                )
-              : Expanded(
-                  child: Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: kDefaultPaddin),
-                    // child: Shimmer.fromColors(
-                    //   baseColor: Colors.grey.withOpacity(0.7),
-                    //   highlightColor: Colors.grey.withOpacity(0.3),
-                    //   enabled: _enabled,
-                      child: GridView.builder(
-                        physics: ClampingScrollPhysics(),
-                        shrinkWrap: true,
-                        scrollDirection: Axis.vertical,
-                        itemCount: productsList.length,
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 1,
-                            childAspectRatio: Responsive.isDesktop(context)
-                                ? MediaQuery.of(context).size.width /
-                                    (MediaQuery.of(context).size.height / 3.5)
-                                : MediaQuery.of(context).size.width /
-                                    (MediaQuery.of(context).size.height / 4.5)
-                            //       //               // ScreenUtil.isDesktop(context)
-                            //       //               // ? 7
-                            //       //               // : ScreenUtil.isTablet(context)
-                            //       //               // ? 4
-                            //       //               //  : 2,
-                            //       //               // mainAxisSpacing: kDefaultPaddin,
-                            //       //               // crossAxisSpacing: kDefaultPaddin,
-                            // childAspectRatio: 130.0,
-                            ),
-                        itemBuilder: (context, index) => ItemCardRectangle(
-                          product: productsList[index],
-                          isBordered: true,
-                        ),
-                      ),
-                    ),
-                  // ),
-                );
+          return ItemCardRectangleAndSquare(productList: productsList);
         });
   }
 }
