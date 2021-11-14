@@ -55,9 +55,9 @@ class _ItemCardRectangleState extends State<ItemCardRectangle> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  //   // SizedBox(
-                  //   //   height: 20,
-                  //   // ),
+                  SizedBox(
+                    height: 10,
+                  ),
                   Text(
                     ProjectLanguage.isLTR()
                         ? widget.product.nameEn
@@ -66,37 +66,27 @@ class _ItemCardRectangleState extends State<ItemCardRectangle> {
                     maxLines: 1,
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                   ),
-                  // CommonUI.text(
-                  //   context: context,
-                  //   text: widget.product.nameEn,
-                  //   // RhinoLanguage.isLTR()
-                  //   //     ? product.nameEn
-                  //   //     : product.nameAr,
-                  //   textAlign: TextAlign.center,
-                  //   style: FontStyle.normal(
-                  //       context: context, fontWeight: FontWeight.bold),
-                  // ),
 
+                  // SizedBox(
+                  //   height: 4,
+                  // ),
+                  // Text(
+                  //   ProjectLanguage.isLTR()
+                  //       ? widget.product.descriptionEn
+                  //       : widget.product.descriptionAr,
+                  //   overflow: TextOverflow.ellipsis,
+                  //   maxLines: 2,
+                  //   style: TextStyle(fontWeight: FontWeight.w400, fontSize: 14),
+                  // ),
                   SizedBox(
-                    height: 4,
+                    height: 6,
                   ),
                   Text(
-                    ProjectLanguage.isLTR()
-                        ? widget.product.descriptionEn
-                        : widget.product.descriptionAr,
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 2,
-                    style: TextStyle(fontWeight: FontWeight.w400, fontSize: 14),
-                  ),
-                  SizedBox(
-                    height: 4,
-                  ),
-                  Text(
-                    widget.product.price.toString(),
+                    "JOD " + widget.product.price.toString(),
                     style: TextStyle(
-                        fontWeight: FontWeight.w300,
+                        fontWeight: FontWeight.bold,
                         // fontStyle: FontStyle.italic,
-                        fontSize: 12),
+                        fontSize: 15),
                   ),
                 ],
               ),
