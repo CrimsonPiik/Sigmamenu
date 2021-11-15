@@ -357,14 +357,26 @@ class _ItemCardRectangleState extends State<ItemCardRectangle> {
                 ),
               ),
             ),
-            Positioned(
-              width: 50,
-              height: 50,
-              top: 10,
-              left: 320,
-              child: FloatingActionButton(
-                onPressed: () => Navigator.of(context).pop(),
-                child: Icon(Icons.close),
+            // Positioned(
+            //   width: 50,
+            //   height: 50,
+            //   top: 10,
+            //   left: 320,
+            //   child: FloatingActionButton(
+            //     onPressed: () => Navigator.of(context).pop(),
+            //     child: Icon(Icons.close),
+            //   ),
+            // ),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Container(
+                width: 60,
+                height: 60,
+                child: FloatingActionButton(
+                  onPressed: () => Navigator.of(context).pop(),
+                  child: Icon(Icons.close),
+                  
+                ),
               ),
             ),
           ],

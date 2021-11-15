@@ -45,9 +45,7 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
       child: Stack(
         children: [
           InkWell(
-            onTap: () => {
-              _animationDialog(context)         
-            },
+            onTap: () => {_animationDialog(context)},
             child: Container(
               // decoration: BoxDecoration(
               //   color: color ?? Theme.of(context).cardColor, //Style.cream,
@@ -63,7 +61,6 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                     // borderRadius:
                     //     BorderRadius.vertical(top: Radius.circular(28)),
                     child: Container(
-                      
                       height: Responsive.isDesktop(context)
                           ? 160
                           : Responsive.isTablet(context)
@@ -72,15 +69,15 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                                   ? 150
                                   : 100,
                       width: double.maxFinite,
-                        decoration: BoxDecoration(
-          color: Colors.white,
-          // borderRadius: BorderRadius.only(
-          //   topLeft: Radius.circular(24),
-          //   topRight: Radius.circular(24),
-          //   bottomLeft: Radius.circular(24),
-          //   bottomRight: Radius.circular(24),
-          // ),
-          ),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        // borderRadius: BorderRadius.only(
+                        //   topLeft: Radius.circular(24),
+                        //   topRight: Radius.circular(24),
+                        //   bottomLeft: Radius.circular(24),
+                        //   bottomRight: Radius.circular(24),
+                        // ),
+                      ),
                       child: CommonUI.cachedImage(
                           widget.product.image, ImageAssets.placeholder,
                           fit: BoxFit.cover),
@@ -346,7 +343,7 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                                               ),
 
                                               SizedBox(
-                                                  height: kDefaultPaddin * 2)
+                                                  height: kDefaultPaddin * 2),
                                             ],
                                           ),
                                         ],
@@ -364,14 +361,23 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                 ),
               ),
             ),
-            Positioned(
-              width: 50,
-              height: 50,
-              top: 10,
-              left: 320,
-              child: FloatingActionButton(
-                onPressed: () => Navigator.of(context).pop(),
-                child: Icon(Icons.close),
+            // Positioned(
+            //   top: Responsive.isDesktop(context)? 40 : 90,
+            //   right: Responsive.isDesktop(context)? 320 :  0,
+            //   child: FloatingActionButton(
+            //     onPressed: () => Navigator.of(context).pop(),
+            //     child: Icon(Icons.close),
+            //   ),
+            // ),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Container(
+                width: 60,
+                height: 60,
+                child: FloatingActionButton(
+                  onPressed: () => Navigator.of(context).pop(),
+                  child: Icon(Icons.close),
+                ),
               ),
             ),
           ],
