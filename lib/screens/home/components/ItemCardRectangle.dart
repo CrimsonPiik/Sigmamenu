@@ -32,16 +32,42 @@ class _ItemCardRectangleState extends State<ItemCardRectangle> {
         _animationDialog(context);
       },
       child: Container(
-        padding: EdgeInsets.all(16),
+        // padding: EdgeInsets.all(16),
         margin: EdgeInsets.only(bottom: 20),
         decoration: BoxDecoration(
-          color: Colors.grey.withOpacity(0.1),
-          borderRadius: BorderRadius.circular(12),
+          color: Colors.white,
+          borderRadius: BorderRadius.only(
+            // topLeft: Radius.circular(24),
+            topRight: Radius.circular(24),
+            // bottomLeft: Radius.circular(24),
+            bottomRight: Radius.circular(24),
+          ),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.4),
+              spreadRadius: 2,
+              blurRadius: 9,
+              offset: Offset(0, 4),
+            ),
+          ],
         ),
         child: Row(
           children: [
             Container(
-                width: 120,
+                width: Responsive.isDesktop(context)
+                    ? 160
+                    : Responsive.isTablet(context)
+                        ? 155
+                        : Responsive.isMobile(context)
+                            ? 150
+                            : 100,
+                height: Responsive.isDesktop(context)
+                    ? 160
+                    : Responsive.isTablet(context)
+                        ? 155
+                        : Responsive.isMobile(context)
+                            ? 150
+                            : 100,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(4),
                 ),

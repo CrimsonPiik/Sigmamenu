@@ -46,16 +46,7 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
         children: [
           InkWell(
             onTap: () => {
-              // _itemDescriptionDialog(context)
-              _animationDialog(context)
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(
-              //     builder: (context) => DetailsScreen(
-              //       product: product,
-              //     ),
-              //   ),
-              // ),
+              _animationDialog(context)         
             },
             child: Container(
               // decoration: BoxDecoration(
@@ -72,6 +63,7 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                     // borderRadius:
                     //     BorderRadius.vertical(top: Radius.circular(28)),
                     child: Container(
+                      
                       height: Responsive.isDesktop(context)
                           ? 160
                           : Responsive.isTablet(context)
@@ -80,6 +72,15 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                                   ? 150
                                   : 100,
                       width: double.maxFinite,
+                        decoration: BoxDecoration(
+          color: Colors.white,
+          // borderRadius: BorderRadius.only(
+          //   topLeft: Radius.circular(24),
+          //   topRight: Radius.circular(24),
+          //   bottomLeft: Radius.circular(24),
+          //   bottomRight: Radius.circular(24),
+          // ),
+          ),
                       child: CommonUI.cachedImage(
                           widget.product.image, ImageAssets.placeholder,
                           fit: BoxFit.cover),
