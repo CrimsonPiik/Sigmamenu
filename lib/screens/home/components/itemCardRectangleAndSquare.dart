@@ -21,54 +21,104 @@ class ItemCardRectangleAndSquare extends StatefulWidget {
       _ItemCardRectangleAndSquareState();
 }
 
-class _ItemCardRectangleAndSquareState
-    extends State<ItemCardRectangleAndSquare> {
+class _ItemCardRectangleAndSquareState extends State<ItemCardRectangleAndSquare>
+    with SingleTickerProviderStateMixin {
+  late AnimationController animationController;
+  bool isList = true;
+  @override
+  void initState() {
+    super.initState();
+    animationController =
+        AnimationController(vsync: this, duration: Duration(milliseconds: 500));
+  }
+
+  @override
+  void dispose() {
+    animationController.dispose();
+    super.dispose();
+  }
+
+  void toggle() => animationController.isDismissed
+      ? animationController.forward()
+      : animationController.reverse();
+
   @override
   Widget build(BuildContext context) {
     List<Product> products = widget.productList;
-    return Session.isList
-        ? Expanded(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: kDefaultPaddin),            
-              child: GridView.builder(
-                itemCount: products.length,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: Responsive.isDesktop(context)
-                      ? 7
-                      : Responsive.isTablet(context)
-                          ? 4
-                          : 2,
-                  mainAxisSpacing: kDefaultPaddin,
-                  crossAxisSpacing: kDefaultPaddin,
-                  childAspectRatio: 0.75,
+    return Expanded(
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              // Align(
+              // alignment: Alignment.topRight,
+              // padding: const EdgeInsets.symmetric(horizontal: 6),
+              // /child:
+              IconButton(
+                icon: AnimatedIcon(
+                  icon: AnimatedIcons.view_list,
+                  progress: animationController,
                 ),
-                itemBuilder: (context, index) => ItemCardSquares(
-                  product: products[index],
-                ),
+                onPressed: () {
+                  ///toggle controls the animation Forward and Backward
+                  toggle();
+                  setState(() {
+                    Session.isList = !Session.isList;
+                  });
+                },
+                // )
               ),
-            ),
-          )
-        : Expanded(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: kDefaultPaddin),
-          
-              child: GridView.builder(
-                physics: ClampingScrollPhysics(),
-                shrinkWrap: true,
-                scrollDirection: Axis.vertical,
-                itemCount: products.length,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 1,
-                    childAspectRatio: Responsive.isDesktop(context)
-                        ? MediaQuery.of(context).size.width /
-                            (MediaQuery.of(context).size.height / 3.5)
-                        : MediaQuery.of(context).size.width /
-                            (MediaQuery.of(context).size.height / 4.5)),
-                itemBuilder: (context, index) => ItemCardRectangle(
-                  product: products[index],
+              SizedBox(width: 12),
+            ],
+          ),
+          Session.isList
+              ? Expanded(
+                  child: Padding(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: kDefaultPaddin),
+                    child: GridView.builder(
+                      itemCount: products.length,
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: Responsive.isDesktop(context)
+                            ? 7
+                            : Responsive.isTablet(context)
+                                ? 4
+                                : 2,
+                        mainAxisSpacing: kDefaultPaddin,
+                        crossAxisSpacing: kDefaultPaddin,
+                        childAspectRatio: 0.75,
+                      ),
+                      itemBuilder: (context, index) => ItemCardSquares(
+                        product: products[index],
+                      ),
+                    ),
+                  ),
+                )
+              : Expanded(
+                  child: Padding(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: kDefaultPaddin),
+                    child: GridView.builder(
+                      physics: ClampingScrollPhysics(),
+                      shrinkWrap: true,
+                      scrollDirection: Axis.vertical,
+                      itemCount: products.length,
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 1,
+                          childAspectRatio: Responsive.isDesktop(context)
+                              ? MediaQuery.of(context).size.width /
+                                  (MediaQuery.of(context).size.height / 3.5)
+                              : MediaQuery.of(context).size.width /
+                                  (MediaQuery.of(context).size.height / 4.5)),
+                      itemBuilder: (context, index) => ItemCardRectangle(
+                        product: products[index],
+                      ),
+                    ),
+                  ),
                 ),
-              ),
-            ),
-          );
+        ],
+      ),
+    );
   }
 }

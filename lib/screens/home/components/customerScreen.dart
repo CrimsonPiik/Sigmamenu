@@ -99,30 +99,7 @@ class _CustomerScreenState extends State<CustomerScreen>
               ),
               BannerWithDotsIndicator(),
               Categories(),
-              Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-              // Align(
-                  // alignment: Alignment.topRight,
-                  // padding: const EdgeInsets.symmetric(horizontal: 6),
-                  // /child: 
-                  IconButton(
-                    icon: AnimatedIcon(
-                      icon: AnimatedIcons.view_list,
-                      progress: animationController,
-                    ),
-                    onPressed: () {
-                      ///toggle controls the animation Forward and Backward
-                      toggle();
-                      setState(() {
-                        Session.isList = !Session.isList;
-                      });
-                    },
-                  // )
-                  ),
-              SizedBox(width: 12),
-              ],
-              ),
+           
               ItemCardData(streamController.stream),
             ],
           );
