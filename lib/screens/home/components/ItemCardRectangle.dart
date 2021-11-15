@@ -6,6 +6,7 @@ import 'package:sigmamenu/models/product.dart';
 import 'package:sigmamenu/style/AssetsManager.dart';
 import 'package:sigmamenu/style/CommonUI.dart';
 import 'package:sigmamenu/style/ScreenUtil.dart';
+import '../../../style/Style.dart';
 
 class ItemCardRectangle extends StatefulWidget {
   final Product product;
@@ -32,22 +33,19 @@ class _ItemCardRectangleState extends State<ItemCardRectangle> {
         _animationDialog(context);
       },
       child: Container(
-        // padding: EdgeInsets.all(16),
         margin: EdgeInsets.only(bottom: 20),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.only(
-            // topLeft: Radius.circular(24),
             topRight: Radius.circular(24),
-            // bottomLeft: Radius.circular(24),
             bottomRight: Radius.circular(24),
           ),
           boxShadow: [
             BoxShadow(
-              color: Colors.grey.withOpacity(0.4),
+              color: Colors.grey.withOpacity(0.5),
               spreadRadius: 2,
               blurRadius: 9,
-              offset: Offset(0, 4),
+              offset: Offset(1, 9),
             ),
           ],
         ),
@@ -82,38 +80,29 @@ class _ItemCardRectangleState extends State<ItemCardRectangle> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(
-                    height: 10,
+                    height: 20,
                   ),
-                  Text(
-                    ProjectLanguage.isLTR()
+                  CommonUI.text(
+                    context: context,
+                    text: ProjectLanguage.isLTR()
                         ? widget.product.nameEn
                         : widget.product.nameAr,
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 1,
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                    textAlign: TextAlign.center,
+                    maxLines: 2,
+                    style: FontStyle.normal(
+                        context: context, fontWeight: FontWeight.bold),
                   ),
-
-                  // SizedBox(
-                  //   height: 4,
-                  // ),
-                  // Text(
-                  //   ProjectLanguage.isLTR()
-                  //       ? widget.product.descriptionEn
-                  //       : widget.product.descriptionAr,
-                  //   overflow: TextOverflow.ellipsis,
-                  //   maxLines: 2,
-                  //   style: TextStyle(fontWeight: FontWeight.w400, fontSize: 14),
-                  // ),
                   SizedBox(
-                    height: 6,
+                    height: 10,
                   ),
-                  Text(
-                    "JOD " + widget.product.price.toString(),
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        // fontStyle: FontStyle.italic,
-                        fontSize: 15),
-                  ),
+                  CommonUI.text(
+                      context: context,
+                      text: 'JOD ' + widget.product.price.toString(),
+                      textAlign: TextAlign.center,
+                      style: FontStyle.normal(
+                          context: context,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.red)),
                 ],
               ),
             )
@@ -122,74 +111,6 @@ class _ItemCardRectangleState extends State<ItemCardRectangle> {
       ),
     );
   }
-  // CommonUI.text(
-  //   context: context,
-  //   text: widget.product.descriptionEn,
-  //   // RhinoLanguage.isLTR()
-  //   //     ? product.nameEn
-  //   //     : product.nameAr,
-  //   textAlign: TextAlign.center,
-  //   style: FontStyle.normal(
-  //     context: context,
-  //     // fontWeight: FontWeight.bold
-  //   ),
-  // ),
-
-  // SizedBox(
-  //   height: 4,
-  // ),
-  // Row(
-  //   mainAxisAlignment: MainAxisAlignment.end,
-  //   children: [
-  //     // widget.product.weight >= 1
-  //     //     ? IconButton(
-  //     //         icon: Icon(
-  //     //           Icons.toggle_on,
-  //     //           color: Colors.green,
-  //     //           size: 35,
-  //     //         ),
-  //     //         onPressed: () {
-  //     //           // FirebaseFirestore.instance
-  //     //           //     .collection(widget.product.category)
-  //     //           //     .doc(widget.product.id)
-  //     //           //     .update({'weight': 0});
-  //     //         })
-  //     //     : IconButton(
-  //     //         icon: Icon(
-  //     //           Icons.toggle_off,
-  //     //           color: Colors.red,
-  //     //           size: 35,
-  //     //         ),
-  //     //         onPressed: () {
-  //     //           // FirebaseFirestore.instance
-  //     //           //     .collection(widget.product.category)
-  //     //           //     .doc(widget.product.id)
-  //     //           //     .update({'weight': 1});
-  //     //         }),
-  //     SizedBox(width: 20),
-  //     TextButton(
-  //         onPressed: () {
-  //           // setState(() {
-  //           //   _nameEnController = TextEditingController(
-  //           //       text: widget.product.nameEn);
-  //           //   _descriptionEnController = TextEditingController(
-  //           //       text: widget.product.descriptionEn);
-  //           //   _priceController = TextEditingController(
-  //           //       text: widget.product.price.toString());
-  //           //   _imageController = TextEditingController(
-  //           //       text: widget.product.image);
-  //           //   _value = widget.product.weight.toDouble();
-  //           // });
-  //           // _showEditDialog(context, widget.product);
-  //         },
-  //         child: Icon(Icons.edit, color: Colors.brown)),
-  //     TextButton(
-  //         onPressed: () {
-  //           // _showDeleteDialog(context);
-  //         },
-  //         child: Icon(Icons.delete, color: Colors.red)),
-  //   ],
-  // ),
 
   bool _fromTop = true;
 
@@ -201,9 +122,6 @@ class _ItemCardRectangleState extends State<ItemCardRectangle> {
       transitionDuration: Duration(milliseconds: 600),
       context: context,
       pageBuilder: (context, anim1, anim2) {
-        //  return    showDialog(
-        // context: context,
-        // builder: (BuildContext context) {
         return Stack(
           children: [
             Center(
@@ -211,16 +129,10 @@ class _ItemCardRectangleState extends State<ItemCardRectangle> {
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
-                    // crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
-                      // SingleChildScrollView(
-                      // child:
-
                       SizedBox(
                         child: Stack(
                           children: <Widget>[
-                            // SingleChildScrollView(
-                            // child:
                             Container(
                               width: Responsive.isDesktop(context)
                                   ? Responsive.width(context) / 2
@@ -230,7 +142,6 @@ class _ItemCardRectangleState extends State<ItemCardRectangle> {
                                   left: kDefaultPaddin,
                                   right: kDefaultPaddin,
                                   bottom: kDefaultPaddin),
-                              // height: size.height *1.5,
                               decoration: BoxDecoration(
                                 color: Colors.white,
                                 borderRadius: BorderRadius.only(
@@ -274,7 +185,6 @@ class _ItemCardRectangleState extends State<ItemCardRectangle> {
                                                     fontSize: 24),
                                           ),
                                           SizedBox(height: 12),
-
                                           RichText(
                                             text: TextSpan(
                                               children: [
@@ -295,14 +205,10 @@ class _ItemCardRectangleState extends State<ItemCardRectangle> {
                                             ),
                                           ),
                                           SizedBox(height: 40),
-                                          // RichText(
-                                          // text: TextSpan(
-                                          // style: TextStyle(color: kTextColor),
                                           Column(
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
                                             children: [
-                                              // SizedBox(height: 35),
                                               Container(
                                                 width: Responsive.isDesktop(
                                                         context)
@@ -337,7 +243,6 @@ class _ItemCardRectangleState extends State<ItemCardRectangle> {
                                                   ),
                                                 ),
                                               ),
-
                                               SizedBox(
                                                   height: kDefaultPaddin * 2)
                                             ],
@@ -357,16 +262,6 @@ class _ItemCardRectangleState extends State<ItemCardRectangle> {
                 ),
               ),
             ),
-            // Positioned(
-            //   width: 50,
-            //   height: 50,
-            //   top: 10,
-            //   left: 320,
-            //   child: FloatingActionButton(
-            //     onPressed: () => Navigator.of(context).pop(),
-            //     child: Icon(Icons.close),
-            //   ),
-            // ),
             Align(
               alignment: Alignment.bottomCenter,
               child: Container(
@@ -375,7 +270,6 @@ class _ItemCardRectangleState extends State<ItemCardRectangle> {
                 child: FloatingActionButton(
                   onPressed: () => Navigator.of(context).pop(),
                   child: Icon(Icons.close),
-                  
                 ),
               ),
             ),
