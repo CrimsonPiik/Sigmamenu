@@ -93,7 +93,7 @@ class _ItemCardRectangleState extends State<ItemCardRectangle> {
                         context: context, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(
-                    height: 10,
+                    height: 13
                   ),
                   CommonUI.text(
                       context: context,
@@ -103,6 +103,19 @@ class _ItemCardRectangleState extends State<ItemCardRectangle> {
                           context: context,
                           fontWeight: FontWeight.bold,
                           color: Colors.red)),
+                  SizedBox(
+                    height: 25,
+                  ),
+                  CommonUI.text(
+                    context: context,
+                    text: ProjectLanguage.isLTR()
+                        ? widget.product.descriptionEn
+                        : widget.product.descriptionAr,
+                    textAlign: TextAlign.start,
+                    maxLines: 3,
+                    style: FontStyle.smaller(
+                        context: context, fontWeight: FontWeight.bold),
+                  ),
                 ],
               ),
             )
