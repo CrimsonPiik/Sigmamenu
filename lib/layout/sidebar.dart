@@ -52,11 +52,16 @@ class SideBar extends StatelessWidget {
             height: 24,
           ),
           Expanded(
-              child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children:
-                menuItems.map((e) => SideBarMenuItem(e, _isDesktop)).toList(),
-          ))
+              //     child: Column(
+              //   crossAxisAlignment: CrossAxisAlignment.center,
+              //   children:
+              //       menuItems.map((e) => SideBarMenuItem(e, _isDesktop)).toList(),
+              // )
+              child: ListView.builder(
+                  itemCount: menuItems.length,
+                  itemBuilder: (context, index) =>
+                      SideBarMenuItem(menuItems[index], _isDesktop))),
+          // )
         ],
       ),
     );

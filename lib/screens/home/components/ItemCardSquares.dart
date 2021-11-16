@@ -10,13 +10,13 @@ import '../../../style/Style.dart';
 
 class ItemCardSquares extends StatefulWidget {
   final Product product;
-  final bool isWithFavorite;
-  final bool isFavoriteScreen;
+  // final bool isWithFavorite;
+  // final bool isFavoriteScreen;
   ItemCardSquares({
     Key? key,
     required this.product,
-    this.isWithFavorite = false,
-    this.isFavoriteScreen = false,
+    // this.isWithFavorite = false,
+    // this.isFavoriteScreen = false,
   }) : super(key: key);
 
   @override
@@ -101,15 +101,29 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                             child: Padding(
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 4),
-                              child: CommonUI.text(
-                                  context: context,
-                                  text:
-                                      ' JOD ' + widget.product.price.toString(),
-                                  textAlign: TextAlign.center,
-                                  style: FontStyle.normal(
+                              child: Row(
+                                mainAxisAlignment:MainAxisAlignment.center,
+                                children: [
+                                  CommonUI.text(
                                       context: context,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.red)),
+                                      text:
+                                          'JOD ',
+                                      textAlign: TextAlign.center,
+                                      style: FontStyle.normal(
+                                          context: context,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black)),
+                                           CommonUI.text(
+                                      context: context,
+                                      text:
+                                          widget.product.price.toString(),
+                                      textAlign: TextAlign.center,
+                                      style: FontStyle.normal(
+                                          context: context,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.red)),
+                                ],
+                              ),
                             ),
                           ),
                         ],

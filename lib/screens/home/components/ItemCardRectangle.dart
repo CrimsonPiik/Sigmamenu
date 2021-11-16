@@ -10,15 +10,13 @@ import '../../../style/Style.dart';
 
 class ItemCardRectangle extends StatefulWidget {
   final Product product;
-  final bool isWithFavorite;
-  final bool isFavoriteScreen;
-  final Color? color;
+  // final bool isWithFavorite;
+  // final bool isFavoriteScreen;
   ItemCardRectangle({
     Key? key,
     required this.product,
-    this.color,
-    this.isWithFavorite = false,
-    this.isFavoriteScreen = false,
+    // this.isWithFavorite = false,
+    // this.isFavoriteScreen = false,
   }) : super(key: key);
 
   @override
@@ -92,17 +90,28 @@ class _ItemCardRectangleState extends State<ItemCardRectangle> {
                     style: FontStyle.normal(
                         context: context, fontWeight: FontWeight.bold),
                   ),
-                  SizedBox(
-                    height: 13
-                  ),
-                  CommonUI.text(
-                      context: context,
-                      text: 'JOD ' + widget.product.price.toString(),
-                      textAlign: TextAlign.center,
-                      style: FontStyle.normal(
+                  SizedBox(height: 13),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      CommonUI.text(
                           context: context,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.red)),
+                          text: 'JOD ',
+                          textAlign: TextAlign.center,
+                          style: FontStyle.normal(
+                              context: context,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black)),
+                      CommonUI.text(
+                          context: context,
+                          text: widget.product.price.toString(),
+                          textAlign: TextAlign.center,
+                          style: FontStyle.normal(
+                              context: context,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.red)),
+                    ],
+                  ),
                   SizedBox(
                     height: 25,
                   ),
