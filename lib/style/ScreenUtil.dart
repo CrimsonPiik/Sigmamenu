@@ -2,15 +2,12 @@ import 'package:flutter/material.dart';
 
 class Responsive extends StatelessWidget {
   final Widget mobile;
-  final Widget miniMobile;
-
   final Widget tablet;
   final Widget desktop;
 
   const Responsive({
     Key? key,
     required this.mobile,
-    required this.miniMobile,
     required this.tablet,
     required this.desktop,
   }) : super(key: key);
@@ -42,11 +39,9 @@ class Responsive extends StatelessWidget {
           return desktop;
         } else if (constraints.maxWidth >= 650) {
           return tablet;
-        } else if (constraints.maxWidth >= 370) {
+        } else //if (constraints.maxWidth >= 370) {
           return mobile;
-        } else {
-          return miniMobile;
-        }
+        // }
       },
     );
   }

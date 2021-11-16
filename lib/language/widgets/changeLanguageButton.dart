@@ -8,7 +8,8 @@ class ChangeLanguageButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      child: Icon(Icons.language),
+      child: Icon(Icons.translate),
+      
       // Text(ProjectLanguage.isLTR() ? ar['language']! : en['language']!),
 
       onTap: () {

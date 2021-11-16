@@ -88,7 +88,9 @@ class _ItemCardRectangleState extends State<ItemCardRectangle> {
                     textAlign: TextAlign.center,
                     maxLines: 2,
                     style: FontStyle.normal(
-                        context: context, fontWeight: FontWeight.bold),
+                        context: context,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black),
                   ),
                   SizedBox(height: 13),
                   Row(
@@ -121,9 +123,11 @@ class _ItemCardRectangleState extends State<ItemCardRectangle> {
                         ? widget.product.descriptionEn
                         : widget.product.descriptionAr,
                     textAlign: TextAlign.start,
-                    maxLines: 3,
+                    maxLines:3,
                     style: FontStyle.smaller(
-                        context: context, fontWeight: FontWeight.bold),
+                        context: context,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black.withOpacity(0.7)),
                   ),
                 ],
               ),

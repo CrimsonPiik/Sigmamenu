@@ -69,7 +69,7 @@ class _ItemCardRectangleAndSquareState extends State<ItemCardRectangleAndSquare>
                 },
                 // )
               ),
-              SizedBox(width: 12),
+              SizedBox(width: 20),
             ],
           ),
           Session.isList

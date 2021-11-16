@@ -29,19 +29,17 @@ class _CustomerScreenState extends State<CustomerScreen>
   bool isLight = true;
   @override
   void initState() {
-     StorageManager.readData('themeMode').then((value) {
-       if(value.toString() == 'light'){
-         isLight = true;
-
-       }else {
-         isLight = false;
-       }
-     });
+    StorageManager.readData('themeMode').then((value) {
+      if (value.toString() == 'light') {
+        isLight = true;
+      } else {
+        isLight = false;
+      }
+    });
 
     animationController =
         AnimationController(vsync: this, duration: Duration(milliseconds: 500));
     super.initState();
-
   }
 
   @override
@@ -112,6 +110,7 @@ class _CustomerScreenState extends State<CustomerScreen>
                                     widget.theme.setLightMode();
                                   },
                                 ),
+                          SizedBox(width: 5),
                           Container(
                             child: ChangeLanguageButton(),
                           ),
