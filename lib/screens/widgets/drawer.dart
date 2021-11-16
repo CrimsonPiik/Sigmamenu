@@ -116,17 +116,7 @@ class _MenuWidgetState extends State<MenuWidget> {
               selectedIndex,2),
           sliderItem('Setting', Icons.settings, selectedIndex,3),
           sliderItem('LogOut', Icons.arrow_back_ios, selectedIndex,4)
-          // Expanded(
-          //     //     child: Column(
-          //     //   crossAxisAlignment: CrossAxisAlignment.center,
-          //     //   children:
-          //     //       menuItems.map((e) => SideBarMenuItem(e, _isDesktop)).toList(),
-          //     // )
-          //     child: ListView.builder(
-          //         itemCount: menuItems.length,
-          //         itemBuilder: (context, index) =>
-          //             SideBarMenuItem(menuItems[index], _isDesktop))),
-          // )
+       
         ],
       ),
     );

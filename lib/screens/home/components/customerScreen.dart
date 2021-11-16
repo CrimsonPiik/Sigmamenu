@@ -1,20 +1,23 @@
 import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:sigmamenu/GeneralFunction/storageManager.dart';
 import 'package:sigmamenu/animation/page_slide_widget.dart';
 import 'package:sigmamenu/constaints.dart';
 import 'package:sigmamenu/language/widgets/changeLanguageButton.dart';
+import 'package:sigmamenu/provider/darkLightMode.dart';
 import 'package:sigmamenu/screens/adminPanel.dart';
 import 'package:sigmamenu/screens/home/components/categories.dart';
 import 'package:sigmamenu/screens/home/components/itemCardData.dart';
 import 'package:sigmamenu/screens/widgets/SigningPopUp.dart';
 import 'package:sigmamenu/screens/widgets/bannerWithDotsIndicator.dart';
 import 'package:sigmamenu/style/CommonUI.dart';
-import 'package:sigmamenu/style/Session.dart';
 
 StreamController<int> streamController = StreamController<int>.broadcast();
 
 class CustomerScreen extends StatefulWidget {
+  final ThemeNotifier theme;
+  CustomerScreen({required this.theme});
   @override
   State<CustomerScreen> createState() => _CustomerScreenState();
 }
@@ -23,11 +26,22 @@ class _CustomerScreenState extends State<CustomerScreen>
     with SingleTickerProviderStateMixin {
   late AnimationController animationController;
   bool isList = true;
+  bool isLight = true;
   @override
   void initState() {
-    super.initState();
+     StorageManager.readData('themeMode').then((value) {
+       if(value.toString() == 'light'){
+         isLight = true;
+
+       }else {
+         isLight = false;
+       }
+     });
+
     animationController =
         AnimationController(vsync: this, duration: Duration(milliseconds: 500));
+    super.initState();
+
   }
 
   @override
@@ -79,13 +93,32 @@ class _CustomerScreenState extends State<CustomerScreen>
                       ),
                       Row(
                         children: [
+                          isLight
+                              ? IconButton(
+                                  icon: Icon(Icons.dark_mode),
+                                  onPressed: () {
+                                    setState(() {
+                                      isLight = false;
+                                    });
+                                    widget.theme.setDarkMode();
+                                  },
+                                )
+                              : IconButton(
+                                  icon: Icon(Icons.light_mode),
+                                  onPressed: () {
+                                    setState(() {
+                                      isLight = true;
+                                    });
+                                    widget.theme.setLightMode();
+                                  },
+                                ),
                           Container(
                             child: ChangeLanguageButton(),
                           ),
                           SizedBox(width: 5),
                           IconButton(
                             icon: Icon(Icons.login),
-                            color: Colors.black,
+                            // color: Colors.black,
                             onPressed: () {
                               Navigator.of(context)
                                   .push(createRoute(SigningPopUp()));
@@ -99,7 +132,6 @@ class _CustomerScreenState extends State<CustomerScreen>
               ),
               BannerWithDotsIndicator(),
               Categories(),
-           
               ItemCardData(streamController.stream),
             ],
           );

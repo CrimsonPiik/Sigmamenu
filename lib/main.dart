@@ -5,6 +5,7 @@ import 'package:sigmamenu/Authentication/authMonitor.dart';
 import 'package:sigmamenu/GeneralFunction/shared_preferences.dart';
 import 'package:sigmamenu/language/logic/ProjectLanguage.dart';
 import 'package:sigmamenu/provider/ProjectLanguageProvider.dart';
+import 'package:sigmamenu/provider/darkLightMode.dart';
 import 'package:sigmamenu/provider/userStateProvider.dart';
 import 'package:sigmamenu/screens/adminPanel.dart';
 import 'package:sigmamenu/screens/home/components/shimmer.dart';
@@ -53,6 +54,8 @@ class _MyAppState extends State<MyApp> {
           ),
           // ChangeNotifierProvider<CategoryProvider>(
           //     create: (_) => CategoryProvider()),
+          ChangeNotifierProvider<ThemeNotifier>(
+    create: (_) => new ThemeNotifier(),),
         ],
         builder: (context, child) {
           return MaterialApp(
@@ -75,6 +78,7 @@ class _MyAppState extends State<MyApp> {
             // ],
             debugShowCheckedModeBanner: false,
             title: 'Sigma Menu',
+                    // theme: child!.getTheme(),
             theme: ThemeData(
               // primaryColor: Colors.brown,
               colorScheme: ColorScheme.fromSwatch(
