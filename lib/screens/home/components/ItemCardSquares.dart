@@ -149,7 +149,7 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
       transitionDuration: Duration(milliseconds: 600),
       context: context,
       pageBuilder: (context, anim1, anim2) {
-        return  return Dismissible(
+        return Dismissible(
           direction: DismissDirection.vertical,
           onDismissed: (_) {
             Navigator.of(context).pop();
@@ -307,7 +307,7 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
             //   ),
             // ),
           ],
-        );
+           ),   );
       },
       transitionBuilder: (context, anim1, anim2, child) {
         return SlideTransition(
