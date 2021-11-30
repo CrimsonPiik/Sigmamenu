@@ -154,8 +154,9 @@ class _ItemCardRectangleState extends State<ItemCardRectangle> {
             Navigator.of(context).pop();
           },
           key: Key("key"),
-          child: 
-                  Stack(
+          child: SafeArea(
+            child: SizedBox.expand(
+              child: Stack(
                 children: [
                   Center(
                     child: SingleChildScrollView(
@@ -316,8 +317,8 @@ class _ItemCardRectangleState extends State<ItemCardRectangle> {
                   // ),
                 ],
               ),
-            // ),
-          // ),
+            ),
+          ),
         );
       },
       transitionBuilder: (context, anim1, anim2, child) {
