@@ -123,7 +123,7 @@ class _ItemCardRectangleState extends State<ItemCardRectangle> {
                         ? widget.product.descriptionEn
                         : widget.product.descriptionAr,
                     textAlign: TextAlign.start,
-                    maxLines:3,
+                    maxLines: 3,
                     style: FontStyle.smaller(
                         context: context,
                         fontWeight: FontWeight.bold,
@@ -148,134 +148,152 @@ class _ItemCardRectangleState extends State<ItemCardRectangle> {
       transitionDuration: Duration(milliseconds: 600),
       context: context,
       pageBuilder: (context, anim1, anim2) {
-        return Stack(
-          children: [
-            Center(
-              child: SingleChildScrollView(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    children: <Widget>[
-                      SizedBox(
-                        child: Stack(
+        return Dismissible(
+          direction: DismissDirection.vertical,
+          onDismissed: (_) {
+            Navigator.of(context).pop();
+          },
+          key: Key("key"),
+          child: 
+                  Stack(
+                children: [
+                  Center(
+                    child: SingleChildScrollView(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
                           children: <Widget>[
-                            Container(
-                              width: Responsive.isDesktop(context)
-                                  ? Responsive.width(context) / 2
-                                  : Responsive.width(context),
-                              padding: EdgeInsets.only(
-                                  top: kDefaultPaddin * 2,
-                                  left: kDefaultPaddin,
-                                  right: kDefaultPaddin,
-                                  bottom: kDefaultPaddin),
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(24),
-                                  topRight: Radius.circular(24),
-                                  bottomLeft: Radius.circular(24),
-                                  bottomRight: Radius.circular(24),
-                                ),
-                              ),
-                              child: Column(
-                                children: [
-                                  Center(
-                                    child: Hero(
-                                      tag: "${widget.product.id}",
-                                      child: Image.network(
-                                        widget.product.image,
-                                        width: 300,
-                                        height: 250,
-                                        fit: BoxFit.fill,
+                            SizedBox(
+                              child: Stack(
+                                children: <Widget>[
+                                  Container(
+                                    width: Responsive.isDesktop(context)
+                                        ? Responsive.width(context) / 2
+                                        : Responsive.width(context),
+                                    padding: EdgeInsets.only(
+                                        top: kDefaultPaddin * 2,
+                                        left: kDefaultPaddin,
+                                        right: kDefaultPaddin,
+                                        bottom: kDefaultPaddin),
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(24),
+                                        topRight: Radius.circular(24),
+                                        bottomLeft: Radius.circular(24),
+                                        bottomRight: Radius.circular(24),
                                       ),
                                     ),
-                                  ),
-                                  Row(
-                                    children: [
-                                      SizedBox(width: 10),
-                                      Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: <Widget>[
-                                          SizedBox(height: 18),
-                                          Text(
-                                            ProjectLanguage.isLTR()
-                                                ? widget.product.nameEn
-                                                : widget.product.nameAr,
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .headline4!
-                                                .copyWith(
-                                                    color: Colors.black,
-                                                    fontWeight: FontWeight.bold,
-                                                    fontSize: 24),
+                                    child: Column(
+                                      children: [
+                                        Center(
+                                          child: Hero(
+                                            tag: "${widget.product.id}",
+                                            child: Image.network(
+                                              widget.product.image,
+                                              width: 300,
+                                              height: 250,
+                                              fit: BoxFit.fill,
+                                            ),
                                           ),
-                                          SizedBox(height: 12),
-                                          RichText(
-                                            text: TextSpan(
-                                              children: [
-                                                TextSpan(text: "Price\n"),
-                                                TextSpan(
-                                                  text:
-                                                      "\$${widget.product.price}",
+                                        ),
+                                        Row(
+                                          children: [
+                                            SizedBox(width: 10),
+                                            Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: <Widget>[
+                                                SizedBox(height: 18),
+                                                Text(
+                                                  ProjectLanguage.isLTR()
+                                                      ? widget.product.nameEn
+                                                      : widget.product.nameAr,
                                                   style: Theme.of(context)
                                                       .textTheme
                                                       .headline4!
                                                       .copyWith(
-                                                        color: Colors.black,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                      ),
+                                                          color: Colors.black,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          fontSize: 24),
                                                 ),
-                                              ],
-                                            ),
-                                          ),
-                                          SizedBox(height: 40),
-                                          Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Container(
-                                                width: Responsive.isDesktop(
-                                                        context)
-                                                    ? Responsive.width(
-                                                            context) /
-                                                        2.2
-                                                    : Responsive.width(
-                                                            context) /
-                                                        1.35,
-                                                child: RichText(
+                                                SizedBox(height: 12),
+                                                RichText(
                                                   text: TextSpan(
                                                     children: [
+                                                      TextSpan(text: "Price\n"),
                                                       TextSpan(
-                                                          text: "Description\n",
-                                                          style: TextStyle(
-                                                              fontSize: 15,
+                                                        text:
+                                                            "\$${widget.product.price}",
+                                                        style: Theme.of(context)
+                                                            .textTheme
+                                                            .headline4!
+                                                            .copyWith(
                                                               color:
                                                                   Colors.black,
                                                               fontWeight:
                                                                   FontWeight
-                                                                      .bold)),
-                                                      TextSpan(
-                                                          text: ProjectLanguage
-                                                                  .isLTR()
-                                                              ? "${widget.product.descriptionEn}"
-                                                              : "${widget.product.descriptionAr}",
-                                                          style: TextStyle(
-                                                              fontSize: 14,
-                                                              color: Colors
-                                                                  .black)),
+                                                                      .bold,
+                                                            ),
+                                                      ),
                                                     ],
                                                   ),
                                                 ),
-                                              ),
-                                              SizedBox(
-                                                  height: kDefaultPaddin * 2)
-                                            ],
-                                          ),
-                                        ],
-                                      ),
-                                    ],
+                                                SizedBox(height: 40),
+                                                Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Container(
+                                                      width: Responsive
+                                                              .isDesktop(
+                                                                  context)
+                                                          ? Responsive.width(
+                                                                  context) /
+                                                              2.2
+                                                          : Responsive.width(
+                                                                  context) /
+                                                              1.35,
+                                                      child: RichText(
+                                                        text: TextSpan(
+                                                          children: [
+                                                            TextSpan(
+                                                                text:
+                                                                    "Description\n",
+                                                                style: TextStyle(
+                                                                    fontSize:
+                                                                        15,
+                                                                    color: Colors
+                                                                        .black,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold)),
+                                                            TextSpan(
+                                                                text: ProjectLanguage
+                                                                        .isLTR()
+                                                                    ? "${widget.product.descriptionEn}"
+                                                                    : "${widget.product.descriptionAr}",
+                                                                style: TextStyle(
+                                                                    fontSize:
+                                                                        14,
+                                                                    color: Colors
+                                                                        .black)),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    SizedBox(
+                                                        height:
+                                                            kDefaultPaddin * 2)
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ],
                               ),
@@ -283,23 +301,23 @@ class _ItemCardRectangleState extends State<ItemCardRectangle> {
                           ],
                         ),
                       ),
-                    ],
+                    ),
                   ),
-                ),
+                  // Align(
+                  //   alignment: Alignment.bottomCenter,
+                  //   child: Container(
+                  //     width: 60,
+                  //     height: 60,
+                  //     child: FloatingActionButton(
+                  //       onPressed: () => Navigator.of(context).pop(),
+                  //       child: Icon(Icons.close),
+                  //     ),
+                  //   ),
+                  // ),
+                ],
               ),
-            ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: Container(
-                width: 60,
-                height: 60,
-                child: FloatingActionButton(
-                  onPressed: () => Navigator.of(context).pop(),
-                  child: Icon(Icons.close),
-                ),
-              ),
-            ),
-          ],
+            // ),
+          // ),
         );
       },
       transitionBuilder: (context, anim1, anim2, child) {

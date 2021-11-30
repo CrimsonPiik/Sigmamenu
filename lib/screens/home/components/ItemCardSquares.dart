@@ -149,7 +149,13 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
       transitionDuration: Duration(milliseconds: 600),
       context: context,
       pageBuilder: (context, anim1, anim2) {
-        return Stack(
+        return  return Dismissible(
+          direction: DismissDirection.vertical,
+          onDismissed: (_) {
+            Navigator.of(context).pop();
+          },
+          key: Key("key"),
+          child: Stack(
           children: [
             Center(
               child: SingleChildScrollView(
@@ -289,17 +295,17 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                 ),
               ),
             ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: Container(
-                width: 60,
-                height: 60,
-                child: FloatingActionButton(
-                  onPressed: () => Navigator.of(context).pop(),
-                  child: Icon(Icons.close),
-                ),
-              ),
-            ),
+            // Align(
+            //   alignment: Alignment.bottomCenter,
+            //   child: Container(
+            //     width: 60,
+            //     height: 60,
+            //     child: FloatingActionButton(
+            //       onPressed: () => Navigator.of(context).pop(),
+            //       child: Icon(Icons.close),
+            //     ),
+            //   ),
+            // ),
           ],
         );
       },
