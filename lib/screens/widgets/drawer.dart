@@ -22,9 +22,11 @@ class _DrawerrState extends State<Drawerr> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
+    return
+    //  MaterialApp(
+      // debugShowCheckedModeBanner: false,
+      // home:
+       Scaffold(
         body: SliderMenuContainer(
             appBarColor: Colors.white,
             key: _key,
@@ -46,7 +48,7 @@ class _DrawerrState extends State<Drawerr> {
                 AdminPanelProducts(streamControllerSideBar.stream),
               ],
             )),
-      ),
+      // ),
     );
   }
 }
@@ -93,11 +95,19 @@ class _MenuWidgetState extends State<MenuWidget> {
             width: 200,
             height: 90,
             child: Center(
-              child: Container(
-                  width: _isDesktop ? 120 : 60,
-                  height: _isDesktop ? 120 : 60,
-                  child:
-                      Image(image: AssetImage('assets/images/sigmamenu.png'))),
+              child: CircleAvatar(
+                radius: 
+                30.0,
+                backgroundImage:
+                    AssetImage('assets/images/user-placeholder.png'),
+                //NetworkImage(user.image),
+                // backgroundColor: Colors.brown,
+              ),
+              //  Container(
+              //     width: _isDesktop ? 120 : 60,
+              //     height: _isDesktop ? 120 : 60,
+              //     child:
+              //         Image(image: AssetImage('assets/images/sigmamenu.png'))),
               // Text(
               //   'Sigma Menu',
               //   style: TextStyle(
@@ -110,26 +120,26 @@ class _MenuWidgetState extends State<MenuWidget> {
           SizedBox(
             height: 24,
           ),
-          sliderItem('User', Icons.person, selectedIndex,0),
-          sliderItem('Dashboard', Icons.dashboard_outlined, selectedIndex,1),
+          sliderItem('User', Icons.person, selectedIndex, 0),
+          sliderItem('Dashboard', Icons.dashboard_outlined, selectedIndex, 1),
           sliderItem('Banners', Icons.photo_size_select_actual_outlined,
-              selectedIndex,2),
-          sliderItem('Setting', Icons.settings, selectedIndex,3),
-          sliderItem('LogOut', Icons.arrow_back_ios, selectedIndex,4)
-       
+              selectedIndex, 2),
+          sliderItem('Setting', Icons.settings, selectedIndex, 3),
+          sliderItem('LogOut', Icons.arrow_back_ios, selectedIndex, 4)
         ],
       ),
     );
   }
 
-  Widget sliderItem(String title, IconData icons, int selectedIndex, int index) {
+  Widget sliderItem(
+      String title, IconData icons, int selectedIndex, int index) {
     return SizedBox(
         height: 56,
         child: InkWell(
           onTap: () {
-            setState(() {         
-            selectedIndex = index;       
-          });
+            setState(() {
+              selectedIndex = index;
+            });
             widget.onItemClick!(title);
             if (title == 'User') {
               myState(0);
@@ -144,7 +154,7 @@ class _MenuWidgetState extends State<MenuWidget> {
             padding: EdgeInsets.symmetric(horizontal: 8),
             margin: EdgeInsets.symmetric(vertical: 8),
             decoration: BoxDecoration(
-                // color: Colors.white, 
+                // color: Colors.white,
                 borderRadius: BorderRadius.circular(8)),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,

@@ -78,7 +78,7 @@ class _ItemCardRectangleState extends State<ItemCardRectangle> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(
-                    height: 20,
+                    height: 12,
                   ),
                   CommonUI.text(
                     context: context,
@@ -92,7 +92,7 @@ class _ItemCardRectangleState extends State<ItemCardRectangle> {
                         fontWeight: FontWeight.bold,
                         color: Colors.black),
                   ),
-                  SizedBox(height: 13),
+                  SizedBox(height: 6),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [

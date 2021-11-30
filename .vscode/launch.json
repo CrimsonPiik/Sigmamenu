@@ -5,12 +5,12 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "ecommerce",
+            "name": "Sigma Menu",
             "request": "launch",
             "type": "dart"
         },
         {
-            "name": "ecommerce (profile mode)",
+            "name": "Sigma Menu (profile mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile"

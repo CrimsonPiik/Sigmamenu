@@ -46,11 +46,13 @@ class _CategoriesState extends State<Categories> {
         streamController.add(selectedIndex);
         print(index.toString());
       },
-      child: Padding(
+      child: 
+      Padding(
         padding: const EdgeInsets.symmetric(horizontal: 3.0),
-        child: Row(
+        child: 
+        Row(
           children: [
-            SizedBox(width: 20),
+            SizedBox(width: 7),
             Container(
               padding: EdgeInsets.all(10),
               child: Text(

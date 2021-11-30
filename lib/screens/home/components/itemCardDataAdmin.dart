@@ -7,6 +7,7 @@ import 'package:sigmamenu/screens/adminPanel.dart';
 import 'package:sigmamenu/screens/widgets/productsItemAdmin.dart';
 import 'package:sigmamenu/style/CommonUI.dart';
 import 'package:sigmamenu/style/ScreenUtil.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 
 class ItemCardDataAdmin extends StatefulWidget {
   final Stream<int> stream;
@@ -70,10 +71,13 @@ class _ItemCardDataAdminState extends State<ItemCardDataAdmin> {
                               (MediaQuery.of(context).size.height / 3.5)
                           : MediaQuery.of(context).size.width /
                               (MediaQuery.of(context).size.height / 4)),
-                  itemBuilder: (context, index) =>
-                      ProductsItemAdmin(products[index]),
+                  itemBuilder: (context, index) => 
+                
+                     ProductsItemAdmin(products[index]),
+             
                 )),
           );
         });
   }
 }
+

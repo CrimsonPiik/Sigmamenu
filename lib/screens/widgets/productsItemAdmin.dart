@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:sigmamenu/GeneralFunction/firebase_uploader_web.dart';
 import 'package:sigmamenu/models/product.dart';
 import 'package:sigmamenu/style/AssetsManager.dart';
@@ -48,7 +49,7 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
     _name = widget.data.nameEn;
     _nameAr = widget.data.nameAr;
     _description = widget.data.descriptionEn;
-    _description = widget.data.descriptionAr;
+    _descriptionAr = widget.data.descriptionAr;
 
     _price = widget.data.price;
     _image = widget.data.image;
@@ -58,300 +59,208 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        padding: EdgeInsets.all(16),
-        margin: EdgeInsets.only(bottom: 20),
-        decoration: BoxDecoration(
-          color: Colors.grey.withOpacity(0.1),
-          borderRadius: BorderRadius.circular(12),
-        ),
-        child:
-            //  Responsive.isDesktop(context)
-            // ?
+    return Slidable(
+      // Specify a key if the Slidable is dismissible.
+      key: const ValueKey(0),
 
-            Row(
-          children: [
-            Container(
-                width: 120,
-                // height: 120,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(4),
-                ),
-                child: CommonUI.cachedImage(
-                    widget.data.image, ImageAssets.placeholder,
-                    fit: BoxFit.cover)),
-            SizedBox(
-              width: 16,
-            ),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  //   // SizedBox(
-                  //   //   height: 20,
-                  //   // ),
-                  Text(
-                    widget.data.nameEn,
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 1,
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                  ),
-                  // CommonUI.text(
-                  //   context: context,
-                  //   text: widget.data.nameEn,
-                  //   // RhinoLanguage.isLTR()
-                  //   //     ? product.nameEn
-                  //   //     : product.nameAr,
-                  //   textAlign: TextAlign.center,
-                  //   style: FontStyle.normal(
-                  //       context: context, fontWeight: FontWeight.bold),
-                  // ),
+      // The start action pane is the one at the left or the top side.
+      // startActionPane:
+      //  ActionPane(
+      //   // A motion is a widget used to control how the pane animates.
+      //   motion: const ScrollMotion(),
 
-                  SizedBox(
-                    height: 4,
-                  ),
-                  Text(
-                    widget.data.descriptionEn,
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 2,
-                    style: TextStyle(fontWeight: FontWeight.w400, fontSize: 14),
-                  ),
-                  SizedBox(
-                    height: 4,
-                  ),
-                  Text(
-                    widget.data.price.toString(),
-                    style: TextStyle(
-                        fontWeight: FontWeight.w300,
-                        // fontStyle: FontStyle.italic,
-                        fontSize: 12),
-                  ),
-                  // CommonUI.text(
-                  //   context: context,
-                  //   text: widget.data.descriptionEn,
-                  //   // RhinoLanguage.isLTR()
-                  //   //     ? product.nameEn
-                  //   //     : product.nameAr,
-                  //   textAlign: TextAlign.center,
-                  //   style: FontStyle.normal(
-                  //     context: context,
-                  //     // fontWeight: FontWeight.bold
-                  //   ),
-                  // ),
+      //   // A pane can dismiss the Slidable.
+      //   dismissible: DismissiblePane(onDismissed: () {}),
 
-                  // SizedBox(
-                  //   height: 4,
-                  // ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      widget.data.weight >= 1
-                          ? IconButton(
-                              icon: Icon(
-                                Icons.toggle_on,
-                                color: Colors.green,
-                                size: 35,
-                              ),
-                              onPressed: () {
-                                FirebaseFirestore.instance
-                                    .collection(widget.data.category)
-                                    .doc(widget.data.id)
-                                    .update({'weight': 0});
-                              })
-                          : IconButton(
-                              icon: Icon(
-                                Icons.toggle_off,
-                                color: Colors.red,
-                                size: 35,
-                              ),
-                              onPressed: () {
-                                FirebaseFirestore.instance
-                                    .collection(widget.data.category)
-                                    .doc(widget.data.id)
-                                    .update({'weight': 1});
-                              }),
-                      SizedBox(width: 20),
-                      TextButton(
-                          onPressed: () {
-                            setState(() {
-                              _nameEnController = TextEditingController(
-                                  text: widget.data.nameEn);
-                              _nameArController = TextEditingController(
-                                  text: widget.data.nameAr);
-                              _descriptionEnController = TextEditingController(
-                                  text: widget.data.descriptionEn);
-                              _descriptionArController = TextEditingController(
-                                  text: widget.data.descriptionAr);
-                              _priceController = TextEditingController(
-                                  text: widget.data.price.toString());
-                              _imageController = TextEditingController(
-                                  text: widget.data.image);
-                              _value = widget.data.weight.toDouble();
-                            });
-                            _showEditDialog(widget.data);
-                          },
-                          child: Icon(Icons.edit, color: Colors.brown)),
-                      TextButton(
-                          onPressed: () {
-                            _showDeleteDialog();
-                          },
-                          child: Icon(Icons.delete, color: Colors.red)),
-                    ],
+      //   // All actions are defined in the children parameter.
+      //   children: const [
+      //     // A SlidableAction can have an icon and/or a label.
+      //     SlidableAction(
+      //       onPressed: doNothing,
+      //       backgroundColor: Color(0xFFFE4A49),
+      //       foregroundColor: Colors.white,
+      //       icon: Icons.delete,
+      //       label: 'Delete',
+      //     ),
+      //     SlidableAction(
+      //       onPressed: doNothing,
+      //       backgroundColor: Color(0xFF21B7CA),
+      //       foregroundColor: Colors.white,
+      //       icon: Icons.edit,
+      //       label: 'Edit',
+      //     ),
+      //   ],
+      // ),
+
+      // The end action pane is the one at the right or the bottom side.
+      endActionPane: ActionPane(
+        motion: ScrollMotion(),
+        children: [
+          SlidableAction(
+            // An action can be bigger than the others.
+            // flex: 2,
+            onPressed: (context) {
+              setState(() {
+                _nameEnController =
+                    TextEditingController(text: widget.data.nameEn);
+                _nameArController =
+                    TextEditingController(text: widget.data.nameAr);
+                _descriptionEnController =
+                    TextEditingController(text: widget.data.descriptionEn);
+                _descriptionArController =
+                    TextEditingController(text: widget.data.descriptionAr);
+                _priceController =
+                    TextEditingController(text: widget.data.price.toString());
+                _imageController =
+                    TextEditingController(text: widget.data.image);
+                _value = widget.data.weight.toDouble();
+              });
+              _showEditDialog(context, widget.data);
+            },
+            backgroundColor: Color(0xFF7BC043),
+            foregroundColor: Colors.white,
+            icon: Icons.edit,
+            label: 'Edit',
+            autoClose: true,
+          ),
+          SlidableAction(
+            onPressed: (context) {
+              _showDeleteDialog(context);
+            },
+            backgroundColor: Color(0xFFFE4A49),
+            foregroundColor: Colors.white,
+            icon: Icons.delete,
+            label: 'Delete',
+            autoClose: true,
+          ),
+        ],
+      ),
+
+      // The child of the Slidable is what the user sees when the
+      // component is not dragged.
+      child: Container(
+          padding: EdgeInsets.all(16),
+          margin: EdgeInsets.only(bottom: 20),
+          decoration: BoxDecoration(
+            color: Colors.grey.withOpacity(0.1),
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: Row(
+            children: [
+              Container(
+                  width: 120,
+                  // height: 120,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(4),
                   ),
-                ],
+                  child: CommonUI.cachedImage(
+                      widget.data.image, ImageAssets.placeholder,
+                      fit: BoxFit.cover)),
+              SizedBox(
+                width: 16,
               ),
-            )
-          ],
-        )
-        // : Row(
-        //     children: [
-        //       Container(
-        //           width: 55,
-        //           height: 55,
-        //           decoration: BoxDecoration(
-        //             borderRadius: BorderRadius.circular(4),
-        //           ),
-        //           child: CommonUI.cachedImage(
-        //               widget.data.image, ImageAssets.placeholder,
-        //               fit: BoxFit.cover)),
-        //       SizedBox(
-        //         width: 14,
-        //       ),
-
-        //       Expanded(
-        //         child: Column(
-        //           crossAxisAlignment: CrossAxisAlignment.start,
-        //           children: [
-        //             SizedBox(height: 16),
-        //             CommonUI.text(
-        //               context: context,
-        //               text: widget.data.nameEn,
-        //               // RhinoLanguage.isLTR()
-        //               //     ? product.nameEn
-        //               //     : product.nameAr,
-        //               textAlign: TextAlign.center,
-        //               style: FontStyle.normal(
-        //                   context: context, fontWeight: FontWeight.bold),
-        //             ),
-
-        //             // Text(
-        //             //   widget.data.nameEn,
-        //             //   overflow: TextOverflow.ellipsis,
-        //             //   maxLines: 1,
-        //             //   style: TextStyle(
-        //             //       fontWeight: FontWeight.bold, fontSize: 16),
-        //             // ),
-        //             SizedBox(
-        //               height: 3,
-        //             ),
-        //             // Text(
-        //             //   widget.data.descriptionEn,
-        //             //   overflow: TextOverflow.ellipsis,
-        //             //   maxLines: 2,
-        //             //   style: TextStyle(
-        //             //       fontWeight: FontWeight.w400, fontSize: 14),
-        //             // ),
-        //             // SingleChildScrollView(
-        //             // child:
-
-        //             // Text(
-        //             //   widget.data.price.toString(),
-        //             //   style: TextStyle(
-        //             //       fontWeight: FontWeight.w300,
-        //             //       // fontStyle: FontStyle.italic,
-        //             //       fontSize: 12),
-        //             // ),
-        //             CommonUI.text(
-        //               context: context,
-        //               text: widget.data.price.toString(),
-        //               // RhinoLanguage.isLTR()
-        //               //     ? product.nameEn
-        //               //     : product.nameAr,
-        //               textAlign: TextAlign.center,
-        //               style: FontStyle.normal(
-        //                   context: context, fontWeight: FontWeight.bold),
-        //             ),
-        //             SizedBox(
-        //               height: 3,
-        //             ),
-        //             CommonUI.text(
-        //               context: context,
-        //               text: widget.data.descriptionEn,
-        //               maxLines: 2,
-        //               // RhinoLanguage.isLTR()
-        //               //     ? product.nameEn
-        //               //     : product.nameAr,
-        //               textAlign: TextAlign.center,
-        //               style: FontStyle.normal(
-        //                 context: context,
-        //                 //  fontWeight: FontWeight.bold
-        //                 // ),
-        //               ),
-        //             ),
-
-        //             // SizedBox(height: 2),
-        //             Row(
-        //               mainAxisAlignment: MainAxisAlignment.end,
-        //               children: [
-        //                 widget.data.weight >= 1
-        //                     ? IconButton(
-        //                         icon: Icon(
-        //                           Icons.toggle_on,
-        //                           color: Colors.green,
-        //                           size: 30,
-        //                         ),
-        //                         onPressed: () {
-        //                           FirebaseFirestore.instance
-        //                               .collection(widget.data.category)
-        //                               .doc(widget.data.id)
-        //                               .update({'weight': 0});
-        //                         })
-        //                     : IconButton(
-        //                         icon: Icon(
-        //                           Icons.toggle_off,
-        //                           color: Colors.red,
-        //                           size: 30,
-        //                         ),
-        //                         onPressed: () {
-        //                           FirebaseFirestore.instance
-        //                               .collection(widget.data.category)
-        //                               .doc(widget.data.id)
-        //                               .update({'weight': 2});
-        //                         }),
-
-        //                 SizedBox(
-        //                   width: 45,
-        //                   child: TextButton(
-        //                       onPressed: () {
-        //                         _showEditDialog(context, widget.data);
-        //                       },
-        //                       child: Icon(Icons.edit, color: Colors.brown)),
-        //                 ),
-        //                 SizedBox(
-        //                   width: 45,
-        //                   child: TextButton(
-        //                       onPressed: () {
-        //                         _showDeleteDialog(context);
-        //                       },
-        //                       child: Icon(Icons.delete, color: Colors.red)),
-        //                 ),
-        //                 // ),
-        //               ],
-        //             ),
-        //             // ),
-        //           ],
-        //         ),
-        //       ),
-        //       // )
-        //     ],
-        //   ),
-        );
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      widget.data.nameEn,
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                    ),
+                    SizedBox(
+                      height: 4,
+                    ),
+                    Text(
+                      widget.data.descriptionEn,
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 2,
+                      style:
+                          TextStyle(fontWeight: FontWeight.w400, fontSize: 14),
+                    ),
+                    SizedBox(
+                      height: 4,
+                    ),
+                    Text(
+                      widget.data.price.toString(),
+                      style: TextStyle(
+                          fontWeight: FontWeight.w300,
+                          // fontStyle: FontStyle.italic,
+                          fontSize: 12),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        widget.data.weight >= 1
+                            ? IconButton(
+                                icon: Icon(
+                                  Icons.toggle_on,
+                                  color: Colors.green,
+                                  size: 35,
+                                ),
+                                onPressed: () {
+                                  FirebaseFirestore.instance
+                                      .collection(widget.data.category)
+                                      .doc(widget.data.id)
+                                      .update({'weight': 0});
+                                })
+                            : IconButton(
+                                icon: Icon(
+                                  Icons.toggle_off,
+                                  color: Colors.red,
+                                  size: 35,
+                                ),
+                                onPressed: () {
+                                  FirebaseFirestore.instance
+                                      .collection(widget.data.category)
+                                      .doc(widget.data.id)
+                                      .update({'weight': 1});
+                                }),
+                        SizedBox(width: 20),
+                        // TextButton(
+                        //     onPressed: () {
+                        //       setState(() {
+                        //         _nameEnController = TextEditingController(
+                        //             text: widget.data.nameEn);
+                        //         _nameArController = TextEditingController(
+                        //             text: widget.data.nameAr);
+                        //         _descriptionEnController =
+                        //             TextEditingController(
+                        //                 text: widget.data.descriptionEn);
+                        //         _descriptionArController =
+                        //             TextEditingController(
+                        //                 text: widget.data.descriptionAr);
+                        //         _priceController = TextEditingController(
+                        //             text: widget.data.price.toString());
+                        //         _imageController = TextEditingController(
+                        //             text: widget.data.image);
+                        //         _value = widget.data.weight.toDouble();r
+                        //       });
+                        //       _showEditDialog(context, widget.data);
+                        //     },
+                        //     child: Icon(Icons.edit, color: Colors.brown)),
+                        // TextButton(
+                        //     onPressed: () {
+                        //       _showDeleteDialog(context);
+                        //     },
+                        //     child: Icon(Icons.delete, color: Colors.red)),
+                      ],
+                    ),
+                  ],
+                ),
+              )
+            ],
+          )),
+    );
   }
+
 // =====  =====  ===== =====  =====  ===== =====  =====  ===== =====  =====  ===== =====  =====
 // =====                                    DELETE                                        =====
 // =====  =====  ===== =====  =====  ===== =====  =====  ===== =====  =====  ===== =====  =====
 
-  _showDeleteDialog() {
+  _showDeleteDialog(BuildContext context) {
     showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -410,7 +319,7 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
 // =====                                    EDIT                                          =====
 // =====  =====  ===== =====  =====  ===== =====  =====  ===== =====  =====  ===== =====  =====
 
-  _showEditDialog(Product product) {
+  _showEditDialog(BuildContext context, Product product) {
     // bool en = true;
     showDialog(
         context: context,
@@ -802,3 +711,5 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
         });
   }
 }
+
+void doNothing(BuildContext context) {}

@@ -12,8 +12,10 @@ import 'package:sigmamenu/screens/home/components/itemCardData.dart';
 import 'package:sigmamenu/screens/widgets/SigningPopUp.dart';
 import 'package:sigmamenu/screens/widgets/bannerWithDotsIndicator.dart';
 import 'package:sigmamenu/style/CommonUI.dart';
+import 'package:sigmamenu/style/Session.dart';
 
 StreamController<int> streamController = StreamController<int>.broadcast();
+bool isLight = true;
 
 class CustomerScreen extends StatefulWidget {
   final ThemeNotifier theme;
@@ -26,20 +28,26 @@ class _CustomerScreenState extends State<CustomerScreen>
     with SingleTickerProviderStateMixin {
   late AnimationController animationController;
   bool isList = true;
-  bool isLight = true;
   @override
   void initState() {
-    StorageManager.readData('themeMode').then((value) {
-      if (value.toString() == 'light') {
-        isLight = true;
-      } else {
-        isLight = false;
-      }
-    });
-
+    // mystate();
     animationController =
         AnimationController(vsync: this, duration: Duration(milliseconds: 500));
     super.initState();
+  }
+
+  mystate() {
+    StorageManager.readData('themeMode').then((value) {
+      if (value.toString() == 'light') {
+        setState(() {
+          isLight = true;
+        });
+      } else {
+        setState(() {
+          isLight = false;
+        });
+      }
+    });
   }
 
   @override
@@ -91,6 +99,20 @@ class _CustomerScreenState extends State<CustomerScreen>
                       ),
                       Row(
                         children: [
+                           IconButton(
+                icon: AnimatedIcon(
+                  icon: AnimatedIcons.view_list,
+                  progress: animationController,
+                ),
+                onPressed: () {
+                  ///toggle controls the animation Forward and Backward
+                  toggle();
+                  setState(() {
+                    Session.isList = !Session.isList;
+                  });
+                },
+                // )
+              ),
                           isLight
                               ? IconButton(
                                   icon: Icon(Icons.dark_mode),

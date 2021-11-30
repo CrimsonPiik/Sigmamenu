@@ -78,24 +78,24 @@ class _BannerWithDotsIndicatorState extends State<BannerWithDotsIndicator> {
             },
           ),
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: bannerList.map(
-            (image) {
-              int indexx = bannerList.indexOf(image);
-              return Container(
-                width: 8.0,
-                height: 8.0,
-                margin: EdgeInsets.symmetric(vertical: 5.0, horizontal: 2.0),
-                decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: currentImage == indexx
-                        ? Color.fromRGBO(0, 0, 0, 0.9)
-                        : Color.fromRGBO(0, 0, 0, 0.4)),
-              );
-            },
-          ).toList(),
-        ),
+        // Row(
+        //   mainAxisAlignment: MainAxisAlignment.center,
+        //   children: bannerList.map(
+        //     (image) {
+        //       int indexx = bannerList.indexOf(image);
+        //       return Container(
+        //         width: 8.0,
+        //         height: 8.0,
+        //         margin: EdgeInsets.symmetric(vertical: 5.0, horizontal: 2.0),
+        //         decoration: BoxDecoration(
+        //             shape: BoxShape.circle,
+        //             color: currentImage == indexx
+        //                 ? Color.fromRGBO(0, 0, 0, 0.9)
+        //                 : Color.fromRGBO(0, 0, 0, 0.4)),
+        //       );
+        //     },
+        //   ).toList(),
+        // ),
       ],
     );
   }

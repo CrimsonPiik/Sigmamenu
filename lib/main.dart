@@ -27,6 +27,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   void initState() {
+    
     super.initState();
     getLocale();
   }
@@ -55,7 +56,7 @@ class _MyAppState extends State<MyApp> {
           // ChangeNotifierProvider<CategoryProvider>(
           //     create: (_) => CategoryProvider()),
           ChangeNotifierProvider<ThemeNotifier>(
-    create: (_) => new ThemeNotifier(),),
+            create: (_) => new ThemeNotifier(),),
         ],
         builder: (context, child) {
           return MaterialApp(

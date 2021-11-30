@@ -16,10 +16,12 @@ class _AddCategoryButtonState extends State<AddCategoryButton> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 8.0,top:12.0),
-      // 0),
-      child: Container(
+    return 
+    Padding(
+      padding: const EdgeInsets.only(left: 8.0),
+      
+      child: 
+      Container(
         height: 37,
         padding: EdgeInsets.all(8),
         child: InkWell(
