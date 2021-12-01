@@ -190,7 +190,7 @@ class _UsersCardState extends State<UsersCard> {
                       .doc(widget.data.id)
                       .delete();
 
-                  Navigator.of(context).pop();
+                  Navigator.pop(context);
                 },
                 child: Container(
                   padding: EdgeInsets.all(10),
@@ -207,7 +207,7 @@ class _UsersCardState extends State<UsersCard> {
               ),
               TextButton(
                 onPressed: () {
-                  Navigator.of(context).pop();
+                  Navigator.pop(context);
                 },
                 child: Container(
                   padding: EdgeInsets.all(10),

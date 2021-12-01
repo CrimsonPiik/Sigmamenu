@@ -164,146 +164,151 @@ class _ItemCardRectangleState extends State<ItemCardRectangle> {
                         padding: const EdgeInsets.all(8.0),
                         child: Column(
                           children: <Widget>[
-                            SizedBox(
-                              child: Stack(
-                                children: <Widget>[
-                                  Container(
-                                    width: Responsive.isDesktop(context)
-                                        ? Responsive.width(context) / 2
-                                        : Responsive.width(context),
-                                    padding: EdgeInsets.only(
-                                        top: kDefaultPaddin * 2,
-                                        left: kDefaultPaddin,
-                                        right: kDefaultPaddin,
-                                        bottom: kDefaultPaddin),
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.only(
-                                        topLeft: Radius.circular(24),
-                                        topRight: Radius.circular(24),
-                                        bottomLeft: Radius.circular(24),
-                                        bottomRight: Radius.circular(24),
-                                      ),
+                            Stack(
+                              children: <Widget>[
+                                Container(
+                                  width: Responsive.isDesktop(context)
+                                      ? Responsive.width(context) / 2
+                                      : Responsive.width(context),
+                                  padding: EdgeInsets.only(
+                                      top: kDefaultPaddin * 1.5,
+                                      left: kDefaultPaddin * 1.5,
+                                      right: kDefaultPaddin * 1.5,
+                                      bottom: kDefaultPaddin),
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(24),
+                                      topRight: Radius.circular(24),
+                                      bottomLeft: Radius.circular(24),
+                                      bottomRight: Radius.circular(24),
                                     ),
-                                    child: Column(
-                                      children: [
-                                        Center(
-                                          child: Hero(
-                                            tag: "${widget.product.id}",
-                                            child: Image.network(
-                                              widget.product.image,
-                                              width: 300,
-                                              height: 250,
-                                              fit: BoxFit.fill,
-                                            ),
+                                  ),
+                                  child: Column(
+                                    children: [
+                                      Center(
+                                        child: Hero(
+                                          tag: "${widget.product.id}",
+                                          child: Image.network(
+                                            widget.product.image,
+                                            width:
+                                                Responsive.isMiniMobile(context)
+                                                    ? 270
+                                                    : 300,
+                                            height:
+                                                Responsive.isMiniMobile(context)
+                                                    ? 220
+                                                    : 250,
+                                            fit: BoxFit.fill,
                                           ),
                                         ),
-                                        Row(
-                                          children: [
-                                            SizedBox(width: 10),
-                                            Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: <Widget>[
-                                                SizedBox(height: 18),
-                                                Text(
-                                                  ProjectLanguage.isLTR()
-                                                      ? widget.product.nameEn
-                                                      : widget.product.nameAr,
+                                      ),
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: <Widget>[
+                                          SizedBox(height: 18),
+                                          Text(
+                                            ProjectLanguage.isLTR()
+                                                ? widget.product.nameEn
+                                                : widget.product.nameAr,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .headline4!
+                                                .copyWith(
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize:
+                                                      Responsive.isMiniMobile(
+                                                              context)
+                                                          ? 21
+                                                          : 24,
+                                                ),
+                                          ),
+                                          // SizedBox(height: 6),
+                                          RichText(
+                                            text: TextSpan(
+                                              children: [
+                                                TextSpan(text: "Price\n"),
+                                                TextSpan(
+                                                  text:
+                                                      "\$${widget.product.price}",
                                                   style: Theme.of(context)
                                                       .textTheme
-                                                      .headline4!
+                                                      .headline5!
                                                       .copyWith(
-                                                          color: Colors.black,
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                          fontSize: 24),
+                                                        color: Colors.black,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                      ),
                                                 ),
-                                                SizedBox(height: 12),
-                                                RichText(
+                                              ],
+                                            ),
+                                          ),
+                                          SizedBox(height: 30),
+                                          Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Container(
+                                                width: Responsive.isDesktop(
+                                                        context)
+                                                    ? Responsive.width(
+                                                            context) /
+                                                        2.2
+                                                    : Responsive.width(
+                                                            context) /
+                                                        1.35,
+                                                child: RichText(
                                                   text: TextSpan(
                                                     children: [
-                                                      TextSpan(text: "Price\n"),
                                                       TextSpan(
-                                                        text:
-                                                            "\$${widget.product.price}",
-                                                        style: Theme.of(context)
-                                                            .textTheme
-                                                            .headline4!
-                                                            .copyWith(
+                                                          text: "Description\n",
+                                                          style: TextStyle(
+                                                              fontSize: Responsive
+                                                                      .isMiniMobile(
+                                                                          context)
+                                                                  ? 13
+                                                                  : 15,
                                                               color:
                                                                   Colors.black,
                                                               fontWeight:
                                                                   FontWeight
-                                                                      .bold,
-                                                            ),
-                                                      ),
+                                                                      .bold)),
+                                                      TextSpan(
+                                                          text: ProjectLanguage
+                                                                  .isLTR()
+                                                              ? "${widget.product.descriptionEn}"
+                                                              : "${widget.product.descriptionAr}",
+                                                          style: TextStyle(
+                                                              fontSize: Responsive
+                                                                      .isMiniMobile(
+                                                                          context)
+                                                                  ? 10
+                                                                  : 12,
+                                                              color: Colors
+                                                                  .black)),
                                                     ],
                                                   ),
                                                 ),
-                                                SizedBox(height: 40),
-                                                Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Container(
-                                                      width: Responsive
-                                                              .isDesktop(
-                                                                  context)
-                                                          ? Responsive.width(
-                                                                  context) /
-                                                              2.2
-                                                          : Responsive.width(
-                                                                  context) /
-                                                              1.35,
-                                                      child: RichText(
-                                                        text: TextSpan(
-                                                          children: [
-                                                            TextSpan(
-                                                                text:
-                                                                    "Description\n",
-                                                                style: TextStyle(
-                                                                    fontSize:
-                                                                        15,
-                                                                    color: Colors
-                                                                        .black,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .bold)),
-                                                            TextSpan(
-                                                                text: ProjectLanguage
-                                                                        .isLTR()
-                                                                    ? "${widget.product.descriptionEn}"
-                                                                    : "${widget.product.descriptionAr}",
-                                                                style: TextStyle(
-                                                                    fontSize:
-                                                                        14,
-                                                                    color: Colors
-                                                                        .black)),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    SizedBox(
-                                                        height:
-                                                            kDefaultPaddin * 2)
-                                                  ],
-                                                ),
-                                              ],
-                                            ),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
+                                              ),
+                                              SizedBox(
+                                                  height: kDefaultPaddin * 2),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    ],
                                   ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
                           ],
                         ),
                       ),
                     ),
                   ),
+
                   // Align(
                   //   alignment: Alignment.bottomCenter,
                   //   child: Container(
