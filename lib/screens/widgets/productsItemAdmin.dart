@@ -64,33 +64,46 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
       key: const ValueKey(0),
 
       // The start action pane is the one at the left or the top side.
-      // startActionPane:
-      //  ActionPane(
-      //   // A motion is a widget used to control how the pane animates.
-      //   motion: const ScrollMotion(),
+      startActionPane: ActionPane(
+        //   // A motion is a widget used to control how the pane animates.
+        motion: ScrollMotion(),
 
-      //   // A pane can dismiss the Slidable.
-      //   dismissible: DismissiblePane(onDismissed: () {}),
+        //   // A pane can dismiss the Slidable.
+        //   dismissible: DismissiblePane(onDismissed: () {}),
 
-      //   // All actions are defined in the children parameter.
-      //   children: const [
-      //     // A SlidableAction can have an icon and/or a label.
-      //     SlidableAction(
-      //       onPressed: doNothing,
-      //       backgroundColor: Color(0xFFFE4A49),
-      //       foregroundColor: Colors.white,
-      //       icon: Icons.delete,
-      //       label: 'Delete',
-      //     ),
-      //     SlidableAction(
-      //       onPressed: doNothing,
-      //       backgroundColor: Color(0xFF21B7CA),
-      //       foregroundColor: Colors.white,
-      //       icon: Icons.edit,
-      //       label: 'Edit',
-      //     ),
-      //   ],
-      // ),
+        //   // All actions are defined in the children parameter.
+        children: [
+          //     // A SlidableAction can have an icon and/or a label.
+          SlidableAction(
+            // margin: EdgeInsets.only(bottom: 20),
+
+            flex: 1,
+            onPressed: (context) {
+              widget.data.weight >= 1
+                  ? FirebaseFirestore.instance
+                      .collection(widget.data.category)
+                      .doc(widget.data.id)
+                      .update({'weight': 0})
+                  : FirebaseFirestore.instance
+                      .collection(widget.data.category)
+                      .doc(widget.data.id)
+                      .update({'weight': 1});
+            },
+            backgroundColor:
+                widget.data.weight >= 1 ? Colors.red : Colors.green,
+            foregroundColor: Colors.white,
+            icon: widget.data.weight >= 1 ? Icons.toggle_off : Icons.toggle_on,
+            label: widget.data.weight >= 1 ? "Unpublish" : "Publish",
+          ),
+          //     SlidableAction(
+          //       onPressed: doNothing,
+          //       backgroundColor: Color(0xFF21B7CA),
+          //       foregroundColor: Colors.white,
+          //       icon: Icons.edit,
+          //       label: 'Edit',
+          //     ),
+        ],
+      ),
 
       // The end action pane is the one at the right or the bottom side.
       endActionPane: ActionPane(
@@ -117,7 +130,7 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
               });
               _showEditDialog(context, widget.data);
             },
-            backgroundColor: Color(0xFF7BC043),
+            backgroundColor: Colors.blueAccent,
             foregroundColor: Colors.white,
             icon: Icons.edit,
             label: 'Edit',
@@ -138,121 +151,133 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
 
       // The child of the Slidable is what the user sees when the
       // component is not dragged.
-      child: Container(
-          padding: EdgeInsets.all(16),
-          margin: EdgeInsets.only(bottom: 20),
-          decoration: BoxDecoration(
-            color: Colors.grey.withOpacity(0.1),
-            borderRadius: BorderRadius.circular(12),
-          ),
-          child: Row(
-            children: [
-              Container(
-                  width: 120,
-                  // height: 120,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(4),
+      child: Stack(
+        children: [
+          Container(
+              padding: EdgeInsets.all(16),
+              // margin: EdgeInsets.only(bottom: 20),
+              // decoration: BoxDecoration(
+              //   color: Colors.grey.withOpacity(0.1),
+              //   borderRadius: BorderRadius.circular(12),
+              // ),
+              child: Row(
+                children: [
+                  Container(
+                      width: 120,
+                      // height: 120,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(4),
+                      ),
+                      child: CommonUI.cachedImage(
+                          widget.data.image, ImageAssets.placeholder,
+                          fit: BoxFit.cover)),
+                  SizedBox(
+                    width: 16,
                   ),
-                  child: CommonUI.cachedImage(
-                      widget.data.image, ImageAssets.placeholder,
-                      fit: BoxFit.cover)),
-              SizedBox(
-                width: 16,
-              ),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      widget.data.nameEn,
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 1,
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                    ),
-                    SizedBox(
-                      height: 4,
-                    ),
-                    Text(
-                      widget.data.descriptionEn,
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 2,
-                      style:
-                          TextStyle(fontWeight: FontWeight.w400, fontSize: 14),
-                    ),
-                    SizedBox(
-                      height: 4,
-                    ),
-                    Text(
-                      widget.data.price.toString(),
-                      style: TextStyle(
-                          fontWeight: FontWeight.w300,
-                          // fontStyle: FontStyle.italic,
-                          fontSize: 12),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        widget.data.weight >= 1
-                            ? IconButton(
-                                icon: Icon(
-                                  Icons.toggle_on,
-                                  color: Colors.green,
-                                  size: 35,
-                                ),
-                                onPressed: () {
-                                  FirebaseFirestore.instance
-                                      .collection(widget.data.category)
-                                      .doc(widget.data.id)
-                                      .update({'weight': 0});
-                                })
-                            : IconButton(
-                                icon: Icon(
-                                  Icons.toggle_off,
-                                  color: Colors.red,
-                                  size: 35,
-                                ),
-                                onPressed: () {
-                                  FirebaseFirestore.instance
-                                      .collection(widget.data.category)
-                                      .doc(widget.data.id)
-                                      .update({'weight': 1});
-                                }),
-                        SizedBox(width: 20),
-                        // TextButton(
-                        //     onPressed: () {
-                        //       setState(() {
-                        //         _nameEnController = TextEditingController(
-                        //             text: widget.data.nameEn);
-                        //         _nameArController = TextEditingController(
-                        //             text: widget.data.nameAr);
-                        //         _descriptionEnController =
-                        //             TextEditingController(
-                        //                 text: widget.data.descriptionEn);
-                        //         _descriptionArController =
-                        //             TextEditingController(
-                        //                 text: widget.data.descriptionAr);
-                        //         _priceController = TextEditingController(
-                        //             text: widget.data.price.toString());
-                        //         _imageController = TextEditingController(
-                        //             text: widget.data.image);
-                        //         _value = widget.data.weight.toDouble();r
-                        //       });
-                        //       _showEditDialog(context, widget.data);
-                        //     },
-                        //     child: Icon(Icons.edit, color: Colors.brown)),
-                        // TextButton(
-                        //     onPressed: () {
-                        //       _showDeleteDialog(context);
-                        //     },
-                        //     child: Icon(Icons.delete, color: Colors.red)),
+                        Text(
+                          widget.data.nameEn,
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 16),
+                        ),
+                        SizedBox(
+                          height: 4,
+                        ),
+                        Text(
+                          widget.data.descriptionEn,
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 2,
+                          style: TextStyle(
+                              fontWeight: FontWeight.w400, fontSize: 14),
+                        ),
+                        SizedBox(
+                          height: 4,
+                        ),
+                        Text(
+                          widget.data.price.toString(),
+                          style: TextStyle(
+                              fontWeight: FontWeight.w300,
+                              // fontStyle: FontStyle.italic,
+                              fontSize: 12),
+                        ),
+                        // Row(
+                        //   mainAxisAlignment: MainAxisAlignment.end,
+                        //   children: [
+                        //     widget.data.weight >= 1
+                        //         ? IconButton(
+                        //             icon: Icon(
+                        //               Icons.toggle_on,
+                        //               color: Colors.green,
+                        //               size: 35,
+                        //             ),
+                        //             onPressed: () {
+                        //               FirebaseFirestore.instance
+                        //                   .collection(widget.data.category)
+                        //                   .doc(widget.data.id)
+                        //                   .update({'weight': 0});
+                        //             })
+                        //         : IconButton(
+                        //             icon: Icon(
+                        //               Icons.toggle_off,
+                        //               color: Colors.red,
+                        //               size: 35,
+                        //             ),
+                        //             onPressed: () {
+                        //               FirebaseFirestore.instance
+                        //                   .collection(widget.data.category)
+                        //                   .doc(widget.data.id)
+                        //                   .update({'weight': 1});
+                        //             }),
+                        //     SizedBox(width: 20),
+                        //     // TextButton(
+                        //     //     onPressed: () {
+                        //     //       setState(() {
+                        //     //         _nameEnController = TextEditingController(
+                        //     //             text: widget.data.nameEn);
+                        //     //         _nameArController = TextEditingController(
+                        //     //             text: widget.data.nameAr);
+                        //     //         _descriptionEnController =
+                        //     //             TextEditingController(
+                        //     //                 text: widget.data.descriptionEn);
+                        //     //         _descriptionArController =
+                        //     //             TextEditingController(
+                        //     //                 text: widget.data.descriptionAr);
+                        //     //         _priceController = TextEditingController(
+                        //     //             text: widget.data.price.toString());
+                        //     //         _imageController = TextEditingController(
+                        //     //             text: widget.data.image);
+                        //     //         _value = widget.data.weight.toDouble();r
+                        //     //       });
+                        //     //       _showEditDialog(context, widget.data);
+                        //     //     },
+                        //     //     child: Icon(Icons.edit, color: Colors.brown)),
+                        //     // TextButton(
+                        //     //     onPressed: () {
+                        //     //       _showDeleteDialog(context);
+                        //     //     },
+                        //     //     child: Icon(Icons.delete, color: Colors.red)),
+                        //   ],
+                        // ),
                       ],
                     ),
-                  ],
-                ),
-              )
-            ],
-          )),
+                  ),
+                ],
+              )),
+          Container(
+            width: 10,
+            // padding: EdgeInsets.all(16),
+            // margin: EdgeInsets.only(bottom: 20),
+            decoration: BoxDecoration(
+              color: widget.data.weight >= 1 ? Colors.green : Colors.red,
+            ),
+          ),
+        ],
+      ),
     );
   }
 

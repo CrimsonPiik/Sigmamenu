@@ -71,13 +71,16 @@ class _ItemCardDataAdminState extends State<ItemCardDataAdmin> {
                               (MediaQuery.of(context).size.height / 3.5)
                           : MediaQuery.of(context).size.width /
                               (MediaQuery.of(context).size.height / 4)),
-                  itemBuilder: (context, index) => 
-                
-                     ProductsItemAdmin(products[index]),
-             
+                  itemBuilder: (context, index) => Container(
+                      // padding: EdgeInsets.all(16),
+                      margin: EdgeInsets.only(bottom: 20),
+                      decoration: BoxDecoration(
+                        color: Colors.grey.withOpacity(0.1),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: ProductsItemAdmin(products[index])),
                 )),
           );
         });
   }
 }
-
