@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:sigmamenu/GeneralFunction/firebase_uploader_web.dart';
+import 'package:sigmamenu/constaints.dart';
+import 'package:sigmamenu/language/logic/ProjectLanguage.dart';
 import 'package:sigmamenu/models/product.dart';
 import 'package:sigmamenu/style/AssetsManager.dart';
 import 'package:sigmamenu/style/CommonUI.dart';
@@ -60,31 +62,19 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
   @override
   Widget build(BuildContext context) {
     return Slidable(
-      // Specify a key if the Slidable is dismissible.
       key: const ValueKey(0),
-
-      // The start action pane is the one at the left or the top side.
       startActionPane: ActionPane(
-        //   // A motion is a widget used to control how the pane animates.
         motion: ScrollMotion(),
-
-        //   // A pane can dismiss the Slidable.
-        //   dismissible: DismissiblePane(onDismissed: () {}),
-
-        //   // All actions are defined in the children parameter.
         children: [
-          //     // A SlidableAction can have an icon and/or a label.
           SlidableAction(
-            // margin: EdgeInsets.only(bottom: 20),
-
             flex: 1,
-            onPressed: (context) {
+            onPressed: (context) async {
               widget.data.weight >= 1
-                  ? FirebaseFirestore.instance
+                  ? await FirebaseFirestore.instance
                       .collection(widget.data.category)
                       .doc(widget.data.id)
                       .update({'weight': 0})
-                  : FirebaseFirestore.instance
+                  : await FirebaseFirestore.instance
                       .collection(widget.data.category)
                       .doc(widget.data.id)
                       .update({'weight': 1});
@@ -94,24 +84,14 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
             foregroundColor: Colors.white,
             icon: widget.data.weight >= 1 ? Icons.toggle_off : Icons.toggle_on,
             label: widget.data.weight >= 1 ? "Unpublish" : "Publish",
+            autoClose: true,
           ),
-          //     SlidableAction(
-          //       onPressed: doNothing,
-          //       backgroundColor: Color(0xFF21B7CA),
-          //       foregroundColor: Colors.white,
-          //       icon: Icons.edit,
-          //       label: 'Edit',
-          //     ),
         ],
       ),
-
-      // The end action pane is the one at the right or the bottom side.
       endActionPane: ActionPane(
         motion: ScrollMotion(),
         children: [
           SlidableAction(
-            // An action can be bigger than the others.
-            // flex: 2,
             onPressed: (context) {
               setState(() {
                 _nameEnController =
@@ -137,10 +117,11 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
             autoClose: true,
           ),
           SlidableAction(
+            // flex: 2,
             onPressed: (context) {
               _showDeleteDialog(context);
             },
-            backgroundColor: Color(0xFFFE4A49),
+            backgroundColor: Colors.red,
             foregroundColor: Colors.white,
             icon: Icons.delete,
             label: 'Delete',
@@ -151,132 +132,79 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
 
       // The child of the Slidable is what the user sees when the
       // component is not dragged.
-      child: Stack(
-        children: [
-          Container(
-              padding: EdgeInsets.all(16),
-              // margin: EdgeInsets.only(bottom: 20),
-              // decoration: BoxDecoration(
-              //   color: Colors.grey.withOpacity(0.1),
-              //   borderRadius: BorderRadius.circular(12),
-              // ),
-              child: Row(
-                children: [
-                  Container(
-                      width: 120,
-                      // height: 120,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(4),
-                      ),
-                      child: CommonUI.cachedImage(
-                          widget.data.image, ImageAssets.placeholder,
-                          fit: BoxFit.cover)),
-                  SizedBox(
-                    width: 16,
-                  ),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          widget.data.nameEn,
-                          overflow: TextOverflow.ellipsis,
-                          maxLines: 1,
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 16),
+      child: InkWell(
+        onTap: () {
+          _animationDialog(context);
+        },
+        child: Stack(
+          children: [
+            Container(
+                padding: EdgeInsets.only(top: 8, left: 16, right: 8, bottom: 8),
+                // margin: EdgeInsets.only(bottom: 20),
+                // decoration: BoxDecoration(
+                //   color: Colors.grey.withOpacity(0.1),
+                //   borderRadius: BorderRadius.circular(12),
+                // ),
+                child: Row(
+                  children: [
+                    Container(
+                        width: 120,
+                        // height: 150,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(4),
                         ),
-                        SizedBox(
-                          height: 4,
-                        ),
-                        Text(
-                          widget.data.descriptionEn,
-                          overflow: TextOverflow.ellipsis,
-                          maxLines: 2,
-                          style: TextStyle(
-                              fontWeight: FontWeight.w400, fontSize: 14),
-                        ),
-                        SizedBox(
-                          height: 4,
-                        ),
-                        Text(
-                          widget.data.price.toString(),
-                          style: TextStyle(
-                              fontWeight: FontWeight.w300,
-                              // fontStyle: FontStyle.italic,
-                              fontSize: 12),
-                        ),
-                        // Row(
-                        //   mainAxisAlignment: MainAxisAlignment.end,
-                        //   children: [
-                        //     widget.data.weight >= 1
-                        //         ? IconButton(
-                        //             icon: Icon(
-                        //               Icons.toggle_on,
-                        //               color: Colors.green,
-                        //               size: 35,
-                        //             ),
-                        //             onPressed: () {
-                        //               FirebaseFirestore.instance
-                        //                   .collection(widget.data.category)
-                        //                   .doc(widget.data.id)
-                        //                   .update({'weight': 0});
-                        //             })
-                        //         : IconButton(
-                        //             icon: Icon(
-                        //               Icons.toggle_off,
-                        //               color: Colors.red,
-                        //               size: 35,
-                        //             ),
-                        //             onPressed: () {
-                        //               FirebaseFirestore.instance
-                        //                   .collection(widget.data.category)
-                        //                   .doc(widget.data.id)
-                        //                   .update({'weight': 1});
-                        //             }),
-                        //     SizedBox(width: 20),
-                        //     // TextButton(
-                        //     //     onPressed: () {
-                        //     //       setState(() {
-                        //     //         _nameEnController = TextEditingController(
-                        //     //             text: widget.data.nameEn);
-                        //     //         _nameArController = TextEditingController(
-                        //     //             text: widget.data.nameAr);
-                        //     //         _descriptionEnController =
-                        //     //             TextEditingController(
-                        //     //                 text: widget.data.descriptionEn);
-                        //     //         _descriptionArController =
-                        //     //             TextEditingController(
-                        //     //                 text: widget.data.descriptionAr);
-                        //     //         _priceController = TextEditingController(
-                        //     //             text: widget.data.price.toString());
-                        //     //         _imageController = TextEditingController(
-                        //     //             text: widget.data.image);
-                        //     //         _value = widget.data.weight.toDouble();r
-                        //     //       });
-                        //     //       _showEditDialog(context, widget.data);
-                        //     //     },
-                        //     //     child: Icon(Icons.edit, color: Colors.brown)),
-                        //     // TextButton(
-                        //     //     onPressed: () {
-                        //     //       _showDeleteDialog(context);
-                        //     //     },
-                        //     //     child: Icon(Icons.delete, color: Colors.red)),
-                        //   ],
-                        // ),
-                      ],
+                        child: CommonUI.cachedImage(
+                            widget.data.image, ImageAssets.placeholder,
+                            fit: BoxFit.cover)),
+                    SizedBox(
+                      width: 16,
                     ),
-                  ),
-                ],
-              )),
-          Container(
-            width: 10,
-            // padding: EdgeInsets.all(16),
-            // margin: EdgeInsets.only(bottom: 20),
-            decoration: BoxDecoration(
-              color: widget.data.weight >= 1 ? Colors.green : Colors.red,
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            widget.data.nameEn,
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 1,
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 16),
+                          ),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          Text(
+                            widget.data.price.toString(),
+                            style: TextStyle(
+                                fontWeight: FontWeight.w300,
+                                // fontStyle: FontStyle.italic,
+                                fontSize: 12),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            widget.data.descriptionEn,
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 3,
+                            style: TextStyle(
+                                fontWeight: FontWeight.w400, fontSize: 12),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                )),
+            Container(
+              width: 10,
+              // padding: EdgeInsets.all(16),
+              // margin: EdgeInsets.only(bottom: 20),
+              decoration: BoxDecoration(
+                color: widget.data.weight >= 1 ? Colors.green : Colors.red,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -735,6 +663,205 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
           );
         });
   }
+
+  bool _fromTop = true;
+
+  _animationDialog(context) {
+    showGeneralDialog(
+      barrierDismissible: true,
+      barrierLabel: "Product Animation",
+      barrierColor: Colors.black.withOpacity(0.5),
+      transitionDuration: Duration(milliseconds: 600),
+      context: context,
+      pageBuilder: (context, anim1, anim2) {
+        return Dismissible(
+          direction: DismissDirection.vertical,
+          onDismissed: (_) {
+            Navigator.of(context).pop();
+          },
+          key: Key("key"),
+          child: SafeArea(
+            child: SizedBox.expand(
+              child: Stack(
+                children: [
+                  Center(
+                    child: SingleChildScrollView(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          children: <Widget>[
+                            Stack(
+                              children: <Widget>[
+                                Container(
+                                  width: Responsive.isDesktop(context)
+                                      ? Responsive.width(context) / 2
+                                      : Responsive.width(context),
+                                  padding: EdgeInsets.only(
+                                      top: kDefaultPaddin * 1.5,
+                                      left: kDefaultPaddin * 1.5,
+                                      right: kDefaultPaddin * 1.5,
+                                      bottom: kDefaultPaddin),
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(24),
+                                      topRight: Radius.circular(24),
+                                      bottomLeft: Radius.circular(24),
+                                      bottomRight: Radius.circular(24),
+                                    ),
+                                  ),
+                                  child: Column(
+                                    children: [
+                                      Center(
+                                        child: Hero(
+                                          tag: "${widget.data.id}",
+                                          child: Image.network(
+                                            widget.data.image,
+                                            width:
+                                                Responsive.isMiniMobile(context)
+                                                    ? 270
+                                                    : 300,
+                                            height:
+                                                Responsive.isMiniMobile(context)
+                                                    ? 220
+                                                    : 250,
+                                            fit: BoxFit.fill,
+                                          ),
+                                        ),
+                                      ),
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: <Widget>[
+                                          SizedBox(height: 18),
+                                          Text(
+                                            ProjectLanguage.isLTR()
+                                                ? widget.data.nameEn
+                                                : widget.data.nameAr,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .headline4!
+                                                .copyWith(
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize:
+                                                      Responsive.isMiniMobile(
+                                                              context)
+                                                          ? 21
+                                                          : 24,
+                                                ),
+                                          ),
+                                          // SizedBox(height: 6),
+                                          RichText(
+                                            text: TextSpan(
+                                              children: [
+                                                TextSpan(text: "Price\n"),
+                                                TextSpan(
+                                                  text:
+                                                      "\$${widget.data.price}",
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .headline5!
+                                                      .copyWith(
+                                                        color: Colors.black,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                      ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          SizedBox(height: 30),
+                                          Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Container(
+                                                width: Responsive.isDesktop(
+                                                        context)
+                                                    ? Responsive.width(
+                                                            context) /
+                                                        2.2
+                                                    : Responsive.width(
+                                                            context) /
+                                                        1.35,
+                                                child: RichText(
+                                                  text: TextSpan(
+                                                    children: [
+                                                      TextSpan(
+                                                          text: "Description\n",
+                                                          style: TextStyle(
+                                                              fontSize: Responsive
+                                                                      .isMiniMobile(
+                                                                          context)
+                                                                  ? 13
+                                                                  : 15,
+                                                              color:
+                                                                  Colors.black,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold)),
+                                                      TextSpan(
+                                                          text: ProjectLanguage
+                                                                  .isLTR()
+                                                              ? "${widget.data.descriptionEn}"
+                                                              : "${widget.data.descriptionAr}",
+                                                          style: TextStyle(
+                                                              fontSize: Responsive
+                                                                      .isMiniMobile(
+                                                                          context)
+                                                                  ? 10
+                                                                  : 12,
+                                                              color: Colors
+                                                                  .black)),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                  height: kDefaultPaddin * 2),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+
+                  // Align(
+                  //   alignment: Alignment.bottomCenter,
+                  //   child: Container(
+                  //     width: 60,
+                  //     height: 60,
+                  //     child: FloatingActionButton(
+                  //       onPressed: () => Navigator.of(context).pop(),
+                  //       child: Icon(Icons.close),
+                  //     ),
+                  //   ),
+                  // ),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+      transitionBuilder: (context, anim1, anim2, child) {
+        return SlideTransition(
+          position:
+              Tween(begin: Offset(0, _fromTop ? -1 : 1), end: Offset(0, 0))
+                  .animate(anim1),
+          child: child,
+        );
+      },
+    );
+  }
 }
 
-void doNothing(BuildContext context) {}
+// void doNothing(BuildContext context) {}
