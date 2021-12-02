@@ -40,30 +40,26 @@ class _AdminPanelBannersState extends State<AdminPanelBanners> {
           // DateTime.now().millisecondsSinceEpoch.toString());
           return Expanded(
             child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: kDefaultPaddin),
-                child: GridView.builder(
+              padding: const EdgeInsets.symmetric(horizontal: kDefaultPaddin),
+              child: GridView.builder(
                   itemCount: banners.length,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 1,
                       childAspectRatio: Responsive.isDesktop(context)
                           ? MediaQuery.of(context).size.width /
-                              (MediaQuery.of(context).size.height / 4)
+                              (MediaQuery.of(context).size.height / 3.5)
                           : MediaQuery.of(context).size.width /
-                              (MediaQuery.of(context).size.height / 2.7)
-                      //       //               // ScreenUtil.isDesktop(context)
-                      //       //               // ? 7
-                      //       //               // : ScreenUtil.isTablet(context)
-                      //       //               // ? 4
-                      //       //               //  : 2,
-                      //       //               // mainAxisSpacing: kDefaultPaddin,
-                      //       //               // crossAxisSpacing: kDefaultPaddin,
-                      // childAspectRatio: 130.0,
-                      ),
-                  itemBuilder: (context, index) =>
-                      //  TextButton.icon(
-                      //                   onPressed: () {}, icon: Icon(Icons.add), label: Text('Add')),
-                      BannersItem(banners[index]),
-                )),
+                              (MediaQuery.of(context).size.height / 4)),
+                  itemBuilder: (context, index) => Container(
+                        // padding: EdgeInsets.all(16),
+                        margin: EdgeInsets.only(bottom: 20),
+                        decoration: BoxDecoration(
+                          color: Colors.grey.withOpacity(0.1),
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: BannersItem(banners[index]),
+                      )),
+            ),
           );
         });
   }
