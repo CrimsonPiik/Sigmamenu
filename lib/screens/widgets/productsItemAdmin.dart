@@ -10,6 +10,7 @@ import 'package:sigmamenu/models/product.dart';
 import 'package:sigmamenu/style/AssetsManager.dart';
 import 'package:sigmamenu/style/CommonUI.dart';
 import 'package:sigmamenu/style/ScreenUtil.dart';
+import '../../../style/Style.dart';
 
 class ProductsItemAdmin extends StatefulWidget {
   final Product data;
@@ -160,37 +161,56 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                       width: 16,
                     ),
                     Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            widget.data.nameEn,
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 1,
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 16),
-                          ),
-                          SizedBox(
-                            height: 8,
-                          ),
-                          Text(
-                            widget.data.price.toString(),
-                            style: TextStyle(
-                                fontWeight: FontWeight.w300,
-                                // fontStyle: FontStyle.italic,
-                                fontSize: 12),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Text(
-                            widget.data.descriptionEn,
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 3,
-                            style: TextStyle(
-                                fontWeight: FontWeight.w400, fontSize: 12),
-                          ),
-                        ],
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 10.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              widget.data.nameEn,
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 1,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize:
+                                      Responsive.isMiniMobile(context) ? 12 : 14),
+                            ),
+                            SizedBox(
+                              height: 8,
+                            ),
+                            Row(
+                              children: [
+                                Text('JOD ',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: Responsive.isMiniMobile(context)
+                                            ? 12
+                                            : 14,
+                                        color: Colors.black)),
+                                Text(widget.data.price.toString(),
+                                    textAlign: TextAlign.center,
+                                    maxLines: 2,
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: Responsive.isMiniMobile(context)
+                                            ? 12
+                                            : 14,
+                                        color: Colors.red)),
+                              ],
+                            ),
+                            SizedBox(
+                              height: Responsive.isMiniMobile(context) ? 8 : 16,
+                            ),
+                            Text(
+                              widget.data.descriptionEn,
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: Responsive.isMiniMobile(context) ? 2 : 3,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w400, fontSize: 12),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ],
