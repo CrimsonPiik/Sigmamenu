@@ -5,6 +5,7 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:sigmamenu/models/user.dart';
 import 'package:sigmamenu/style/AssetsManager.dart';
 import 'package:sigmamenu/style/CommonUI.dart';
+import 'package:sigmamenu/style/ScreenUtil.dart';
 
 class UsersCard extends StatefulWidget {
   final AppUser data;
@@ -100,16 +101,77 @@ class _UsersCardState extends State<UsersCard> {
       // The child of the Slidable is what the user sees when the
       // component is not dragged.
       child: Container(
-          padding: EdgeInsets.all(16),
-          margin: EdgeInsets.only(bottom: 20),
-          decoration: BoxDecoration(
-            color: Colors.grey.withOpacity(0.1),
-            borderRadius: BorderRadius.circular(12),
-          ),
-          child: Row(
+          padding: EdgeInsets.only(top: 8, left: 16, right: 8, bottom: 8),
+          child:
+              // Row(
+              //   children: [
+              //     Container(
+              //         width: 120,
+              //         decoration: BoxDecoration(
+              //           borderRadius: BorderRadius.circular(4),
+              //         ),
+              //         child: CommonUI.cachedImage(
+              //             widget.data.image, ImageAssets.placeholder,
+              //             fit: BoxFit.cover)),
+              //     SizedBox(
+              //       width: 16,
+              //     ),
+              //     Expanded(
+              //       child: Column(
+              //         crossAxisAlignment: CrossAxisAlignment.start,
+              //         children: [
+              //           Text(
+              //             widget.data.name,
+              //             overflow: TextOverflow.ellipsis,
+              //             maxLines: 1,
+              //             style:
+              //                 TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+              //           ),
+              //           SizedBox(
+              //             height: 4,
+              //           ),
+              //           Text(
+              //             widget.data.phone,
+              //             overflow: TextOverflow.ellipsis,
+              //             maxLines: 2,
+              //             style:
+              //                 TextStyle(fontWeight: FontWeight.w400, fontSize: 14),
+              //           ),
+              //           SizedBox(
+              //             height: 4,
+              //           ),
+              //           Text(
+              //             widget.data.phone,
+              //             style: TextStyle(
+              //                 fontWeight: FontWeight.w300,
+              //                 // fontStyle: FontStyle.italic,
+              //                 fontSize: 12),
+              //           ),
+              //           // Row(
+              //           //   mainAxisAlignment: MainAxisAlignment.end,
+              //           //   children: [
+              //           //     SizedBox(width: 20),
+              //           //     TextButton(
+              //           //         onPressed: () {},
+              //           //         child: Icon(Icons.edit, color: Colors.brown)),
+              //           //     TextButton(
+              //           //         onPressed: () {
+              //           //           _showDeleteCategoryDialog();
+              //           //         },
+              //           //         child: Icon(Icons.delete, color: Colors.red)),
+              //           //   ],
+              //           // ),
+              //         ],
+              //       ),
+              //     )
+              //   ],
+              // )
+
+              Row(
             children: [
               Container(
                   width: 120,
+                  // height: 150,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(4),
                   ),
@@ -120,53 +182,34 @@ class _UsersCardState extends State<UsersCard> {
                 width: 16,
               ),
               Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      widget.data.name,
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 1,
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                    ),
-                    SizedBox(
-                      height: 4,
-                    ),
-                    Text(
-                      widget.data.phone,
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 2,
-                      style:
-                          TextStyle(fontWeight: FontWeight.w400, fontSize: 14),
-                    ),
-                    SizedBox(
-                      height: 4,
-                    ),
-                    Text(
-                      widget.data.phone,
-                      style: TextStyle(
-                          fontWeight: FontWeight.w300,
-                          // fontStyle: FontStyle.italic,
-                          fontSize: 12),
-                    ),
-                    // Row(
-                    //   mainAxisAlignment: MainAxisAlignment.end,
-                    //   children: [
-                    //     SizedBox(width: 20),
-                    //     TextButton(
-                    //         onPressed: () {},
-                    //         child: Icon(Icons.edit, color: Colors.brown)),
-                    //     TextButton(
-                    //         onPressed: () {
-                    //           _showDeleteCategoryDialog();
-                    //         },
-                    //         child: Icon(Icons.delete, color: Colors.red)),
-                    //   ],
-                    // ),
-                  ],
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 10.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        widget.data.name,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize:
+                                Responsive.isMiniMobile(context) ? 12 : 14),
+                      ),
+                      SizedBox(
+                        height: Responsive.isMiniMobile(context) ? 8 : 16,
+                      ),
+                      Text(
+                        widget.data.phone,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: Responsive.isMiniMobile(context) ? 2 : 3,
+                        style: TextStyle(
+                            fontWeight: FontWeight.w400, fontSize: 12),
+                      ),
+                    ],
+                  ),
                 ),
-              )
+              ),
             ],
           )),
     );

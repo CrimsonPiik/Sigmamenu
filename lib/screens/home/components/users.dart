@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:sigmamenu/constaints.dart';
 import 'package:sigmamenu/models/user.dart';
 import 'package:sigmamenu/screens/home/components/usersCard.dart';
@@ -28,8 +29,8 @@ class Users extends StatelessWidget {
 
           return Expanded(
             child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: kDefaultPaddin),
-                child: GridView.builder(
+              padding: const EdgeInsets.symmetric(horizontal: kDefaultPaddin),
+              child: GridView.builder(
                   itemCount: usersList.length,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 1,
@@ -37,10 +38,17 @@ class Users extends StatelessWidget {
                           ? MediaQuery.of(context).size.width /
                               (MediaQuery.of(context).size.height / 3.5)
                           : MediaQuery.of(context).size.width /
-                              (MediaQuery.of(context).size.height / 2.7)),
-                  itemBuilder: (context, index) =>
-                      UsersCard(data: usersList[index]),
-                )),
+                              (MediaQuery.of(context).size.height / 4)),
+                  itemBuilder: (context, index) => Container(
+                        // padding: EdgeInsets.all(16),
+                        margin: EdgeInsets.only(bottom: 20),
+                        decoration: BoxDecoration(
+                          color: Colors.grey.withOpacity(0.1),
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: UsersCard(data: usersList[index]),
+                      )),
+            ),
           );
         });
   }
