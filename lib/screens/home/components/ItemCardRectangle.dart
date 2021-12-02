@@ -80,54 +80,75 @@ class _ItemCardRectangleState extends State<ItemCardRectangle> {
                   SizedBox(
                     height: 12,
                   ),
-                  CommonUI.text(
-                    context: context,
-                    text: ProjectLanguage.isLTR()
+                  // CommonUI.text(
+                  //   context: context,
+                  //   text: ProjectLanguage.isLTR()
+                  //       ? widget.product.nameEn
+                  //       : widget.product.nameAr,
+                  //   textAlign: TextAlign.center,
+                  //   maxLines: 2,
+                  //   style: FontStyle.normal(
+                  //       context: context,
+                  //       fontWeight: FontWeight.bold,
+                  //       color: Colors.black),
+                  // ),
+
+                  Text(
+                    ProjectLanguage.isLTR()
                         ? widget.product.nameEn
                         : widget.product.nameAr,
-                    textAlign: TextAlign.center,
+                    overflow: TextOverflow.ellipsis,
                     maxLines: 2,
-                    style: FontStyle.normal(
-                        context: context,
+                    style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        color: Colors.black),
+                        fontSize: Responsive.isMiniMobile(context) ? 12 : 14),
                   ),
                   SizedBox(height: 6),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      CommonUI.text(
-                          context: context,
-                          text: 'JOD ',
+                      Text('JOD ',
                           textAlign: TextAlign.center,
-                          style: FontStyle.normal(
-                              context: context,
+                          style: TextStyle(
                               fontWeight: FontWeight.bold,
+                              fontSize:
+                                  Responsive.isMiniMobile(context) ? 12 : 14,
                               color: Colors.black)),
-                      CommonUI.text(
-                          context: context,
-                          text: widget.product.price.toString(),
+                      Text(widget.product.price.toString(),
                           textAlign: TextAlign.center,
-                          style: FontStyle.normal(
-                              context: context,
+                          maxLines: 2,
+                          style: TextStyle(
                               fontWeight: FontWeight.bold,
+                              fontSize:
+                                  Responsive.isMiniMobile(context) ? 12 : 14,
                               color: Colors.red)),
                     ],
                   ),
+                  // SizedBox(
+                  //   height: 25,
+                  // ),
+                  // CommonUI.text(
+                  //   context: context,
+                  //   text: ProjectLanguage.isLTR()
+                  //       ? widget.product.descriptionEn
+                  //       : widget.product.descriptionAr,
+                  //   textAlign: TextAlign.start,
+                  //   maxLines: 3,
+                  //   style: FontStyle.smaller(
+                  //       context: context,
+                  //       fontWeight: FontWeight.bold,
+                  //       color: Colors.black.withOpacity(0.7)),
+                  // ),
                   SizedBox(
-                    height: 25,
+                    height: Responsive.isMiniMobile(context) ? 5 : 9,
                   ),
-                  CommonUI.text(
-                    context: context,
-                    text: ProjectLanguage.isLTR()
+                  Text(
+                    ProjectLanguage.isLTR()
                         ? widget.product.descriptionEn
                         : widget.product.descriptionAr,
                     textAlign: TextAlign.start,
-                    maxLines: 3,
-                    style: FontStyle.smaller(
-                        context: context,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black.withOpacity(0.7)),
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: Responsive.isMiniMobile(context) ? 2 : 3,
+                    style: TextStyle(fontWeight: FontWeight.w400, fontSize: 12),
                   ),
                 ],
               ),
