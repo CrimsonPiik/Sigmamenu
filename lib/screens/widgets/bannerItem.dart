@@ -171,7 +171,7 @@ class _BannersItemState extends State<BannersItem> {
               ),
               child: CommonUI.cachedImage(
                   widget.data.image, ImageAssets.placeholder,
-                  fit: BoxFit.cover)),
+                  fit: BoxFit.fill)), //fill - fitheight
           // SizedBox(
           //   width: 16,
           // ),
