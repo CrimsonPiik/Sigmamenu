@@ -16,7 +16,7 @@ class _DrawerrState extends State<Drawerr> {
 
   @override
   void initState() {
-    title = "Home";
+    title = "Dashboard";
     super.initState();
   }
 
@@ -122,10 +122,12 @@ class _MenuWidgetState extends State<MenuWidget> {
           SizedBox(
             height: 24,
           ),
-          sliderItem('User', Icons.person, selectedIndex, 0),
-          sliderItem('Dashboard', Icons.dashboard_outlined, selectedIndex, 1),
+          // sliderItem('Users', Icons.person, selectedIndex, 0),
+          sliderItem('Dashboard', Icons.dashboard_outlined, selectedIndex, 0),
           sliderItem('Banners', Icons.photo_size_select_actual_outlined,
-              selectedIndex, 2),
+              selectedIndex, 1),
+                        sliderItem('Users', Icons.person, selectedIndex, 2),
+
           sliderItem('Setting', Icons.settings, selectedIndex, 3),
           sliderItem('LogOut', Icons.arrow_back_ios, selectedIndex, 4)
         ],
@@ -143,11 +145,11 @@ class _MenuWidgetState extends State<MenuWidget> {
               selectedIndex = index;
             });
             widget.onItemClick!(title);
-            if (title == 'User') {
+            if (title == 'Dashboard') {
               myState(0);
-            } else if (title == 'Dashboard') {
-              myState(1);
             } else if (title == 'Banners') {
+              myState(1);
+            } else if (title == 'Users') {
               myState(2);
             }
           },
