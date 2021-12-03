@@ -7,6 +7,7 @@ import 'package:sigmamenu/screens/home/components/users.dart';
 import 'package:sigmamenu/screens/widgets/addBannerButton.dart';
 import 'package:sigmamenu/screens/widgets/addCategoryButton.dart';
 import 'package:sigmamenu/screens/widgets/addProductButton.dart';
+import 'package:sigmamenu/screens/widgets/addUserButton.dart';
 import 'package:sigmamenu/screens/widgets/adminPanelBanners.dart';
 
 class AdminPanelProducts extends StatefulWidget {
@@ -85,101 +86,9 @@ class _AdminPanelProductsState extends State<AdminPanelProducts> {
                 // ),
                 // ),
                 // SizedBox(height: 15),
-                Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
-                      children: [
-                        SizedBox(width: 12),
-                        Align(
-                          alignment: Alignment.topLeft,
-                          // child: Padding(
-                          // padding: const EdgeInsets.symmetric(horizontal: 6.0),
-                          child: Container(
-                            height: 40,
-                            // padding: EdgeInsets.all(2),
-                            child: TextButton.icon(
-                                onPressed: () {},
-                                icon: Icon(
-                                  Icons.person,
-                                  color: Colors.white,
-                                ),
-                                label: Text(
-                                  'Users  ',
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold),
-                                )),
-                            decoration: BoxDecoration(
-                              color: Colors.blue[600],
-                              borderRadius: BorderRadius.circular(16),
-                            ),
-                          ),
-                        ),
-                        SizedBox(width: 15),
-                        Align(
-                          alignment: Alignment.topLeft,
-                          // child: Padding(
-                          // padding: const EdgeInsets.symmetric(horizontal: 6.0),
-                          child: Container(
-                            height: 40,
-                            // padding: EdgeInsets.all(2),
-                            child: TextButton.icon(
-                                onPressed: () {
-                                  // setState(() {
-                                  //   isEdit = true;
-                                  // });
-                                },
-                                icon: Icon(
-                                  Icons.edit,
-                                  color: Colors.white,
-                                ),
-                                label: Text(
-                                  'My User  ',
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold),
-                                )),
-                            decoration: BoxDecoration(
-                              color: Colors.blue[600],
-                              borderRadius: BorderRadius.circular(16),
-                            ),
-                          ),
-                        ),
-                        SizedBox(width: 15),
-                        Align(
-                          alignment: Alignment.topLeft,
-                          // child: Padding(
-                          // padding: const EdgeInsets.symmetric(horizontal: 6.0),
-                          child: Container(
-                            height: 40,
-                            // padding: EdgeInsets.all(2),
-                            child: TextButton.icon(
-                                onPressed: () {},
-                                icon: Icon(
-                                  Icons.add,
-                                  color: Colors.white,
-                                ),
-                                label: Text(
-                                  'Add User  ',
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold),
-                                )),
-                            decoration: BoxDecoration(
-                              color: Colors.blue[600],
-                              borderRadius: BorderRadius.circular(16),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
+                AddUserButton(),
                 SizedBox(height: 12),
                 Users(), 
-                //                    EditProfileInformation()
 
               ],
             ),

@@ -1,15 +1,10 @@
-import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:sigmamenu/GeneralFunction/firebase_uploader_web.dart';
 import 'package:sigmamenu/models/banner.dart';
 import 'package:sigmamenu/style/AssetsManager.dart';
 import 'package:sigmamenu/style/CommonUI.dart';
-import 'package:sigmamenu/style/ScreenUtil.dart';
-import 'package:sigmamenu/style/Style.dart';
 
 class BannersItem extends StatefulWidget {
   final BannerModel data;
@@ -20,26 +15,26 @@ class BannersItem extends StatefulWidget {
 }
 
 class _BannersItemState extends State<BannersItem> {
-  late TextEditingController _nameBannerController =
-      TextEditingController(text: _name);
-  late TextEditingController _categoryBannerController =
-      TextEditingController(text: _category);
-  late TextEditingController _imageBannerController =
-      TextEditingController(text: _image);
-  ValueNotifier<String?> _imagevalue = ValueNotifier<String?>(null);
-  final _formKey = GlobalKey<FormBuilderState>();
+  // late TextEditingController _nameBannerController =
+  //     TextEditingController(text: _name);
+  // late TextEditingController _categoryBannerController =
+  //     TextEditingController(text: _category);
+  // late TextEditingController _imageBannerController =
+  //     TextEditingController(text: _image);
+  // ValueNotifier<String?> _imagevalue = ValueNotifier<String?>(null);
+  // final _formKey = GlobalKey<FormBuilderState>();
   // late OverlayEntry overlayEntry;
 
   bool editText = false;
-  late String _name;
-  late String _image;
-  late String _category;
+  // late String _name;
+  // late String _image;
+  // late String _category;
 
   @override
   void initState() {
-    _name = widget.data.name;
-    _image = widget.data.image;
-    _category = widget.data.category;
+    // _name = widget.data.name;
+    // _image = widget.data.image;
+    // _category = widget.data.category;
 
     super.initState();
   }

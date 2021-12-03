@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:sigmamenu/layout/sidebar.dart';
 import 'package:sigmamenu/screens/widgets/adminPanelProducts.dart';
 import 'package:sigmamenu/style/CommonUI.dart';
 
@@ -45,7 +44,7 @@ class _AdminPanelState extends State<AdminPanel> {
           return Scaffold(
             body: Row(
               children: [
-                SideBar(),
+                // SideBar(),
                 AdminPanelProducts(streamControllerSideBar.stream),
               ],
             ),

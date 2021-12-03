@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sigmamenu/models/user.dart';
 import 'package:sigmamenu/provider/userStateProvider.dart';
-import 'package:sigmamenu/screens/home/home_screen.dart';
 import 'package:sigmamenu/screens/widgets/drawer.dart';
 import 'package:sigmamenu/style/CommonUI.dart';
 

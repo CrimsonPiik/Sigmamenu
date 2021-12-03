@@ -6,7 +6,6 @@ import 'package:sigmamenu/models/product.dart';
 import 'package:sigmamenu/style/AssetsManager.dart';
 import 'package:sigmamenu/style/CommonUI.dart';
 import 'package:sigmamenu/style/ScreenUtil.dart';
-import '../../../style/Style.dart';
 
 class ItemCardRectangle extends StatefulWidget {
   final Product product;

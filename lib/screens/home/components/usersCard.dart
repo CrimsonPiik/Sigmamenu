@@ -27,14 +27,8 @@ class _UsersCardState extends State<UsersCard> {
   late TextEditingController _phoneController =
       TextEditingController(text: _phone);
 
-  // late TextEditingController _imageController =
-      // TextEditingController(text: _image);
-
-  // ValueNotifier<String?> _imagevalue = ValueNotifier<String?>(null);
-
   late String _name;
   late String _phone;
-  // late String _image;
   late String _email;
 
   @override
@@ -348,7 +342,7 @@ class _UsersCardState extends State<UsersCard> {
                                   AssetImage('assets/images/user.png')),
                         ),
                       ),
-                      SizedBox(height: 40),
+                      SizedBox(height: 30),
                       Container(
                         child: CommonUI.textField(
                           context: context,
@@ -409,7 +403,6 @@ class _UsersCardState extends State<UsersCard> {
                         'name': _nameController.text,
                         'phone': _phoneController.text,
                         'email': _emailController.text,
-                        // 'image': _imageController.text,
                       }).whenComplete(() {
                         Navigator.of(context).pop();
 
@@ -445,8 +438,6 @@ class _UsersCardState extends State<UsersCard> {
                       _emailController = TextEditingController(text: user.email);
                       _phoneController =
                           TextEditingController(text: user.phone.toString());
-                      // _imageController =
-                          // TextEditingController(text: user.image);
                     });
 
                     Navigator.of(context).pop();
