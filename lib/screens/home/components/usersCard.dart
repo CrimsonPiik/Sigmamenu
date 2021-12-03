@@ -176,7 +176,7 @@ class _UsersCardState extends State<UsersCard> {
                     borderRadius: BorderRadius.circular(4),
                   ),
                   child: CommonUI.cachedImage(
-                      widget.data.image, ImageAssets.placeholder,
+                      widget.data.image, ImageAssets.user,
                       fit: BoxFit.cover)),
               SizedBox(
                 width: 16,

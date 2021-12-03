@@ -128,7 +128,7 @@ class _EditProfileInformationState extends State<EditProfileInformation> {
                                               BorderRadius.circular(4),
                                         ),
                                         child: CommonUI.cachedImage(
-                                            user.image, ImageAssets.placeholder,
+                                            user.image, ImageAssets.user,
                                             fit: BoxFit.fitWidth)),
                                     Container(
                                       decoration: BoxDecoration(
