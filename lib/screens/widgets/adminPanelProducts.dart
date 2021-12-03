@@ -46,6 +46,7 @@ class _AdminPanelProductsState extends State<AdminPanelProducts> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                SizedBox(height: 25),
                 // SizedBox(
                 // height: 70,
                 // child: Row(
@@ -91,7 +92,7 @@ class _AdminPanelProductsState extends State<AdminPanelProducts> {
                     scrollDirection: Axis.horizontal,
                     child: Row(
                       children: [
-                        SizedBox(width: 14),
+                        SizedBox(width: 12),
                         Align(
                           alignment: Alignment.topLeft,
                           // child: Padding(
@@ -177,6 +178,7 @@ class _AdminPanelProductsState extends State<AdminPanelProducts> {
                     ),
                   ),
                 ),
+                SizedBox(height: 12),
                 Users(),
               ],
             ),
@@ -187,8 +189,7 @@ class _AdminPanelProductsState extends State<AdminPanelProducts> {
                 // padding: EdgeInsets.symmetric(horizontal: ),
                 child: Column(
                   children: [
-                    // SizedBox(
-                    // height: 70,
+                    SizedBox(height: 25),
                     // child: Row(
                     //   children: [
                     //     SizedBox(
@@ -231,7 +232,7 @@ class _AdminPanelProductsState extends State<AdminPanelProducts> {
                       padding: const EdgeInsets.all(12.0),
                       child: Row(
                         children: [
-                          SizedBox(width: 14),
+                          SizedBox(width: 12),
                           Align(
                             alignment: Alignment.topLeft,
                             // child: Padding(
@@ -359,8 +360,7 @@ class _AdminPanelProductsState extends State<AdminPanelProducts> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        // SizedBox(
-                        // height: 60,
+                        SizedBox(height: 25),
                         // child: Row(
                         //   children: [
                         //     SizedBox(
@@ -401,8 +401,10 @@ class _AdminPanelProductsState extends State<AdminPanelProducts> {
                           child: Row(
                             // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              SizedBox(width: 12, height:12 ),
-                              CategoriesWithDeleteButton(streamController.stream),
+                              SizedBox(width: 12),
+                              CategoriesWithDeleteButton(
+                                  streamController.stream),
+                              SizedBox(width: 12),
                               AddCategoryButton(),
                             ],
                           ),
@@ -421,6 +423,7 @@ class _AdminPanelProductsState extends State<AdminPanelProducts> {
                     // padding: EdgeInsets.symmetric(horizontal: ),
                     child: Column(
                       children: [
+                        SizedBox(height: 25),
                         // SizedBox(
                         // height: 70,
                         // child: Row(

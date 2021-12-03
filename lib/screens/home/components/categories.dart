@@ -17,21 +17,24 @@ class _CategoriesState extends State<Categories> {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 56,
-      child: ScrollConfiguration(
-        behavior: ScrollConfiguration.of(context).copyWith(
-          dragDevices: {
-            PointerDeviceKind.touch,
-            PointerDeviceKind.mouse,
-          },
-        ),
-        child: ListView.builder(
-          physics: ScrollPhysics(),
-          shrinkWrap: true,
-          scrollDirection: Axis.horizontal,
-          itemCount: categoriesList.length,
-          itemBuilder: (context, index) => buildCategory(index),
+    return Padding(
+      padding: const EdgeInsets.only(left: 9.0, right: 12.0),
+      child: SizedBox(
+        height: 56,
+        child: ScrollConfiguration(
+          behavior: ScrollConfiguration.of(context).copyWith(
+            dragDevices: {
+              PointerDeviceKind.touch,
+              PointerDeviceKind.mouse,
+            },
+          ),
+          child: ListView.builder(
+            physics: ScrollPhysics(),
+            shrinkWrap: true,
+            scrollDirection: Axis.horizontal,
+            itemCount: categoriesList.length,
+            itemBuilder: (context, index) => buildCategory(index),
+          ),
         ),
       ),
     );
@@ -46,11 +49,9 @@ class _CategoriesState extends State<Categories> {
         streamController.add(selectedIndex);
         print(index.toString());
       },
-      child: 
-      Padding(
+      child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 3.0),
-        child: 
-        Row(
+        child: Row(
           children: [
             SizedBox(width: 7),
             Container(

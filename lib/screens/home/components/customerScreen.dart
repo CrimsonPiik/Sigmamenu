@@ -99,20 +99,20 @@ class _CustomerScreenState extends State<CustomerScreen>
                       ),
                       Row(
                         children: [
-                           IconButton(
-                icon: AnimatedIcon(
-                  icon: AnimatedIcons.view_list,
-                  progress: animationController,
-                ),
-                onPressed: () {
-                  ///toggle controls the animation Forward and Backward
-                  toggle();
-                  setState(() {
-                    Session.isList = !Session.isList;
-                  });
-                },
-                // )
-              ),
+                          IconButton(
+                            icon: AnimatedIcon(
+                              icon: AnimatedIcons.view_list,
+                              progress: animationController,
+                            ),
+                            onPressed: () {
+                              ///toggle controls the animation Forward and Backward
+                              toggle();
+                              setState(() {
+                                Session.isList = !Session.isList;
+                              });
+                            },
+                            // )
+                          ),
                           isLight
                               ? IconButton(
                                   icon: Icon(Icons.dark_mode),
@@ -152,7 +152,12 @@ class _CustomerScreenState extends State<CustomerScreen>
                 ),
               ),
               BannerWithDotsIndicator(),
-              Categories(),
+              // Row(
+                // children: [
+                  // SizedBox(width: 12),
+                  Categories(),
+                // ],
+              // ),
               ItemCardData(streamController.stream),
             ],
           );
