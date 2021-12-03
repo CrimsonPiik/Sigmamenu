@@ -42,17 +42,17 @@ class FirebaseUserStreamBuilder extends StatelessWidget {
                 // Provider.of<MKHM>(context, listen: false)
                 //     .initializeMKHMprovider();
 
-                switch (appUser.role) {
-                  case 'user':
-                    return HomeScreen();
-                  // return EditProfile();
+                // switch (appUser.role) {
+                //   case 'user':
+                //     return HomeScreen();
+                //   // return EditProfile();
 
-                  case 'admin':
+                //   case 'admin':
                     return Drawerr();
 
                   // default:
                   // return AdminPanel();
-                }
+                // }
               }
               //  else {
               //   RhinoFirebaseAuth().createFirebaseUser(

@@ -46,7 +46,7 @@ class ProjectFirebaseAuth {
     _appUser.name = userData.displayName ?? name ?? 'userName';
     _appUser.phone = userData.phoneNumber ?? phone ?? 'phone';
     _appUser.email = userData.email ?? 'email';
-    _appUser.image = userData.photoURL ?? ImageAssets.user_placeholder;
+    _appUser.image = userData.photoURL ?? ImageAssets.user;
     _appUser.role = role ?? 'user';
 
     try {

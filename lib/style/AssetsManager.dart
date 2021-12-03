@@ -8,6 +8,7 @@ class ImageAssets {
       "https://firebasestorage.googleapis.com/v0/b/icoffee-rhinosoft.appspot.com/o/background.png?alt=media&token=82a0f698-45ef-416a-959e-d783b9c3e48f";
   static const String user_placeholder =
       "https://firebasestorage.googleapis.com/v0/b/icoffee-rhinosoft.appspot.com/o/iCoffeePlacholder.png?alt=media&token=9a373891-7d56-4699-bc13-ba080fb2a54f";
+  static const String user = "assets/images/user.png";
 
   static const String americanExpress = "assets/images/americanExpress.png";
   static const String masterCard = "assets/images/masterCard.png";

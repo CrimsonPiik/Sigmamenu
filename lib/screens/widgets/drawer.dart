@@ -99,7 +99,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                 radius: 
                 30.0,
                 backgroundImage:
-                    AssetImage('assets/images/user-placeholder.png'),
+                    AssetImage('assets/images/user.png'),
                 //NetworkImage(user.image),
                 // backgroundColor: Colors.brown,
               ),

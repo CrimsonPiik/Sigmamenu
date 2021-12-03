@@ -9,7 +9,7 @@ class AppUser {
   String phone = 'phone';
   String name = 'name';
   String email = 'email';
-  String image = 'assets/images/user-placeholder.png';
+  String image = 'assets/images/user.png';
   String orderId = 'orderId';
   bool isBlocked = false;
   List<String> favorites = [];
