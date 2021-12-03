@@ -8,7 +8,6 @@ import 'package:sigmamenu/screens/widgets/addBannerButton.dart';
 import 'package:sigmamenu/screens/widgets/addCategoryButton.dart';
 import 'package:sigmamenu/screens/widgets/addProductButton.dart';
 import 'package:sigmamenu/screens/widgets/adminPanelBanners.dart';
-import 'package:sigmamenu/screens/widgets/userProfile.dart';
 
 class AdminPanelProducts extends StatefulWidget {
   final Stream<int> menu;
@@ -36,12 +35,12 @@ class _AdminPanelProductsState extends State<AdminPanelProducts> {
     });
   }
 
-  bool isEdit = false;
+//  bool isEdit = false;
 
   @override
   Widget build(BuildContext context) {
     // AppUser user = Provider.of<UserState>(context, listen: true).appUser;
-    return item == 0 && isEdit == false //USER
+    return item == 0 //&& isEdit == false //USER
         ? Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -113,7 +112,7 @@ class _AdminPanelProductsState extends State<AdminPanelProducts> {
                                       fontWeight: FontWeight.bold),
                                 )),
                             decoration: BoxDecoration(
-                              color: isEdit ? Colors.blue[600] : Colors.black,
+                              color: Colors.blue[600],
                               borderRadius: BorderRadius.circular(16),
                             ),
                           ),
@@ -128,9 +127,9 @@ class _AdminPanelProductsState extends State<AdminPanelProducts> {
                             // padding: EdgeInsets.all(2),
                             child: TextButton.icon(
                                 onPressed: () {
-                                  setState(() {
-                                    isEdit = true;
-                                  });
+                                  // setState(() {
+                                  //   isEdit = true;
+                                  // });
                                 },
                                 icon: Icon(
                                   Icons.edit,
@@ -179,180 +178,182 @@ class _AdminPanelProductsState extends State<AdminPanelProducts> {
                   ),
                 ),
                 SizedBox(height: 12),
-                Users(),
+                Users(), 
+                //                    EditProfileInformation()
+
               ],
             ),
           )
-        : item == 0 && isEdit == true
-            ? Expanded(
-                // color: primaryLight.withAlpha(100),
-                // padding: EdgeInsets.symmetric(horizontal: ),
-                child: Column(
-                  children: [
-                    SizedBox(height: 25),
-                    // child: Row(
-                    //   children: [
-                    //     SizedBox(
-                    //       height: 10,
-                    //       width: 25,
-                    //     ),
-                    //     Expanded(
-                    //       child: Row(
-                    //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    //         children: [
-                    //           Text(
-                    //             'WELCOME BACK ${user.name} !',
-                    //             style: TextStyle(
-                    //                 fontSize: Responsive.isDesktop(context)
-                    //                     ? 18
-                    //                     : 12,
-                    //                 fontWeight: FontWeight.w600),
-                    //           ),
-                    //           SizedBox(width: 4),
-                    //           InkWell(
-                    //             onTap: () {
-                    //               setState(() {
-                    //                 isEdit = false;
-                    //               });
-                    //             },
-                    //             child: CircleAvatar(
-                    //               backgroundImage: NetworkImage(user.image),
-                    //               // backgroundColor: Colors.brown,
-                    //             ),
-                    //           ),
-                    //         ],
-                    //       ),
-                    //     ),
-                    //     SizedBox(width: 25),
-                    //   ],
-                    // ),
-                    // ),
-                    // SizedBox(height: 15),
-                    Padding(
-                      padding: const EdgeInsets.all(12.0),
-                      child: Row(
-                        children: [
-                          SizedBox(width: 12),
-                          Align(
-                            alignment: Alignment.topLeft,
-                            // child: Padding(
-                            // padding: const EdgeInsets.symmetric(horizontal: 6.0),
-                            child: Container(
-                              height: 40,
-                              // padding: EdgeInsets.all(2),
-                              child: TextButton.icon(
-                                  onPressed: () {
-                                    setState(() {
-                                      isEdit = false;
-                                    });
-                                  },
-                                  icon: Icon(
-                                    Icons.person,
-                                    color: Colors.white,
-                                  ),
-                                  label: Text(
-                                    'Users  ',
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold),
-                                  )),
-                              decoration: BoxDecoration(
-                                color: isEdit ? Colors.blue[600] : Colors.black,
-                                borderRadius: BorderRadius.circular(16),
-                              ),
-                            ),
-                          ),
-                          SizedBox(width: 15),
-                          Align(
-                            alignment: Alignment.topLeft,
-                            // child: Padding(
-                            // padding: const EdgeInsets.symmetric(horizontal: 6.0),
-                            child: Container(
-                              height: 40,
-                              // padding: EdgeInsets.all(2),
-                              child: TextButton.icon(
-                                  onPressed: () {},
-                                  icon: Icon(
-                                    Icons.edit,
-                                    color: Colors.white,
-                                  ),
-                                  label: Text(
-                                    'My User  ',
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        //   children: [
-                                        //     SizedBox(
-                                        //       height: 10,
-                                        //       width: 25,
-                                        //     ),
-                                        //     Expanded(
-                                        //       child: Row(
-                                        //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                        //         children: [
-                                        //           Text(
-                                        //             'WELCOME BACK ${user.name} !',
-                                        //             style: TextStyle(
-                                        //                 fontSize:
-                                        //                     Responsive.isDesktop(context) ? 18 : 12,
-                                        //                 fontWeight: FontWeight.w600),
-                                        //           ),
-                                        //           SizedBox(width: 4),
-                                        //           InkWell(
-                                        //             onTap: () {
-                                        //               setState(() {
-                                        //                 isEdit = true;
-                                        //               });
-                                        //             },
-                                        //             child: CircleAvatar(
-                                        //               backgroundImage: NetworkImage(user.image),
-                                        //               // backgroundColor: Colors.brown,
-                                        //             ),
-                                        //           ),
-                                        //         ],
-                                        //       ),
-                                        fontWeight: FontWeight.bold),
-                                  )),
-                              decoration: BoxDecoration(
-                                color: isEdit == false
-                                    ? Colors.blue[600]
-                                    : Colors.black,
-                                borderRadius: BorderRadius.circular(16),
-                              ),
-                            ),
-                          ),
-                          SizedBox(width: 15),
-                          Align(
-                            alignment: Alignment.topLeft,
-                            // child: Padding(
-                            // padding: const EdgeInsets.symmetric(horizontal: 6.0),
-                            child: Container(
-                              height: 40,
-                              // padding: EdgeInsets.all(2),
-                              child: TextButton.icon(
-                                  onPressed: () {},
-                                  icon: Icon(
-                                    Icons.add,
-                                    color: Colors.white,
-                                  ),
-                                  label: Text(
-                                    'Add User  ',
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold),
-                                  )),
-                              decoration: BoxDecoration(
-                                color: Colors.blue[600],
-                                borderRadius: BorderRadius.circular(16),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    EditProfileInformation()
-                  ],
-                ),
-              )
+        // : item == 0 && isEdit == true
+        //     ? Expanded(
+        //         // color: primaryLight.withAlpha(100),
+        //         // padding: EdgeInsets.symmetric(horizontal: ),
+        //         child: Column(
+        //           children: [
+        //             SizedBox(height: 25),
+        //             // child: Row(
+        //             //   children: [
+        //             //     SizedBox(
+        //             //       height: 10,
+        //             //       width: 25,
+        //             //     ),
+        //             //     Expanded(
+        //             //       child: Row(
+        //             //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        //             //         children: [
+        //             //           Text(
+        //             //             'WELCOME BACK ${user.name} !',
+        //             //             style: TextStyle(
+        //             //                 fontSize: Responsive.isDesktop(context)
+        //             //                     ? 18
+        //             //                     : 12,
+        //             //                 fontWeight: FontWeight.w600),
+        //             //           ),
+        //             //           SizedBox(width: 4),
+        //             //           InkWell(
+        //             //             onTap: () {
+        //             //               setState(() {
+        //             //                 isEdit = false;
+        //             //               });
+        //             //             },
+        //             //             child: CircleAvatar(
+        //             //               backgroundImage: NetworkImage(user.image),
+        //             //               // backgroundColor: Colors.brown,
+        //             //             ),
+        //             //           ),
+        //             //         ],
+        //             //       ),
+        //             //     ),
+        //             //     SizedBox(width: 25),
+        //             //   ],
+        //             // ),
+        //             // ),
+        //             // SizedBox(height: 15),
+        //             Padding(
+        //               padding: const EdgeInsets.all(12.0),
+        //               child: Row(
+        //                 children: [
+        //                   SizedBox(width: 12),
+        //                   Align(
+        //                     alignment: Alignment.topLeft,
+        //                     // child: Padding(
+        //                     // padding: const EdgeInsets.symmetric(horizontal: 6.0),
+        //                     child: Container(
+        //                       height: 40,
+        //                       // padding: EdgeInsets.all(2),
+        //                       child: TextButton.icon(
+        //                           onPressed: () {
+        //                             setState(() {
+        //                               isEdit = false;
+        //                             });
+        //                           },
+        //                           icon: Icon(
+        //                             Icons.person,
+        //                             color: Colors.white,
+        //                           ),
+        //                           label: Text(
+        //                             'Users  ',
+        //                             style: TextStyle(
+        //                                 color: Colors.white,
+        //                                 fontWeight: FontWeight.bold),
+        //                           )),
+        //                       decoration: BoxDecoration(
+        //                         color: isEdit ? Colors.blue[600] : Colors.black,
+        //                         borderRadius: BorderRadius.circular(16),
+        //                       ),
+        //                     ),
+        //                   ),
+        //                   SizedBox(width: 15),
+        //                   Align(
+        //                     alignment: Alignment.topLeft,
+        //                     // child: Padding(
+        //                     // padding: const EdgeInsets.symmetric(horizontal: 6.0),
+        //                     child: Container(
+        //                       height: 40,
+        //                       // padding: EdgeInsets.all(2),
+        //                       child: TextButton.icon(
+        //                           onPressed: () {},
+        //                           icon: Icon(
+        //                             Icons.edit,
+        //                             color: Colors.white,
+        //                           ),
+        //                           label: Text(
+        //                             'My User  ',
+        //                             style: TextStyle(
+        //                                 color: Colors.white,
+        //                                 //   children: [
+        //                                 //     SizedBox(
+        //                                 //       height: 10,
+        //                                 //       width: 25,
+        //                                 //     ),
+        //                                 //     Expanded(
+        //                                 //       child: Row(
+        //                                 //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        //                                 //         children: [
+        //                                 //           Text(
+        //                                 //             'WELCOME BACK ${user.name} !',
+        //                                 //             style: TextStyle(
+        //                                 //                 fontSize:
+        //                                 //                     Responsive.isDesktop(context) ? 18 : 12,
+        //                                 //                 fontWeight: FontWeight.w600),
+        //                                 //           ),
+        //                                 //           SizedBox(width: 4),
+        //                                 //           InkWell(
+        //                                 //             onTap: () {
+        //                                 //               setState(() {
+        //                                 //                 isEdit = true;
+        //                                 //               });
+        //                                 //             },
+        //                                 //             child: CircleAvatar(
+        //                                 //               backgroundImage: NetworkImage(user.image),
+        //                                 //               // backgroundColor: Colors.brown,
+        //                                 //             ),
+        //                                 //           ),
+        //                                 //         ],
+        //                                 //       ),
+        //                                 fontWeight: FontWeight.bold),
+        //                           )),
+        //                       decoration: BoxDecoration(
+        //                         color: isEdit == false
+        //                             ? Colors.blue[600]
+        //                             : Colors.black,
+        //                         borderRadius: BorderRadius.circular(16),
+        //                       ),
+        //                     ),
+        //                   ),
+        //                   SizedBox(width: 15),
+        //                   Align(
+        //                     alignment: Alignment.topLeft,
+        //                     // child: Padding(
+        //                     // padding: const EdgeInsets.symmetric(horizontal: 6.0),
+        //                     child: Container(
+        //                       height: 40,
+        //                       // padding: EdgeInsets.all(2),
+        //                       child: TextButton.icon(
+        //                           onPressed: () {},
+        //                           icon: Icon(
+        //                             Icons.add,
+        //                             color: Colors.white,
+        //                           ),
+        //                           label: Text(
+        //                             'Add User  ',
+        //                             style: TextStyle(
+        //                                 color: Colors.white,
+        //                                 fontWeight: FontWeight.bold),
+        //                           )),
+        //                       decoration: BoxDecoration(
+        //                         color: Colors.blue[600],
+        //                         borderRadius: BorderRadius.circular(16),
+        //                       ),
+        //                     ),
+        //                   ),
+        //                 ],
+        //               ),
+        //             ),
+        //             EditProfileInformation()
+        //           ],
+        //         ),
+        //       )
             : item == 1 //DASHBOARD
                 ? Expanded(
                     // color: primaryLight.withAlpha(100),

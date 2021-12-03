@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:sigmamenu/models/user.dart';
 import 'package:sigmamenu/style/AssetsManager.dart';
@@ -17,6 +18,33 @@ class UsersCard extends StatefulWidget {
 }
 
 class _UsersCardState extends State<UsersCard> {
+  final _formKey = GlobalKey<FormBuilderState>();
+
+  late TextEditingController _nameController =
+      TextEditingController(text: _name);
+  late TextEditingController _emailController =
+      TextEditingController(text: _email);
+  late TextEditingController _phoneController =
+      TextEditingController(text: _phone);
+
+  // late TextEditingController _imageController =
+      // TextEditingController(text: _image);
+
+  // ValueNotifier<String?> _imagevalue = ValueNotifier<String?>(null);
+
+  late String _name;
+  late String _phone;
+  // late String _image;
+  late String _email;
+
+  @override
+  void initState() {
+    _name = widget.data.name;
+    _email = widget.data.email;
+    _phone = widget.data.phone;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Slidable(
@@ -60,6 +88,7 @@ class _UsersCardState extends State<UsersCard> {
             // An action can be bigger than the others.
             // flex: 2,
             onPressed: (context) {
+              // Navigator.of(context).push(createRoute(EditProfileInformation()));
               //  setState(() {
               //   _nameEnController = TextEditingController(
               //       text: widget.data.nameEn);
@@ -77,9 +106,9 @@ class _UsersCardState extends State<UsersCard> {
               //       text: widget.data.image);
               //   _value = widget.data.weight.toDouble();
               // });
-              // _showEditDialog(context);
+              _showEditDialog(context, widget.data);
             },
-            backgroundColor: Color(0xFF7BC043),
+            backgroundColor: Colors.blueAccent,
             foregroundColor: Colors.white,
             icon: Icons.edit,
             label: 'Edit',
@@ -89,7 +118,7 @@ class _UsersCardState extends State<UsersCard> {
             onPressed: (context) {
               _showDeleteCategoryDialog(context);
             },
-            backgroundColor: Color(0xFFFE4A49),
+            backgroundColor: Colors.red,
             foregroundColor: Colors.white,
             icon: Icons.delete,
             label: 'Delete',
@@ -166,7 +195,6 @@ class _UsersCardState extends State<UsersCard> {
               //     )
               //   ],
               // )
-
               Row(
             children: [
               Container(
@@ -177,7 +205,7 @@ class _UsersCardState extends State<UsersCard> {
                   ),
                   child: CommonUI.cachedImage(
                       widget.data.image, ImageAssets.user,
-                      fit: BoxFit.cover)),
+                      fit: BoxFit.fitHeight)),
               SizedBox(
                 width: 16,
               ),
@@ -200,9 +228,19 @@ class _UsersCardState extends State<UsersCard> {
                         height: Responsive.isMiniMobile(context) ? 8 : 16,
                       ),
                       Text(
+                        widget.data.email,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                        style: TextStyle(
+                            fontWeight: FontWeight.w400, fontSize: 12),
+                      ),
+                      SizedBox(
+                        height: Responsive.isMiniMobile(context) ? 8 : 16,
+                      ),
+                      Text(
                         widget.data.phone,
                         overflow: TextOverflow.ellipsis,
-                        maxLines: Responsive.isMiniMobile(context) ? 2 : 3,
+                        maxLines: 1,
                         style: TextStyle(
                             fontWeight: FontWeight.w400, fontSize: 12),
                       ),
@@ -214,6 +252,10 @@ class _UsersCardState extends State<UsersCard> {
           )),
     );
   }
+
+// =====  =====  ===== =====  =====  ===== =====  =====  ===== =====  =====  ===== =====  =====
+// =====                                    DELETE                                        =====
+// =====  =====  ===== =====  =====  ===== =====  =====  ===== =====  =====  ===== =====  =====
 
   _showDeleteCategoryDialog(BuildContext context) {
     showDialog(
@@ -266,6 +308,164 @@ class _UsersCardState extends State<UsersCard> {
                 ),
               ),
             ],
+          );
+        });
+  }
+
+// =====  =====  ===== =====  =====  ===== =====  =====  ===== =====  =====  ===== =====  =====
+// =====                                    EDIT                                          =====
+// =====  =====  ===== =====  =====  ===== =====  =====  ===== =====  =====  ===== =====  =====
+
+  _showEditDialog(BuildContext context, AppUser user) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return FormBuilder(
+            key: _formKey,
+            child: AlertDialog(
+              title: Text(
+                "Edit User",
+                style:
+                    TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
+              ),
+              content: SingleChildScrollView(
+                child: Container(
+                  width: Responsive.isDesktop(context) ? 350 : 290,
+                  padding: EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: Colors.grey.withOpacity(0.1),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Center(
+                        child: Container(
+                          height: 120,
+                          width: 120,
+                          child: CircleAvatar(
+                              backgroundImage:
+                                  AssetImage('assets/images/user.png')),
+                        ),
+                      ),
+                      SizedBox(height: 40),
+                      Container(
+                        child: CommonUI.textField(
+                          context: context,
+                          name: "Name",
+                          hint: "Name",
+                          isEdit: true,
+                          minlines: 1,
+                          controller: _nameController,
+                          validate: FormBuilderValidators.compose([
+                            FormBuilderValidators.required(context),
+                          ]),
+                        ),
+                      ),
+                      SizedBox(height: 4),
+                      Container(
+                        child: CommonUI.textField(
+                          context: context,
+                          name: "Email",
+                          hint: "Email",
+                          isEdit: true,
+                          minlines: 1,
+                          controller: _emailController,
+                          validate: FormBuilderValidators.compose([
+                            FormBuilderValidators.required(context),
+                          ]),
+                        ),
+                      ),
+                      SizedBox(height: 4),
+                      Container(
+                        child: CommonUI.textField(
+                          context: context,
+                          name: "Phone Number",
+                          hint: "Phone Number",
+                          isEdit: true,
+                          keyboardtype: TextInputType.number,
+                          controller: _phoneController,
+                          validate: FormBuilderValidators.compose([
+                            FormBuilderValidators.required(context),
+                            FormBuilderValidators.numeric(context),
+                          ]),
+                        ),
+                      ),
+                      SizedBox(height: 4),
+                    ],
+                  ),
+                ),
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () async {
+                    _formKey.currentState!.save();
+                    if (_formKey.currentState!.validate()) {
+                      FocusScope.of(context).unfocus();
+                      await FirebaseFirestore.instance
+                          .collection('users')
+                          .doc(user.id)
+                          .update({
+                        'name': _nameController.text,
+                        'phone': _phoneController.text,
+                        'email': _emailController.text,
+                        // 'image': _imageController.text,
+                      }).whenComplete(() {
+                        Navigator.of(context).pop();
+
+                        CommonUI.successDialog(context,
+                            message: "Saved successfully");
+                      }).onError((error, stackTrrace) => showDialog(
+                                context: context,
+                                builder: (_) {
+                                  return AlertDialog(
+                                    content: Text(error.toString()),
+                                  );
+                                },
+                              ));
+                    }
+                  },
+                  child: Container(
+                    padding: EdgeInsets.all(10),
+                    child: Text(
+                      'Save',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, color: Colors.black),
+                    ),
+                    decoration: BoxDecoration(
+                      color: Colors.grey.withOpacity(0.5),
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                  ),
+                ),
+                TextButton(
+                  onPressed: () {
+                    setState(() {
+                      _nameController = TextEditingController(text: user.name);
+                      _emailController = TextEditingController(text: user.email);
+                      _phoneController =
+                          TextEditingController(text: user.phone.toString());
+                      // _imageController =
+                          // TextEditingController(text: user.image);
+                    });
+
+                    Navigator.of(context).pop();
+                  },
+                  child: Container(
+                    padding: EdgeInsets.all(10),
+                    child: Text(
+                      'Cancel',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, color: Colors.black),
+                    ),
+                    decoration: BoxDecoration(
+                      color: Colors.grey.withOpacity(0.5),
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           );
         });
   }

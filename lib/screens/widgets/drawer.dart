@@ -23,31 +23,31 @@ class _DrawerrState extends State<Drawerr> {
   @override
   Widget build(BuildContext context) {
     return
-    //  MaterialApp(
-      // debugShowCheckedModeBanner: false,
-      // home:
-       Scaffold(
-        body: SliderMenuContainer(
-            appBarColor: Colors.white,
-            key: _key,
-            sliderMenuOpenSize: 200,
-            title: Text(
-              title,
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.w700),
-            ),
-            sliderMenu: MenuWidget(
-              onItemClick: (title) {
-                _key.currentState!.closeDrawer();
-                setState(() {
-                  this.title = title;
-                });
-              },
-            ),
-            sliderMain: Row(
-              children: [
-                AdminPanelProducts(streamControllerSideBar.stream),
-              ],
-            )),
+        //  MaterialApp(
+        // debugShowCheckedModeBanner: false,
+        // home:
+        Scaffold(
+      body: SliderMenuContainer(
+          appBarColor: Colors.white,
+          key: _key,
+          sliderMenuOpenSize: 200,
+          title: Text(
+            title,
+            style: TextStyle(fontSize: 22, fontWeight: FontWeight.w700),
+          ),
+          sliderMenu: MenuWidget(
+            onItemClick: (title) {
+              _key.currentState!.closeDrawer();
+              setState(() {
+                this.title = title;
+              });
+            },
+          ),
+          sliderMain: Row(
+            children: [
+              AdminPanelProducts(streamControllerSideBar.stream),
+            ],
+          )),
       // ),
     );
   }
@@ -95,13 +95,15 @@ class _MenuWidgetState extends State<MenuWidget> {
             width: 200,
             height: 90,
             child: Center(
-              child: CircleAvatar(
-                radius: 
-                30.0,
-                backgroundImage:
-                    AssetImage('assets/images/user.png'),
-                //NetworkImage(user.image),
-                // backgroundColor: Colors.brown,
+              child: Container(
+                height: 80,
+                width: 80,
+                child: CircleAvatar(
+                  radius: 30.0,
+                  backgroundImage: AssetImage('assets/images/user.png'),
+                  //NetworkImage(user.image),
+                  // backgroundColor: Colors.brown,
+                ),
               ),
               //  Container(
               //     width: _isDesktop ? 120 : 60,
