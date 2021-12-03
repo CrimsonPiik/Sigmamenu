@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sigmamenu/screens/widgets/LoginForm.dart';
-import 'package:sigmamenu/screens/widgets/signUpForm.dart';
+// import 'package:sigmamenu/screens/widgets/sgnUpForm.dart';
 import 'package:sigmamenu/screens/widgets/vSpace.dart';
 import 'package:sigmamenu/style/CommonUI.dart';
 import 'package:sigmamenu/style/ScreenUtil.dart';
@@ -13,7 +13,7 @@ class SigningPopUp extends StatefulWidget {
   _SigningPopUpState createState() => _SigningPopUpState();
 }
 
-bool isLogin = true;
+// bool isLogin = true;
 
 class _SigningPopUpState extends State<SigningPopUp> {
   @override
@@ -124,15 +124,7 @@ class _SigningPopUpState extends State<SigningPopUp> {
                                 ),
                           ),
                           SizedBox(width: Responsive.width(context) * 0.01),
-                          CommonUI.text(
-                              context: context,
-                              text: isLogin
-                                  ? "Or Sign in with Email"
-                                  : "Or Sign Up with Email",
-                              style: FontStyle.subTitle(
-                                  context: context,
-                                  // color: Style.darkBrown,
-                                  fontWeight: FontWeight.bold)),
+                          // CommonUI.text(3ontWeight.bold)),
                           SizedBox(width: Responsive.width(context) * 0.01),
                           SizedBox(
                             width: Responsive.width(context) * 0.06,
@@ -146,15 +138,17 @@ class _SigningPopUpState extends State<SigningPopUp> {
 
                       /// Signing Section
                       const VSpace(),
-                      isLogin
-                          ? LoginForm(
-                              click: () => setState(() {
-                                    isLogin = false;
-                                  }))
-                          : SignUpForm(
-                              click: () => setState(() {
-                                    isLogin = true;
-                                  }))
+                      // isLogin
+                      //     ? 
+                          LoginForm(),
+                              // click: () => setState(() {
+                              //       isLogin = false;
+                              //     })
+                              // ),
+                          // : SignUpForm(
+                          //     click: () => setState(() {
+                          //           isLogin = true;
+                          //         }))
                     ],
                   ),
                 ),

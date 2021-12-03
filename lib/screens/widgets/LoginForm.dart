@@ -11,8 +11,8 @@ import 'package:sigmamenu/style/ScreenUtil.dart';
 import 'package:sigmamenu/style/Style.dart';
 
 class LoginForm extends StatefulWidget {
-  final VoidCallback click;
-  const LoginForm({Key? key, required this.click}) : super(key: key);
+  // final VoidCallback click;
+  const LoginForm({Key? key}) : super(key: key);
 
   @override
   _LoginFormState createState() => _LoginFormState();
@@ -138,31 +138,31 @@ class _LoginFormState extends State<LoginForm> {
           const SizedBox(height: 16),
           // GuestLogin(),
           const VSpace(),
-          Wrap(
-            spacing: 2,
-            children: [
-              Text(
-                translate(
-                  context,
-                  "noAccount",
-                ),
-                style: FontStyle.normal(
-                    context: context,
-                    color: Colors.brown[300],
-                    fontWeight: FontWeight.bold),
-              ),
-              SizedBox(width: 8),
-              InkWell(
-                  onTap: widget.click,
-                  child: Text(
-                    translate(context, "signup"),
-                    style: FontStyle.normal(
-                        context: context,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.brown),
-                  ))
-            ],
-          )
+          // Wrap(
+          //   spacing: 2,
+          //   children: [
+          //     Text(
+          //       translate(
+          //         context,
+          //         "noAccount",
+          //       ),
+          //       style: FontStyle.normal(
+          //           context: context,
+          //           color: Colors.brown[300],
+          //           fontWeight: FontWeight.bold),
+          //     ),
+          //     SizedBox(width: 8),
+          //     // InkWell(
+          //     //     // onTap: widget.click,
+          //     //     child: Text(
+          //     //       translate(context, "signup"),
+          //     //       style: FontStyle.normal(
+          //     //           context: context,
+          //     //           fontWeight: FontWeight.bold,
+          //     //           color: Colors.brown),
+          //     //     ))
+          //   ],
+          // )
         ],
       ),
     );
