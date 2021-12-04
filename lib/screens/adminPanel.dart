@@ -23,6 +23,12 @@ class _AdminPanelState extends State<AdminPanel> {
   TextEditingController newCollectionNameController = TextEditingController();
 
   @override
+  void dispose() {
+    streamControllerSideBar.close();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance.collection('Categories').snapshots(),
@@ -42,12 +48,12 @@ class _AdminPanelState extends State<AdminPanel> {
           // DateTime.now().millisecondsSinceEpoch.toString());
 
           return Scaffold(
-            body: 
-            // Row(
-              // children: [
+            body:
+                // Row(
+                // children: [
                 // SideBar(),
                 AdminPanelProducts(streamControllerSideBar.stream),
-              // ],
+            // ],
             // ),
           );
         });

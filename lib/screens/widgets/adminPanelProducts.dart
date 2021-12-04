@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sigmamenu/models/user.dart';
 import 'package:sigmamenu/provider/userStateProvider.dart';
+import 'package:sigmamenu/screens/adminPanel.dart';
 import 'package:sigmamenu/screens/home/components/customerScreen.dart';
 import 'package:sigmamenu/screens/home/components/categoriesWithDeleteButton.dart';
 import 'package:sigmamenu/screens/home/components/itemCardDataAdmin.dart';
@@ -70,8 +71,7 @@ class _AdminPanelProductsState extends State<AdminPanelProducts> {
         : item == 1 //BANNERS
             ? Expanded(
                 child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(height: 25),
                     AddBannerButton(),
@@ -94,4 +94,3 @@ class _AdminPanelProductsState extends State<AdminPanelProducts> {
               );
   }
 }
-

@@ -23,9 +23,6 @@ class _DrawerrState extends State<Drawerr> {
   @override
   Widget build(BuildContext context) {
     return
-        //  MaterialApp(
-        // debugShowCheckedModeBanner: false,
-        // home:
         Scaffold(
       body: SliderMenuContainer(
           appBarColor: Colors.white,
