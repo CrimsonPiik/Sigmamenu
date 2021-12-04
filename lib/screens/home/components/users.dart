@@ -7,8 +7,8 @@ import 'package:sigmamenu/screens/home/components/usersCard.dart';
 import 'package:sigmamenu/style/CommonUI.dart';
 import 'package:sigmamenu/style/ScreenUtil.dart';
 
-class Users extends StatelessWidget {
-  const Users({Key? key}) : super(key: key);
+class AllUsers extends StatelessWidget {
+  const AllUsers({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

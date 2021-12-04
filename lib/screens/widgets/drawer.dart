@@ -43,11 +43,13 @@ class _DrawerrState extends State<Drawerr> {
               });
             },
           ),
-          sliderMain: Row(
+          sliderMain:
+           Row(
             children: [
               AdminPanelProducts(streamControllerSideBar.stream),
             ],
-          )),
+          )
+          ),
       // ),
     );
   }
@@ -122,7 +124,6 @@ class _MenuWidgetState extends State<MenuWidget> {
           SizedBox(
             height: 24,
           ),
-          // sliderItem('Users', Icons.person, selectedIndex, 0),
           sliderItem('Dashboard', Icons.dashboard_outlined, selectedIndex, 0),
           sliderItem('Banners', Icons.photo_size_select_actual_outlined,
               selectedIndex, 1),

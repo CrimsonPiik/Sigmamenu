@@ -42,12 +42,13 @@ class _AdminPanelState extends State<AdminPanel> {
           // DateTime.now().millisecondsSinceEpoch.toString());
 
           return Scaffold(
-            body: Row(
-              children: [
+            body: 
+            // Row(
+              // children: [
                 // SideBar(),
                 AdminPanelProducts(streamControllerSideBar.stream),
-              ],
-            ),
+              // ],
+            // ),
           );
         });
   }

@@ -1,8 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:sigmamenu/models/user.dart';
+import 'package:sigmamenu/provider/userStateProvider.dart';
 import 'package:sigmamenu/screens/home/components/customerScreen.dart';
 import 'package:sigmamenu/screens/home/components/categoriesWithDeleteButton.dart';
 import 'package:sigmamenu/screens/home/components/itemCardDataAdmin.dart';
+import 'package:sigmamenu/screens/home/components/myuser.dart';
 import 'package:sigmamenu/screens/home/components/users.dart';
 import 'package:sigmamenu/screens/widgets/addBannerButton.dart';
 import 'package:sigmamenu/screens/widgets/addCategoryButton.dart';
@@ -38,7 +42,7 @@ class _AdminPanelProductsState extends State<AdminPanelProducts> {
 
   @override
   Widget build(BuildContext context) {
-    // AppUser user = Provider.of<UserState>(context, listen: true).appUser;
+    AppUser user = Provider.of<UserState>(context, listen: true).appUser;
     return item == 0 //DASHBOARD
         ? Expanded(
             child: Column(
@@ -66,6 +70,8 @@ class _AdminPanelProductsState extends State<AdminPanelProducts> {
         : item == 1 //BANNERS
             ? Expanded(
                 child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+
                   children: [
                     SizedBox(height: 25),
                     AddBannerButton(),
@@ -80,11 +86,12 @@ class _AdminPanelProductsState extends State<AdminPanelProducts> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(height: 25),
-                    AddUserButton(),
+                    user.role == 'admin' ? AddUserButton() : Container(),
                     SizedBox(height: 12),
-                    Users(),
+                    user.role == 'admin' ? AllUsers() : MyUser(user: user)
                   ],
                 ),
               );
   }
 }
+
