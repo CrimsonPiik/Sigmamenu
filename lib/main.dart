@@ -15,6 +15,10 @@ import 'package:sigmamenu/screens/widgets/drawer.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
   await Firebase.initializeApp();
   runApp(MyApp());
 }
@@ -28,7 +32,6 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   void initState() {
-    
     super.initState();
     getLocale();
   }
@@ -45,10 +48,6 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setPreferredOrientations([
-        DeviceOrientation.portraitUp,
-        DeviceOrientation.portraitDown,
-      ]);
     return MultiProvider(
         providers: [
           ChangeNotifierProvider<UserState>(
@@ -61,30 +60,32 @@ class _MyAppState extends State<MyApp> {
           // ChangeNotifierProvider<CategoryProvider>(
           //     create: (_) => CategoryProvider()),
           ChangeNotifierProvider<ThemeNotifier>(
-            create: (_) => new ThemeNotifier(),),
+            create: (_) => new ThemeNotifier(),
+          ),
         ],
         builder: (context, child) {
           return MaterialApp(
-          // Provider.of<ProjectLanguageChangeNotifier>(context, listen: true)
-          //     .setlocale(ProjectLanguage.locale);
-          // return MultiProvider(
-          //     providers: [
-          //       // ChangeNotifierProvider<UserState>(
-          //       //   create: (_) => UserState(),
-          //       // ),
-          //       ChangeNotifierProvider<ProjectLanguageChangeNotifier>(
-          //         create: (_) => ProjectLanguageChangeNotifier(),
-          //       ),],
-          // return MaterialApp(
+            // Provider.of<ProjectLanguageChangeNotifier>(context, listen: true)
+            //     .setlocale(ProjectLanguage.locale);
+            // return MultiProvider(
+            //     providers: [
+            //       // ChangeNotifierProvider<UserState>(
+            //       //   create: (_) => UserState(),
+            //       // ),
+            //       ChangeNotifierProvider<ProjectLanguageChangeNotifier>(
+            //         create: (_) => ProjectLanguageChangeNotifier(),
+            //       ),],
+            // return MaterialApp(
             // key: GlobalKey<FormState>(),
-            locale: Provider.of<ProjectLanguageChangeNotifier>(context, listen: true)
+            locale: Provider.of<ProjectLanguageChangeNotifier>(context,
+                    listen: true)
                 .locale,
             // localizationsDelegates: [
             //   ProjectLanguage.delegate,
             // ],
             debugShowCheckedModeBanner: false,
             title: 'Sigma Menu',
-                    // theme: child!.getTheme(),
+            // theme: child!.getTheme(),
             theme: ThemeData(
               // primaryColor: Colors.brown,
               colorScheme: ColorScheme.fromSwatch(
@@ -105,8 +106,8 @@ class _MyAppState extends State<MyApp> {
               // When navigating to the "/second" route, build the SecondScreen widget.
               '/admin': (context) => AdminPanel(),
               '/dashboard': (context) => StaggerdGridView(),
-              '/loading':(context)=> LoadingListPage(),
-              '/drawer':(context)=>Drawerr()
+              '/loading': (context) => LoadingListPage(),
+              '/drawer': (context) => Drawerr()
             },
             home: AuthMonitor(),
             // ),
