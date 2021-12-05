@@ -128,7 +128,6 @@ class _CategoriesWithDeleteButtonState
 
   _showDeleteCategoryDialog() {
     Size size = MediaQuery.of(context).size;
-
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -140,7 +139,7 @@ class _CategoriesWithDeleteButtonState
               alignment: Alignment.topCenter,
               children: [
                 Container(
-                  height: 210,
+                  height: 205,
                   width: Responsive.isDesktop(context)
                       ? size.width / 3
                       : size.width - 20,
@@ -154,6 +153,7 @@ class _CategoriesWithDeleteButtonState
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 20),
                         ),
+                        SizedBox(height: 4),
                         Container(
                           padding: EdgeInsets.fromLTRB(24, 1, 24, 16),
                           child: Text(
@@ -162,14 +162,15 @@ class _CategoriesWithDeleteButtonState
                             style: TextStyle(fontSize: 17),
                           ),
                         ),
-                        SizedBox(height: 2),
+                        SizedBox(height: 4),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            ButtonTheme(
-                              minWidth: 80,
-                              height: 60,
-                              child: ElevatedButton(
+                            // ButtonTheme(
+                            //   minWidth: 90,
+                            //   height: 70,
+                            //   child:
+                               ElevatedButton(
                                 onPressed: () {
                                   Navigator.of(context).pop();
                                 },
@@ -182,12 +183,13 @@ class _CategoriesWithDeleteButtonState
                                   style: TextStyle(color: Colors.black),
                                 ),
                               ),
-                            ),
+                            // ),
                             SizedBox(width: 15),
-                            ButtonTheme(
-                              minWidth: 80,
-                              height: 60,
-                              child: ElevatedButton(
+                            // ButtonTheme(
+                            //   minWidth: 90,
+                            //   height: 70,
+                              // child:
+                               ElevatedButton(
                                 onPressed: () async {
                                   categoriesList.remove(category);
 
@@ -212,10 +214,10 @@ class _CategoriesWithDeleteButtonState
                                   style: TextStyle(color: Colors.white),
                                 ),
                               ),
-                            ),
+                            // ),
                           ],
                         ),
-                        SizedBox(height: 3),
+                        // SizedBox(height: 2),
                       ],
                     ),
                   ),
