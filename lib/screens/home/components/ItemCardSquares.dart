@@ -10,13 +10,9 @@ import '../../../style/Style.dart';
 
 class ItemCardSquares extends StatefulWidget {
   final Product product;
-  // final bool isWithFavorite;
-  // final bool isFavoriteScreen;
   ItemCardSquares({
     Key? key,
     required this.product,
-    // this.isWithFavorite = false,
-    // this.isFavoriteScreen = false,
   }) : super(key: key);
 
   @override

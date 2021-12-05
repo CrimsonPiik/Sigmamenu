@@ -110,7 +110,7 @@ class _UsersCardState extends State<UsersCard> {
           ),
           SlidableAction(
             onPressed: (context) {
-              _showDeleteCategoryDialog(context);
+              _showDeleteDialog(context);
             },
             backgroundColor: Colors.red,
             foregroundColor: Colors.white,
@@ -251,61 +251,100 @@ class _UsersCardState extends State<UsersCard> {
 // =====                                    DELETE                                        =====
 // =====  =====  ===== =====  =====  ===== =====  =====  ===== =====  =====  ===== =====  =====
 
-  _showDeleteCategoryDialog(BuildContext context) {
+  _showDeleteDialog(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text(
-              'Delete',
-              style: TextStyle(fontWeight: FontWeight.bold, color: Colors.red),
-            ),
-            content: Text('Are you sure you want to delete this user ?'),
-            actions: [
-              TextButton(
-                onPressed: () async {
-                  await FirebaseFirestore.instance
-                      .collection('users')
-                      .doc(widget.data.id)
-                      .delete();
+      context: context,
+      builder: (BuildContext context) {
+        return Dialog(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(4.0)),
+            child: Stack(
+              clipBehavior: Clip.none,
+              alignment: Alignment.topCenter,
+              children: [
+                Container(
+                  height: 205,
+                  width: Responsive.isDesktop(context)
+                      ? size.width / 3
+                      : size.width - 20,
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(10, 70, 10, 0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Delete',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 20),
+                        ),
+                        SizedBox(height: 4),
+                        Container(
+                          padding: EdgeInsets.fromLTRB(24, 1, 24, 16),
+                          child: Text(
+                            'Are you sure you want to delete this user ?',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(fontSize: 17),
+                          ),
+                        ),
+                        SizedBox(height: 4),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            ElevatedButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStateProperty.all(Colors.white),
+                              ),
+                              child: Text(
+                                'Cancel',
+                                style: TextStyle(color: Colors.black),
+                              ),
+                            ),
+                            SizedBox(width: 15),
+                            ElevatedButton(
+                              onPressed: () async {
+                                await FirebaseFirestore.instance
+                                    .collection('users')
+                                    .doc(widget.data.id)
+                                    .delete();
 
-                  Navigator.pop(context);
-                },
-                child: Container(
-                  padding: EdgeInsets.all(10),
-                  child: Text(
-                    'YES',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold, color: Colors.black),
-                  ),
-                  decoration: BoxDecoration(
-                    color: Colors.grey.withOpacity(0.1),
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                ),
-              ),
-              TextButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                child: Container(
-                  padding: EdgeInsets.all(10),
-                  child: Text(
-                    'NO',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold, color: Colors.black),
-                  ),
-                  decoration: BoxDecoration(
-                    color: Colors.grey.withOpacity(0.1),
-                    borderRadius: BorderRadius.circular(16),
+                                Navigator.pop(context);
+                              },
+                              style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStateProperty.all(Colors.redAccent),
+                              ),
+                              child: Text(
+                                'Delete',
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            ],
-          );
-        });
+                Positioned(
+                    top: -60,
+                    child: CircleAvatar(
+                      backgroundColor: Colors.redAccent,
+                      radius: 50,
+                      child: Icon(
+                        Icons.delete,
+                        color: Colors.white,
+                        size: 50,
+                      ),
+                    )),
+              ],
+            ));
+      },
+    );
   }
-
 // =====  =====  ===== =====  =====  ===== =====  =====  ===== =====  =====  ===== =====  =====
 // =====                                    EDIT                                          =====
 // =====  =====  ===== =====  =====  ===== =====  =====  ===== =====  =====  ===== =====  =====
@@ -435,7 +474,8 @@ class _UsersCardState extends State<UsersCard> {
                   onPressed: () {
                     setState(() {
                       _nameController = TextEditingController(text: user.name);
-                      _emailController = TextEditingController(text: user.email);
+                      _emailController =
+                          TextEditingController(text: user.email);
                       _phoneController =
                           TextEditingController(text: user.phone.toString());
                     });

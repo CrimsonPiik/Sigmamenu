@@ -166,10 +166,6 @@ class _CategoriesWithDeleteButtonState
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            // ButtonTheme(
-                            //   minWidth: 90,
-                            //   height: 70,
-                            //   child:
                                ElevatedButton(
                                 onPressed: () {
                                   Navigator.of(context).pop();
@@ -183,12 +179,7 @@ class _CategoriesWithDeleteButtonState
                                   style: TextStyle(color: Colors.black),
                                 ),
                               ),
-                            // ),
                             SizedBox(width: 15),
-                            // ButtonTheme(
-                            //   minWidth: 90,
-                            //   height: 70,
-                              // child:
                                ElevatedButton(
                                 onPressed: () async {
                                   categoriesList.remove(category);
@@ -214,10 +205,8 @@ class _CategoriesWithDeleteButtonState
                                   style: TextStyle(color: Colors.white),
                                 ),
                               ),
-                            // ),
                           ],
                         ),
-                        // SizedBox(height: 2),
                       ],
                     ),
                   ),
