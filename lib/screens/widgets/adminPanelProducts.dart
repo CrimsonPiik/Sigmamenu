@@ -45,52 +45,46 @@ class _AdminPanelProductsState extends State<AdminPanelProducts> {
   Widget build(BuildContext context) {
     AppUser user = Provider.of<UserState>(context, listen: true).appUser;
     return item == 0 //DASHBOARD
-        ? Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(height: 25),
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: [
-                      SizedBox(width: 12),
-                      CategoriesWithDeleteButton(streamController.stream),
-                      SizedBox(width: 12),
-                      AddCategoryButton(),
-                    ],
-                  ),
+        ? Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(height: 25),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    SizedBox(width: 12),
+                    CategoriesWithDeleteButton(streamController.stream),
+                    SizedBox(width: 12),
+                    AddCategoryButton(),
+                  ],
                 ),
-                SizedBox(height: 12),
-                AddProductButton(streamController.stream),
-                SizedBox(height: 12),
-                ItemCardDataAdmin(streamController.stream),
-              ],
-            ),
+              ),
+              SizedBox(height: 12),
+              AddProductButton(streamController.stream),
+              SizedBox(height: 12),
+              ItemCardDataAdmin(streamController.stream),
+            ],
           )
         : item == 1 //BANNERS
-            ? Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(height: 25),
-                    AddBannerButton(),
-                    SizedBox(height: 15),
-                    AdminPanelBanners()
-                  ],
-                ),
+            ? Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: 25),
+                  AddBannerButton(),
+                  SizedBox(height: 15),
+                  AdminPanelBanners()
+                ],
               )
             : //USERS
-            Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(height: 25),
-                    user.role == 'admin' ? AddUserButton() : Container(),
-                    SizedBox(height: 12),
-                    user.role == 'admin' ? AllUsers() : MyUser(user: user)
-                  ],
-                ),
+            Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: 25),
+                  user.role == 'admin' ? AddUserButton() : Container(),
+                  SizedBox(height: 12),
+                  user.role == 'admin' ? AllUsers() : MyUser(user: user)
+                ],
               );
   }
 }

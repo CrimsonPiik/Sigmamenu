@@ -21,32 +21,37 @@ class _DrawerrState extends State<Drawerr> {
   }
 
   @override
+  void dispose() {
+    streamControllerSideBar.done;
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return
-        Scaffold(
+    return Scaffold(
       body: SliderMenuContainer(
-          appBarColor: Colors.white,
-          key: _key,
-          sliderMenuOpenSize: 200,
-          title: Text(
-            title,
-            style: TextStyle(fontSize: 22, fontWeight: FontWeight.w700),
-          ),
-          sliderMenu: MenuWidget(
-            onItemClick: (title) {
-              _key.currentState!.closeDrawer();
-              setState(() {
-                this.title = title;
-              });
-            },
-          ),
-          sliderMain:
-           Row(
-            children: [
-              AdminPanelProducts(streamControllerSideBar.stream),
-            ],
-          )
-          ),
+        appBarColor: Colors.white,
+        key: _key,
+        sliderMenuOpenSize: 200,
+        title: Text(
+          title,
+          style: TextStyle(fontSize: 22, fontWeight: FontWeight.w700),
+        ),
+        sliderMenu: MenuWidget(
+          onItemClick: (title) {
+            _key.currentState!.closeDrawer();
+            setState(() {
+              this.title = title;
+            });
+          },
+        ),
+        sliderMain:
+            // Row(
+            // children: [
+            AdminPanelProducts(streamControllerSideBar.stream),
+        // ],
+        // )
+      ),
       // ),
     );
   }
@@ -70,6 +75,12 @@ class _MenuWidgetState extends State<MenuWidget> {
     });
     streamControllerSideBar.add(selectedIndex);
   }
+
+  // @override
+  // void dispose() {
+  //   streamControllerSideBar.close();
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -124,8 +135,7 @@ class _MenuWidgetState extends State<MenuWidget> {
           sliderItem('Dashboard', Icons.dashboard_outlined, selectedIndex, 0),
           sliderItem('Banners', Icons.photo_size_select_actual_outlined,
               selectedIndex, 1),
-                        sliderItem('Users', Icons.person, selectedIndex, 2),
-
+          sliderItem('Users', Icons.person, selectedIndex, 2),
           sliderItem('Setting', Icons.settings, selectedIndex, 3),
           sliderItem('LogOut', Icons.arrow_back_ios, selectedIndex, 4)
         ],
@@ -147,9 +157,9 @@ class _MenuWidgetState extends State<MenuWidget> {
               myState(0);
             } else if (title == 'Banners') {
               myState(1);
-            } else if (title == 'Users') {
+            } else //if (title == 'Users') {
               myState(2);
-            }
+            //}
           },
           child: Container(
             height: 44,

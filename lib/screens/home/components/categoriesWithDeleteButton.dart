@@ -37,16 +37,12 @@ class _CategoriesWithDeleteButtonState
 
   @override
   Widget build(BuildContext context) {
-    // Size size = MediaQuery.of(context).size;
-
     return
-        // Padding(
-        // padding: const EdgeInsets.only(top: 20.0),
+        //  Padding(
+        // padding: const EdgeInsets.only(left: 9.0, right: 12.0),
         // child:
         SizedBox(
       height: 60,
-      // width:
-      // Responsive.isDesktop(context) ? size.width / 1.28 : size.width - 140,
       child: ScrollConfiguration(
         behavior: ScrollConfiguration.of(context).copyWith(
           dragDevices: {
@@ -55,13 +51,14 @@ class _CategoriesWithDeleteButtonState
           },
         ),
         child: ListView.builder(
-          // physics: ScrollPhysics(), // new
+          physics: ScrollPhysics(),
           shrinkWrap: true,
           scrollDirection: Axis.horizontal,
           itemCount: categoriesList.length,
           itemBuilder: (context, index) => buildCategory(index),
         ),
       ),
+      // ),
       // ),
     );
   }
@@ -129,65 +126,117 @@ class _CategoriesWithDeleteButtonState
   }
 
   _showDeleteCategoryDialog() {
+    Size size = MediaQuery.of(context).size;
+
     showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text(
-              'Delete',
-              style: TextStyle(fontWeight: FontWeight.bold, color: Colors.red),
-            ),
-            content:
-                Text('Are you sure you want to delete $category category ?'),
-            actions: [
-              TextButton(
-                onPressed: () async {
-                  categoriesList.remove(category);
+      context: context,
+      builder: (BuildContext context) {
+        return Dialog(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(4.0)),
+            child: Stack(
+              clipBehavior: Clip.none,
+              alignment: Alignment.topCenter,
+              children: [
+                Container(
+                  height: 230,
+                  width: size.width - 20,
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(10, 70, 10, 0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Delete',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 20),
+                        ),
+                        // SizedBox(
+                        //   height: 2,
+                        // ),
+                        Container(
+                          padding: EdgeInsets.all(23),
+                          child: Text(
+                            'Are you sure you want to delete $category category ?',
+                            style: TextStyle(fontSize: 16),
+                          ),
+                        ),
+                        // SizedBox(
+                        //   height: 20,
+                        // ),
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 5.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              ButtonTheme(
+                                minWidth: 80,
+                                height: 60,
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                  style: ButtonStyle(
+                                    backgroundColor:
+                                        MaterialStateProperty.all(Colors.white),
+                                  ),
+                                  child: Text(
+                                    'Cancel',
+                                    style: TextStyle(color: Colors.black),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(width: 15),
+                              ButtonTheme(
+                                minWidth: 80,
+                                height: 60,
+                                child: ElevatedButton(
+                                  onPressed: () async {
+                                    categoriesList.remove(category);
 
-                  await FirebaseFirestore.instance
-                      .collection('Categories')
-                      .doc(category)
-                      .delete();
+                                    await FirebaseFirestore.instance
+                                        .collection('Categories')
+                                        .doc(category)
+                                        .delete();
 
-                  ///So it get back to index 0 after deleting the collection
-                  setState(() {
-                    selectedIndex = 0;
-                  });
-                  streamController.add(selectedIndex);
-                  Navigator.of(context).pop();
-                },
-                child: Container(
-                  padding: EdgeInsets.all(10),
-                  child: Text(
-                    'YES',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold, color: Colors.black),
-                  ),
-                  decoration: BoxDecoration(
-                    color: Colors.grey.withOpacity(0.1),
-                    borderRadius: BorderRadius.circular(16),
+                                    ///So it get back to index 0 after deleting the collection
+                                    setState(() {
+                                      selectedIndex = 0;
+                                    });
+                                    streamController.add(selectedIndex);
+                                    Navigator.of(context).pop();
+                                  },
+                                  style: ButtonStyle(
+                                    backgroundColor: MaterialStateProperty.all(
+                                        Colors.redAccent),
+                                  ),
+                                  child: Text(
+                                    'Delete',
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: Container(
-                  padding: EdgeInsets.all(10),
-                  child: Text(
-                    'NO',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold, color: Colors.black),
-                  ),
-                  decoration: BoxDecoration(
-                    color: Colors.grey.withOpacity(0.1),
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                ),
-              ),
-            ],
-          );
-        });
+                Positioned(
+                    top: -60,
+                    child: CircleAvatar(
+                      backgroundColor: Colors.redAccent,
+                      radius: 50,
+                      child: Icon(
+                        Icons.delete,
+                        color: Colors.white,
+                        size: 50,
+                      ),
+                    )),
+              ],
+            ));
+      },
+    );
   }
 }

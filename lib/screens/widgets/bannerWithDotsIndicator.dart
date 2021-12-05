@@ -17,25 +17,25 @@ class BannerWithDotsIndicator extends StatefulWidget {
 }
 
 class _BannerWithDotsIndicatorState extends State<BannerWithDotsIndicator> {
-  int currentImage = 0;
-  List<BannerModel> bannerListcheck = [];
+  // int currentImage = 0;
+  // List<BannerModel> bannerListcheck = [];
 
-  void getBanners() {
-    FirebaseFirestore.instance
-        .collection('Banner')
-        .where('isPublished', isEqualTo: true)
-        .snapshots()
-        .listen((event) {
-      for (var item in event.docs) {
-        bannerListcheck.add(BannerModel.fromMap(item.data()));
-      }
-      // print("Banner Bitch : " + bannerListcheck.toString());
-    });
-  }
+  // void getBanners() {
+  //   FirebaseFirestore.instance
+  //       .collection('Banner')
+  //       .where('isPublished', isEqualTo: true)
+  //       .snapshots()
+  //       .listen((event) {
+  //     for (var item in event.docs) {
+  //       bannerListcheck.add(BannerModel.fromMap(item.data()));
+  //     }
+  //     // print("Banner Bitch : " + bannerListcheck.toString());
+  //   });
+  // }
 
   @override
   void initState() {
-    getBanners();
+    // getBanners();
     super.initState();
   }
 

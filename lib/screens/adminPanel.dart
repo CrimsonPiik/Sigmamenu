@@ -10,23 +10,14 @@ StreamController<int> streamControllerSideBar =
     StreamController<int>.broadcast();
 
 class AdminPanel extends StatefulWidget {
-  final bool showDesktop;
-  AdminPanel([this.showDesktop = false]);
-
   @override
   State<AdminPanel> createState() => _AdminPanelState();
 }
 
-Set<String> categoriesList = {};
+Set<String> categoriesList = {'A'};
 
 class _AdminPanelState extends State<AdminPanel> {
   TextEditingController newCollectionNameController = TextEditingController();
-
-  @override
-  void dispose() {
-    streamControllerSideBar.close();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,23 +29,19 @@ class _AdminPanelState extends State<AdminPanel> {
           }
           if (snapshot.connectionState == ConnectionState.waiting)
             return CommonUI.loading(context);
-          // if (snapshot.connectionState == ConnectionState.active) {
+
           List<DocumentSnapshot> shots = snapshot.data!.docs;
           for (var item in shots) {
             categoriesList.add(item.id.toString());
-            // }
+            
           }
           print("Categories : " + categoriesList.toString());
           // DateTime.now().millisecondsSinceEpoch.toString());
 
           return Scaffold(
             body:
-                // Row(
-                // children: [
-                // SideBar(),
                 AdminPanelProducts(streamControllerSideBar.stream),
-            // ],
-            // ),
+            
           );
         });
   }

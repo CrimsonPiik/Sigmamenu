@@ -10,7 +10,6 @@ import 'package:sigmamenu/screens/adminPanel.dart';
 import 'package:sigmamenu/screens/home/components/categories.dart';
 import 'package:sigmamenu/screens/home/components/itemCardData.dart';
 import 'package:sigmamenu/screens/widgets/SigningPopUp.dart';
-import 'package:sigmamenu/screens/widgets/bannerWithDotsIndicator.dart';
 import 'package:sigmamenu/style/CommonUI.dart';
 import 'package:sigmamenu/style/Session.dart';
 
@@ -53,6 +52,7 @@ class _CustomerScreenState extends State<CustomerScreen>
   @override
   void dispose() {
     animationController.dispose();
+    
     super.dispose();
   }
 
@@ -79,97 +79,97 @@ class _CustomerScreenState extends State<CustomerScreen>
           print("Categories : " + categoriesList.toString());
           // DateTime.now().millisecondsSinceEpoch.toString());
           return
-          //  Container(
-            //  child: SingleChildScrollView(
+              //  Container(
+              //  child: SingleChildScrollView(
               // scrollDirection: Axis.vertical,
               // child:
-               Column(
-                // shrinkWrap: true,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                // mainAxisSize: MainAxisSize.min ,
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: kDefaultPaddin),
-                    child: Container(
-                      height: 75,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              Column(
+            // shrinkWrap: true,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            // mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: kDefaultPaddin),
+                child: Container(
+                  height: 75,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                        child: Text(
+                          "Sigma Menu",
+                          style: Theme.of(context)
+                              .textTheme
+                              .headline5!
+                              .copyWith(fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      Row(
                         children: [
-                          Container(
-                            child: Text(
-                              "Sigma Menu",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .headline5!
-                                  .copyWith(fontWeight: FontWeight.bold),
+                          IconButton(
+                            icon: AnimatedIcon(
+                              icon: AnimatedIcons.view_list,
+                              progress: animationController,
                             ),
+                            onPressed: () {
+                              ///toggle controls the animation Forward and Backward
+                              toggle();
+                              setState(() {
+                                Session.isList = !Session.isList;
+                              });
+                            },
+                            // )
                           ),
-                          Row(
-                            children: [
-                              IconButton(
-                                icon: AnimatedIcon(
-                                  icon: AnimatedIcons.view_list,
-                                  progress: animationController,
+                          isLight
+                              ? IconButton(
+                                  icon: Icon(Icons.dark_mode),
+                                  onPressed: () {
+                                    setState(() {
+                                      isLight = false;
+                                    });
+                                    widget.theme.setDarkMode();
+                                  },
+                                )
+                              : IconButton(
+                                  icon: Icon(Icons.light_mode),
+                                  onPressed: () {
+                                    setState(() {
+                                      isLight = true;
+                                    });
+                                    widget.theme.setLightMode();
+                                  },
                                 ),
-                                onPressed: () {
-                                  ///toggle controls the animation Forward and Backward
-                                  toggle();
-                                  setState(() {
-                                    Session.isList = !Session.isList;
-                                  });
-                                },
-                                // )
-                              ),
-                              isLight
-                                  ? IconButton(
-                                      icon: Icon(Icons.dark_mode),
-                                      onPressed: () {
-                                        setState(() {
-                                          isLight = false;
-                                        });
-                                        widget.theme.setDarkMode();
-                                      },
-                                    )
-                                  : IconButton(
-                                      icon: Icon(Icons.light_mode),
-                                      onPressed: () {
-                                        setState(() {
-                                          isLight = true;
-                                        });
-                                        widget.theme.setLightMode();
-                                      },
-                                    ),
-                              SizedBox(width: 5),
-                              Container(
-                                child: ChangeLanguageButton(),
-                              ),
-                              SizedBox(width: 5),
-                              IconButton(
-                                icon: Icon(Icons.login),
-                                // color: Colors.black,
-                                onPressed: () {
-                                  Navigator.of(context)
-                                      .push(createRoute(SigningPopUp()));
-                                },
-                              ),
-                            ],
+                          SizedBox(width: 5),
+                          Container(
+                            child: ChangeLanguageButton(),
+                          ),
+                          SizedBox(width: 5),
+                          IconButton(
+                            icon: Icon(Icons.login),
+                            // color: Colors.black,
+                            onPressed: () {
+                              Navigator.of(context)
+                                  .push(createRoute(SigningPopUp()));
+                            },
                           ),
                         ],
                       ),
-                    ),
+                    ],
                   ),
-                  BannerWithDotsIndicator(),
-                  // Row(
-                  // children: [
-                  // SizedBox(width: 12),
-                  Categories(),
-                  // ],
-                  // ),
-                  ItemCardData(streamController.stream),
-                ],
+                ),
+              ),
+              // BannerWithDotsIndicator(),
+              // Row(
+              // children: [
+              // SizedBox(width: 12),
+              Categories(),
+              // ],
               // ),
-              //       //  ),
-           );
+              ItemCardData(streamController.stream),
+            ],
+            // ),
+            //       //  ),
+          );
         });
   }
 }
