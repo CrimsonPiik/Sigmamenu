@@ -139,7 +139,7 @@ class _CategoriesWithDeleteButtonState
               alignment: Alignment.topCenter,
               children: [
                 Container(
-                  height: 230,
+                  height: 220,
                   width: size.width - 20,
                   child: Padding(
                     padding: const EdgeInsets.fromLTRB(10, 70, 10, 0),
@@ -151,22 +151,21 @@ class _CategoriesWithDeleteButtonState
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 20),
                         ),
-                        // SizedBox(
-                        //   height: 2,
-                        // ),
+                      
                         Container(
-                          padding: EdgeInsets.all(23),
+                          padding: EdgeInsets.fromLTRB(24, 1, 24, 16),
                           child: Text(
                             'Are you sure you want to delete $category category ?',
-                            style: TextStyle(fontSize: 16),
+                            style: TextStyle(fontSize: 17),
+                            // textAlign:,
                           ),
                         ),
-                        // SizedBox(
-                        //   height: 20,
-                        // ),
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 5.0),
-                          child: Row(
+              
+                        // Padding(
+                          // padding: const EdgeInsets.only(bottom: 5.0),
+                          // child
+                          // : 
+                          Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               ButtonTheme(
@@ -218,7 +217,7 @@ class _CategoriesWithDeleteButtonState
                               ),
                             ],
                           ),
-                        )
+                        // )
                       ],
                     ),
                   ),
