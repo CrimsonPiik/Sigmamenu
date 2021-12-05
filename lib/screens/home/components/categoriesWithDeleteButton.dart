@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:sigmamenu/screens/adminPanel.dart';
 import 'package:sigmamenu/screens/home/components/customerScreen.dart';
+import 'package:sigmamenu/style/ScreenUtil.dart';
 
 class CategoriesWithDeleteButton extends StatefulWidget {
   final Stream<int> stream;
@@ -139,8 +140,10 @@ class _CategoriesWithDeleteButtonState
               alignment: Alignment.topCenter,
               children: [
                 Container(
-                  height: 220,
-                  width: size.width - 20,
+                  height: 210,
+                  width: Responsive.isDesktop(context)
+                      ? size.width / 3
+                      : size.width - 20,
                   child: Padding(
                     padding: const EdgeInsets.fromLTRB(10, 70, 10, 0),
                     child: Column(
@@ -151,73 +154,68 @@ class _CategoriesWithDeleteButtonState
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 20),
                         ),
-                      
                         Container(
                           padding: EdgeInsets.fromLTRB(24, 1, 24, 16),
                           child: Text(
-                            'Are you sure you want to delete $category category ?',
+                            'Are you sure you want to delete ${category.toLowerCase()} category ?',
+                            textAlign: TextAlign.center,
                             style: TextStyle(fontSize: 17),
-                            // textAlign:,
                           ),
                         ),
-              
-                        // Padding(
-                          // padding: const EdgeInsets.only(bottom: 5.0),
-                          // child
-                          // : 
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              ButtonTheme(
-                                minWidth: 80,
-                                height: 60,
-                                child: ElevatedButton(
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                  },
-                                  style: ButtonStyle(
-                                    backgroundColor:
-                                        MaterialStateProperty.all(Colors.white),
-                                  ),
-                                  child: Text(
-                                    'Cancel',
-                                    style: TextStyle(color: Colors.black),
-                                  ),
+                        SizedBox(height: 2),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            ButtonTheme(
+                              minWidth: 80,
+                              height: 60,
+                              child: ElevatedButton(
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                                style: ButtonStyle(
+                                  backgroundColor:
+                                      MaterialStateProperty.all(Colors.white),
+                                ),
+                                child: Text(
+                                  'Cancel',
+                                  style: TextStyle(color: Colors.black),
                                 ),
                               ),
-                              SizedBox(width: 15),
-                              ButtonTheme(
-                                minWidth: 80,
-                                height: 60,
-                                child: ElevatedButton(
-                                  onPressed: () async {
-                                    categoriesList.remove(category);
+                            ),
+                            SizedBox(width: 15),
+                            ButtonTheme(
+                              minWidth: 80,
+                              height: 60,
+                              child: ElevatedButton(
+                                onPressed: () async {
+                                  categoriesList.remove(category);
 
-                                    await FirebaseFirestore.instance
-                                        .collection('Categories')
-                                        .doc(category)
-                                        .delete();
+                                  await FirebaseFirestore.instance
+                                      .collection('Categories')
+                                      .doc(category)
+                                      .delete();
 
-                                    ///So it get back to index 0 after deleting the collection
-                                    setState(() {
-                                      selectedIndex = 0;
-                                    });
-                                    streamController.add(selectedIndex);
-                                    Navigator.of(context).pop();
-                                  },
-                                  style: ButtonStyle(
-                                    backgroundColor: MaterialStateProperty.all(
-                                        Colors.redAccent),
-                                  ),
-                                  child: Text(
-                                    'Delete',
-                                    style: TextStyle(color: Colors.white),
-                                  ),
+                                  ///So it get back to index 0 after deleting the collection
+                                  setState(() {
+                                    selectedIndex = 0;
+                                  });
+                                  streamController.add(selectedIndex);
+                                  Navigator.of(context).pop();
+                                },
+                                style: ButtonStyle(
+                                  backgroundColor: MaterialStateProperty.all(
+                                      Colors.redAccent),
+                                ),
+                                child: Text(
+                                  'Delete',
+                                  style: TextStyle(color: Colors.white),
                                 ),
                               ),
-                            ],
-                          ),
-                        // )
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: 3),
                       ],
                     ),
                   ),
