@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sigmamenu/models/user.dart';
 import 'package:sigmamenu/provider/userStateProvider.dart';
-import 'package:sigmamenu/screens/adminPanel.dart';
 import 'package:sigmamenu/screens/home/components/customerScreen.dart';
 import 'package:sigmamenu/screens/home/components/categoriesWithDeleteButton.dart';
 import 'package:sigmamenu/screens/home/components/itemCardDataAdmin.dart';
@@ -55,13 +54,18 @@ class _AdminPanelProductsState extends State<AdminPanelProducts> {
                   children: [
                     SizedBox(width: 12),
                     CategoriesWithDeleteButton(streamController.stream),
-                    SizedBox(width: 12),
-                    AddCategoryButton(),
                   ],
                 ),
               ),
               SizedBox(height: 12),
-              AddProductButton(streamController.stream),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  AddProductButton(streamController.stream),
+                  SizedBox(width: 12),
+                  AddCategoryButton(),
+                ],
+              ),
               SizedBox(height: 12),
               ItemCardDataAdmin(streamController.stream),
             ],
