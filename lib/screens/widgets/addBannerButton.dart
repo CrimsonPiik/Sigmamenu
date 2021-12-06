@@ -16,8 +16,8 @@ class AddBannerButton extends StatefulWidget {
 class _AddBannerButtonState extends State<AddBannerButton> {
   String id = generateId();
   String imageURL = 'assets/images/placeholder.jpg';
-  TextEditingController _nameBannerController = TextEditingController();
-  TextEditingController _categoryBannerController = TextEditingController();
+  // TextEditingController _nameBannerController = TextEditingController();
+  // TextEditingController _categoryBannerController = TextEditingController();
   TextEditingController _imageBannerController = TextEditingController();
   ValueNotifier<String?> _imagevalue = ValueNotifier<String?>(null);
   final _formKey = GlobalKey<FormBuilderState>();
@@ -55,225 +55,463 @@ class _AddBannerButtonState extends State<AddBannerButton> {
     );
   }
 
+  // void showDialogWithFields() {
+  //   showDialog(
+  //       context: context,
+  //       builder: (BuildContext context) {
+  //         return FormBuilder(
+  //           key: _formKey,
+  //           child: AlertDialog(
+  //             scrollable: true,
+  //             title: Text('Create Banner',
+  //                 style: TextStyle(
+  //                     fontWeight: FontWeight.bold, color: Colors.black)),
+  //             content: Container(
+  //               width: Responsive.isDesktop(context) ? 350 : 290,
+  //               padding: EdgeInsets.all(16),
+  //               decoration: BoxDecoration(
+  //                 color: Colors.grey.withOpacity(0.1),
+  //                 borderRadius: BorderRadius.circular(12),
+  //               ),
+  //               child: Column(
+  //                 crossAxisAlignment: CrossAxisAlignment.start,
+  //                 children: <Widget>[
+  //                   ValueListenableBuilder(
+  //                     valueListenable: _imagevalue,
+  //                     builder:
+  //                         (BuildContext context, dynamic value, Widget? child) {
+  //                       return Center(
+  //                         child: Ink(
+  //                           width: 180,
+  //                           height: 180,
+  //                           child: InkWell(
+  //                             onTap: () async {
+  //                               _imageBannerController.text =
+  //                                   await fireBaseUploadFileWeb(id);
+  //                               _imagevalue.value = _imageBannerController.text;
+  //                             },
+  //                             child: Center(
+  //                               child: Container(
+  //                                 height: 130,
+  //                                 width: 250,
+  //                                 child: Column(
+  //                                   children: [
+  //                                     Stack(children: [
+  //                                       _imagevalue.value != null
+  //                                           ? Container(
+  //                                               height: 130,
+  //                                               width: 250,
+  //                                               decoration: BoxDecoration(
+  //                                                 borderRadius:
+  //                                                     BorderRadius.circular(4),
+  //                                               ),
+  //                                               child: InteractiveViewer(
+  //                                                 child: Image.network(
+  //                                                   value,
+  //                                                   fit: BoxFit.fitWidth,
+  //                                                   loadingBuilder: (context,
+  //                                                       child,
+  //                                                       loadingProgress) {
+  //                                                     if (loadingProgress ==
+  //                                                         null) {
+  //                                                       return child;
+  //                                                     }
+  //                                                     return Center(
+  //                                                       child:
+  //                                                           CircularProgressIndicator(),
+  //                                                     );
+  //                                                   },
+  //                                                 ),
+  //                                               ),
+  //                                             )
+  //                                           : Container(
+  //                                               height: 130,
+  //                                               width: 250,
+  //                                               decoration: BoxDecoration(
+  //                                                 borderRadius:
+  //                                                     BorderRadius.circular(4),
+  //                                               ),
+  //                                               child: Image.asset(
+  //                                                 'assets/images/placeholder.jpg',
+  //                                                 fit: BoxFit.fitWidth,
+  //                                               ),
+  //                                             ),
+  //                                       Container(
+  //                                         decoration: BoxDecoration(
+  //                                             color: Color(0x4D303030)),
+  //                                         height: 130,
+  //                                         width: 250,
+  //                                       ),
+  //                                       Padding(
+  //                                         padding: EdgeInsets.only(top: 95),
+  //                                         child: Container(
+  //                                             height: 35,
+  //                                             width: 250,
+  //                                             decoration: BoxDecoration(
+  //                                                 color: Color(0x4D000000)),
+  //                                             child: Row(
+  //                                               mainAxisAlignment:
+  //                                                   MainAxisAlignment.center,
+  //                                               children: [
+  //                                                 Text(
+  //                                                   'ADD ',
+  //                                                   style: TextStyle(
+  //                                                       color: Colors.white),
+  //                                                 ),
+  //                                                 Icon(Icons.add,
+  //                                                     color: Colors.white)
+  //                                               ],
+  //                                             )),
+  //                                       ),
+  //                                     ]),
+  //                                   ],
+  //                                 ),
+  //                               ),
+  //                             ),
+  //                           ),
+  //                         ),
+  //                       );
+  //                     },
+  //                   ),
+  //                   // SizedBox(height: 40),
+  //                   // Container(
+  //                   //   child: CommonUI.textField(
+  //                   //     context: context,
+  //                   //     name: "Name",
+  //                   //     hint: "Name",
+  //                   //     isEdit: true,
+  //                   //     minlines: 1,
+  //                   //     controller: _nameBannerController,
+  //                   //     validate: FormBuilderValidators.compose([
+  //                   //       FormBuilderValidators.required(context),
+  //                   //     ]),
+  //                   //   ),
+  //                   // ),
+  //                   // SizedBox(height: 4),
+  //                   // Container(
+  //                   //   child: CommonUI.textField(
+  //                   //     context: context,
+  //                   //     name: "Category",
+  //                   //     hint: "Category",
+  //                   //     isEdit: true,
+  //                   //     controller: _categoryBannerController,
+  //                   //     validate: FormBuilderValidators.compose([
+  //                   //       FormBuilderValidators.required(context),
+  //                   // ]),
+  //                   // ),
+  //                   // ),
+  //                 ],
+  //               ),
+  //             ),
+  //             actions: [
+  //               TextButton(
+  //                 onPressed: () async {
+  //                   _formKey.currentState!.save();
+  //                   if (_formKey.currentState!.validate()) {
+  //                     FocusScope.of(context).unfocus();
+  //                     await FirebaseFirestore.instance
+  //                         .collection("Banner")
+  //                         .doc(id)
+  //                         .set({
+  //                       'id': id,
+  //                       // 'name': _nameBannerController.text,
+  //                       // 'category': _categoryBannerController.text,
+  //                       'isPublished': true,
+  //                       'image': _imageBannerController.text,
+  //                       //subCategory: ---
+  //                     }).whenComplete(() {
+  //                       // _categoryBannerController.clear();
+  //                       // _nameBannerController.clear();
+  //                       id = generateId();
+  //                       _imagevalue.value = 'assets/images/placeholder.jpg';
+
+  //                       _imageBannerController.clear();
+  //                       Navigator.of(context).pop();
+
+  //                       CommonUI.successDialog(context,
+  //                           message: "Saved successfully");
+  //                     }).onError((error, stackTrrace) => showDialog(
+  //                               context: context,
+  //                               builder: (_) {
+  //                                 return AlertDialog(
+  //                                   content: Text(error.toString()),
+  //                                 );
+  //                               },
+  //                             ));
+  //                   }
+  //                 },
+  //                 child: Container(
+  //                   padding: EdgeInsets.all(10),
+  //                   child: Text(
+  //                     'Create',
+  //                     style: TextStyle(
+  //                         fontWeight: FontWeight.bold, color: Colors.black),
+  //                   ),
+  //                   decoration: BoxDecoration(
+  //                     color: Colors.grey.withOpacity(0.5),
+  //                     borderRadius: BorderRadius.circular(16),
+  //                   ),
+  //                 ),
+  //               ),
+  //               TextButton(
+  //                 onPressed: () {
+  //                   // _categoryBannerController.clear();
+  //                   // _nameBannerController.clear();
+  //                   id = generateId();
+  //                   _imagevalue.value = 'assets/images/placeholder.jpg';
+
+  //                   _imageBannerController.clear();
+
+  //                   Navigator.of(context).pop();
+  //                 },
+  //                 child: Container(
+  //                   padding: EdgeInsets.all(10),
+  //                   child: Text(
+  //                     'Cancel',
+  //                     style: TextStyle(
+  //                         fontWeight: FontWeight.bold, color: Colors.black),
+  //                   ),
+  //                   decoration: BoxDecoration(
+  //                     color: Colors.grey.withOpacity(0.5),
+  //                     borderRadius: BorderRadius.circular(16),
+  //                   ),
+  //                 ),
+  //               ),
+  //             ],
+  //           ),
+  //         );
+  //       });
+  // }
+
   void showDialogWithFields() {
+    Size size = MediaQuery.of(context).size;
     showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return FormBuilder(
-            key: _formKey,
-            child: AlertDialog(
-              scrollable: true,
-              title: Text('Create a new Banner',
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold, color: Colors.black)),
-              content: Container(
-                width: Responsive.isDesktop(context) ? 350 : 290,
-                padding: EdgeInsets.all(16),
-                decoration: BoxDecoration(
-                  color: Colors.grey.withOpacity(0.1),
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    ValueListenableBuilder(
-                      valueListenable: _imagevalue,
-                      builder:
-                          (BuildContext context, dynamic value, Widget? child) {
-                        return Center(
-                          child: Ink(
-                            width: 180,
-                            height: 180,
-                            child: InkWell(
-                              onTap: () async {
-                                _imageBannerController.text =
-                                    await fireBaseUploadFileWeb(id);
-                                _imagevalue.value = _imageBannerController.text;
-                              },
-                              child: Center(
-                                child: Container(
-                                  height: 130,
-                                  width: 250,
-                                  child: Column(
-                                    children: [
-                                      Stack(children: [
-                                        _imagevalue.value != null
-                                            ? Container(
-                                                height: 130,
-                                                width: 250,
-                                                decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.circular(4),
-                                                ),
-                                                child: InteractiveViewer(
-                                                  child: Image.network(
-                                                    value,
-                                                    fit: BoxFit.fitWidth,
-                                                    loadingBuilder: (context,
-                                                        child,
-                                                        loadingProgress) {
-                                                      if (loadingProgress ==
-                                                          null) {
-                                                        return child;
-                                                      }
-                                                      return Center(
-                                                        child:
-                                                            CircularProgressIndicator(),
-                                                      );
-                                                    },
+      context: context,
+      builder: (BuildContext context) {
+        return FormBuilder(
+          key: _formKey,
+          child: Dialog(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(4.0)),
+              child: Stack(
+                clipBehavior: Clip.none,
+                alignment: Alignment.topCenter,
+                children: [
+                  Container(
+                    height: 320,
+                    width: Responsive.isDesktop(context)
+                        ? size.width / 3
+                        : size.width - 20,
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(10, 70, 10, 0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text(
+                            'Create Banner',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize:
+                                    Responsive.isMiniMobile(context) ? 15 : 20),
+                          ),
+                          SizedBox(height: 10),
+                          ValueListenableBuilder(
+                            valueListenable: _imagevalue,
+                            builder: (BuildContext context, dynamic value,
+                                Widget? child) {
+                              return Center(
+                                child:
+                                    // Ink(
+                                    // width: 180,
+                                    // height: 180,
+                                    // child:
+                                    GestureDetector(
+                                  onTap: () async {
+                                    _imageBannerController.text =
+                                        await fireBaseUploadFileWeb(id);
+                                    _imagevalue.value =
+                                        _imageBannerController.text;
+                                  },
+                                  child: Center(
+                                    child: Container(
+                                      height: 130,
+                                      width: 250,
+                                      child: Column(
+                                        children: [
+                                          Stack(children: [
+                                            _imagevalue.value != null
+                                                ? Container(
+                                                    height: 130,
+                                                    width: 250,
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              4),
+                                                    ),
+                                                    child: InteractiveViewer(
+                                                      child: Image.network(
+                                                        value,
+                                                        fit: BoxFit.fitWidth,
+                                                        loadingBuilder: (context,
+                                                            child,
+                                                            loadingProgress) {
+                                                          if (loadingProgress ==
+                                                              null) {
+                                                            return child;
+                                                          }
+                                                          return Center(
+                                                            child:
+                                                                CircularProgressIndicator(),
+                                                          );
+                                                        },
+                                                      ),
+                                                    ),
+                                                  )
+                                                : Container(
+                                                    height: 130,
+                                                    width: 250,
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              4),
+                                                    ),
+                                                    child: Image.asset(
+                                                      'assets/images/placeholder.jpg',
+                                                      fit: BoxFit.fitWidth,
+                                                    ),
                                                   ),
-                                                ),
-                                              )
-                                            : Container(
-                                                height: 130,
-                                                width: 250,
-                                                decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.circular(4),
-                                                ),
-                                                child: Image.asset(
-                                                  'assets/images/placeholder.jpg',
-                                                  fit: BoxFit.fitWidth,
-                                                ),
-                                              ),
-                                        Container(
-                                          decoration: BoxDecoration(
-                                              color: Color(0x4D303030)),
-                                          height: 130,
-                                          width: 250,
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsets.only(top: 95),
-                                          child: Container(
-                                              height: 35,
-                                              width: 250,
+                                            Container(
                                               decoration: BoxDecoration(
-                                                  color: Color(0x4D000000)),
-                                              child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  Text(
-                                                    'ADD ',
-                                                    style: TextStyle(
-                                                        color: Colors.white),
-                                                  ),
-                                                  Icon(Icons.add,
-                                                      color: Colors.white)
-                                                ],
-                                              )),
-                                        ),
-                                      ]),
-                                    ],
+                                                  color: Color(0x4D303030)),
+                                              height: 130,
+                                              width: 250,
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsets.only(top: 95),
+                                              child: Container(
+                                                  height: 35,
+                                                  width: 250,
+                                                  decoration: BoxDecoration(
+                                                      color: Color(0x4D000000)),
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      Text(
+                                                        'ADD ',
+                                                        style: TextStyle(
+                                                            color:
+                                                                Colors.white),
+                                                      ),
+                                                      Icon(Icons.add,
+                                                          color: Colors.white)
+                                                    ],
+                                                  )),
+                                            ),
+                                          ]),
+                                        ],
+                                      ),
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ),
+                                // ),
+                              );
+                            },
                           ),
-                        );
-                      },
-                    ),
-                    SizedBox(height: 40),
-                    Container(
-                      child: CommonUI.textField(
-                        context: context,
-                        name: "Name",
-                        hint: "Name",
-                        isEdit: true,
-                        minlines: 1,
-                        controller: _nameBannerController,
-                        validate: FormBuilderValidators.compose([
-                          FormBuilderValidators.required(context),
-                        ]),
-                      ),
-                    ),
-                    SizedBox(height: 4),
-                    Container(
-                      child: CommonUI.textField(
-                        context: context,
-                        name: "Category",
-                        hint: "Category",
-                        isEdit: true,
-                        controller: _categoryBannerController,
-                        validate: FormBuilderValidators.compose([
-                          FormBuilderValidators.required(context),
-                        ]),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              actions: [
-                TextButton(
-                  onPressed: () async {
-                    _formKey.currentState!.save();
-                    if (_formKey.currentState!.validate()) {
-                      FocusScope.of(context).unfocus();
-                      await FirebaseFirestore.instance
-                          .collection("Banner")
-                          .doc(id)
-                          .set({
-                        'id': id,
-                        'name': _nameBannerController.text,
-                        'category': _categoryBannerController.text,
-                        'isPublished': true,
-                        'image': _imageBannerController.text,
-                        //subCategory: ---
-                      }).whenComplete(() {
-                        Navigator.of(context).pop();
-                        _categoryBannerController.clear();
-                        _nameBannerController.clear();
-                        _imageBannerController.clear();
+                          SizedBox(height: 10),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              ElevatedButton(
+                                onPressed: () {
+                                  id = generateId();
+                                  _imagevalue.value =
+                                      'assets/images/placeholder.jpg';
 
-                        CommonUI.successDialog(context,
-                            message: "Saved successfully");
-                      }).onError((error, stackTrrace) => showDialog(
-                                context: context,
-                                builder: (_) {
-                                  return AlertDialog(
-                                    content: Text(error.toString()),
-                                  );
+                                  _imageBannerController.clear();
+
+                                  Navigator.of(context).pop();
                                 },
-                              ));
-                    }
-                  },
-                  child: Container(
-                    padding: EdgeInsets.all(10),
-                    child: Text(
-                      'Create',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold, color: Colors.black),
-                    ),
-                    decoration: BoxDecoration(
-                      color: Colors.grey.withOpacity(0.5),
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                  ),
-                ),
-                TextButton(
-                  onPressed: () {
-                    _categoryBannerController.clear();
-                    _nameBannerController.clear();
-                    _imageBannerController.clear();
+                                style: ButtonStyle(
+                                  backgroundColor:
+                                      MaterialStateProperty.all(Colors.white),
+                                ),
+                                child: Text(
+                                  'Cancel',
+                                  style: TextStyle(color: Colors.black),
+                                ),
+                              ),
+                              SizedBox(width: 15),
+                              ElevatedButton(
+                                onPressed: () async {
+                                  _formKey.currentState!.save();
+                                  if (_formKey.currentState!.validate()) {
+                                    FocusScope.of(context).unfocus();
+                                    await FirebaseFirestore.instance
+                                        .collection("Banner")
+                                        .doc(id)
+                                        .set({
+                                      'id': id,
+                                      // 'name': _nameBannerController.text,
+                                      // 'category': _categoryBannerController.text,
+                                      'isPublished': true,
+                                      'image': _imageBannerController.text,
+                                      //subCategory: ---
+                                    }).whenComplete(() {
+                                      // _categoryBannerController.clear();
+                                      // _nameBannerController.clear();
+                                      id = generateId();
+                                      _imagevalue.value =
+                                          'assets/images/placeholder.jpg';
 
-                    Navigator.of(context).pop();
-                  },
-                  child: Container(
-                    padding: EdgeInsets.all(10),
-                    child: Text(
-                      'Cancel',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold, color: Colors.black),
-                    ),
-                    decoration: BoxDecoration(
-                      color: Colors.grey.withOpacity(0.5),
-                      borderRadius: BorderRadius.circular(16),
+                                      _imageBannerController.clear();
+                                      Navigator.of(context).pop();
+
+                                      CommonUI.successDialog(context,
+                                          message: "Saved successfully");
+                                    }).onError((error, stackTrrace) =>
+                                            showDialog(
+                                              context: context,
+                                              builder: (_) {
+                                                return AlertDialog(
+                                                  content:
+                                                      Text(error.toString()),
+                                                );
+                                              },
+                                            ));
+                                  }
+                                },
+                                style: ButtonStyle(
+                                  backgroundColor:
+                                      MaterialStateProperty.all(Colors.green),
+                                ),
+                                child: Text(
+                                  'Create',
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-              ],
-            ),
-          );
-        });
+                  Positioned(
+                      top: -60,
+                      child: CircleAvatar(
+                        backgroundColor: Colors.green,
+                        radius: 50,
+                        child: Icon(
+                          Icons.add,
+                          color: Colors.white,
+                          size: 50,
+                        ),
+                      )),
+                ],
+              )),
+        );
+      },
+    );
   }
 }
