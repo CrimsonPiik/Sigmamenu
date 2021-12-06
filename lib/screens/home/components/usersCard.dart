@@ -276,7 +276,7 @@ class _UsersCardState extends State<UsersCard> {
                         Text(
                           'Delete',
                           style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 20),
+                              fontWeight: FontWeight.bold, fontSize: Responsive.isMiniMobile(context) ? 15 :  20),
                         ),
                         SizedBox(height: 4),
                         Container(
@@ -284,7 +284,7 @@ class _UsersCardState extends State<UsersCard> {
                           child: Text(
                             'Are you sure you want to delete this user ?',
                             textAlign: TextAlign.center,
-                            style: TextStyle(fontSize: 17),
+                            style: TextStyle(fontSize: Responsive.isMiniMobile(context)? 12 : 17),
                           ),
                         ),
                         SizedBox(height: 4),

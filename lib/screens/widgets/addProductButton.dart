@@ -8,7 +8,7 @@ import 'package:sigmamenu/screens/adminPanel.dart';
 import 'package:sigmamenu/style/CommonUI.dart';
 import 'package:sigmamenu/style/ScreenUtil.dart';
 
-class   AddProductButton extends StatefulWidget {
+class AddProductButton extends StatefulWidget {
   final Stream<int> stream;
 
   AddProductButton(this.stream);

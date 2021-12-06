@@ -262,7 +262,7 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                         Text(
                           'Delete',
                           style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 20),
+                              fontWeight: FontWeight.bold, fontSize: Responsive.isMiniMobile(context) ? 15 :  20),
                         ),
                         SizedBox(height: 4),
                         Container(
@@ -270,7 +270,7 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                           child: Text(
                             'Are you sure you want to delete this product ?',
                             textAlign: TextAlign.center,
-                            style: TextStyle(fontSize: 17),
+                            style: TextStyle(fontSize: Responsive.isMiniMobile(context)? 12 : 17),
                           ),
                         ),
                         SizedBox(height: 4),
