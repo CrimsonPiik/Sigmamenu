@@ -11,14 +11,14 @@ import 'package:sigmamenu/style/Style.dart';
 
 class MyUser extends StatefulWidget {
   final AppUser user;
-  const MyUser({Key? key,required this.user}) : super(key: key);
+  const MyUser({Key? key, required this.user}) : super(key: key);
 
   @override
   State<MyUser> createState() => _MyUserState();
 }
 
 class _MyUserState extends State<MyUser> {
-final _formKey = GlobalKey<FormBuilderState>();
+  final _formKey = GlobalKey<FormBuilderState>();
   bool editmode = false;
   TextEditingController _nameController = TextEditingController();
 
@@ -30,8 +30,11 @@ final _formKey = GlobalKey<FormBuilderState>();
 
   @override
   Widget build(BuildContext context) {
-     Future editUserProfile() async {
-      await FirebaseFirestore.instance.collection("users").doc(widget.user.id).update({
+    Future editUserProfile() async {
+      await FirebaseFirestore.instance
+          .collection("users")
+          .doc(widget.user.id)
+          .update({
         "name": _nameController.text,
         "phone": _phoneController.text,
         // 'image': _imageController.text,
@@ -40,7 +43,10 @@ final _formKey = GlobalKey<FormBuilderState>();
         editmode = false;
       });
     }
-    return  editmode == true ? Container(child: Column(
+
+    return editmode == true
+        ? Container(
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 // ValueListenableBuilder(
@@ -160,7 +166,13 @@ final _formKey = GlobalKey<FormBuilderState>();
                   child: Padding(
                     padding: EdgeInsets.symmetric(
                         horizontal: Responsive.isDesktop(context) ? 32 : 16),
-                    child: SizedBox(
+                    // child: Stack(
+                    // children:[
+                    // Container(
+                    // width: 300,
+                    child: Container(
+                      decoration:
+                          BoxDecoration(color: Colors.grey.withOpacity(1)),
                       width: MediaQuery.of(context).size.width * 0.3,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -240,10 +252,14 @@ final _formKey = GlobalKey<FormBuilderState>();
                         ],
                       ),
                     ),
+                    // ),
+                    // ],),
                   ),
                 ),
               ],
-            ),) : Column(
+            ),
+          )
+        : Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Center(
@@ -263,7 +279,8 @@ final _formKey = GlobalKey<FormBuilderState>();
                       children: [
                         buildTitle(context, "Name  :  ${widget.user.name}"),
                         SizedBox(height: 16),
-                        buildTitle(context, "Phone Number  :  ${widget.user.phone}"),
+                        buildTitle(
+                            context, "Phone Number  :  ${widget.user.phone}"),
                         SizedBox(height: 32),
                         Align(
                           alignment: Alignment.bottomRight,
@@ -305,6 +322,7 @@ final _formKey = GlobalKey<FormBuilderState>();
             ],
           );
   }
+
   Widget buildTitle(BuildContext context, String title) {
     return CommonUI.text(
         text: title,

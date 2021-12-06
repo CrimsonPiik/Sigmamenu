@@ -84,7 +84,6 @@ class _AddCategoryButtonState extends State<AddCategoryButton> {
                           child: CommonUI.textField(
                             context: context,
                             name: "Category Name",
-                            // label: "Category Name",
                             hint: 'e.g Drinks',
                             maxlines: 1,
                             controller: newCollectionNameController,
@@ -114,7 +113,7 @@ class _AddCategoryButtonState extends State<AddCategoryButton> {
                                 newCollectionNameController.clear();
 
                                 CommonUI.successDialog(context,
-                                    message: "Saved successfully");
+                                    message: "Added successfully");
                               }).onError(
                                 (error, stackTrrace) => showDialog(
                                   context: context,
