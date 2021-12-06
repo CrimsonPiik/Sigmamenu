@@ -455,7 +455,7 @@ class _BannersItemState extends State<BannersItem> {
               alignment: Alignment.topCenter,
               children: [
                 Container(
-                  height: 205,
+                  height: 220,
                   width: Responsive.isDesktop(context)
                       ? size.width / 3
                       : size.width - 20,

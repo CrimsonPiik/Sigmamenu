@@ -39,9 +39,6 @@ class _CategoriesWithDeleteButtonState
   @override
   Widget build(BuildContext context) {
     return
-        //  Padding(
-        // padding: const EdgeInsets.only(left: 9.0, right: 12.0),
-        // child:
         SizedBox(
       height: 60,
       child: ScrollConfiguration(
@@ -59,8 +56,8 @@ class _CategoriesWithDeleteButtonState
           itemBuilder: (context, index) => buildCategory(index),
         ),
       ),
-      // ),
-      // ),
+      
+      
     );
   }
 
@@ -139,7 +136,7 @@ class _CategoriesWithDeleteButtonState
               alignment: Alignment.topCenter,
               children: [
                 Container(
-                  height: 205,
+                  height: 220,
                   width: Responsive.isDesktop(context)
                       ? size.width / 3
                       : size.width - 20,
@@ -151,7 +148,9 @@ class _CategoriesWithDeleteButtonState
                         Text(
                           'Delete',
                           style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: Responsive.isMiniMobile(context) ? 15 :  20),
+                              fontWeight: FontWeight.bold,
+                              fontSize:
+                                  Responsive.isMiniMobile(context) ? 15 : 20),
                         ),
                         SizedBox(height: 4),
                         Container(
@@ -159,52 +158,54 @@ class _CategoriesWithDeleteButtonState
                           child: Text(
                             'Are you sure you want to delete ${category.toLowerCase()} category ?',
                             textAlign: TextAlign.center,
-                            style: TextStyle(fontSize: Responsive.isMiniMobile(context)? 12 : 17),
+                            style: TextStyle(
+                                fontSize:
+                                    Responsive.isMiniMobile(context) ? 12 : 17),
                           ),
                         ),
                         SizedBox(height: 4),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                               ElevatedButton(
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                },
-                                style: ButtonStyle(
-                                  backgroundColor:
-                                      MaterialStateProperty.all(Colors.white),
-                                ),
-                                child: Text(
-                                  'Cancel',
-                                  style: TextStyle(color: Colors.black),
-                                ),
+                            ElevatedButton(
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                              style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStateProperty.all(Colors.white),
                               ),
+                              child: Text(
+                                'Cancel',
+                                style: TextStyle(color: Colors.black),
+                              ),
+                            ),
                             SizedBox(width: 15),
-                               ElevatedButton(
-                                onPressed: () async {
-                                  categoriesList.remove(category);
+                            ElevatedButton(
+                              onPressed: () async {
+                                categoriesList.remove(category);
 
-                                  await FirebaseFirestore.instance
-                                      .collection('Categories')
-                                      .doc(category)
-                                      .delete();
+                                await FirebaseFirestore.instance
+                                    .collection('Categories')
+                                    .doc(category)
+                                    .delete();
 
-                                  ///So it get back to index 0 after deleting the collection
-                                  setState(() {
-                                    selectedIndex = 0;
-                                  });
-                                  streamController.add(selectedIndex);
-                                  Navigator.of(context).pop();
-                                },
-                                style: ButtonStyle(
-                                  backgroundColor: MaterialStateProperty.all(
-                                      Colors.redAccent),
-                                ),
-                                child: Text(
-                                  'Delete',
-                                  style: TextStyle(color: Colors.white),
-                                ),
+                                ///So it get back to index 0 after deleting the collection
+                                setState(() {
+                                  selectedIndex = 0;
+                                });
+                                streamController.add(selectedIndex);
+                                Navigator.of(context).pop();
+                              },
+                              style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStateProperty.all(Colors.redAccent),
                               ),
+                              child: Text(
+                                'Delete',
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            ),
                           ],
                         ),
                       ],
