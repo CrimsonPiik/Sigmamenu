@@ -65,8 +65,6 @@ class _BannerWithDotsIndicatorState extends State<BannerWithDotsIndicator> {
                     BannerModel.fromMap(item.data() as Map<String, dynamic>));
               }
               return
-                  //  bannerList != []
-                  // ?
                   CarouselSlider(
                 items: bannerList
                     .map(
