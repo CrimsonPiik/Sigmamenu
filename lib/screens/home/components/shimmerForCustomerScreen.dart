@@ -16,7 +16,7 @@ class ShimmerForCustomerScreen extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: kDefaultPaddin),
                 child: GridView.builder(
-                  itemCount: 6,
+                  itemCount: Responsive.isDesktop(context) ? 7 : 4,
                   itemBuilder: (context, index) {
                     return Container(
                       decoration: BoxDecoration(

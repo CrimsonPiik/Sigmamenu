@@ -63,19 +63,19 @@ class _LoginFormState extends State<LoginForm> {
                   decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(16),
-                        borderSide: BorderSide(color: Colors.brown),
+                        borderSide: BorderSide(color: Colors.black),
                       ),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(16),
-                        borderSide: BorderSide(color: Colors.brown),
+                        borderSide: BorderSide(color: Colors.black),
                       ),
                       hintText: translate(
                         context,
                         "email",
                       ),
-                      prefixIcon: Icon(Icons.email, color: Colors.brown),
+                      prefixIcon: Icon(Icons.email, color: Colors.black),
                       hintStyle: FontStyle.normal(
-                          context: context, color: Colors.brown)),
+                          context: context, color: Colors.black)),
                   validator: FormBuilderValidators.compose([
                     FormBuilderValidators.required(context),
                     FormBuilderValidators.email(context),
@@ -99,20 +99,20 @@ class _LoginFormState extends State<LoginForm> {
                             hidePassword
                                 ? Icons.visibility
                                 : Icons.visibility_off,
-                            color: Colors.brown),
+                            color: Colors.black),
                       ),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(16),
-                        borderSide: BorderSide(color: Colors.brown),
+                        borderSide: BorderSide(color: Colors.black),
                       ),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(16),
-                        borderSide: BorderSide(color: Colors.brown),
+                        borderSide: BorderSide(color: Colors.black),
                       ),
                       hintText: translate(context, "password"),
-                      prefixIcon: Icon(Icons.lock, color: Colors.brown),
+                      prefixIcon: Icon(Icons.lock, color: Colors.black),
                       hintStyle: FontStyle.normal(
-                          context: context, color: Colors.brown)),
+                          context: context, color: Colors.black)),
                   validator: FormBuilderValidators.compose([
                     FormBuilderValidators.required(context),
                     FormBuilderValidators.minLength(context, 6),
@@ -133,7 +133,7 @@ class _LoginFormState extends State<LoginForm> {
                       fontWeight: FontWeight.bold,
                       color: Colors.white)
                   : null,
-              color: Colors.brown,
+              color: Colors.black,
               textColor: Colors.white),
           const SizedBox(height: 16),
           // GuestLogin(),
@@ -148,7 +148,7 @@ class _LoginFormState extends State<LoginForm> {
           //       ),
           //       style: FontStyle.normal(
           //           context: context,
-          //           color: Colors.brown[300],
+          //           color: Colors.black[300],
           //           fontWeight: FontWeight.bold),
           //     ),
           //     SizedBox(width: 8),
@@ -159,7 +159,7 @@ class _LoginFormState extends State<LoginForm> {
           //     //       style: FontStyle.normal(
           //     //           context: context,
           //     //           fontWeight: FontWeight.bold,
-          //     //           color: Colors.brown),
+          //     //           color: Colors.black),
           //     //     ))
           //   ],
           // )
