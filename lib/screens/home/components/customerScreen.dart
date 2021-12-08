@@ -5,6 +5,7 @@ import 'package:sigmamenu/GeneralFunction/storageManager.dart';
 import 'package:sigmamenu/animation/page_slide_widget.dart';
 import 'package:sigmamenu/constaints.dart';
 import 'package:sigmamenu/language/widgets/changeLanguageButton.dart';
+import 'package:sigmamenu/models/banner.dart';
 import 'package:sigmamenu/provider/darkLightMode.dart';
 import 'package:sigmamenu/screens/adminPanel.dart';
 import 'package:sigmamenu/screens/home/components/categories.dart';
@@ -53,7 +54,7 @@ class _CustomerScreenState extends State<CustomerScreen>
   @override
   void dispose() {
     animationController.dispose();
-    
+
     super.dispose();
   }
 
@@ -107,20 +108,20 @@ class _CustomerScreenState extends State<CustomerScreen>
                       ),
                       Row(
                         children: [
-                          IconButton(
-                            icon: AnimatedIcon(
-                              icon: AnimatedIcons.view_list,
-                              progress: animationController,
-                            ),
-                            onPressed: () {
-                              ///toggle controls the animation Forward and Backward
-                              toggle();
-                              setState(() {
-                                Session.isList = !Session.isList;
-                              });
-                            },
-                            // )
-                          ),
+                          // IconButton(
+                          //   icon: AnimatedIcon(
+                          //     icon: AnimatedIcons.view_list,
+                          //     progress: animationController,
+                          //   ),
+                          //   onPressed: () {
+                          //     ///toggle controls the animation Forward and Backward
+                          //     toggle();
+                          //     setState(() {
+                          //       Session.isList = !Session.isList;
+                          //     });
+                          //   },
+                          //   // )
+                          // ),
                           isLight
                               ? IconButton(
                                   icon: Icon(Icons.dark_mode),
@@ -159,7 +160,9 @@ class _CustomerScreenState extends State<CustomerScreen>
                   ),
                 ),
               ),
+              // bannerList != 
               BannerWithDotsIndicator(),
+              // : Container(height: 1,),
               // Row(
               // children: [
               // SizedBox(width: 12),

@@ -6,6 +6,8 @@ import 'package:sigmamenu/models/banner.dart';
 import 'package:sigmamenu/style/CommonUI.dart';
 import 'package:sigmamenu/style/ScreenUtil.dart';
 
+List<BannerModel> bannerList = [];
+
 class BannerWithDotsIndicator extends StatefulWidget {
   BannerWithDotsIndicator({
     Key? key,
@@ -58,49 +60,49 @@ class _BannerWithDotsIndicatorState extends State<BannerWithDotsIndicator> {
                 // return LoadingSpinner();
                 return Center();
               }
-              List<BannerModel> bannerList = [];
 
               for (var item in snapshot.data!.docs) {
                 bannerList.add(
                     BannerModel.fromMap(item.data() as Map<String, dynamic>));
               }
-              return
-                  CarouselSlider(
-                items: bannerList
-                    .map(
-                      (item) => AdsCard(
-                        image: item.image,
-                        isBanner: true,
-                        // description: RhinoLanguage.isLTR()
-                        //     ? item.nameEn
-                        //     : item.nameAr,
-                        click: () {
-                          // application.navigatePush(
-                          //     context,
-                          //     AdsDetailScreen(
-                          //       bannerModel: item,
-                          //     ));
-                        },
+              return bannerList.isNotEmpty
+                  ? CarouselSlider(
+                      items: bannerList
+                          .map(
+                            (item) => AdsCard(
+                              image: item.image,
+                              isBanner: true,
+                              // description: RhinoLanguage.isLTR()
+                              //     ? item.nameEn
+                              //     : item.nameAr,
+                              click: () {
+                                // application.navigatePush(
+                                //     context,
+                                //     AdsDetailScreen(
+                                //       bannerModel: item,
+                                //     ));
+                              },
+                            ),
+                          )
+                          .toList(),
+                      options: CarouselOptions(
+                        viewportFraction: 1,
+                        height: Responsive.isMobile(context) ? 125 : 175,
+                        aspectRatio: 16 / 9,
+                        autoPlayAnimationDuration:
+                            const Duration(milliseconds: 3000),
+                        autoPlayInterval: const Duration(milliseconds: 7000),
+                        autoPlay: true,
+                        // initialPage: currentImage,
+                        // enlargeCenterPage: true,
+                        //         onPageChanged: (index, reason) {
+                        //           setState(() {
+                        //             currentImage = index;
+                        //           });
+                        //         },
                       ),
                     )
-                    .toList(),
-                options: CarouselOptions(
-                  viewportFraction: 1,
-                  height: Responsive.isMobile(context) ? 125 : 175,
-                  aspectRatio: 16 / 9,
-                  autoPlayAnimationDuration: const Duration(milliseconds: 3000),
-                  autoPlayInterval: const Duration(milliseconds: 7000),
-                  autoPlay: true,
-                  // initialPage: currentImage,
-                  enlargeCenterPage: true,
-                  //         onPageChanged: (index, reason) {
-                  //           setState(() {
-                  //             currentImage = index;
-                  //           });
-                  //         },
-                ),
-              );
-              // : Container();
+                  : Container();
             });
     // : Container();
     // return Column(
