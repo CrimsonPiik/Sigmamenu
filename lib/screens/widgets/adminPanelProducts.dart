@@ -47,20 +47,12 @@ class _AdminPanelProductsState extends State<AdminPanelProducts> {
         ? Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 25),
-              // SingleChildScrollView(
-              // scrollDirection: Axis.horizontal,
-              // child:
-              // Row(
-              // children: [
-              // SizedBox(width: 12),
+              SizedBox(height: 25),     
               Padding(
                 padding: const EdgeInsets.only(left: 12.0, right: 12.0),
                 child: CategoriesWithDeleteButton(streamController.stream),
               ),
-              // ],
-              // ),
-              // ),
+         
               SizedBox(height: 12),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

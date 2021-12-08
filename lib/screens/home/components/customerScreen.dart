@@ -10,6 +10,7 @@ import 'package:sigmamenu/screens/adminPanel.dart';
 import 'package:sigmamenu/screens/home/components/categories.dart';
 import 'package:sigmamenu/screens/home/components/itemCardData.dart';
 import 'package:sigmamenu/screens/widgets/SigningPopUp.dart';
+import 'package:sigmamenu/screens/widgets/bannerWithDotsIndicator.dart';
 import 'package:sigmamenu/style/CommonUI.dart';
 import 'package:sigmamenu/style/Session.dart';
 
@@ -158,7 +159,7 @@ class _CustomerScreenState extends State<CustomerScreen>
                   ),
                 ),
               ),
-              // BannerWithDotsIndicator(),
+              BannerWithDotsIndicator(),
               // Row(
               // children: [
               // SizedBox(width: 12),
