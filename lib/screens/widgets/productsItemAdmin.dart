@@ -357,8 +357,7 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                     Padding(
                       padding: const EdgeInsets.all(15.0),
                       child: SingleChildScrollView(
-                        child:
-                            Container(
+                        child: Container(
                           width: Responsive.isDesktop(context) ? 350 : 290,
                           padding: EdgeInsets.all(16),
                           decoration: BoxDecoration(
@@ -381,7 +380,10 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                           _imageController.text =
                                               await fireBaseUploadFileWeb(
                                                   widget.data.id);
-                                          _imagevalue.value = _imageController.text;
+                                          if (_imageController.text != '') {
+                                            _imagevalue.value =
+                                                _imageController.text;
+                                          }
                                         },
                                         child: Center(
                                           child: Container(
@@ -393,13 +395,15 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                                       Container(
                                                         height: 130,
                                                         width: 130,
-                                                        child: InteractiveViewer(
+                                                        child:
+                                                            InteractiveViewer(
                                                           child: Image.network(
                                                             value,
-                                                            fit: BoxFit.fitWidth,
-                                                            loadingBuilder: (context,
-                                                                child,
-                                                                loadingProgress) {
+                                                            fit:
+                                                                BoxFit.fitWidth,
+                                                            loadingBuilder:
+                                                                (context, child,
+                                                                    loadingProgress) {
                                                               if (loadingProgress ==
                                                                   null) {
                                                                 return child;
@@ -413,15 +417,17 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                                         ),
                                                       ),
                                                       Container(
-                                                        decoration: BoxDecoration(
-                                                            color:
-                                                                Color(0x4D303030)),
+                                                        decoration:
+                                                            BoxDecoration(
+                                                                color: Color(
+                                                                    0x4D303030)),
                                                         height: 130,
                                                         width: 130,
                                                       ),
                                                       Padding(
-                                                        padding: EdgeInsets.only(
-                                                            top: 95),
+                                                        padding:
+                                                            EdgeInsets.only(
+                                                                top: 95),
                                                         child: Container(
                                                             height: 35,
                                                             width: 130,
@@ -451,28 +457,33 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                                       Container(
                                                           height: 130,
                                                           width: 130,
-                                                          decoration: BoxDecoration(
+                                                          decoration:
+                                                              BoxDecoration(
                                                             borderRadius:
                                                                 BorderRadius
-                                                                    .circular(4),
+                                                                    .circular(
+                                                                        4),
                                                           ),
-                                                          child:
-                                                              CommonUI.cachedImage(
-                                                                  widget.data.image,
+                                                          child: CommonUI
+                                                              .cachedImage(
+                                                                  widget.data
+                                                                      .image,
                                                                   ImageAssets
                                                                       .placeholder,
                                                                   fit: BoxFit
                                                                       .fitWidth)),
                                                       Container(
-                                                        decoration: BoxDecoration(
-                                                            color:
-                                                                Color(0x4D303030)),
+                                                        decoration:
+                                                            BoxDecoration(
+                                                                color: Color(
+                                                                    0x4D303030)),
                                                         height: 130,
                                                         width: 130,
                                                       ),
                                                       Padding(
-                                                        padding: EdgeInsets.only(
-                                                            top: 95),
+                                                        padding:
+                                                            EdgeInsets.only(
+                                                                top: 95),
                                                         child: Container(
                                                             height: 35,
                                                             width: 130,
@@ -564,17 +575,20 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                         StatefulBuilder(
                                           builder: (context, state) => Center(
                                             child: SliderTheme(
-                                              data:
-                                                  SliderTheme.of(context).copyWith(
-                                                activeTrackColor: Colors.brown[700],
+                                              data: SliderTheme.of(context)
+                                                  .copyWith(
+                                                activeTrackColor:
+                                                    Colors.brown[700],
                                                 inactiveTrackColor:
                                                     Colors.brown[100],
                                                 trackShape:
                                                     RectangularSliderTrackShape(),
                                                 trackHeight: 4.0,
                                                 thumbColor: Colors.brown[400],
-                                                thumbShape: RoundSliderThumbShape(
-                                                    enabledThumbRadius: 12.0),
+                                                thumbShape:
+                                                    RoundSliderThumbShape(
+                                                        enabledThumbRadius:
+                                                            12.0),
                                                 overlayColor:
                                                     Colors.brown.withAlpha(32),
                                                 overlayShape:
@@ -626,7 +640,6 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                   // ]),
                                 ),
                               ),
-                            
                             ],
                           ),
                         ),
@@ -640,88 +653,85 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                           child: Icon(
                             Icons.edit,
                             color: Colors.white,
-                            size: 45,  
+                            size: 45,
                           ),
                         )),
-                          Positioned(
-                                                    bottom: -20,
+                    Positioned(
+                      bottom: -20,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          ElevatedButton(
+                            onPressed: () {
+                              setState(() {
+                                _nameEnController =
+                                    TextEditingController(text: product.nameEn);
+                                _descriptionEnController =
+                                    TextEditingController(
+                                        text: product.descriptionEn);
+                                _priceController = TextEditingController(
+                                    text: product.price.toString());
+                                _imageController =
+                                    TextEditingController(text: product.image);
+                              });
 
-                            child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    ElevatedButton(
-                                      onPressed: () {
-                                        setState(() {
-                                          _nameEnController = TextEditingController(
-                                              text: product.nameEn);
-                                          _descriptionEnController =
-                                              TextEditingController(
-                                                  text: product.descriptionEn);
-                                          _priceController = TextEditingController(
-                                              text: product.price.toString());
-                                          _imageController = TextEditingController(
-                                              text: product.image);
-                                        });
-                          
-                                        Navigator.of(context).pop();
-                                      },
-                                      style: ButtonStyle(
-                                        backgroundColor:
-                                            MaterialStateProperty.all(Colors.white),
-                                      ),
-                                      child: Text(
-                                        'Cancel',
-                                        style: TextStyle(color: Colors.black),
-                                      ),
-                                    ),
-                                    SizedBox(width: 15),
-                                    ElevatedButton(
-                                      onPressed: () async {
-                                        _formKey.currentState!.save();
-                                        if (_formKey.currentState!.validate()) {
-                                          FocusScope.of(context).unfocus();
-                                          await FirebaseFirestore.instance
-                                              .collection(product.category)
-                                              .doc(product.id)
-                                              .update({
-                                            'nameEn': _nameEnController.text,
-                                            'nameAr': _nameArController.text,
-                                            'descriptionEn':
-                                                _descriptionEnController.text,
-                                            'descriptionAr':
-                                                _descriptionArController.text,
-                                            'price': _priceController.text,
-                                            'image': _imageController.text,
-                                            'weight': _value
-                                          }).whenComplete(() {
-                                            Navigator.of(context).pop();
-                          
-                                            CommonUI.successDialog(context,
-                                                message: "Saved successfully");
-                                          }).onError((error, stackTrrace) =>
-                                                  showDialog(
-                                                    context: context,
-                                                    builder: (_) {
-                                                      return AlertDialog(
-                                                        content:
-                                                            Text(error.toString()),
-                                                      );
-                                                    },
-                                                  ));
-                                        }
-                                      },
-                                      style: ButtonStyle(
-                                        backgroundColor: MaterialStateProperty.all(
-                                            Colors.blueAccent),
-                                      ),
-                                      child: Text(
-                                        'Save',
-                                        style: TextStyle(color: Colors.white),
-                                      ),
-                                    ),
-                                  ],
-                                ),
+                              Navigator.of(context).pop();
+                            },
+                            style: ButtonStyle(
+                              backgroundColor:
+                                  MaterialStateProperty.all(Colors.white),
+                            ),
+                            child: Text(
+                              'Cancel',
+                              style: TextStyle(color: Colors.black),
+                            ),
                           ),
+                          SizedBox(width: 15),
+                          ElevatedButton(
+                            onPressed: () async {
+                              _formKey.currentState!.save();
+                              if (_formKey.currentState!.validate()) {
+                                FocusScope.of(context).unfocus();
+                                await FirebaseFirestore.instance
+                                    .collection(product.category)
+                                    .doc(product.id)
+                                    .update({
+                                  'nameEn': _nameEnController.text,
+                                  'nameAr': _nameArController.text,
+                                  'descriptionEn':
+                                      _descriptionEnController.text,
+                                  'descriptionAr':
+                                      _descriptionArController.text,
+                                  'price': _priceController.text,
+                                  'image': _imageController.text,
+                                  'weight': _value
+                                }).whenComplete(() {
+                                  Navigator.of(context).pop();
+
+                                  CommonUI.successDialog(context,
+                                      message: "Saved successfully");
+                                }).onError((error, stackTrrace) => showDialog(
+                                          context: context,
+                                          builder: (_) {
+                                            return AlertDialog(
+                                              content: Text(error.toString()),
+                                            );
+                                          },
+                                        ));
+                              }
+                            },
+                            style: ButtonStyle(
+                              backgroundColor:
+                                  MaterialStateProperty.all(Colors.blueAccent),
+                            ),
+                            child: Text(
+                              'Save',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   ],
                 ),
               ),

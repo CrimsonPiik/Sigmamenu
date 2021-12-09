@@ -329,8 +329,10 @@ class _AddBannerButtonState extends State<AddBannerButton> {
                                   onTap: () async {
                                     _imageBannerController.text =
                                         await fireBaseUploadFileWeb(id);
-                                    _imagevalue.value =
-                                        _imageBannerController.text;
+                                         if (_imageBannerController.text != '') {
+                                            _imagevalue.value =
+                                               _imageBannerController.text;
+                                          }
                                   },
                                   child: Center(
                                     child: Container(

@@ -112,7 +112,10 @@ class _AddProductButtonState extends State<AddProductButton> {
                               onTap: () async {
                                 _imageController.text =
                                     await fireBaseUploadFileWeb(id);
-                                _imagevalue.value = _imageController.text;
+                                     if (_imageController.text != '') {
+                                            _imagevalue.value =
+                                                _imageController.text;
+                                          }
                               },
                               child: Center(
                                 child: Container(
