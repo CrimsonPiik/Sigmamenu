@@ -164,49 +164,52 @@ class _CategoriesWithDeleteButtonState
                           ),
                         ),
                         SizedBox(height: 4),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            ElevatedButton(
-                              onPressed: () {
-                                Navigator.of(context).pop();
-                              },
-                              style: ButtonStyle(
-                                backgroundColor:
-                                    MaterialStateProperty.all(Colors.white),
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 12.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              ElevatedButton(
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                                style: ButtonStyle(
+                                  backgroundColor:
+                                      MaterialStateProperty.all(Colors.white),
+                                ),
+                                child: Text(
+                                  'Cancel',
+                                  style: TextStyle(color: Colors.black),
+                                ),
                               ),
-                              child: Text(
-                                'Cancel',
-                                style: TextStyle(color: Colors.black),
-                              ),
-                            ),
-                            SizedBox(width: 15),
-                            ElevatedButton(
-                              onPressed: () async {
-                                categoriesList.remove(category);
+                              SizedBox(width: 15),
+                              ElevatedButton(
+                                onPressed: () async {
+                                  categoriesList.remove(category);
 
-                                await FirebaseFirestore.instance
-                                    .collection('Categories')
-                                    .doc(category)
-                                    .delete();
+                                  await FirebaseFirestore.instance
+                                      .collection('Categories')
+                                      .doc(category)
+                                      .delete();
 
-                                ///So it get back to index 0 after deleting the collection
-                                setState(() {
-                                  selectedIndex = 0;
-                                });
-                                streamController.add(selectedIndex);
-                                Navigator.of(context).pop();
-                              },
-                              style: ButtonStyle(
-                                backgroundColor:
-                                    MaterialStateProperty.all(Colors.redAccent),
+                                  ///So it get back to index 0 after deleting the collection
+                                  setState(() {
+                                    selectedIndex = 0;
+                                  });
+                                  streamController.add(selectedIndex);
+                                  Navigator.of(context).pop();
+                                },
+                                style: ButtonStyle(
+                                  backgroundColor:
+                                      MaterialStateProperty.all(Colors.redAccent),
+                                ),
+                                child: Text(
+                                  'Delete',
+                                  style: TextStyle(color: Colors.white),
+                                ),
                               ),
-                              child: Text(
-                                'Delete',
-                                style: TextStyle(color: Colors.white),
-                              ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ],
                     ),

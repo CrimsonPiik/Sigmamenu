@@ -236,7 +236,6 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
 // =====                                    DELETE                                        =====
 // =====  =====  ===== =====  =====  ===== =====  =====  ===== =====  =====  ===== =====  =====
 
-
   _showDeleteDialog(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     showDialog(
@@ -262,7 +261,9 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                         Text(
                           'Delete',
                           style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: Responsive.isMiniMobile(context) ? 15 :  20),
+                              fontWeight: FontWeight.bold,
+                              fontSize:
+                                  Responsive.isMiniMobile(context) ? 15 : 20),
                         ),
                         SizedBox(height: 4),
                         Container(
@@ -270,7 +271,9 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                           child: Text(
                             'Are you sure you want to delete this product ?',
                             textAlign: TextAlign.center,
-                            style: TextStyle(fontSize: Responsive.isMiniMobile(context)? 12 : 17),
+                            style: TextStyle(
+                                fontSize:
+                                    Responsive.isMiniMobile(context) ? 12 : 17),
                           ),
                         ),
                         SizedBox(height: 4),
@@ -340,388 +343,388 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
     showDialog(
         context: context,
         builder: (BuildContext context) {
-          return FormBuilder(
-            key: _formKey,
-            child: AlertDialog(
-              title: Text(
-                "Edit",
-                style:
-                    TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
-              ),
-              content: SingleChildScrollView(
-                child: Container(
-                  width: Responsive.isDesktop(context) ? 350 : 290,
-                  padding: EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                    color: Colors.grey.withOpacity(0.1),
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      ValueListenableBuilder(
-                        valueListenable: _imagevalue,
-                        builder: (BuildContext context, dynamic value,
-                            Widget? child) {
-                          return Center(
-                            child: Ink(
-                              width: 180,
-                              height: 180,
-                              child: InkWell(
-                                onTap: () async {
-                                  _imageController.text =
-                                      await fireBaseUploadFileWeb(
-                                          widget.data.id);
-                                  _imagevalue.value = _imageController.text;
-                                },
-                                child: Center(
-                                  child: Container(
-                                    height: 180,
-                                    width: 180,
-                                    child: Column(children: [
-                                      _imagevalue.value != null
-                                          ? Stack(children: [
-                                              Container(
-                                                height: 180,
-                                                width: 180,
-                                                child: InteractiveViewer(
-                                                  child: Image.network(
-                                                    value,
-                                                    fit: BoxFit.fitWidth,
-                                                    loadingBuilder: (context,
-                                                        child,
-                                                        loadingProgress) {
-                                                      if (loadingProgress ==
-                                                          null) {
-                                                        return child;
-                                                      }
-                                                      return Center(
-                                                        child:
-                                                            CircularProgressIndicator(),
-                                                      );
-                                                    },
-                                                  ),
-                                                ),
-                                              ),
-                                              Container(
-                                                decoration: BoxDecoration(
-                                                    color: Color(0x4D303030)),
-                                                height: 180,
-                                                width: 180,
-                                              ),
-                                              Padding(
-                                                padding:
-                                                    EdgeInsets.only(top: 145),
-                                                child: Container(
-                                                    height: 35,
-                                                    width: 180,
-                                                    decoration: BoxDecoration(
-                                                        color:
-                                                            Color(0x4D000000)),
-                                                    child: Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .center,
-                                                      children: [
-                                                        Text(
-                                                          'Edit ',
-                                                          style: TextStyle(
-                                                              color:
-                                                                  Colors.white),
-                                                        ),
-                                                        Icon(Icons.edit,
-                                                            color: Colors.white)
-                                                      ],
-                                                    )),
-                                              ),
-                                            ])
-                                          : Stack(children: [
-                                              Container(
-                                                  height: 180,
-                                                  width: 180,
-                                                  decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            4),
-                                                  ),
-                                                  child: CommonUI.cachedImage(
-                                                      widget.data.image,
-                                                      ImageAssets.placeholder,
-                                                      fit: BoxFit.fitWidth)),
-                                              Container(
-                                                decoration: BoxDecoration(
-                                                    color: Color(0x4D303030)),
-                                                height: 180,
-                                                width: 180,
-                                              ),
-                                              Padding(
-                                                padding:
-                                                    EdgeInsets.only(top: 145),
-                                                child: Container(
-                                                    height: 35,
-                                                    width: 180,
-                                                    decoration: BoxDecoration(
-                                                        color:
-                                                            Color(0x4D000000)),
-                                                    child: Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .center,
-                                                      children: [
-                                                        Text(
-                                                          'Edit ',
-                                                          style: TextStyle(
-                                                              color:
-                                                                  Colors.white),
-                                                        ),
-                                                        Icon(Icons.edit,
-                                                            color: Colors.white)
-                                                      ],
-                                                    )),
-                                              ),
-                                            ]),
-                                    ]),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          );
-                        },
-                      ),
-                      SizedBox(height: 40),
-                      // Row(
-                      //   mainAxisAlignment: MainAxisAlignment.center,
-                      //   children: [
-                      //     InkWell(
-                      //         onTap: () {
-                      //           setState(() {
-                      //             en = true;
-                      //           });
-                      //         },
-                      //         child: Container(
-                      //             decoration: BoxDecoration(
-                      //                 color: en ? Colors.red : Colors.black),
-                      //             child: Text(
-                      //               'EN',
-                      //               style:
-                      //                   TextStyle(fontWeight: FontWeight.bold),
-                      //             ))),
-                      //     SizedBox(width: 12),
-                      //     InkWell(
-                      //         onTap: () {
-                      //           setState(() {
-                      //             en = false;
-                      //           });
-                      //         },
-                      //         child: Container(
-                      //             decoration: BoxDecoration(
-                      //                 color: en ? Colors.black : Colors.red),
-                      //             child: Text(
-                      //               'AR',
-                      //               style:
-                      //                   TextStyle(fontWeight: FontWeight.bold),
-                      //             ))),
-                      //   ],
-                      // ),
-                      // en == true
-                      // ? Column(
-                      // children: [
-                      Container(
-                        child: CommonUI.textField(
-                          context: context,
-                          name: "Name",
-                          hint: "Name",
-                          isEdit: true,
-                          minlines: 1,
-                          controller: _nameEnController,
-                          validate: FormBuilderValidators.compose([
-                            FormBuilderValidators.required(context),
-                          ]),
-                        ),
-                      ),
-                      SizedBox(height: 4),
-                      Container(
-                        child: CommonUI.textField(
-                          context: context,
-                          name: "Arabic Name (Optional)",
-                          hint: "Arabic Name (Optional)",
-                          isEdit: true,
-                          minlines: 1,
-                          controller: _nameArController,
-                          // validate: FormBuilderValidators.compose([
-                          //   FormBuilderValidators.required(context),
-                          // ]),
-                        ),
-                      ),
-                      SizedBox(height: 4),
-
-                      Container(
-                        child: CommonUI.textField(
-                          context: context,
-                          name: "price",
-                          hint: "Price",
-                          isEdit: true,
-                          keyboardtype: TextInputType.number,
-                          controller: _priceController,
-                          validate: FormBuilderValidators.compose([
-                            FormBuilderValidators.required(context),
-                            FormBuilderValidators.numeric(context),
-                          ]),
-                        ),
-                      ),
-                      product.weight != 0
-                          ? Column(
-                              children: [
-                                SizedBox(height: 4),
-                                Text(
-                                  "Value ",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 12,
-                                      color: Colors.brown[400]),
-                                ),
-                                SizedBox(height: 4),
-                                StatefulBuilder(
-                                  builder: (context, state) => Center(
-                                    child: SliderTheme(
-                                      data: SliderTheme.of(context).copyWith(
-                                        activeTrackColor: Colors.brown[700],
-                                        inactiveTrackColor: Colors.brown[100],
-                                        trackShape:
-                                            RectangularSliderTrackShape(),
-                                        trackHeight: 4.0,
-                                        thumbColor: Colors.brown[400],
-                                        thumbShape: RoundSliderThumbShape(
-                                            enabledThumbRadius: 12.0),
-                                        overlayColor:
-                                            Colors.brown.withAlpha(32),
-                                        overlayShape: RoundSliderOverlayShape(
-                                            overlayRadius: 28.0),
-                                      ),
-                                      child: Slider(
-                                        value: _value,
-                                        min: 1.0,
-                                        max: 101.0,
-                                        divisions: 2,
-                                        onChanged: (value) {
-                                          state(() {
-                                            _value = value;
-                                          });
+          return Padding(
+            padding: const EdgeInsets.only(top: 40.0, bottom: 20.0),
+            child: FormBuilder(
+              key: _formKey,
+              child: Dialog(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(4.0)),
+                child: Stack(
+                  clipBehavior: Clip.none,
+                  alignment: Alignment.topCenter,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: SingleChildScrollView(
+                        child:
+                            Container(
+                          width: Responsive.isDesktop(context) ? 350 : 290,
+                          padding: EdgeInsets.all(16),
+                          decoration: BoxDecoration(
+                            // color: Colors.grey.withOpacity(0.1),
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              ValueListenableBuilder(
+                                valueListenable: _imagevalue,
+                                builder: (BuildContext context, dynamic value,
+                                    Widget? child) {
+                                  return Center(
+                                    child: Ink(
+                                      width: 130,
+                                      height: 130,
+                                      child: InkWell(
+                                        onTap: () async {
+                                          _imageController.text =
+                                              await fireBaseUploadFileWeb(
+                                                  widget.data.id);
+                                          _imagevalue.value = _imageController.text;
                                         },
+                                        child: Center(
+                                          child: Container(
+                                            height: 130,
+                                            width: 130,
+                                            child: Column(children: [
+                                              _imagevalue.value != null
+                                                  ? Stack(children: [
+                                                      Container(
+                                                        height: 130,
+                                                        width: 130,
+                                                        child: InteractiveViewer(
+                                                          child: Image.network(
+                                                            value,
+                                                            fit: BoxFit.fitWidth,
+                                                            loadingBuilder: (context,
+                                                                child,
+                                                                loadingProgress) {
+                                                              if (loadingProgress ==
+                                                                  null) {
+                                                                return child;
+                                                              }
+                                                              return Center(
+                                                                child:
+                                                                    CircularProgressIndicator(),
+                                                              );
+                                                            },
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      Container(
+                                                        decoration: BoxDecoration(
+                                                            color:
+                                                                Color(0x4D303030)),
+                                                        height: 130,
+                                                        width: 130,
+                                                      ),
+                                                      Padding(
+                                                        padding: EdgeInsets.only(
+                                                            top: 95),
+                                                        child: Container(
+                                                            height: 35,
+                                                            width: 130,
+                                                            decoration:
+                                                                BoxDecoration(
+                                                                    color: Color(
+                                                                        0x4D000000)),
+                                                            child: Row(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .center,
+                                                              children: [
+                                                                Text(
+                                                                  'Edit ',
+                                                                  style: TextStyle(
+                                                                      color: Colors
+                                                                          .white),
+                                                                ),
+                                                                Icon(Icons.edit,
+                                                                    color: Colors
+                                                                        .white)
+                                                              ],
+                                                            )),
+                                                      ),
+                                                    ])
+                                                  : Stack(children: [
+                                                      Container(
+                                                          height: 130,
+                                                          width: 130,
+                                                          decoration: BoxDecoration(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(4),
+                                                          ),
+                                                          child:
+                                                              CommonUI.cachedImage(
+                                                                  widget.data.image,
+                                                                  ImageAssets
+                                                                      .placeholder,
+                                                                  fit: BoxFit
+                                                                      .fitWidth)),
+                                                      Container(
+                                                        decoration: BoxDecoration(
+                                                            color:
+                                                                Color(0x4D303030)),
+                                                        height: 130,
+                                                        width: 130,
+                                                      ),
+                                                      Padding(
+                                                        padding: EdgeInsets.only(
+                                                            top: 95),
+                                                        child: Container(
+                                                            height: 35,
+                                                            width: 130,
+                                                            decoration:
+                                                                BoxDecoration(
+                                                                    color: Color(
+                                                                        0x4D000000)),
+                                                            child: Row(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .center,
+                                                              children: [
+                                                                Text(
+                                                                  'Edit ',
+                                                                  style: TextStyle(
+                                                                      color: Colors
+                                                                          .white),
+                                                                ),
+                                                                Icon(Icons.edit,
+                                                                    color: Colors
+                                                                        .white)
+                                                              ],
+                                                            )),
+                                                      ),
+                                                    ]),
+                                            ]),
+                                          ),
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                ),
-                              ],
-                            )
-                          : Container(),
-                      SizedBox(height: 4),
-                      Container(
-                        child: CommonUI.textField(
-                          context: context,
-                          name: "Description",
-                          hint: "Description",
-                          maxlength: 600,
-                          minlines: 2,
-                          controller: _descriptionEnController,
-                          validate: FormBuilderValidators.compose([
-                            FormBuilderValidators.required(context),
-                          ]),
-                        ),
-                      ),
-
-                      SizedBox(height: 4),
-                      Container(
-                        child: CommonUI.textField(
-                          context: context,
-                          name: "Arabic Description (Optional)",
-                          hint: "Arabic Description (Optional)",
-                          maxlength: 600,
-                          minlines: 2,
-                          controller: _descriptionArController,
-                          // validate: FormBuilderValidators.compose([
-                          //   FormBuilderValidators.required(context),
-                          // ]),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              actions: [
-                TextButton(
-                  onPressed: () async {
-                    _formKey.currentState!.save();
-                    if (_formKey.currentState!.validate()) {
-                      FocusScope.of(context).unfocus();
-                      await FirebaseFirestore.instance
-                          .collection(product.category)
-                          .doc(product.id)
-                          .update({
-                        'nameEn': _nameEnController.text,
-                        'nameAr': _nameArController.text,
-                        'descriptionEn': _descriptionEnController.text,
-                        'descriptionAr': _descriptionArController.text,
-                        'price': _priceController.text,
-                        'image': _imageController.text,
-                        'weight': _value
-                      }).whenComplete(() {
-                        Navigator.of(context).pop();
-
-                        CommonUI.successDialog(context,
-                            message: "Saved successfully");
-                      }).onError((error, stackTrrace) => showDialog(
-                                context: context,
-                                builder: (_) {
-                                  return AlertDialog(
-                                    content: Text(error.toString()),
                                   );
                                 },
-                              ));
-                    }
-                  },
-                  child: Container(
-                    padding: EdgeInsets.all(10),
-                    child: Text(
-                      'Save',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold, color: Colors.black),
+                              ),
+                              SizedBox(height: 40),
+                              Container(
+                                child: CommonUI.textField(
+                                  context: context,
+                                  name: "Name",
+                                  hint: "Name",
+                                  isEdit: true,
+                                  minlines: 1,
+                                  controller: _nameEnController,
+                                  validate: FormBuilderValidators.compose([
+                                    FormBuilderValidators.required(context),
+                                  ]),
+                                ),
+                              ),
+                              SizedBox(height: 4),
+                              Container(
+                                child: CommonUI.textField(
+                                  context: context,
+                                  name: "Arabic Name (Optional)",
+                                  hint: "Arabic Name (Optional)",
+                                  isEdit: true,
+                                  minlines: 1,
+                                  controller: _nameArController,
+                                  // validate: FormBuilderValidators.compose([
+                                  //   FormBuilderValidators.required(context),
+                                  // ]),
+                                ),
+                              ),
+                              SizedBox(height: 4),
+                              Container(
+                                child: CommonUI.textField(
+                                  context: context,
+                                  name: "price",
+                                  hint: "Price",
+                                  isEdit: true,
+                                  keyboardtype: TextInputType.number,
+                                  controller: _priceController,
+                                  validate: FormBuilderValidators.compose([
+                                    FormBuilderValidators.required(context),
+                                    FormBuilderValidators.numeric(context),
+                                  ]),
+                                ),
+                              ),
+                              product.weight != 0
+                                  ? Column(
+                                      children: [
+                                        SizedBox(height: 4),
+                                        Text(
+                                          "Value ",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 12,
+                                              color: Colors.brown[400]),
+                                        ),
+                                        SizedBox(height: 4),
+                                        StatefulBuilder(
+                                          builder: (context, state) => Center(
+                                            child: SliderTheme(
+                                              data:
+                                                  SliderTheme.of(context).copyWith(
+                                                activeTrackColor: Colors.brown[700],
+                                                inactiveTrackColor:
+                                                    Colors.brown[100],
+                                                trackShape:
+                                                    RectangularSliderTrackShape(),
+                                                trackHeight: 4.0,
+                                                thumbColor: Colors.brown[400],
+                                                thumbShape: RoundSliderThumbShape(
+                                                    enabledThumbRadius: 12.0),
+                                                overlayColor:
+                                                    Colors.brown.withAlpha(32),
+                                                overlayShape:
+                                                    RoundSliderOverlayShape(
+                                                        overlayRadius: 28.0),
+                                              ),
+                                              child: Slider(
+                                                value: _value,
+                                                min: 1.0,
+                                                max: 101.0,
+                                                divisions: 2,
+                                                onChanged: (value) {
+                                                  state(() {
+                                                    _value = value;
+                                                  });
+                                                },
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    )
+                                  : Container(),
+                              SizedBox(height: 4),
+                              Container(
+                                child: CommonUI.textField(
+                                  context: context,
+                                  name: "Description",
+                                  hint: "Description",
+                                  maxlength: 600,
+                                  minlines: 2,
+                                  controller: _descriptionEnController,
+                                  validate: FormBuilderValidators.compose([
+                                    FormBuilderValidators.required(context),
+                                  ]),
+                                ),
+                              ),
+                              SizedBox(height: 4),
+                              Container(
+                                child: CommonUI.textField(
+                                  context: context,
+                                  name: "Arabic Description (Optional)",
+                                  hint: "Arabic Description (Optional)",
+                                  maxlength: 600,
+                                  minlines: 2,
+                                  controller: _descriptionArController,
+                                  // validate: FormBuilderValidators.compose([
+                                  //   FormBuilderValidators.required(context),
+                                  // ]),
+                                ),
+                              ),
+                            
+                            ],
+                          ),
+                        ),
+                      ),
                     ),
-                    decoration: BoxDecoration(
-                      color: Colors.grey.withOpacity(0.5),
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                  ),
-                ),
-                TextButton(
-                  onPressed: () {
-                    setState(() {
-                      _nameEnController =
-                          TextEditingController(text: product.nameEn);
-                      _descriptionEnController =
-                          TextEditingController(text: product.descriptionEn);
-                      _priceController =
-                          TextEditingController(text: product.price.toString());
-                      _imageController =
-                          TextEditingController(text: product.image);
-                    });
+                    Positioned(
+                        top: -60,
+                        child: CircleAvatar(
+                          backgroundColor: Colors.blueAccent,
+                          radius: 40,
+                          child: Icon(
+                            Icons.edit,
+                            color: Colors.white,
+                            size: 45,  
+                          ),
+                        )),
+                          Positioned(
+                                                    bottom: -20,
 
-                    Navigator.of(context).pop();
-                  },
-                  child: Container(
-                    padding: EdgeInsets.all(10),
-                    child: Text(
-                      'Cancel',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold, color: Colors.black),
-                    ),
-                    decoration: BoxDecoration(
-                      color: Colors.grey.withOpacity(0.5),
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                  ),
+                            child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    ElevatedButton(
+                                      onPressed: () {
+                                        setState(() {
+                                          _nameEnController = TextEditingController(
+                                              text: product.nameEn);
+                                          _descriptionEnController =
+                                              TextEditingController(
+                                                  text: product.descriptionEn);
+                                          _priceController = TextEditingController(
+                                              text: product.price.toString());
+                                          _imageController = TextEditingController(
+                                              text: product.image);
+                                        });
+                          
+                                        Navigator.of(context).pop();
+                                      },
+                                      style: ButtonStyle(
+                                        backgroundColor:
+                                            MaterialStateProperty.all(Colors.white),
+                                      ),
+                                      child: Text(
+                                        'Cancel',
+                                        style: TextStyle(color: Colors.black),
+                                      ),
+                                    ),
+                                    SizedBox(width: 15),
+                                    ElevatedButton(
+                                      onPressed: () async {
+                                        _formKey.currentState!.save();
+                                        if (_formKey.currentState!.validate()) {
+                                          FocusScope.of(context).unfocus();
+                                          await FirebaseFirestore.instance
+                                              .collection(product.category)
+                                              .doc(product.id)
+                                              .update({
+                                            'nameEn': _nameEnController.text,
+                                            'nameAr': _nameArController.text,
+                                            'descriptionEn':
+                                                _descriptionEnController.text,
+                                            'descriptionAr':
+                                                _descriptionArController.text,
+                                            'price': _priceController.text,
+                                            'image': _imageController.text,
+                                            'weight': _value
+                                          }).whenComplete(() {
+                                            Navigator.of(context).pop();
+                          
+                                            CommonUI.successDialog(context,
+                                                message: "Saved successfully");
+                                          }).onError((error, stackTrrace) =>
+                                                  showDialog(
+                                                    context: context,
+                                                    builder: (_) {
+                                                      return AlertDialog(
+                                                        content:
+                                                            Text(error.toString()),
+                                                      );
+                                                    },
+                                                  ));
+                                        }
+                                      },
+                                      style: ButtonStyle(
+                                        backgroundColor: MaterialStateProperty.all(
+                                            Colors.blueAccent),
+                                      ),
+                                      child: Text(
+                                        'Save',
+                                        style: TextStyle(color: Colors.white),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                          ),
+                  ],
                 ),
-              ],
+              ),
             ),
           );
         });
