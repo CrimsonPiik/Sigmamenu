@@ -837,7 +837,7 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
       context: context,
       pageBuilder: (context, anim1, anim2) {
         return Dismissible(
-          direction: DismissDirection.vertical,
+          direction: DismissDirection.down,
           onDismissed: (_) {
             Navigator.of(context).pop();
           },
