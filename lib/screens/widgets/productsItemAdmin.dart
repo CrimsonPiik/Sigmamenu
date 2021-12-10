@@ -108,7 +108,7 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                     TextEditingController(text: widget.data.image);
                 _value = widget.data.weight.toDouble();
               });
-              _showEditDialog(context, widget.data);
+              _showEditDialog(context);
             },
             backgroundColor: Colors.blueAccent,
             foregroundColor: Colors.white,
@@ -338,7 +338,7 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
 // =====                                    EDIT                                          =====
 // =====  =====  ===== =====  =====  ===== =====  =====  ===== =====  =====  ===== =====  =====
 
-  _showEditDialog(BuildContext context, Product product) {
+  _showEditDialog(BuildContext context) {
     // bool en = true;
     showDialog(
         context: context,
@@ -380,10 +380,12 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                           _imageController.text =
                                               await fireBaseUploadFileWeb(
                                                   widget.data.id);
-                                          if (_imageController.text != '') {
-                                            _imagevalue.value =
-                                                _imageController.text;
-                                          }
+                                          _imagevalue.value =
+                                              _imageController.text;
+                                          // if (_imageController.text != '') {
+                                          //   _imagevalue.value =
+                                          //       _imageController.text;
+                                          // }
                                         },
                                         child: Center(
                                           child: Container(
@@ -560,7 +562,7 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                   ]),
                                 ),
                               ),
-                              product.weight != 0
+                              widget.data.weight != 0
                                   ? Column(
                                       children: [
                                         SizedBox(height: 4),
@@ -640,6 +642,88 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                   // ]),
                                 ),
                               ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  ElevatedButton(
+                                    onPressed: () {
+                                      setState(() {
+                                        _nameEnController =
+                                            TextEditingController(
+                                                text: widget.data.nameEn);
+                                        _descriptionEnController =
+                                            TextEditingController(
+                                                text:
+                                                    widget.data.descriptionEn);
+                                        _priceController =
+                                            TextEditingController(
+                                                text: widget.data.price
+                                                    .toString());
+                                        _imageController =
+                                            TextEditingController(
+                                                text: widget.data.image);
+                                      });
+
+                                      Navigator.of(context).pop();
+                                    },
+                                    style: ButtonStyle(
+                                      backgroundColor:
+                                          MaterialStateProperty.all(
+                                              Colors.white),
+                                    ),
+                                    child: Text(
+                                      'Cancel',
+                                      style: TextStyle(color: Colors.black),
+                                    ),
+                                  ),
+                                  SizedBox(width: 15),
+                                  ElevatedButton(
+                                    onPressed: () async {
+                                      _formKey.currentState!.save();
+                                      if (_formKey.currentState!.validate()) {
+                                        FocusScope.of(context).unfocus();
+                                        await FirebaseFirestore.instance
+                                            .collection(widget.data.category)
+                                            .doc(widget.data.id)
+                                            .update({
+                                          'nameEn': _nameEnController.text,
+                                          'nameAr': _nameArController.text,
+                                          'descriptionEn':
+                                              _descriptionEnController.text,
+                                          'descriptionAr':
+                                              _descriptionArController.text,
+                                          'price': _priceController.text,
+                                          'image': _imageController.text,
+                                          'weight': _value
+                                        }).whenComplete(() {
+                                          Navigator.of(context).pop();
+
+                                          CommonUI.successDialog(context,
+                                              message: "Saved successfully");
+                                        }).onError((error, stackTrrace) =>
+                                                showDialog(
+                                                  context: context,
+                                                  builder: (_) {
+                                                    return AlertDialog(
+                                                      content: Text(
+                                                          error.toString()),
+                                                    );
+                                                  },
+                                                ));
+                                      }
+                                    },
+                                    style: ButtonStyle(
+                                      backgroundColor:
+                                          MaterialStateProperty.all(
+                                              Colors.blueAccent),
+                                    ),
+                                    child: Text(
+                                      'Save',
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ],
                           ),
                         ),
@@ -656,82 +740,82 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                             size: 45,
                           ),
                         )),
-                    Positioned(
-                      bottom: -20,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          ElevatedButton(
-                            onPressed: () {
-                              setState(() {
-                                _nameEnController =
-                                    TextEditingController(text: product.nameEn);
-                                _descriptionEnController =
-                                    TextEditingController(
-                                        text: product.descriptionEn);
-                                _priceController = TextEditingController(
-                                    text: product.price.toString());
-                                _imageController =
-                                    TextEditingController(text: product.image);
-                              });
+                    // Positioned(
+                    // bottom: -20,
+                    // child: Row(
+                    //   mainAxisAlignment: MainAxisAlignment.center,
+                    //   children: [
+                    //     ElevatedButton(
+                    //       onPressed: () {
+                    //         setState(() {
+                    //           _nameEnController = TextEditingController(
+                    //               text: widget.data.nameEn);
+                    //           _descriptionEnController =
+                    //               TextEditingController(
+                    //                   text: widget.data.descriptionEn);
+                    //           _priceController = TextEditingController(
+                    //               text: widget.data.price.toString());
+                    //           _imageController = TextEditingController(
+                    //               text: widget.data.image);
+                    //         });
 
-                              Navigator.of(context).pop();
-                            },
-                            style: ButtonStyle(
-                              backgroundColor:
-                                  MaterialStateProperty.all(Colors.white),
-                            ),
-                            child: Text(
-                              'Cancel',
-                              style: TextStyle(color: Colors.black),
-                            ),
-                          ),
-                          SizedBox(width: 15),
-                          ElevatedButton(
-                            onPressed: () async {
-                              _formKey.currentState!.save();
-                              if (_formKey.currentState!.validate()) {
-                                FocusScope.of(context).unfocus();
-                                await FirebaseFirestore.instance
-                                    .collection(product.category)
-                                    .doc(product.id)
-                                    .update({
-                                  'nameEn': _nameEnController.text,
-                                  'nameAr': _nameArController.text,
-                                  'descriptionEn':
-                                      _descriptionEnController.text,
-                                  'descriptionAr':
-                                      _descriptionArController.text,
-                                  'price': _priceController.text,
-                                  'image': _imageController.text,
-                                  'weight': _value
-                                }).whenComplete(() {
-                                  Navigator.of(context).pop();
+                    //         Navigator.of(context).pop();
+                    //       },
+                    //       style: ButtonStyle(
+                    //         backgroundColor:
+                    //             MaterialStateProperty.all(Colors.white),
+                    //       ),
+                    //       child: Text(
+                    //         'Cancel',
+                    //         style: TextStyle(color: Colors.black),
+                    //       ),
+                    //     ),
+                    //     SizedBox(width: 15),
+                    //     ElevatedButton(
+                    //       onPressed: () async {
+                    //         _formKey.currentState!.save();
+                    //         if (_formKey.currentState!.validate()) {
+                    //           FocusScope.of(context).unfocus();
+                    //           await FirebaseFirestore.instance
+                    //               .collection(widget.data.category)
+                    //               .doc(widget.data.id)
+                    //               .update({
+                    //             'nameEn': _nameEnController.text,
+                    //             'nameAr': _nameArController.text,
+                    //             'descriptionEn':
+                    //                 _descriptionEnController.text,
+                    //             'descriptionAr':
+                    //                 _descriptionArController.text,
+                    //             'price': _priceController.text,
+                    //             'image': _imageController.text,
+                    //             'weight': _value
+                    //           }).whenComplete(() {
+                    //             Navigator.of(context).pop();
 
-                                  CommonUI.successDialog(context,
-                                      message: "Saved successfully");
-                                }).onError((error, stackTrrace) => showDialog(
-                                          context: context,
-                                          builder: (_) {
-                                            return AlertDialog(
-                                              content: Text(error.toString()),
-                                            );
-                                          },
-                                        ));
-                              }
-                            },
-                            style: ButtonStyle(
-                              backgroundColor:
-                                  MaterialStateProperty.all(Colors.blueAccent),
-                            ),
-                            child: Text(
-                              'Save',
-                              style: TextStyle(color: Colors.white),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                    //             CommonUI.successDialog(context,
+                    //                 message: "Saved successfully");
+                    //           }).onError((error, stackTrrace) => showDialog(
+                    //                     context: context,
+                    //                     builder: (_) {
+                    //                       return AlertDialog(
+                    //                         content: Text(error.toString()),
+                    //                       );
+                    //                     },
+                    //                   ));
+                    //         }
+                    //       },
+                    //       style: ButtonStyle(
+                    //         backgroundColor:
+                    //             MaterialStateProperty.all(Colors.blueAccent),
+                    //       ),
+                    //       child: Text(
+                    //         'Save',
+                    //         style: TextStyle(color: Colors.white),
+                    //       ),
+                    //     ),
+                    //   ],
+                    // ),
+                    // ),
                   ],
                 ),
               ),
@@ -740,9 +824,11 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
         });
   }
 
-  bool _fromTop = true;
+  bool _fromTop = false;
 
   _animationDialog(context) {
+    final Size _size = MediaQuery.of(context).size;
+
     showGeneralDialog(
       barrierDismissible: true,
       barrierLabel: "Product Animation",
@@ -760,56 +846,57 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
             child: SizedBox.expand(
               child: Stack(
                 children: [
-                  Center(
-                    child: SingleChildScrollView(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          children: <Widget>[
-                            Stack(
+                  Column(
+                    children: <Widget>[
+                      Stack(
+                        children: <Widget>[
+                          Container(
+                            width: // _size.width,
+                                Responsive.isDesktop(context)
+                                    ? Responsive.width(context) / 2
+                                    : Responsive.width(context),
+                            padding: EdgeInsets.only(
+                                top: kDefaultPaddin * 1.5,
+                                left: kDefaultPaddin * 1.5,
+                                right: kDefaultPaddin * 1.5,
+                                bottom: kDefaultPaddin),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(24),
+                                topRight: Radius.circular(24),
+                                // bottomLeft: Radius.circular(24),
+                                // bottomRight: Radius.circular(24),
+                              ),
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
-                                Container(
-                                  width: Responsive.isDesktop(context)
-                                      ? Responsive.width(context) / 2
-                                      : Responsive.width(context),
-                                  padding: EdgeInsets.only(
-                                      top: kDefaultPaddin * 1.5,
-                                      left: kDefaultPaddin * 1.5,
-                                      right: kDefaultPaddin * 1.5,
-                                      bottom: kDefaultPaddin),
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(24),
-                                      topRight: Radius.circular(24),
-                                      bottomLeft: Radius.circular(24),
-                                      bottomRight: Radius.circular(24),
-                                    ),
-                                  ),
-                                  child: Column(
-                                    children: [
-                                      Center(
-                                        child: Hero(
-                                          tag: "${widget.data.id}",
-                                          child: Image.network(
-                                            widget.data.image,
-                                            width:
-                                                Responsive.isMiniMobile(context)
-                                                    ? 270
-                                                    : 300,
-                                            height:
-                                                Responsive.isMiniMobile(context)
-                                                    ? 220
-                                                    : 250,
-                                            fit: BoxFit.fill,
-                                          ),
-                                        ),
+                                Row(
+                                  children: [
+                                    Hero(
+                                      tag: "${widget.data.id}",
+                                      child: Image.network(
+                                        widget.data.image,
+                                        width: 130,
+                                        // Responsive.isMiniMobile(context)
+                                        //     ? 270
+                                        //     : 300,
+                                        height: 130,
+                                        // Responsive.isMiniMobile(context)
+                                        //     ? 220
+                                        //     : 250,
+                                        fit: BoxFit.fill,
                                       ),
-                                      Column(
+                                    ),
+                                    SizedBox(width: 24),
+                                    // Align(
+                                      // alignment:Alignment.topLeft,
+                                      // child:
+                                       Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
-                                        children: <Widget>[
-                                          SizedBox(height: 18),
+                                        children: [
                                           Text(
                                             ProjectLanguage.isLTR()
                                                 ? widget.data.nameEn
@@ -823,21 +910,19 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                                   fontSize:
                                                       Responsive.isMiniMobile(
                                                               context)
-                                                          ? 21
-                                                          : 24,
+                                                          ? 16
+                                                          : 19,
                                                 ),
                                           ),
-                                          // SizedBox(height: 6),
                                           RichText(
                                             text: TextSpan(
                                               children: [
                                                 TextSpan(text: "Price\n"),
                                                 TextSpan(
-                                                  text:
-                                                      "\$${widget.data.price}",
+                                                  text: "\$${widget.data.price}",
                                                   style: Theme.of(context)
                                                       .textTheme
-                                                      .headline5!
+                                                      .headline6!
                                                       .copyWith(
                                                         color: Colors.black,
                                                         fontWeight:
@@ -847,69 +932,63 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                               ],
                                             ),
                                           ),
-                                          SizedBox(height: 30),
-                                          Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Container(
-                                                width: Responsive.isDesktop(
-                                                        context)
-                                                    ? Responsive.width(
-                                                            context) /
-                                                        2.2
-                                                    : Responsive.width(
-                                                            context) /
-                                                        1.35,
-                                                child: RichText(
-                                                  text: TextSpan(
-                                                    children: [
-                                                      TextSpan(
-                                                          text: "Description\n",
-                                                          style: TextStyle(
-                                                              fontSize: Responsive
-                                                                      .isMiniMobile(
-                                                                          context)
-                                                                  ? 13
-                                                                  : 15,
-                                                              color:
-                                                                  Colors.black,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold)),
-                                                      TextSpan(
-                                                          text: ProjectLanguage
-                                                                  .isLTR()
-                                                              ? "${widget.data.descriptionEn}"
-                                                              : "${widget.data.descriptionAr}",
-                                                          style: TextStyle(
-                                                              fontSize: Responsive
-                                                                      .isMiniMobile(
-                                                                          context)
-                                                                  ? 10
-                                                                  : 12,
-                                                              color: Colors
-                                                                  .black)),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ),
-                                              SizedBox(
-                                                  height: kDefaultPaddin * 2),
-                                            ],
-                                          ),
                                         ],
                                       ),
+                                    // ),
+                                  ],
+                                ),
+                                SizedBox(height: 20),
+                                Padding(
+                                  padding: const EdgeInsets.only(bottom: 20.0),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                        width: Responsive.isDesktop(context)
+                                            ? Responsive.width(context) / 2.2
+                                            : Responsive.width(context) / 1.35,
+                                        child: RichText(
+                                          text: TextSpan(
+                                            children: [
+                                              TextSpan(
+                                                  text: "Description\n",
+                                                  style: TextStyle(
+                                                      fontSize: Responsive
+                                                              .isMiniMobile(
+                                                                  context)
+                                                          ? 13
+                                                          : 15,
+                                                      color: Colors.black,
+                                                      fontWeight:
+                                                          FontWeight.bold)),
+                                              TextSpan(
+                                                  text: ProjectLanguage.isLTR()
+                                                      ? "${widget.data.descriptionEn}"
+                                                      : "${widget.data.descriptionAr}",
+                                                  style: TextStyle(
+                                                      fontSize: Responsive
+                                                              .isMiniMobile(
+                                                                  context)
+                                                          ? 10
+                                                          : 12,
+                                                      color: Colors.black)),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(height: 200),
                                     ],
                                   ),
                                 ),
                               ],
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
-                    ),
+                    ],
                   ),
+                  // ),
 
                   // Align(
                   //   alignment: Alignment.bottomCenter,
@@ -931,7 +1010,7 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
       transitionBuilder: (context, anim1, anim2, child) {
         return SlideTransition(
           position:
-              Tween(begin: Offset(0, _fromTop ? -1 : 1), end: Offset(0, 0))
+              Tween(begin: Offset(0, _fromTop ? -1 : 1), end: Offset(0, 0.47))
                   .animate(anim1),
           child: child,
         );

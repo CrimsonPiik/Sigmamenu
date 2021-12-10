@@ -158,7 +158,7 @@ class _ItemCardRectangleState extends State<ItemCardRectangle> {
     );
   }
 
-  bool _fromTop = true;
+  bool _fromTop = false;
 
   _animationDialog(context) {
     showGeneralDialog(

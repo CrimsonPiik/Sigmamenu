@@ -133,7 +133,7 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
     );
   }
 
-  bool _fromTop = true;
+  bool _fromTop = false;
 
   _animationDialog(context) {
     showGeneralDialog(

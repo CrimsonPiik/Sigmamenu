@@ -566,7 +566,7 @@ class _BannersItemState extends State<BannersItem> {
   //                       return InkWell(
   //                         onTap: () async {
   //                           _imageBannerController.text =
-  //                               await fireBaseUploadFileWeb(widget.data.id);
+  //                               await (widget.data.id);
   //                           _imagevalue.value = _imageBannerController.text;
   //                         },
   //                         child: Center(
