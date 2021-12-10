@@ -856,7 +856,7 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                     ? Responsive.width(context) / 2
                                     : Responsive.width(context),
                             padding: EdgeInsets.only(
-                                top: kDefaultPaddin * 1.5,
+                                top: kDefaultPaddin * 2,
                                 left: kDefaultPaddin * 1.5,
                                 right: kDefaultPaddin * 1.5,
                                 bottom: kDefaultPaddin),
@@ -1010,7 +1010,7 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
       transitionBuilder: (context, anim1, anim2, child) {
         return SlideTransition(
           position:
-              Tween(begin: Offset(0, _fromTop ? -1 : 1), end: Offset(0, 0.47))
+              Tween(begin: Offset(0, _fromTop ? -1 : 1), end: Offset(0, 0.4))
                   .animate(anim1),
           child: child,
         );
