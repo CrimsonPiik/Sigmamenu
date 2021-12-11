@@ -91,14 +91,14 @@ class _AddProductButtonState extends State<AddProductButton> {
             key: _formKey,
             child: AlertDialog(
               scrollable: true,
-              title: Text('Create a new Product',
+              title: Text('Create Product',
                   style: TextStyle(
                       fontWeight: FontWeight.bold, color: Colors.black)),
               content: Container(
                 width: Responsive.isDesktop(context) ? 350 : 290,
                 padding: EdgeInsets.all(16),
                 decoration: BoxDecoration(
-                  color: Colors.grey.withOpacity(0.1),
+                  // color: Colors.grey.withOpacity(0.1),
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Column(
@@ -283,84 +283,86 @@ class _AddProductButtonState extends State<AddProductButton> {
                 ),
               ),
               actions: [
-                TextButton(
-                  onPressed: () async {
-                    _formKey.currentState!.save();
-                    if (_formKey.currentState!.validate()) {
-                      FocusScope.of(context).unfocus();
-                      await FirebaseFirestore.instance
-                          .collection(category)
-                          .doc(id)
-                          .set({
-                        'id': id,
-                        'nameEn': _nameEnController.text,
-                        'nameAr': 'nameAr',
-                        'category': category,
-                        'descriptionAr': 'descriptionAr',
-                        'descriptionEn': _descriptionEnController.text,
-                        'isPublished': true,
-                        'image': _imageController.text == ''
-                            ? ImageAssets.placeholder
-                            : _imageController.text,
-                        'price': _priceController.text,
-                        'rate': 0,
-                        'weight': _value.round(),
-                        //subCategory: ---
-                      }).whenComplete(() {
-                        id = generateId();
-                        _imagevalue.value = 'assets/images/placeholder.jpg';
-                        _descriptionEnController.clear();
-                        _priceController.clear();
-                        _imageController.clear();
-                        _nameEnController.clear();
-                        Navigator.of(context).pop();
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ElevatedButton(
+                        onPressed: () {
+                          id = generateId();
+                          _imagevalue.value = 'assets/images/placeholder.jpg';
+                          _descriptionEnController.clear();
+                          _priceController.clear();
+                          _imageController.clear();
+                          _nameEnController.clear();
+                          Navigator.of(context).pop();
+                        },
+                        style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all(Colors.white),
+                        ),
+                        child: Text(
+                          'Cancel',
+                          style: TextStyle(color: Colors.black),
+                        ),
+                      ),
+                      SizedBox(width: 15),
+                      ElevatedButton(
+                        onPressed: () async {
+                          _formKey.currentState!.save();
+                          if (_formKey.currentState!.validate()) {
+                            FocusScope.of(context).unfocus();
+                            await FirebaseFirestore.instance
+                                .collection(category)
+                                .doc(id)
+                                .set({
+                              'id': id,
+                              'nameEn': _nameEnController.text,
+                              'nameAr': 'nameAr',
+                              'category': category,
+                              'descriptionAr': 'descriptionAr',
+                              'descriptionEn': _descriptionEnController.text,
+                              'isPublished': true,
+                              'image': _imageController.text == ''
+                                  ? ImageAssets.placeholder
+                                  : _imageController.text,
+                              'price': _priceController.text,
+                              'rate': 0,
+                              'weight': _value.round(),
+                              //subCategory: ---
+                            }).whenComplete(() {
+                              id = generateId();
+                              _imagevalue.value =
+                                  'assets/images/placeholder.jpg';
+                              _descriptionEnController.clear();
+                              _priceController.clear();
+                              _imageController.clear();
+                              _nameEnController.clear();
+                              Navigator.of(context).pop();
 
-                        CommonUI.successDialog(context,
-                            message: "Saved successfully");
-                      }).onError((error, stackTrrace) => showDialog(
-                                context: context,
-                                builder: (_) {
-                                  return AlertDialog(
-                                    content: Text(error.toString()),
-                                  );
-                                },
-                              ));
-                    }
-                  },
-                  child: Container(
-                    padding: EdgeInsets.all(10),
-                    child: Text(
-                      'Create',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold, color: Colors.black),
-                    ),
-                    decoration: BoxDecoration(
-                      color: Colors.grey.withOpacity(0.5),
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                  ),
-                ),
-                TextButton(
-                  onPressed: () {
-                    id = generateId();
-                    _imagevalue.value = 'assets/images/placeholder.jpg';
-                    _descriptionEnController.clear();
-                    _priceController.clear();
-                    _imageController.clear();
-                    _nameEnController.clear();
-                    Navigator.of(context).pop();
-                  },
-                  child: Container(
-                    padding: EdgeInsets.all(10),
-                    child: Text(
-                      'Cancel',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold, color: Colors.black),
-                    ),
-                    decoration: BoxDecoration(
-                      color: Colors.grey.withOpacity(0.5),
-                      borderRadius: BorderRadius.circular(16),
-                    ),
+                              CommonUI.successDialog(context,
+                                  message: "Saved successfully");
+                            }).onError((error, stackTrrace) => showDialog(
+                                      context: context,
+                                      builder: (_) {
+                                        return AlertDialog(
+                                          content: Text(error.toString()),
+                                        );
+                                      },
+                                    ));
+                          }
+                        },
+                        style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all(Colors.blueAccent),
+                        ),
+                        child: Text(
+                          'Create',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ],
