@@ -183,14 +183,14 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                                         padding: EdgeInsets.only(
                                           top: kDefaultPaddin * 2,
                                         ),
-                                         child: Hero(
-                                          tag: "${widget.product.id}",
-                                          child: Image.network(
-                                            widget.product.image,
-                                            width: 150,
-                                            height: 140,
-                                            fit: BoxFit.cover,
-                                          ),
+                                        //  child: Contianer(
+                                        // tag: "${widget.product.id}",
+                                        child: Image.network(
+                                          widget.product.image,
+                                          width: 150,
+                                          height: 140,
+                                          fit: BoxFit.cover,
+                                          // ),
                                         ),
                                       ),
                                       SizedBox(width: 20),
