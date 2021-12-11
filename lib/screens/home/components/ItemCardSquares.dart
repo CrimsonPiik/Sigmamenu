@@ -133,7 +133,6 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
     );
   }
 
-
   bool _fromTop = false;
   _animationDialog(context) {
     showGeneralDialog(
@@ -161,8 +160,6 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                         Stack(
                           children: <Widget>[
                             Container(
-                              // height:Responsive.isDesktop(context)
-                              //     ? 800 : 1000,
                               width: Responsive.isDesktop(context)
                                   ? Responsive.width(context) / 2
                                   : Responsive.width(context),
@@ -186,20 +183,12 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                                         padding: EdgeInsets.only(
                                           top: kDefaultPaddin * 2,
                                         ),
-                                        child: Hero(
+                                         child: Hero(
                                           tag: "${widget.product.id}",
                                           child: Image.network(
                                             widget.product.image,
-                                            width: double.maxFinite,
-                                            height: Responsive.isDesktop(
-                                                    context)
-                                                ? 160
-                                                : Responsive.isTablet(context)
-                                                    ? 155
-                                                    : Responsive.isMobile(
-                                                            context)
-                                                        ? 150
-                                                        : 100,
+                                            width: 150,
+                                            height: 140,
                                             fit: BoxFit.cover,
                                           ),
                                         ),
