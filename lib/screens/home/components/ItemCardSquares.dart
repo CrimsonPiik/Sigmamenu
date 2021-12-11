@@ -133,7 +133,7 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
     );
   }
 
-    bool _fromTop = false;
+  bool _fromTop = false;
   _animationDialog(context) {
     showGeneralDialog(
       barrierDismissible: true,
@@ -193,30 +193,33 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                                           ),
                                         ),
                                       ),
-                                      SizedBox(width: 24),
+                                      SizedBox(width: 20),
                                       Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
                                         children: [
-                                          Text(
-                                            ProjectLanguage.isLTR()
-                                                ? widget.product.nameEn
-                                                : widget.product.nameAr,
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .headline4!
-                                                .copyWith(
-                                                  color: Colors.black,
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize:
-                                                      Responsive.isMiniMobile(
-                                                              context)
-                                                          ? 16
-                                                          : 19,
-                                                ),
-                                            textAlign: TextAlign.start,
+                                          Container(
+                                            width: Responsive.isMiniMobile(context) ? 100 : 140,
+                                            child: Text(
+                                              ProjectLanguage.isLTR()
+                                                  ? widget.product.nameEn
+                                                  : widget.product.nameAr,
+                                                  
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headline4!
+                                                  .copyWith(
+                                                    color: Colors.black,
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize:
+                                                        Responsive.isMiniMobile(
+                                                                context)
+                                                            ? 16
+                                                            : 19,
+                                                  ),
+                                              maxLines: 3,
+                                              textAlign: TextAlign.start,
+                                            ),
                                           ),
                                           SizedBox(height: 6),
                                           RichText(

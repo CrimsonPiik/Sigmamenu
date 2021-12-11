@@ -12,8 +12,8 @@ import 'package:sigmamenu/style/CommonUI.dart';
 import 'package:sigmamenu/style/ScreenUtil.dart';
 
 class ProductsItemAdmin extends StatefulWidget {
-  final Product data;
-  ProductsItemAdmin(this.data);
+  final Product product;
+  ProductsItemAdmin(this.product);
 
   @override
   State<ProductsItemAdmin> createState() => _ProductsItemAdminState();
@@ -44,18 +44,18 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
 
   late double _price;
   late String _image;
-  late double _value; //= widget.data.weight.toDouble();
+  late double _value; //= widget.product.weight.toDouble();
 
   @override
   void initState() {
-    _name = widget.data.nameEn;
-    _nameAr = widget.data.nameAr;
-    _description = widget.data.descriptionEn;
-    _descriptionAr = widget.data.descriptionAr;
+    _name = widget.product.nameEn;
+    _nameAr = widget.product.nameAr;
+    _description = widget.product.descriptionEn;
+    _descriptionAr = widget.product.descriptionAr;
 
-    _price = widget.data.price;
-    _image = widget.data.image;
-    _value = widget.data.weight.toDouble();
+    _price = widget.product.price;
+    _image = widget.product.image;
+    _value = widget.product.weight.toDouble();
     super.initState();
   }
 
@@ -69,21 +69,22 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
           SlidableAction(
             flex: 1,
             onPressed: (context) async {
-              widget.data.weight >= 1
+              widget.product.weight >= 1
                   ? await FirebaseFirestore.instance
-                      .collection(widget.data.category)
-                      .doc(widget.data.id)
+                      .collection(widget.product.category)
+                      .doc(widget.product.id)
                       .update({'weight': 0})
                   : await FirebaseFirestore.instance
-                      .collection(widget.data.category)
-                      .doc(widget.data.id)
+                      .collection(widget.product.category)
+                      .doc(widget.product.id)
                       .update({'weight': 1});
             },
             backgroundColor:
-                widget.data.weight >= 1 ? Colors.red : Colors.green,
+                widget.product.weight >= 1 ? Colors.red : Colors.green,
             foregroundColor: Colors.white,
-            icon: widget.data.weight >= 1 ? Icons.toggle_off : Icons.toggle_on,
-            label: widget.data.weight >= 1 ? "Unpublish" : "Publish",
+            icon:
+                widget.product.weight >= 1 ? Icons.toggle_off : Icons.toggle_on,
+            label: widget.product.weight >= 1 ? "Unpublish" : "Publish",
             autoClose: true,
           ),
         ],
@@ -95,18 +96,18 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
             onPressed: (context) {
               setState(() {
                 _nameEnController =
-                    TextEditingController(text: widget.data.nameEn);
+                    TextEditingController(text: widget.product.nameEn);
                 _nameArController =
-                    TextEditingController(text: widget.data.nameAr);
+                    TextEditingController(text: widget.product.nameAr);
                 _descriptionEnController =
-                    TextEditingController(text: widget.data.descriptionEn);
+                    TextEditingController(text: widget.product.descriptionEn);
                 _descriptionArController =
-                    TextEditingController(text: widget.data.descriptionAr);
-                _priceController =
-                    TextEditingController(text: widget.data.price.toString());
+                    TextEditingController(text: widget.product.descriptionAr);
+                _priceController = TextEditingController(
+                    text: widget.product.price.toString());
                 _imageController =
-                    TextEditingController(text: widget.data.image);
-                _value = widget.data.weight.toDouble();
+                    TextEditingController(text: widget.product.image);
+                _value = widget.product.weight.toDouble();
               });
               _showEditDialog(context);
             },
@@ -154,7 +155,7 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                           borderRadius: BorderRadius.circular(4),
                         ),
                         child: CommonUI.cachedImage(
-                            widget.data.image, ImageAssets.placeholder,
+                            widget.product.image, ImageAssets.placeholder,
                             fit: BoxFit.cover)),
                     SizedBox(
                       width: 16,
@@ -166,7 +167,7 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              widget.data.nameEn,
+                              widget.product.nameEn,
                               overflow: TextOverflow.ellipsis,
                               maxLines: 1,
                               style: TextStyle(
@@ -189,7 +190,7 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                                 ? 12
                                                 : 14,
                                         color: Colors.black)),
-                                Text(widget.data.price.toString(),
+                                Text(widget.product.price.toString(),
                                     textAlign: TextAlign.center,
                                     maxLines: 2,
                                     style: TextStyle(
@@ -205,7 +206,7 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                               height: Responsive.isMiniMobile(context) ? 8 : 16,
                             ),
                             Text(
-                              widget.data.descriptionEn,
+                              widget.product.descriptionEn,
                               overflow: TextOverflow.ellipsis,
                               maxLines:
                                   Responsive.isMiniMobile(context) ? 2 : 3,
@@ -223,7 +224,7 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
               // padding: EdgeInsets.all(16),
               // margin: EdgeInsets.only(bottom: 20),
               decoration: BoxDecoration(
-                color: widget.data.weight >= 1 ? Colors.green : Colors.red,
+                color: widget.product.weight >= 1 ? Colors.green : Colors.red,
               ),
             ),
           ],
@@ -297,8 +298,8 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                             ElevatedButton(
                               onPressed: () async {
                                 FirebaseFirestore.instance
-                                    .collection(widget.data.category)
-                                    .doc(widget.data.id)
+                                    .collection(widget.product.category)
+                                    .doc(widget.product.id)
                                     .delete();
                                 Navigator.of(context).pop();
                               },
@@ -379,7 +380,7 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                         onTap: () async {
                                           _imageController.text =
                                               await fireBaseUploadFileWeb(
-                                                  widget.data.id);
+                                                  widget.product.id);
                                           _imagevalue.value =
                                               _imageController.text;
                                           // if (_imageController.text != '') {
@@ -468,7 +469,7 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                                           ),
                                                           child: CommonUI
                                                               .cachedImage(
-                                                                  widget.data
+                                                                  widget.product
                                                                       .image,
                                                                   ImageAssets
                                                                       .placeholder,
@@ -562,7 +563,7 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                   ]),
                                 ),
                               ),
-                              widget.data.weight != 0
+                              widget.product.weight != 0
                                   ? Column(
                                       children: [
                                         SizedBox(height: 4),
@@ -650,18 +651,18 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                       setState(() {
                                         _nameEnController =
                                             TextEditingController(
-                                                text: widget.data.nameEn);
+                                                text: widget.product.nameEn);
                                         _descriptionEnController =
                                             TextEditingController(
-                                                text:
-                                                    widget.data.descriptionEn);
+                                                text: widget
+                                                    .product.descriptionEn);
                                         _priceController =
                                             TextEditingController(
-                                                text: widget.data.price
+                                                text: widget.product.price
                                                     .toString());
                                         _imageController =
                                             TextEditingController(
-                                                text: widget.data.image);
+                                                text: widget.product.image);
                                       });
 
                                       Navigator.of(context).pop();
@@ -683,8 +684,8 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                       if (_formKey.currentState!.validate()) {
                                         FocusScope.of(context).unfocus();
                                         await FirebaseFirestore.instance
-                                            .collection(widget.data.category)
-                                            .doc(widget.data.id)
+                                            .collection(widget.product.category)
+                                            .doc(widget.product.id)
                                             .update({
                                           'nameEn': _nameEnController.text,
                                           'nameAr': _nameArController.text,
@@ -749,14 +750,14 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                     //       onPressed: () {
                     //         setState(() {
                     //           _nameEnController = TextEditingController(
-                    //               text: widget.data.nameEn);
+                    //               text: widget.product.nameEn);
                     //           _descriptionEnController =
                     //               TextEditingController(
-                    //                   text: widget.data.descriptionEn);
+                    //                   text: widget.product.descriptionEn);
                     //           _priceController = TextEditingController(
-                    //               text: widget.data.price.toString());
+                    //               text: widget.product.price.toString());
                     //           _imageController = TextEditingController(
-                    //               text: widget.data.image);
+                    //               text: widget.product.image);
                     //         });
 
                     //         Navigator.of(context).pop();
@@ -777,8 +778,8 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                     //         if (_formKey.currentState!.validate()) {
                     //           FocusScope.of(context).unfocus();
                     //           await FirebaseFirestore.instance
-                    //               .collection(widget.data.category)
-                    //               .doc(widget.data.id)
+                    //               .collection(widget.product.category)
+                    //               .doc(widget.product.id)
                     //               .update({
                     //             'nameEn': _nameEnController.text,
                     //             'nameAr': _nameArController.text,
@@ -875,39 +876,44 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                           top: kDefaultPaddin * 2,
                                         ),
                                         child: Hero(
-                                          tag: "${widget.data.id}",
+                                          tag: "${widget.product.id}",
                                           child: Image.network(
-                                            widget.data.image,
+                                            widget.product.image,
                                             width: 130,
                                             height: 130,
                                             fit: BoxFit.fill,
                                           ),
                                         ),
                                       ),
-                                      SizedBox(width: 24),
+                                      SizedBox(width: 20),
                                       Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
                                         children: [
-                                          Text(
-                                            ProjectLanguage.isLTR()
-                                                ? widget.data.nameEn
-                                                : widget.data.nameAr,
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .headline4!
-                                                .copyWith(
-                                                  color: Colors.black,
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize:
-                                                      Responsive.isMiniMobile(
-                                                              context)
-                                                          ? 16
-                                                          : 19,
-                                                ),
-                                            textAlign: TextAlign.start,
+                                          Container(
+                                            width:
+                                                Responsive.isMiniMobile(context)
+                                                    ? 100
+                                                    : 140,
+                                            child: Text(
+                                              ProjectLanguage.isLTR()
+                                                  ? widget.product.nameEn
+                                                  : widget.product.nameAr,
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headline4!
+                                                  .copyWith(
+                                                    color: Colors.black,
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize:
+                                                        Responsive.isMiniMobile(
+                                                                context)
+                                                            ? 16
+                                                            : 19,
+                                                  ),
+                                              maxLines: 3,
+                                              textAlign: TextAlign.start,
+                                            ),
                                           ),
                                           SizedBox(height: 6),
                                           RichText(
@@ -916,7 +922,7 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                                 TextSpan(text: "Price\n"),
                                                 TextSpan(
                                                   text:
-                                                      "\$${widget.data.price}",
+                                                      "\$${widget.product.price}",
                                                   style: Theme.of(context)
                                                       .textTheme
                                                       .headline6!
@@ -970,8 +976,8 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                                   1.35,
                                           child: Text(
                                             ProjectLanguage.isLTR()
-                                                ? "${widget.data.descriptionEn}"
-                                                : "${widget.data.descriptionAr}",
+                                                ? "${widget.product.descriptionEn}"
+                                                : "${widget.product.descriptionAr}",
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .headline4!
