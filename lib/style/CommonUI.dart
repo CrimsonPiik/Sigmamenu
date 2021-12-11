@@ -251,7 +251,8 @@ class CommonUI {
       Function(String?)? onChange,
       TextInputType? keyboardtype}) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 15),
+      // padding: const EdgeInsets.only(bottom: 15),
+      padding: EdgeInsets.all(8.0),
       child: FormBuilderTextField(
         maxLines: maxlines,
         maxLength: maxlength,
@@ -259,6 +260,10 @@ class CommonUI {
         name: name,
         controller: controller,
         decoration: InputDecoration(
+            contentPadding: EdgeInsets.all(8.0),
+            border: InputBorder.none,
+            filled: true,
+            fillColor: Colors.grey.withOpacity(0.1),
             icon: icon,
             suffixIcon: isEdit ? Icon(Icons.edit) : null,
             labelText: hint,

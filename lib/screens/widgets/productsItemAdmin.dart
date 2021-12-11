@@ -534,6 +534,9 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                   ]),
                                 ),
                               ),
+
+                              // ),
+
                               SizedBox(height: 4),
                               Container(
                                 child: CommonUI.textField(
