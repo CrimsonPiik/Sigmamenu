@@ -844,164 +844,166 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
           key: Key("key"),
           child: SafeArea(
             child: SizedBox.expand(
-              child: Stack(
-                children: [
-                  Column(
-                    children: <Widget>[
-                      Stack(
-                        children: <Widget>[
-                          Container(
-                            width: // _size.width,
-                                Responsive.isDesktop(context)
-                                    ? Responsive.width(context) / 2
-                                    : Responsive.width(context),
-                            padding: EdgeInsets.only(
-                                top: kDefaultPaddin * 2,
-                                left: kDefaultPaddin * 1.5,
-                                right: kDefaultPaddin * 1.5,
-                                bottom: kDefaultPaddin),
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(24),
-                                topRight: Radius.circular(24),
-                                // bottomLeft: Radius.circular(24),
-                                // bottomRight: Radius.circular(24),
+              child: Center(
+                child: Stack(
+                  children: [
+                    Column(
+                      children: <Widget>[
+                        Stack(
+                          children: <Widget>[
+                            Container(
+                              width: // _size.width,
+                                  Responsive.isDesktop(context)
+                                      ? Responsive.width(context) / 2
+                                      : Responsive.width(context),
+                              padding: EdgeInsets.only(
+                                  top: kDefaultPaddin * 2,
+                                  left: kDefaultPaddin * 1.5,
+                                  right: kDefaultPaddin * 1.5,
+                                  bottom: kDefaultPaddin),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(24),
+                                  topRight: Radius.circular(24),
+                                  // bottomLeft: Radius.circular(24),
+                                  // bottomRight: Radius.circular(24),
+                                ),
                               ),
-                            ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Row(
-                                  children: [
-                                    Hero(
-                                      tag: "${widget.data.id}",
-                                      child: Image.network(
-                                        widget.data.image,
-                                        width: 130,
-                                        // Responsive.isMiniMobile(context)
-                                        //     ? 270
-                                        //     : 300,
-                                        height: 130,
-                                        // Responsive.isMiniMobile(context)
-                                        //     ? 220
-                                        //     : 250,
-                                        fit: BoxFit.fill,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Row(
+                                    children: [
+                                      Hero(
+                                        tag: "${widget.data.id}",
+                                        child: Image.network(
+                                          widget.data.image,
+                                          width: 130,
+                                          // Responsive.isMiniMobile(context)
+                                          //     ? 270
+                                          //     : 300,
+                                          height: 130,
+                                          // Responsive.isMiniMobile(context)
+                                          //     ? 220
+                                          //     : 250,
+                                          fit: BoxFit.fill,
+                                        ),
                                       ),
-                                    ),
-                                    SizedBox(width: 24),
-                                    // Align(
-                                      // alignment:Alignment.topLeft,
-                                      // child:
-                                       Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            ProjectLanguage.isLTR()
-                                                ? widget.data.nameEn
-                                                : widget.data.nameAr,
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .headline4!
-                                                .copyWith(
-                                                  color: Colors.black,
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize:
-                                                      Responsive.isMiniMobile(
-                                                              context)
-                                                          ? 16
-                                                          : 19,
-                                                ),
-                                          ),
-                                          RichText(
+                                      SizedBox(width: 24),
+                                      // Align(
+                                        // alignment:Alignment.topLeft,
+                                        // child:
+                                         Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              ProjectLanguage.isLTR()
+                                                  ? widget.data.nameEn
+                                                  : widget.data.nameAr,
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headline4!
+                                                  .copyWith(
+                                                    color: Colors.black,
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize:
+                                                        Responsive.isMiniMobile(
+                                                                context)
+                                                            ? 16
+                                                            : 19,
+                                                  ),
+                                            ),
+                                            RichText(
+                                              text: TextSpan(
+                                                children: [
+                                                  TextSpan(text: "Price\n"),
+                                                  TextSpan(
+                                                    text: "\$${widget.data.price}",
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .headline6!
+                                                        .copyWith(
+                                                          color: Colors.black,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      // ),
+                                    ],
+                                  ),
+                                  SizedBox(height: 20),
+                                  Padding(
+                                    padding: const EdgeInsets.only(bottom: 20.0),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Container(
+                                          width: Responsive.isDesktop(context)
+                                              ? Responsive.width(context) / 2.2
+                                              : Responsive.width(context) / 1.35,
+                                          child: RichText(
                                             text: TextSpan(
                                               children: [
-                                                TextSpan(text: "Price\n"),
                                                 TextSpan(
-                                                  text: "\$${widget.data.price}",
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .headline6!
-                                                      .copyWith(
+                                                    text: "Description\n",
+                                                    style: TextStyle(
+                                                        fontSize: Responsive
+                                                                .isMiniMobile(
+                                                                    context)
+                                                            ? 13
+                                                            : 15,
                                                         color: Colors.black,
                                                         fontWeight:
-                                                            FontWeight.bold,
-                                                      ),
-                                                ),
+                                                            FontWeight.bold)),
+                                                TextSpan(
+                                                    text: ProjectLanguage.isLTR()
+                                                        ? "${widget.data.descriptionEn}"
+                                                        : "${widget.data.descriptionAr}",
+                                                    style: TextStyle(
+                                                        fontSize: Responsive
+                                                                .isMiniMobile(
+                                                                    context)
+                                                            ? 10
+                                                            : 12,
+                                                        color: Colors.black)),
                                               ],
                                             ),
                                           ),
-                                        ],
-                                      ),
-                                    // ),
-                                  ],
-                                ),
-                                SizedBox(height: 20),
-                                Padding(
-                                  padding: const EdgeInsets.only(bottom: 20.0),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Container(
-                                        width: Responsive.isDesktop(context)
-                                            ? Responsive.width(context) / 2.2
-                                            : Responsive.width(context) / 1.35,
-                                        child: RichText(
-                                          text: TextSpan(
-                                            children: [
-                                              TextSpan(
-                                                  text: "Description\n",
-                                                  style: TextStyle(
-                                                      fontSize: Responsive
-                                                              .isMiniMobile(
-                                                                  context)
-                                                          ? 13
-                                                          : 15,
-                                                      color: Colors.black,
-                                                      fontWeight:
-                                                          FontWeight.bold)),
-                                              TextSpan(
-                                                  text: ProjectLanguage.isLTR()
-                                                      ? "${widget.data.descriptionEn}"
-                                                      : "${widget.data.descriptionAr}",
-                                                  style: TextStyle(
-                                                      fontSize: Responsive
-                                                              .isMiniMobile(
-                                                                  context)
-                                                          ? 10
-                                                          : 12,
-                                                      color: Colors.black)),
-                                            ],
-                                          ),
                                         ),
-                                      ),
-                                      SizedBox(height: 200),
-                                    ],
+                                        SizedBox(height: 300),
+                                      ],
+                                    ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  // ),
+                          ],
+                        ),
+                      ],
+                    ),
+                    // ),
 
-                  // Align(
-                  //   alignment: Alignment.bottomCenter,
-                  //   child: Container(
-                  //     width: 60,
-                  //     height: 60,
-                  //     child: FloatingActionButton(
-                  //       onPressed: () => Navigator.of(context).pop(),
-                  //       child: Icon(Icons.close),
-                  //     ),
-                  //   ),
-                  // ),
-                ],
+                    // Align(
+                    //   alignment: Alignment.bottomCenter,
+                    //   child: Container(
+                    //     width: 60,
+                    //     height: 60,
+                    //     child: FloatingActionButton(
+                    //       onPressed: () => Navigator.of(context).pop(),
+                    //       child: Icon(Icons.close),
+                    //     ),
+                    //   ),
+                    // ),
+                  ],
+                ),
               ),
             ),
           ),
