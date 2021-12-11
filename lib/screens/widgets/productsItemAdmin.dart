@@ -825,10 +825,7 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
   }
 
   bool _fromTop = false;
-
   _animationDialog(context) {
-    final Size _size = MediaQuery.of(context).size;
-
     showGeneralDialog(
       barrierDismissible: true,
       barrierLabel: "Product Animation",
@@ -854,10 +851,9 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                         Stack(
                           children: <Widget>[
                             Container(
-                              width: // _size.width,
-                                  Responsive.isDesktop(context)
-                                      ? Responsive.width(context) / 2
-                                      : Responsive.width(context),
+                              width: Responsive.isDesktop(context)
+                                  ? Responsive.width(context) / 2
+                                  : Responsive.width(context),
                               padding: EdgeInsets.only(
                                   left: kDefaultPaddin * 1.5,
                                   right: kDefaultPaddin * 1.5,
@@ -935,7 +931,6 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                           ),
                                         ],
                                       ),
-                                      // ),
                                     ],
                                   ),
                                   SizedBox(height: 25),
@@ -982,7 +977,6 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                                 .headline4!
                                                 .copyWith(
                                                   color: Colors.black,
-                                                  // fontWeight: FontWeight.bold,
                                                   fontSize:
                                                       Responsive.isMiniMobile(
                                                               context)
@@ -998,18 +992,6 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                 ],
                               ),
                             ),
-
-                            //     Positioned(
-                            // top: -60,
-                            // child: CircleAvatar(
-                            //   backgroundColor: Colors.lightGreen,
-                            //   radius: 30,
-                            //   child: Icon(
-                            //     Icons.arrow_drop_down,
-                            //     color: Colors.white,
-                            //     size: 35,
-                            //   ),
-                            // )),
                           ],
                         ),
                       ],
@@ -1050,5 +1032,3 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
     );
   }
 }
-
-// void doNothing(BuildContext context) {}
