@@ -245,10 +245,10 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                                       ),
                                     ],
                                   ),
-                                  SizedBox(height: 25),
+                                  SizedBox(height: 15),
                                   Padding(
                                     padding:
-                                        const EdgeInsets.only(bottom: 20.0),
+                                        const EdgeInsets.only(bottom: 25.0),
                                     child: Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
@@ -276,10 +276,10 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                                         ),
                                         SizedBox(height: 8),
                                         Container(
-                                          width: Responsive.isDesktop(context)
-                                              ? Responsive.width(context) / 2.2
-                                              : Responsive.width(context) /
-                                                  1.35,
+                                        //   width: Responsive.isDesktop(context)
+                                        //       ? Responsive.width(context) / 2.2
+                                        //       : Responsive.width(context) /
+                                        //           1.35,
                                           child: Text(
                                             ProjectLanguage.isLTR()
                                                 ? "${widget.product.descriptionEn}"
