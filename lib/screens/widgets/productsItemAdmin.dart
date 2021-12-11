@@ -846,6 +846,8 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
             child: SizedBox.expand(
               child: Center(
                 child: Stack(
+                  clipBehavior: Clip.none,
+                  alignment: Alignment.topCenter,
                   children: [
                     Column(
                       children: <Widget>[
@@ -857,7 +859,6 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                       ? Responsive.width(context) / 2
                                       : Responsive.width(context),
                               padding: EdgeInsets.only(
-                                  top: kDefaultPaddin * 2,
                                   left: kDefaultPaddin * 1.5,
                                   right: kDefaultPaddin * 1.5,
                                   bottom: kDefaultPaddin),
@@ -866,8 +867,6 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                 borderRadius: BorderRadius.only(
                                   topLeft: Radius.circular(24),
                                   topRight: Radius.circular(24),
-                                  // bottomLeft: Radius.circular(24),
-                                  // bottomRight: Radius.circular(24),
                                 ),
                               ),
                               child: Column(
@@ -875,72 +874,74 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                 children: <Widget>[
                                   Row(
                                     children: [
-                                      Hero(
-                                        tag: "${widget.data.id}",
-                                        child: Image.network(
-                                          widget.data.image,
-                                          width: 130,
-                                          // Responsive.isMiniMobile(context)
-                                          //     ? 270
-                                          //     : 300,
-                                          height: 130,
-                                          // Responsive.isMiniMobile(context)
-                                          //     ? 220
-                                          //     : 250,
-                                          fit: BoxFit.fill,
+                                      Container(
+                                        padding: EdgeInsets.only(
+                                          top: kDefaultPaddin * 2,
+                                        ),
+                                        child: Hero(
+                                          tag: "${widget.data.id}",
+                                          child: Image.network(
+                                            widget.data.image,
+                                            width: 130,
+                                            height: 130,
+                                            fit: BoxFit.fill,
+                                          ),
                                         ),
                                       ),
                                       SizedBox(width: 24),
-                                      // Align(
-                                        // alignment:Alignment.topLeft,
-                                        // child:
-                                         Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              ProjectLanguage.isLTR()
-                                                  ? widget.data.nameEn
-                                                  : widget.data.nameAr,
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .headline4!
-                                                  .copyWith(
-                                                    color: Colors.black,
-                                                    fontWeight: FontWeight.bold,
-                                                    fontSize:
-                                                        Responsive.isMiniMobile(
-                                                                context)
-                                                            ? 16
-                                                            : 19,
-                                                  ),
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            ProjectLanguage.isLTR()
+                                                ? widget.data.nameEn
+                                                : widget.data.nameAr,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .headline4!
+                                                .copyWith(
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize:
+                                                      Responsive.isMiniMobile(
+                                                              context)
+                                                          ? 16
+                                                          : 19,
+                                                ),
+                                            textAlign: TextAlign.start,
+                                          ),
+                                          SizedBox(height: 6),
+                                          RichText(
+                                            text: TextSpan(
+                                              children: [
+                                                TextSpan(text: "Price\n"),
+                                                TextSpan(
+                                                  text:
+                                                      "\$${widget.data.price}",
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .headline6!
+                                                      .copyWith(
+                                                        color: Colors.black,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                      ),
+                                                ),
+                                              ],
                                             ),
-                                            RichText(
-                                              text: TextSpan(
-                                                children: [
-                                                  TextSpan(text: "Price\n"),
-                                                  TextSpan(
-                                                    text: "\$${widget.data.price}",
-                                                    style: Theme.of(context)
-                                                        .textTheme
-                                                        .headline6!
-                                                        .copyWith(
-                                                          color: Colors.black,
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                        ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ],
-                                        ),
+                                          ),
+                                        ],
+                                      ),
                                       // ),
                                     ],
                                   ),
-                                  SizedBox(height: 20),
+                                  SizedBox(height: 25),
                                   Padding(
-                                    padding: const EdgeInsets.only(bottom: 20.0),
+                                    padding:
+                                        const EdgeInsets.only(bottom: 20.0),
                                     child: Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
@@ -948,34 +949,46 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                         Container(
                                           width: Responsive.isDesktop(context)
                                               ? Responsive.width(context) / 2.2
-                                              : Responsive.width(context) / 1.35,
-                                          child: RichText(
-                                            text: TextSpan(
-                                              children: [
-                                                TextSpan(
-                                                    text: "Description\n",
-                                                    style: TextStyle(
-                                                        fontSize: Responsive
-                                                                .isMiniMobile(
-                                                                    context)
-                                                            ? 13
-                                                            : 15,
-                                                        color: Colors.black,
-                                                        fontWeight:
-                                                            FontWeight.bold)),
-                                                TextSpan(
-                                                    text: ProjectLanguage.isLTR()
-                                                        ? "${widget.data.descriptionEn}"
-                                                        : "${widget.data.descriptionAr}",
-                                                    style: TextStyle(
-                                                        fontSize: Responsive
-                                                                .isMiniMobile(
-                                                                    context)
-                                                            ? 10
-                                                            : 12,
-                                                        color: Colors.black)),
-                                              ],
-                                            ),
+                                              : Responsive.width(context) /
+                                                  1.35,
+                                          child: Text(
+                                            "Description",
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .headline4!
+                                                .copyWith(
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize:
+                                                      Responsive.isMiniMobile(
+                                                              context)
+                                                          ? 16
+                                                          : 19,
+                                                ),
+                                          ),
+                                        ),
+                                        SizedBox(height: 8),
+                                        Container(
+                                          width: Responsive.isDesktop(context)
+                                              ? Responsive.width(context) / 2.2
+                                              : Responsive.width(context) /
+                                                  1.35,
+                                          child: Text(
+                                            ProjectLanguage.isLTR()
+                                                ? "${widget.data.descriptionEn}"
+                                                : "${widget.data.descriptionAr}",
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .headline4!
+                                                .copyWith(
+                                                  color: Colors.black,
+                                                  // fontWeight: FontWeight.bold,
+                                                  fontSize:
+                                                      Responsive.isMiniMobile(
+                                                              context)
+                                                          ? 10
+                                                          : 12,
+                                                ),
                                           ),
                                         ),
                                         SizedBox(height: 300),
@@ -985,23 +998,40 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                 ],
                               ),
                             ),
+
+                            //     Positioned(
+                            // top: -60,
+                            // child: CircleAvatar(
+                            //   backgroundColor: Colors.lightGreen,
+                            //   radius: 30,
+                            //   child: Icon(
+                            //     Icons.arrow_drop_down,
+                            //     color: Colors.white,
+                            //     size: 35,
+                            //   ),
+                            // )),
                           ],
                         ),
                       ],
                     ),
-                    // ),
-
-                    // Align(
-                    //   alignment: Alignment.bottomCenter,
-                    //   child: Container(
-                    //     width: 60,
-                    //     height: 60,
-                    //     child: FloatingActionButton(
-                    //       onPressed: () => Navigator.of(context).pop(),
-                    //       child: Icon(Icons.close),
-                    //     ),
-                    //   ),
-                    // ),
+                    Positioned(
+                        top: -30,
+                        child: Center(
+                          child: CircleAvatar(
+                            backgroundColor: Colors.grey,
+                            radius: 30,
+                            child: GestureDetector(
+                              onTap: () {
+                                Navigator.of(context).pop();
+                              },
+                              child: Icon(
+                                Icons.keyboard_arrow_down_sharp,
+                                color: Colors.white,
+                                size: 35,
+                              ),
+                            ),
+                          ),
+                        )),
                   ],
                 ),
               ),
