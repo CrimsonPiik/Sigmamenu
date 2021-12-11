@@ -5,6 +5,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:sigmamenu/GeneralFunction/firebase_uploader_web.dart';
 import 'package:sigmamenu/GeneralFunction/random_id_generator.dart';
 import 'package:sigmamenu/screens/adminPanel.dart';
+import 'package:sigmamenu/style/AssetsManager.dart';
 import 'package:sigmamenu/style/CommonUI.dart';
 import 'package:sigmamenu/style/ScreenUtil.dart';
 
@@ -53,29 +54,31 @@ class _AddProductButtonState extends State<AddProductButton> {
         Align(
           alignment: Alignment.topLeft,
           // child: Padding(
-            // padding: const EdgeInsets.symmetric(horizontal: 6.0),
-            child: Container(
-              height: 40,
-              // padding: EdgeInsets.all(2),
-              child: TextButton.icon(
-                  onPressed: () {
-                    showDialogWithFields();
-                  },
-                  icon: Icon(
-                    Icons.add,
-                    color: Colors.white,
-                  ),
-                  label: Text(
-                    'Product  ',
-                    style: TextStyle(
-                        color: Colors.white, fontWeight: FontWeight.bold),
-                  )),
-              decoration: BoxDecoration(
-                color: Colors.green[600],
-                borderRadius: BorderRadius.circular(16),
-              ),
+          // padding: const EdgeInsets.symmetric(horizontal: 6.0),
+          child: Container(
+            height: 40,
+            // padding: EdgeInsets.all(2),
+            child: TextButton.icon(
+                onPressed: () {
+                  _imagevalue.value = imageURL;
+
+                  showDialogWithFields();
+                },
+                icon: Icon(
+                  Icons.add,
+                  color: Colors.white,
+                ),
+                label: Text(
+                  'Product  ',
+                  style: TextStyle(
+                      color: Colors.white, fontWeight: FontWeight.bold),
+                )),
+            decoration: BoxDecoration(
+              color: Colors.green[600],
+              borderRadius: BorderRadius.circular(16),
             ),
-          ),        
+          ),
+        ),
       ],
     );
   }
@@ -112,10 +115,11 @@ class _AddProductButtonState extends State<AddProductButton> {
                               onTap: () async {
                                 _imageController.text =
                                     await fireBaseUploadFileWeb(id);
-                                    //  if (_imageController.text != '') {
-                                            _imagevalue.value =
-                                                _imageController.text;
-                                          // }
+                                if (_imageController.text != '') {
+                                  _imagevalue.value = _imageController.text;
+                                } else if (_imageController.text == '') {
+                                  _imagevalue.value = imageURL;
+                                }
                               },
                               child: Center(
                                 child: Container(
@@ -295,7 +299,9 @@ class _AddProductButtonState extends State<AddProductButton> {
                         'descriptionAr': 'descriptionAr',
                         'descriptionEn': _descriptionEnController.text,
                         'isPublished': true,
-                        'image': _imageController.text,
+                        'image': _imageController.text == ''
+                            ? ImageAssets.placeholder
+                            : _imageController.text,
                         'price': _priceController.text,
                         'rate': 0,
                         'weight': _value.round(),

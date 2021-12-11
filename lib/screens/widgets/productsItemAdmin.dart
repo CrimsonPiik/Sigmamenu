@@ -33,8 +33,10 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
   late TextEditingController _imageController =
       TextEditingController(text: _image);
   ValueNotifier<String?> _imagevalue = ValueNotifier<String?>(null);
+
   final _formKey = GlobalKey<FormBuilderState>();
   // bool en = true;
+// _imageController.text
 
   late String _name;
   late String _nameAr;
@@ -61,6 +63,8 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
 
   @override
   Widget build(BuildContext context) {
+    _imagevalue.value = widget.product.image;
+
     return Slidable(
       key: const ValueKey(0),
       startActionPane: ActionPane(
@@ -108,6 +112,8 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                 _imageController =
                     TextEditingController(text: widget.product.image);
                 _value = widget.product.weight.toDouble();
+
+                _imagevalue.value = widget.product.image;
               });
               _showEditDialog(context);
             },
@@ -148,9 +154,18 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                 // ),
                 child: Row(
                   children: [
+                    // Container(
+                    //     width: 120,
+                    //     // height: 150,
+                    //     decoration: BoxDecoration(
+                    //       borderRadius: BorderRadius.circular(4),
+                    //     ),
+                    //     child: CommonUI.cachedImage(
+                    //         widget.product.image, ImageAssets.placeholder,
+                    //         fit: BoxFit.cover)),
                     Container(
-                        width: 120,
-                        // height: 150,
+                        width: 140,
+                        height: 170,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(4),
                         ),
@@ -340,7 +355,6 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
 // =====  =====  ===== =====  =====  ===== =====  =====  ===== =====  =====  ===== =====  =====
 
   _showEditDialog(BuildContext context) {
-    // bool en = true;
     showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -381,12 +395,21 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                           _imageController.text =
                                               await fireBaseUploadFileWeb(
                                                   widget.product.id);
-                                          _imagevalue.value =
-                                              _imageController.text;
-                                          // if (_imageController.text != '') {
-                                          //   _imagevalue.value =
-                                          //       _imageController.text;
-                                          // }
+                                    
+
+                                          print("Controlller " +
+                                              _imageController.text);
+                                          print("Value  " +
+                                              _imagevalue.value.toString());
+
+                                          if (_imageController.text != '') {
+                                            _imagevalue.value =
+                                                _imageController.text;
+                                          } else if (_imageController.text ==
+                                              '') {
+                                            _imagevalue.value =
+                                                widget.product.image;
+                                          }
                                         },
                                         child: Center(
                                           child: Container(
@@ -438,22 +461,27 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                                                 BoxDecoration(
                                                                     color: Color(
                                                                         0x4D000000)),
-                                                            child: Row(
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .center,
-                                                              children: [
-                                                                Text(
-                                                                  'Edit ',
-                                                                  style: TextStyle(
-                                                                      color: Colors
-                                                                          .white),
-                                                                ),
-                                                                Icon(Icons.edit,
-                                                                    color: Colors
-                                                                        .white)
-                                                              ],
-                                                            )),
+                                                            child: Icon(
+                                                                Icons
+                                                                    .camera_alt,
+                                                                color: Colors
+                                                                    .white)),
+                                                        // Row(
+                                                        //   mainAxisAlignment:
+                                                        //       MainAxisAlignment
+                                                        //           .center,
+                                                        //   children: [
+                                                        //     Text(
+                                                        //       'Edit ',
+                                                        //       style: TextStyle(
+                                                        //           color: Colors
+                                                        //               .white),
+                                                        //     ),
+                                                        //     Icon(Icons.edit,
+                                                        //         color: Colors
+                                                        //             .white)
+                                                        //   ],
+                                                        // )),
                                                       ),
                                                     ])
                                                   : Stack(children: [
@@ -494,22 +522,28 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                                                 BoxDecoration(
                                                                     color: Color(
                                                                         0x4D000000)),
-                                                            child: Row(
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .center,
-                                                              children: [
-                                                                Text(
-                                                                  'Edit ',
-                                                                  style: TextStyle(
-                                                                      color: Colors
-                                                                          .white),
-                                                                ),
-                                                                Icon(Icons.edit,
-                                                                    color: Colors
-                                                                        .white)
-                                                              ],
-                                                            )),
+                                                            child: Icon(
+                                                                Icons
+                                                                    .camera_alt,
+                                                                color: Colors
+                                                                    .white)
+                                                            // Row(
+                                                            //   mainAxisAlignment:
+                                                            //       MainAxisAlignment
+                                                            //           .center,
+                                                            //   children: [
+                                                            //     Text(
+                                                            //       'Edit ',
+                                                            //       style: TextStyle(
+                                                            //           color: Colors
+                                                            //               .white),
+                                                            //     ),
+                                                            //     Icon(Icons.edit,
+                                                            //         color: Colors
+                                                            //             .white)
+                                                            //   ],
+                                                            // )
+                                                            ),
                                                       ),
                                                     ]),
                                             ]),
@@ -667,7 +701,6 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                             TextEditingController(
                                                 text: widget.product.image);
                                       });
-
                                       Navigator.of(context).pop();
                                     },
                                     style: ButtonStyle(
@@ -877,19 +910,24 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                   Row(
                                     children: [
                                       Container(
-                                        padding: EdgeInsets.only(
-                                          top: kDefaultPaddin * 2,
-                                        ),
-                                        //  child: Contianer(
-                                        // tag: "${widget.product.id}",
-                                        child: Image.network(
-                                          widget.product.image,
-                                          width: 150,
-                                          height: 140,
-                                          fit: BoxFit.cover,
+                                          width: 140,
+                                          height: 170,
+                                          padding: EdgeInsets.only(
+                                            top: kDefaultPaddin * 2,
+                                          ),
+                                          child: CommonUI.cachedImage(
+                                              widget.product.image,
+                                              ImageAssets.placeholder,
+                                              fit: BoxFit.cover)
+
+                                          // Image.network(
+                                          //   widget.product.image,
+                                          //   width: 150,
+                                          //   height: 140,
+                                          //   fit: BoxFit.cover,
+                                          //   // ),
                                           // ),
-                                        ),
-                                      ),
+                                          ),
                                       SizedBox(width: 20),
                                       Column(
                                         crossAxisAlignment:
