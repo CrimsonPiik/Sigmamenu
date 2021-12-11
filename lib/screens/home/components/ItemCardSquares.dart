@@ -160,6 +160,8 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                         Stack(
                           children: <Widget>[
                             Container(
+                              // height:Responsive.isDesktop(context)
+                              //     ? 800 : 1000,
                               width: Responsive.isDesktop(context)
                                   ? Responsive.width(context) / 2
                                   : Responsive.width(context),
@@ -221,14 +223,14 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                                               textAlign: TextAlign.start,
                                             ),
                                           ),
-                                          SizedBox(height: 6),
+                                          SizedBox(height: 9),
                                           RichText(
                                             text: TextSpan(
                                               children: [
                                                 TextSpan(text: "Price\n"),
                                                 TextSpan(
                                                   text:
-                                                      "\$${widget.product.price}",
+                                                      "${widget.product.price} JOD",
                                                   style: Theme.of(context)
                                                       .textTheme
                                                       .headline6!
@@ -245,7 +247,7 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                                       ),
                                     ],
                                   ),
-                                  SizedBox(height: 15),
+                                  SizedBox(height: 25),
                                   Padding(
                                     padding:
                                         const EdgeInsets.only(bottom: 25.0),
@@ -274,19 +276,15 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                                                 ),
                                           ),
                                         ),
-                                        SizedBox(height: 8),
+                                        SizedBox(height: 12),
                                         Container(
-                                        //   width: Responsive.isDesktop(context)
-                                        //       ? Responsive.width(context) / 2.2
-                                        //       : Responsive.width(context) /
-                                        //           1.35,
                                           child: Text(
                                             ProjectLanguage.isLTR()
                                                 ? "${widget.product.descriptionEn}"
                                                 : "${widget.product.descriptionAr}",
                                             style: Theme.of(context)
                                                 .textTheme
-                                                .headline4!
+                                                .headline3!
                                                 .copyWith(
                                                   color: Colors.black,
                                                   fontSize:
@@ -336,7 +334,7 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
       transitionBuilder: (context, anim1, anim2, child) {
         return SlideTransition(
           position:
-              Tween(begin: Offset(0, _fromTop ? -1 : 1), end: Offset(0, 0.4))
+              Tween(begin: Offset(0, _fromTop ? -1 : 1), end: Offset(0, 0.25))
                   .animate(anim1),
           child: child,
         );
