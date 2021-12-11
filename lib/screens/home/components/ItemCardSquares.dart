@@ -133,6 +133,7 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
     );
   }
 
+
   bool _fromTop = false;
   _animationDialog(context) {
     showGeneralDialog(
@@ -189,9 +190,17 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                                           tag: "${widget.product.id}",
                                           child: Image.network(
                                             widget.product.image,
-                                            width: 130,
-                                            height: 130,
-                                            fit: BoxFit.fill,
+                                            width: double.maxFinite,
+                                            height: Responsive.isDesktop(
+                                                    context)
+                                                ? 160
+                                                : Responsive.isTablet(context)
+                                                    ? 155
+                                                    : Responsive.isMobile(
+                                                            context)
+                                                        ? 150
+                                                        : 100,
+                                            fit: BoxFit.cover,
                                           ),
                                         ),
                                       ),
@@ -201,12 +210,14 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                                             CrossAxisAlignment.start,
                                         children: [
                                           Container(
-                                            width: Responsive.isMiniMobile(context) ? 100 : 140,
+                                            width:
+                                                Responsive.isMiniMobile(context)
+                                                    ? 100
+                                                    : 140,
                                             child: Text(
                                               ProjectLanguage.isLTR()
                                                   ? widget.product.nameEn
                                                   : widget.product.nameAr,
-                                                  
                                               style: Theme.of(context)
                                                   .textTheme
                                                   .headline4!

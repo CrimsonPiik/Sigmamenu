@@ -881,9 +881,17 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                           tag: "${widget.product.id}",
                                           child: Image.network(
                                             widget.product.image,
-                                            width: 130,
-                                            height: 130,
-                                            fit: BoxFit.fill,
+                                            width: double.maxFinite,
+                                            height: Responsive.isDesktop(
+                                                    context)
+                                                ? 160
+                                                : Responsive.isTablet(context)
+                                                    ? 155
+                                                    : Responsive.isMobile(
+                                                            context)
+                                                        ? 150
+                                                        : 100,
+                                            fit: BoxFit.cover,
                                           ),
                                         ),
                                       ),
