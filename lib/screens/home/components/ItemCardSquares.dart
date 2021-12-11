@@ -133,8 +133,7 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
     );
   }
 
-  bool _fromTop = false;
-
+    bool _fromTop = false;
   _animationDialog(context) {
     showGeneralDialog(
       barrierDismissible: true,
@@ -144,62 +143,63 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
       context: context,
       pageBuilder: (context, anim1, anim2) {
         return Dismissible(
-          direction: DismissDirection.vertical,
+          direction: DismissDirection.down,
           onDismissed: (_) {
             Navigator.of(context).pop();
           },
           key: Key("key"),
           child: SafeArea(
-          
             child: SizedBox.expand(
-              child: Stack(
-                children: [
-                  Center(
-                    child: SingleChildScrollView(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
+              child: Center(
+                child: Stack(
+                  clipBehavior: Clip.none,
+                  alignment: Alignment.topCenter,
+                  children: [
+                    Column(
+                      children: <Widget>[
+                        Stack(
                           children: <Widget>[
-                            Stack(
-                              children: <Widget>[
-                                Container(
-                                  width: Responsive.isDesktop(context)
-                                      ? Responsive.width(context) / 2
-                                      : Responsive.width(context),
-                                  padding: EdgeInsets.only(
-                                      top: kDefaultPaddin * 1.5,
-                                      left: kDefaultPaddin * 1.5,
-                                      right: kDefaultPaddin * 1.5,
-                                      bottom: kDefaultPaddin
-                                      ),
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(24),
-                                      topRight: Radius.circular(24),
-                                      bottomLeft: Radius.circular(24),
-                                      bottomRight: Radius.circular(24),
-                                    ),
-                                  ),
-                                  child: Column(
+                            Container(
+                              width: Responsive.isDesktop(context)
+                                  ? Responsive.width(context) / 2
+                                  : Responsive.width(context),
+                              padding: EdgeInsets.only(
+                                  left: kDefaultPaddin * 1.5,
+                                  right: kDefaultPaddin * 1.5,
+                                  bottom: kDefaultPaddin),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(24),
+                                  topRight: Radius.circular(24),
+                                ),
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Row(
                                     children: [
-                                      Center(
+                                      Container(
+                                        padding: EdgeInsets.only(
+                                          top: kDefaultPaddin * 2,
+                                        ),
                                         child: Hero(
                                           tag: "${widget.product.id}",
                                           child: Image.network(
                                             widget.product.image,
-                     
-                                            width:  Responsive.isMiniMobile(context) ? 270 :300,
-                                            height:  Responsive.isMiniMobile(context) ? 220 :250,
+                                            width: 130,
+                                            height: 130,
                                             fit: BoxFit.fill,
                                           ),
                                         ),
                                       ),
+                                      SizedBox(width: 24),
                                       Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
-                                        children: <Widget>[
-                                          SizedBox(height: 18),
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
                                           Text(
                                             ProjectLanguage.isLTR()
                                                 ? widget.product.nameEn
@@ -208,12 +208,17 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                                                 .textTheme
                                                 .headline4!
                                                 .copyWith(
-                                                    color: Colors.black,
-                                                    fontWeight:
-                                                        FontWeight.bold,
-                                                    fontSize:  Responsive.isMiniMobile(context) ? 21 :24,),
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize:
+                                                      Responsive.isMiniMobile(
+                                                              context)
+                                                          ? 16
+                                                          : 19,
+                                                ),
+                                            textAlign: TextAlign.start,
                                           ),
-                                          // SizedBox(height: 6),
+                                          SizedBox(height: 6),
                                           RichText(
                                             text: TextSpan(
                                               children: [
@@ -223,7 +228,7 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                                                       "\$${widget.product.price}",
                                                   style: Theme.of(context)
                                                       .textTheme
-                                                      .headline5!
+                                                      .headline6!
                                                       .copyWith(
                                                         color: Colors.black,
                                                         fontWeight:
@@ -233,76 +238,93 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                                               ],
                                             ),
                                           ),
-                                          SizedBox(height: 30),
-                                          Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Container(
-                                                width: Responsive.isDesktop(
-                                                        context)
-                                                    ? Responsive.width(
-                                                            context) /
-                                                        2.2
-                                                    : Responsive.width(
-                                                            context) /
-                                                        1.35,
-                                                child: RichText(
-                                                  text: TextSpan(
-                                                    children: [
-                                                      TextSpan(
-                                                          text:
-                                                              "Description\n",
-                                                          style: TextStyle(
-                                                              fontSize:  Responsive.isMiniMobile(context) ? 13 :15,
-                                                              color: Colors
-                                                                  .black,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold)),
-                                                      TextSpan(
-                                                          text: ProjectLanguage
-                                                                  .isLTR()
-                                                              ? "${widget.product.descriptionEn}"
-                                                              : "${widget.product.descriptionAr}",
-                                                          style: TextStyle(
-                                                              fontSize: Responsive.isMiniMobile(context) ? 10 :12,
-                                                              color: Colors
-                                                                  .black)),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ),
-                                              SizedBox(
-                                                  height:
-                                                      kDefaultPaddin * 2),
-                                            ],
-                                          ),
                                         ],
                                       ),
                                     ],
                                   ),
-                                ),
-                              ],
+                                  SizedBox(height: 25),
+                                  Padding(
+                                    padding:
+                                        const EdgeInsets.only(bottom: 20.0),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Container(
+                                          width: Responsive.isDesktop(context)
+                                              ? Responsive.width(context) / 2.2
+                                              : Responsive.width(context) /
+                                                  1.35,
+                                          child: Text(
+                                            "Description",
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .headline4!
+                                                .copyWith(
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize:
+                                                      Responsive.isMiniMobile(
+                                                              context)
+                                                          ? 16
+                                                          : 19,
+                                                ),
+                                          ),
+                                        ),
+                                        SizedBox(height: 8),
+                                        Container(
+                                          width: Responsive.isDesktop(context)
+                                              ? Responsive.width(context) / 2.2
+                                              : Responsive.width(context) /
+                                                  1.35,
+                                          child: Text(
+                                            ProjectLanguage.isLTR()
+                                                ? "${widget.product.descriptionEn}"
+                                                : "${widget.product.descriptionAr}",
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .headline4!
+                                                .copyWith(
+                                                  color: Colors.black,
+                                                  fontSize:
+                                                      Responsive.isMiniMobile(
+                                                              context)
+                                                          ? 10
+                                                          : 12,
+                                                ),
+                                          ),
+                                        ),
+                                        SizedBox(height: 300),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ],
                         ),
-                      ),
+                      ],
                     ),
-                  ),
-
-                  // Align(
-                  //   alignment: Alignment.bottomCenter,
-                  //   child: Container(
-                  //     width: 60,
-                  //     height: 60,
-                  //     child: FloatingActionButton(
-                  //       onPressed: () => Navigator.of(context).pop(),
-                  //       child: Icon(Icons.close),
-                  //     ),
-                  //   ),
-                  // ),
-                ],
+                    Positioned(
+                        top: -30,
+                        child: Center(
+                          child: CircleAvatar(
+                            backgroundColor: Colors.grey,
+                            radius: 30,
+                            child: GestureDetector(
+                              onTap: () {
+                                Navigator.of(context).pop();
+                              },
+                              child: Icon(
+                                Icons.keyboard_arrow_down_sharp,
+                                color: Colors.white,
+                                size: 35,
+                              ),
+                            ),
+                          ),
+                        )),
+                  ],
+                ),
               ),
             ),
           ),
@@ -311,7 +333,7 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
       transitionBuilder: (context, anim1, anim2, child) {
         return SlideTransition(
           position:
-              Tween(begin: Offset(0, _fromTop ? -1 : 1), end: Offset(0, 0))
+              Tween(begin: Offset(0, _fromTop ? -1 : 1), end: Offset(0, 0.4))
                   .animate(anim1),
           child: child,
         );
