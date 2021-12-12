@@ -329,10 +329,13 @@ class _AddBannerButtonState extends State<AddBannerButton> {
                                   onTap: () async {
                                     _imageBannerController.text =
                                         await fireBaseUploadFileWeb(id);
-                                        //  if (_imageBannerController.text != '') {
-                                            _imagevalue.value =
-                                               _imageBannerController.text;
-                                          // }
+                                    if (_imageBannerController.text != '') {
+                                      _imagevalue.value =
+                                          _imageBannerController.text;
+                                    } else if (_imageBannerController.text ==
+                                        '') {
+                                      _imagevalue.value = imageURL;
+                                    }
                                   },
                                   child: Center(
                                     child: Container(
@@ -432,7 +435,6 @@ class _AddBannerButtonState extends State<AddBannerButton> {
                                       'assets/images/placeholder.jpg';
 
                                   _imageBannerController.clear();
-
                                   Navigator.of(context).pop();
                                 },
                                 style: ButtonStyle(
@@ -458,7 +460,10 @@ class _AddBannerButtonState extends State<AddBannerButton> {
                                       // 'name': _nameBannerController.text,
                                       // 'category': _categoryBannerController.text,
                                       'isPublished': true,
-                                      'image': _imageBannerController.text,
+                                      'image':
+                                          _imageBannerController.text == ' '
+                                              ? 'assets/images/placeholder.jpg'
+                                              : _imageBannerController.text,
                                       //subCategory: ---
                                     }).whenComplete(() {
                                       // _categoryBannerController.clear();
