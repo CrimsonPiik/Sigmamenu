@@ -93,7 +93,7 @@ class _AddCategoryButtonState extends State<AddCategoryButton> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.all(8.0),
+                            padding: const EdgeInsets.all(12.0),
                             child: ElevatedButton(
                               onPressed: () async {
                                 _formKey.currentState!.save();
