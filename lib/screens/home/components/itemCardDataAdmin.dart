@@ -65,11 +65,11 @@ class _ItemCardDataAdminState extends State<ItemCardDataAdmin> {
                   itemCount: products.length,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 1,
-                      childAspectRatio: Responsive.isDesktop(context)
-                          ? MediaQuery.of(context).size.width /
-                              (MediaQuery.of(context).size.height / 3.5)
-                          : MediaQuery.of(context).size.width /
-                              (MediaQuery.of(context).size.height / 4)),
+                     childAspectRatio: Responsive.isDesktop(context)
+                              ? 8.2
+                              : Responsive.isMobile(context)
+                                  ? 2.30
+                                  : 1.75),
                   itemBuilder: (context, index) => Container(
                       // padding: EdgeInsets.all(16),
                       margin: EdgeInsets.only(bottom: 20),

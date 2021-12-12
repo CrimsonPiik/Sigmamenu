@@ -357,7 +357,7 @@ class _AddBannerButtonState extends State<AddBannerButton> {
                                                       child: InteractiveViewer(
                                                         child: Image.network(
                                                           value,
-                                                          fit: BoxFit.fitWidth,
+                                                          fit: BoxFit.cover,
                                                           loadingBuilder: (context,
                                                               child,
                                                               loadingProgress) {
@@ -383,7 +383,7 @@ class _AddBannerButtonState extends State<AddBannerButton> {
                                                       ),
                                                       child: Image.asset(
                                                         'assets/images/placeholder.jpg',
-                                                        fit: BoxFit.fitWidth,
+                                                        fit: BoxFit.cover,
                                                       ),
                                                     ),
                                               Container(

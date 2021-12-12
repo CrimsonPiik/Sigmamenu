@@ -36,7 +36,7 @@ class AdsCard extends StatelessWidget {
                 width: double.infinity,
                 child: CommonUI.cachedImage(
                     image, 'assets/images/placeholder.jpg',
-                    fit: BoxFit.fill),
+                    fit: BoxFit.cover),
               ),
               Positioned(
                 bottom: 0,

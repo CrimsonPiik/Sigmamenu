@@ -167,10 +167,10 @@ class ShimmerForCustomerScreen extends StatelessWidget {
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 1,
                       childAspectRatio: Responsive.isDesktop(context)
-                          ? MediaQuery.of(context).size.width /
-                              (MediaQuery.of(context).size.height / 3.5)
-                          : MediaQuery.of(context).size.width /
-                              (MediaQuery.of(context).size.height / 4.5)),
+                              ? 8.2
+                              : Responsive.isMobile(context)
+                                  ? 2.30
+                                  : 1.75),
                 ),
               ),
               baseColor: Colors.grey.withOpacity(0.7),

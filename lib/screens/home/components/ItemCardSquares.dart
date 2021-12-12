@@ -180,19 +180,15 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                                   Row(
                                     children: [
                                       Container(
-                                        padding: EdgeInsets.only(
-                                          top: kDefaultPaddin * 2,
-                                        ),
-                                        //  child: Contianer(
-                                        // tag: "${widget.product.id}",
-                                        child: Image.network(
-                                          widget.product.image,
-                                          width: 150,
-                                          height: 140,
-                                          fit: BoxFit.cover,
-                                          // ),
-                                        ),
-                                      ),
+                                          width: 140,
+                                          height: 170,
+                                          padding: EdgeInsets.only(
+                                            top: kDefaultPaddin * 2,
+                                          ),
+                                          child: CommonUI.cachedImage(
+                                              widget.product.image,
+                                              ImageAssets.placeholder,
+                                              fit: BoxFit.cover)),
                                       SizedBox(width: 20),
                                       Column(
                                         crossAxisAlignment:

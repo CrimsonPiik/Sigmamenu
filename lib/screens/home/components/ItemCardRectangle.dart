@@ -49,20 +49,24 @@ class _ItemCardRectangleState extends State<ItemCardRectangle> {
         child: Row(
           children: [
             Container(
-                width: Responsive.isDesktop(context)
-                    ? 160
-                    : Responsive.isTablet(context)
-                        ? 155
-                        : Responsive.isMobile(context)
-                            ? 150
-                            : 100,
-                height: Responsive.isDesktop(context)
-                    ? 160
-                    : Responsive.isTablet(context)
-                        ? 155
-                        : Responsive.isMobile(context)
-                            ? 150
-                            : 100,
+                width: 150,
+                height: 140,
+                // width: 160,
+                // Responsive.isDesktop(context)
+                //     ? 160
+                //     : Responsive.isTablet(context)
+                //         ? 155
+                //         : Responsive.isMobile(context)
+                //             ? 150
+                //             : 100,
+                // height: 140,
+                // Responsive.isDesktop(context)
+                //     ? 160
+                //     : Responsive.isTablet(context)
+                //         ? 155
+                //         : Responsive.isMobile(context)
+                //             ? 150
+                //             : 100,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(4),
                 ),
@@ -185,8 +189,6 @@ class _ItemCardRectangleState extends State<ItemCardRectangle> {
                         Stack(
                           children: <Widget>[
                             Container(
-                              // height:Responsive.isDesktop(context)
-                              //     ? 800 : 1000,
                               width: Responsive.isDesktop(context)
                                   ? Responsive.width(context) / 2
                                   : Responsive.width(context),
@@ -207,19 +209,15 @@ class _ItemCardRectangleState extends State<ItemCardRectangle> {
                                   Row(
                                     children: [
                                       Container(
-                                        padding: EdgeInsets.only(
-                                          top: kDefaultPaddin * 2,
-                                        ),
-                                        //  child: Contianer(
-                                        // tag: "${widget.product.id}",
-                                        child: Image.network(
-                                          widget.product.image,
-                                          width: 150,
-                                          height: 140,
-                                          fit: BoxFit.cover,
-                                          // ),
-                                        ),
-                                      ),
+                                          width: 140,
+                                          height: 170,
+                                          padding: EdgeInsets.only(
+                                            top: kDefaultPaddin * 2,
+                                          ),
+                                          child: CommonUI.cachedImage(
+                                              widget.product.image,
+                                              ImageAssets.placeholder,
+                                              fit: BoxFit.cover)),
                                       SizedBox(width: 20),
                                       Column(
                                         crossAxisAlignment:

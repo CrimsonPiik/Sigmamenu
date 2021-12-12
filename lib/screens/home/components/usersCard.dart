@@ -199,7 +199,7 @@ class _UsersCardState extends State<UsersCard> {
                   ),
                   child: CommonUI.cachedImage(
                       widget.data.image, ImageAssets.user,
-                      fit: BoxFit.fitHeight)),
+                      fit: BoxFit.cover)),
               SizedBox(
                 width: 16,
               ),

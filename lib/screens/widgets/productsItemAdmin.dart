@@ -429,7 +429,7 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                                           child: Image.network(
                                                             value,
                                                             fit:
-                                                                BoxFit.fitWidth,
+                                                                BoxFit.cover,
                                                             loadingBuilder:
                                                                 (context, child,
                                                                     loadingProgress) {
@@ -505,7 +505,7 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                                                   ImageAssets
                                                                       .placeholder,
                                                                   fit: BoxFit
-                                                                      .fitWidth)),
+                                                                      .cover)),
                                                       Container(
                                                         decoration:
                                                             BoxDecoration(
@@ -891,8 +891,6 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                         Stack(
                           children: <Widget>[
                             Container(
-                              // height:Responsive.isDesktop(context)
-                              //     ? 800 : 1000,
                               width: Responsive.isDesktop(context)
                                   ? Responsive.width(context) / 2
                                   : Responsive.width(context),
@@ -922,14 +920,6 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                               widget.product.image,
                                               ImageAssets.placeholder,
                                               fit: BoxFit.cover)
-
-                                          // Image.network(
-                                          //   widget.product.image,
-                                          //   width: 150,
-                                          //   height: 140,
-                                          //   fit: BoxFit.cover,
-                                          //   // ),
-                                          // ),
                                           ),
                                       SizedBox(width: 20),
                                       Column(

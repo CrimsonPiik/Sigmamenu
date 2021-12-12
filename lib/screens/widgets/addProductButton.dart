@@ -141,7 +141,7 @@ class _AddProductButtonState extends State<AddProductButton> {
                                                 child: InteractiveViewer(
                                                   child: Image.network(
                                                     value,
-                                                    fit: BoxFit.fitWidth,
+                                                    fit: BoxFit.cover,
                                                     loadingBuilder: (context,
                                                         child,
                                                         loadingProgress) {
@@ -166,7 +166,7 @@ class _AddProductButtonState extends State<AddProductButton> {
                                                 ),
                                                 child: Image.asset(
                                                   'assets/images/placeholder.jpg',
-                                                  fit: BoxFit.fitWidth,
+                                                  fit: BoxFit.cover,
                                                 ),
                                               ),
                                         Container(
@@ -333,7 +333,7 @@ class _AddProductButtonState extends State<AddProductButton> {
                                       _descriptionEnController.text,
                                   'isPublished': true,
                                   'image': _imageController.text == ''
-                                      ? ImageAssets.placeholder
+                                      ? 'assets/images/placeholder.jpg'
                                       : _imageController.text,
                                   'price': _priceController.text,
                                   'rate': 0,
