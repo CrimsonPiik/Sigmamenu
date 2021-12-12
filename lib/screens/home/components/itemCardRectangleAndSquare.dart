@@ -80,15 +80,20 @@ class _ItemCardRectangleAndSquareState extends State<ItemCardRectangleAndSquare>
                     child: GridView.builder(
                       itemCount: products.length,
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: Responsive.isDesktop(context)
-                            ? 7
-                            : Responsive.isTablet(context)
-                                ? 4
-                                : 2,
-                        mainAxisSpacing: kDefaultPaddin,
-                        crossAxisSpacing: kDefaultPaddin,
-                        childAspectRatio: 0.75,
-                      ),
+                          crossAxisCount: Responsive.isDesktop(context)
+                              ? 7
+                              : Responsive.isTablet(context)
+                                  ? 4
+                                  : 2,
+                          mainAxisSpacing: kDefaultPaddin,
+                          crossAxisSpacing: kDefaultPaddin,
+                          childAspectRatio: Responsive.isDesktop(context)
+                              ? 0.75
+                              : Responsive.isMobile(context)
+                                  ? 0.75
+                                  : Responsive.isMiniMobile(context)
+                                      ? 0.65
+                                      : 0.80),
                       itemBuilder: (context, index) => ItemCardSquares(
                         product: products[index],
                       ),
@@ -110,7 +115,9 @@ class _ItemCardRectangleAndSquareState extends State<ItemCardRectangleAndSquare>
                               ? 8.2
                               : Responsive.isMobile(context)
                                   ? 2.30
-                                  : 1.75),
+                                  : Responsive.isMiniMobile(context)
+                                      ? 2.0
+                                      : 4.0),
                       itemBuilder: (context, index) => ItemCardRectangle(
                         product: products[index],
                       ),

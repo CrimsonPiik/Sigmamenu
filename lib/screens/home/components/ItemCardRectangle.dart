@@ -9,13 +9,9 @@ import 'package:sigmamenu/style/ScreenUtil.dart';
 
 class ItemCardRectangle extends StatefulWidget {
   final Product product;
-  // final bool isWithFavorite;
-  // final bool isFavoriteScreen;
   ItemCardRectangle({
     Key? key,
     required this.product,
-    // this.isWithFavorite = false,
-    // this.isFavoriteScreen = false,
   }) : super(key: key);
 
   @override
@@ -51,22 +47,6 @@ class _ItemCardRectangleState extends State<ItemCardRectangle> {
             Container(
                 width: 150,
                 height: 140,
-                // width: 160,
-                // Responsive.isDesktop(context)
-                //     ? 160
-                //     : Responsive.isTablet(context)
-                //         ? 155
-                //         : Responsive.isMobile(context)
-                //             ? 150
-                //             : 100,
-                // height: 140,
-                // Responsive.isDesktop(context)
-                //     ? 160
-                //     : Responsive.isTablet(context)
-                //         ? 155
-                //         : Responsive.isMobile(context)
-                //             ? 150
-                //             : 100,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(4),
                 ),
@@ -83,19 +63,6 @@ class _ItemCardRectangleState extends State<ItemCardRectangle> {
                   SizedBox(
                     height: 12,
                   ),
-                  // CommonUI.text(
-                  //   context: context,
-                  //   text: ProjectLanguage.isLTR()
-                  //       ? widget.product.nameEn
-                  //       : widget.product.nameAr,
-                  //   textAlign: TextAlign.center,
-                  //   maxLines: 2,
-                  //   style: FontStyle.normal(
-                  //       context: context,
-                  //       fontWeight: FontWeight.bold,
-                  //       color: Colors.black),
-                  // ),
-
                   Text(
                     ProjectLanguage.isLTR()
                         ? widget.product.nameEn
@@ -126,21 +93,6 @@ class _ItemCardRectangleState extends State<ItemCardRectangle> {
                               color: Colors.red)),
                     ],
                   ),
-                  // SizedBox(
-                  //   height: 25,
-                  // ),
-                  // CommonUI.text(
-                  //   context: context,
-                  //   text: ProjectLanguage.isLTR()
-                  //       ? widget.product.descriptionEn
-                  //       : widget.product.descriptionAr,
-                  //   textAlign: TextAlign.start,
-                  //   maxLines: 3,
-                  //   style: FontStyle.smaller(
-                  //       context: context,
-                  //       fontWeight: FontWeight.bold,
-                  //       color: Colors.black.withOpacity(0.7)),
-                  // ),
                   SizedBox(
                     height: Responsive.isMiniMobile(context) ? 5 : 9,
                   ),

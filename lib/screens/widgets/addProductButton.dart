@@ -5,7 +5,6 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:sigmamenu/GeneralFunction/firebase_uploader_web.dart';
 import 'package:sigmamenu/GeneralFunction/random_id_generator.dart';
 import 'package:sigmamenu/screens/adminPanel.dart';
-import 'package:sigmamenu/style/AssetsManager.dart';
 import 'package:sigmamenu/style/CommonUI.dart';
 import 'package:sigmamenu/style/ScreenUtil.dart';
 

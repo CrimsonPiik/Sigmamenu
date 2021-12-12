@@ -13,11 +13,11 @@ class Responsive extends StatelessWidget {
   }) : super(key: key);
 
   static bool isMiniMobile(BuildContext context) =>
-      MediaQuery.of(context).size.width < 370;
+      MediaQuery.of(context).size.width < 360;
 
   static bool isMobile(BuildContext context) =>
       MediaQuery.of(context).size.width < 650 &&
-      MediaQuery.of(context).size.width >= 370;
+      MediaQuery.of(context).size.width >= 360;
 
   static bool isTablet(BuildContext context) =>
       MediaQuery.of(context).size.width < 1100 &&

@@ -43,14 +43,15 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   ClipRRect(
-                    child: Container(
+                    child: 
+                    Container(
                       height: Responsive.isDesktop(context)
-                          ? 160
-                          : Responsive.isTablet(context)
                               ? 155
                               : Responsive.isMobile(context)
                                   ? 150
-                                  : 100,
+                                  : Responsive.isMiniMobile(context)
+                                      ? 130
+                                      :140,
                       width: double.maxFinite,
                       decoration: BoxDecoration(
                         color: Colors.white,
