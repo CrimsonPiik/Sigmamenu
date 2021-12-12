@@ -34,6 +34,7 @@ class _AddBannerButtonState extends State<AddBannerButton> {
             height: 40,
             child: TextButton.icon(
                 onPressed: () {
+                  _imagevalue.value = 'assets/images/placeholder.jpg';
                   showDialogWithFields();
                 },
                 icon: Icon(
@@ -297,210 +298,213 @@ class _AddBannerButtonState extends State<AddBannerButton> {
                 clipBehavior: Clip.none,
                 alignment: Alignment.topCenter,
                 children: [
-                  Container(
-                    height: 320,
-                    width: Responsive.isDesktop(context)
-                        ? size.width / 3
-                        : size.width - 20,
-                    child: Padding(
-                      padding: const EdgeInsets.fromLTRB(10, 70, 10, 0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text(
-                            'Create Banner',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize:
-                                    Responsive.isMiniMobile(context) ? 15 : 20),
-                          ),
-                          SizedBox(height: 10),
-                          ValueListenableBuilder(
-                            valueListenable: _imagevalue,
-                            builder: (BuildContext context, dynamic value,
-                                Widget? child) {
-                              return Center(
-                                child:
-                                    // Ink(
-                                    // width: 180,
-                                    // height: 180,
-                                    // child:
-                                    GestureDetector(
-                                  onTap: () async {
-                                    _imageBannerController.text =
-                                        await fireBaseUploadFileWeb(id);
-                                    if (_imageBannerController.text != '') {
-                                      _imagevalue.value =
-                                          _imageBannerController.text;
-                                    } else if (_imageBannerController.text ==
-                                        '') {
-                                      _imagevalue.value = imageURL;
-                                    }
-                                  },
-                                  child: Center(
-                                    child: Container(
-                                      height: 130,
-                                      width: 250,
-                                      child: Column(
-                                        children: [
-                                          Stack(children: [
-                                            _imagevalue.value != null
-                                                ? Container(
-                                                    height: 130,
-                                                    width: 250,
-                                                    decoration: BoxDecoration(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              4),
-                                                    ),
-                                                    child: InteractiveViewer(
-                                                      child: Image.network(
-                                                        value,
+                  SingleChildScrollView(
+                    child: Container(
+                      width: Responsive.isDesktop(context)
+                          ? size.width / 3
+                          : size.width - 20,
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(10, 70, 10, 0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(
+                              'Create Banner',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize:
+                                      Responsive.isMiniMobile(context) ? 15 : 20),
+                            ),
+                            SizedBox(height: 10),
+                            ValueListenableBuilder(
+                              valueListenable: _imagevalue,
+                              builder: (BuildContext context, dynamic value,
+                                  Widget? child) {
+                                return Center(
+                                  child:
+                                      // Ink(
+                                      // width: 180,
+                                      // height: 180,
+                                      // child:
+                                      GestureDetector(
+                                    onTap: () async {
+                                      _imageBannerController.text =
+                                          await fireBaseUploadFileWeb(id);
+                                      if (_imageBannerController.text != '') {
+                                        _imagevalue.value =
+                                            _imageBannerController.text;
+                                      } else if (_imageBannerController.text ==
+                                          '') {
+                                        _imagevalue.value = imageURL;
+                                      }
+                                    },
+                                    child: Center(
+                                      child: Container(
+                                        height: 130,
+                                        width: 250,
+                                        child: Column(
+                                          children: [
+                                            Stack(children: [
+                                              _imagevalue.value != null
+                                                  ? Container(
+                                                      height: 130,
+                                                      width: 250,
+                                                      decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius.circular(
+                                                                4),
+                                                      ),
+                                                      child: InteractiveViewer(
+                                                        child: Image.network(
+                                                          value,
+                                                          fit: BoxFit.fitWidth,
+                                                          loadingBuilder: (context,
+                                                              child,
+                                                              loadingProgress) {
+                                                            if (loadingProgress ==
+                                                                null) {
+                                                              return child;
+                                                            }
+                                                            return Center(
+                                                              child:
+                                                                  CircularProgressIndicator(),
+                                                            );
+                                                          },
+                                                        ),
+                                                      ),
+                                                    )
+                                                  : Container(
+                                                      height: 130,
+                                                      width: 250,
+                                                      decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius.circular(
+                                                                4),
+                                                      ),
+                                                      child: Image.asset(
+                                                        'assets/images/placeholder.jpg',
                                                         fit: BoxFit.fitWidth,
-                                                        loadingBuilder: (context,
-                                                            child,
-                                                            loadingProgress) {
-                                                          if (loadingProgress ==
-                                                              null) {
-                                                            return child;
-                                                          }
-                                                          return Center(
-                                                            child:
-                                                                CircularProgressIndicator(),
-                                                          );
-                                                        },
                                                       ),
                                                     ),
-                                                  )
-                                                : Container(
-                                                    height: 130,
+                                              Container(
+                                                decoration: BoxDecoration(
+                                                    color: Color(0x4D303030)),
+                                                height: 130,
+                                                width: 250,
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsets.only(top: 95),
+                                                child: Container(
+                                                    height: 35,
                                                     width: 250,
                                                     decoration: BoxDecoration(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              4),
-                                                    ),
-                                                    child: Image.asset(
-                                                      'assets/images/placeholder.jpg',
-                                                      fit: BoxFit.fitWidth,
-                                                    ),
-                                                  ),
-                                            Container(
-                                              decoration: BoxDecoration(
-                                                  color: Color(0x4D303030)),
-                                              height: 130,
-                                              width: 250,
-                                            ),
-                                            Padding(
-                                              padding: EdgeInsets.only(top: 95),
-                                              child: Container(
-                                                  height: 35,
-                                                  width: 250,
-                                                  decoration: BoxDecoration(
-                                                      color: Color(0x4D000000)),
-                                                  child: Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
-                                                    children: [
-                                                      Text(
-                                                        'ADD ',
-                                                        style: TextStyle(
-                                                            color:
-                                                                Colors.white),
-                                                      ),
-                                                      Icon(Icons.add,
-                                                          color: Colors.white)
-                                                    ],
-                                                  )),
-                                            ),
-                                          ]),
-                                        ],
+                                                        color: Color(0x4D000000)),
+                                                    child: Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      children: [
+                                                        // Text(
+                                                        //   'ADD ',
+                                                        //   style: TextStyle(
+                                                        //       color:
+                                                        //           Colors.white),
+                                                        // ),
+                                                        Icon(Icons.camera_alt,
+                                                            color: Colors.white)
+                                                      ],
+                                                    )),
+                                              ),
+                                            ]),
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
-                                // ),
-                              );
-                            },
-                          ),
-                          SizedBox(height: 10),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              ElevatedButton(
-                                onPressed: () {
-                                  id = generateId();
-                                  _imagevalue.value =
-                                      'assets/images/placeholder.jpg';
-
-                                  _imageBannerController.clear();
-                                  Navigator.of(context).pop();
-                                },
-                                style: ButtonStyle(
-                                  backgroundColor:
-                                      MaterialStateProperty.all(Colors.white),
-                                ),
-                                child: Text(
-                                  'Cancel',
-                                  style: TextStyle(color: Colors.black),
-                                ),
-                              ),
-                              SizedBox(width: 15),
-                              ElevatedButton(
-                                onPressed: () async {
-                                  _formKey.currentState!.save();
-                                  if (_formKey.currentState!.validate()) {
-                                    FocusScope.of(context).unfocus();
-                                    await FirebaseFirestore.instance
-                                        .collection("Banner")
-                                        .doc(id)
-                                        .set({
-                                      'id': id,
-                                      // 'name': _nameBannerController.text,
-                                      // 'category': _categoryBannerController.text,
-                                      'isPublished': true,
-                                      'image':
-                                          _imageBannerController.text == ' '
-                                              ? 'assets/images/placeholder.jpg'
-                                              : _imageBannerController.text,
-                                      //subCategory: ---
-                                    }).whenComplete(() {
-                                      // _categoryBannerController.clear();
-                                      // _nameBannerController.clear();
+                                  // ),
+                                );
+                              },
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(12.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  ElevatedButton(
+                                    onPressed: () {
                                       id = generateId();
                                       _imagevalue.value =
                                           'assets/images/placeholder.jpg';
-
+                  
                                       _imageBannerController.clear();
                                       Navigator.of(context).pop();
-
-                                      CommonUI.successDialog(context,
-                                          message: "Saved successfully");
-                                    }).onError((error, stackTrrace) =>
-                                            showDialog(
-                                              context: context,
-                                              builder: (_) {
-                                                return AlertDialog(
-                                                  content:
-                                                      Text(error.toString()),
-                                                );
-                                              },
-                                            ));
-                                  }
-                                },
-                                style: ButtonStyle(
-                                  backgroundColor:
-                                      MaterialStateProperty.all(Colors.green),
-                                ),
-                                child: Text(
-                                  'Create',
-                                  style: TextStyle(color: Colors.white),
-                                ),
+                                    },
+                                    style: ButtonStyle(
+                                      backgroundColor:
+                                          MaterialStateProperty.all(Colors.white),
+                                    ),
+                                    child: Text(
+                                      'Cancel',
+                                      style: TextStyle(color: Colors.black),
+                                    ),
+                                  ),
+                                  SizedBox(width: 15),
+                                  ElevatedButton(
+                                    onPressed: () async {
+                                      _formKey.currentState!.save();
+                                      if (_formKey.currentState!.validate()) {
+                                        FocusScope.of(context).unfocus();
+                                        await FirebaseFirestore.instance
+                                            .collection("Banner")
+                                            .doc(id)
+                                            .set({
+                                          'id': id,
+                                          // 'name': _nameBannerController.text,
+                                          // 'category': _categoryBannerController.text,
+                                          'isPublished': true,
+                                          'image':
+                                              _imageBannerController.text == ' '
+                                                  ? 'assets/images/placeholder.jpg'
+                                                  : _imageBannerController.text,
+                                          //subCategory: ---
+                                        }).whenComplete(() {
+                                          // _categoryBannerController.clear();
+                                          // _nameBannerController.clear();
+                                          id = generateId();
+                                          _imagevalue.value =
+                                              'assets/images/placeholder.jpg';
+                  
+                                          _imageBannerController.clear();
+                                          Navigator.of(context).pop();
+                  
+                                          CommonUI.successDialog(context,
+                                              message: "Saved successfully");
+                                        }).onError((error, stackTrrace) =>
+                                                showDialog(
+                                                  context: context,
+                                                  builder: (_) {
+                                                    return AlertDialog(
+                                                      content:
+                                                          Text(error.toString()),
+                                                    );
+                                                  },
+                                                ));
+                                      }
+                                    },
+                                    style: ButtonStyle(
+                                      backgroundColor:
+                                          MaterialStateProperty.all(Colors.green),
+                                    ),
+                                    child: Text(
+                                      'Create',
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                  ),
+                                ],
                               ),
-                            ],
-                          ),
-                        ],
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
