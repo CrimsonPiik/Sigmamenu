@@ -8,8 +8,8 @@ class ThemeNotifier with ChangeNotifier {
     brightness: Brightness.dark,
     backgroundColor: const Color(0xFF212121),
     accentColor: Colors.white,
-     floatingActionButtonTheme: FloatingActionButtonThemeData(
-      foregroundColor: Colors.black),
+    floatingActionButtonTheme:
+        FloatingActionButtonThemeData(foregroundColor: Colors.black),
     dividerColor: Colors.black12,
   );
 
@@ -19,8 +19,8 @@ class ThemeNotifier with ChangeNotifier {
     brightness: Brightness.light,
     backgroundColor: const Color(0xFFE5E5E5),
     accentColor: Colors.black,
-     floatingActionButtonTheme: FloatingActionButtonThemeData(
-      foregroundColor:Colors.white),
+    floatingActionButtonTheme:
+        FloatingActionButtonThemeData(foregroundColor: Colors.white),
     dividerColor: Colors.white54,
   );
 
