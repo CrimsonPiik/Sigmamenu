@@ -61,86 +61,87 @@ class _AddCategoryButtonState extends State<AddCategoryButton> {
               clipBehavior: Clip.none,
               alignment: Alignment.topCenter,
               children: [
-                Container(
-                  height: 270,
-                  width: Responsive.isDesktop(context)
-                      ? size.width / 3
-                      : size.width - 20,
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(10, 70, 10, 0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text(
-                          'Add Category',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize:
-                                  Responsive.isMiniMobile(context) ? 15 : 20),
-                        ),
-                        SizedBox(height: 4),
-                        Container(
-                          padding: EdgeInsets.fromLTRB(24, 16, 24, 1),
-                          child: CommonUI.textField(
-                            context: context,
-                            name: "Category Name",
-                            hint: 'e.g Drinks',
-                            maxlines: 1,
-                            controller: newCollectionNameController,
-                            validate: FormBuilderValidators.compose([
-                              FormBuilderValidators.required(context),
-                            ]),
+                SingleChildScrollView(
+                  child: Container(
+                    width: Responsive.isDesktop(context)
+                        ? size.width / 3
+                        : size.width - 20,
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(10, 70, 10, 0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text(
+                            'Add Category',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize:
+                                    Responsive.isMiniMobile(context) ? 15 : 20),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: ElevatedButton(
-                            onPressed: () async {
-                              _formKey.currentState!.save();
-
-                              if (_formKey.currentState!.validate()) {
-                                await FirebaseFirestore.instance
-                                    .collection(newCollectionNameController.text
-                                        .toLowerCase()
-                                        .toTitleCase())
-                                    .add({});
-                                FocusScope.of(context).unfocus();
-                                await FirebaseFirestore.instance
-                                    .collection('Categories')
-                                    .doc(newCollectionNameController.text
-                                        .toLowerCase()
-                                        .toTitleCase())
-                                    .set({}).whenComplete(() {
-                                  Navigator.of(context).pop();
-                                  newCollectionNameController.clear();
-
-                                  CommonUI.successDialog(context,
-                                      message: "Added successfully");
-                                }).onError(
-                                  (error, stackTrrace) => showDialog(
-                                    context: context,
-                                    builder: (_) {
-                                      return AlertDialog(
-                                        content: Text(error.toString()),
-                                      );
-                                    },
-                                  ),
-                                );
-                              }
-                            },
-                            style: ButtonStyle(
-                              backgroundColor:
-                                  MaterialStateProperty.all(Colors.green),
-                            ),
-                            child: Text(
-                              'Add',
-                              style: TextStyle(color: Colors.white),
+                          SizedBox(height: 4),
+                          Container(
+                            padding: EdgeInsets.fromLTRB(24, 16, 24, 1),
+                            child: CommonUI.textField(
+                              context: context,
+                              name: "Category Name",
+                              hint: 'e.g Drinks',
+                              maxlines: 1,
+                              controller: newCollectionNameController,
+                              validate: FormBuilderValidators.compose([
+                                FormBuilderValidators.required(context),
+                              ]),
                             ),
                           ),
-                        ),
-                      ],
-                      // ),
-                      // ],
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: ElevatedButton(
+                              onPressed: () async {
+                                _formKey.currentState!.save();
+                
+                                if (_formKey.currentState!.validate()) {
+                                  await FirebaseFirestore.instance
+                                      .collection(newCollectionNameController.text
+                                          .toLowerCase()
+                                          .toTitleCase())
+                                      .add({});
+                                  FocusScope.of(context).unfocus();
+                                  await FirebaseFirestore.instance
+                                      .collection('Categories')
+                                      .doc(newCollectionNameController.text
+                                          .toLowerCase()
+                                          .toTitleCase())
+                                      .set({}).whenComplete(() {
+                                    Navigator.of(context).pop();
+                                    newCollectionNameController.clear();
+                
+                                    CommonUI.successDialog(context,
+                                        message: "Added successfully");
+                                  }).onError(
+                                    (error, stackTrrace) => showDialog(
+                                      context: context,
+                                      builder: (_) {
+                                        return AlertDialog(
+                                          content: Text(error.toString()),
+                                        );
+                                      },
+                                    ),
+                                  );
+                                }
+                              },
+                              style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStateProperty.all(Colors.green),
+                              ),
+                              child: Text(
+                                'Add',
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            ),
+                          ),
+                        ],
+                        // ),
+                        // ],
+                      ),
                     ),
                   ),
                 ),
