@@ -305,7 +305,7 @@ class _UsersCardState extends State<UsersCard> {
                                     style: TextStyle(color: Colors.black),
                                   ),
                                 ),
-                                SizedBox(width: 15),
+                                SizedBox(width: 20),
                                 ElevatedButton(
                                   onPressed: () async {
                                     await FirebaseFirestore.instance

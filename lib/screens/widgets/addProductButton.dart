@@ -313,7 +313,7 @@ class _AddProductButtonState extends State<AddProductButton> {
                               style: TextStyle(color: Colors.black),
                             ),
                           ),
-                          SizedBox(width: 15),
+                          SizedBox(width: 20),
                           ElevatedButton(
                             onPressed: () async {
                               _formKey.currentState!.save();

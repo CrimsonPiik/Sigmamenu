@@ -291,7 +291,7 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                     style: TextStyle(color: Colors.black),
                                   ),
                                 ),
-                                SizedBox(width: 15),
+                                SizedBox(width: 20),
                                 ElevatedButton(
                                   onPressed: () async {
                                     FirebaseFirestore.instance
@@ -695,7 +695,7 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                       style: TextStyle(color: Colors.black),
                                     ),
                                   ),
-                                  SizedBox(width: 15),
+                                  SizedBox(width: 20),
                                   ElevatedButton(
                                     onPressed: () async {
                                       _formKey.currentState!.save();

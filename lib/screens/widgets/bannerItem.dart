@@ -501,7 +501,7 @@ class _BannersItemState extends State<BannersItem> {
                                     style: TextStyle(color: Colors.black),
                                   ),
                                 ),
-                                SizedBox(width: 15),
+                                SizedBox(width: 20),
                                 ElevatedButton(
                                   onPressed: () async {
                                     await FirebaseFirestore.instance
