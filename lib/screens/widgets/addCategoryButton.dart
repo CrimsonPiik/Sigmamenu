@@ -62,7 +62,7 @@ class _AddCategoryButtonState extends State<AddCategoryButton> {
               alignment: Alignment.topCenter,
               children: [
                 Container(
-                  height: 240,
+                  height: 270,
                   width: Responsive.isDesktop(context)
                       ? size.width / 3
                       : size.width - 20,
@@ -92,47 +92,50 @@ class _AddCategoryButtonState extends State<AddCategoryButton> {
                             ]),
                           ),
                         ),
-                        ElevatedButton(
-                          onPressed: () async {
-                            _formKey.currentState!.save();
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: ElevatedButton(
+                            onPressed: () async {
+                              _formKey.currentState!.save();
 
-                            if (_formKey.currentState!.validate()) {
-                              await FirebaseFirestore.instance
-                                  .collection(newCollectionNameController.text
-                                      .toLowerCase()
-                                      .toTitleCase())
-                                  .add({});
-                              FocusScope.of(context).unfocus();
-                              await FirebaseFirestore.instance
-                                  .collection('Categories')
-                                  .doc(newCollectionNameController.text
-                                      .toLowerCase()
-                                      .toTitleCase())
-                                  .set({}).whenComplete(() {
-                                Navigator.of(context).pop();
-                                newCollectionNameController.clear();
+                              if (_formKey.currentState!.validate()) {
+                                await FirebaseFirestore.instance
+                                    .collection(newCollectionNameController.text
+                                        .toLowerCase()
+                                        .toTitleCase())
+                                    .add({});
+                                FocusScope.of(context).unfocus();
+                                await FirebaseFirestore.instance
+                                    .collection('Categories')
+                                    .doc(newCollectionNameController.text
+                                        .toLowerCase()
+                                        .toTitleCase())
+                                    .set({}).whenComplete(() {
+                                  Navigator.of(context).pop();
+                                  newCollectionNameController.clear();
 
-                                CommonUI.successDialog(context,
-                                    message: "Added successfully");
-                              }).onError(
-                                (error, stackTrrace) => showDialog(
-                                  context: context,
-                                  builder: (_) {
-                                    return AlertDialog(
-                                      content: Text(error.toString()),
-                                    );
-                                  },
-                                ),
-                              );
-                            }
-                          },
-                          style: ButtonStyle(
-                            backgroundColor:
-                                MaterialStateProperty.all(Colors.green),
-                          ),
-                          child: Text(
-                            'Add',
-                            style: TextStyle(color: Colors.white),
+                                  CommonUI.successDialog(context,
+                                      message: "Added successfully");
+                                }).onError(
+                                  (error, stackTrrace) => showDialog(
+                                    context: context,
+                                    builder: (_) {
+                                      return AlertDialog(
+                                        content: Text(error.toString()),
+                                      );
+                                    },
+                                  ),
+                                );
+                              }
+                            },
+                            style: ButtonStyle(
+                              backgroundColor:
+                                  MaterialStateProperty.all(Colors.green),
+                            ),
+                            child: Text(
+                              'Add',
+                              style: TextStyle(color: Colors.white),
+                            ),
                           ),
                         ),
                       ],
