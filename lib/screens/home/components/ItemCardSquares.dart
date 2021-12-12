@@ -194,6 +194,7 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
+                                          SizedBox(height: 6),
                                           Container(
                                             width:
                                                 Responsive.isMiniMobile(context)

@@ -223,6 +223,7 @@ class _ItemCardRectangleState extends State<ItemCardRectangle> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
+                                          SizedBox(height: 6),
                                           Container(
                                             width:
                                                 Responsive.isMiniMobile(context)

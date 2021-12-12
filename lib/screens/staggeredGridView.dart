@@ -98,7 +98,7 @@ class BackGroundTile extends StatelessWidget {
                 Container(
                     decoration: BoxDecoration(
                   image: DecorationImage(
-                      image: NetworkImage(background), fit: BoxFit.fill),
+                      image: NetworkImage(background), fit: BoxFit.cover),
                 )),
                 Container(
                   decoration: BoxDecoration(color: Color(0x4D303030)),

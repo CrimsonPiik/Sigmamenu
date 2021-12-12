@@ -288,8 +288,9 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                               'Are you sure you want to delete this product ?',
                               textAlign: TextAlign.center,
                               style: TextStyle(
-                                  fontSize:
-                                      Responsive.isMiniMobile(context) ? 12 : 17),
+                                  fontSize: Responsive.isMiniMobile(context)
+                                      ? 12
+                                      : 17),
                             ),
                           ),
                           Padding(
@@ -320,8 +321,8 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                     Navigator.of(context).pop();
                                   },
                                   style: ButtonStyle(
-                                    backgroundColor:
-                                        MaterialStateProperty.all(Colors.redAccent),
+                                    backgroundColor: MaterialStateProperty.all(
+                                        Colors.redAccent),
                                   ),
                                   child: Text(
                                     'Delete',
@@ -398,7 +399,6 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                           _imageController.text =
                                               await fireBaseUploadFileWeb(
                                                   widget.product.id);
-                                    
 
                                           print("Controlller " +
                                               _imageController.text);
@@ -428,8 +428,7 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                                             InteractiveViewer(
                                                           child: Image.network(
                                                             value,
-                                                            fit:
-                                                                BoxFit.cover,
+                                                            fit: BoxFit.cover,
                                                             loadingBuilder:
                                                                 (context, child,
                                                                     loadingProgress) {
@@ -919,13 +918,13 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                           child: CommonUI.cachedImage(
                                               widget.product.image,
                                               ImageAssets.placeholder,
-                                              fit: BoxFit.cover)
-                                          ),
+                                              fit: BoxFit.cover)),
                                       SizedBox(width: 20),
                                       Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
+                                          SizedBox(height: 6),
                                           Container(
                                             width:
                                                 Responsive.isMiniMobile(context)
