@@ -454,68 +454,76 @@ class _BannersItemState extends State<BannersItem> {
               clipBehavior: Clip.none,
               alignment: Alignment.topCenter,
               children: [
-                Container(
-                  height: 220,
-                  width: Responsive.isDesktop(context)
-                      ? size.width / 3
-                      : size.width - 20,
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(10, 70, 10, 0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text(
-                          'Delete',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: Responsive.isMiniMobile(context) ? 15 :  20),
-                        ),
-                        SizedBox(height: 4),
-                        Container(
-                          padding: EdgeInsets.fromLTRB(24, 1, 24, 16),
-                          child: Text(
-                            'Are you sure you want to delete this banner ?',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(fontSize: Responsive.isMiniMobile(context)? 12 : 17),
+                SingleChildScrollView(
+                  child: Container(
+                    width: Responsive.isDesktop(context)
+                        ? size.width / 3
+                        : size.width - 20,
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(10, 70, 10, 0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text(
+                            'Delete',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize:
+                                    Responsive.isMiniMobile(context) ? 15 : 20),
                           ),
-                        ),
-                        SizedBox(height: 4),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            ElevatedButton(
-                              onPressed: () {
-                                Navigator.of(context).pop();
-                              },
-                              style: ButtonStyle(
-                                backgroundColor:
-                                    MaterialStateProperty.all(Colors.white),
-                              ),
-                              child: Text(
-                                'Cancel',
-                                style: TextStyle(color: Colors.black),
-                              ),
+                          SizedBox(height: 4),
+                          Container(
+                            padding: EdgeInsets.fromLTRB(24, 1, 24, 16),
+                            child: Text(
+                              'Are you sure you want to delete this banner ?',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontSize: Responsive.isMiniMobile(context)
+                                      ? 12
+                                      : 17),
                             ),
-                            SizedBox(width: 15),
-                            ElevatedButton(
-                              onPressed: () async {
-                                await FirebaseFirestore.instance
-                                    .collection('Banner')
-                                    .doc(widget.data.id)
-                                    .delete();
-                                Navigator.of(context).pop();
-                              },
-                              style: ButtonStyle(
-                                backgroundColor:
-                                    MaterialStateProperty.all(Colors.redAccent),
-                              ),
-                              child: Text(
-                                'Delete',
-                                style: TextStyle(color: Colors.white),
-                              ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(12.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                ElevatedButton(
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                  style: ButtonStyle(
+                                    backgroundColor:
+                                        MaterialStateProperty.all(Colors.white),
+                                  ),
+                                  child: Text(
+                                    'Cancel',
+                                    style: TextStyle(color: Colors.black),
+                                  ),
+                                ),
+                                SizedBox(width: 15),
+                                ElevatedButton(
+                                  onPressed: () async {
+                                    await FirebaseFirestore.instance
+                                        .collection('Banner')
+                                        .doc(widget.data.id)
+                                        .delete();
+                                    Navigator.of(context).pop();
+                                  },
+                                  style: ButtonStyle(
+                                    backgroundColor: MaterialStateProperty.all(
+                                        Colors.redAccent),
+                                  ),
+                                  child: Text(
+                                    'Delete',
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
-                      ],
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
