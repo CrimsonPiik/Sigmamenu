@@ -48,10 +48,10 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                       height: Responsive.isDesktop(context)
                               ? 155
                               : Responsive.isMobile(context)
-                                  ? 150
+                                  ? 145
                                   : Responsive.isMiniMobile(context)
                                       ? 130
-                                      :140,
+                                      : 140,
                       width: double.maxFinite,
                       decoration: BoxDecoration(
                         color: Colors.white,

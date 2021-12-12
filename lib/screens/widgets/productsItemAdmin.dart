@@ -148,76 +148,72 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
             Container(
                 // padding: EdgeInsets.only(top: 8, left: 16, right: 8, bottom: 8),
                 child: Row(
-                  children: [
-                    Container(
-                        width: 150,
-                        height: 140,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(4),
-                        ),
-                        child: CommonUI.cachedImage(
-                            widget.product.image, ImageAssets.placeholder,
-                            fit: BoxFit.cover)),
-                    SizedBox(
-                      width: 16,
+              children: [
+                Container(
+                    width: 150,
+                    height: 140,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(4),
                     ),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                    child: CommonUI.cachedImage(
+                        widget.product.image, ImageAssets.placeholder,
+                        fit: BoxFit.cover)),
+                SizedBox(
+                  width: 16,
+                ),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(height: 10),
+                      Text(
+                        widget.product.nameEn,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize:
+                                Responsive.isMiniMobile(context) ? 12 : 14),
+                      ),
+                      SizedBox(
+                        height: 8,
+                      ),
+                      Row(
                         children: [
-                          SizedBox(height: 10),
-                          Text(
-                            widget.product.nameEn,
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 1,
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: Responsive.isMiniMobile(context)
-                                    ? 12
-                                    : 14),
-                          ),
-                          SizedBox(
-                            height: 8,
-                          ),
-                          Row(
-                            children: [
-                              Text('JOD ',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize:
-                                          Responsive.isMiniMobile(context)
-                                              ? 12
-                                              : 14,
-                                      color: Colors.black)),
-                              Text(widget.product.price.toString(),
-                                  textAlign: TextAlign.center,
-                                  maxLines: 2,
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize:
-                                          Responsive.isMiniMobile(context)
-                                              ? 12
-                                              : 14,
-                                      color: Colors.red)),
-                            ],
-                          ),
-                          SizedBox(
-                            height: Responsive.isMiniMobile(context) ? 8 : 16,
-                          ),
-                          Text(
-                            widget.product.descriptionEn,
-                            overflow: TextOverflow.ellipsis,
-                            maxLines:
-                                Responsive.isMiniMobile(context) ? 2 : 3,
-                            style: TextStyle(
-                                fontWeight: FontWeight.w400, fontSize: 12),
-                          ),
+                          Text('JOD ',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: Responsive.isMiniMobile(context)
+                                      ? 12
+                                      : 14,
+                                  color: Colors.black)),
+                          Text(widget.product.price.toString(),
+                              textAlign: TextAlign.center,
+                              maxLines: 2,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: Responsive.isMiniMobile(context)
+                                      ? 12
+                                      : 14,
+                                  color: Colors.red)),
                         ],
                       ),
-                    ),
-                  ],
-                )),
+                      SizedBox(
+                        height: Responsive.isMiniMobile(context) ? 8 : 16,
+                      ),
+                      Text(
+                        widget.product.descriptionEn,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: Responsive.isMiniMobile(context) ? 2 : 3,
+                        style: TextStyle(
+                            fontWeight: FontWeight.w400, fontSize: 12),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            )),
             Container(
               width: 10,
               // padding: EdgeInsets.all(16),
