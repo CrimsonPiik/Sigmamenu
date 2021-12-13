@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:sigmamenu/screens/widgets/adminPanelProducts.dart';
+import 'package:sigmamenu/screens/widgets/adminPanelDrawer.dart';
 import 'package:sigmamenu/style/CommonUI.dart';
 
 StreamController<int> streamControllerSideBar =
@@ -40,7 +40,7 @@ class _AdminPanelState extends State<AdminPanel> {
 
           return Scaffold(
             body:
-                AdminPanelProducts(streamControllerSideBar.stream),
+                AdminPanelDrawer(streamControllerSideBar.stream),
             
           );
         });

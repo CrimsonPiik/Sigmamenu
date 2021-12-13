@@ -81,7 +81,7 @@ class _SigningPopUpState extends State<SigningPopUp> {
                   ? Responsive.width(context) * 0.4
                   : Responsive.width(context) - 40,
               child: Center(
-                child: LoginForm(),
+                child: SingleChildScrollView(child: LoginForm()),
                 //Column(
                 // children: [
                 /// Social media button section

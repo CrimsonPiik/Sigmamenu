@@ -62,15 +62,15 @@ class _LoginFormState extends State<LoginForm>
       if (_formKey.currentState!.validate()) {
         await ProjectFirebaseAuth()
             .login(email.text, password.text)
-            .then((value) {
-          if (value is UserCredential) {
+            .then((valuee) {
+          if (valuee is UserCredential) {
             Navigator.pop(context);
           } else {
             showDialog(
                 context: context,
                 builder: (_) {
                   return AlertDialog(
-                    content: Text(value.toString()),
+                    content: Text(valuee.toString()),
                   );
                 });
           }
@@ -98,7 +98,7 @@ class _LoginFormState extends State<LoginForm>
                 /// email TextField
                 TextFormField(
                   controller: email,
-                  onFieldSubmitted: (value) => submit(),
+                  onFieldSubmitted: (valuue) => submit(),
                   decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(16),

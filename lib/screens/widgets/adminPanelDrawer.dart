@@ -14,14 +14,14 @@ import 'package:sigmamenu/screens/widgets/addProductButton.dart';
 import 'package:sigmamenu/screens/widgets/addUserButton.dart';
 import 'package:sigmamenu/screens/widgets/adminPanelBanners.dart';
 
-class AdminPanelProducts extends StatefulWidget {
+class AdminPanelDrawer extends StatefulWidget {
   final Stream<int> menu;
-  AdminPanelProducts(this.menu);
+  AdminPanelDrawer(this.menu);
   @override
-  _AdminPanelProductsState createState() => _AdminPanelProductsState();
+  _AdminPanelDrawerState createState() => _AdminPanelDrawerState();
 }
 
-class _AdminPanelProductsState extends State<AdminPanelProducts> {
+class _AdminPanelDrawerState extends State<AdminPanelDrawer> {
   int item = 0;
 
   @override

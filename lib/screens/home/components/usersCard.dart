@@ -124,7 +124,7 @@ class _UsersCardState extends State<UsersCard> {
       // The child of the Slidable is what the user sees when the
       // component is not dragged.
       child: Container(
-          padding: EdgeInsets.only(top: 8, left: 16, right: 8, bottom: 8),
+          // padding: EdgeInsets.only(top: 8, left: 16, right: 8, bottom: 8),
           child:
               // Row(
               //   children: [
@@ -190,60 +190,59 @@ class _UsersCardState extends State<UsersCard> {
               //   ],
               // )
               Row(
-            children: [
-              Container(
-                  width: 120,
-                  // height: 150,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(4),
-                  ),
-                  child: CommonUI.cachedImage(
-                      widget.data.image, ImageAssets.user,
-                      fit: BoxFit.cover)),
-              SizedBox(
-                width: 16,
+        children: [
+          SizedBox(width: 12),
+          Container(
+              width: 120,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(4),
               ),
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 10.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        widget.data.name,
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 1,
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize:
-                                Responsive.isMiniMobile(context) ? 12 : 14),
-                      ),
-                      SizedBox(
-                        height: Responsive.isMiniMobile(context) ? 8 : 16,
-                      ),
-                      Text(
-                        widget.data.email,
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 1,
-                        style: TextStyle(
-                            fontWeight: FontWeight.w400, fontSize: 12),
-                      ),
-                      SizedBox(
-                        height: Responsive.isMiniMobile(context) ? 8 : 16,
-                      ),
-                      Text(
-                        widget.data.phone,
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 1,
-                        style: TextStyle(
-                            fontWeight: FontWeight.w400, fontSize: 12),
-                      ),
-                    ],
+              child: CommonUI.cachedImage(widget.data.image, ImageAssets.user,
+                  fit: BoxFit.cover)),
+          SizedBox(
+            width: 16,
+          ),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.only(top: 10.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    height: Responsive.isMiniMobile(context) ? 4 : 8,
                   ),
-                ),
+                  Text(
+                    widget.data.name,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: Responsive.isMiniMobile(context) ? 12 : 14),
+                  ),
+                  SizedBox(
+                    height: Responsive.isMiniMobile(context) ? 8 : 16,
+                  ),
+                  Text(
+                    widget.data.email,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
+                    style: TextStyle(fontWeight: FontWeight.w400, fontSize: 12),
+                  ),
+                  SizedBox(
+                    height: Responsive.isMiniMobile(context) ? 4 : 8,
+                  ),
+                  Text(
+                    widget.data.phone,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
+                    style: TextStyle(fontWeight: FontWeight.w400, fontSize: 12),
+                  ),
+                ],
               ),
-            ],
-          )),
+            ),
+          ),
+        ],
+      )),
     );
   }
 
@@ -276,7 +275,9 @@ class _UsersCardState extends State<UsersCard> {
                           Text(
                             'Delete',
                             style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: Responsive.isMiniMobile(context) ? 15 :  20),
+                                fontWeight: FontWeight.bold,
+                                fontSize:
+                                    Responsive.isMiniMobile(context) ? 15 : 20),
                           ),
                           SizedBox(height: 4),
                           Container(
@@ -284,7 +285,10 @@ class _UsersCardState extends State<UsersCard> {
                             child: Text(
                               'Are you sure you want to delete this user ?',
                               textAlign: TextAlign.center,
-                              style: TextStyle(fontSize: Responsive.isMiniMobile(context)? 12 : 17),
+                              style: TextStyle(
+                                  fontSize: Responsive.isMiniMobile(context)
+                                      ? 12
+                                      : 17),
                             ),
                           ),
                           Padding(
@@ -312,12 +316,12 @@ class _UsersCardState extends State<UsersCard> {
                                         .collection('users')
                                         .doc(widget.data.id)
                                         .delete();
-                
+
                                     Navigator.pop(context);
                                   },
                                   style: ButtonStyle(
-                                    backgroundColor:
-                                        MaterialStateProperty.all(Colors.redAccent),
+                                    backgroundColor: MaterialStateProperty.all(
+                                        Colors.redAccent),
                                   ),
                                   child: Text(
                                     'Delete',

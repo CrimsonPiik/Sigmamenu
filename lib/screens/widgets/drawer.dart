@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slider_drawer/flutter_slider_drawer.dart';
 import 'package:sigmamenu/constaints.dart';
 import 'package:sigmamenu/screens/adminPanel.dart';
-import 'package:sigmamenu/screens/widgets/adminPanelProducts.dart';
+import 'package:sigmamenu/screens/widgets/adminPanelDrawer.dart';
 
 class Drawerr extends StatefulWidget {
   @override
@@ -48,7 +48,7 @@ class _DrawerrState extends State<Drawerr> {
         sliderMain:
             // Row(
             // children: [
-            AdminPanelProducts(streamControllerSideBar.stream),
+            AdminPanelDrawer(streamControllerSideBar.stream),
         // ],
         // )
       ),
