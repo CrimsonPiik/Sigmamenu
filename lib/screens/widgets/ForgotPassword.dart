@@ -17,7 +17,7 @@ class FortgotPasswordButton extends StatelessWidget {
       children: [
         TextButton(
           onPressed: () {
-            Navigator.pop(context);
+            // Navigator.pop(context);
             showDialog(
               context: ctx,
               builder: (_) => ForgotPasswordScreen(),
@@ -26,7 +26,7 @@ class FortgotPasswordButton extends StatelessWidget {
           child: Text(translate(context, "forgotPassword"),
               style: FontStyle.normal(
                   context: context,
-                  color: Colors.brown,
+                  color: Colors.grey,
                   fontWeight: FontWeight.bold)),
         ),
       ],
