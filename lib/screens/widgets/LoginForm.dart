@@ -17,7 +17,39 @@ class LoginForm extends StatefulWidget {
   _LoginFormState createState() => _LoginFormState();
 }
 
-class _LoginFormState extends State<LoginForm> {
+class _LoginFormState extends State<LoginForm>
+    with SingleTickerProviderStateMixin {
+  AnimationController? _controller;
+  Animation? _animation;
+  FocusNode _focusNode = FocusNode();
+  @override
+  void initState() {
+    super.initState();
+
+    _controller =
+        AnimationController(vsync: this, duration: Duration(milliseconds: 300));
+    _animation = Tween(begin: 300.0, end: 50.0).animate(_controller!)
+      ..addListener(() {
+        setState(() {});
+      });
+
+    _focusNode.addListener(() {
+      if (_focusNode.hasFocus) {
+        _controller!.forward();
+      } else {
+        _controller!.reverse();
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _controller!.dispose();
+    _focusNode.dispose();
+
+    super.dispose();
+  }
+
   final _formKey = GlobalKey<FormBuilderState>();
   final TextEditingController email = TextEditingController();
   final TextEditingController password = TextEditingController();
@@ -51,12 +83,24 @@ class _LoginFormState extends State<LoginForm> {
       padding: const EdgeInsets.all(12.0),
       child: Column(
         children: [
+          SizedBox(height: _animation!.value),
+          Container(
+            width: 150,
+            height: 150,
+            child: Image.asset(
+              'assets/images/yellowburger.png',
+              // fit: BoxFit.fitWidth
+            ),
+          ),
+          SizedBox(height: 15),
+
           FormBuilder(
             key: _formKey,
             child: Column(
               children: [
                 /// email TextField
                 TextFormField(
+                  focusNode: _focusNode,
                   controller: email,
                   onFieldSubmitted: (value) => submit(),
                   decoration: InputDecoration(
@@ -84,6 +128,7 @@ class _LoginFormState extends State<LoginForm> {
 
                 /// password TextField
                 TextFormField(
+                  focusNode: _focusNode,
                   controller: password,
                   obscureText: hidePassword,
                   onFieldSubmitted: (valr) => submit(),
