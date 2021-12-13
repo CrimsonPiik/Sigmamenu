@@ -45,7 +45,7 @@ class _SigningPopUpState extends State<SigningPopUp> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              SizedBox(height: 250),
+              SizedBox(height: 100),
               // Row(
               //   mainAxisAlignment: MainAxisAlignment.end,
               //   children: [
