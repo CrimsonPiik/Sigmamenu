@@ -9,7 +9,7 @@ import 'package:sigmamenu/provider/darkLightMode.dart';
 import 'package:sigmamenu/screens/adminPanel.dart';
 import 'package:sigmamenu/screens/home/components/categories.dart';
 import 'package:sigmamenu/screens/home/components/itemCardData.dart';
-import 'package:sigmamenu/screens/widgets/SigningPopUp.dart';
+import 'package:sigmamenu/screens/widgets/LoginForm.dart';
 import 'package:sigmamenu/screens/widgets/bannerWithDotsIndicator.dart';
 import 'package:sigmamenu/style/CommonUI.dart';
 
@@ -29,7 +29,6 @@ class _CustomerScreenState extends State<CustomerScreen>
   bool isList = true;
   @override
   void initState() {
-    // mystate();
     animationController =
         AnimationController(vsync: this, duration: Duration(milliseconds: 500));
     super.initState();
@@ -79,14 +78,8 @@ class _CustomerScreenState extends State<CustomerScreen>
           print("Categories : " + categoriesList.toString());
           // DateTime.now().millisecondsSinceEpoch.toString());
           return
-              //  Container(
-              //  child: SingleChildScrollView(
-              // scrollDirection: Axis.vertical,
-              // child:
               Column(
-            // shrinkWrap: true,
             crossAxisAlignment: CrossAxisAlignment.start,
-            // mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: kDefaultPaddin),
@@ -106,20 +99,6 @@ class _CustomerScreenState extends State<CustomerScreen>
                       ),
                       Row(
                         children: [
-                          // IconButton(
-                          //   icon: AnimatedIcon(
-                          //     icon: AnimatedIcons.view_list,
-                          //     progress: animationController,
-                          //   ),
-                          //   onPressed: () {
-                          //     ///toggle controls the animation Forward and Backward
-                          //     toggle();
-                          //     setState(() {
-                          //       Session.isList = !Session.isList;
-                          //     });
-                          //   },
-                          //   // )
-                          // ),
                           isLight
                               ? IconButton(
                                   icon: Icon(Icons.dark_mode),
@@ -146,10 +125,9 @@ class _CustomerScreenState extends State<CustomerScreen>
                           SizedBox(width: 5),
                           IconButton(
                             icon: Icon(Icons.login),
-                            // color: Colors.black,
                             onPressed: () {
                               Navigator.of(context)
-                                  .push(createRoute(SigningPopUp()));
+                                  .push(createRoute(LoginForm()));
                             },
                           ),
                         ],
@@ -158,19 +136,10 @@ class _CustomerScreenState extends State<CustomerScreen>
                   ),
                 ),
               ),
-              // bannerList != 
               BannerWithDotsIndicator(),
-              // : Container(height: 1,),
-              // Row(
-              // children: [
-              // SizedBox(width: 12),
               Categories(),
-              // ],
-              // ),
               ItemCardData(streamController.stream),
             ],
-            // ),
-            //       //  ),
           );
         });
   }

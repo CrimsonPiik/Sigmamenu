@@ -136,8 +136,8 @@ class _MenuWidgetState extends State<MenuWidget> {
           sliderItem('Banners', Icons.photo_size_select_actual_outlined,
               selectedIndex, 1),
           sliderItem('Users', Icons.person, selectedIndex, 2),
-          sliderItem('Setting', Icons.settings, selectedIndex, 3),
-          sliderItem('LogOut', Icons.arrow_back_ios, selectedIndex, 4)
+          // sliderItem('Setting', Icons.settings, selectedIndex, 3),
+          sliderItem('LogOut', Icons.arrow_back_ios, selectedIndex, 3)
         ],
       ),
     );
@@ -157,9 +157,11 @@ class _MenuWidgetState extends State<MenuWidget> {
               myState(0);
             } else if (title == 'Banners') {
               myState(1);
-            } else //if (title == 'Users') {
+            } else if (title == 'Users') {
               myState(2);
-            //}
+            } else if (title == 'LogOut') {
+              Navigator.pushNamed(context, '/');
+            }
           },
           child: Container(
             height: 44,

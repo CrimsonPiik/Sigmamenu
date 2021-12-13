@@ -78,132 +78,145 @@ class _LoginFormState extends State<LoginForm>
       }
     }
 
-    return Padding(
-      padding: const EdgeInsets.all(12.0),
-      child: Column(
-        children: [
-          SizedBox(height: _animation!.value),
-          Container(
-            width: 150,
-            height: 150,
-            child: Image.asset('assets/images/yellowburger.png',
-                fit: BoxFit.cover),
-          ),
-          SizedBox(height: 15),
-
-          FormBuilder(
-            key: _formKey,
-            child: Column(
-              children: [
-                /// email TextField
-                TextFormField(
-                  controller: email,
-                  onFieldSubmitted: (valuue) => submit(),
-                  decoration: InputDecoration(
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(16),
-                        borderSide: BorderSide(color: Colors.black),
+    return Scaffold(
+      body: Center(
+        child: SizedBox(
+                  width: Responsive.isDesktop(context)
+                      ? Responsive.width(context) * 0.4
+                      : Responsive.width(context) - 40,
+          child: Center(
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Column(
+                  children: [
+                    SizedBox(height: _animation!.value),
+                    Container(
+                      width: 150,
+                      height: 150,
+                      child: Image.asset('assets/images/yellowburger.png',
+                          fit: BoxFit.cover),
+                    ),
+                    SizedBox(height: 15),
+            
+                    FormBuilder(
+                      key: _formKey,
+                      child: Column(
+                        children: [
+                          /// email TextField
+                          TextFormField(
+                            controller: email,
+                            onFieldSubmitted: (valuue) => submit(),
+                            decoration: InputDecoration(
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(16),
+                                  borderSide: BorderSide(color: Colors.black),
+                                ),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(16),
+                                  borderSide: BorderSide(color: Colors.black),
+                                ),
+                                hintText: translate(
+                                  context,
+                                  "email",
+                                ),
+                                prefixIcon: Icon(Icons.email, color: Colors.black),
+                                hintStyle: FontStyle.normal(
+                                    context: context, color: Colors.black)),
+                            validator: FormBuilderValidators.compose([
+                              FormBuilderValidators.required(context),
+                              FormBuilderValidators.email(context),
+                            ]),
+                          ),
+                          SizedBox(height: 16),
+            
+                          /// password TextField
+                          TextFormField(
+                            focusNode: _focusNode,
+                            controller: password,
+                            obscureText: hidePassword,
+                            onFieldSubmitted: (valr) => submit(),
+                            decoration: InputDecoration(
+                                suffixIcon: IconButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      hidePassword = !hidePassword;
+                                    });
+                                  },
+                                  icon: Icon(
+                                      hidePassword
+                                          ? Icons.visibility
+                                          : Icons.visibility_off,
+                                      color: Colors.black),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(16),
+                                  borderSide: BorderSide(color: Colors.black),
+                                ),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(16),
+                                  borderSide: BorderSide(color: Colors.black),
+                                ),
+                                hintText: translate(context, "password"),
+                                prefixIcon: Icon(Icons.lock, color: Colors.black),
+                                hintStyle: FontStyle.normal(
+                                    context: context, color: Colors.black)),
+                            validator: FormBuilderValidators.compose([
+                              FormBuilderValidators.required(context),
+                              FormBuilderValidators.minLength(context, 6),
+                            ]),
+                          ),
+            
+                          FortgotPasswordButton(ctx: context),
+                        ],
                       ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(16),
-                        borderSide: BorderSide(color: Colors.black),
-                      ),
-                      hintText: translate(
-                        context,
-                        "email",
-                      ),
-                      prefixIcon: Icon(Icons.email, color: Colors.black),
-                      hintStyle: FontStyle.normal(
-                          context: context, color: Colors.black)),
-                  validator: FormBuilderValidators.compose([
-                    FormBuilderValidators.required(context),
-                    FormBuilderValidators.email(context),
-                  ]),
+                    ),
+                    SizedBox(height: 16),
+                    SigningButton(
+                        text: translate(context, "login"),
+                        onPressed: () => submit(),
+                        textStyle: Responsive.isDesktop(context)
+                            ? FontStyle.small(
+                                context: context,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white)
+                            : null,
+                        color: Colors.black,
+                        textColor: Colors.white),
+                    const SizedBox(height: 16),
+                    // GuestLogin(),
+                    // const VSpace(),
+                    // Wrap(
+                    //   spacing: 2,
+                    //   children: [
+                    //     Text(
+                    //       translate(
+                    //         context,
+                    //         "noAccount",
+                    //       ),
+                    //       style: FontStyle.normal(
+                    //           context: context,
+                    //           color: Colors.black[300],
+                    //           fontWeight: FontWeight.bold),
+                    //     ),
+                    //     SizedBox(width: 8),
+                    //     // InkWell(
+                    //     //     // onTap: widget.click,
+                    //     //     child: Text(
+                    //     //       translate(context, "signup"),
+                    //     //       style: FontStyle.normal(
+                    //     //           context: context,
+                    //     //           fontWeight: FontWeight.bold,
+                    //     //           color: Colors.black),
+                    //     //     ))
+                    //   ],
+                    // )
+                  ],
                 ),
-                SizedBox(height: 16),
-
-                /// password TextField
-                TextFormField(
-                  focusNode: _focusNode,
-                  controller: password,
-                  obscureText: hidePassword,
-                  onFieldSubmitted: (valr) => submit(),
-                  decoration: InputDecoration(
-                      suffixIcon: IconButton(
-                        onPressed: () {
-                          setState(() {
-                            hidePassword = !hidePassword;
-                          });
-                        },
-                        icon: Icon(
-                            hidePassword
-                                ? Icons.visibility
-                                : Icons.visibility_off,
-                            color: Colors.black),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(16),
-                        borderSide: BorderSide(color: Colors.black),
-                      ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(16),
-                        borderSide: BorderSide(color: Colors.black),
-                      ),
-                      hintText: translate(context, "password"),
-                      prefixIcon: Icon(Icons.lock, color: Colors.black),
-                      hintStyle: FontStyle.normal(
-                          context: context, color: Colors.black)),
-                  validator: FormBuilderValidators.compose([
-                    FormBuilderValidators.required(context),
-                    FormBuilderValidators.minLength(context, 6),
-                  ]),
-                ),
-
-                FortgotPasswordButton(ctx: context),
-              ],
+              ),
             ),
           ),
-          SizedBox(height: 16),
-          SigningButton(
-              text: translate(context, "login"),
-              onPressed: () => submit(),
-              textStyle: Responsive.isDesktop(context)
-                  ? FontStyle.small(
-                      context: context,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white)
-                  : null,
-              color: Colors.black,
-              textColor: Colors.white),
-          const SizedBox(height: 16),
-          // GuestLogin(),
-          // const VSpace(),
-          // Wrap(
-          //   spacing: 2,
-          //   children: [
-          //     Text(
-          //       translate(
-          //         context,
-          //         "noAccount",
-          //       ),
-          //       style: FontStyle.normal(
-          //           context: context,
-          //           color: Colors.black[300],
-          //           fontWeight: FontWeight.bold),
-          //     ),
-          //     SizedBox(width: 8),
-          //     // InkWell(
-          //     //     // onTap: widget.click,
-          //     //     child: Text(
-          //     //       translate(context, "signup"),
-          //     //       style: FontStyle.normal(
-          //     //           context: context,
-          //     //           fontWeight: FontWeight.bold,
-          //     //           color: Colors.black),
-          //     //     ))
-          //   ],
-          // )
-        ],
+        ),
       ),
     );
   }

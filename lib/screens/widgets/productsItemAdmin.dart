@@ -865,100 +865,98 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                   clipBehavior: Clip.none,
                   alignment: Alignment.topCenter,
                   children: [
-                    Column(
-                      children: <Widget>[
-                        Stack(
-                          children: <Widget>[
-                            Container(
-                              width: Responsive.isDesktop(context)
-                                  ? Responsive.width(context) / 2
-                                  : Responsive.width(context),
-                              padding: EdgeInsets.only(
-                                  left: kDefaultPaddin * 1.5,
-                                  right: kDefaultPaddin * 1.5,
-                                  bottom: kDefaultPaddin),
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(24),
-                                  topRight: Radius.circular(24),
-                                ),
-                              ),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  Row(
-                                    children: [
-                                      Container(
-                                          width: 140,
-                                          height: 170,
-                                          padding: EdgeInsets.only(
-                                            top: kDefaultPaddin * 2,
-                                          ),
-                                          child: CommonUI.cachedImage(
-                                              widget.product.image,
-                                              ImageAssets.placeholder,
-                                              fit: BoxFit.cover)),
-                                      SizedBox(width: 20),
-                                      Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          SizedBox(height: 6),
-                                          Container(
-                                            width:
-                                                Responsive.isMiniMobile(context)
-                                                    ? 100
-                                                    : 140,
-                                            child: Text(
-                                              ProjectLanguage.isLTR()
-                                                  ? widget.product.nameEn
-                                                  : widget.product.nameAr,
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .headline4!
-                                                  .copyWith(
-                                                    color: Colors.black,
-                                                    fontWeight: FontWeight.bold,
-                                                    fontSize:
-                                                        Responsive.isMiniMobile(
-                                                                context)
-                                                            ? 16
-                                                            : 19,
-                                                  ),
-                                              maxLines: 3,
-                                              textAlign: TextAlign.start,
-                                            ),
-                                          ),
-                                          SizedBox(height: 9),
-                                          RichText(
-                                            text: TextSpan(
-                                              children: [
-                                                TextSpan(text: "Price\n"),
-                                                TextSpan(
-                                                  text:
-                                                      "${widget.product.price} JOD",
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .headline6!
-                                                      .copyWith(
-                                                        color: Colors.black,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                      ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
+                    SingleChildScrollView(
+                      child: Column(
+                        children: <Widget>[
+                          Stack(
+                            children: <Widget>[
+                              Container(
+                                width: Responsive.isDesktop(context)
+                                    ? Responsive.width(context) / 2
+                                    : Responsive.width(context),
+                                padding: EdgeInsets.only(
+                                    left: kDefaultPaddin * 1.5,
+                                    right: kDefaultPaddin * 1.5,
+                                    bottom: kDefaultPaddin),
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(24),
+                                    topRight: Radius.circular(24),
                                   ),
-                                  SizedBox(height: 25),
-                                  Padding(
-                                    padding:
-                                        const EdgeInsets.only(bottom: 25.0),
-                                    child: Column(
+                                ),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Row(
+                                      children: [
+                                        Container(
+                                            width: 140,
+                                            height: 170,
+                                            padding: EdgeInsets.only(
+                                              top: kDefaultPaddin * 2,
+                                            ),
+                                            child: CommonUI.cachedImage(
+                                                widget.product.image,
+                                                ImageAssets.placeholder,
+                                                fit: BoxFit.cover)),
+                                        SizedBox(width: 20),
+                                        Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            SizedBox(height: 6),
+                                            Container(
+                                              width:
+                                                  Responsive.isMiniMobile(context)
+                                                      ? 100
+                                                      : 140,
+                                              child: Text(
+                                                ProjectLanguage.isLTR()
+                                                    ? widget.product.nameEn
+                                                    : widget.product.nameAr,
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .headline4!
+                                                    .copyWith(
+                                                      color: Colors.black,
+                                                      fontWeight: FontWeight.bold,
+                                                      fontSize:
+                                                          Responsive.isMiniMobile(
+                                                                  context)
+                                                              ? 16
+                                                              : 19,
+                                                    ),
+                                                maxLines: 3,
+                                                textAlign: TextAlign.start,
+                                              ),
+                                            ),
+                                            SizedBox(height: 9),
+                                            RichText(
+                                              text: TextSpan(
+                                                children: [
+                                                  TextSpan(text: "Price\n"),
+                                                  TextSpan(
+                                                    text:
+                                                        "${widget.product.price} JOD",
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .headline6!
+                                                        .copyWith(
+                                                          color: Colors.black,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(height: 25),
+                                    Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
@@ -1002,16 +1000,16 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                                 ),
                                           ),
                                         ),
-                                        SizedBox(height: 300),
+                                        SizedBox(height: double.maxFinite),
                                       ],
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
-                            ),
-                          ],
-                        ),
-                      ],
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                     Positioned(
                         top: -30,

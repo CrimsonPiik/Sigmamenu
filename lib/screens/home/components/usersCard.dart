@@ -191,7 +191,7 @@ class _UsersCardState extends State<UsersCard> {
               // )
               Row(
         children: [
-          SizedBox(width: 12),
+          SizedBox(width: 12 ),
           Container(
               width: 120,
               decoration: BoxDecoration(
