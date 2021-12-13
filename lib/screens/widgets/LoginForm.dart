@@ -27,7 +27,7 @@ class _LoginFormState extends State<LoginForm>
 
     _controller =
         AnimationController(vsync: this, duration: Duration(milliseconds: 300));
-    _animation = Tween(begin: 300.0, end: 50.0).animate(_controller!)
+    _animation = Tween(begin: 170.0, end: 50.0).animate(_controller!)
       ..addListener(() {
         setState(() {});
       });
