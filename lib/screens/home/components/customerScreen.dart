@@ -81,61 +81,62 @@ class _CustomerScreenState extends State<CustomerScreen>
               Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: kDefaultPaddin),
-                child: Container(
-                  height: 75,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                        child: Text(
-                          "Sigma Menu",
-                          style: Theme.of(context)
-                              .textTheme
-                              .headline5!
-                              .copyWith(fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      Row(
-                        children: [
-                          isLight
-                              ? IconButton(
-                                  icon: Icon(Icons.dark_mode),
-                                  onPressed: () {
-                                    setState(() {
-                                      isLight = false;
-                                    });
-                                    widget.theme.setDarkMode();
-                                  },
-                                )
-                              : IconButton(
-                                  icon: Icon(Icons.light_mode),
-                                  onPressed: () {
-                                    setState(() {
-                                      isLight = true;
-                                    });
-                                    widget.theme.setLightMode();
-                                  },
-                                ),
-                          SizedBox(width: 5),
-                          Container(
-                            child: ChangeLanguageButton(),
-                          ),
-                          SizedBox(width: 5),
-                          IconButton(
-                            icon: Icon(Icons.login),
-                            onPressed: () {
-                              Navigator.of(context)
-                                  .push(createRoute(LoginForm()));
-                            },
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+              // Padding(
+              //   padding: const EdgeInsets.symmetric(horizontal: kDefaultPaddin),
+              //   child: Container(
+              //     height: 75,
+              //     child: Row(
+              //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //       children: [
+              //         Container(
+              //           child: Text(
+              //             "Sigma Menu",
+              //             style: Theme.of(context)
+              //                 .textTheme
+              //                 .headline5!
+              //                 .copyWith(fontWeight: FontWeight.bold),
+              //           ),
+              //         ),
+              //         Row(
+              //           children: [
+              //             isLight
+              //                 ? IconButton(
+              //                     icon: Icon(Icons.dark_mode),
+              //                     onPressed: () {
+              //                       setState(() {
+              //                         isLight = false;
+              //                       });
+              //                       widget.theme.setDarkMode();
+              //                     },
+              //                   )
+              //                 : IconButton(
+              //                     icon: Icon(Icons.light_mode),
+              //                     onPressed: () {
+              //                       setState(() {
+              //                         isLight = true;
+              //                       });
+              //                       widget.theme.setLightMode();
+              //                     },
+              //                   ),
+              //             SizedBox(width: 5),
+              //             Container(
+              //               child: ChangeLanguageButton(),
+              //             ),
+              //             SizedBox(width: 5),
+              //             IconButton(
+              //               icon: Icon(Icons.login),
+              //               onPressed: () {
+              //                 Navigator.of(context)
+              //                     .push(createRoute(LoginForm()));
+              //               },
+              //             ),
+              //           ],
+              //         ),
+              //       ],
+              //     ),
+              //   ),
+              // ),
+              SizedBox(height:15),
               BannerWithDotsIndicator(),
               Categories(),
               ItemCardData(streamController.stream),
