@@ -5,7 +5,6 @@ import 'package:sigmamenu/Authentication/ProjectFirebaseAuth.dart';
 import 'package:sigmamenu/language/logic/ProjectLanguage.dart';
 import 'package:sigmamenu/screens/home/components/SigningButton.dart';
 import 'package:sigmamenu/screens/widgets/ForgotPassword.dart';
-import 'package:sigmamenu/screens/widgets/vSpace.dart';
 import 'package:sigmamenu/style/ScreenUtil.dart';
 import 'package:sigmamenu/style/Style.dart';
 
@@ -89,7 +88,7 @@ class _LoginFormState extends State<LoginForm>
             height: 150,
             child: Image.asset(
               'assets/images/yellowburger.png',
-              // fit: BoxFit.fitWidth
+              fit: BoxFit.cover
             ),
           ),
           SizedBox(height: 15),
@@ -100,7 +99,7 @@ class _LoginFormState extends State<LoginForm>
               children: [
                 /// email TextField
                 TextFormField(
-                  focusNode: _focusNode,
+                  // focusNode: _focusNode,
                   controller: email,
                   onFieldSubmitted: (value) => submit(),
                   decoration: InputDecoration(
@@ -181,7 +180,7 @@ class _LoginFormState extends State<LoginForm>
               textColor: Colors.white),
           const SizedBox(height: 16),
           // GuestLogin(),
-          const VSpace(),
+          // const VSpace(),
           // Wrap(
           //   spacing: 2,
           //   children: [

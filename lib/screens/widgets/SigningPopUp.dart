@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:sigmamenu/screens/widgets/LoginForm.dart';
-import 'package:sigmamenu/screens/widgets/vSpace.dart';
 import 'package:sigmamenu/style/ScreenUtil.dart';
 
 class SigningPopUp extends StatefulWidget {
@@ -41,6 +40,7 @@ class _SigningPopUpState extends State<SigningPopUp> {
           Center(
         child: Column(
           // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          // crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // SizedBox(height: 100),
             // Row(
@@ -75,7 +75,7 @@ class _SigningPopUpState extends State<SigningPopUp> {
             //   ),
             // ),
             // VSpace(),
-            SizedBox(height: 30),
+            // SizedBox(height: 30),
             SizedBox(
               width: Responsive.isDesktop(context)
                   ? Responsive.width(context) * 0.4
