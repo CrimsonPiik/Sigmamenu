@@ -21,13 +21,14 @@ class _LoginFormState extends State<LoginForm>
   AnimationController? _controller;
   Animation? _animation;
   FocusNode _focusNode = FocusNode();
+
   @override
   void initState() {
     super.initState();
 
     _controller =
         AnimationController(vsync: this, duration: Duration(milliseconds: 300));
-    _animation = Tween(begin: 170.0, end: 50.0).animate(_controller!)
+    _animation = Tween(begin: 100.0, end: 10.0).animate(_controller!)
       ..addListener(() {
         setState(() {});
       });
@@ -45,7 +46,6 @@ class _LoginFormState extends State<LoginForm>
   void dispose() {
     _controller!.dispose();
     _focusNode.dispose();
-
     super.dispose();
   }
 
@@ -86,10 +86,8 @@ class _LoginFormState extends State<LoginForm>
           Container(
             width: 150,
             height: 150,
-            child: Image.asset(
-              'assets/images/yellowburger.png',
-              fit: BoxFit.cover
-            ),
+            child: Image.asset('assets/images/yellowburger.png',
+                fit: BoxFit.cover),
           ),
           SizedBox(height: 15),
 
@@ -99,7 +97,6 @@ class _LoginFormState extends State<LoginForm>
               children: [
                 /// email TextField
                 TextFormField(
-                  // focusNode: _focusNode,
                   controller: email,
                   onFieldSubmitted: (value) => submit(),
                   decoration: InputDecoration(
