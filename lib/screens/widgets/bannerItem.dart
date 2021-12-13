@@ -160,7 +160,7 @@ class _BannersItemState extends State<BannersItem> {
               // Container(
               width: MediaQuery.of(context).size.width - 20,
 
-              // height: 100,
+              // height: double.maxFinite,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(4),
               ),
