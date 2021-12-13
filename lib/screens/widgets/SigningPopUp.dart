@@ -136,7 +136,7 @@
 //                 //   children: [
 //                 //     SizedBox(
 //                 //       width: Responsive.width(context) * 0.06,
-//                 //       child: Divider(
+                //       child: Divider(
 //                 //           // color: Style.beige,
 //                 //           ),
 //                 //     ),
