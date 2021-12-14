@@ -35,7 +35,7 @@ class _AddBannerButtonState extends State<AddBannerButton> {
             height: 40,
             child: TextButton.icon(
                 onPressed: () {
-                  _imagevalue.value = _imageBannerController.text;
+                  // _imagevalue.value = _imageBannerController.text;
                   showDialogWithFields();
                 },
                 icon: Icon(
