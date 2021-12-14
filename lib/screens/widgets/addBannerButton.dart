@@ -25,6 +25,7 @@ class _AddBannerButtonState extends State<AddBannerButton> {
 
   @override
   Widget build(BuildContext context) {
+    _imagevalue.value = imageURL;
     return Row(
       children: [
         SizedBox(width: 21),
@@ -34,7 +35,7 @@ class _AddBannerButtonState extends State<AddBannerButton> {
             height: 40,
             child: TextButton.icon(
                 onPressed: () {
-                  _imagevalue.value = 'assets/images/placeholder.jpg';
+                  _imagevalue.value = imageURL;
                   showDialogWithFields();
                 },
                 icon: Icon(
@@ -312,8 +313,9 @@ class _AddBannerButtonState extends State<AddBannerButton> {
                               'Create Banner',
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
-                                  fontSize:
-                                      Responsive.isMiniMobile(context) ? 15 : 20),
+                                  fontSize: Responsive.isMiniMobile(context)
+                                      ? 15
+                                      : 20),
                             ),
                             SizedBox(height: 10),
                             ValueListenableBuilder(
@@ -322,11 +324,7 @@ class _AddBannerButtonState extends State<AddBannerButton> {
                                   Widget? child) {
                                 return Center(
                                   child:
-                                      // Ink(
-                                      // width: 180,
-                                      // height: 180,
-                                      // child:
-                                      GestureDetector(
+                                    GestureDetector(
                                     onTap: () async {
                                       _imageBannerController.text =
                                           await fireBaseUploadFileWeb(id);
@@ -351,8 +349,8 @@ class _AddBannerButtonState extends State<AddBannerButton> {
                                                       width: 250,
                                                       decoration: BoxDecoration(
                                                         borderRadius:
-                                                            BorderRadius.circular(
-                                                                4),
+                                                            BorderRadius
+                                                                .circular(4),
                                                       ),
                                                       child: InteractiveViewer(
                                                         child: Image.network(
@@ -378,8 +376,8 @@ class _AddBannerButtonState extends State<AddBannerButton> {
                                                       width: 250,
                                                       decoration: BoxDecoration(
                                                         borderRadius:
-                                                            BorderRadius.circular(
-                                                                4),
+                                                            BorderRadius
+                                                                .circular(4),
                                                       ),
                                                       child: Image.asset(
                                                         'assets/images/placeholder.jpg',
@@ -393,12 +391,14 @@ class _AddBannerButtonState extends State<AddBannerButton> {
                                                 width: 250,
                                               ),
                                               Padding(
-                                                padding: EdgeInsets.only(top: 95),
+                                                padding:
+                                                    EdgeInsets.only(top: 95),
                                                 child: Container(
                                                     height: 35,
                                                     width: 250,
                                                     decoration: BoxDecoration(
-                                                        color: Color(0x4D000000)),
+                                                        color:
+                                                            Color(0x4D000000)),
                                                     child: Row(
                                                       mainAxisAlignment:
                                                           MainAxisAlignment
@@ -435,13 +435,14 @@ class _AddBannerButtonState extends State<AddBannerButton> {
                                       id = generateId();
                                       _imagevalue.value =
                                           'assets/images/placeholder.jpg';
-                  
+
                                       _imageBannerController.clear();
                                       Navigator.of(context).pop();
                                     },
                                     style: ButtonStyle(
                                       backgroundColor:
-                                          MaterialStateProperty.all(Colors.white),
+                                          MaterialStateProperty.all(
+                                              Colors.white),
                                     ),
                                     child: Text(
                                       'Cancel',
@@ -462,10 +463,11 @@ class _AddBannerButtonState extends State<AddBannerButton> {
                                           // 'name': _nameBannerController.text,
                                           // 'category': _categoryBannerController.text,
                                           'isPublished': true,
-                                          'image':
-                                              _imageBannerController.text == ' '
-                                                  ? 'assets/images/placeholder.jpg'
-                                                  : _imageBannerController.text,
+                                          'image': _imageBannerController
+                                                      .text ==
+                                                  ' '
+                                              ? 'assets/images/placeholder.jpg'
+                                              : _imageBannerController.text,
                                           //subCategory: ---
                                         }).whenComplete(() {
                                           // _categoryBannerController.clear();
@@ -473,10 +475,10 @@ class _AddBannerButtonState extends State<AddBannerButton> {
                                           id = generateId();
                                           _imagevalue.value =
                                               'assets/images/placeholder.jpg';
-                  
+
                                           _imageBannerController.clear();
                                           Navigator.of(context).pop();
-                  
+
                                           CommonUI.successDialog(context,
                                               message: "Saved successfully");
                                         }).onError((error, stackTrrace) =>
@@ -484,8 +486,8 @@ class _AddBannerButtonState extends State<AddBannerButton> {
                                                   context: context,
                                                   builder: (_) {
                                                     return AlertDialog(
-                                                      content:
-                                                          Text(error.toString()),
+                                                      content: Text(
+                                                          error.toString()),
                                                     );
                                                   },
                                                 ));
@@ -493,7 +495,8 @@ class _AddBannerButtonState extends State<AddBannerButton> {
                                     },
                                     style: ButtonStyle(
                                       backgroundColor:
-                                          MaterialStateProperty.all(Colors.green),
+                                          MaterialStateProperty.all(
+                                              Colors.green),
                                     ),
                                     child: Text(
                                       'Create',

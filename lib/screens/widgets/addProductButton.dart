@@ -47,20 +47,17 @@ class _AddProductButtonState extends State<AddProductButton> {
 
   @override
   Widget build(BuildContext context) {
+    _imagevalue.value = imageURL;
     return Row(
       children: [
         SizedBox(width: 19),
         Align(
           alignment: Alignment.topLeft,
-          // child: Padding(
-          // padding: const EdgeInsets.symmetric(horizontal: 6.0),
           child: Container(
             height: 40,
-            // padding: EdgeInsets.all(2),
             child: TextButton.icon(
                 onPressed: () {
                   _imagevalue.value = imageURL;
-
                   showDialogWithFields();
                 },
                 icon: Icon(
