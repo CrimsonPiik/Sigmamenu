@@ -5,7 +5,6 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:sigmamenu/GeneralFunction/firebase_uploader_web.dart';
 import 'package:sigmamenu/GeneralFunction/random_id_generator.dart';
 import 'package:sigmamenu/screens/adminPanel.dart';
-import 'package:sigmamenu/style/AssetsManager.dart';
 import 'package:sigmamenu/style/CommonUI.dart';
 import 'package:sigmamenu/style/ScreenUtil.dart';
 
@@ -79,6 +78,10 @@ class _AddProductButtonState extends State<AddProductButton> {
     );
   }
 
+// =====  =====  ===== =====  =====  ===== =====  =====  ===== =====  =====  ===== =====  =====
+// =====                                   ADD PRODUCT DIALOG                             =====
+// =====  =====  ===== =====  =====  ===== =====  =====  ===== =====  =====  ===== =====  =====
+
   void showDialogWithFields() {
     showDialog(
         context: context,
@@ -104,103 +107,205 @@ class _AddProductButtonState extends State<AddProductButton> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        ValueListenableBuilder(
-                          valueListenable: _imagevalue,
-                          builder: (context, dynamic value, Widget? child) {
-                            return Center(
-                              child: Ink(
-                                width: 180,
-                                height: 180,
-                                child: InkWell(
-                                  onTap: () async {
-                                    _imageController.text =
-                                        await fireBaseUploadFileWeb(id);
-                                    // if (_imageController.text != '') {
-                                    //   _imagevalue.value = _imageController.text;
-                                    // } else if (_imageController.text == '') {
-                                    // _imagevalue.value =
-                                    //     ImageAssets.placeholder;
-                                    // }
-                                    // _imagevalue.value = _imageController.text;
-                                  },
-                                  child: Center(
-                                    child: Container(
-                                      width: 180,
-                                      height: 180,
-                                      child: Stack(children: [
-                                        _imagevalue.value != null
-                                            ? Container(
-                                                height: 180,
-                                                width: 180,
-                                                decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.circular(4),
-                                                ),
-                                                child: InteractiveViewer(
-                                                  child: Image.network(
-                                                    value,
-                                                    fit: BoxFit.cover,
-                                                    loadingBuilder: (context,
-                                                        child,
-                                                        loadingProgress) {
-                                                      if (loadingProgress ==
-                                                          null) {
-                                                        return child;
-                                                      }
-                                                      return Center(
-                                                        child:
-                                                            CircularProgressIndicator(),
-                                                      );
-                                                    },
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            ValueListenableBuilder(
+                              valueListenable: _imagevalue,
+                              builder: (context, dynamic value, Widget? child) {
+                                return Center(
+                                  child: Ink(
+                                    width: 130,
+                                    height: 130,
+                                    child: InkWell(
+                                      onTap: () async {
+                                        _imageController.text =
+                                            await fireBaseUploadFileWeb(id);
+                                        // if (_imageController.text != '') {
+                                        //   _imagevalue.value = _imageController.text;
+                                        // } else if (_imageController.text == '') {
+                                        // _imagevalue.value =
+                                        //     ImageAssets.placeholder;
+                                        // }
+                                        _imagevalue.value =
+                                            _imageController.text;
+                                      },
+                                      child: Center(
+                                        child: Container(
+                                          width: 130,
+                                          height: 130,
+                                          child: Stack(children: [
+                                            _imagevalue.value != null
+                                                ? Container(
+                                                    height: 130,
+                                                    width: 130,
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              4),
+                                                    ),
+                                                    child: InteractiveViewer(
+                                                      child: Image.network(
+                                                        value,
+                                                        fit: BoxFit.cover,
+                                                        loadingBuilder: (context,
+                                                            child,
+                                                            loadingProgress) {
+                                                          if (loadingProgress ==
+                                                              null) {
+                                                            return child;
+                                                          }
+                                                          return Center(
+                                                            child:
+                                                                CircularProgressIndicator(),
+                                                          );
+                                                        },
+                                                      ),
+                                                    ),
+                                                  )
+                                                : Container(
+                                                    height: 130,
+                                                    width: 130,
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              4),
+                                                    ),
+                                                    child: Image.asset(
+                                                      'assets/images/placeholder.jpg',
+                                                      fit: BoxFit.cover,
+                                                    ),
                                                   ),
-                                                ),
-                                              )
-                                            : Container(
-                                                height: 180,
-                                                width: 180,
-                                                decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.circular(4),
-                                                ),
-                                                child: Image.asset(
-                                                  'assets/images/placeholder.jpg',
-                                                  fit: BoxFit.cover,
-                                                ),
-                                              ),
-                                        Container(
-                                          decoration: BoxDecoration(
-                                              color: Color(0x4D303030)),
-                                          height: 180,
-                                          width: 180,
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsets.only(top: 145),
-                                          child: Container(
-                                              height: 35,
-                                              width: 180,
+                                            Container(
                                               decoration: BoxDecoration(
-                                                  color: Color(0x4D000000)),
-                                              child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  Text(
-                                                    'ADD ',
-                                                    style: TextStyle(
-                                                        color: Colors.white),
-                                                  ),
-                                                  Icon(Icons.add,
-                                                      color: Colors.white)
-                                                ],
-                                              )),
+                                                  color: Color(0x4D303030)),
+                                              height: 130,
+                                              width: 130,
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsets.only(top: 95),
+                                              child: Container(
+                                                  height: 35,
+                                                  width: 130,
+                                                  decoration: BoxDecoration(
+                                                      color: Color(0x4D000000)),
+                                                  child: Center(
+                                                      child: Icon(Icons.add,
+                                                          color:
+                                                              Colors.white))),
+                                            ),
+                                          ]),
                                         ),
-                                      ]),
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ),
-                            );
-                          },
+                                );
+                              },
+                            ),
+                            ///////////////////////////////////////////////////////
+                            SizedBox(width: 20),
+                            ValueListenableBuilder(
+                              valueListenable: _imagevalue,
+                              builder: (context, dynamic value, Widget? child) {
+                                return Center(
+                                  child: Ink(
+                                    width: 130,
+                                    height: 130,
+                                    child: InkWell(
+                                      onTap: () async {
+                                        _imageController.text =
+                                            await fireBaseUploadFileWeb(id);
+                                        _imagevalue.value =
+                                            _imageController.text;
+                                      },
+                                      child: Center(
+                                        child: Container(
+                                          width: 130,
+                                          height: 130,
+                                          child: Stack(children: [
+                                            _imagevalue.value != null
+                                                ? Stack( //There's Image
+                                                    children: [
+                                                      Container(
+                                                        height: 130,
+                                                        width: 130,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(4),
+                                                        ),
+                                                        child:
+                                                            InteractiveViewer(
+                                                          child: Image.network(
+                                                            value,
+                                                            fit: BoxFit.cover,
+                                                            loadingBuilder:
+                                                                (context, child,
+                                                                    loadingProgress) {
+                                                              if (loadingProgress ==
+                                                                  null) {
+                                                                return child;
+                                                              }
+                                                              return Center(
+                                                                child:
+                                                                    CircularProgressIndicator(),
+                                                              );
+                                                            },
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsets.only(
+                                                                top: 95),
+                                                        child: Container(
+                                                            height: 35,
+                                                            width: 130,
+                                                            decoration:
+                                                                BoxDecoration(
+                                                                    color: Color(
+                                                                        0x4D000000)),
+                                                            child: Center(
+                                                                child: Icon(
+                                                                    Icons.edit_outlined,
+                                                                    color: Colors
+                                                                        .white))),
+                                                      ),
+                                                    ],
+                                                  )
+                                                : Container( // There's no Image
+                                                    height: 130,
+                                                    width: 130,
+                                                    decoration: BoxDecoration(
+                                                      color: Colors.white,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              4),
+                                                      boxShadow: [
+                                                        BoxShadow(
+                                                          color: Colors.grey
+                                                              .withOpacity(0.5),
+                                                          spreadRadius: 2,
+                                                          blurRadius: 9,
+                                                          offset: Offset(0, 4),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    child: Icon(
+                                                      Icons.add,
+                                                      color: Colors.black,
+                                                      size: 60,
+                                                    )),
+                                          ]),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              },
+                            ),
+                          ],
                         ),
                         SizedBox(height: 50),
                         Container(
@@ -232,12 +337,14 @@ class _AddProductButtonState extends State<AddProductButton> {
                           ),
                         ),
                         SizedBox(height: 4),
-                        Text(
-                          "Value ",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 12,
-                              color: Colors.brown[400]),
+                        Center(
+                          child: Text(
+                            "Value ",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 12,
+                                color: Colors.brown[400]),
+                          ),
                         ),
                         SizedBox(height: 4),
                         StatefulBuilder(
@@ -359,7 +466,7 @@ class _AddProductButtonState extends State<AddProductButton> {
                             },
                             style: ButtonStyle(
                               backgroundColor:
-                                  MaterialStateProperty.all(Colors.blueAccent),
+                                  MaterialStateProperty.all(Colors.green),
                             ),
                             child: Text(
                               'Create',
@@ -374,10 +481,10 @@ class _AddProductButtonState extends State<AddProductButton> {
                 Positioned(
                     top: -10,
                     child: CircleAvatar(
-                      backgroundColor: Colors.blueAccent,
+                      backgroundColor: Colors.green,
                       radius: 40,
                       child: Icon(
-                        Icons.edit,
+                        Icons.add,
                         color: Colors.white,
                         size: 45,
                       ),

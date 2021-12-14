@@ -346,14 +346,16 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
             padding: const EdgeInsets.only(top: 40.0, bottom: 20.0),
             child: FormBuilder(
               key: _formKey,
-              child: Dialog(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(4.0)),
-                child: Stack(
-                  clipBehavior: Clip.none,
-                  alignment: Alignment.topCenter,
-                  children: [
-                    Padding(
+              // child: Dialog(
+              // shape: RoundedRectangleBorder(
+              // borderRadius: BorderRadius.circular(4.0)),
+              child: Stack(
+                clipBehavior: Clip.none,
+                alignment: Alignment.topCenter,
+                children: [
+                  AlertDialog(
+                    scrollable: true,
+                    content: Padding(
                       padding: const EdgeInsets.all(15.0),
                       child: SingleChildScrollView(
                         child: Container(
@@ -508,24 +510,7 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                                                 Icons
                                                                     .camera_alt,
                                                                 color: Colors
-                                                                    .white)
-                                                            // Row(
-                                                            //   mainAxisAlignment:
-                                                            //       MainAxisAlignment
-                                                            //           .center,
-                                                            //   children: [
-                                                            //     Text(
-                                                            //       'Edit ',
-                                                            //       style: TextStyle(
-                                                            //           color: Colors
-                                                            //               .white),
-                                                            //     ),
-                                                            //     Icon(Icons.edit,
-                                                            //         color: Colors
-                                                            //             .white)
-                                                            //   ],
-                                                            // )
-                                                            ),
+                                                                    .white)),
                                                       ),
                                                     ]),
                                             ]),
@@ -662,181 +647,101 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                   // ]),
                                 ),
                               ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  ElevatedButton(
-                                    onPressed: () {
-                                      setState(() {
-                                        _nameEnController =
-                                            TextEditingController(
-                                                text: widget.product.nameEn);
-                                        _descriptionEnController =
-                                            TextEditingController(
-                                                text: widget
-                                                    .product.descriptionEn);
-                                        _priceController =
-                                            TextEditingController(
-                                                text: widget.product.price
-                                                    .toString());
-                                        _imageController =
-                                            TextEditingController(
-                                                text: widget.product.image);
-                                      });
-                                      Navigator.of(context).pop();
-                                    },
-                                    style: ButtonStyle(
-                                      backgroundColor:
-                                          MaterialStateProperty.all(
-                                              Colors.white),
-                                    ),
-                                    child: Text(
-                                      'Cancel',
-                                      style: TextStyle(color: Colors.black),
-                                    ),
-                                  ),
-                                  SizedBox(width: 20),
-                                  ElevatedButton(
-                                    onPressed: () async {
-                                      _formKey.currentState!.save();
-                                      if (_formKey.currentState!.validate()) {
-                                        FocusScope.of(context).unfocus();
-                                        await FirebaseFirestore.instance
-                                            .collection(widget.product.category)
-                                            .doc(widget.product.id)
-                                            .update({
-                                          'nameEn': _nameEnController.text,
-                                          'nameAr': _nameArController.text,
-                                          'descriptionEn':
-                                              _descriptionEnController.text,
-                                          'descriptionAr':
-                                              _descriptionArController.text,
-                                          'price': _priceController.text,
-                                          'image': _imageController.text,
-                                          'weight': _value
-                                        }).whenComplete(() {
-                                          Navigator.of(context).pop();
-
-                                          CommonUI.successDialog(context,
-                                              message: "Saved successfully");
-                                        }).onError((error, stackTrrace) =>
-                                                showDialog(
-                                                  context: context,
-                                                  builder: (_) {
-                                                    return AlertDialog(
-                                                      content: Text(
-                                                          error.toString()),
-                                                    );
-                                                  },
-                                                ));
-                                      }
-                                    },
-                                    style: ButtonStyle(
-                                      backgroundColor:
-                                          MaterialStateProperty.all(
-                                              Colors.blueAccent),
-                                    ),
-                                    child: Text(
-                                      'Save',
-                                      style: TextStyle(color: Colors.white),
-                                    ),
-                                  ),
-                                ],
-                              ),
                             ],
                           ),
                         ),
                       ),
                     ),
-                    Positioned(
-                        top: -60,
-                        child: CircleAvatar(
-                          backgroundColor: Colors.blueAccent,
-                          radius: 40,
-                          child: Icon(
-                            Icons.edit,
-                            color: Colors.white,
-                            size: 45,
-                          ),
-                        )),
-                    // Positioned(
-                    // bottom: -20,
-                    // child: Row(
-                    //   mainAxisAlignment: MainAxisAlignment.center,
-                    //   children: [
-                    //     ElevatedButton(
-                    //       onPressed: () {
-                    //         setState(() {
-                    //           _nameEnController = TextEditingController(
-                    //               text: widget.product.nameEn);
-                    //           _descriptionEnController =
-                    //               TextEditingController(
-                    //                   text: widget.product.descriptionEn);
-                    //           _priceController = TextEditingController(
-                    //               text: widget.product.price.toString());
-                    //           _imageController = TextEditingController(
-                    //               text: widget.product.image);
-                    //         });
+                    actions: [
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 8.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            ElevatedButton(
+                              onPressed: () {
+                                setState(() {
+                                  _nameEnController = TextEditingController(
+                                      text: widget.product.nameEn);
+                                  _descriptionEnController =
+                                      TextEditingController(
+                                          text: widget.product.descriptionEn);
+                                  _priceController = TextEditingController(
+                                      text: widget.product.price.toString());
+                                  _imageController = TextEditingController(
+                                      text: widget.product.image);
+                                });
+                                Navigator.of(context).pop();
+                              },
+                              style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStateProperty.all(Colors.white),
+                              ),
+                              child: Text(
+                                'Cancel',
+                                style: TextStyle(color: Colors.black),
+                              ),
+                            ),
+                            SizedBox(width: 20),
+                            ElevatedButton(
+                              onPressed: () async {
+                                _formKey.currentState!.save();
+                                if (_formKey.currentState!.validate()) {
+                                  FocusScope.of(context).unfocus();
+                                  await FirebaseFirestore.instance
+                                      .collection(widget.product.category)
+                                      .doc(widget.product.id)
+                                      .update({
+                                    'nameEn': _nameEnController.text,
+                                    'nameAr': _nameArController.text,
+                                    'descriptionEn':
+                                        _descriptionEnController.text,
+                                    'descriptionAr':
+                                        _descriptionArController.text,
+                                    'price': _priceController.text,
+                                    'image': _imageController.text,
+                                    'weight': _value
+                                  }).whenComplete(() {
+                                    Navigator.of(context).pop();
 
-                    //         Navigator.of(context).pop();
-                    //       },
-                    //       style: ButtonStyle(
-                    //         backgroundColor:
-                    //             MaterialStateProperty.all(Colors.white),
-                    //       ),
-                    //       child: Text(
-                    //         'Cancel',
-                    //         style: TextStyle(color: Colors.black),
-                    //       ),
-                    //     ),
-                    //     SizedBox(width: 15),
-                    //     ElevatedButton(
-                    //       onPressed: () async {
-                    //         _formKey.currentState!.save();
-                    //         if (_formKey.currentState!.validate()) {
-                    //           FocusScope.of(context).unfocus();
-                    //           await FirebaseFirestore.instance
-                    //               .collection(widget.product.category)
-                    //               .doc(widget.product.id)
-                    //               .update({
-                    //             'nameEn': _nameEnController.text,
-                    //             'nameAr': _nameArController.text,
-                    //             'descriptionEn':
-                    //                 _descriptionEnController.text,
-                    //             'descriptionAr':
-                    //                 _descriptionArController.text,
-                    //             'price': _priceController.text,
-                    //             'image': _imageController.text,
-                    //             'weight': _value
-                    //           }).whenComplete(() {
-                    //             Navigator.of(context).pop();
-
-                    //             CommonUI.successDialog(context,
-                    //                 message: "Saved successfully");
-                    //           }).onError((error, stackTrrace) => showDialog(
-                    //                     context: context,
-                    //                     builder: (_) {
-                    //                       return AlertDialog(
-                    //                         content: Text(error.toString()),
-                    //                       );
-                    //                     },
-                    //                   ));
-                    //         }
-                    //       },
-                    //       style: ButtonStyle(
-                    //         backgroundColor:
-                    //             MaterialStateProperty.all(Colors.blueAccent),
-                    //       ),
-                    //       child: Text(
-                    //         'Save',
-                    //         style: TextStyle(color: Colors.white),
-                    //       ),
-                    //     ),
-                    //   ],
-                    // ),
-                    // ),
-                  ],
-                ),
+                                    CommonUI.successDialog(context,
+                                        message: "Saved successfully");
+                                  }).onError((error, stackTrrace) => showDialog(
+                                            context: context,
+                                            builder: (_) {
+                                              return AlertDialog(
+                                                content: Text(error.toString()),
+                                              );
+                                            },
+                                          ));
+                                }
+                              },
+                              style: ButtonStyle(
+                                backgroundColor: MaterialStateProperty.all(
+                                    Colors.blueAccent),
+                              ),
+                              child: Text(
+                                'Save',
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  Positioned(
+                      top: -60,
+                      child: CircleAvatar(
+                        backgroundColor: Colors.blueAccent,
+                        radius: 40,
+                        child: Icon(
+                          Icons.edit,
+                          color: Colors.white,
+                          size: 45,
+                        ),
+                      )),
+                ],
               ),
             ),
           );

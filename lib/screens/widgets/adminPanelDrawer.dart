@@ -5,7 +5,7 @@ import 'package:sigmamenu/models/user.dart';
 import 'package:sigmamenu/provider/userStateProvider.dart';
 import 'package:sigmamenu/screens/home/components/customerScreen.dart';
 import 'package:sigmamenu/screens/home/components/categoriesWithDeleteButton.dart';
-import 'package:sigmamenu/screens/widgets/itemCardDataAdmin.dart';
+import 'package:sigmamenu/screens/widgets/productsAdmin.dart';
 import 'package:sigmamenu/screens/home/components/myuser.dart';
 import 'package:sigmamenu/screens/home/components/users.dart';
 import 'package:sigmamenu/screens/widgets/addBannerButton.dart';
@@ -63,7 +63,7 @@ class _AdminPanelDrawerState extends State<AdminPanelDrawer> {
                 ],
               ),
               SizedBox(height: 12),
-              ItemCardDataAdmin(streamController.stream),
+              ProductsAdmin(streamController.stream),
             ],
           )
         : item == 1 //BANNERS

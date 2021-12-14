@@ -8,15 +8,15 @@ import 'package:sigmamenu/screens/widgets/productsItemAdmin.dart';
 import 'package:sigmamenu/style/CommonUI.dart';
 import 'package:sigmamenu/style/ScreenUtil.dart';
 
-class ItemCardDataAdmin extends StatefulWidget {
+class ProductsAdmin extends StatefulWidget {
   final Stream<int> stream;
-  ItemCardDataAdmin(this.stream);
+  ProductsAdmin(this.stream);
 
   @override
-  _ItemCardDataAdminState createState() => _ItemCardDataAdminState();
+  _ProductsAdminState createState() => _ProductsAdminState();
 }
 
-class _ItemCardDataAdminState extends State<ItemCardDataAdmin> {
+class _ProductsAdminState extends State<ProductsAdmin> {
   String category = categoriesList.elementAt(0);
 
   @override
