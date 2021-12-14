@@ -326,18 +326,18 @@ class _AddBannerButtonState extends State<AddBannerButton> {
                                 return Center(
                                   child: GestureDetector(
                                     onTap: () async {
-                                      _imagevalue.value =
-                                          ImageAssets.placeholder;
                                       _imageBannerController.text =
                                           await fireBaseUploadFileWeb(id);
-                                      if (_imageBannerController.text != '') {
-                                        _imagevalue.value =
-                                            _imageBannerController.text;
-                                      } else if (_imageBannerController.text ==
-                                          '') {
-                                        _imagevalue.value =
-                                            ImageAssets.placeholder;
-                                      }
+                                      _imagevalue.value =
+                                          ImageAssets.placeholder;
+                                      // if (_imageBannerController.text != '') {
+                                      //   _imagevalue.value =
+                                      //       _imageBannerController.text;
+                                      // } else if (_imageBannerController.text ==
+                                      //     '') {
+                                      //   _imagevalue.value =
+                                      //       ImageAssets.placeholder;
+                                      // }
                                     },
                                     child: Center(
                                       child: Container(

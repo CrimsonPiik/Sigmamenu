@@ -114,15 +114,14 @@ class _AddProductButtonState extends State<AddProductButton> {
                                 height: 180,
                                 child: InkWell(
                                   onTap: () async {
-                                    _imagevalue.value = ImageAssets.placeholder;
                                     _imageController.text =
                                         await fireBaseUploadFileWeb(id);
-                                    if (_imageController.text != '') {
-                                      _imagevalue.value = _imageController.text;
-                                    } else if (_imageController.text == '') {
+                                    // if (_imageController.text != '') {
+                                    //   _imagevalue.value = _imageController.text;
+                                    // } else if (_imageController.text == '') {
                                       _imagevalue.value =
                                           ImageAssets.placeholder;
-                                    }
+                                    // }
                                   },
                                   child: Center(
                                     child: Container(
