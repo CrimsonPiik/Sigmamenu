@@ -11,7 +11,7 @@ import 'package:sigmamenu/provider/userStateProvider.dart';
 import 'package:sigmamenu/screens/adminPanel.dart';
 import 'package:sigmamenu/screens/home/components/shimmer.dart';
 import 'package:sigmamenu/screens/staggeredGridView.dart';
-import 'package:sigmamenu/screens/widgets/drawer.dart';
+import 'package:sigmamenu/screens/widgets/adminDrawer.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -110,7 +110,7 @@ class _MyAppState extends State<MyApp> {
               '/admin': (context) => AdminPanel(),
               '/dashboard': (context) => StaggerdGridView(),
               '/loading': (context) => LoadingListPage(),
-              '/drawer': (context) => Drawerr()
+              '/drawer': (context) => AdminDrawer()
             },
             home: AuthMonitor(),
             // ),

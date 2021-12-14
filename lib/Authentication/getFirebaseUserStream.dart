@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sigmamenu/models/user.dart';
 import 'package:sigmamenu/provider/userStateProvider.dart';
-import 'package:sigmamenu/screens/widgets/drawer.dart';
+import 'package:sigmamenu/screens/widgets/adminDrawer.dart';
 import 'package:sigmamenu/style/CommonUI.dart';
 
 class FirebaseUserStreamBuilder extends StatelessWidget {
@@ -47,7 +47,7 @@ class FirebaseUserStreamBuilder extends StatelessWidget {
                 //   // return EditProfile();
 
                 //   case 'admin':
-                    return Drawerr();
+                    return AdminDrawer();
 
                   // default:
                   // return AdminPanel();
@@ -67,7 +67,7 @@ class FirebaseUserStreamBuilder extends StatelessWidget {
               //   FirebaseAuth.instance.signOut();
               // }
 
-              return Drawerr();
+              return AdminDrawer();
             }),
       ),
     );

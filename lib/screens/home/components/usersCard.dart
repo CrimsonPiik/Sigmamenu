@@ -1,9 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:provider/provider.dart';
+import 'package:sigmamenu/Authentication/AuthService.dart';
 import 'package:sigmamenu/models/user.dart';
+import 'package:sigmamenu/provider/userStateProvider.dart';
 import 'package:sigmamenu/style/AssetsManager.dart';
 import 'package:sigmamenu/style/CommonUI.dart';
 import 'package:sigmamenu/style/ScreenUtil.dart';
@@ -191,7 +195,7 @@ class _UsersCardState extends State<UsersCard> {
               // )
               Row(
         children: [
-          SizedBox(width: 12 ),
+          SizedBox(width: 12),
           Container(
               width: 120,
               decoration: BoxDecoration(
@@ -251,6 +255,7 @@ class _UsersCardState extends State<UsersCard> {
 // =====  =====  ===== =====  =====  ===== =====  =====  ===== =====  =====  ===== =====  =====
 
   _showDeleteDialog(BuildContext context) {
+
     Size size = MediaQuery.of(context).size;
     showDialog(
       context: context,
@@ -312,6 +317,9 @@ class _UsersCardState extends State<UsersCard> {
                                 SizedBox(width: 20),
                                 ElevatedButton(
                                   onPressed: () async {
+                                    await Provider.of<UserState>(context,
+                                            listen: false)
+                                        .deleteUser();
                                     await FirebaseFirestore.instance
                                         .collection('users')
                                         .doc(widget.data.id)

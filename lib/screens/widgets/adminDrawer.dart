@@ -4,12 +4,12 @@ import 'package:sigmamenu/constaints.dart';
 import 'package:sigmamenu/screens/adminPanel.dart';
 import 'package:sigmamenu/screens/widgets/adminPanelDrawer.dart';
 
-class Drawerr extends StatefulWidget {
+class AdminDrawer extends StatefulWidget {
   @override
-  _DrawerrState createState() => _DrawerrState();
+  _AdminDrawerState createState() => _AdminDrawerState();
 }
 
-class _DrawerrState extends State<Drawerr> {
+class _AdminDrawerState extends State<AdminDrawer> {
   GlobalKey<SliderMenuContainerState> _key =
       new GlobalKey<SliderMenuContainerState>();
   late String title;

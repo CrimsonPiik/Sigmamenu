@@ -83,7 +83,8 @@ class _AdminPanelDrawerState extends State<AdminPanelDrawer> {
                   SizedBox(height: 25),
                   user.role == 'admin' ? AddUserButton() : Container(),
                   SizedBox(height: 12),
-                  user.role == 'admin' ? AllUsers() : MyUser(user: user)
+                  AllUsers(),
+                  // user.role == 'admin' ? AllUsers() : MyUser(user: user)
                 ],
               );
   }
