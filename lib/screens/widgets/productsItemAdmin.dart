@@ -119,7 +119,7 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
             },
             backgroundColor: Colors.blueAccent,
             foregroundColor: Colors.white,
-            icon: Icons.edit,
+            icon: Icons.edit_outlined,
             label: 'Edit',
             autoClose: true,
           ),
@@ -736,7 +736,7 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                         backgroundColor: Colors.blueAccent,
                         radius: 40,
                         child: Icon(
-                          Icons.edit,
+                          Icons.edit_outlined,
                           color: Colors.white,
                           size: 45,
                         ),

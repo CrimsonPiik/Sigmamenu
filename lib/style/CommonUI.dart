@@ -267,7 +267,7 @@ class CommonUI {
             filled: true,
             fillColor: Colors.grey.withOpacity(0.1),
             icon: icon,
-            suffixIcon: isEdit ? Icon(Icons.edit) : null,
+            suffixIcon: isEdit ? Icon(Icons.edit_outlined) : null,
             labelText: hint,
             hintText: label,
             hintStyle: FontStyle.normal(context: context),

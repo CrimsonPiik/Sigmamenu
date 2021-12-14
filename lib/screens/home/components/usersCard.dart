@@ -108,7 +108,8 @@ class _UsersCardState extends State<UsersCard> {
             },
             backgroundColor: Colors.blueAccent,
             foregroundColor: Colors.white,
-            icon: Icons.edit,
+            icon: Icons.edit_outlined,
+
             label: 'Edit',
             autoClose: true,
           ),
