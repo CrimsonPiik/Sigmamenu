@@ -335,8 +335,8 @@ class _AddBannerButtonState extends State<AddBannerButton> {
                                       //   _imagevalue.value =
                                       //       ImageAssets.placeholder;
                                       // }
-                                      _imagevalue.value =
-                                          _imageBannerController.text;
+                                      // _imagevalue.value =
+                                      //     _imageBannerController.text;
                                     },
                                     child: Center(
                                       child: Container(
