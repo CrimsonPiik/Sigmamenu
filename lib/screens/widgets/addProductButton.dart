@@ -48,7 +48,6 @@ class _AddProductButtonState extends State<AddProductButton> {
 
   @override
   Widget build(BuildContext context) {
-    // _imagevalue.value = _imageController.text;
     return Row(
       children: [
         SizedBox(width: 19),
