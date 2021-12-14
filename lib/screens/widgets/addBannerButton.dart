@@ -26,7 +26,7 @@ class _AddBannerButtonState extends State<AddBannerButton> {
 
   @override
   Widget build(BuildContext context) {
-    _imagevalue.value = ImageAssets.placeholder;
+    _imagevalue.value = _imageBannerController.text;
     return Row(
       children: [
         SizedBox(width: 21),
@@ -36,7 +36,7 @@ class _AddBannerButtonState extends State<AddBannerButton> {
             height: 40,
             child: TextButton.icon(
                 onPressed: () {
-                  _imagevalue.value = ImageAssets.placeholder;
+                  _imagevalue.value = _imageBannerController.text;
                   showDialogWithFields();
                 },
                 icon: Icon(
@@ -328,8 +328,6 @@ class _AddBannerButtonState extends State<AddBannerButton> {
                                     onTap: () async {
                                       _imageBannerController.text =
                                           await fireBaseUploadFileWeb(id);
-                                      _imagevalue.value =
-                                          ImageAssets.placeholder;
                                       // if (_imageBannerController.text != '') {
                                       //   _imagevalue.value =
                                       //       _imageBannerController.text;
@@ -338,6 +336,8 @@ class _AddBannerButtonState extends State<AddBannerButton> {
                                       //   _imagevalue.value =
                                       //       ImageAssets.placeholder;
                                       // }
+                                      _imagevalue.value =
+                                          _imageBannerController.text;
                                     },
                                     child: Center(
                                       child: Container(
@@ -437,7 +437,7 @@ class _AddBannerButtonState extends State<AddBannerButton> {
                                     onPressed: () {
                                       id = generateId();
                                       _imagevalue.value =
-                                          ImageAssets.placeholder;
+                                          _imageBannerController.text;
 
                                       _imageBannerController.clear();
                                       Navigator.of(context).pop();
@@ -477,7 +477,7 @@ class _AddBannerButtonState extends State<AddBannerButton> {
                                           // _nameBannerController.clear();
                                           id = generateId();
                                           _imagevalue.value =
-                                              ImageAssets.placeholder;
+                                              _imageBannerController.text;
 
                                           _imageBannerController.clear();
                                           Navigator.of(context).pop();

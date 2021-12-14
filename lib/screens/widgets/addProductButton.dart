@@ -48,7 +48,7 @@ class _AddProductButtonState extends State<AddProductButton> {
 
   @override
   Widget build(BuildContext context) {
-    _imagevalue.value = ImageAssets.placeholder;
+    _imagevalue.value = _imageController.text;
     return Row(
       children: [
         SizedBox(width: 19),
@@ -58,7 +58,7 @@ class _AddProductButtonState extends State<AddProductButton> {
             height: 40,
             child: TextButton.icon(
                 onPressed: () {
-                  _imagevalue.value = ImageAssets.placeholder;
+                  _imagevalue.value = _imageController.text;
                   showDialogWithFields();
                 },
                 icon: Icon(
@@ -119,9 +119,10 @@ class _AddProductButtonState extends State<AddProductButton> {
                                     // if (_imageController.text != '') {
                                     //   _imagevalue.value = _imageController.text;
                                     // } else if (_imageController.text == '') {
-                                      _imagevalue.value =
-                                          ImageAssets.placeholder;
+                                    // _imagevalue.value =
+                                    //     ImageAssets.placeholder;
                                     // }
+                                    _imagevalue.value = _imageController.text;
                                   },
                                   child: Center(
                                     child: Container(
@@ -295,7 +296,7 @@ class _AddProductButtonState extends State<AddProductButton> {
                           ElevatedButton(
                             onPressed: () {
                               id = generateId();
-                              _imagevalue.value = ImageAssets.placeholder;
+                              _imagevalue.value = _imageController.text;
                               _descriptionEnController.clear();
                               _priceController.clear();
                               _imageController.clear();
@@ -338,7 +339,7 @@ class _AddProductButtonState extends State<AddProductButton> {
                                   //subCategory: ---
                                 }).whenComplete(() {
                                   id = generateId();
-                                  _imagevalue.value = ImageAssets.placeholder;
+                                  _imagevalue.value = _imageController.text;
                                   _descriptionEnController.clear();
                                   _priceController.clear();
                                   _imageController.clear();
