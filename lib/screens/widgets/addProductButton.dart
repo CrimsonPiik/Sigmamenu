@@ -48,7 +48,7 @@ class _AddProductButtonState extends State<AddProductButton> {
 
   @override
   Widget build(BuildContext context) {
-    _imagevalue.value = _imageController.text;
+    // _imagevalue.value = _imageController.text;
     return Row(
       children: [
         SizedBox(width: 19),
@@ -58,7 +58,7 @@ class _AddProductButtonState extends State<AddProductButton> {
             height: 40,
             child: TextButton.icon(
                 onPressed: () {
-                  _imagevalue.value = _imageController.text;
+                  // _imagevalue.value = _imageController.text;
                   showDialogWithFields();
                 },
                 icon: Icon(
