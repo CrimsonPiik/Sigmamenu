@@ -18,7 +18,6 @@ class ShimmerForBanner extends StatelessWidget {
             shape: CommonShapes.b16pxRadius,
             elevation: 1,
             child: Container(
-              // color: Colors.grey.withOpacity(0.1),
               height: 120,
            
             ),
