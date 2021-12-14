@@ -58,7 +58,7 @@ class _AddProductButtonState extends State<AddProductButton> {
             height: 40,
             child: TextButton.icon(
                 onPressed: () {
-                  // _imagevalue.value = _imageController.text;
+                  _imagevalue.value = _imageController.text;
                   showDialogWithFields();
                 },
                 icon: Icon(
