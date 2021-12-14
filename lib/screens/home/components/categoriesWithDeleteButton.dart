@@ -38,8 +38,7 @@ class _CategoriesWithDeleteButtonState
 
   @override
   Widget build(BuildContext context) {
-    return
-        SizedBox(
+    return SizedBox(
       height: 60,
       child: ScrollConfiguration(
         behavior: ScrollConfiguration.of(context).copyWith(
@@ -56,8 +55,6 @@ class _CategoriesWithDeleteButtonState
           itemBuilder: (context, index) => buildCategory(index),
         ),
       ),
-      
-      
     );
   }
 
@@ -94,7 +91,7 @@ class _CategoriesWithDeleteButtonState
             ),
           ),
           Align(
-            alignment: Alignment(1, -1.6),
+            alignment: Alignment(1, -1.9),
             child: InkWell(
               onTap: () {
                 setState(() {
@@ -104,12 +101,12 @@ class _CategoriesWithDeleteButtonState
                 _showDeleteCategoryDialog();
               },
               child: Container(
-                width: 20.0,
-                height: 20.0,
+                width: 22.0,
+                height: 22.0,
                 child: Icon(
                   Icons.close,
                   color: Colors.black,
-                  size: 20,
+                  size: 22,
                 ),
                 decoration: BoxDecoration(boxShadow: [
                   BoxShadow(
@@ -200,8 +197,8 @@ class _CategoriesWithDeleteButtonState
                                   Navigator.of(context).pop();
                                 },
                                 style: ButtonStyle(
-                                  backgroundColor:
-                                      MaterialStateProperty.all(Colors.redAccent),
+                                  backgroundColor: MaterialStateProperty.all(
+                                      Colors.redAccent),
                                 ),
                                 child: Text(
                                   'Delete',
