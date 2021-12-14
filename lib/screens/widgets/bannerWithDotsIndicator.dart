@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:sigmamenu/screens/home/components/shimmerForBanner.dart';
 import 'package:sigmamenu/screens/widgets/AdsCard.dart';
 import 'package:sigmamenu/models/banner.dart';
 import 'package:sigmamenu/style/CommonUI.dart';
@@ -45,7 +46,7 @@ class BannerWithDotsIndicator extends StatelessWidget {
           }
           if (snapshot.connectionState == ConnectionState.waiting) {
             // return LoadingSpinner();
-            return Center();
+            return ShimmerForBanner();
           }
           List<BannerModel> bannerList = [];
 
@@ -59,7 +60,6 @@ class BannerWithDotsIndicator extends StatelessWidget {
                       .map(
                         (item) => AdsCard(
                           image: item.image,
-                          isBanner: true,
                           click: () {
                             // application.navigatePush(
                             //     context,

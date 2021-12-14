@@ -7,22 +7,20 @@ class AdsCard extends StatelessWidget {
   final String image;
   // final String description;
   final VoidCallback click;
-  bool? isBanner;
   AdsCard({
     Key? key,
     required this.image,
     // required this.description,
     required this.click,
-    this.isBanner,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Padding(
-      padding: isBanner == true
-          ? EdgeInsets.symmetric(horizontal: size.width * 0.05)
-          : EdgeInsets.all(0),
+      padding: 
+          EdgeInsets.symmetric(horizontal: size.width * 0.05),
+          
       child: Card(
         shape: CommonShapes.b16pxRadius,
         clipBehavior: Clip.antiAlias,

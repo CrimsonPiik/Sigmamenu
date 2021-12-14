@@ -39,7 +39,6 @@ class ShimmerForCustomerScreen extends StatelessWidget {
                             children: [
                               ClipRRect(
                                 child: Container(
-                                  
                                   height: Responsive.isDesktop(context)
                                       ? 160
                                       : Responsive.isTablet(context)
@@ -119,8 +118,8 @@ class ShimmerForCustomerScreen extends StatelessWidget {
                                   : 0.80),
                 ),
               ),
-              baseColor: Colors.grey.withOpacity(0.7),
-              highlightColor: Colors.grey.withOpacity(0.3),
+              baseColor: Colors.grey.withOpacity(0.4),
+              highlightColor: Colors.grey.withOpacity(0.2),
             ),
           )
         : Expanded(
@@ -136,6 +135,7 @@ class ShimmerForCustomerScreen extends StatelessWidget {
                       margin: EdgeInsets.only(bottom: 20),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(12),
+                        color: Colors.grey.withOpacity(0.1),
                         boxShadow: [
                           BoxShadow(
                             color: Colors.grey.withOpacity(0.1),
@@ -194,8 +194,8 @@ class ShimmerForCustomerScreen extends StatelessWidget {
                                   : 4.0),
                 ),
               ),
-              baseColor: Colors.grey.withOpacity(0.7),
-              highlightColor: Colors.grey.withOpacity(0.3),
+              baseColor: Colors.grey.withOpacity(0.4),
+              highlightColor: Colors.grey.withOpacity(0.2),
             ),
           );
   }
