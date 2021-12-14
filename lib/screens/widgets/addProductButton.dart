@@ -121,7 +121,7 @@ class _AddProductButtonState extends State<AddProductButton> {
                                     // _imagevalue.value =
                                     //     ImageAssets.placeholder;
                                     // }
-                                    _imagevalue.value = _imageController.text;
+                                    // _imagevalue.value = _imageController.text;
                                   },
                                   child: Center(
                                     child: Container(
