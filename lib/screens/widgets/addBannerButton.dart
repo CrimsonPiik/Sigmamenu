@@ -5,6 +5,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:sigmamenu/GeneralFunction/firebase_uploader_web.dart';
 import 'package:sigmamenu/GeneralFunction/random_id_generator.dart';
 import 'package:sigmamenu/screens/adminPanel.dart';
+import 'package:sigmamenu/style/AssetsManager.dart';
 import 'package:sigmamenu/style/CommonUI.dart';
 import 'package:sigmamenu/style/ScreenUtil.dart';
 
@@ -25,7 +26,7 @@ class _AddBannerButtonState extends State<AddBannerButton> {
 
   @override
   Widget build(BuildContext context) {
-    _imagevalue.value = imageURL;
+    _imagevalue.value = ImageAssets.placeholder;
     return Row(
       children: [
         SizedBox(width: 21),
@@ -35,7 +36,7 @@ class _AddBannerButtonState extends State<AddBannerButton> {
             height: 40,
             child: TextButton.icon(
                 onPressed: () {
-                  _imagevalue.value = imageURL;
+                  _imagevalue.value = ImageAssets.placeholder;
                   showDialogWithFields();
                 },
                 icon: Icon(
@@ -323,8 +324,7 @@ class _AddBannerButtonState extends State<AddBannerButton> {
                               builder: (BuildContext context, dynamic value,
                                   Widget? child) {
                                 return Center(
-                                  child:
-                                    GestureDetector(
+                                  child: GestureDetector(
                                     onTap: () async {
                                       _imageBannerController.text =
                                           await fireBaseUploadFileWeb(id);
@@ -333,7 +333,8 @@ class _AddBannerButtonState extends State<AddBannerButton> {
                                             _imageBannerController.text;
                                       } else if (_imageBannerController.text ==
                                           '') {
-                                        _imagevalue.value = imageURL;
+                                        _imagevalue.value =
+                                            ImageAssets.placeholder;
                                       }
                                     },
                                     child: Center(
@@ -434,7 +435,7 @@ class _AddBannerButtonState extends State<AddBannerButton> {
                                     onPressed: () {
                                       id = generateId();
                                       _imagevalue.value =
-                                          'assets/images/placeholder.jpg';
+                                          ImageAssets.placeholder;
 
                                       _imageBannerController.clear();
                                       Navigator.of(context).pop();
@@ -474,7 +475,7 @@ class _AddBannerButtonState extends State<AddBannerButton> {
                                           // _nameBannerController.clear();
                                           id = generateId();
                                           _imagevalue.value =
-                                              'assets/images/placeholder.jpg';
+                                              ImageAssets.placeholder;
 
                                           _imageBannerController.clear();
                                           Navigator.of(context).pop();

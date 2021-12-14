@@ -5,6 +5,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:sigmamenu/GeneralFunction/firebase_uploader_web.dart';
 import 'package:sigmamenu/GeneralFunction/random_id_generator.dart';
 import 'package:sigmamenu/screens/adminPanel.dart';
+import 'package:sigmamenu/style/AssetsManager.dart';
 import 'package:sigmamenu/style/CommonUI.dart';
 import 'package:sigmamenu/style/ScreenUtil.dart';
 
@@ -47,7 +48,7 @@ class _AddProductButtonState extends State<AddProductButton> {
 
   @override
   Widget build(BuildContext context) {
-    _imagevalue.value = imageURL;
+    _imagevalue.value = ImageAssets.placeholder;
     return Row(
       children: [
         SizedBox(width: 19),
@@ -57,7 +58,7 @@ class _AddProductButtonState extends State<AddProductButton> {
             height: 40,
             child: TextButton.icon(
                 onPressed: () {
-                  _imagevalue.value = imageURL;
+                  _imagevalue.value = ImageAssets.placeholder;
                   showDialogWithFields();
                 },
                 icon: Icon(
@@ -118,7 +119,8 @@ class _AddProductButtonState extends State<AddProductButton> {
                                     if (_imageController.text != '') {
                                       _imagevalue.value = _imageController.text;
                                     } else if (_imageController.text == '') {
-                                      _imagevalue.value = imageURL;
+                                      _imagevalue.value =
+                                          ImageAssets.placeholder;
                                     }
                                   },
                                   child: Center(
@@ -293,8 +295,7 @@ class _AddProductButtonState extends State<AddProductButton> {
                           ElevatedButton(
                             onPressed: () {
                               id = generateId();
-                              _imagevalue.value =
-                                  'assets/images/placeholder.jpg';
+                              _imagevalue.value = ImageAssets.placeholder;
                               _descriptionEnController.clear();
                               _priceController.clear();
                               _imageController.clear();
@@ -337,8 +338,7 @@ class _AddProductButtonState extends State<AddProductButton> {
                                   //subCategory: ---
                                 }).whenComplete(() {
                                   id = generateId();
-                                  _imagevalue.value =
-                                      'assets/images/placeholder.jpg';
+                                  _imagevalue.value = ImageAssets.placeholder;
                                   _descriptionEnController.clear();
                                   _priceController.clear();
                                   _imageController.clear();
