@@ -326,6 +326,8 @@ class _AddBannerButtonState extends State<AddBannerButton> {
                                 return Center(
                                   child: GestureDetector(
                                     onTap: () async {
+                                      _imagevalue.value =
+                                          ImageAssets.placeholder;
                                       _imageBannerController.text =
                                           await fireBaseUploadFileWeb(id);
                                       if (_imageBannerController.text != '') {
