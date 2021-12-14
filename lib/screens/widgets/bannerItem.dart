@@ -484,7 +484,7 @@ class _BannersItemState extends State<BannersItem> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.all(12.0),
+                            padding: const EdgeInsets.only(bottom: 16.0),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [

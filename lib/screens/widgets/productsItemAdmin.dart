@@ -274,7 +274,7 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.all(12.0),
+                            padding: const EdgeInsets.only(bottom: 16.0),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
@@ -906,10 +906,10 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                         children: [
                                           SizedBox(height: 6),
                                           Container(
-                                            width: Responsive.isMiniMobile(
-                                                    context)
-                                                ? 100
-                                                : 140,
+                                            width:
+                                                Responsive.isMiniMobile(context)
+                                                    ? 100
+                                                    : 140,
                                             child: Text(
                                               ProjectLanguage.isLTR()
                                                   ? widget.product.nameEn
@@ -919,13 +919,12 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                                   .headline4!
                                                   .copyWith(
                                                     color: Colors.black,
-                                                    fontWeight:
-                                                        FontWeight.bold,
-                                                    fontSize: Responsive
-                                                            .isMiniMobile(
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize:
+                                                        Responsive.isMiniMobile(
                                                                 context)
-                                                        ? 16
-                                                        : 19,
+                                                            ? 16
+                                                            : 19,
                                                   ),
                                               maxLines: 3,
                                               textAlign: TextAlign.start,
@@ -963,8 +962,7 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                       Container(
                                         width: Responsive.isDesktop(context)
                                             ? Responsive.width(context) / 2.2
-                                            : Responsive.width(context) /
-                                                1.35,
+                                            : Responsive.width(context) / 1.35,
                                         child: Text(
                                           "Description",
                                           style: Theme.of(context)
@@ -1000,7 +998,7 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                               ),
                                         ),
                                       ),
-                                        SizedBox(height: 335),
+                                      SizedBox(height: 335),
                                     ],
                                   ),
                                 ],

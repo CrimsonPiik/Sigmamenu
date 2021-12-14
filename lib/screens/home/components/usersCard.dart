@@ -255,7 +255,6 @@ class _UsersCardState extends State<UsersCard> {
 // =====  =====  ===== =====  =====  ===== =====  =====  ===== =====  =====  ===== =====  =====
 
   _showDeleteDialog(BuildContext context) {
-
     Size size = MediaQuery.of(context).size;
     showDialog(
       context: context,
@@ -297,7 +296,7 @@ class _UsersCardState extends State<UsersCard> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.all(12.0),
+                            padding: const EdgeInsets.only(bottom: 16.0),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
