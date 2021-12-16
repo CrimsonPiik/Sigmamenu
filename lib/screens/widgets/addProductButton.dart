@@ -24,10 +24,11 @@ class _AddProductButtonState extends State<AddProductButton> {
   TextEditingController _priceController = TextEditingController();
   TextEditingController _descriptionEnController = TextEditingController();
   TextEditingController _imageController = TextEditingController();
-  ValueNotifier<String?> _imagevalue = ValueNotifier<String?>(null);
+  ValueNotifier<String?> _imagevalue = ValueNotifier<String?>('');
   final _formKey = GlobalKey<FormBuilderState>();
   String category = categoriesList.elementAt(0);
   double _value = 50.0;
+  bool isImage = false;
 
   @override
   void initState() {
@@ -56,7 +57,7 @@ class _AddProductButtonState extends State<AddProductButton> {
             height: 40,
             child: TextButton.icon(
                 onPressed: () {
-                  // _imagevalue.value = _imageController.text;
+                  _imagevalue.value = '';
                   showDialogWithFields();
                 },
                 icon: Icon(
@@ -110,98 +111,100 @@ class _AddProductButtonState extends State<AddProductButton> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            ValueListenableBuilder(
-                              valueListenable: _imagevalue,
-                              builder: (context, dynamic value, Widget? child) {
-                                return Center(
-                                  child: Ink(
-                                    width: 130,
-                                    height: 130,
-                                    child: InkWell(
-                                      onTap: () async {
-                                        _imageController.text =
-                                            await fireBaseUploadFileWeb(id);
-                                        // if (_imageController.text != '') {
-                                        //   _imagevalue.value = _imageController.text;
-                                        // } else if (_imageController.text == '') {
-                                        // _imagevalue.value =
-                                        //     ImageAssets.placeholder;
-                                        // }
-                                        _imagevalue.value =
-                                            _imageController.text;
-                                      },
-                                      child: Center(
-                                        child: Container(
-                                          width: 130,
-                                          height: 130,
-                                          child: Stack(children: [
-                                            _imagevalue.value != null
-                                                ? Container(
-                                                    height: 130,
-                                                    width: 130,
-                                                    decoration: BoxDecoration(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              4),
-                                                    ),
-                                                    child: InteractiveViewer(
-                                                      child: Image.network(
-                                                        value,
-                                                        fit: BoxFit.cover,
-                                                        loadingBuilder: (context,
-                                                            child,
-                                                            loadingProgress) {
-                                                          if (loadingProgress ==
-                                                              null) {
-                                                            return child;
-                                                          }
-                                                          return Center(
-                                                            child:
-                                                                CircularProgressIndicator(),
-                                                          );
-                                                        },
-                                                      ),
-                                                    ),
-                                                  )
-                                                : Container(
-                                                    height: 130,
-                                                    width: 130,
-                                                    decoration: BoxDecoration(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              4),
-                                                    ),
-                                                    child: Image.asset(
-                                                      'assets/images/placeholder.jpg',
-                                                      fit: BoxFit.cover,
-                                                    ),
-                                                  ),
-                                            Container(
-                                              decoration: BoxDecoration(
-                                                  color: Color(0x4D303030)),
-                                              height: 130,
-                                              width: 130,
-                                            ),
-                                            Padding(
-                                              padding: EdgeInsets.only(top: 95),
-                                              child: Container(
-                                                  height: 35,
-                                                  width: 130,
-                                                  decoration: BoxDecoration(
-                                                      color: Color(0x4D000000)),
-                                                  child: Center(
-                                                      child: Icon(Icons.add,
-                                                          color:
-                                                              Colors.white))),
-                                            ),
-                                          ]),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                );
-                              },
-                            ),
+                            // ValueListenableBuilder(
+                            //   valueListenable: _imagevalue,
+                            //   builder: (context, dynamic value, Widget? child) {
+                            //     return Center(
+                            //       child: Ink(
+                            //         width: 130,
+                            //         height: 130,
+                            //         child: InkWell(
+                            //           onTap: () async {
+                            //             _imageController.text =
+                            //                 await fireBaseUploadFileWeb(id);
+                            //             if (_imageController.text != '') {
+                            //               _imagevalue.value =
+                            //                   _imageController.text;
+                            //             } else if (_imageController.text ==
+                            //                 '') {
+                            //               _imagevalue.value =
+                            //                   'assets/images/placeholder.jpg';
+                            //             }
+                            //             // _imagevalue.value =
+                            //             // _imageController.text;
+                            //           },
+                            //           child: Center(
+                            //             child: Container(
+                            //               width: 130,
+                            //               height: 130,
+                            //               child: Stack(children: [
+                            //                 _imagevalue.value != null
+                            //                     ? Container(
+                            //                         height: 130,
+                            //                         width: 130,
+                            //                         decoration: BoxDecoration(
+                            //                           borderRadius:
+                            //                               BorderRadius.circular(
+                            //                                   4),
+                            //                         ),
+                            //                         child: InteractiveViewer(
+                            //                           child: Image.network(
+                            //                             value,
+                            //                             fit: BoxFit.cover,
+                            //                             loadingBuilder: (context,
+                            //                                 child,
+                            //                                 loadingProgress) {
+                            //                               if (loadingProgress ==
+                            //                                   null) {
+                            //                                 return child;
+                            //                               }
+                            //                               return Center(
+                            //                                 child:
+                            //                                     CircularProgressIndicator(),
+                            //                               );
+                            //                             },
+                            //                           ),
+                            //                         ),
+                            //                       )
+                            //                     : Container(
+                            //                         height: 130,
+                            //                         width: 130,
+                            //                         decoration: BoxDecoration(
+                            //                           borderRadius:
+                            //                               BorderRadius.circular(
+                            //                                   4),
+                            //                         ),
+                            //                         child: Image.asset(
+                            //                           'assets/images/placeholder.jpg',
+                            //                           fit: BoxFit.cover,
+                            //                         ),
+                            //                       ),
+                            //                 Container(
+                            //                   decoration: BoxDecoration(
+                            //                       color: Color(0x4D303030)),
+                            //                   height: 130,
+                            //                   width: 130,
+                            //                 ),
+                            //                 Padding(
+                            //                   padding: EdgeInsets.only(top: 95),
+                            //                   child: Container(
+                            //                       height: 35,
+                            //                       width: 130,
+                            //                       decoration: BoxDecoration(
+                            //                           color: Color(0x4D000000)),
+                            //                       child: Center(
+                            //                           child: Icon(Icons.add,
+                            //                               color:
+                            //                                   Colors.white))),
+                            //                 ),
+                            //               ]),
+                            //             ),
+                            //           ),
+                            //         ),
+                            //       ),
+                            //     );
+                            //   },
+                            // ),
                             ///////////////////////////////////////////////////////
                             SizedBox(width: 20),
                             ValueListenableBuilder(
@@ -213,18 +216,17 @@ class _AddProductButtonState extends State<AddProductButton> {
                                     height: 130,
                                     child: InkWell(
                                       onTap: () async {
-                                        _imageController.text =
-                                            await fireBaseUploadFileWeb(id);
                                         _imagevalue.value =
-                                            _imageController.text;
+                                            await fireBaseUploadFileWeb(id);
                                       },
                                       child: Center(
                                         child: Container(
                                           width: 130,
                                           height: 130,
                                           child: Stack(children: [
-                                            _imagevalue.value != null
-                                                ? Stack( //There's Image
+                                            _imagevalue.value != ''
+                                                ? Stack(
+                                                    //There's Image
                                                     children: [
                                                       Container(
                                                         height: 130,
@@ -268,13 +270,15 @@ class _AddProductButtonState extends State<AddProductButton> {
                                                                         0x4D000000)),
                                                             child: Center(
                                                                 child: Icon(
-                                                                    Icons.edit_outlined,
+                                                                    Icons
+                                                                        .edit_outlined,
                                                                     color: Colors
                                                                         .white))),
                                                       ),
                                                     ],
                                                   )
-                                                : Container( // There's no Image
+                                                : Container(
+                                                    // There's no Image
                                                     height: 130,
                                                     width: 130,
                                                     decoration: BoxDecoration(
@@ -436,9 +440,9 @@ class _AddProductButtonState extends State<AddProductButton> {
                                   'descriptionEn':
                                       _descriptionEnController.text,
                                   'isPublished': true,
-                                  'image': _imageController.text == ''
+                                  'image': _imagevalue.value == ''
                                       ? 'assets/images/placeholder.jpg'
-                                      : _imageController.text,
+                                      : _imagevalue.value,
                                   'price': _priceController.text,
                                   'rate': 0,
                                   'weight': _value.round(),
