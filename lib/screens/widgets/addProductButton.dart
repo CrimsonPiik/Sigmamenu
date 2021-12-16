@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -28,7 +30,7 @@ class _AddProductButtonState extends State<AddProductButton> {
   final _formKey = GlobalKey<FormBuilderState>();
   String category = categoriesList.elementAt(0);
   double _value = 50.0;
-  bool isImage = false;
+  bool showProgress = false;
 
   @override
   void initState() {
@@ -111,102 +113,7 @@ class _AddProductButtonState extends State<AddProductButton> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            // ValueListenableBuilder(
-                            //   valueListenable: _imagevalue,
-                            //   builder: (context, dynamic value, Widget? child) {
-                            //     return Center(
-                            //       child: Ink(
-                            //         width: 130,
-                            //         height: 130,
-                            //         child: InkWell(
-                            //           onTap: () async {
-                            //             _imageController.text =
-                            //                 await fireBaseUploadFileWeb(id);
-                            //             if (_imageController.text != '') {
-                            //               _imagevalue.value =
-                            //                   _imageController.text;
-                            //             } else if (_imageController.text ==
-                            //                 '') {
-                            //               _imagevalue.value =
-                            //                   'assets/images/placeholder.jpg';
-                            //             }
-                            //             // _imagevalue.value =
-                            //             // _imageController.text;
-                            //           },
-                            //           child: Center(
-                            //             child: Container(
-                            //               width: 130,
-                            //               height: 130,
-                            //               child: Stack(children: [
-                            //                 _imagevalue.value != null
-                            //                     ? Container(
-                            //                         height: 130,
-                            //                         width: 130,
-                            //                         decoration: BoxDecoration(
-                            //                           borderRadius:
-                            //                               BorderRadius.circular(
-                            //                                   4),
-                            //                         ),
-                            //                         child: InteractiveViewer(
-                            //                           child: Image.network(
-                            //                             value,
-                            //                             fit: BoxFit.cover,
-                            //                             loadingBuilder: (context,
-                            //                                 child,
-                            //                                 loadingProgress) {
-                            //                               if (loadingProgress ==
-                            //                                   null) {
-                            //                                 return child;
-                            //                               }
-                            //                               return Center(
-                            //                                 child:
-                            //                                     CircularProgressIndicator(),
-                            //                               );
-                            //                             },
-                            //                           ),
-                            //                         ),
-                            //                       )
-                            //                     : Container(
-                            //                         height: 130,
-                            //                         width: 130,
-                            //                         decoration: BoxDecoration(
-                            //                           borderRadius:
-                            //                               BorderRadius.circular(
-                            //                                   4),
-                            //                         ),
-                            //                         child: Image.asset(
-                            //                           'assets/images/placeholder.jpg',
-                            //                           fit: BoxFit.cover,
-                            //                         ),
-                            //                       ),
-                            //                 Container(
-                            //                   decoration: BoxDecoration(
-                            //                       color: Color(0x4D303030)),
-                            //                   height: 130,
-                            //                   width: 130,
-                            //                 ),
-                            //                 Padding(
-                            //                   padding: EdgeInsets.only(top: 95),
-                            //                   child: Container(
-                            //                       height: 35,
-                            //                       width: 130,
-                            //                       decoration: BoxDecoration(
-                            //                           color: Color(0x4D000000)),
-                            //                       child: Center(
-                            //                           child: Icon(Icons.add,
-                            //                               color:
-                            //                                   Colors.white))),
-                            //                 ),
-                            //               ]),
-                            //             ),
-                            //           ),
-                            //         ),
-                            //       ),
-                            //     );
-                            //   },
-                            // ),
                             ///////////////////////////////////////////////////////
-                            SizedBox(width: 20),
                             ValueListenableBuilder(
                               valueListenable: _imagevalue,
                               builder: (context, dynamic value, Widget? child) {
@@ -216,8 +123,19 @@ class _AddProductButtonState extends State<AddProductButton> {
                                     height: 130,
                                     child: InkWell(
                                       onTap: () async {
+                                        // setState(() {
+                                        //   showProgress = true;
+                                        // });
+                                        // Future.delayed(Duration(seconds: 2),
+                                        //     () async {
+                                        // 5s over,
+
                                         _imagevalue.value =
                                             await fireBaseUploadFileWeb(id);
+                                        //   setState(() {
+                                        //     showProgress = false;
+                                        //   });
+                                        // // });
                                       },
                                       child: Center(
                                         child: Container(
@@ -296,11 +214,19 @@ class _AddProductButtonState extends State<AddProductButton> {
                                                         ),
                                                       ],
                                                     ),
-                                                    child: Icon(
+                                                    child: // _imagevalue.value ==
+                                                        // '' &&
+                                                        // showProgress
+                                                        // ? Center(
+                                                        // child:
+                                                        // CircularProgressIndicator())
+                                                        // :
+                                                        Icon(
                                                       Icons.add,
                                                       color: Colors.black,
                                                       size: 60,
-                                                    )),
+                                                    ),
+                                                  ),
                                           ]),
                                         ),
                                       ),
@@ -309,6 +235,250 @@ class _AddProductButtonState extends State<AddProductButton> {
                                 );
                               },
                             ),
+                            // SizedBox(width: 20),
+                            // ValueListenableBuilder(
+                            //   valueListenable: _imagevalue,
+                            //   builder: (context, dynamic value, Widget? child) {
+                            //     return Center(
+                            //       child: Ink(
+                            //         width: 130,
+                            //         height: 130,
+                            //         child: InkWell(
+                            //           onTap: () async {
+                            //             // setState(() {
+                            //             //   showProgress = true;
+                            //             // });
+                            //             // Future.delayed(Duration(seconds: 2),
+                            //             //     () async {
+                            //             // 5s over,
+
+                            //             _imagevalue.value =
+                            //                 await fireBaseUploadFileWeb(id);
+                            //             //   setState(() {
+                            //             //     showProgress = false;
+                            //             //   });
+                            //             // // });
+                            //           },
+                            //           child: Center(
+                            //             child: Container(
+                            //               width: 130,
+                            //               height: 130,
+                            //               child: Stack(children: [
+                            //                 _imagevalue.value != ''
+                            //                     ? Stack(
+                            //                         //There's Image
+                            //                         children: [
+                            //                           Container(
+                            //                             height: 130,
+                            //                             width: 130,
+                            //                             decoration:
+                            //                                 BoxDecoration(
+                            //                               borderRadius:
+                            //                                   BorderRadius
+                            //                                       .circular(4),
+                            //                             ),
+                            //                             child:
+                            //                                 InteractiveViewer(
+                            //                               child: Image.network(
+                            //                                 value,
+                            //                                 fit: BoxFit.cover,
+                            //                                 loadingBuilder:
+                            //                                     (context, child,
+                            //                                         loadingProgress) {
+                            //                                   if (loadingProgress ==
+                            //                                       null) {
+                            //                                     return child;
+                            //                                   }
+                            //                                   return Center(
+                            //                                     child:
+                            //                                         CircularProgressIndicator(),
+                            //                                   );
+                            //                                 },
+                            //                               ),
+                            //                             ),
+                            //                           ),
+                            //                           Padding(
+                            //                             padding:
+                            //                                 EdgeInsets.only(
+                            //                                     top: 95),
+                            //                             child: Container(
+                            //                                 height: 35,
+                            //                                 width: 130,
+                            //                                 decoration:
+                            //                                     BoxDecoration(
+                            //                                         color: Color(
+                            //                                             0x4D000000)),
+                            //                                 child: Center(
+                            //                                     child: Icon(
+                            //                                         Icons
+                            //                                             .edit_outlined,
+                            //                                         color: Colors
+                            //                                             .white))),
+                            //                           ),
+                            //                         ],
+                            //                       )
+                            //                     : Container(
+                            //                         // There's no Image
+                            //                         height: 130,
+                            //                         width: 130,
+                            //                         decoration: BoxDecoration(
+                            //                           color: Colors.white,
+                            //                           borderRadius:
+                            //                               BorderRadius.circular(
+                            //                                   4),
+                            //                           boxShadow: [
+                            //                             BoxShadow(
+                            //                               color: Colors.grey
+                            //                                   .withOpacity(0.5),
+                            //                               spreadRadius: 2,
+                            //                               blurRadius: 9,
+                            //                               offset: Offset(0, 4),
+                            //                             ),
+                            //                           ],
+                            //                         ),
+                            //                         child: // _imagevalue.value ==
+                            //                             // '' &&
+                            //                             // showProgress
+                            //                             // ? Center(
+                            //                             // child:
+                            //                             // CircularProgressIndicator())
+                            //                             // :
+                            //                             Icon(
+                            //                           Icons.add,
+                            //                           color: Colors.black,
+                            //                           size: 60,
+                            //                         ),
+                            //                       ),
+                            //               ]),
+                            //             ),
+                            //           ),
+                            //         ),
+                            //       ),
+                            //     );
+                            //   },
+                            // ),
+                            // SizedBox(width: 20),
+                            // ValueListenableBuilder(
+                            //   valueListenable: _imagevalue,
+                            //   builder: (context, dynamic value, Widget? child) {
+                            //     return Center(
+                            //       child: Ink(
+                            //         width: 130,
+                            //         height: 130,
+                            //         child: InkWell(
+                            //           onTap: () async {
+                            //             // setState(() {
+                            //             //   showProgress = true;
+                            //             // });
+                            //             // Future.delayed(Duration(seconds: 2),
+                            //             //     () async {
+                            //             // 5s over,
+
+                            //             _imagevalue.value =
+                            //                 await fireBaseUploadFileWeb(id);
+                            //             //   setState(() {
+                            //             //     showProgress = false;
+                            //             //   });
+                            //             // // });
+                            //           },
+                            //           child: Center(
+                            //             child: Container(
+                            //               width: 130,
+                            //               height: 130,
+                            //               child: Stack(children: [
+                            //                 _imagevalue.value != ''
+                            //                     ? Stack(
+                            //                         //There's Image
+                            //                         children: [
+                            //                           Container(
+                            //                             height: 130,
+                            //                             width: 130,
+                            //                             decoration:
+                            //                                 BoxDecoration(
+                            //                               borderRadius:
+                            //                                   BorderRadius
+                            //                                       .circular(4),
+                            //                             ),
+                            //                             child:
+                            //                                 InteractiveViewer(
+                            //                               child: Image.network(
+                            //                                 value,
+                            //                                 fit: BoxFit.cover,
+                            //                                 loadingBuilder:
+                            //                                     (context, child,
+                            //                                         loadingProgress) {
+                            //                                   if (loadingProgress ==
+                            //                                       null) {
+                            //                                     return child;
+                            //                                   }
+                            //                                   return Center(
+                            //                                     child:
+                            //                                         CircularProgressIndicator(),
+                            //                                   );
+                            //                                 },
+                            //                               ),
+                            //                             ),
+                            //                           ),
+                            //                           Padding(
+                            //                             padding:
+                            //                                 EdgeInsets.only(
+                            //                                     top: 95),
+                            //                             child: Container(
+                            //                                 height: 35,
+                            //                                 width: 130,
+                            //                                 decoration:
+                            //                                     BoxDecoration(
+                            //                                         color: Color(
+                            //                                             0x4D000000)),
+                            //                                 child: Center(
+                            //                                     child: Icon(
+                            //                                         Icons
+                            //                                             .edit_outlined,
+                            //                                         color: Colors
+                            //                                             .white))),
+                            //                           ),
+                            //                         ],
+                            //                       )
+                            //                     : Container(
+                            //                         // There's no Image
+                            //                         height: 130,
+                            //                         width: 130,
+                            //                         decoration: BoxDecoration(
+                            //                           color: Colors.white,
+                            //                           borderRadius:
+                            //                               BorderRadius.circular(
+                            //                                   4),
+                            //                           boxShadow: [
+                            //                             BoxShadow(
+                            //                               color: Colors.grey
+                            //                                   .withOpacity(0.5),
+                            //                               spreadRadius: 2,
+                            //                               blurRadius: 9,
+                            //                               offset: Offset(0, 4),
+                            //                             ),
+                            //                           ],
+                            //                         ),
+                            //                         child: // _imagevalue.value ==
+                            //                             // '' &&
+                            //                             // showProgress
+                            //                             // ? Center(
+                            //                             // child:
+                            //                             // CircularProgressIndicator())
+                            //                             // :
+                            //                             Icon(
+                            //                           Icons.add,
+                            //                           color: Colors.black,
+                            //                           size: 60,
+                            //                         ),
+                            //                       ),
+                            //               ]),
+                            //             ),
+                            //           ),
+                            //         ),
+                            //       ),
+                            //     );
+                            //   },
+                            // ),
                           ],
                         ),
                         SizedBox(height: 50),
@@ -397,6 +567,7 @@ class _AddProductButtonState extends State<AddProductButton> {
                       ],
                     ),
                   ),
+
                   actions: [
                     Padding(
                       padding: const EdgeInsets.only(bottom: 8.0),
