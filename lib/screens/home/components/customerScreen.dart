@@ -137,7 +137,7 @@ class _CustomerScreenState extends State<CustomerScreen>
               //   ),
               // ),
               SizedBox(height:15),
-              BannerWithDotsIndicator(),
+              BannerSlider(),
               Categories(),
               ItemCardData(streamController.stream),
             ],

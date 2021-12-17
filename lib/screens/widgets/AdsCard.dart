@@ -4,29 +4,24 @@ import 'package:sigmamenu/style/CommonUI.dart';
 
 // ignore: must_be_immutable
 class AdsCard extends StatelessWidget {
-  final String image;
+  String image;
   // final String description;
-  final VoidCallback click;
-  AdsCard({
-    Key? key,
-    required this.image,
-    // required this.description,
-    required this.click,
-  }) : super(key: key);
+  // final VoidCallback click;
+  AdsCard(
+    this.image,
+  );
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Padding(
-      padding: 
-          EdgeInsets.symmetric(horizontal: size.width * 0.05),
-          
+      padding: EdgeInsets.symmetric(horizontal: size.width * 0.05),
       child: Card(
         shape: CommonShapes.b16pxRadius,
         clipBehavior: Clip.antiAlias,
         elevation: 1,
         child: InkWell(
-          onTap: click,
+          // onTap: click,
           child: Stack(
             children: [
               SizedBox(

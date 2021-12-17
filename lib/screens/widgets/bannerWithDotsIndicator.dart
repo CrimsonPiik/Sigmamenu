@@ -7,10 +7,10 @@ import 'package:sigmamenu/models/banner.dart';
 import 'package:sigmamenu/style/CommonUI.dart';
 import 'package:sigmamenu/style/ScreenUtil.dart';
 
-class BannerWithDotsIndicator extends StatelessWidget {
-  // BannerWithDotsIndicator({
-  //   Key? key,
-  // }) : super(key: key);
+class BannerWithDotsIndicator extends StatefulWidget {
+  BannerWithDotsIndicator({
+    Key? key,
+  }) : super(key: key);
 
 //   @override
 //   _BannerWithDotsIndicatorState createState() =>
@@ -34,6 +34,12 @@ class BannerWithDotsIndicator extends StatelessWidget {
 //   //   });
 //   // }
   @override
+  State<BannerWithDotsIndicator> createState() =>
+      _BannerWithDotsIndicatorState();
+}
+
+class _BannerWithDotsIndicatorState extends State<BannerWithDotsIndicator> {
+  @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance
@@ -48,9 +54,17 @@ class BannerWithDotsIndicator extends StatelessWidget {
             // return LoadingSpinner();
             return ShimmerForBanner();
           }
+          List<DocumentSnapshot> shots = snapshot.data!.docs;
+
+          // if (!snapshot.hasData || shots.isEmpty)
+          //   return Text('Sorry, No Data');
+          // else
+          // if (snapshot.data == null || snapshot.hasData != true)
+          // Text('Sorry, No Data');
+
           List<BannerModel> bannerList = [];
 
-          for (var item in snapshot.data!.docs) {
+          for (var item in shots) {
             bannerList
                 .add(BannerModel.fromMap(item.data() as Map<String, dynamic>));
           }
@@ -59,14 +73,14 @@ class BannerWithDotsIndicator extends StatelessWidget {
                   items: bannerList
                       .map(
                         (item) => AdsCard(
-                          image: item.image,
-                          click: () {
-                            // application.navigatePush(
-                            //     context,
-                            //     AdsDetailScreen(
-                            //       bannerModel: item,
-                            //     ));
-                          },
+                          item.image,
+                          // click: () {
+                          //   // application.navigatePush(
+                          //   //     context,
+                          //   //     AdsDetailScreen(
+                          //   //       bannerModel: item,
+                          //   //     ));
+                          // },
                         ),
                       )
                       .toList(),
@@ -150,3 +164,90 @@ class BannerWithDotsIndicator extends StatelessWidget {
     // );
   }
 }
+/////////////////////////////////////\\
+///
+
+// import 'package:carousel_slider/carousel_slider.dart';
+// import 'package:cloud_firestore/cloud_firestore.dart';
+// import 'package:flutter/material.dart';
+
+// class BannerSlider extends StatefulWidget {
+//   @override
+//   _BannerSliderState createState() => _BannerSliderState();
+// }
+
+// class _BannerSliderState extends State<BannerSlider> {
+//   int _index = 0;
+//   int _dataLength = 1;
+
+//   @override
+//   void initState() {
+//     getSliderImageFromDb();
+//     super.initState();
+//   }
+
+//   Future<List<QueryDocumentSnapshot<Map<String, dynamic>>>>
+//       getSliderImageFromDb() async {
+//     var _fireStore = FirebaseFirestore.instance;
+//     QuerySnapshot<Map<String, dynamic>> snapshot =
+//         await _fireStore.collection('Banner').get();
+//     if (mounted) {
+//       setState(() {
+//         _dataLength = snapshot.docs.length;
+//       });
+//     }
+//     return snapshot.docs;
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//       color: Colors.white,
+//       child: Column(
+//         children: [
+//           if (_dataLength != 0)
+//             FutureBuilder(
+//               future: getSliderImageFromDb(),
+//               builder: (_,
+//                   AsyncSnapshot<
+//                           List<QueryDocumentSnapshot<Map<String, dynamic>>>>
+//                       snapShot) {
+//                 return snapShot.data == null
+//                     ? Center(
+//                         child: CircularProgressIndicator(),
+//                       )
+//                     : Padding(
+//                         padding: const EdgeInsets.only(top: 4),
+//                         child: CarouselSlider.builder(
+//                             itemCount: snapShot.data!.length,
+//                             itemBuilder: (BuildContext context, index, int) {
+//                               DocumentSnapshot<Map<String, dynamic>>
+//                                   sliderImage = snapShot.data![index];
+
+//                               dynamic getImage = sliderImage.data();
+//                               return SizedBox(
+//                                   width: MediaQuery.of(context).size.width,
+//                                   child: Image.network(
+//                                     getImage['image'],
+//                                     fit: BoxFit.fill,
+//                                   ));
+//                             },
+//                             options: CarouselOptions(
+//                                 viewportFraction: 1,
+//                                 initialPage: 0,
+//                                 autoPlay: true,
+//                                 height: 150,
+//                                 onPageChanged:
+//                                     (int i, carouselPageChangedReason) {
+//                                   setState(() {
+//                                     _index = i;
+//                                   });
+//                                 })),
+//                       );
+//               },
+//             ),
+//         ],
+//       ),
+//     );
+//   }
+// }
