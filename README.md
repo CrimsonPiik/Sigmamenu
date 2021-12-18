@@ -2,7 +2,7 @@
 
 # Dynamic Digital Menu - Sigma Menu
 
-## [Sigma Menu Website](https//:www.sigmamenu.com)
+## [Sigma Menu Website](https://www.sigmamenu.com)
 
 ** Screenshots: **
 
