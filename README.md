@@ -13,6 +13,7 @@ On our E-commerce app UI has two pages one for the product page which has a hori
 
 ### E-commerce App Final UI
 
-![intro](intro.gif)
+<![intro](intro.gif)->
 
-![App UI](/ui.png)
+![intro](/sigmamenu.png)
+![App UI](/flutter_02.png)
