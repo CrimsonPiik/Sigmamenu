@@ -754,7 +754,7 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
       barrierDismissible: true,
       barrierLabel: "Product Animation",
       barrierColor: Colors.black.withOpacity(0.5),
-      transitionDuration: Duration(milliseconds: 600),
+      transitionDuration: Duration(milliseconds: 300),
       context: context,
       pageBuilder: (context, anim1, anim2) {
         return Dismissible(
