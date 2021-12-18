@@ -101,7 +101,6 @@ class _StaggerdGridViewState extends State<StaggerdGridView> {
                       ),
                     ),
                     Row(
-                      // mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         isLight
                             ? IconButton(
