@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:provider/provider.dart';
 import 'package:sigmamenu/Authentication/authMonitor.dart';
 import 'package:sigmamenu/GeneralFunction/shared_preferences.dart';
@@ -9,6 +10,7 @@ import 'package:sigmamenu/provider/ProjectLanguageProvider.dart';
 import 'package:sigmamenu/provider/darkLightMode.dart';
 import 'package:sigmamenu/provider/userStateProvider.dart';
 import 'package:sigmamenu/screens/home/home_screen.dart';
+import 'package:sigmamenu/screens/staggeredGridView.dart';
 import 'package:sigmamenu/screens/widgets/adminDrawer.dart';
 
 void main() async {
@@ -66,53 +68,55 @@ class _MyAppState extends State<MyApp> {
         ],
         builder: (context, child) {
           return MaterialApp(
-            // Provider.of<ProjectLanguageChangeNotifier>(context, listen: true)
-            //     .setlocale(ProjectLanguage.locale);
-            // return MultiProvider(
-            //     providers: [
-            //       // ChangeNotifierProvider<UserState>(
-            //       //   create: (_) => UserState(),
-            //       // ),
-            //       ChangeNotifierProvider<ProjectLanguageChangeNotifier>(
-            //         create: (_) => ProjectLanguageChangeNotifier(),
-            //       ),],
-            // return MaterialApp(
-            // key: GlobalKey<FormState>(),
-            locale: Provider.of<ProjectLanguageChangeNotifier>(context,
-                    listen: true)
-                .locale,
-            // localizationsDelegates: [
-            //   ProjectLanguage.delegate,
-            // ],
-            debugShowCheckedModeBanner: false,
-            title: 'Sigma Menu',
-            // theme: child!.getTheme(),
-            theme: ThemeData(
-              // primaryColor: Colors.brown,
-              colorScheme: ColorScheme.fromSwatch(
-                primarySwatch: Colors.brown,
-              ).copyWith(),
+              // Provider.of<ProjectLanguageChangeNotifier>(context, listen: true)
+              //     .setlocale(ProjectLanguage.locale);
+              // return MultiProvider(
+              //     providers: [
+              //       // ChangeNotifierProvider<UserState>(
+              //       //   create: (_) => UserState(),
+              //       // ),
+              //       ChangeNotifierProvider<ProjectLanguageChangeNotifier>(
+              //         create: (_) => ProjectLanguageChangeNotifier(),
+              //       ),],
+              // return MaterialApp(
+              // key: GlobalKey<FormState>(),
+              locale: Provider.of<ProjectLanguageChangeNotifier>(context,
+                      listen: true)
+                  .locale,
+              // localizationsDelegates: [
+              //   ProjectLanguage.delegate,
+              // ],
+              debugShowCheckedModeBanner: false,
+              title: 'Sigma Menu',
+              // theme: child!.getTheme(),
+              theme: ThemeData(
+                // primaryColor: Colors.brown,
+                colorScheme: ColorScheme.fromSwatch(
+                  primarySwatch: Colors.brown,
+                ).copyWith(),
 
-              textTheme: Theme.of(context).textTheme.apply(
-                  // displayColor: Colors.brown,
-                  // decorationColor: Colors.brown,
-                  // bodyColor: Colors.brown
-                  ),
-              visualDensity: VisualDensity.adaptivePlatformDensity,
-            ),
-            initialRoute: '/',
-            routes: {
-              '/customer': (context) => HomeScreen(),
-              '/admin': (context) => AdminDrawer()
-              // When navigating to the "/" route, build the FirstScreen widget.
-              // '/': (context) => const FirstScreen(),
-              // When navigating to the "/second" route, build the SecondScreen widget.
-              // '/admin': (context) => AdminPanel(),
-              // '/loading': (context) => LoadingListPage(),
-            },
-            home: AuthMonitor(),
-            // ),
-          );
+                textTheme: Theme.of(context).textTheme.apply(
+                    // displayColor: Colors.brown,
+                    // decorationColor: Colors.brown,
+                    // bodyColor: Colors.brown
+                    ),
+                visualDensity: VisualDensity.adaptivePlatformDensity,
+              ),
+              initialRoute: '/',
+              routes: {
+                '/dashboard': (context) => StaggerdGridView(),
+                '/customer': (context) => HomeScreen(),
+                '/admin': (context) => AdminDrawer()
+                // When navigating to the "/" route, build the FirstScreen widget.
+                // '/': (context) => const FirstScreen(),
+                // When navigating to the "/second" route, build the SecondScreen widget.
+                // '/admin': (context) => AdminPanel(),
+                // '/loading': (context) => LoadingListPage(),
+              },
+              home: StaggerdGridView()
+              //AuthMonitor(),
+              // ),
+              );
         });
   }
 }
