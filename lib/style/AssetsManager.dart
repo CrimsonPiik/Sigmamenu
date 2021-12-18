@@ -2,6 +2,8 @@
 //manage the assets
 class ImageAssets {
   static const String placeholder = "assets/images/placeholder.jpg";
+  static const String foodplaceholder = "assets/images/preview.png";
+
   // static const String user_placeholder = "assets/images/user_placeholder.jpg";
   static const String logo = "assets/images/logo.png";
   static const String headerBackground =

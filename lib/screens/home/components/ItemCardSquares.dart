@@ -43,21 +43,20 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   ClipRRect(
-                    child: 
-                    Container(
+                    child: Container(
                       height: Responsive.isDesktop(context)
-                              ? 155
-                              : Responsive.isMobile(context)
-                                  ? 145
-                                  : Responsive.isMiniMobile(context)
-                                      ? 130
-                                      : 140,
+                          ? 155
+                          : Responsive.isMobile(context)
+                              ? 145
+                              : Responsive.isMiniMobile(context)
+                                  ? 130
+                                  : 140,
                       width: double.maxFinite,
                       decoration: BoxDecoration(
                         color: Colors.white,
                       ),
                       child: CommonUI.cachedImage(
-                          widget.product.image, ImageAssets.placeholder,
+                          widget.product.image, ImageAssets.foodplaceholder,
                           fit: BoxFit.cover),
                     ),
                   ),
@@ -167,8 +166,7 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                               padding: EdgeInsets.only(
                                   left: kDefaultPaddin * 1.5,
                                   right: kDefaultPaddin * 1.5,
-                                  bottom: kDefaultPaddin
-                                  ),
+                                  bottom: kDefaultPaddin),
                               decoration: BoxDecoration(
                                 color: Colors.white,
                                 borderRadius: BorderRadius.only(
@@ -189,7 +187,7 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                                           ),
                                           child: CommonUI.cachedImage(
                                               widget.product.image,
-                                              ImageAssets.placeholder,
+                                              ImageAssets.foodplaceholder,
                                               fit: BoxFit.cover)),
                                       SizedBox(width: 20),
                                       Column(

@@ -51,7 +51,7 @@ class _ItemCardRectangleState extends State<ItemCardRectangle> {
                   borderRadius: BorderRadius.circular(4),
                 ),
                 child: CommonUI.cachedImage(
-                    widget.product.image, ImageAssets.placeholder,
+                    widget.product.image, ImageAssets.foodplaceholder,
                     fit: BoxFit.cover)),
             SizedBox(
               width: 16,
@@ -168,7 +168,7 @@ class _ItemCardRectangleState extends State<ItemCardRectangle> {
                                           ),
                                           child: CommonUI.cachedImage(
                                               widget.product.image,
-                                              ImageAssets.placeholder,
+                                              ImageAssets.foodplaceholder,
                                               fit: BoxFit.cover)),
                                       SizedBox(width: 20),
                                       Column(

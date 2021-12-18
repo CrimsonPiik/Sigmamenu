@@ -408,7 +408,7 @@ class _AddProductButtonState extends State<AddProductButton> {
                                       _descriptionEnController.text,
                                   'isPublished': true,
                                   'image': _imagevalue.value == ''
-                                      ? 'assets/images/placeholder.jpg'
+                                      ? 'assets/images/preview.png'
                                       : _imagevalue.value,
                                   'price': _priceController.text,
                                   'rate': 0,
