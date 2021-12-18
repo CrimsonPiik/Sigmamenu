@@ -23,8 +23,12 @@ class _AddProductButtonState extends State<AddProductButton> {
   String id = generateId();
   String imageURL = 'assets/images/placeholder.jpg';
   TextEditingController _nameEnController = TextEditingController();
+  TextEditingController _nameArController = TextEditingController();
+
   TextEditingController _priceController = TextEditingController();
   TextEditingController _descriptionEnController = TextEditingController();
+  TextEditingController _descriptionArController = TextEditingController();
+
   TextEditingController _imageController = TextEditingController();
   ValueNotifier<String?> _imagevalue = ValueNotifier<String?>('');
   final _formKey = GlobalKey<FormBuilderState>();
@@ -235,250 +239,6 @@ class _AddProductButtonState extends State<AddProductButton> {
                                 );
                               },
                             ),
-                            // SizedBox(width: 20),
-                            // ValueListenableBuilder(
-                            //   valueListenable: _imagevalue,
-                            //   builder: (context, dynamic value, Widget? child) {
-                            //     return Center(
-                            //       child: Ink(
-                            //         width: 130,
-                            //         height: 130,
-                            //         child: InkWell(
-                            //           onTap: () async {
-                            //             // setState(() {
-                            //             //   showProgress = true;
-                            //             // });
-                            //             // Future.delayed(Duration(seconds: 2),
-                            //             //     () async {
-                            //             // 5s over,
-
-                            //             _imagevalue.value =
-                            //                 await fireBaseUploadFileWeb(id);
-                            //             //   setState(() {
-                            //             //     showProgress = false;
-                            //             //   });
-                            //             // // });
-                            //           },
-                            //           child: Center(
-                            //             child: Container(
-                            //               width: 130,
-                            //               height: 130,
-                            //               child: Stack(children: [
-                            //                 _imagevalue.value != ''
-                            //                     ? Stack(
-                            //                         //There's Image
-                            //                         children: [
-                            //                           Container(
-                            //                             height: 130,
-                            //                             width: 130,
-                            //                             decoration:
-                            //                                 BoxDecoration(
-                            //                               borderRadius:
-                            //                                   BorderRadius
-                            //                                       .circular(4),
-                            //                             ),
-                            //                             child:
-                            //                                 InteractiveViewer(
-                            //                               child: Image.network(
-                            //                                 value,
-                            //                                 fit: BoxFit.cover,
-                            //                                 loadingBuilder:
-                            //                                     (context, child,
-                            //                                         loadingProgress) {
-                            //                                   if (loadingProgress ==
-                            //                                       null) {
-                            //                                     return child;
-                            //                                   }
-                            //                                   return Center(
-                            //                                     child:
-                            //                                         CircularProgressIndicator(),
-                            //                                   );
-                            //                                 },
-                            //                               ),
-                            //                             ),
-                            //                           ),
-                            //                           Padding(
-                            //                             padding:
-                            //                                 EdgeInsets.only(
-                            //                                     top: 95),
-                            //                             child: Container(
-                            //                                 height: 35,
-                            //                                 width: 130,
-                            //                                 decoration:
-                            //                                     BoxDecoration(
-                            //                                         color: Color(
-                            //                                             0x4D000000)),
-                            //                                 child: Center(
-                            //                                     child: Icon(
-                            //                                         Icons
-                            //                                             .edit_outlined,
-                            //                                         color: Colors
-                            //                                             .white))),
-                            //                           ),
-                            //                         ],
-                            //                       )
-                            //                     : Container(
-                            //                         // There's no Image
-                            //                         height: 130,
-                            //                         width: 130,
-                            //                         decoration: BoxDecoration(
-                            //                           color: Colors.white,
-                            //                           borderRadius:
-                            //                               BorderRadius.circular(
-                            //                                   4),
-                            //                           boxShadow: [
-                            //                             BoxShadow(
-                            //                               color: Colors.grey
-                            //                                   .withOpacity(0.5),
-                            //                               spreadRadius: 2,
-                            //                               blurRadius: 9,
-                            //                               offset: Offset(0, 4),
-                            //                             ),
-                            //                           ],
-                            //                         ),
-                            //                         child: // _imagevalue.value ==
-                            //                             // '' &&
-                            //                             // showProgress
-                            //                             // ? Center(
-                            //                             // child:
-                            //                             // CircularProgressIndicator())
-                            //                             // :
-                            //                             Icon(
-                            //                           Icons.add,
-                            //                           color: Colors.black,
-                            //                           size: 60,
-                            //                         ),
-                            //                       ),
-                            //               ]),
-                            //             ),
-                            //           ),
-                            //         ),
-                            //       ),
-                            //     );
-                            //   },
-                            // ),
-                            // SizedBox(width: 20),
-                            // ValueListenableBuilder(
-                            //   valueListenable: _imagevalue,
-                            //   builder: (context, dynamic value, Widget? child) {
-                            //     return Center(
-                            //       child: Ink(
-                            //         width: 130,
-                            //         height: 130,
-                            //         child: InkWell(
-                            //           onTap: () async {
-                            //             // setState(() {
-                            //             //   showProgress = true;
-                            //             // });
-                            //             // Future.delayed(Duration(seconds: 2),
-                            //             //     () async {
-                            //             // 5s over,
-
-                            //             _imagevalue.value =
-                            //                 await fireBaseUploadFileWeb(id);
-                            //             //   setState(() {
-                            //             //     showProgress = false;
-                            //             //   });
-                            //             // // });
-                            //           },
-                            //           child: Center(
-                            //             child: Container(
-                            //               width: 130,
-                            //               height: 130,
-                            //               child: Stack(children: [
-                            //                 _imagevalue.value != ''
-                            //                     ? Stack(
-                            //                         //There's Image
-                            //                         children: [
-                            //                           Container(
-                            //                             height: 130,
-                            //                             width: 130,
-                            //                             decoration:
-                            //                                 BoxDecoration(
-                            //                               borderRadius:
-                            //                                   BorderRadius
-                            //                                       .circular(4),
-                            //                             ),
-                            //                             child:
-                            //                                 InteractiveViewer(
-                            //                               child: Image.network(
-                            //                                 value,
-                            //                                 fit: BoxFit.cover,
-                            //                                 loadingBuilder:
-                            //                                     (context, child,
-                            //                                         loadingProgress) {
-                            //                                   if (loadingProgress ==
-                            //                                       null) {
-                            //                                     return child;
-                            //                                   }
-                            //                                   return Center(
-                            //                                     child:
-                            //                                         CircularProgressIndicator(),
-                            //                                   );
-                            //                                 },
-                            //                               ),
-                            //                             ),
-                            //                           ),
-                            //                           Padding(
-                            //                             padding:
-                            //                                 EdgeInsets.only(
-                            //                                     top: 95),
-                            //                             child: Container(
-                            //                                 height: 35,
-                            //                                 width: 130,
-                            //                                 decoration:
-                            //                                     BoxDecoration(
-                            //                                         color: Color(
-                            //                                             0x4D000000)),
-                            //                                 child: Center(
-                            //                                     child: Icon(
-                            //                                         Icons
-                            //                                             .edit_outlined,
-                            //                                         color: Colors
-                            //                                             .white))),
-                            //                           ),
-                            //                         ],
-                            //                       )
-                            //                     : Container(
-                            //                         // There's no Image
-                            //                         height: 130,
-                            //                         width: 130,
-                            //                         decoration: BoxDecoration(
-                            //                           color: Colors.white,
-                            //                           borderRadius:
-                            //                               BorderRadius.circular(
-                            //                                   4),
-                            //                           boxShadow: [
-                            //                             BoxShadow(
-                            //                               color: Colors.grey
-                            //                                   .withOpacity(0.5),
-                            //                               spreadRadius: 2,
-                            //                               blurRadius: 9,
-                            //                               offset: Offset(0, 4),
-                            //                             ),
-                            //                           ],
-                            //                         ),
-                            //                         child: // _imagevalue.value ==
-                            //                             // '' &&
-                            //                             // showProgress
-                            //                             // ? Center(
-                            //                             // child:
-                            //                             // CircularProgressIndicator())
-                            //                             // :
-                            //                             Icon(
-                            //                           Icons.add,
-                            //                           color: Colors.black,
-                            //                           size: 60,
-                            //                         ),
-                            //                       ),
-                            //               ]),
-                            //             ),
-                            //           ),
-                            //         ),
-                            //       ),
-                            //     );
-                            //   },
-                            // ),
                           ],
                         ),
                         SizedBox(height: 50),
@@ -493,6 +253,20 @@ class _AddProductButtonState extends State<AddProductButton> {
                             validate: FormBuilderValidators.compose([
                               FormBuilderValidators.required(context),
                             ]),
+                          ),
+                        ),
+                        SizedBox(height: 4),
+                        Container(
+                          child: CommonUI.textField(
+                            context: context,
+                            name: "Name in Arabic (Optional)",
+                            hint: "Name in Arabic (Optional)",
+                            isEdit: true,
+                            minlines: 1,
+                            controller: _nameArController,
+                            // validate: FormBuilderValidators.compose([
+                            //   FormBuilderValidators.required(context),
+                            // ]),
                           ),
                         ),
                         SizedBox(height: 4),
@@ -563,7 +337,21 @@ class _AddProductButtonState extends State<AddProductButton> {
                               FormBuilderValidators.required(context),
                             ]),
                           ),
-                        )
+                        ),
+                        SizedBox(height: 4),
+                        Container(
+                          child: CommonUI.textField(
+                            context: context,
+                            name: "Description in Arabic (Optional)",
+                            hint: "Description in Arabic (Optional)",
+                            maxlength: 600,
+                            minlines: 2,
+                            controller: _descriptionArController,
+                            // validate: FormBuilderValidators.compose([
+                            //   FormBuilderValidators.required(context),
+                            // ]),
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -579,9 +367,12 @@ class _AddProductButtonState extends State<AddProductButton> {
                               id = generateId();
                               _imagevalue.value = _imageController.text;
                               _descriptionEnController.clear();
+                              _descriptionArController.clear();
                               _priceController.clear();
                               _imageController.clear();
                               _nameEnController.clear();
+                              _nameArController.clear();
+
                               Navigator.of(context).pop();
                             },
                             style: ButtonStyle(
@@ -605,9 +396,14 @@ class _AddProductButtonState extends State<AddProductButton> {
                                     .set({
                                   'id': id,
                                   'nameEn': _nameEnController.text,
-                                  'nameAr': 'nameAr',
+                                  'nameAr': _nameArController.text == ''
+                                      ? _nameEnController.text
+                                      : _nameArController.text,
                                   'category': category,
-                                  'descriptionAr': 'descriptionAr',
+                                  'descriptionAr':
+                                      _descriptionArController.text == ''
+                                          ? _descriptionEnController.text
+                                          : _descriptionArController.text,
                                   'descriptionEn':
                                       _descriptionEnController.text,
                                   'isPublished': true,
@@ -622,9 +418,12 @@ class _AddProductButtonState extends State<AddProductButton> {
                                   id = generateId();
                                   _imagevalue.value = _imageController.text;
                                   _descriptionEnController.clear();
+                                  _descriptionArController.clear();
                                   _priceController.clear();
                                   _imageController.clear();
                                   _nameEnController.clear();
+                                  _nameArController.clear();
+
                                   Navigator.of(context).pop();
 
                                   CommonUI.successDialog(context,

@@ -41,6 +41,8 @@ class BannerWithDotsIndicator extends StatefulWidget {
 class _BannerWithDotsIndicatorState extends State<BannerWithDotsIndicator> {
   @override
   Widget build(BuildContext context) {
+    List<BannerModel> bannerList = [];
+
     return StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance
             .collection("Banner")
@@ -61,8 +63,6 @@ class _BannerWithDotsIndicatorState extends State<BannerWithDotsIndicator> {
           // else
           // if (snapshot.data == null || snapshot.hasData != true)
           // Text('Sorry, No Data');
-
-          List<BannerModel> bannerList = [];
 
           for (var item in shots) {
             bannerList
