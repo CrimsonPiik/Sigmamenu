@@ -6,7 +6,6 @@ import 'package:sigmamenu/provider/userStateProvider.dart';
 import 'package:sigmamenu/screens/home/components/customerScreen.dart';
 import 'package:sigmamenu/screens/home/components/categoriesWithDeleteButton.dart';
 import 'package:sigmamenu/screens/widgets/productsAdmin.dart';
-import 'package:sigmamenu/screens/home/components/myuser.dart';
 import 'package:sigmamenu/screens/home/components/users.dart';
 import 'package:sigmamenu/screens/widgets/addBannerButton.dart';
 import 'package:sigmamenu/screens/widgets/addCategoryButton.dart';

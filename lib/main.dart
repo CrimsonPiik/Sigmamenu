@@ -8,9 +8,7 @@ import 'package:sigmamenu/language/logic/ProjectLanguage.dart';
 import 'package:sigmamenu/provider/ProjectLanguageProvider.dart';
 import 'package:sigmamenu/provider/darkLightMode.dart';
 import 'package:sigmamenu/provider/userStateProvider.dart';
-import 'package:sigmamenu/screens/adminPanel.dart';
-import 'package:sigmamenu/screens/home/components/shimmer.dart';
-import 'package:sigmamenu/screens/staggeredGridView.dart';
+import 'package:sigmamenu/screens/home/home_screen.dart';
 import 'package:sigmamenu/screens/widgets/adminDrawer.dart';
 
 void main() async {
@@ -104,13 +102,13 @@ class _MyAppState extends State<MyApp> {
             ),
             initialRoute: '/',
             routes: {
+              '/customer': (context) => HomeScreen(),
+              '/admin': (context) => AdminDrawer()
               // When navigating to the "/" route, build the FirstScreen widget.
               // '/': (context) => const FirstScreen(),
               // When navigating to the "/second" route, build the SecondScreen widget.
-              '/admin': (context) => AdminPanel(),
-              '/dashboard': (context) => StaggerdGridView(),
-              '/loading': (context) => LoadingListPage(),
-              '/drawer': (context) => AdminDrawer()
+              // '/admin': (context) => AdminPanel(),
+              // '/loading': (context) => LoadingListPage(),
             },
             home: AuthMonitor(),
             // ),

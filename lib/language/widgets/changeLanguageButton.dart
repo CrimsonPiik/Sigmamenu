@@ -8,8 +8,11 @@ class ChangeLanguageButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      child: Icon(Icons.translate),
-      
+      child: Icon(
+        Icons.translate,
+        color: Colors.white,
+      ),
+
       // Text(ProjectLanguage.isLTR() ? ar['language']! : en['language']!),
 
       onTap: () {
@@ -18,7 +21,6 @@ class ChangeLanguageButton extends StatelessWidget {
         ProjectLanguage.changeLanguage();
         Provider.of<ProjectLanguageChangeNotifier>(context, listen: false)
             .setlocale(ProjectLanguage.locale);
-
       },
     );
   }

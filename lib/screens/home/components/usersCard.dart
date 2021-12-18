@@ -1,11 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:provider/provider.dart';
-import 'package:sigmamenu/Authentication/AuthService.dart';
 import 'package:sigmamenu/models/user.dart';
 import 'package:sigmamenu/provider/userStateProvider.dart';
 import 'package:sigmamenu/style/AssetsManager.dart';

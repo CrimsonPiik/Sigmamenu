@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sigmamenu/provider/darkLightMode.dart';
-import 'package:sigmamenu/screens/home/components/customerScreen.dart';
+import 'package:sigmamenu/screens/staggeredGridView.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -12,8 +12,8 @@ class HomeScreen extends StatelessWidget {
               theme: theme.getTheme(),
               home: Scaffold(
                 // appBar: buildAppBar(),
-                body: CustomerScreen(
-                  theme: theme,
+                body: StaggerdGridView(
+                  // theme: theme,
                 ),
               ),
             ));

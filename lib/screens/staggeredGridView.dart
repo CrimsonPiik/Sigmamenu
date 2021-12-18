@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:sigmamenu/animation/page_slide_widget.dart';
+import 'package:sigmamenu/language/widgets/changeLanguageButton.dart';
+import 'package:sigmamenu/screens/home/components/customerScreen.dart';
+import 'package:sigmamenu/screens/widgets/LoginForm.dart';
+import 'package:sigmamenu/style/ScreenUtil.dart';
 
 //List of Cards with size
 List<StaggeredTile> _cardTile = <StaggeredTile>[
@@ -23,13 +28,13 @@ List<Widget> _listTile = <Widget>[
     background:
         'https://images.pexels.com/photos/1283219/pexels-photo-1283219.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
     text: 'Hard Drinks',
-    routeName: '/',
+    routeName: '/customer',
   ),
   BackGroundTile(
     background:
         'https://images.pexels.com/photos/2130134/pexels-photo-2130134.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
     text: 'Brunch',
-    routeName: '/dashboard',
+    routeName: '/customer',
   ),
   BackGroundTile(
     background:
@@ -41,13 +46,13 @@ List<Widget> _listTile = <Widget>[
     background:
         'https://images.pexels.com/photos/6062039/pexels-photo-6062039.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
     text: 'Desserts',
-    routeName: '/Desserts',
+    routeName: '/customer',
   ),
   BackGroundTile(
     background:
         'https://images.pexels.com/photos/3637608/pexels-photo-3637608.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
     text: 'Appetizers',
-    routeName: '/Appetizers',
+    routeName: '/admin',
   ),
 ];
 
@@ -61,13 +66,88 @@ class _StaggerdGridViewState extends State<StaggerdGridView> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        // Staggered Grid View starts here
-        child: StaggeredGridView.count(
-          crossAxisCount: 4,
-          staggeredTiles: _cardTile,
-          children: _listTile,
-          mainAxisSpacing: 4.0,
-          crossAxisSpacing: 4.0,
+        decoration: BoxDecoration(color: Colors.black),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12),
+              child: Container(
+                height: 75,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        IconButton(
+                          icon: Icon(Icons.login),
+                          color: Colors.white,
+                          onPressed: () {
+                            Navigator.of(context)
+                                .push(createRoute(LoginForm()));
+                          },
+                        ),
+                        SizedBox(width: 20),
+                      ],
+                    ),
+                    Container(
+                      height: Responsive.isDesktop(context) ? 60 : 50,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(4),
+                      ),
+                      child: Image.asset(
+                        'assets/images/sigmabanner.png',
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    Row(
+                      // mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        isLight
+                            ? IconButton(
+                                icon:
+                                    Icon(Icons.dark_mode, color: Colors.white),
+                                onPressed: () {
+                                  // setState(() {
+                                  //   isLight = false;
+                                  // });
+                                  // widget.theme.setDarkMode();
+                                },
+                              )
+                            : IconButton(
+                                icon:
+                                    Icon(Icons.light_mode, color: Colors.white),
+                                onPressed: () {
+                                  // setState(() {
+                                  //   isLight = true;
+                                  // });
+                                  // widget.theme.setLightMode();
+                                },
+                              ),
+                        SizedBox(width: 5),
+                        Container(
+                          child: ChangeLanguageButton(),
+                        ),
+                        SizedBox(width: 5),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Expanded(
+              child: Container(
+                // Staggered Grid View starts here
+                child: StaggeredGridView.count(
+                  crossAxisCount: 4,
+                  staggeredTiles: _cardTile,
+                  children: _listTile,
+                  mainAxisSpacing: 4.0,
+                  crossAxisSpacing: 4.0,
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
@@ -92,6 +172,7 @@ class BackGroundTile extends StatelessWidget {
           child: InkWell(
             onTap: () {
               Navigator.pushNamed(context, routeName);
+
             },
             child: Stack(
               children: [
