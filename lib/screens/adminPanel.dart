@@ -15,6 +15,7 @@ class AdminPanel extends StatefulWidget {
 }
 
 Set<String> categoriesList = {'A'};
+// Set<String> categoriesList = {};
 
 class _AdminPanelState extends State<AdminPanel> {
   TextEditingController newCollectionNameController = TextEditingController();
@@ -33,15 +34,12 @@ class _AdminPanelState extends State<AdminPanel> {
           List<DocumentSnapshot> shots = snapshot.data!.docs;
           for (var item in shots) {
             categoriesList.add(item.id.toString());
-            
           }
           print("Categories : " + categoriesList.toString());
           // DateTime.now().millisecondsSinceEpoch.toString());
 
           return Scaffold(
-            body:
-                AdminPanelDrawer(streamControllerSideBar.stream),
-            
+            body: AdminPanelDrawer(streamControllerSideBar.stream),
           );
         });
   }

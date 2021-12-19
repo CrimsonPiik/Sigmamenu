@@ -132,12 +132,13 @@ class _MenuWidgetState extends State<MenuWidget> {
           SizedBox(
             height: 24,
           ),
-          sliderItem('Dashboard', Icons.dashboard_outlined, selectedIndex, 0),
+          sliderItem(
+              'Products', Icons.restaurant_menu_rounded, selectedIndex, 0),
           sliderItem('Banners', Icons.photo_size_select_actual_outlined,
               selectedIndex, 1),
-          sliderItem('Users', Icons.person, selectedIndex, 2),
-          // sliderItem('Setting', Icons.settings, selectedIndex, 3),
-          sliderItem('LogOut', Icons.arrow_back_ios, selectedIndex, 3)
+          sliderItem('Dashboard', Icons.dashboard, selectedIndex, 2),
+          sliderItem('Users', Icons.person, selectedIndex, 3),
+          sliderItem('LogOut', Icons.arrow_back_ios, selectedIndex, 4)
         ],
       ),
     );
@@ -153,12 +154,14 @@ class _MenuWidgetState extends State<MenuWidget> {
               selectedIndex = index;
             });
             widget.onItemClick!(title);
-            if (title == 'Dashboard') {
+            if (title == 'Products') {
               myState(0);
             } else if (title == 'Banners') {
               myState(1);
-            } else if (title == 'Users') {
+            } else if (title == 'Dashboard') {
               myState(2);
+            } else if (title == 'Users') {
+              myState(3);
             } else if (title == 'LogOut') {
               Navigator.pushNamed(context, '/');
             }

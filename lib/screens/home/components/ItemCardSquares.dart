@@ -224,7 +224,11 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                                           RichText(
                                             text: TextSpan(
                                               children: [
-                                                TextSpan(text: "Price\n"),
+                                                TextSpan(
+                                                    text:
+                                                        ProjectLanguage.isLTR()
+                                                            ? "Price\n"
+                                                            : "السعر\n"),
                                                 TextSpan(
                                                   text:
                                                       "${widget.product.price} JOD",
@@ -258,7 +262,9 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                                               : Responsive.width(context) /
                                                   1.35,
                                           child: Text(
-                                            "Description",
+                                            ProjectLanguage.isLTR()
+                                                ? "Description"
+                                                : "الوصف",
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .headline4!

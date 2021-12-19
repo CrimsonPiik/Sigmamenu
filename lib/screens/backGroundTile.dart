@@ -18,7 +18,7 @@ class BackGroundTile extends StatelessWidget {
         Center(
           child: InkWell(
             onTap: () {
-              Navigator.pushNamed(context, routeName);
+              Navigator.pushNamed(context, '/' + routeName);
             },
             child: Stack(
               children: [

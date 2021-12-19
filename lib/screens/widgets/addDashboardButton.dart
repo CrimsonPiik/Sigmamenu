@@ -1,27 +1,34 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:sigmamenu/GeneralFunction/firebase_uploader_web.dart';
 import 'package:sigmamenu/GeneralFunction/random_id_generator.dart';
-import 'package:sigmamenu/screens/adminPanel.dart';
 import 'package:sigmamenu/style/CommonUI.dart';
 import 'package:sigmamenu/style/ScreenUtil.dart';
 
-class AddBannerButton extends StatefulWidget {
+class AddDashboardButton extends StatefulWidget {
+  // final Stream<int> stream;
+
+  // AddDashboardButton(this.stream);
+
   @override
-  State<AddBannerButton> createState() => _AddBannerButtonState();
+  State<AddDashboardButton> createState() => _AddDashboardButtonState();
 }
 
-class _AddBannerButtonState extends State<AddBannerButton> {
+class _AddDashboardButtonState extends State<AddDashboardButton> {
   String id = generateId();
-  String imageURL = 'assets/images/placeholder.jpg';
-  // TextEditingController _nameBannerController = TextEditingController();
-  // TextEditingController _categoryBannerController = TextEditingController();
-  TextEditingController _imageBannerController = TextEditingController();
+  TextEditingController _nameDashboardController = TextEditingController();
+  TextEditingController _nameArDashboardController = TextEditingController();
+  TextEditingController _routeDashboardController = TextEditingController();
+  TextEditingController _superCategoryDashboardController =
+      TextEditingController();
+
+  TextEditingController _imageDashboardController = TextEditingController();
   ValueNotifier<String?> _imagevalue = ValueNotifier<String?>(null);
   final _formKey = GlobalKey<FormBuilderState>();
-  // String category = categoriesList.elementAt(0);
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +50,7 @@ class _AddBannerButtonState extends State<AddBannerButton> {
                   color: Colors.white,
                 ),
                 label: Text(
-                  'Banner  ',
+                  'Dashboard  ',
                   style: TextStyle(
                       color: Colors.white, fontWeight: FontWeight.bold),
                 )),
@@ -82,7 +89,7 @@ class _AddBannerButtonState extends State<AddBannerButton> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Text(
-                              'Create Banner',
+                              'Create Dashboard',
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: Responsive.isMiniMobile(context)
@@ -97,7 +104,7 @@ class _AddBannerButtonState extends State<AddBannerButton> {
                                 return Center(
                                   child: GestureDetector(
                                     onTap: () async {
-                                      _imageBannerController.text =
+                                      _imageDashboardController.text =
                                           await fireBaseUploadFileWeb(id);
                                       // if (_imageBannerController.text != '') {
                                       //   _imagevalue.value =
@@ -199,6 +206,66 @@ class _AddBannerButtonState extends State<AddBannerButton> {
                                 );
                               },
                             ),
+                            Container(
+                              child: CommonUI.textField(
+                                context: context,
+                                name: "Name",
+                                hint: "Name",
+                                isEdit: true,
+                                minlines: 1,
+                                controller: _nameDashboardController,
+                                validate: FormBuilderValidators.compose([
+                                  FormBuilderValidators.required(context),
+                                ]),
+                              ),
+                            ),
+
+                            // ),
+
+                            SizedBox(height: 4),
+                            Container(
+                              child: CommonUI.textField(
+                                context: context,
+                                name: "Arabic Name (Optional)",
+                                hint: "Arabic Name (Optional)",
+                                isEdit: true,
+                                minlines: 1,
+                                controller: _nameArDashboardController,
+                                // validate: FormBuilderValidators.compose([
+                                //   FormBuilderValidators.required(context),
+                                // ]),
+                              ),
+                            ),
+                            SizedBox(height: 4),
+
+                            Container(
+                              child: CommonUI.textField(
+                                context: context,
+                                name: "Route",
+                                hint: "Route",
+                                isEdit: true,
+                                minlines: 1,
+                                controller: _routeDashboardController,
+                                validate: FormBuilderValidators.compose([
+                                  FormBuilderValidators.required(context),
+                                ]),
+                              ),
+                            ),
+                            SizedBox(height: 4),
+
+                            Container(
+                              child: CommonUI.textField(
+                                context: context,
+                                name: "Super Category",
+                                hint: "Super Category",
+                                isEdit: true,
+                                minlines: 1,
+                                controller: _superCategoryDashboardController,
+                                validate: FormBuilderValidators.compose([
+                                  FormBuilderValidators.required(context),
+                                ]),
+                              ),
+                            ),
                             Padding(
                               padding: const EdgeInsets.all(12.0),
                               child: Row(
@@ -208,9 +275,13 @@ class _AddBannerButtonState extends State<AddBannerButton> {
                                     onPressed: () {
                                       id = generateId();
                                       _imagevalue.value =
-                                          _imageBannerController.text;
+                                          _imageDashboardController.text;
 
-                                      _imageBannerController.clear();
+                                      _imageDashboardController.clear();
+                                      _nameDashboardController.clear();
+                                      _nameArDashboardController.clear();
+                                      _routeDashboardController.clear();
+                                      _superCategoryDashboardController.clear();
                                       Navigator.of(context).pop();
                                     },
                                     style: ButtonStyle(
@@ -230,27 +301,39 @@ class _AddBannerButtonState extends State<AddBannerButton> {
                                       if (_formKey.currentState!.validate()) {
                                         FocusScope.of(context).unfocus();
                                         await FirebaseFirestore.instance
-                                            .collection("Banner")
+                                            .collection("dashboard")
                                             .doc(id)
                                             .set({
                                           'id': id,
-                                          // 'name': _nameBannerController.text,
-                                          // 'category': _categoryB   annerController.text,
+                                          'name': _nameDashboardController.text,
+                                          'nameAr': _nameArDashboardController
+                                                      .text ==
+                                                  ''
+                                              ? _nameDashboardController.text
+                                              : _nameArDashboardController.text,
+                                          'route':
+                                              _routeDashboardController.text,
+                                          'superCategory':
+                                              _superCategoryDashboardController
+                                                  .text,
                                           'isPublished': true,
-                                          'image': _imageBannerController
+                                          'image': _imageDashboardController
                                                       .text ==
                                                   ' '
                                               ? 'assets/images/placeholder.jpg'
-                                              : _imageBannerController.text,
-                                          //subCategory: ---
+                                              : _imageDashboardController.text,
                                         }).whenComplete(() {
-                                          // _categoryBannerController.clear();
-                                          // _nameBannerController.clear();
                                           id = generateId();
                                           _imagevalue.value =
-                                              _imageBannerController.text;
+                                              _imageDashboardController.text;
 
-                                          _imageBannerController.clear();
+                                          _imageDashboardController.clear();
+                                          _nameDashboardController.clear();
+                                          _nameArDashboardController.clear();
+                                          _routeDashboardController.clear();
+                                          _superCategoryDashboardController
+                                              .clear();
+
                                           Navigator.of(context).pop();
 
                                           CommonUI.successDialog(context,

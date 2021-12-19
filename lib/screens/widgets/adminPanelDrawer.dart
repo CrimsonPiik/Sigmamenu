@@ -5,6 +5,7 @@ import 'package:sigmamenu/models/user.dart';
 import 'package:sigmamenu/provider/userStateProvider.dart';
 import 'package:sigmamenu/screens/customerScreen.dart';
 import 'package:sigmamenu/screens/home/components/categoriesWithDeleteButton.dart';
+import 'package:sigmamenu/screens/widgets/addDashboardButton.dart';
 import 'package:sigmamenu/screens/widgets/productsAdmin.dart';
 import 'package:sigmamenu/screens/home/components/users.dart';
 import 'package:sigmamenu/screens/widgets/addBannerButton.dart';
@@ -42,16 +43,15 @@ class _AdminPanelDrawerState extends State<AdminPanelDrawer> {
   @override
   Widget build(BuildContext context) {
     AppUser user = Provider.of<UserState>(context, listen: true).appUser;
-    return item == 0 //DASHBOARD
+    return item == 0 //PRODUCTS
         ? Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 25),     
+              SizedBox(height: 25),
               Padding(
                 padding: const EdgeInsets.only(left: 12.0, right: 12.0),
                 child: CategoriesWithDeleteButton(streamController.stream),
               ),
-         
               SizedBox(height: 12),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -75,16 +75,21 @@ class _AdminPanelDrawerState extends State<AdminPanelDrawer> {
                   AdminPanelBanners()
                 ],
               )
-            : //USERS
-            Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(height: 25),
-                  user.role == 'admin' ? AddUserButton() : Container(),
-                  SizedBox(height: 12),
-                  AllUsers(),
-                  // user.role == 'admin' ? AllUsers() : MyUser(user: user)
-                ],
-              );
+            : item == 2
+                ? Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [SizedBox(height: 25), AddDashboardButton()],
+                  )
+                : //USERS
+                Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(height: 25),
+                      user.role == 'admin' ? AddUserButton() : Container(),
+                      SizedBox(height: 12),
+                      AllUsers(),
+                      // user.role == 'admin' ? AllUsers() : MyUser(user: user)
+                    ],
+                  );
   }
 }

@@ -205,7 +205,11 @@ class _ItemCardRectangleState extends State<ItemCardRectangle> {
                                           RichText(
                                             text: TextSpan(
                                               children: [
-                                                TextSpan(text: "Price\n"),
+                                                TextSpan(
+                                                    text:
+                                                        ProjectLanguage.isLTR()
+                                                            ? "Price\n"
+                                                            : "السعر\n"),
                                                 TextSpan(
                                                   text:
                                                       "${widget.product.price} JOD",
@@ -239,7 +243,9 @@ class _ItemCardRectangleState extends State<ItemCardRectangle> {
                                               : Responsive.width(context) /
                                                   1.35,
                                           child: Text(
-                                            "Description",
+                                            ProjectLanguage.isLTR()
+                                                ? "Description"
+                                                : "الوصف",
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .headline4!
