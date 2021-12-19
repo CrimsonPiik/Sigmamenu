@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:sigmamenu/constaints.dart';
+import 'package:sigmamenu/GeneralFunction/constaints.dart';
 import 'package:sigmamenu/models/product.dart';
 import 'package:sigmamenu/screens/adminPanel.dart';
 import 'package:sigmamenu/screens/widgets/productsItemAdmin.dart';

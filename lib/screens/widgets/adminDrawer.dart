@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slider_drawer/flutter_slider_drawer.dart';
-import 'package:sigmamenu/constaints.dart';
+import 'package:sigmamenu/GeneralFunction/constaints.dart';
 import 'package:sigmamenu/screens/adminPanel.dart';
 import 'package:sigmamenu/screens/widgets/adminPanelDrawer.dart';
 

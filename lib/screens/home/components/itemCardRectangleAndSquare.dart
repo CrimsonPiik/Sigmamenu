@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sigmamenu/constaints.dart';
+import 'package:sigmamenu/GeneralFunction/constaints.dart';
 import 'package:sigmamenu/models/product.dart';
 import 'package:sigmamenu/screens/home/components/ItemCardRectangle.dart';
 import 'package:sigmamenu/screens/home/components/ItemCardSquares.dart';

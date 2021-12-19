@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sigmamenu/models/user.dart';
 import 'package:sigmamenu/provider/userStateProvider.dart';
-import 'package:sigmamenu/screens/home/components/customerScreen.dart';
+import 'package:sigmamenu/screens/customerScreen.dart';
 import 'package:sigmamenu/screens/home/components/categoriesWithDeleteButton.dart';
 import 'package:sigmamenu/screens/widgets/productsAdmin.dart';
 import 'package:sigmamenu/screens/home/components/users.dart';

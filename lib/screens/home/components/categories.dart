@@ -1,7 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:sigmamenu/screens/adminPanel.dart';
-import 'package:sigmamenu/screens/home/components/customerScreen.dart';
+import 'package:sigmamenu/screens/customerScreen.dart';
 
 class Categories extends StatefulWidget {
   @override

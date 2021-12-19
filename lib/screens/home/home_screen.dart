@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sigmamenu/provider/darkLightMode.dart';
-import 'package:sigmamenu/screens/home/components/customerScreen.dart';
+import 'package:sigmamenu/screens/customerScreen.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
