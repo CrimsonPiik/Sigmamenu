@@ -166,7 +166,7 @@ class _StaggerdGridViewState extends State<StaggerdGridView> {
                         staggeredTileBuilder: (int index) =>
                             StaggeredTile.count(2,
                             //  index.isEven ? 2 : 3
-                                // staggerd.length / 2 == 0
+                                // staggerd.length.isEven ? 
                                 //     ? index.isEven
                                 //         ? 2.5
                                 //         : 3
@@ -181,7 +181,9 @@ class _StaggerdGridViewState extends State<StaggerdGridView> {
                                     : index.isEven
                                 ? 2
                                 : 3.5
-                                ),
+                          
+                          
+                            ),
                         mainAxisSpacing: 4.0,
                         crossAxisSpacing: 4.0,
                       ),
