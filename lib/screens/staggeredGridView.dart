@@ -19,46 +19,6 @@ List<StaggeredTile> _cardTile = <StaggeredTile>[
   StaggeredTile.count(2, 2),
 ];
 
-//List of Cards with color and icon
-// List<Widget> _listTile = <Widget>[
-//   BackGroundTile(
-//     background:
-//         'https://images.pexels.com/photos/842571/pexels-photo-842571.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-//     text: 'Food',
-//     routeName: '/admin',
-//   ),
-//   BackGroundTile(
-//     background:
-//         'https://images.pexels.com/photos/1283219/pexels-photo-1283219.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-//     text: 'Hard Drinks',
-//     routeName: '/customer',
-//   ),
-//   BackGroundTile(
-//     background:
-//         'https://images.pexels.com/photos/2130134/pexels-photo-2130134.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-//     text: 'Brunch',
-//     routeName: '/customer',
-//   ),
-//   BackGroundTile(
-//     background:
-//         'https://images.pexels.com/photos/1200348/pexels-photo-1200348.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
-//     text: 'Beverages',
-//     routeName: '/admin',
-//   ),
-//   BackGroundTile(
-//     background:
-//         'https://images.pexels.com/photos/6062039/pexels-photo-6062039.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-//     text: 'Desserts',
-//     routeName: '/customer',
-//   ),
-//   BackGroundTile(
-//     background:
-//         'https://images.pexels.com/photos/3637608/pexels-photo-3637608.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-//     text: 'Appetizers',
-//     routeName: '/admin',
-//   ),
-// ];
-
 class StaggerdGridView extends StatefulWidget {
   @override
   State<StaggerdGridView> createState() => _StaggerdGridViewState();
@@ -145,16 +105,12 @@ class _StaggerdGridViewState extends State<StaggerdGridView> {
                           Container(
                             child: ChangeLanguageButton(),
                           ),
-                          // SizedBox(width: 5),
-                          // ],
-                          // ),
                         ],
                       ),
                     ),
                   ),
                   Expanded(
                     child: Container(
-                      // Staggered Grid View starts here
                       child: StaggeredGridView.countBuilder(
                         crossAxisCount: 4,
                         itemCount: staggerd.length,
@@ -163,32 +119,18 @@ class _StaggerdGridViewState extends State<StaggerdGridView> {
                                 background: staggerd[index].image,
                                 routeName: staggerd[index].route,
                                 text: staggerd[index].name),
-                        staggeredTileBuilder: (int index) =>
-                            StaggeredTile.count(2,
-                            //  index.isEven ? 2 : 3
-                                // staggerd.length.isEven ? 
-                                //     ? index.isEven
-                                //         ? 2.5
-                                //         : 3
-                                //     :
-                                // index == staggerd.length - 1
-                                // ? 2
-                                // : index.isEven
-                                // ? 3
-                                // : 2.5
-                                index == staggerd.length - 1
-                                    ? 2
-                                    : index.isEven
-                                ? 2
-                                : 3.5
-                          
-                          
-                            ),
+                        staggeredTileBuilder: (index) => staggerd.length.isEven
+                            ? index == staggerd.length - 1
+                                ? StaggeredTile.count(2, 2.1)
+                                : StaggeredTile.count(2, index.isEven ? 2.7 : 3)
+                            : index == staggerd.length - 1
+                                ? StaggeredTile.count(2, 2.4)
+                                : StaggeredTile.count(
+                                    2, index.isEven ? 2.5 : 3.3),
                         mainAxisSpacing: 4.0,
                         crossAxisSpacing: 4.0,
                       ),
                     ),
-
                     // StaggeredGridView.count(
                     //   crossAxisCount: 4,
                     //   staggeredTiles: _cardTile,
