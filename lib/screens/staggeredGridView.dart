@@ -119,14 +119,73 @@ class _StaggerdGridViewState extends State<StaggerdGridView> {
                                 background: staggerd[index].image,
                                 routeName: staggerd[index].route,
                                 text: staggerd[index].name),
-                        staggeredTileBuilder: (index) => staggerd.length.isEven
-                            ? index == staggerd.length - 1 // 10
+                        staggeredTileBuilder: (index) => staggerd.length == 10
+                            ? index == staggerd.length - 1 // 10 DONE
                                 ? StaggeredTile.count(2, 2.1)
-                                : StaggeredTile.count(2, index.isEven ? 2.7 : 2.85)
-                            : index == staggerd.length - 1 // 7
-                                ? StaggeredTile.count(2, 2.4)
                                 : StaggeredTile.count(
-                                    2, index.isEven ? 2.5 : 3.3),
+                                    2, index.isEven ? 2.7 : 2.85)
+                            : staggerd.length == 9
+                                ? index == staggerd.length - 1 // 9 DONE
+                                    ? StaggeredTile.count(2, 3.2)
+                                    : StaggeredTile.count(
+                                        2, index.isEven ? 2.5 : 3.3)
+                                : staggerd.length == 8
+                                    ? index == staggerd.length - 1 // 8 DONE
+                                        ? StaggeredTile.count(2, 2.25)
+                                        : StaggeredTile.count(
+                                            2, index.isEven ? 2.7 : 2.85)
+                                    : staggerd.length == 7
+                                        ? index == staggerd.length - 1 // 7 DONE
+                                            ? StaggeredTile.count(2, 2.4)
+                                            : StaggeredTile.count(
+                                                2, index.isEven ? 2.5 : 3.3)
+                                        : staggerd.length == 6
+                                            ? index ==
+                                                    staggerd.length -
+                                                        1 // 6 DONE
+                                                ? StaggeredTile.count(2, 2.1)
+                                                : StaggeredTile.count(
+                                                    2, index.isEven ? 2.9 : 3.3)
+                                            : staggerd.length == 5
+                                                ? index ==
+                                                        staggerd.length -
+                                                            1 // 5 DONE
+                                                    ? StaggeredTile.count(2, 2)
+                                                    : StaggeredTile.count(
+                                                        2,
+                                                        index.isEven
+                                                            ? 2.5
+                                                            : 3.5)
+                                                : staggerd.length == 4 // 4 DONE
+                                                    ? StaggeredTile.count(
+                                                        2,
+                                                        index.isEven
+                                                            ? 3.32
+                                                            : 2.92)
+                                                    : staggerd.length == 3
+                                                        ? index ==
+                                                                staggerd.length -
+                                                                    1 // 3 DONE
+                                                            ? StaggeredTile
+                                                                .count(2, 3.5)
+                                                            : StaggeredTile
+                                                                .count(
+                                                                    2,
+                                                                    index.isEven
+                                                                        ? 2.75
+                                                                        : 6.26)
+                                                        : staggerd.length ==
+                                                                2 // 2 DONE
+                                                            ? StaggeredTile
+                                                                .count(2, 6.26)
+                                                            : StaggeredTile // 1 DONE
+                                                                .count(4, 6.26),
+                        // : StaggeredTile.count(
+                        // 2,
+                        // index.isEven
+                        // ? 2.7
+                        // : 2.85)
+                        // ,
                         mainAxisSpacing: 4.0,
                         crossAxisSpacing: 4.0,
                       ),
