@@ -120,10 +120,10 @@ class _StaggerdGridViewState extends State<StaggerdGridView> {
                                 routeName: staggerd[index].route,
                                 text: staggerd[index].name),
                         staggeredTileBuilder: (index) => staggerd.length.isEven
-                            ? index == staggerd.length - 1
+                            ? index == staggerd.length - 1 // 10
                                 ? StaggeredTile.count(2, 2.1)
-                                : StaggeredTile.count(2, index.isEven ? 2.7 : 3)
-                            : index == staggerd.length - 1
+                                : StaggeredTile.count(2, index.isEven ? 2.7 : 2.85)
+                            : index == staggerd.length - 1 // 7
                                 ? StaggeredTile.count(2, 2.4)
                                 : StaggeredTile.count(
                                     2, index.isEven ? 2.5 : 3.3),
