@@ -10,6 +10,8 @@ class EditStaggerdGridView extends StatefulWidget {
 }
 
 class _EditStaggerdGridViewState extends State<EditStaggerdGridView> {
+            List<Widget> tiles = [];
+
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
@@ -21,7 +23,6 @@ class _EditStaggerdGridViewState extends State<EditStaggerdGridView> {
           if (snapshot.connectionState == ConnectionState.waiting)
             return CommonUI.loading(context);
           List<StaggeredTileExtended> listStaggeredTile = [];
-          List<Widget> tiles = [];
           List<Staggerd> staggerdAdmin = [];
           List<DocumentSnapshot> shots = snapshot.data!.docs;
           for (var item in shots) {
