@@ -1,5 +1,8 @@
+import 'dart:collection';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:reorderableitemsview/reorderableitemsview.dart';
 import 'package:sigmamenu/models/staggerd.dart';
 import 'package:sigmamenu/style/CommonUI.dart';
@@ -9,11 +12,12 @@ class EditStaggerdGridView extends StatefulWidget {
   State<EditStaggerdGridView> createState() => _EditStaggerdGridViewState();
 }
 
-class _EditStaggerdGridViewState extends State<EditStaggerdGridView> {
-            List<Widget> tiles = [];
+List<Widget> tiles = [];
 
+class _EditStaggerdGridViewState extends State<EditStaggerdGridView> {
   @override
   Widget build(BuildContext context) {
+    // final tiles = Provider.of<Tiles>(context, listen: true);
     return StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance.collection('dashboard').snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -99,7 +103,8 @@ class _EditStaggerdGridViewState extends State<EditStaggerdGridView> {
                 child: ReorderableItemsView(
                   onReorder: (int oldIndex, int newIndex) {
                     setState(() {
-                      tiles.insert(newIndex, tiles.removeAt(oldIndex));
+                      tiles
+                          .insert(newIndex, tiles.removeAt(oldIndex));
                     });
                   },
                   crossAxisCount: 4,
@@ -166,3 +171,17 @@ class BackGroundTileAdmin extends StatelessWidget {
 }
 
 // void designTiles(int index, List<Staggerd> staggerdAdmin) {}
+
+// class Tiles with ChangeNotifier {
+//   List<Widget> tiles = [];
+
+//   // An unmodifiable view of the items in the cart.
+//   UnmodifiableListView<Widget> get itemList => UnmodifiableListView(tiles);
+
+//   void addToTiles(Widget item) {
+//     tiles.add(item);
+//     notifyListeners();
+//   }
+
+//   // double get totalAmount => tiles.fold(0, (total, current) => total + current.amount);
+// }

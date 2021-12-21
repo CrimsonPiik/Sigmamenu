@@ -10,6 +10,7 @@ import 'package:sigmamenu/provider/userStateProvider.dart';
 import 'package:sigmamenu/screens/home/home_screen.dart';
 import 'package:sigmamenu/screens/staggeredGridView.dart';
 import 'package:sigmamenu/screens/widgets/adminDrawer.dart';
+import 'package:sigmamenu/screens/widgets/editDashboardAdmin.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -54,7 +55,9 @@ class _MyAppState extends State<MyApp> {
           ChangeNotifierProvider<UserState>(
             create: (_) => UserState(),
           ),
-
+          // ChangeNotifierProvider<Tiles>(
+          //   create: (_) => Tiles(),
+          // ),
           ChangeNotifierProvider<ProjectLanguageChangeNotifier>(
             create: (_) => ProjectLanguageChangeNotifier(),
           ),
