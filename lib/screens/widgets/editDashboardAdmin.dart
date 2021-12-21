@@ -3,18 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:reorderableitemsview/reorderableitemsview.dart';
 import 'package:sigmamenu/models/staggerd.dart';
 import 'package:sigmamenu/style/CommonUI.dart';
-//List of Cards with size
-// List<StaggeredTile> _cardTile = <StaggeredTile>[
-//   StaggeredTile.count(2, 3),
-//   StaggeredTile.count(2, 2.5),
-//   StaggeredTile.count(2, 3),
-//   StaggeredTile.count(2, 3),
-//   StaggeredTile.count(2, 2.5),
-//   StaggeredTile.count(2, 2),
-// ];
 
-// List<Widget> tiles = [];
 List<StaggeredTileExtended> listStaggeredTile = [];
+List<Widget> tiles = [];
 
 class EditStaggerdGridView extends StatefulWidget {
   @override
@@ -33,7 +24,6 @@ class _EditStaggerdGridViewState extends State<EditStaggerdGridView> {
           if (snapshot.connectionState == ConnectionState.waiting)
             return CommonUI.loading(context);
           List<Staggerd> staggerdAdmin = [];
-          List<Widget> tiles = [];
 
           List<DocumentSnapshot> shots = snapshot.data!.docs;
           for (var item in shots) {
@@ -42,7 +32,7 @@ class _EditStaggerdGridViewState extends State<EditStaggerdGridView> {
           }
           for (int i = 0; i < staggerdAdmin.length; i++) {
             tiles.add(BackGroundTileAdmin(
-              key: Key(i.toString()),
+              key: Key(staggerdAdmin[i].id),
               background: staggerdAdmin[i].image,
               routeName: staggerdAdmin[i].route,
               text: staggerdAdmin[i].name,
