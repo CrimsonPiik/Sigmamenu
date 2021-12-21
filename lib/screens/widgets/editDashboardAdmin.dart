@@ -1,9 +1,7 @@
-import 'dart:collection';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:reorderableitemsview/reorderableitemsview.dart';
+import 'package:sigmamenu/Authentication/AuthService.dart';
 import 'package:sigmamenu/models/staggerd.dart';
 import 'package:sigmamenu/style/CommonUI.dart';
 
@@ -19,7 +17,10 @@ class _EditStaggerdGridViewState extends State<EditStaggerdGridView> {
   Widget build(BuildContext context) {
     // final tiles = Provider.of<Tiles>(context, listen: true);
     return StreamBuilder<QuerySnapshot>(
-        stream: FirebaseFirestore.instance.collection('dashboard').snapshots(),
+        stream: FirebaseFirestore.instance
+            .collection('dashboard')
+            // .orderBy('indexKey')
+            .snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasError) {
             return CommonUI.error(snapshot.error.toString());
@@ -35,7 +36,7 @@ class _EditStaggerdGridViewState extends State<EditStaggerdGridView> {
           }
           for (int index = 0; index < staggerdAdmin.length; index++) {
             tiles.add(BackGroundTileAdmin(
-              key: Key(staggerdAdmin[index].id),
+              key: Key(staggerdAdmin[index].indexKey.toString()),
               background: staggerdAdmin[index].image,
               routeName: staggerdAdmin[index].route,
               text: staggerdAdmin[index].name,
@@ -93,7 +94,6 @@ class _EditStaggerdGridViewState extends State<EditStaggerdGridView> {
           }
 
           print("DASHBOARD ADMIN: " + staggerdAdmin.toString());
-
           return Padding(
             padding: const EdgeInsets.all(8.0),
             child: Center(
@@ -103,9 +103,21 @@ class _EditStaggerdGridViewState extends State<EditStaggerdGridView> {
                 child: ReorderableItemsView(
                   onReorder: (int oldIndex, int newIndex) {
                     setState(() {
-                      tiles
-                          .insert(newIndex, tiles.removeAt(oldIndex));
+                      tiles.insert(newIndex, tiles.removeAt(oldIndex));
                     });
+
+                    // if (oldIndex < newIndex) newIndex -= 1;
+                    // snapshot.data!.docs.insert(
+                    //     newIndex, snapshot.data!.docs.removeAt(oldIndex));
+                    // final batch = FirebaseFirestore.instance.batch();
+                    // for (int pos = 0; pos < snapshot.data!.docs.length; pos++) {
+                    //   // snapshot.data!.docs[pos].reference
+                    //   //     .update({"indexKey": pos});
+                    //   batch.update(snapshot.data!.docs[pos].reference,
+                    //   {'indexKey': pos});
+                    // }
+
+                    // batch.commit();
                   },
                   crossAxisCount: 4,
                   isGrid: true,

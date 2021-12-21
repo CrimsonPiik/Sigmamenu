@@ -306,6 +306,7 @@ class _AddDashboardButtonState extends State<AddDashboardButton> {
                                             .doc(id)
                                             .set({
                                           'id': id,
+                                          'indexKey': 0,
                                           'name': _nameDashboardController.text
                                               .toCapitalized(),
                                           'nameAr': _nameArDashboardController

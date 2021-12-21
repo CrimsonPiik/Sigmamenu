@@ -205,6 +205,9 @@ class CommonUI {
     return showDialog(
       context: context,
       builder: (BuildContext context) {
+        Future.delayed(Duration(milliseconds: 300), () {
+          Navigator.of(context).pop(true);
+        });
         return AlertDialog(
           content: SizedBox(
             height: 150,
