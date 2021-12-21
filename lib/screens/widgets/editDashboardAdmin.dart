@@ -1,0 +1,182 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
+import 'package:reorderableitemsview/reorderableitemsview.dart';
+import 'package:sigmamenu/models/staggerd.dart';
+import 'package:sigmamenu/style/CommonUI.dart';
+//List of Cards with size
+// List<StaggeredTile> _cardTile = <StaggeredTile>[
+//   StaggeredTile.count(2, 3),
+//   StaggeredTile.count(2, 2.5),
+//   StaggeredTile.count(2, 3),
+//   StaggeredTile.count(2, 3),
+//   StaggeredTile.count(2, 2.5),
+//   StaggeredTile.count(2, 2),
+// ];
+
+// List<Widget> tiles = [];
+List<StaggeredTileExtended> listStaggeredTile = [];
+
+class EditStaggerdGridView extends StatefulWidget {
+  @override
+  State<EditStaggerdGridView> createState() => _EditStaggerdGridViewState();
+}
+
+class _EditStaggerdGridViewState extends State<EditStaggerdGridView> {
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder<QuerySnapshot>(
+        stream: FirebaseFirestore.instance.collection('dashboard').snapshots(),
+        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          if (snapshot.hasError) {
+            return CommonUI.error(snapshot.error.toString());
+          }
+          if (snapshot.connectionState == ConnectionState.waiting)
+            return CommonUI.loading(context);
+          List<Staggerd> staggerdAdmin = [];
+          List<Widget> tiles = [];
+
+          List<DocumentSnapshot> shots = snapshot.data!.docs;
+          for (var item in shots) {
+            staggerdAdmin
+                .add(Staggerd.fromMap(item.data() as Map<String, dynamic>));
+          }
+          for (int i = 0; i < staggerdAdmin.length; i++) {
+            tiles.add(BackGroundTileAdmin(
+              key: Key(i.toString()),
+              background: staggerdAdmin[i].image,
+              routeName: staggerdAdmin[i].route,
+              text: staggerdAdmin[i].name,
+            ));
+            designTiles(i, staggerdAdmin);
+          }
+
+          print("DASHBOARD ADMIN: " + staggerdAdmin.toString());
+
+          return Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Center(
+              child: Container(
+                height: 350,
+                width: 300,
+                child: ReorderableItemsView(
+                  onReorder: (int oldIndex, int newIndex) {
+                    setState(() {
+                      tiles.insert(newIndex, tiles.removeAt(oldIndex));
+                    });
+                  },
+                  crossAxisCount: 4,
+                  isGrid: true,
+                  staggeredTiles: listStaggeredTile,
+                  longPressToDrag: false,
+                  children: tiles,
+                ),
+              ),
+            ),
+          );
+        });
+  }
+}
+
+class BackGroundTileAdmin extends StatelessWidget {
+  final String background;
+  final String text;
+  final String routeName;
+  final Key key;
+
+  BackGroundTileAdmin(
+      {required this.key,
+      required this.background,
+      required this.text,
+      required this.routeName});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        body: Center(
+            child: Stack(
+      children: <Widget>[
+        Center(
+          child: InkWell(
+            onTap: () {
+              Navigator.pushNamed(context, '/' + routeName);
+            },
+            child: Stack(
+              children: [
+                Container(
+                    decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: NetworkImage(background), fit: BoxFit.cover),
+                )),
+                Container(
+                  decoration: BoxDecoration(color: Color(0x4D303030)),
+                  child: Center(
+                      child: Text(
+                    text, // .toCapitalized(),
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white),
+                  )),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ],
+    )));
+  }
+}
+
+void designTiles(int index, List<Staggerd> staggerdAdmin) {
+  staggerdAdmin.length == 10
+      ? index == staggerdAdmin.length - 1 // 10 DONE
+          ? listStaggeredTile.add(StaggeredTileExtended.count(2, 2.1))
+          : listStaggeredTile
+              .add(StaggeredTileExtended.count(2, index.isEven ? 2.7 : 2.85))
+      : staggerdAdmin.length == 9
+          ? index == staggerdAdmin.length - 1 // 9 DONE
+              ? listStaggeredTile.add(StaggeredTileExtended.count(2, 3.2))
+              : listStaggeredTile
+                  .add(StaggeredTileExtended.count(2, index.isEven ? 2.5 : 3.3))
+          : staggerdAdmin.length == 8
+              ? index == staggerdAdmin.length - 1 // 8 DONE
+                  ? listStaggeredTile.add(StaggeredTileExtended.count(2, 2.25))
+                  : listStaggeredTile.add(
+                      StaggeredTileExtended.count(2, index.isEven ? 2.7 : 2.85))
+              : staggerdAdmin.length == 7
+                  ? index == staggerdAdmin.length - 1 // 7 DONE
+                      ? listStaggeredTile
+                          .add(StaggeredTileExtended.count(2, 2.4))
+                      : listStaggeredTile.add(StaggeredTileExtended.count(
+                          2, index.isEven ? 2.5 : 3.3))
+                  : staggerdAdmin.length == 6
+                      ? index == staggerdAdmin.length - 1 // 6 DONE
+                          ? listStaggeredTile
+                              .add(StaggeredTileExtended.count(2, 2.1))
+                          : listStaggeredTile.add(StaggeredTileExtended.count(
+                              2, index.isEven ? 2.9 : 3.3))
+                      : staggerdAdmin.length == 5
+                          ? index == staggerdAdmin.length - 1 // 5 DONE
+                              ? listStaggeredTile
+                                  .add(StaggeredTileExtended.count(2, 2))
+                              : listStaggeredTile.add(
+                                  StaggeredTileExtended.count(
+                                      2, index.isEven ? 2.5 : 3.5))
+                          : staggerdAdmin.length == 4 // 4 DONE
+                              ? listStaggeredTile.add(
+                                  StaggeredTileExtended.count(
+                                      2, index.isEven ? 3.32 : 2.92))
+                              : staggerdAdmin.length == 3
+                                  ? index == staggerdAdmin.length - 1 // 3 DONE
+                                      ? listStaggeredTile.add(
+                                          StaggeredTileExtended.count(2, 3.5))
+                                      : listStaggeredTile.add(
+                                          StaggeredTileExtended.count(
+                                              2, index.isEven ? 2.75 : 6.26))
+                                  : staggerdAdmin.length == 2 // 2 DONE
+                                      ? listStaggeredTile.add(
+                                          StaggeredTileExtended.count(2, 6.26))
+                                      : listStaggeredTile
+                                          .add(StaggeredTileExtended // 1 DONE
+                                              .count(4, 6.26));
+}

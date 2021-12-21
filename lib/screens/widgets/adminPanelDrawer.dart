@@ -6,6 +6,7 @@ import 'package:sigmamenu/provider/userStateProvider.dart';
 import 'package:sigmamenu/screens/customerScreen.dart';
 import 'package:sigmamenu/screens/home/components/categoriesWithDeleteButton.dart';
 import 'package:sigmamenu/screens/widgets/addDashboardButton.dart';
+import 'package:sigmamenu/screens/widgets/editDashboardAdmin.dart';
 import 'package:sigmamenu/screens/widgets/productsAdmin.dart';
 import 'package:sigmamenu/screens/home/components/users.dart';
 import 'package:sigmamenu/screens/widgets/addBannerButton.dart';
@@ -75,10 +76,14 @@ class _AdminPanelDrawerState extends State<AdminPanelDrawer> {
                   AdminPanelBanners()
                 ],
               )
-            : item == 2
+            : item == 2 //DASHBOARD
                 ? Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [SizedBox(height: 25), AddDashboardButton()],
+                    children: [
+                      SizedBox(height: 25),
+                      AddDashboardButton(),
+                      EditStaggerdGridView(),
+                    ],
                   )
                 : //USERS
                 Column(

@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:sigmamenu/GeneralFunction/Strings.dart';
 import 'package:sigmamenu/GeneralFunction/firebase_uploader_web.dart';
 import 'package:sigmamenu/GeneralFunction/random_id_generator.dart';
 import 'package:sigmamenu/style/CommonUI.dart';
@@ -305,12 +306,15 @@ class _AddDashboardButtonState extends State<AddDashboardButton> {
                                             .doc(id)
                                             .set({
                                           'id': id,
-                                          'name': _nameDashboardController.text,
+                                          'name': _nameDashboardController.text
+                                              .toCapitalized(),
                                           'nameAr': _nameArDashboardController
                                                       .text ==
                                                   ''
                                               ? _nameDashboardController.text
-                                              : _nameArDashboardController.text,
+                                                  .toCapitalized()
+                                              : _nameArDashboardController.text
+                                                  .toCapitalized(),
                                           'route':
                                               _routeDashboardController.text,
                                           'superCategory':

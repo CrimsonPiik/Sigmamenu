@@ -31,7 +31,7 @@ class BackGroundTile extends StatelessWidget {
                   decoration: BoxDecoration(color: Color(0x4D303030)),
                   child: Center(
                       child: Text(
-                    text,
+                    text, // .toCapitalized(),
                     style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
