@@ -4,9 +4,6 @@ import 'package:reorderableitemsview/reorderableitemsview.dart';
 import 'package:sigmamenu/models/staggerd.dart';
 import 'package:sigmamenu/style/CommonUI.dart';
 
-List<StaggeredTileExtended> listStaggeredTile = [];
-List<Widget> tiles = [];
-
 class EditStaggerdGridView extends StatefulWidget {
   @override
   State<EditStaggerdGridView> createState() => _EditStaggerdGridViewState();
@@ -23,21 +20,71 @@ class _EditStaggerdGridViewState extends State<EditStaggerdGridView> {
           }
           if (snapshot.connectionState == ConnectionState.waiting)
             return CommonUI.loading(context);
+          List<StaggeredTileExtended> listStaggeredTile = [];
+          List<Widget> tiles = [];
           List<Staggerd> staggerdAdmin = [];
-
           List<DocumentSnapshot> shots = snapshot.data!.docs;
           for (var item in shots) {
             staggerdAdmin
                 .add(Staggerd.fromMap(item.data() as Map<String, dynamic>));
           }
-          for (int i = 0; i < staggerdAdmin.length; i++) {
+          for (int index = 0; index < staggerdAdmin.length; index++) {
             tiles.add(BackGroundTileAdmin(
-              key: Key(staggerdAdmin[i].id),
-              background: staggerdAdmin[i].image,
-              routeName: staggerdAdmin[i].route,
-              text: staggerdAdmin[i].name,
+              key: Key(staggerdAdmin[index].id),
+              background: staggerdAdmin[index].image,
+              routeName: staggerdAdmin[index].route,
+              text: staggerdAdmin[index].name,
             ));
-            designTiles(i, staggerdAdmin);
+            staggerdAdmin.length == 10
+                ? index == staggerdAdmin.length - 1 // 10 DONE
+                    ? listStaggeredTile.add(StaggeredTileExtended.count(2, 2.1))
+                    : listStaggeredTile.add(StaggeredTileExtended.count(
+                        2, index.isEven ? 2.7 : 2.85))
+                : staggerdAdmin.length == 9
+                    ? index == staggerdAdmin.length - 1 // 9 DONE
+                        ? listStaggeredTile
+                            .add(StaggeredTileExtended.count(2, 3.2))
+                        : listStaggeredTile.add(StaggeredTileExtended.count(
+                            2, index.isEven ? 2.5 : 3.3))
+                    : staggerdAdmin.length == 8
+                        ? index == staggerdAdmin.length - 1 // 8 DONE
+                            ? listStaggeredTile
+                                .add(StaggeredTileExtended.count(2, 2.25))
+                            : listStaggeredTile.add(StaggeredTileExtended.count(
+                                2, index.isEven ? 2.7 : 2.85))
+                        : staggerdAdmin.length == 7
+                            ? index == staggerdAdmin.length - 1 // 7 DONE
+                                ? listStaggeredTile
+                                    .add(StaggeredTileExtended.count(2, 2.4))
+                                : listStaggeredTile.add(
+                                    StaggeredTileExtended.count(
+                                        2, index.isEven ? 2.5 : 3.3))
+                            : staggerdAdmin.length == 6
+                                ? index == staggerdAdmin.length - 1 // 6 DONE
+                                    ? listStaggeredTile.add(
+                                        StaggeredTileExtended.count(2, 2.1))
+                                    : listStaggeredTile.add(
+                                        StaggeredTileExtended.count(
+                                            2, index.isEven ? 2.9 : 3.3))
+                                : staggerdAdmin.length == 5
+                                    ? index ==
+                                            staggerdAdmin.length - 1 // 5 DONE
+                                        ? listStaggeredTile.add(
+                                            StaggeredTileExtended.count(2, 2))
+                                        : listStaggeredTile.add(
+                                            StaggeredTileExtended.count(
+                                                2, index.isEven ? 2.5 : 3.5))
+                                    : staggerdAdmin.length == 4 // 4 DONE
+                                        ? listStaggeredTile.add(StaggeredTileExtended.count(2, index.isEven ? 3.32 : 2.92))
+                                        : staggerdAdmin.length == 3
+                                            ? index == staggerdAdmin.length - 1 // 3 DONE
+                                                ? listStaggeredTile.add(StaggeredTileExtended.count(2, 3.5))
+                                                : listStaggeredTile.add(StaggeredTileExtended.count(2, index.isEven ? 2.75 : 6.26))
+                                            : staggerdAdmin.length == 2 // 2 DONE
+                                                ? listStaggeredTile.add(StaggeredTileExtended.count(2, 6.26))
+                                                : listStaggeredTile.add(StaggeredTileExtended // 1 DONE
+                                                    .count(4, 6.26));
+            // designTiles(i, staggerdAdmin);
           }
 
           print("DASHBOARD ADMIN: " + staggerdAdmin.toString());
@@ -46,7 +93,7 @@ class _EditStaggerdGridViewState extends State<EditStaggerdGridView> {
             padding: const EdgeInsets.all(8.0),
             child: Center(
               child: Container(
-                height: 350,
+                height: 450,
                 width: 300,
                 child: ReorderableItemsView(
                   onReorder: (int oldIndex, int newIndex) {
@@ -117,56 +164,4 @@ class BackGroundTileAdmin extends StatelessWidget {
   }
 }
 
-void designTiles(int index, List<Staggerd> staggerdAdmin) {
-  staggerdAdmin.length == 10
-      ? index == staggerdAdmin.length - 1 // 10 DONE
-          ? listStaggeredTile.add(StaggeredTileExtended.count(2, 2.1))
-          : listStaggeredTile
-              .add(StaggeredTileExtended.count(2, index.isEven ? 2.7 : 2.85))
-      : staggerdAdmin.length == 9
-          ? index == staggerdAdmin.length - 1 // 9 DONE
-              ? listStaggeredTile.add(StaggeredTileExtended.count(2, 3.2))
-              : listStaggeredTile
-                  .add(StaggeredTileExtended.count(2, index.isEven ? 2.5 : 3.3))
-          : staggerdAdmin.length == 8
-              ? index == staggerdAdmin.length - 1 // 8 DONE
-                  ? listStaggeredTile.add(StaggeredTileExtended.count(2, 2.25))
-                  : listStaggeredTile.add(
-                      StaggeredTileExtended.count(2, index.isEven ? 2.7 : 2.85))
-              : staggerdAdmin.length == 7
-                  ? index == staggerdAdmin.length - 1 // 7 DONE
-                      ? listStaggeredTile
-                          .add(StaggeredTileExtended.count(2, 2.4))
-                      : listStaggeredTile.add(StaggeredTileExtended.count(
-                          2, index.isEven ? 2.5 : 3.3))
-                  : staggerdAdmin.length == 6
-                      ? index == staggerdAdmin.length - 1 // 6 DONE
-                          ? listStaggeredTile
-                              .add(StaggeredTileExtended.count(2, 2.1))
-                          : listStaggeredTile.add(StaggeredTileExtended.count(
-                              2, index.isEven ? 2.9 : 3.3))
-                      : staggerdAdmin.length == 5
-                          ? index == staggerdAdmin.length - 1 // 5 DONE
-                              ? listStaggeredTile
-                                  .add(StaggeredTileExtended.count(2, 2))
-                              : listStaggeredTile.add(
-                                  StaggeredTileExtended.count(
-                                      2, index.isEven ? 2.5 : 3.5))
-                          : staggerdAdmin.length == 4 // 4 DONE
-                              ? listStaggeredTile.add(
-                                  StaggeredTileExtended.count(
-                                      2, index.isEven ? 3.32 : 2.92))
-                              : staggerdAdmin.length == 3
-                                  ? index == staggerdAdmin.length - 1 // 3 DONE
-                                      ? listStaggeredTile.add(
-                                          StaggeredTileExtended.count(2, 3.5))
-                                      : listStaggeredTile.add(
-                                          StaggeredTileExtended.count(
-                                              2, index.isEven ? 2.75 : 6.26))
-                                  : staggerdAdmin.length == 2 // 2 DONE
-                                      ? listStaggeredTile.add(
-                                          StaggeredTileExtended.count(2, 6.26))
-                                      : listStaggeredTile
-                                          .add(StaggeredTileExtended // 1 DONE
-                                              .count(4, 6.26));
-}
+// void designTiles(int index, List<Staggerd> staggerdAdmin) {}
