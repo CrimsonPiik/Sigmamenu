@@ -59,7 +59,7 @@ class _StaggerdGridViewState extends State<StaggerdGridView> {
                             ],
                           ),
                           Container(
-                            height: Responsive.isDesktop(context) ? 60 : 50,
+                            height: Responsive.isDesktop(context) ? 50 : 40,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(4),
                             ),
