@@ -368,146 +368,166 @@ class _UsersCardState extends State<UsersCard> {
         builder: (BuildContext context) {
           return FormBuilder(
             key: _formKey,
-            child: AlertDialog(
-              title: Text(
-                "Edit User",
-                style:
-                    TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
-              ),
-              content: SingleChildScrollView(
-                child: Container(
-                  width: Responsive.isDesktop(context) ? 350 : 290,
-                  padding: EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                    color: Colors.grey.withOpacity(0.1),
-                    borderRadius: BorderRadius.circular(12),
+            child: Stack(
+              clipBehavior: Clip.none,
+              alignment: Alignment.topCenter,
+              children: [
+                AlertDialog(
+                  scrollable: true,
+                  // title: Text(
+                  //   "Edit User",
+                  //   style:
+                  //       TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
+                  // ),
+                  content: SingleChildScrollView(
+                    child: Container(
+                      width: Responsive.isDesktop(context) ? 350 : 290,
+                      padding: EdgeInsets.all(16),
+                      decoration: BoxDecoration(
+                        // color: Colors.grey.withOpacity(0.1),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Center(
+                            child: Container(
+                              height: 120,
+                              width: 120,
+                              child: CircleAvatar(
+                                  backgroundImage:
+                                      AssetImage('assets/images/user.png')),
+                            ),
+                          ),
+                          SizedBox(height: 30),
+                          Container(
+                            child: CommonUI.textField(
+                              context: context,
+                              name: "Name",
+                              hint: "Name",
+                              isEdit: true,
+                              minlines: 1,
+                              controller: _nameController,
+                              validate: FormBuilderValidators.compose([
+                                FormBuilderValidators.required(context),
+                              ]),
+                            ),
+                          ),
+                          SizedBox(height: 4),
+                          Container(
+                            child: CommonUI.textField(
+                              context: context,
+                              name: "Email",
+                              hint: "Email",
+                              isEdit: true,
+                              minlines: 1,
+                              controller: _emailController,
+                              validate: FormBuilderValidators.compose([
+                                FormBuilderValidators.required(context),
+                              ]),
+                            ),
+                          ),
+                          SizedBox(height: 4),
+                          Container(
+                            child: CommonUI.textField(
+                              context: context,
+                              name: "Phone Number",
+                              hint: "Phone Number",
+                              isEdit: true,
+                              keyboardtype: TextInputType.number,
+                              controller: _phoneController,
+                              validate: FormBuilderValidators.compose([
+                                FormBuilderValidators.required(context),
+                                FormBuilderValidators.numeric(context),
+                              ]),
+                            ),
+                          ),
+                          SizedBox(height: 4),
+                        ],
+                      ),
+                    ),
                   ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Center(
-                        child: Container(
-                          height: 120,
-                          width: 120,
-                          child: CircleAvatar(
-                              backgroundImage:
-                                  AssetImage('assets/images/user.png')),
-                        ),
-                      ),
-                      SizedBox(height: 30),
-                      Container(
-                        child: CommonUI.textField(
-                          context: context,
-                          name: "Name",
-                          hint: "Name",
-                          isEdit: true,
-                          minlines: 1,
-                          controller: _nameController,
-                          validate: FormBuilderValidators.compose([
-                            FormBuilderValidators.required(context),
-                          ]),
-                        ),
-                      ),
-                      SizedBox(height: 4),
-                      Container(
-                        child: CommonUI.textField(
-                          context: context,
-                          name: "Email",
-                          hint: "Email",
-                          isEdit: true,
-                          minlines: 1,
-                          controller: _emailController,
-                          validate: FormBuilderValidators.compose([
-                            FormBuilderValidators.required(context),
-                          ]),
-                        ),
-                      ),
-                      SizedBox(height: 4),
-                      Container(
-                        child: CommonUI.textField(
-                          context: context,
-                          name: "Phone Number",
-                          hint: "Phone Number",
-                          isEdit: true,
-                          keyboardtype: TextInputType.number,
-                          controller: _phoneController,
-                          validate: FormBuilderValidators.compose([
-                            FormBuilderValidators.required(context),
-                            FormBuilderValidators.numeric(context),
-                          ]),
-                        ),
-                      ),
-                      SizedBox(height: 4),
-                    ],
-                  ),
-                ),
-              ),
-              actions: [
-                TextButton(
-                  onPressed: () async {
-                    _formKey.currentState!.save();
-                    if (_formKey.currentState!.validate()) {
-                      FocusScope.of(context).unfocus();
-                      await FirebaseFirestore.instance
-                          .collection('users')
-                          .doc(user.id)
-                          .update({
-                        'name': _nameController.text,
-                        'phone': _phoneController.text,
-                        'email': _emailController.text,
-                      }).whenComplete(() {
-                        Navigator.of(context).pop();
+                  actions: [
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          ElevatedButton(
+                            onPressed: () {
+                              setState(() {
+                                _nameController =
+                                    TextEditingController(text: user.name);
+                                _emailController =
+                                    TextEditingController(text: user.email);
+                                _phoneController = TextEditingController(
+                                    text: user.phone.toString());
+                              });
 
-                        CommonUI.successDialog(context,
-                            message: "Saved successfully");
-                      }).onError((error, stackTrrace) => showDialog(
-                                context: context,
-                                builder: (_) {
-                                  return AlertDialog(
-                                    content: Text(error.toString()),
-                                  );
-                                },
-                              ));
-                    }
-                  },
-                  child: Container(
-                    padding: EdgeInsets.all(10),
-                    child: Text(
-                      'Save',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold, color: Colors.black),
-                    ),
-                    decoration: BoxDecoration(
-                      color: Colors.grey.withOpacity(0.5),
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                  ),
-                ),
-                TextButton(
-                  onPressed: () {
-                    setState(() {
-                      _nameController = TextEditingController(text: user.name);
-                      _emailController =
-                          TextEditingController(text: user.email);
-                      _phoneController =
-                          TextEditingController(text: user.phone.toString());
-                    });
+                              Navigator.of(context).pop();
+                            },
+                            style: ButtonStyle(
+                              backgroundColor:
+                                  MaterialStateProperty.all(Colors.white),
+                            ),
+                            child: Text(
+                              'Cancel',
+                              style: TextStyle(color: Colors.black),
+                            ),
+                          ),
+                          SizedBox(width: 20),
+                          ElevatedButton(
+                            onPressed: () async {
+                              _formKey.currentState!.save();
+                              if (_formKey.currentState!.validate()) {
+                                FocusScope.of(context).unfocus();
+                                await FirebaseFirestore.instance
+                                    .collection('users')
+                                    .doc(user.id)
+                                    .update({
+                                  'name': _nameController.text,
+                                  'phone': _phoneController.text,
+                                  'email': _emailController.text,
+                                }).whenComplete(() {
+                                  Navigator.of(context).pop();
 
-                    Navigator.of(context).pop();
-                  },
-                  child: Container(
-                    padding: EdgeInsets.all(10),
-                    child: Text(
-                      'Cancel',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold, color: Colors.black),
+                                  CommonUI.successDialog(context,
+                                      message: "Saved successfully");
+                                }).onError((error, stackTrrace) => showDialog(
+                                          context: context,
+                                          builder: (_) {
+                                            return AlertDialog(
+                                              content: Text(error.toString()),
+                                            );
+                                          },
+                                        ));
+                              }
+                            },
+                            style: ButtonStyle(
+                              backgroundColor:
+                                  MaterialStateProperty.all(Colors.blue),
+                            ),
+                            child: Text(
+                              'Save',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                    decoration: BoxDecoration(
-                      color: Colors.grey.withOpacity(0.5),
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                  ),
+                  ],
                 ),
+                Positioned(
+                    top: 55,
+                    child: CircleAvatar(
+                      backgroundColor: Colors.blue,
+                      radius: 40,
+                      child: Icon(
+                        Icons.edit_outlined,
+                        color: Colors.white,
+                        size: 45,
+                      ),
+                    )),
               ],
             ),
           );

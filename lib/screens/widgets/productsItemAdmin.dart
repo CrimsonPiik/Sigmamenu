@@ -335,7 +335,7 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
   }
 
 // =====  =====  ===== =====  =====  ===== =====  =====  ===== =====  =====  ===== =====  =====
-// =====                                    EDIT                                          =====
+// =====                                    EDIT PRODUCT DIALOG                           =====
 // =====  =====  ===== =====  =====  ===== =====  =====  ===== =====  =====  ===== =====  =====
 
   _showEditDialog(BuildContext context) {
@@ -343,7 +343,7 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
         context: context,
         builder: (BuildContext context) {
           return Padding(
-            padding: const EdgeInsets.only(top: 40.0, bottom: 20.0),
+            padding: const EdgeInsets.only(top: 40.0, bottom: 20.0), 
             child: FormBuilder(
               key: _formKey,
               // child: Dialog(
@@ -355,301 +355,296 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                 children: [
                   AlertDialog(
                     scrollable: true,
-                    content: Padding(
-                      padding: const EdgeInsets.all(15.0),
-                      child: SingleChildScrollView(
-                        child: Container(
-                          width: Responsive.isDesktop(context) ? 350 : 290,
-                          padding: EdgeInsets.all(16),
-                          decoration: BoxDecoration(
-                            // color: Colors.grey.withOpacity(0.1),
-                            borderRadius: BorderRadius.circular(12),
+                    content: Container(
+                      width: Responsive.isDesktop(context) ? 350 : 290,
+                      padding: EdgeInsets.all(16),
+                      decoration: BoxDecoration(
+                        // color: Colors.grey.withOpacity(0.1),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          ValueListenableBuilder(
+                            valueListenable: _imagevalue,
+                            builder: (BuildContext context, dynamic value,
+                                Widget? child) {
+                              return Center(
+                                child: Ink(
+                                  width: 130,
+                                  height: 130,
+                                  child: InkWell(
+                                    onTap: () async {
+                                      _imageController.text =
+                                          await fireBaseUploadFileWeb(
+                                              widget.product.id);
+
+                                      print("Controlller " +
+                                          _imageController.text);
+                                      print("Value  " +
+                                          _imagevalue.value.toString());
+
+                                      if (_imageController.text != '') {
+                                        _imagevalue.value =
+                                            _imageController.text;
+                                      } else if (_imageController.text ==
+                                          '') {
+                                        _imagevalue.value =
+                                            widget.product.image;
+                                      }
+                                    },
+                                    child: Center(
+                                      child: Container(
+                                        height: 130,
+                                        width: 130,
+                                        child: Column(children: [
+                                          _imagevalue.value != null
+                                              ? Stack(children: [
+                                                  Container(
+                                                    height: 130,
+                                                    width: 130,
+                                                    child:
+                                                        InteractiveViewer(
+                                                      child: Image.network(
+                                                        value,
+                                                        fit: BoxFit.cover,
+                                                        loadingBuilder:
+                                                            (context, child,
+                                                                loadingProgress) {
+                                                          if (loadingProgress ==
+                                                              null) {
+                                                            return child;
+                                                          }
+                                                          return Center(
+                                                            child:
+                                                                CircularProgressIndicator(),
+                                                          );
+                                                        },
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Container(
+                                                    decoration:
+                                                        BoxDecoration(
+                                                            color: Color(
+                                                                0x4D303030)),
+                                                    height: 130,
+                                                    width: 130,
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsets.only(
+                                                            top: 95),
+                                                    child: Container(
+                                                        height: 35,
+                                                        width: 130,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                                color: Color(
+                                                                    0x4D000000)),
+                                                        child: Icon(
+                                                            Icons
+                                                                .camera_alt,
+                                                            color: Colors
+                                                                .white)),
+                                                    // Row(
+                                                    //   mainAxisAlignment:
+                                                    //       MainAxisAlignment
+                                                    //           .center,
+                                                    //   children: [
+                                                    //     Text(
+                                                    //       'Edit ',
+                                                    //       style: TextStyle(
+                                                    //           color: Colors
+                                                    //               .white),
+                                                    //     ),
+                                                    //     Icon(Icons.edit,
+                                                    //         color: Colors
+                                                    //             .white)
+                                                    //   ],
+                                                    // )),
+                                                  ),
+                                                ])
+                                              : Stack(children: [
+                                                  Container(
+                                                      height: 130,
+                                                      width: 130,
+                                                      decoration:
+                                                          BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(
+                                                                    4),
+                                                      ),
+                                                      child: CommonUI
+                                                          .cachedImage(
+                                                              widget.product
+                                                                  .image,
+                                                              ImageAssets
+                                                                  .placeholder,
+                                                              fit: BoxFit
+                                                                  .cover)),
+                                                  Container(
+                                                    decoration:
+                                                        BoxDecoration(
+                                                            color: Color(
+                                                                0x4D303030)),
+                                                    height: 130,
+                                                    width: 130,
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsets.only(
+                                                            top: 95),
+                                                    child: Container(
+                                                        height: 35,
+                                                        width: 130,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                                color: Color(
+                                                                    0x4D000000)),
+                                                        child: Icon(
+                                                            Icons
+                                                                .camera_alt,
+                                                            color: Colors
+                                                                .white)),
+                                                  ),
+                                                ]),
+                                        ]),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              );
+                            },
                           ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              ValueListenableBuilder(
-                                valueListenable: _imagevalue,
-                                builder: (BuildContext context, dynamic value,
-                                    Widget? child) {
-                                  return Center(
-                                    child: Ink(
-                                      width: 130,
-                                      height: 130,
-                                      child: InkWell(
-                                        onTap: () async {
-                                          _imageController.text =
-                                              await fireBaseUploadFileWeb(
-                                                  widget.product.id);
+                          SizedBox(height: 10),
+                          Container(
+                            child: CommonUI.textField(
+                              context: context,
+                              name: "Name",
+                              hint: "Name",
+                              isEdit: true,
+                              minlines: 1,
+                              controller: _nameEnController,
+                              validate: FormBuilderValidators.compose([
+                                FormBuilderValidators.required(context),
+                              ]),
+                            ),
+                          ),
 
-                                          print("Controlller " +
-                                              _imageController.text);
-                                          print("Value  " +
-                                              _imagevalue.value.toString());
+                          // ),
 
-                                          if (_imageController.text != '') {
-                                            _imagevalue.value =
-                                                _imageController.text;
-                                          } else if (_imageController.text ==
-                                              '') {
-                                            _imagevalue.value =
-                                                widget.product.image;
-                                          }
-                                        },
-                                        child: Center(
-                                          child: Container(
-                                            height: 130,
-                                            width: 130,
-                                            child: Column(children: [
-                                              _imagevalue.value != null
-                                                  ? Stack(children: [
-                                                      Container(
-                                                        height: 130,
-                                                        width: 130,
-                                                        child:
-                                                            InteractiveViewer(
-                                                          child: Image.network(
-                                                            value,
-                                                            fit: BoxFit.cover,
-                                                            loadingBuilder:
-                                                                (context, child,
-                                                                    loadingProgress) {
-                                                              if (loadingProgress ==
-                                                                  null) {
-                                                                return child;
-                                                              }
-                                                              return Center(
-                                                                child:
-                                                                    CircularProgressIndicator(),
-                                                              );
-                                                            },
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      Container(
-                                                        decoration:
-                                                            BoxDecoration(
-                                                                color: Color(
-                                                                    0x4D303030)),
-                                                        height: 130,
-                                                        width: 130,
-                                                      ),
-                                                      Padding(
-                                                        padding:
-                                                            EdgeInsets.only(
-                                                                top: 95),
-                                                        child: Container(
-                                                            height: 35,
-                                                            width: 130,
-                                                            decoration:
-                                                                BoxDecoration(
-                                                                    color: Color(
-                                                                        0x4D000000)),
-                                                            child: Icon(
-                                                                Icons
-                                                                    .camera_alt,
-                                                                color: Colors
-                                                                    .white)),
-                                                        // Row(
-                                                        //   mainAxisAlignment:
-                                                        //       MainAxisAlignment
-                                                        //           .center,
-                                                        //   children: [
-                                                        //     Text(
-                                                        //       'Edit ',
-                                                        //       style: TextStyle(
-                                                        //           color: Colors
-                                                        //               .white),
-                                                        //     ),
-                                                        //     Icon(Icons.edit,
-                                                        //         color: Colors
-                                                        //             .white)
-                                                        //   ],
-                                                        // )),
-                                                      ),
-                                                    ])
-                                                  : Stack(children: [
-                                                      Container(
-                                                          height: 130,
-                                                          width: 130,
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        4),
-                                                          ),
-                                                          child: CommonUI
-                                                              .cachedImage(
-                                                                  widget.product
-                                                                      .image,
-                                                                  ImageAssets
-                                                                      .placeholder,
-                                                                  fit: BoxFit
-                                                                      .cover)),
-                                                      Container(
-                                                        decoration:
-                                                            BoxDecoration(
-                                                                color: Color(
-                                                                    0x4D303030)),
-                                                        height: 130,
-                                                        width: 130,
-                                                      ),
-                                                      Padding(
-                                                        padding:
-                                                            EdgeInsets.only(
-                                                                top: 95),
-                                                        child: Container(
-                                                            height: 35,
-                                                            width: 130,
-                                                            decoration:
-                                                                BoxDecoration(
-                                                                    color: Color(
-                                                                        0x4D000000)),
-                                                            child: Icon(
-                                                                Icons
-                                                                    .camera_alt,
-                                                                color: Colors
-                                                                    .white)),
-                                                      ),
-                                                    ]),
-                                            ]),
+                          SizedBox(height: 4),
+                          Container(
+                            child: CommonUI.textField(
+                              context: context,
+                              name: "Arabic Name (Optional)",
+                              hint: "Arabic Name (Optional)",
+                              isEdit: true,
+                              minlines: 1,
+                              controller: _nameArController,
+                              // validate: FormBuilderValidators.compose([
+                              //   FormBuilderValidators.required(context),
+                              // ]),
+                            ),
+                          ),
+                          SizedBox(height: 4),
+                          Container(
+                            child: CommonUI.textField(
+                              context: context,
+                              name: "price",
+                              hint: "Price",
+                              isEdit: true,
+                              keyboardtype: TextInputType.number,
+                              controller: _priceController,
+                              validate: FormBuilderValidators.compose([
+                                FormBuilderValidators.required(context),
+                                FormBuilderValidators.numeric(context),
+                              ]),
+                            ),
+                          ),
+                          widget.product.weight != 0
+                              ? Column(
+                                  children: [
+                                    SizedBox(height: 4),
+                                    Text(
+                                      "Value ",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 12,
+                                          color: Colors.brown[400]),
+                                    ),
+                                    SizedBox(height: 4),
+                                    StatefulBuilder(
+                                      builder: (context, state) => Center(
+                                        child: SliderTheme(
+                                          data: SliderTheme.of(context)
+                                              .copyWith(
+                                            activeTrackColor:
+                                                Colors.brown[700],
+                                            inactiveTrackColor:
+                                                Colors.brown[100],
+                                            trackShape:
+                                                RectangularSliderTrackShape(),
+                                            trackHeight: 4.0,
+                                            thumbColor: Colors.brown[400],
+                                            thumbShape:
+                                                RoundSliderThumbShape(
+                                                    enabledThumbRadius:
+                                                        12.0),
+                                            overlayColor:
+                                                Colors.brown.withAlpha(32),
+                                            overlayShape:
+                                                RoundSliderOverlayShape(
+                                                    overlayRadius: 28.0),
+                                          ),
+                                          child: Slider(
+                                            value: _value,
+                                            min: 1.0,
+                                            max: 101.0,
+                                            divisions: 2,
+                                            onChanged: (value) {
+                                              state(() {
+                                                _value = value;
+                                              });
+                                            },
                                           ),
                                         ),
                                       ),
                                     ),
-                                  );
-                                },
-                              ),
-                              SizedBox(height: 10),
-                              Container(
-                                child: CommonUI.textField(
-                                  context: context,
-                                  name: "Name",
-                                  hint: "Name",
-                                  isEdit: true,
-                                  minlines: 1,
-                                  controller: _nameEnController,
-                                  validate: FormBuilderValidators.compose([
-                                    FormBuilderValidators.required(context),
-                                  ]),
-                                ),
-                              ),
-
-                              // ),
-
-                              SizedBox(height: 4),
-                              Container(
-                                child: CommonUI.textField(
-                                  context: context,
-                                  name: "Arabic Name (Optional)",
-                                  hint: "Arabic Name (Optional)",
-                                  isEdit: true,
-                                  minlines: 1,
-                                  controller: _nameArController,
-                                  // validate: FormBuilderValidators.compose([
-                                  //   FormBuilderValidators.required(context),
-                                  // ]),
-                                ),
-                              ),
-                              SizedBox(height: 4),
-                              Container(
-                                child: CommonUI.textField(
-                                  context: context,
-                                  name: "price",
-                                  hint: "Price",
-                                  isEdit: true,
-                                  keyboardtype: TextInputType.number,
-                                  controller: _priceController,
-                                  validate: FormBuilderValidators.compose([
-                                    FormBuilderValidators.required(context),
-                                    FormBuilderValidators.numeric(context),
-                                  ]),
-                                ),
-                              ),
-                              widget.product.weight != 0
-                                  ? Column(
-                                      children: [
-                                        SizedBox(height: 4),
-                                        Text(
-                                          "Value ",
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 12,
-                                              color: Colors.brown[400]),
-                                        ),
-                                        SizedBox(height: 4),
-                                        StatefulBuilder(
-                                          builder: (context, state) => Center(
-                                            child: SliderTheme(
-                                              data: SliderTheme.of(context)
-                                                  .copyWith(
-                                                activeTrackColor:
-                                                    Colors.brown[700],
-                                                inactiveTrackColor:
-                                                    Colors.brown[100],
-                                                trackShape:
-                                                    RectangularSliderTrackShape(),
-                                                trackHeight: 4.0,
-                                                thumbColor: Colors.brown[400],
-                                                thumbShape:
-                                                    RoundSliderThumbShape(
-                                                        enabledThumbRadius:
-                                                            12.0),
-                                                overlayColor:
-                                                    Colors.brown.withAlpha(32),
-                                                overlayShape:
-                                                    RoundSliderOverlayShape(
-                                                        overlayRadius: 28.0),
-                                              ),
-                                              child: Slider(
-                                                value: _value,
-                                                min: 1.0,
-                                                max: 101.0,
-                                                divisions: 2,
-                                                onChanged: (value) {
-                                                  state(() {
-                                                    _value = value;
-                                                  });
-                                                },
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    )
-                                  : Container(),
-                              SizedBox(height: 4),
-                              Container(
-                                child: CommonUI.textField(
-                                  context: context,
-                                  name: "Description",
-                                  hint: "Description",
-                                  maxlength: 600,
-                                  minlines: 2,
-                                  controller: _descriptionEnController,
-                                  validate: FormBuilderValidators.compose([
-                                    FormBuilderValidators.required(context),
-                                  ]),
-                                ),
-                              ),
-                              SizedBox(height: 4),
-                              Container(
-                                child: CommonUI.textField(
-                                  context: context,
-                                  name: "Arabic Description (Optional)",
-                                  hint: "Arabic Description (Optional)",
-                                  maxlength: 600,
-                                  minlines: 2,
-                                  controller: _descriptionArController,
-                                  // validate: FormBuilderValidators.compose([
-                                  //   FormBuilderValidators.required(context),
-                                  // ]),
-                                ),
-                              ),
-                            ],
+                                  ],
+                                )
+                              : Container(),
+                          SizedBox(height: 4),
+                          Container(
+                            child: CommonUI.textField(
+                              context: context,
+                              name: "Description",
+                              hint: "Description",
+                              maxlength: 600,
+                              minlines: 2,
+                              controller: _descriptionEnController,
+                              validate: FormBuilderValidators.compose([
+                                FormBuilderValidators.required(context),
+                              ]),
+                            ),
                           ),
-                        ),
+                          SizedBox(height: 4),
+                          Container(
+                            child: CommonUI.textField(
+                              context: context,
+                              name: "Arabic Description (Optional)",
+                              hint: "Arabic Description (Optional)",
+                              maxlength: 600,
+                              minlines: 2,
+                              controller: _descriptionArController,
+                              // validate: FormBuilderValidators.compose([
+                              //   FormBuilderValidators.required(context),
+                              // ]),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                     actions: [
