@@ -28,7 +28,7 @@ class _AddDashboardButtonState extends State<AddDashboardButton> {
       TextEditingController();
 
   TextEditingController _imageDashboardController = TextEditingController();
-  ValueNotifier<String?> _imagevalue = ValueNotifier<String?>(null);
+  ValueNotifier<String?> _imagevalue = ValueNotifier<String?>('');
   final _formKey = GlobalKey<FormBuilderState>();
 
   @override
@@ -85,19 +85,18 @@ class _AddDashboardButtonState extends State<AddDashboardButton> {
                           ? size.width / 3
                           : size.width - 20,
                       child: Padding(
-                        padding: const EdgeInsets.fromLTRB(10, 70, 10, 0),
+                        padding: const EdgeInsets.fromLTRB(10, 50, 10, 0),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Text(
-                              'Create Dashboard',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: Responsive.isMiniMobile(context)
-                                      ? 15
-                                      : 20),
-                            ),
-                            SizedBox(height: 10),
+                            // Text(
+                            //   'Create Dashboard',
+                            //   style: TextStyle(
+                            //       fontWeight: FontWeight.bold,
+                            //       fontSize: Responsive.isMiniMobile(context)
+                            //           ? 15
+                            //           : 20),
+                            // ),
                             ValueListenableBuilder(
                               valueListenable: _imagevalue,
                               builder: (BuildContext context, dynamic value,
@@ -105,7 +104,7 @@ class _AddDashboardButtonState extends State<AddDashboardButton> {
                                 return Center(
                                   child: GestureDetector(
                                     onTap: () async {
-                                      _imageDashboardController.text =
+                                      _imagevalue.value =
                                           await fireBaseUploadFileWeb(id);
                                       // if (_imageBannerController.text != '') {
                                       //   _imagevalue.value =
@@ -120,15 +119,16 @@ class _AddDashboardButtonState extends State<AddDashboardButton> {
                                     },
                                     child: Center(
                                       child: Container(
+                                        width: 130,
                                         height: 130,
-                                        width: 250,
-                                        child: Column(
-                                          children: [
-                                            Stack(children: [
-                                              _imagevalue.value != null
-                                                  ? Container(
+                                        child: Stack(children: [
+                                          _imagevalue.value != ''
+                                              ? Stack(
+                                                  //There's Image
+                                                  children: [
+                                                    Container(
                                                       height: 130,
-                                                      width: 250,
+                                                      width: 130,
                                                       decoration: BoxDecoration(
                                                         borderRadius:
                                                             BorderRadius
@@ -152,61 +152,152 @@ class _AddDashboardButtonState extends State<AddDashboardButton> {
                                                           },
                                                         ),
                                                       ),
-                                                    )
-                                                  : Container(
-                                                      height: 130,
-                                                      width: 250,
-                                                      decoration: BoxDecoration(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(4),
-                                                      ),
-                                                      child: Image.asset(
-                                                        'assets/images/placeholder.jpg',
-                                                        fit: BoxFit.cover,
-                                                      ),
                                                     ),
-                                              Container(
-                                                decoration: BoxDecoration(
-                                                    color: Color(0x4D303030)),
-                                                height: 130,
-                                                width: 250,
-                                              ),
-                                              Padding(
-                                                padding:
-                                                    EdgeInsets.only(top: 95),
-                                                child: Container(
-                                                    height: 35,
-                                                    width: 250,
-                                                    decoration: BoxDecoration(
-                                                        color:
-                                                            Color(0x4D000000)),
-                                                    child: Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .center,
-                                                      children: [
-                                                        // Text(
-                                                        //   'ADD ',
-                                                        //   style: TextStyle(
-                                                        //       color:
-                                                        //           Colors.white),
-                                                        // ),
-                                                        Icon(Icons.camera_alt,
-                                                            color: Colors.white)
-                                                      ],
-                                                    )),
-                                              ),
-                                            ]),
-                                          ],
-                                        ),
+                                                    Padding(
+                                                      padding: EdgeInsets.only(
+                                                          top: 95),
+                                                      child: Container(
+                                                          height: 35,
+                                                          width: 130,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                                  color: Color(
+                                                                      0x4D000000)),
+                                                          child: Center(
+                                                              child: Icon(
+                                                                  Icons
+                                                                      .edit_outlined,
+                                                                  color: Colors
+                                                                      .white))),
+                                                    ),
+                                                  ],
+                                                )
+                                              : Container(
+                                                  // There's no Image
+                                                  height: 130,
+                                                  width: 130,
+                                                  decoration: BoxDecoration(
+                                                    color: Colors.white,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            4),
+                                                    boxShadow: [
+                                                      BoxShadow(
+                                                        color: Colors.grey
+                                                            .withOpacity(0.5),
+                                                        spreadRadius: 2,
+                                                        blurRadius: 9,
+                                                        offset: Offset(0, 4),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  child: // _imagevalue.value ==
+                                                      // '' &&
+                                                      // showProgress
+                                                      // ? Center(
+                                                      // child:
+                                                      // CircularProgressIndicator())
+                                                      // :
+                                                      Icon(
+                                                    Icons.add,
+                                                    color: Colors.black,
+                                                    size: 60,
+                                                  ),
+                                                ),
+                                        ]),
                                       ),
                                     ),
+                                    //  Center(
+                                    //   child: Container(
+                                    //     height: 130,
+                                    //     width: 250,
+                                    //     child: Column(
+                                    //       children: [
+                                    //         Stack(children: [
+                                    //           _imagevalue.value != ''
+                                    //               ? Container(
+                                    //                   height: 130,
+                                    //                   width: 250,
+                                    //                   decoration: BoxDecoration(
+                                    //                     borderRadius:
+                                    //                         BorderRadius
+                                    //                             .circular(4),
+                                    //                   ),
+                                    //                   child: InteractiveViewer(
+                                    //                     child: Image.network(
+                                    //                       value,
+                                    //                       fit: BoxFit.cover,
+                                    //                       loadingBuilder: (context,
+                                    //                           child,
+                                    //                           loadingProgress) {
+                                    //                         if (loadingProgress ==
+                                    //                             null) {
+                                    //                           return child;
+                                    //                         }
+                                    //                         return Center(
+                                    //                           child:
+                                    //                               CircularProgressIndicator(),
+                                    //                         );
+                                    //                       },
+                                    //                     ),
+                                    //                   ),
+                                    //                 )
+                                    //               : Container(
+                                    //                   height: 130,
+                                    //                   width: 250,
+                                    //                   decoration: BoxDecoration(
+                                    //                     borderRadius:
+                                    //                         BorderRadius
+                                    //                             .circular(4),
+                                    //                   ),
+                                    //                   child: Image.asset(
+                                    //                     'assets/images/placeholder.jpg',
+                                    //                     fit: BoxFit.cover,
+                                    //                   ),
+                                    //                 ),
+                                    //           Container(
+                                    //             decoration: BoxDecoration(
+                                    //                 color: Color(0x4D303030)),
+                                    //             height: 130,
+                                    //             width: 250,
+                                    //           ),
+                                    //           Padding(
+                                    //             padding:
+                                    //                 EdgeInsets.only(top: 95),
+                                    //             child: Container(
+                                    //                 height: 35,
+                                    //                 width: 250,
+                                    //                 decoration: BoxDecoration(
+                                    //                     color:
+                                    //                         Color(0x4D000000)),
+                                    //                 child: Row(
+                                    //                   mainAxisAlignment:
+                                    //                       MainAxisAlignment
+                                    //                           .center,
+                                    //                   children: [
+                                    //                     // Text(
+                                    //                     //   'ADD ',
+                                    //                     //   style: TextStyle(
+                                    //                     //       color:
+                                    //                     //           Colors.white),
+                                    //                     // ),
+                                    //                     Icon(Icons.camera_alt,
+                                    //                         color: Colors.white)
+                                    //                   ],
+                                    //                 )),
+                                    //           ),
+                                    //         ]),
+                                    //       ],
+                                    //     ),
+                                    //   ),
+                                    // ),
                                   ),
                                   // ),
                                 );
                               },
                             ),
+                            SizedBox(height: 10),
+
                             Container(
                               child: CommonUI.textField(
                                 context: context,
@@ -322,11 +413,9 @@ class _AddDashboardButtonState extends State<AddDashboardButton> {
                                               _superCategoryDashboardController
                                                   .text,
                                           'isPublished': true,
-                                          'image': _imageDashboardController
-                                                      .text ==
-                                                  ' '
-                                              ? 'assets/images/placeholder.jpg'
-                                              : _imageDashboardController.text,
+                                          'image': _imagevalue.value == ''
+                                              ? 'assets/images/preview.png'
+                                              : _imagevalue.value,
                                         }).whenComplete(() {
                                           id = generateId();
                                           _imagevalue.value =
@@ -379,7 +468,7 @@ class _AddDashboardButtonState extends State<AddDashboardButton> {
                         backgroundColor: Colors.green,
                         radius: 50,
                         child: Icon(
-                          Icons.add,
+                          Icons.photo,
                           color: Colors.white,
                           size: 50,
                         ),
