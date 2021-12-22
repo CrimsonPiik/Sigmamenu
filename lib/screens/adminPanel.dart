@@ -15,7 +15,6 @@ class AdminPanel extends StatefulWidget {
 }
 
 Set<String> categoriesList = {'A'};
-// Set<String> categoriesList = {};
 
 class _AdminPanelState extends State<AdminPanel> {
   TextEditingController newCollectionNameController = TextEditingController();
