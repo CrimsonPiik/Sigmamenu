@@ -521,7 +521,7 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                   );
                                 },
                               ),
-                              SizedBox(height: 40),
+                              SizedBox(height: 10),
                               Container(
                                 child: CommonUI.textField(
                                   context: context,
@@ -705,7 +705,7 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                     Navigator.of(context).pop();
 
                                     CommonUI.successDialog(context,
-                                        message: "Saved successfully");
+                                        message: "Saved Successfully");
                                   }).onError((error, stackTrrace) => showDialog(
                                             context: context,
                                             builder: (_) {
@@ -731,7 +731,7 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                     ],
                   ),
                   Positioned(
-                      top: -60,
+                      top: -30,
                       child: CircleAvatar(
                         backgroundColor: Colors.blueAccent,
                         radius: 40,

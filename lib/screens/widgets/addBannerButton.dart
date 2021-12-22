@@ -21,10 +21,10 @@ class _AddBannerButtonState extends State<AddBannerButton> {
   ValueNotifier<String?> _imagevalue = ValueNotifier<String?>('');
   final _formKey = GlobalKey<FormBuilderState>();
   // String category = categoriesList.elementAt(0);
+  // bool error = false;
 
   @override
   Widget build(BuildContext context) {
-    // _imagevalue.value = _imageBannerController.text;
     return Row(
       children: [
         SizedBox(width: 21),
@@ -34,7 +34,6 @@ class _AddBannerButtonState extends State<AddBannerButton> {
             height: 40,
             child: TextButton.icon(
                 onPressed: () {
-                  // _imagevalue.value = _imageBannerController.text;
                   showDialogWithFields();
                 },
                 icon: Icon(
@@ -76,7 +75,7 @@ class _AddBannerButtonState extends State<AddBannerButton> {
                           ? size.width / 3
                           : size.width - 20,
                       child: Padding(
-                        padding: const EdgeInsets.fromLTRB(10,50 , 10, 0),
+                        padding: const EdgeInsets.fromLTRB(10, 50, 10, 0),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
@@ -199,95 +198,12 @@ class _AddBannerButtonState extends State<AddBannerButton> {
                                         ]),
                                       ),
                                     ),
-                                    // Center(
-                                    //   child: Container(
-                                    //     height: 130,
-                                    //     width: 250,
-                                    //     child: Column(
-                                    //       children: [
-                                    //         Stack(children: [
-                                    //           _imagevalue.value != null
-                                    //               ? Container(
-                                    //                   height: 130,
-                                    //                   width: 250,
-                                    //                   decoration: BoxDecoration(
-                                    //                     borderRadius:
-                                    //                         BorderRadius
-                                    //                             .circular(4),
-                                    //                   ),
-                                    //                   child: InteractiveViewer(
-                                    //                     child: Image.network(
-                                    //                       value,
-                                    //                       fit: BoxFit.cover,
-                                    //                       loadingBuilder: (context,
-                                    //                           child,
-                                    //                           loadingProgress) {
-                                    //                         if (loadingProgress ==
-                                    //                             null) {
-                                    //                           return child;
-                                    //                         }
-                                    //                         return Center(
-                                    //                           child:
-                                    //                               CircularProgressIndicator(),
-                                    //                         );
-                                    //                       },
-                                    //                     ),
-                                    //                   ),
-                                    //                 )
-                                    //               : Container(
-                                    //                   height: 130,
-                                    //                   width: 250,
-                                    //                   decoration: BoxDecoration(
-                                    //                     borderRadius:
-                                    //                         BorderRadius
-                                    //                             .circular(4),
-                                    //                   ),
-                                    //                   child: Image.asset(
-                                    //                     'assets/images/placeholder.jpg',
-                                    //                     fit: BoxFit.cover,
-                                    //                   ),
-                                    //                 ),
-                                    //           Container(
-                                    //             decoration: BoxDecoration(
-                                    //                 color: Color(0x4D303030)),
-                                    //             height: 130,
-                                    //             width: 250,
-                                    //           ),
-                                    //           Padding(
-                                    //             padding:
-                                    //                 EdgeInsets.only(top: 95),
-                                    //             child: Container(
-                                    //                 height: 35,
-                                    //                 width: 250,
-                                    //                 decoration: BoxDecoration(
-                                    //                     color:
-                                    //                         Color(0x4D000000)),
-                                    //                 child: Row(
-                                    //                   mainAxisAlignment:
-                                    //                       MainAxisAlignment
-                                    //                           .center,
-                                    //                   children: [
-                                    //                     // Text(
-                                    //                     //   'ADD ',
-                                    //                     //   style: TextStyle(
-                                    //                     //       color:
-                                    //                     //           Colors.white),
-                                    //                     // ),
-                                    //                     Icon(Icons.camera_alt,
-                                    //                         color: Colors.white)
-                                    //                   ],
-                                    //                 )),
-                                    //           ),
-                                    //         ]),
-                                    //       ],
-                                    //     ),
-                                    //   ),
-                                    // ),
                                   ),
-                                  // ),
                                 );
                               },
                             ),
+
+                            // error ? Text('Error!!') : Container(),
                             Padding(
                               padding: const EdgeInsets.all(12.0),
                               child: Row(
@@ -315,39 +231,46 @@ class _AddBannerButtonState extends State<AddBannerButton> {
                                   SizedBox(width: 20),
                                   ElevatedButton(
                                     onPressed: () async {
-                                      _formKey.currentState!.save();
-                                      if (_formKey.currentState!.validate()) {
-                                        FocusScope.of(context).unfocus();
-                                        await FirebaseFirestore.instance
-                                            .collection("Banner")
-                                            .doc(id)
-                                            .set({
-                                          'id': id,
-                                          'isPublished': true,
-                                          'image': _imagevalue.value == ''
-                                              ? 'assets/images/preview.png'
-                                              : _imagevalue.value,
-                                          //subCategory: ---
-                                        }).whenComplete(() {
-                                          id = generateId();
-                                          _imagevalue.value =
-                                              _imageBannerController.text;
+                                      if (_imagevalue.value!.isEmpty) {
+                                        // setState(() {
+                                        //   error = true;
+                                        // });
+                                        Navigator.of(context).pop();
+                                      } else {
+                                        _formKey.currentState!.save();
+                                        if (_formKey.currentState!.validate()) {
+                                          FocusScope.of(context).unfocus();
+                                          await FirebaseFirestore.instance
+                                              .collection("Banner")
+                                              .doc(id)
+                                              .set({
+                                            'id': id,
+                                            'isPublished': true,
+                                            'image': _imagevalue.value == ''
+                                                ? 'assets/images/preview.png'
+                                                : _imagevalue.value,
+                                            //subCategory: ---
+                                          }).whenComplete(() {
+                                            id = generateId();
+                                            _imagevalue.value =
+                                                _imageBannerController.text;
 
-                                          _imageBannerController.clear();
-                                          Navigator.of(context).pop();
+                                            _imageBannerController.clear();
+                                            Navigator.of(context).pop();
 
-                                          CommonUI.successDialog(context,
-                                              message: "Saved successfully");
-                                        }).onError((error, stackTrrace) =>
-                                                showDialog(
-                                                  context: context,
-                                                  builder: (_) {
-                                                    return AlertDialog(
-                                                      content: Text(
-                                                          error.toString()),
-                                                    );
-                                                  },
-                                                ));
+                                            CommonUI.successDialog(context,
+                                                message: "Added successfully");
+                                          }).onError((error, stackTrrace) =>
+                                                  showDialog(
+                                                    context: context,
+                                                    builder: (_) {
+                                                      return AlertDialog(
+                                                        content: Text(
+                                                            error.toString()),
+                                                      );
+                                                    },
+                                                  ));
+                                        }
                                       }
                                     },
                                     style: ButtonStyle(

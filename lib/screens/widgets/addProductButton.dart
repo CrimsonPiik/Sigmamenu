@@ -114,6 +114,7 @@ class _AddProductButtonState extends State<AddProductButton> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
+                        SizedBox(height: 20),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -241,7 +242,7 @@ class _AddProductButtonState extends State<AddProductButton> {
                             ),
                           ],
                         ),
-                        SizedBox(height: 50),
+                        SizedBox(height: 10),
                         Container(
                           child: CommonUI.textField(
                             context: context,
@@ -427,7 +428,7 @@ class _AddProductButtonState extends State<AddProductButton> {
                                   Navigator.of(context).pop();
 
                                   CommonUI.successDialog(context,
-                                      message: "Saved successfully");
+                                      message: "Added Successfully");
                                 }).onError((error, stackTrrace) => showDialog(
                                           context: context,
                                           builder: (_) {
@@ -458,7 +459,7 @@ class _AddProductButtonState extends State<AddProductButton> {
                       backgroundColor: Colors.green,
                       radius: 40,
                       child: Icon(
-                        Icons.add,
+                        Icons.photo,
                         color: Colors.white,
                         size: 45,
                       ),
