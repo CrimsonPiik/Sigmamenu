@@ -80,14 +80,14 @@ class _AddBannerButtonState extends State<AddBannerButton> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Text(
-                              'Create Banner',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: Responsive.isMiniMobile(context)
-                                      ? 15
-                                      : 20),
-                            ),
+                            // Text(
+                            //   'Create Banner',
+                            //   style: TextStyle(
+                            //       fontWeight: FontWeight.bold,
+                            //       fontSize: Responsive.isMiniMobile(context)
+                            //           ? 15
+                            //           : 20),
+                            // ),
                             SizedBox(height: 10),
                             ValueListenableBuilder(
                               valueListenable: _imagevalue,
