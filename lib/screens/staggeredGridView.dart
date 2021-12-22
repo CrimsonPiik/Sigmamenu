@@ -143,28 +143,25 @@ class _StaggerdGridViewState extends State<StaggerdGridView> {
                                                   : StaggeredTile.count(2,
                                                       index.isEven ? 2.5 : 4.08)
                                               : staggerd.length == 4 // 4 DONE
-                                                  ? StaggeredTile.count(
-                                                      2,
-                                                      index.isEven
-                                                          ? 3.32
-                                                          : 2.92)
+                                                  ? StaggeredTile.count(2,
+                                                      index.isOdd ? 3.95 : 4.18)
                                                   : staggerd.length == 3
                                                       ? index ==
                                                               staggerd.length -
                                                                   1 // 3 DONE
                                                           ? StaggeredTile.count(
-                                                              2, 3.5)
+                                                              2, 4.4)
                                                           : StaggeredTile.count(
                                                               2,
                                                               index.isEven
-                                                                  ? 2.75
-                                                                  : 6.26)
+                                                                  ? 3.75
+                                                                  : 8.13)
                                                       : staggerd.length ==
                                                               2 // 2 DONE
                                                           ? StaggeredTile.count(
-                                                              2, 6.26)
+                                                              2, 8.14)
                                                           : StaggeredTile // 1 DONE
-                                                              .count(4, 6.26),
+                                                              .count(4, 8.14),
                       mainAxisSpacing: 4.0,
                       crossAxisSpacing: 4.0,
                     )
