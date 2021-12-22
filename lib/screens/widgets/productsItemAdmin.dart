@@ -343,7 +343,7 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
         context: context,
         builder: (BuildContext context) {
           return Padding(
-            padding: const EdgeInsets.only(top: 40.0, bottom: 20.0), 
+            padding: const EdgeInsets.only(top: 40.0, bottom: 20.0),
             child: FormBuilder(
               key: _formKey,
               // child: Dialog(
@@ -357,7 +357,7 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                     scrollable: true,
                     content: Container(
                       width: Responsive.isDesktop(context) ? 350 : 290,
-                      padding: EdgeInsets.all(16),
+                      padding: EdgeInsets.all(6),
                       decoration: BoxDecoration(
                         // color: Colors.grey.withOpacity(0.1),
                         borderRadius: BorderRadius.circular(12),
@@ -387,8 +387,7 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                       if (_imageController.text != '') {
                                         _imagevalue.value =
                                             _imageController.text;
-                                      } else if (_imageController.text ==
-                                          '') {
+                                      } else if (_imageController.text == '') {
                                         _imagevalue.value =
                                             widget.product.image;
                                       }
@@ -403,14 +402,13 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                                   Container(
                                                     height: 130,
                                                     width: 130,
-                                                    child:
-                                                        InteractiveViewer(
+                                                    child: InteractiveViewer(
                                                       child: Image.network(
                                                         value,
                                                         fit: BoxFit.cover,
-                                                        loadingBuilder:
-                                                            (context, child,
-                                                                loadingProgress) {
+                                                        loadingBuilder: (context,
+                                                            child,
+                                                            loadingProgress) {
                                                           if (loadingProgress ==
                                                               null) {
                                                             return child;
@@ -424,17 +422,15 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                                     ),
                                                   ),
                                                   Container(
-                                                    decoration:
-                                                        BoxDecoration(
-                                                            color: Color(
-                                                                0x4D303030)),
+                                                    decoration: BoxDecoration(
+                                                        color:
+                                                            Color(0x4D303030)),
                                                     height: 130,
                                                     width: 130,
                                                   ),
                                                   Padding(
-                                                    padding:
-                                                        EdgeInsets.only(
-                                                            top: 95),
+                                                    padding: EdgeInsets.only(
+                                                        top: 95),
                                                     child: Container(
                                                         height: 35,
                                                         width: 130,
@@ -443,10 +439,9 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                                                 color: Color(
                                                                     0x4D000000)),
                                                         child: Icon(
-                                                            Icons
-                                                                .camera_alt,
-                                                            color: Colors
-                                                                .white)),
+                                                            Icons.camera_alt,
+                                                            color:
+                                                                Colors.white)),
                                                     // Row(
                                                     //   mainAxisAlignment:
                                                     //       MainAxisAlignment
@@ -469,15 +464,13 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                                   Container(
                                                       height: 130,
                                                       width: 130,
-                                                      decoration:
-                                                          BoxDecoration(
+                                                      decoration: BoxDecoration(
                                                         borderRadius:
                                                             BorderRadius
-                                                                .circular(
-                                                                    4),
+                                                                .circular(4),
                                                       ),
-                                                      child: CommonUI
-                                                          .cachedImage(
+                                                      child:
+                                                          CommonUI.cachedImage(
                                                               widget.product
                                                                   .image,
                                                               ImageAssets
@@ -485,17 +478,15 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                                               fit: BoxFit
                                                                   .cover)),
                                                   Container(
-                                                    decoration:
-                                                        BoxDecoration(
-                                                            color: Color(
-                                                                0x4D303030)),
+                                                    decoration: BoxDecoration(
+                                                        color:
+                                                            Color(0x4D303030)),
                                                     height: 130,
                                                     width: 130,
                                                   ),
                                                   Padding(
-                                                    padding:
-                                                        EdgeInsets.only(
-                                                            top: 95),
+                                                    padding: EdgeInsets.only(
+                                                        top: 95),
                                                     child: Container(
                                                         height: 35,
                                                         width: 130,
@@ -504,10 +495,9 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                                                 color: Color(
                                                                     0x4D000000)),
                                                         child: Icon(
-                                                            Icons
-                                                                .camera_alt,
-                                                            color: Colors
-                                                                .white)),
+                                                            Icons.camera_alt,
+                                                            color:
+                                                                Colors.white)),
                                                   ),
                                                 ]),
                                         ]),
@@ -579,20 +569,17 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                     StatefulBuilder(
                                       builder: (context, state) => Center(
                                         child: SliderTheme(
-                                          data: SliderTheme.of(context)
-                                              .copyWith(
-                                            activeTrackColor:
-                                                Colors.brown[700],
+                                          data:
+                                              SliderTheme.of(context).copyWith(
+                                            activeTrackColor: Colors.brown[700],
                                             inactiveTrackColor:
                                                 Colors.brown[100],
                                             trackShape:
                                                 RectangularSliderTrackShape(),
                                             trackHeight: 4.0,
                                             thumbColor: Colors.brown[400],
-                                            thumbShape:
-                                                RoundSliderThumbShape(
-                                                    enabledThumbRadius:
-                                                        12.0),
+                                            thumbShape: RoundSliderThumbShape(
+                                                enabledThumbRadius: 12.0),
                                             overlayColor:
                                                 Colors.brown.withAlpha(32),
                                             overlayShape:
@@ -898,7 +885,7 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                               ),
                                         ),
                                       ),
-                                      SizedBox(height: 335),
+                                      SizedBox(height: 350),
                                     ],
                                   ),
                                 ],

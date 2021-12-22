@@ -88,15 +88,15 @@ class _AddDashboardButtonState extends State<AddDashboardButton> {
                 content:
                     // child:
                     Container(
-                  // width: Responsive.isDesktop(context) ? 350 : 290,
-                  // padding: EdgeInsets.all(16),
+                  width: Responsive.isDesktop(context) ? 350 : 290,
+                  padding: EdgeInsets.all(6),
                   decoration: BoxDecoration(
                     // color: Colors.grey.withOpacity(0.1),
                     borderRadius: BorderRadius.circular(12),
                   ),
-                  width: Responsive.isDesktop(context)
-                      ? size.width / 3
-                      : size.width - 20,
+                  // width: Responsive.isDesktop(context)
+                      // ? size.width / 3
+                      // : size.width - 20,
                   child: Padding(
                       padding: const EdgeInsets.fromLTRB(10, 50, 10, 0),
                       child: Column(

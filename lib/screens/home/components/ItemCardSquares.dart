@@ -298,7 +298,7 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                                                 ),
                                           ),
                                         ),
-                                        SizedBox(height: 335),
+                                        SizedBox(height: 350),
                                       ],
                                     ),
                                   ),

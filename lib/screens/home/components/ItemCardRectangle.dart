@@ -279,7 +279,7 @@ class _ItemCardRectangleState extends State<ItemCardRectangle> {
                                                 ),
                                           ),
                                         ),
-                                        SizedBox(height: 335),
+                                        SizedBox(height: 350),
                                       ],
                                     ),
                                   ),

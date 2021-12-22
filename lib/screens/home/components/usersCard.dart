@@ -382,7 +382,7 @@ class _UsersCardState extends State<UsersCard> {
                   content: SingleChildScrollView(
                     child: Container(
                       width: Responsive.isDesktop(context) ? 350 : 290,
-                      padding: EdgeInsets.all(16),
+                      padding: EdgeInsets.all(6),
                       decoration: BoxDecoration(
                         // color: Colors.grey.withOpacity(0.1),
                         borderRadius: BorderRadius.circular(12),
