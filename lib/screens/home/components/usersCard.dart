@@ -117,7 +117,7 @@ class _UsersCardState extends State<UsersCard> {
             },
             backgroundColor: Colors.red,
             foregroundColor: Colors.white,
-            icon: Icons.delete,
+            icon: Icons.delete_outlined,
             label: 'Delete',
             autoClose: true,
           ),
@@ -348,7 +348,7 @@ class _UsersCardState extends State<UsersCard> {
                       backgroundColor: Colors.redAccent,
                       radius: 50,
                       child: Icon(
-                        Icons.delete,
+                        Icons.delete_outlined,
                         color: Colors.white,
                         size: 50,
                       ),

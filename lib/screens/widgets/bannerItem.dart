@@ -93,8 +93,8 @@ class _BannersItemState extends State<BannersItem> {
                 widget.data.isPublished == true ? Colors.red : Colors.green,
             foregroundColor: Colors.white,
             icon: widget.data.isPublished == true
-                ? Icons.toggle_off
-                : Icons.toggle_on,
+                ? Icons.toggle_off_outlined
+                : Icons.toggle_on_outlined,
             label: widget.data.isPublished == true ? "Unpublish" : "Publish",
             autoClose: true,
           ),
@@ -139,7 +139,7 @@ class _BannersItemState extends State<BannersItem> {
             },
             backgroundColor: Color(0xFFFE4A49),
             foregroundColor: Colors.white,
-            icon: Icons.delete,
+            icon: Icons.delete_outlined,
             label: 'Delete',
             autoClose: true,
           ),
@@ -533,7 +533,7 @@ class _BannersItemState extends State<BannersItem> {
                       backgroundColor: Colors.redAccent,
                       radius: 50,
                       child: Icon(
-                        Icons.delete,
+                        Icons.delete_outlined,
                         color: Colors.white,
                         size: 50,
                       ),

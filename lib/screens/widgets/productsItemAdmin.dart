@@ -87,7 +87,7 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                 widget.product.weight >= 1 ? Colors.red : Colors.green,
             foregroundColor: Colors.white,
             icon:
-                widget.product.weight >= 1 ? Icons.toggle_off : Icons.toggle_on,
+                widget.product.weight >= 1 ? Icons.toggle_off_outlined : Icons.toggle_on_outlined,
             label: widget.product.weight >= 1 ? "Unpublish" : "Publish",
             autoClose: true,
           ),
@@ -130,7 +130,8 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
             },
             backgroundColor: Colors.red,
             foregroundColor: Colors.white,
-            icon: Icons.delete,
+            icon: Icons.delete_outlined,
+
             label: 'Delete',
             autoClose: true,
           ),
@@ -323,7 +324,7 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                       backgroundColor: Colors.redAccent,
                       radius: 50,
                       child: Icon(
-                        Icons.delete,
+                        Icons.delete_outlined,
                         color: Colors.white,
                         size: 50,
                       ),

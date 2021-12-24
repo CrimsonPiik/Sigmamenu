@@ -224,7 +224,7 @@ class _CategoriesWithDeleteButtonState
                       backgroundColor: Colors.redAccent,
                       radius: 50,
                       child: Icon(
-                        Icons.delete,
+                        Icons.delete_outlined,
                         color: Colors.white,
                         size: 50,
                       ),
