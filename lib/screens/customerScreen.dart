@@ -75,27 +75,37 @@ class _CustomerScreenState extends State<CustomerScreen>
           }
           print("Categories : " + categoriesList.toString());
 
-          return SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                SizedBox(height: 15),
-                BannerWithDotsIndicator(),
-                Categories(),
+          return
+              //  SingleChildScrollView(
+              // child: SizedBox(
+              // height: MediaQuery.of(context).size.height,
+              // child:
+              // Expanded(
+            // child: SingleChildScrollView(
+              // child: 
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  SizedBox(height: 15),
+                  // BannerWithDotsIndicator(),
+                  // Categories(),
+                  // BannerWithDotsIndicator(),
 
-                // BannerWithDotsIndicator(),
-                // BannerWithDotsIndicator(),
-                // BannerWithDotsIndicator(),
-                // BannerWithDotsIndicator(),
-                // BannerWithDotsIndicator(),
-                // BannerWithDotsIndicator(),
-                // BannerWithDotsIndicator(),
-                // BannerWithDotsIndicator(),
+                  // BannerWithDotsIndicator(),
+                  // BannerWithDotsIndicator(),
+                  // BannerWithDotsIndicator(),
+                  // BannerWithDotsIndicator(),
+                  // BannerWithDotsIndicator(),
+                  // BannerWithDotsIndicator(),
+                  // BannerWithDotsIndicator(),
+                  // BannerWithDotsIndicator(),
 
-                SizedBox(
-                    height: 700, child: ItemCardData(streamController.stream)),
-              ],
-            ),
+                  ItemCardData(streamController.stream),
+                ],
+                // ),
+                // ),
+              // ),
+            // ),
           );
         });
   }
