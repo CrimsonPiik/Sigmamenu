@@ -78,6 +78,9 @@ class _ItemCardRectangleAndSquareState extends State<ItemCardRectangleAndSquare>
                     padding:
                         const EdgeInsets.symmetric(horizontal: kDefaultPaddin),
                     child: GridView.builder(
+                      // physics: NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+
                       itemCount: products.length,
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: Responsive.isDesktop(context)
@@ -105,7 +108,8 @@ class _ItemCardRectangleAndSquareState extends State<ItemCardRectangleAndSquare>
                     padding:
                         const EdgeInsets.symmetric(horizontal: kDefaultPaddin),
                     child: GridView.builder(
-                      physics: ClampingScrollPhysics(),
+                      // physics: NeverScrollableScrollPhysics(),
+                      // physics: ClampingScrollPhysics(),
                       shrinkWrap: true,
                       scrollDirection: Axis.vertical,
                       itemCount: products.length,

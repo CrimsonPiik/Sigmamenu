@@ -10,9 +10,9 @@ class ChangeLanguageButton extends StatefulWidget {
   State<ChangeLanguageButton> createState() => _ChangeLanguageButtonState();
 }
 
-class _ChangeLanguageButtonState extends State<ChangeLanguageButton> {
-  bool _languageEn = true;
+bool _languageEn = true;
 
+class _ChangeLanguageButtonState extends State<ChangeLanguageButton> {
   @override
   Widget build(BuildContext context) {
     return Stack(

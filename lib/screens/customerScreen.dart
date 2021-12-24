@@ -1,13 +1,16 @@
 import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:sigmamenu/GeneralFunction/constaints.dart';
 import 'package:sigmamenu/GeneralFunction/storageManager.dart';
 import 'package:sigmamenu/provider/darkLightMode.dart';
 import 'package:sigmamenu/screens/adminPanel.dart';
+import 'package:sigmamenu/screens/home/components/ItemCardRectangle.dart';
 import 'package:sigmamenu/screens/home/components/categories.dart';
 import 'package:sigmamenu/screens/home/components/itemCardData.dart';
 import 'package:sigmamenu/screens/widgets/bannerWithDotsIndicator.dart';
 import 'package:sigmamenu/style/CommonUI.dart';
+import 'package:sigmamenu/style/ScreenUtil.dart';
 
 StreamController<int> streamController = StreamController<int>.broadcast();
 bool isLight = true;
@@ -70,18 +73,29 @@ class _CustomerScreenState extends State<CustomerScreen>
           for (var item in shots) {
             categoriesList.add(item.id.toString());
           }
-
           print("Categories : " + categoriesList.toString());
-          // DateTime.now().millisecondsSinceEpoch.toString());
-          return
-              Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              SizedBox(height:15),
-              BannerWithDotsIndicator(),
-              Categories(),
-              ItemCardData(streamController.stream),
-            ],
+
+          return SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                SizedBox(height: 15),
+                BannerWithDotsIndicator(),
+                Categories(),
+
+                // BannerWithDotsIndicator(),
+                // BannerWithDotsIndicator(),
+                // BannerWithDotsIndicator(),
+                // BannerWithDotsIndicator(),
+                // BannerWithDotsIndicator(),
+                // BannerWithDotsIndicator(),
+                // BannerWithDotsIndicator(),
+                // BannerWithDotsIndicator(),
+
+                SizedBox(
+                    height: 700, child: ItemCardData(streamController.stream)),
+              ],
+            ),
           );
         });
   }

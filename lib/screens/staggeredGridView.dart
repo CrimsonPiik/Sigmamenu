@@ -92,9 +92,7 @@ class _StaggerdGridViewState extends State<StaggerdGridView> {
                           //             },
                           //           ),
                           //     SizedBox(width: 5),
-                          Container(
-                            child: ChangeLanguageButton(),
-                          ),
+                          ChangeLanguageButton(),
                         ],
                       ),
                     ),
