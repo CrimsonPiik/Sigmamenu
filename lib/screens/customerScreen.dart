@@ -81,30 +81,29 @@ class _CustomerScreenState extends State<CustomerScreen>
               // height: MediaQuery.of(context).size.height,
               // child:
               // Expanded(
-            // child: SingleChildScrollView(
-              // child: 
+              // child: SingleChildScrollView(
+              // child:
               Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  SizedBox(height: 15),
-                  // BannerWithDotsIndicator(),
-                  // Categories(),
-                  // BannerWithDotsIndicator(),
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              SizedBox(height: 15),
+              BannerWithDotsIndicator(),
+              Categories(),
+              // BannerWithDotsIndicator(),
+              // BannerWithDotsIndicator(),
+              // BannerWithDotsIndicator(),
+              // BannerWithDotsIndicator(),
+              // BannerWithDotsIndicator(),
+              // BannerWithDotsIndicator(),
+              // BannerWithDotsIndicator(),
+              // BannerWithDotsIndicator(),
+              // BannerWithDotsIndicator(),
 
-                  // BannerWithDotsIndicator(),
-                  // BannerWithDotsIndicator(),
-                  // BannerWithDotsIndicator(),
-                  // BannerWithDotsIndicator(),
-                  // BannerWithDotsIndicator(),
-                  // BannerWithDotsIndicator(),
-                  // BannerWithDotsIndicator(),
-                  // BannerWithDotsIndicator(),
-
-                  ItemCardData(streamController.stream),
-                ],
-                // ),
-                // ),
-              // ),
+              ItemCardData(streamController.stream),
+            ],
+            // ),
+            // ),
+            // ),
             // ),
           );
         });

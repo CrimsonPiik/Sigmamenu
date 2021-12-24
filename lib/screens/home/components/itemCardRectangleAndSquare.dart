@@ -48,44 +48,41 @@ class _ItemCardRectangleAndSquareState extends State<ItemCardRectangleAndSquare>
   Widget build(BuildContext context) {
     List<Product> products = widget.productList;
     return Expanded(
-      child: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            BannerWithDotsIndicator(),
-            Categories(),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                // Align(
-                // alignment: Alignment.topRight,
-                // padding: const EdgeInsets.symmetric(horizontal: 6),
-                // /child:
-                IconButton(
-                  icon: AnimatedIcon(
-                    icon: AnimatedIcons.view_list,
-                    progress: animationController,
-                  ),
-                  onPressed: () {
-                    ///toggle controls the animation Forward and Backward
-                    toggle();
-                    setState(() {
-                      Session.isList = !Session.isList;
-                    });
-                  },
-                  // )
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              // Align(
+              // alignment: Alignment.topRight,
+              // padding: const EdgeInsets.symmetric(horizontal: 6),
+              // /child:
+              IconButton(
+                icon: AnimatedIcon(
+                  icon: AnimatedIcons.view_list,
+                  progress: animationController,
                 ),
-                SizedBox(width: 20),
-              ],
-            ),
-            Session.isList
-                ? Padding(
+                onPressed: () {
+                  ///toggle controls the animation Forward and Backward
+                  toggle();
+                  setState(() {
+                    Session.isList = !Session.isList;
+                  });
+                },
+                // )
+              ),
+              SizedBox(width: 20),
+            ],
+          ),
+          Session.isList
+              ? Expanded(
+                child: Padding(
                     padding:
                         const EdgeInsets.symmetric(horizontal: kDefaultPaddin),
                     child: GridView.builder(
                       // physics: NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
-
+              
                       itemCount: products.length,
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: Responsive.isDesktop(context)
@@ -106,8 +103,10 @@ class _ItemCardRectangleAndSquareState extends State<ItemCardRectangleAndSquare>
                         product: products[index],
                       ),
                     ),
-                  )
-                : Padding(
+                  ),
+              )
+              : Expanded(
+                child: Padding(
                     padding:
                         const EdgeInsets.symmetric(horizontal: kDefaultPaddin),
                     child: GridView.builder(
@@ -130,8 +129,8 @@ class _ItemCardRectangleAndSquareState extends State<ItemCardRectangleAndSquare>
                       ),
                     ),
                   ),
-          ],
-        ),
+              ),
+        ],
       ),
     );
   }
