@@ -80,8 +80,8 @@ class _AdminPanelDrawerState extends State<AdminPanelDrawer> {
                 ? Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(height: 25),
-                      AddDashboardButton(),
+                      // SizedBox(height: 5),
+                      // AddDashboardButton(),
                       EditStaggerdGridView(),
                     ],
                   )
