@@ -6,7 +6,7 @@ import 'package:sigmamenu/GeneralFunction/Strings.dart';
 import 'package:sigmamenu/GeneralFunction/firebase_uploader_web.dart';
 import 'package:sigmamenu/GeneralFunction/random_id_generator.dart';
 import 'package:sigmamenu/models/staggerd.dart';
-import 'package:sigmamenu/screens/widgets/DashboardTile.dart';
+import 'package:sigmamenu/screens/widgets/DashboardTileAdmin.dart';
 import 'package:sigmamenu/style/CommonUI.dart';
 import 'package:sigmamenu/style/ScreenUtil.dart';
 
@@ -47,6 +47,8 @@ class _EditStaggerdGridViewState extends State<EditStaggerdGridView> {
           }
           for (int index = 0; index < staggerdAdmin.length; index++) {
             tiles.add(DashBoardTileAdmin(
+              id: staggerdAdmin[index].id,
+              name: staggerdAdmin[index].name,
               background: staggerdAdmin[index].image,
               routeName: staggerdAdmin[index].route,
               text: staggerdAdmin[index].name,
@@ -68,6 +70,8 @@ class _EditStaggerdGridViewState extends State<EditStaggerdGridView> {
                         itemCount: staggerdAdmin.length,
                         itemBuilder: (BuildContext context, int index) =>
                             DashBoardTileAdmin(
+                                name: staggerdAdmin[index].name,
+                                id: staggerdAdmin[index].id,
                                 background: staggerdAdmin[index].image,
                                 routeName: staggerdAdmin[index].route,
                                 text: staggerdAdmin[index].name),
