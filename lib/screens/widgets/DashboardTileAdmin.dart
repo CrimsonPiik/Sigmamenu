@@ -216,7 +216,7 @@ class _DashBoardTileAdminState extends State<DashBoardTileAdmin> {
                               children: [
                                 ElevatedButton(
                                   onPressed: () {
-                                    Navigator.of(context).pop();
+                                    Navigator.pop(context);
                                   },
                                   style: ButtonStyle(
                                     backgroundColor:
@@ -235,7 +235,7 @@ class _DashBoardTileAdminState extends State<DashBoardTileAdmin> {
                                         .doc(widget.id)
                                         .delete();
 
-                                    Navigator.of(context).pop();
+                                    Navigator.pop(context);
                                   },
                                   style: ButtonStyle(
                                     backgroundColor: MaterialStateProperty.all(
@@ -591,7 +591,7 @@ class _DashBoardTileAdminState extends State<DashBoardTileAdmin> {
                                   _imageController =
                                       TextEditingController(text: widget.image);
                                 });
-                                Navigator.of(context).pop();
+                                    Navigator.pop(context);
                               },
                               style: ButtonStyle(
                                 backgroundColor:
@@ -619,7 +619,7 @@ class _DashBoardTileAdminState extends State<DashBoardTileAdmin> {
                                         _superCategoryController.text,
                                     'image': _imageController.text,
                                   }).whenComplete(() {
-                                    Navigator.of(context).pop();
+                                    Navigator.pop(context);
 
                                     CommonUI.successDialog(context,
                                         message: "Saved Successfully");

@@ -414,7 +414,7 @@ class _EditStaggerdGridViewState extends State<EditStaggerdGridView> {
                             _nameArDashboardController.clear();
                             _routeDashboardController.clear();
                             _superCategoryDashboardController.clear();
-                            Navigator.of(context).pop();
+                                    Navigator.pop(context);
                           },
                           style: ButtonStyle(
                             backgroundColor:
@@ -462,7 +462,7 @@ class _EditStaggerdGridViewState extends State<EditStaggerdGridView> {
                                 _routeDashboardController.clear();
                                 _superCategoryDashboardController.clear();
 
-                                Navigator.of(context).pop();
+                                    Navigator.pop(context);
 
                                 CommonUI.successDialog(context,
                                     message: "Saved successfully");

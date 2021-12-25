@@ -216,7 +216,7 @@ class _AddBannerButtonState extends State<AddBannerButton> {
                                           _imageBannerController.text;
 
                                       _imageBannerController.clear();
-                                      Navigator.of(context).pop();
+                                    Navigator.pop(context);
                                     },
                                     style: ButtonStyle(
                                       backgroundColor:
@@ -235,7 +235,7 @@ class _AddBannerButtonState extends State<AddBannerButton> {
                                         // setState(() {
                                         //   error = true;
                                         // });
-                                        Navigator.of(context).pop();
+                                    Navigator.pop(context);
                                       } else {
                                         _formKey.currentState!.save();
                                         if (_formKey.currentState!.validate()) {
@@ -256,7 +256,7 @@ class _AddBannerButtonState extends State<AddBannerButton> {
                                                 _imageBannerController.text;
 
                                             _imageBannerController.clear();
-                                            Navigator.of(context).pop();
+                                    Navigator.pop(context);
 
                                             CommonUI.successDialog(context,
                                                 message: "Added successfully");

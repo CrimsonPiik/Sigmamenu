@@ -117,10 +117,12 @@ class UserState with ChangeNotifier {
   Future deleteUser() async {
     print(email + ' ' + _email);
     try {
-      return await AuthService().deleteUser(_email, _password);
+      return await AuthService().deleteUser('abcdefg@gmail.com', '123456');
     } catch (e) {
       print('Email deleting user Error: ' + e.toString());
       return e;
     }
   }
+
+  notifyListeners();
 }

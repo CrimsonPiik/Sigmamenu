@@ -62,7 +62,7 @@ class FirebaseUserStreamBuilder extends StatelessWidget {
                   child: CommonUI.loading(context),
                 );
               }
-//  if no users are found, it creates a new user ~Huthaifa
+//  if no users are found, it creates a new user 
               // if (snapshot.data!.docs.isEmpty) {
               //   FirebaseAuth.instance.signOut();
               // }

@@ -111,7 +111,7 @@ class _AddCategoryButtonState extends State<AddCategoryButton> {
                                           .toLowerCase()
                                           .toTitleCase())
                                       .set({}).whenComplete(() {
-                                    Navigator.of(context).pop();
+                                    Navigator.pop(context);
                                     newCollectionNameController.clear();
                 
                                     CommonUI.successDialog(context,

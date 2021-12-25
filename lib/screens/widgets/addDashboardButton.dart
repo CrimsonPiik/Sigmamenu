@@ -301,7 +301,7 @@ class _AddDashboardButtonState extends State<AddDashboardButton> {
                             _nameArDashboardController.clear();
                             _routeDashboardController.clear();
                             _superCategoryDashboardController.clear();
-                            Navigator.of(context).pop();
+                                    Navigator.pop(context);
                           },
                           style: ButtonStyle(
                             backgroundColor:
@@ -349,7 +349,7 @@ class _AddDashboardButtonState extends State<AddDashboardButton> {
                                 _routeDashboardController.clear();
                                 _superCategoryDashboardController.clear();
 
-                                Navigator.of(context).pop();
+                                    Navigator.pop(context);
 
                                 CommonUI.successDialog(context,
                                     message: "Saved successfully");

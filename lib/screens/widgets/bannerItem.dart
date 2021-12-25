@@ -490,7 +490,7 @@ class _BannersItemState extends State<BannersItem> {
                               children: [
                                 ElevatedButton(
                                   onPressed: () {
-                                    Navigator.of(context).pop();
+                                    Navigator.pop(context);
                                   },
                                   style: ButtonStyle(
                                     backgroundColor:
@@ -508,7 +508,7 @@ class _BannersItemState extends State<BannersItem> {
                                         .collection('Banner')
                                         .doc(widget.data.id)
                                         .delete();
-                                    Navigator.of(context).pop();
+                                    Navigator.pop(context);
                                   },
                                   style: ButtonStyle(
                                     backgroundColor: MaterialStateProperty.all(

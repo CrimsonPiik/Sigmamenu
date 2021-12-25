@@ -172,7 +172,7 @@ class CommonUI {
                 if (onDone != null) {
                   onDone();
                 }
-                Navigator.of(context).pop();
+                Navigator.pop(context);
               },
             ),
           ],

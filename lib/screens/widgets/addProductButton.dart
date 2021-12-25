@@ -374,7 +374,7 @@ class _AddProductButtonState extends State<AddProductButton> {
                               _nameEnController.clear();
                               _nameArController.clear();
 
-                              Navigator.of(context).pop();
+                                    Navigator.pop(context);
                             },
                             style: ButtonStyle(
                               backgroundColor:
@@ -425,7 +425,7 @@ class _AddProductButtonState extends State<AddProductButton> {
                                   _nameEnController.clear();
                                   _nameArController.clear();
 
-                                  Navigator.of(context).pop();
+                                    Navigator.pop(context);
 
                                   CommonUI.successDialog(context,
                                       message: "Added Successfully");

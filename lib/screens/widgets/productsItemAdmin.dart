@@ -281,7 +281,7 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                               children: [
                                 ElevatedButton(
                                   onPressed: () {
-                                    Navigator.of(context).pop();
+                                    Navigator.pop(context);
                                   },
                                   style: ButtonStyle(
                                     backgroundColor:
@@ -299,7 +299,7 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                         .collection(widget.product.category)
                                         .doc(widget.product.id)
                                         .delete();
-                                    Navigator.of(context).pop();
+                                    Navigator.pop(context);
                                   },
                                   style: ButtonStyle(
                                     backgroundColor: MaterialStateProperty.all(
@@ -654,7 +654,7 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                   _imageController = TextEditingController(
                                       text: widget.product.image);
                                 });
-                                Navigator.of(context).pop();
+                                    Navigator.pop(context);
                               },
                               style: ButtonStyle(
                                 backgroundColor:
@@ -685,7 +685,7 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                     'image': _imageController.text,
                                     'weight': _value
                                   }).whenComplete(() {
-                                    Navigator.of(context).pop();
+                                    Navigator.pop(context);
 
                                     CommonUI.successDialog(context,
                                         message: "Saved Successfully");
@@ -743,7 +743,7 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
         return Dismissible(
           direction: DismissDirection.down,
           onDismissed: (_) {
-            Navigator.of(context).pop();
+                                    Navigator.pop(context);
           },
           key: Key("key"),
           child: SafeArea(

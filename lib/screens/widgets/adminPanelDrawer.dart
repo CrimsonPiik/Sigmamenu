@@ -89,9 +89,10 @@ class _AdminPanelDrawerState extends State<AdminPanelDrawer> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SizedBox(height: 25),
-                      user.role == 'admin' ? AddUserButton() : Container(),
+                      // user.role == 'admin' ? AddUserButton() : Container(),
                       SizedBox(height: 12),
                       AllUsers(),
+                      AddUserButton(),
                       // user.role == 'admin' ? AllUsers() : MyUser(user: user)
                     ],
                   );

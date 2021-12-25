@@ -1,9 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:provider/provider.dart';
+import 'package:sigmamenu/Authentication/AuthService.dart';
 import 'package:sigmamenu/models/user.dart';
 import 'package:sigmamenu/provider/userStateProvider.dart';
 import 'package:sigmamenu/style/AssetsManager.dart';
@@ -113,7 +115,7 @@ class _UsersCardState extends State<UsersCard> {
           ),
           SlidableAction(
             onPressed: (context) {
-              _showDeleteDialog(context);
+              _showDeleteDialog(context, widget.data);
             },
             backgroundColor: Colors.red,
             foregroundColor: Colors.white,
@@ -253,7 +255,7 @@ class _UsersCardState extends State<UsersCard> {
 // =====                                    DELETE                                        =====
 // =====  =====  ===== =====  =====  ===== =====  =====  ===== =====  =====  ===== =====  =====
 
-  _showDeleteDialog(BuildContext context) {
+  _showDeleteDialog(BuildContext context, AppUser user) {
     Size size = MediaQuery.of(context).size;
     showDialog(
       context: context,
@@ -315,14 +317,20 @@ class _UsersCardState extends State<UsersCard> {
                                 SizedBox(width: 20),
                                 ElevatedButton(
                                   onPressed: () async {
-                                    await Provider.of<UserState>(context,
-                                            listen: false)
-                                        .deleteUser();
+                                    // await AuthService()
+                                    //     .deleteUser);
+                                    // await Provider.of<UserState>(context,
+                                    //         listen: false)
+                                    //     .deleteUser();
+                                    // await FirebaseFirestore.instance
+                                    // .collection('users')
+                                    // .doc(widget.data.id)
+                                    // .delete();
+
                                     await FirebaseFirestore.instance
                                         .collection('users')
-                                        .doc(widget.data.id)
+                                        .doc(user.id)
                                         .delete();
-
                                     Navigator.pop(context);
                                   },
                                   style: ButtonStyle(
@@ -464,7 +472,7 @@ class _UsersCardState extends State<UsersCard> {
                                     text: user.phone.toString());
                               });
 
-                              Navigator.of(context).pop();
+                                    Navigator.pop(context);
                             },
                             style: ButtonStyle(
                               backgroundColor:
@@ -489,7 +497,7 @@ class _UsersCardState extends State<UsersCard> {
                                   'phone': _phoneController.text,
                                   'email': _emailController.text,
                                 }).whenComplete(() {
-                                  Navigator.of(context).pop();
+                                    Navigator.pop(context);
 
                                   CommonUI.successDialog(context,
                                       message: "Saved successfully");

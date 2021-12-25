@@ -173,7 +173,7 @@ class _CategoriesWithDeleteButtonState
                               children: [
                                 ElevatedButton(
                                   onPressed: () {
-                                    Navigator.of(context).pop();
+                                    Navigator.pop(context);
                                   },
                                   style: ButtonStyle(
                                     backgroundColor:
@@ -199,7 +199,7 @@ class _CategoriesWithDeleteButtonState
                                       selectedIndex = 0;
                                     });
                                     streamController.add(selectedIndex);
-                                    Navigator.of(context).pop();
+                                    Navigator.pop(context);
                                   },
                                   style: ButtonStyle(
                                     backgroundColor: MaterialStateProperty.all(
