@@ -10,7 +10,6 @@ import 'package:sigmamenu/provider/userStateProvider.dart';
 import 'package:sigmamenu/screens/home/home_screen.dart';
 import 'package:sigmamenu/screens/staggeredGridView.dart';
 import 'package:sigmamenu/screens/widgets/adminDrawer.dart';
-import 'package:sigmamenu/screens/widgets/editDashboardAdmin.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

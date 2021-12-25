@@ -70,7 +70,6 @@ class _AddDashboardButtonState extends State<AddDashboardButton> {
 // =====  =====  ===== =====  =====  ===== =====  =====  ===== =====  =====  ===== =====  =====
 
   void showDialogWithFields() {
-    Size size = MediaQuery.of(context).size;
     showDialog(
       context: context,
       builder: (BuildContext context) {

@@ -3,8 +3,6 @@ import 'package:sigmamenu/GeneralFunction/constaints.dart';
 import 'package:sigmamenu/models/product.dart';
 import 'package:sigmamenu/screens/home/components/ItemCardRectangle.dart';
 import 'package:sigmamenu/screens/home/components/ItemCardSquares.dart';
-import 'package:sigmamenu/screens/home/components/categories.dart';
-import 'package:sigmamenu/screens/widgets/bannerWithDotsIndicator.dart';
 import 'package:sigmamenu/style/ScreenUtil.dart';
 import 'package:sigmamenu/style/Session.dart';
 
