@@ -47,9 +47,13 @@ class _EditStaggerdGridViewState extends State<EditStaggerdGridView> {
           }
           for (int index = 0; index < staggerdAdmin.length; index++) {
             tiles.add(DashBoardTileAdmin(
-              id: staggerdAdmin[index].id,
               name: staggerdAdmin[index].name,
-              background: staggerdAdmin[index].image,
+              nameAr: staggerdAdmin[index].nameAr,
+              id: staggerdAdmin[index].id,
+              isPublished: staggerdAdmin[index].isPublished,
+              superCategory: staggerdAdmin[index].superCategory,
+              route: staggerdAdmin[index].route,
+              image: staggerdAdmin[index].image,
               routeName: staggerdAdmin[index].route,
               text: staggerdAdmin[index].name,
             ));
@@ -64,15 +68,20 @@ class _EditStaggerdGridViewState extends State<EditStaggerdGridView> {
                 children: [
                   Container(
                       height: 500,
-                      width: 300,
+                      width: 400,
                       child: StaggeredGridView.countBuilder(
                         crossAxisCount: 4,
                         itemCount: staggerdAdmin.length,
                         itemBuilder: (BuildContext context, int index) =>
                             DashBoardTileAdmin(
                                 name: staggerdAdmin[index].name,
+                                nameAr: staggerdAdmin[index].nameAr,
+                                route: staggerdAdmin[index].route,
+                                superCategory:
+                                    staggerdAdmin[index].superCategory,
                                 id: staggerdAdmin[index].id,
-                                background: staggerdAdmin[index].image,
+                                isPublished: staggerdAdmin[index].isPublished,
+                                image: staggerdAdmin[index].image,
                                 routeName: staggerdAdmin[index].route,
                                 text: staggerdAdmin[index].name),
                         staggeredTileBuilder: (index) => staggerdAdmin.length ==

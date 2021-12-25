@@ -18,7 +18,10 @@ class _StaggerdGridViewState extends State<StaggerdGridView> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
-        stream: FirebaseFirestore.instance.collection('dashboard').snapshots(),
+        stream: FirebaseFirestore.instance
+            .collection('dashboard')
+            .where('isPublished', isEqualTo: true)
+            .snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasError) {
             return CommonUI.error(snapshot.error.toString());
