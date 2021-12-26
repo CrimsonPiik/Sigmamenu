@@ -29,7 +29,7 @@ class Style {
 }
 
 class FontStyle {
-  static var primaryFont = "Montserrat";
+  static var primaryFont = "<Montserrat>";
   static const secondaryFont = "OpenSans";
 
   static TextStyle title(

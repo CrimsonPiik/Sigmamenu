@@ -166,9 +166,10 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                                     ? Responsive.width(context) / 2
                                     : Responsive.width(context),
                                 padding: EdgeInsets.only(
-                                    left: kDefaultPaddin * 1.1,
-                                    right: kDefaultPaddin * 1.1,
-                                    bottom: kDefaultPaddin),
+                                  left: kDefaultPaddin * 1.1,
+                                  right: kDefaultPaddin * 1.1,
+                                  bottom: kDefaultPaddin * 1.1,
+                                ),
                                 decoration: BoxDecoration(
                                   color: Colors.white,
                                   borderRadius: BorderRadius.only(
@@ -180,6 +181,10 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: <Widget>[
                                     Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Container(
                                             width: 140,
@@ -192,58 +197,76 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                                                 ImageAssets.foodplaceholder,
                                                 fit: BoxFit.cover)),
                                         SizedBox(width: 20),
-                                        Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            SizedBox(height: 30),
-                                            Container(
-                                              width: Responsive.isMiniMobile(
-                                                      context)
-                                                  ? 100
-                                                  : 140,
-                                              child: Text(
-                                                ProjectLanguage.isLTR()
-                                                    ? widget.product.nameEn
-                                                    : widget.product.nameAr,
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .headline4!
-                                                    .copyWith(
-                                                      color: Colors.black,
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      fontSize: Responsive
-                                                              .isMiniMobile(
-                                                                  context)
-                                                          ? 14
-                                                          : 17,
-                                                    ),
-                                                maxLines: 3,
-                                                textAlign: TextAlign.start,
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              top: kDefaultPaddin * 1.8),
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Container(
+                                                width: Responsive.isMiniMobile(
+                                                        context)
+                                                    ? 100
+                                                    : 140,
+                                                child: Text(
+                                                  ProjectLanguage.isLTR()
+                                                      ? widget.product.nameEn
+                                                      : widget.product.nameAr,
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .headline4!
+                                                      .copyWith(
+                                                        color: Colors.black,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        fontSize: Responsive
+                                                                .isMiniMobile(
+                                                                    context)
+                                                            ? 16
+                                                            : 19,
+                                                      ),
+                                                  maxLines: 3,
+                                                  textAlign: TextAlign.start,
+                                                ),
                                               ),
-                                            ),
-                                            SizedBox(height: 9),
-                                            Container(
-                                              width: 155,
-                                              child: Text(
-                                                ProjectLanguage.isLTR()
-                                                    ? "${widget.product.descriptionEn}"
-                                                    : "${widget.product.descriptionAr}",
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .headline3!
-                                                    .copyWith(
-                                                      color: Colors.black,
-                                                      fontSize: Responsive
-                                                              .isMiniMobile(
-                                                                  context)
-                                                          ? 9
-                                                          : 11,
-                                                    ),
+                                              //       CommonUI.text(
+                                              //           context: context,
+                                              //           text: ProjectLanguage
+                                              //                   .isLTR()
+                                              //               ? widget
+                                              //                   .product.nameEn
+                                              //               : widget
+                                              //                   .product.nameAr,
+                                              //           textAlign:
+                                              //               TextAlign.start,
+                                              //           style: FontStyle.subTitle(
+                                              //               context: context,
+                                              //               fontWeight:
+                                              //                   FontWeight.w600,
+                                              //               color:
+                                              //                   Colors.black)),
+                                              // ),
+                                              SizedBox(height: 6),
+                                              Container(
+                                                width: 155,
+                                                child: CommonUI.text(
+                                                    context: context,
+                                                    text:
+                                                        ProjectLanguage.isLTR()
+                                                            ? widget.product
+                                                                .descriptionEn
+                                                            : widget.product
+                                                                .descriptionAr,
+                                                    textAlign: TextAlign.start,
+                                                    style: FontStyle.smaller(
+                                                        context: context,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        color: Colors.black)),
                                               ),
-                                            ),
-                                          ],
+                                            ],
+                                          ),
                                         ),
                                       ],
                                     ),
@@ -251,29 +274,14 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                                     Padding(
                                       padding: const EdgeInsets.only(top: 15.0),
                                       child: Center(
-                                        child: RichText(
-                                          text: TextSpan(
-                                            children: [
-                                              // TextSpan(
-                                              //     text:
-                                              //         ProjectLanguage.isLTR()
-                                              //             ? "Price\n"
-                                              //             : "السعر\n"),
-                                              TextSpan(
-                                                text:
-                                                    "${widget.product.price} JOD",
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .headline6!
-                                                    .copyWith(
-                                                      color: Colors.black,
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                    ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
+                                        child: CommonUI.text(
+                                            context: context,
+                                            text: "${widget.product.price} JOD",
+                                            textAlign: TextAlign.center,
+                                            style: FontStyle.title(
+                                                context: context,
+                                                fontWeight: FontWeight.bold,
+                                                color: Colors.black)),
                                       ),
                                     ),
                                     Padding(
@@ -283,60 +291,6 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          // Center(
-                                          //   child: Container(
-                                          //     decoration: BoxDecoration(
-                                          //       borderRadius:
-                                          //           BorderRadius.circular(24),
-                                          //       color:
-                                          //           Colors.grey.withOpacity(0.5),
-                                          //     ),
-                                          //     height: 2,
-                                          //     width: 200.0,
-                                          //   ),
-                                          // ),
-                                          // Container(
-                                          //   width: Responsive.isDesktop(context)
-                                          //       ? Responsive.width(context) / 2.2
-                                          //       : Responsive.width(context) /
-                                          //           1.35,
-                                          //   child: Text(
-                                          //     ProjectLanguage.isLTR()
-                                          //         ? "Description"
-                                          //         : "الوصف",
-                                          //     style: Theme.of(context)
-                                          //         .textTheme
-                                          //         .headline4!
-                                          //         .copyWith(
-                                          //           color: Colors.black,
-                                          //           fontWeight: FontWeight.bold,
-                                          //           fontSize:
-                                          //               Responsive.isMiniMobile(
-                                          //                       context)
-                                          //                   ? 16
-                                          //                   : 19,
-                                          //         ),
-                                          //   ),
-                                          // ),
-                                          // SizedBox(height: 12),
-                                          // Container(
-                                          //   child: Text(
-                                          //     ProjectLanguage.isLTR()
-                                          //         ? "${widget.product.descriptionEn}"
-                                          //         : "${widget.product.descriptionAr}",
-                                          //     style: Theme.of(context)
-                                          //         .textTheme
-                                          //         .headline3!
-                                          //         .copyWith(
-                                          //           color: Colors.black,
-                                          //           fontSize:
-                                          //               Responsive.isMiniMobile(
-                                          //                       context)
-                                          //                   ? 10
-                                          //                   : 12,
-                                          //         ),
-                                          //   ),
-                                          // ),
                                           Padding(
                                             padding: const EdgeInsets.only(
                                                 top: 12.0),
@@ -360,34 +314,24 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                                                   MainAxisAlignment
                                                       .spaceBetween,
                                               children: [
-                                                Text(
-                                                  'Size',
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .headline3!
-                                                      .copyWith(
-                                                        color: Colors.black,
-                                                        fontSize: Responsive
-                                                                .isMiniMobile(
-                                                                    context)
-                                                            ? 10
-                                                            : 12,
-                                                      ),
-                                                ),
-                                                Text(
-                                                  'Grande 16 fl oz',
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .headline3!
-                                                      .copyWith(
-                                                        color: Colors.black,
-                                                        fontSize: Responsive
-                                                                .isMiniMobile(
-                                                                    context)
-                                                            ? 10
-                                                            : 12,
-                                                      ),
-                                                ),
+                                                CommonUI.text(
+                                                    context: context,
+                                                    text: 'Size',
+                                                    textAlign: TextAlign.center,
+                                                    style: FontStyle.small(
+                                                        context: context,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        color: Colors.black)),
+                                                CommonUI.text(
+                                                    context: context,
+                                                    text: 'Grande 16 fl oz',
+                                                    textAlign: TextAlign.center,
+                                                    style: FontStyle.small(
+                                                        context: context,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        color: Colors.black)),
                                               ],
                                             ),
                                           ),
@@ -409,34 +353,24 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                                                   MainAxisAlignment
                                                       .spaceBetween,
                                               children: [
-                                                Text(
-                                                  'Size',
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .headline3!
-                                                      .copyWith(
-                                                        color: Colors.black,
-                                                        fontSize: Responsive
-                                                                .isMiniMobile(
-                                                                    context)
-                                                            ? 10
-                                                            : 12,
-                                                      ),
-                                                ),
-                                                Text(
-                                                  'Grande 16 fl oz',
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .headline3!
-                                                      .copyWith(
-                                                        color: Colors.black,
-                                                        fontSize: Responsive
-                                                                .isMiniMobile(
-                                                                    context)
-                                                            ? 10
-                                                            : 12,
-                                                      ),
-                                                ),
+                                                CommonUI.text(
+                                                    context: context,
+                                                    text: 'Size',
+                                                    textAlign: TextAlign.center,
+                                                    style: FontStyle.small(
+                                                        context: context,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        color: Colors.black)),
+                                                CommonUI.text(
+                                                    context: context,
+                                                    text: 'Grande 16 fl oz',
+                                                    textAlign: TextAlign.center,
+                                                    style: FontStyle.small(
+                                                        context: context,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        color: Colors.black)),
                                               ],
                                             ),
                                           ),
@@ -458,34 +392,24 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                                                   MainAxisAlignment
                                                       .spaceBetween,
                                               children: [
-                                                Text(
-                                                  'Add-ins',
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .headline3!
-                                                      .copyWith(
-                                                        color: Colors.black,
-                                                        fontSize: Responsive
-                                                                .isMiniMobile(
-                                                                    context)
-                                                            ? 10
-                                                            : 12,
-                                                      ),
-                                                ),
-                                                Text(
-                                                  'Regular Water',
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .headline3!
-                                                      .copyWith(
-                                                        color: Colors.black,
-                                                        fontSize: Responsive
-                                                                .isMiniMobile(
-                                                                    context)
-                                                            ? 10
-                                                            : 12,
-                                                      ),
-                                                ),
+                                                CommonUI.text(
+                                                    context: context,
+                                                    text: 'Add-ins',
+                                                    textAlign: TextAlign.center,
+                                                    style: FontStyle.small(
+                                                        context: context,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        color: Colors.black)),
+                                                CommonUI.text(
+                                                    context: context,
+                                                    text: 'Regular Water',
+                                                    textAlign: TextAlign.center,
+                                                    style: FontStyle.small(
+                                                        context: context,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        color: Colors.black)),
                                               ],
                                             ),
                                           ),
@@ -507,34 +431,24 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                                                   MainAxisAlignment
                                                       .spaceBetween,
                                               children: [
-                                                Text(
-                                                  'Flavors',
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .headline3!
-                                                      .copyWith(
-                                                        color: Colors.black,
-                                                        fontSize: Responsive
-                                                                .isMiniMobile(
-                                                                    context)
-                                                            ? 10
-                                                            : 12,
-                                                      ),
-                                                ),
-                                                Text(
-                                                  'Vanilla',
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .headline3!
-                                                      .copyWith(
-                                                        color: Colors.black,
-                                                        fontSize: Responsive
-                                                                .isMiniMobile(
-                                                                    context)
-                                                            ? 10
-                                                            : 12,
-                                                      ),
-                                                ),
+                                                CommonUI.text(
+                                                    context: context,
+                                                    text: 'Flavors',
+                                                    textAlign: TextAlign.center,
+                                                    style: FontStyle.small(
+                                                        context: context,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        color: Colors.black)),
+                                                CommonUI.text(
+                                                    context: context,
+                                                    text: 'Vanilla',
+                                                    textAlign: TextAlign.center,
+                                                    style: FontStyle.small(
+                                                        context: context,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        color: Colors.black)),
                                               ],
                                             ),
                                           ),
@@ -549,8 +463,7 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                                                 height: 1,
                                                 width: double.maxFinite - 20.0),
                                           ),
-
-                                          // SizedBox(height: 250),
+                                          SizedBox(height: 50),
                                         ],
                                       ),
                                     ),
