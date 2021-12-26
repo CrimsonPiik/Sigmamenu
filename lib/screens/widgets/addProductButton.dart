@@ -331,7 +331,7 @@ class _AddProductButtonState extends State<AddProductButton> {
                             context: context,
                             name: "Description",
                             hint: "Description",
-                            maxlength: 600,
+                            maxlength: 350,
                             minlines: 2,
                             controller: _descriptionEnController,
                             validate: FormBuilderValidators.compose([
@@ -345,7 +345,7 @@ class _AddProductButtonState extends State<AddProductButton> {
                             context: context,
                             name: "Description in Arabic (Optional)",
                             hint: "Description in Arabic (Optional)",
-                            maxlength: 600,
+                            maxlength: 350,
                             minlines: 2,
                             controller: _descriptionArController,
                             // validate: FormBuilderValidators.compose([

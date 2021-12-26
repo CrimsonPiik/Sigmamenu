@@ -155,332 +155,412 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                   clipBehavior: Clip.none,
                   alignment: Alignment.topCenter,
                   children: [
-                    Column(
-                      children: <Widget>[
-                        Stack(
-                          children: <Widget>[
-                            Container(
-                              width: Responsive.isDesktop(context)
-                                  ? Responsive.width(context) / 2
-                                  : Responsive.width(context),
-                              padding: EdgeInsets.only(
-                                  left: kDefaultPaddin * 1.5,
-                                  right: kDefaultPaddin * 1.5,
-                                  bottom: kDefaultPaddin),
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(24),
-                                  topRight: Radius.circular(24),
+                    SingleChildScrollView(
+                      scrollDirection: Axis.vertical,
+                      child: Column(
+                        children: <Widget>[
+                          Stack(
+                            children: <Widget>[
+                              Container(
+                                width: Responsive.isDesktop(context)
+                                    ? Responsive.width(context) / 2
+                                    : Responsive.width(context),
+                                padding: EdgeInsets.only(
+                                    left: kDefaultPaddin * 1.1,
+                                    right: kDefaultPaddin * 1.1,
+                                    bottom: kDefaultPaddin),
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(24),
+                                    topRight: Radius.circular(24),
+                                  ),
                                 ),
-                              ),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  Row(
-                                    children: [
-                                      Container(
-                                          width: 140,
-                                          height: 170,
-                                          padding: EdgeInsets.only(
-                                            top: kDefaultPaddin * 2,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Row(
+                                      children: [
+                                        Container(
+                                            width: 140,
+                                            height: 170,
+                                            padding: EdgeInsets.only(
+                                              top: kDefaultPaddin * 1.3,
+                                            ),
+                                            child: CommonUI.cachedImage(
+                                                widget.product.image,
+                                                ImageAssets.foodplaceholder,
+                                                fit: BoxFit.cover)),
+                                        SizedBox(width: 20),
+                                        Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            SizedBox(height: 30),
+                                            Container(
+                                              width: Responsive.isMiniMobile(
+                                                      context)
+                                                  ? 100
+                                                  : 140,
+                                              child: Text(
+                                                ProjectLanguage.isLTR()
+                                                    ? widget.product.nameEn
+                                                    : widget.product.nameAr,
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .headline4!
+                                                    .copyWith(
+                                                      color: Colors.black,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontSize: Responsive
+                                                              .isMiniMobile(
+                                                                  context)
+                                                          ? 14
+                                                          : 17,
+                                                    ),
+                                                maxLines: 3,
+                                                textAlign: TextAlign.start,
+                                              ),
+                                            ),
+                                            SizedBox(height: 9),
+                                            Container(
+                                              width: 155,
+                                              child: Text(
+                                                ProjectLanguage.isLTR()
+                                                    ? "${widget.product.descriptionEn}"
+                                                    : "${widget.product.descriptionAr}",
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .headline3!
+                                                    .copyWith(
+                                                      color: Colors.black,
+                                                      fontSize: Responsive
+                                                              .isMiniMobile(
+                                                                  context)
+                                                          ? 9
+                                                          : 11,
+                                                    ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                    // SizedBox(height: 25),
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: 15.0),
+                                      child: Center(
+                                        child: RichText(
+                                          text: TextSpan(
+                                            children: [
+                                              // TextSpan(
+                                              //     text:
+                                              //         ProjectLanguage.isLTR()
+                                              //             ? "Price\n"
+                                              //             : "السعر\n"),
+                                              TextSpan(
+                                                text:
+                                                    "${widget.product.price} JOD",
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .headline6!
+                                                    .copyWith(
+                                                      color: Colors.black,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                              ),
+                                            ],
                                           ),
-                                          child: CommonUI.cachedImage(
-                                              widget.product.image,
-                                              ImageAssets.foodplaceholder,
-                                              fit: BoxFit.cover)),
-                                      SizedBox(width: 20),
-                                      Column(
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding:
+                                          const EdgeInsets.only(bottom: 25.0),
+                                      child: Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          SizedBox(height: 6),
-                                          Container(
-                                            width:
-                                                Responsive.isMiniMobile(context)
-                                                    ? 100
-                                                    : 140,
-                                            child: Text(
-                                              ProjectLanguage.isLTR()
-                                                  ? widget.product.nameEn
-                                                  : widget.product.nameAr,
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .headline4!
-                                                  .copyWith(
-                                                    color: Colors.black,
-                                                    fontWeight: FontWeight.bold,
-                                                    fontSize:
-                                                        Responsive.isMiniMobile(
-                                                                context)
-                                                            ? 16
-                                                            : 19,
-                                                  ),
-                                              maxLines: 3,
-                                              textAlign: TextAlign.start,
+                                          // Center(
+                                          //   child: Container(
+                                          //     decoration: BoxDecoration(
+                                          //       borderRadius:
+                                          //           BorderRadius.circular(24),
+                                          //       color:
+                                          //           Colors.grey.withOpacity(0.5),
+                                          //     ),
+                                          //     height: 2,
+                                          //     width: 200.0,
+                                          //   ),
+                                          // ),
+                                          // Container(
+                                          //   width: Responsive.isDesktop(context)
+                                          //       ? Responsive.width(context) / 2.2
+                                          //       : Responsive.width(context) /
+                                          //           1.35,
+                                          //   child: Text(
+                                          //     ProjectLanguage.isLTR()
+                                          //         ? "Description"
+                                          //         : "الوصف",
+                                          //     style: Theme.of(context)
+                                          //         .textTheme
+                                          //         .headline4!
+                                          //         .copyWith(
+                                          //           color: Colors.black,
+                                          //           fontWeight: FontWeight.bold,
+                                          //           fontSize:
+                                          //               Responsive.isMiniMobile(
+                                          //                       context)
+                                          //                   ? 16
+                                          //                   : 19,
+                                          //         ),
+                                          //   ),
+                                          // ),
+                                          // SizedBox(height: 12),
+                                          // Container(
+                                          //   child: Text(
+                                          //     ProjectLanguage.isLTR()
+                                          //         ? "${widget.product.descriptionEn}"
+                                          //         : "${widget.product.descriptionAr}",
+                                          //     style: Theme.of(context)
+                                          //         .textTheme
+                                          //         .headline3!
+                                          //         .copyWith(
+                                          //           color: Colors.black,
+                                          //           fontSize:
+                                          //               Responsive.isMiniMobile(
+                                          //                       context)
+                                          //                   ? 10
+                                          //                   : 12,
+                                          //         ),
+                                          //   ),
+                                          // ),
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                top: 12.0),
+                                            child: Center(
+                                              child: Container(
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(24),
+                                                  color: Colors.grey
+                                                      .withOpacity(0.5),
+                                                ),
+                                                height: 1,
+                                                width: 200.0,
+                                              ),
                                             ),
                                           ),
-                                          SizedBox(height: 9),
-                                          RichText(
-                                            text: TextSpan(
+                                          Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
                                               children: [
-                                                TextSpan(
-                                                    text:
-                                                        ProjectLanguage.isLTR()
-                                                            ? "Price\n"
-                                                            : "السعر\n"),
-                                                TextSpan(
-                                                  text:
-                                                      "${widget.product.price} JOD",
+                                                Text(
+                                                  'Size',
                                                   style: Theme.of(context)
                                                       .textTheme
-                                                      .headline6!
+                                                      .headline3!
                                                       .copyWith(
                                                         color: Colors.black,
-                                                        fontWeight:
-                                                            FontWeight.bold,
+                                                        fontSize: Responsive
+                                                                .isMiniMobile(
+                                                                    context)
+                                                            ? 10
+                                                            : 12,
+                                                      ),
+                                                ),
+                                                Text(
+                                                  'Grande 16 fl oz',
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .headline3!
+                                                      .copyWith(
+                                                        color: Colors.black,
+                                                        fontSize: Responsive
+                                                                .isMiniMobile(
+                                                                    context)
+                                                            ? 10
+                                                            : 12,
                                                       ),
                                                 ),
                                               ],
                                             ),
                                           ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                  SizedBox(height: 25),
-                                  Padding(
-                                    padding:
-                                        const EdgeInsets.only(bottom: 25.0),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        // Center(
-                                        //   child: Container(
-                                        //     decoration: BoxDecoration(
-                                        //       borderRadius:
-                                        //           BorderRadius.circular(24),
-                                        //       color:
-                                        //           Colors.grey.withOpacity(0.5),
-                                        //     ),
-                                        //     height: 2,
-                                        //     width: 200.0,
-                                        //   ),
-                                        // ),
-                                        Container(
-                                          width: Responsive.isDesktop(context)
-                                              ? Responsive.width(context) / 2.2
-                                              : Responsive.width(context) /
-                                                  1.35,
-                                          child: Text(
-                                            ProjectLanguage.isLTR()
-                                                ? "Description"
-                                                : "الوصف",
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .headline4!
-                                                .copyWith(
-                                                  color: Colors.black,
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize:
-                                                      Responsive.isMiniMobile(
-                                                              context)
-                                                          ? 16
-                                                          : 19,
-                                                ),
-                                          ),
-                                        ),
-                                        SizedBox(height: 12),
-                                        Container(
-                                          child: Text(
-                                            ProjectLanguage.isLTR()
-                                                ? "${widget.product.descriptionEn}"
-                                                : "${widget.product.descriptionAr}",
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .headline3!
-                                                .copyWith(
-                                                  color: Colors.black,
-                                                  fontSize:
-                                                      Responsive.isMiniMobile(
-                                                              context)
-                                                          ? 10
-                                                          : 12,
-                                                ),
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(top: 12.0),
-                                          child: Center(
+                                          Center(
                                             child: Container(
-                                              decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(24),
-                                                color: Colors.grey
-                                                    .withOpacity(0.5),
-                                              ),
-                                              height: 2,
-                                              width: 200.0,
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(24),
+                                                  color: Colors.grey
+                                                      .withOpacity(0.5),
+                                                ),
+                                                height: 1,
+                                                width: double.maxFinite - 20.0),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Text(
+                                                  'Size',
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .headline3!
+                                                      .copyWith(
+                                                        color: Colors.black,
+                                                        fontSize: Responsive
+                                                                .isMiniMobile(
+                                                                    context)
+                                                            ? 10
+                                                            : 12,
+                                                      ),
+                                                ),
+                                                Text(
+                                                  'Grande 16 fl oz',
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .headline3!
+                                                      .copyWith(
+                                                        color: Colors.black,
+                                                        fontSize: Responsive
+                                                                .isMiniMobile(
+                                                                    context)
+                                                            ? 10
+                                                            : 12,
+                                                      ),
+                                                ),
+                                              ],
                                             ),
                                           ),
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Text(
-                                                'A',
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .headline3!
-                                                    .copyWith(
-                                                      color: Colors.black,
-                                                      fontSize: Responsive
-                                                              .isMiniMobile(
-                                                                  context)
-                                                          ? 10
-                                                          : 12,
-                                                    ),
-                                              ),
-                                              Text(
-                                                'B',
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .headline3!
-                                                    .copyWith(
-                                                      color: Colors.black,
-                                                      fontSize: Responsive
-                                                              .isMiniMobile(
-                                                                  context)
-                                                          ? 10
-                                                          : 12,
-                                                    ),
-                                              ),
-                                            ],
+                                          Center(
+                                            child: Container(
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(24),
+                                                  color: Colors.grey
+                                                      .withOpacity(0.5),
+                                                ),
+                                                height: 1,
+                                                width: double.maxFinite - 20.0),
                                           ),
-                                        ),
-                                        Center(
-                                          child: Container(
-                                              decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(24),
-                                                color: Colors.grey
-                                                    .withOpacity(0.5),
-                                              ),
-                                              height: 2,
-                                              width: double.maxFinite - 20.0),
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Text(
-                                                'A',
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .headline3!
-                                                    .copyWith(
-                                                      color: Colors.black,
-                                                      fontSize: Responsive
-                                                              .isMiniMobile(
-                                                                  context)
-                                                          ? 10
-                                                          : 12,
-                                                    ),
-                                              ),
-                                              Text(
-                                                'B',
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .headline3!
-                                                    .copyWith(
-                                                      color: Colors.black,
-                                                      fontSize: Responsive
-                                                              .isMiniMobile(
-                                                                  context)
-                                                          ? 10
-                                                          : 12,
-                                                    ),
-                                              ),
-                                            ],
+                                          Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Text(
+                                                  'Add-ins',
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .headline3!
+                                                      .copyWith(
+                                                        color: Colors.black,
+                                                        fontSize: Responsive
+                                                                .isMiniMobile(
+                                                                    context)
+                                                            ? 10
+                                                            : 12,
+                                                      ),
+                                                ),
+                                                Text(
+                                                  'Regular Water',
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .headline3!
+                                                      .copyWith(
+                                                        color: Colors.black,
+                                                        fontSize: Responsive
+                                                                .isMiniMobile(
+                                                                    context)
+                                                            ? 10
+                                                            : 12,
+                                                      ),
+                                                ),
+                                              ],
+                                            ),
                                           ),
-                                        ),
-                                        Center(
-                                          child: Container(
-                                              decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(24),
-                                                color: Colors.grey
-                                                    .withOpacity(0.5),
-                                              ),
-                                              height: 2,
-                                              width: double.maxFinite - 20.0),
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Text(
-                                                'A',
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .headline3!
-                                                    .copyWith(
-                                                      color: Colors.black,
-                                                      fontSize: Responsive
-                                                              .isMiniMobile(
-                                                                  context)
-                                                          ? 10
-                                                          : 12,
-                                                    ),
-                                              ),
-                                              Text(
-                                                'B',
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .headline3!
-                                                    .copyWith(
-                                                      color: Colors.black,
-                                                      fontSize: Responsive
-                                                              .isMiniMobile(
-                                                                  context)
-                                                          ? 10
-                                                          : 12,
-                                                    ),
-                                              ),
-                                            ],
+                                          Center(
+                                            child: Container(
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(24),
+                                                  color: Colors.grey
+                                                      .withOpacity(0.5),
+                                                ),
+                                                height: 1,
+                                                width: double.maxFinite - 20.0),
                                           ),
-                                        ),
-                                        Center(
-                                          child: Container(
-                                              decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(24),
-                                                color: Colors.grey
-                                                    .withOpacity(0.5),
-                                              ),
-                                              height: 2,
-                                              width: double.maxFinite - 20.0),
-                                        ),
+                                          Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Text(
+                                                  'Flavors',
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .headline3!
+                                                      .copyWith(
+                                                        color: Colors.black,
+                                                        fontSize: Responsive
+                                                                .isMiniMobile(
+                                                                    context)
+                                                            ? 10
+                                                            : 12,
+                                                      ),
+                                                ),
+                                                Text(
+                                                  'Vanilla',
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .headline3!
+                                                      .copyWith(
+                                                        color: Colors.black,
+                                                        fontSize: Responsive
+                                                                .isMiniMobile(
+                                                                    context)
+                                                            ? 10
+                                                            : 12,
+                                                      ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          Center(
+                                            child: Container(
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(24),
+                                                  color: Colors.grey
+                                                      .withOpacity(0.5),
+                                                ),
+                                                height: 1,
+                                                width: double.maxFinite - 20.0),
+                                          ),
 
-                                        SizedBox(height: 250),
-                                      ],
+                                          // SizedBox(height: 250),
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
-                            ),
-                          ],
-                        ),
-                      ],
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 12.0),
@@ -489,8 +569,8 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                           borderRadius: BorderRadius.circular(24),
                           color: Colors.grey.withOpacity(0.5),
                         ),
-                        height: 6,
-                        width: 100.0,
+                        height: 4,
+                        width: 50.0,
                       ),
                     ),
                     // Positioned(
