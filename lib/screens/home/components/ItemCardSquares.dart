@@ -337,30 +337,52 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                                                           context: context,
                                                           fontWeight:
                                                               FontWeight.bold,
-                                                          color: Colors.black
-                                                              .withOpacity(
-                                                                  0.8))),
+                                                          color: Colors.black)),
                                                   GestureDetector(
                                                     onTap: () {
                                                       setState(() {
                                                         _menu = !_menu;
                                                       });
                                                     },
-                                                    child: Container(
-                                                      padding:
-                                                          EdgeInsets.symmetric(
-                                                              horizontal: 30,
-                                                              vertical: 5),
-                                                      decoration: BoxDecoration(
-                                                          color: Colors.grey,
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      10)),
-                                                      height: 25,
-                                                      width: 120,
-
-                                                      // child: DropDown()
+                                                    child: Row(
+                                                      children: [
+                                                        Container(
+                                                          padding: EdgeInsets
+                                                              .symmetric(
+                                                                  horizontal:
+                                                                      30,
+                                                                  vertical: 5),
+                                                          decoration: BoxDecoration(
+                                                              color: Colors
+                                                                  .orange[300],
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          10)),
+                                                          height: 25,
+                                                          // width: 140,
+                                                          child: CommonUI.text(
+                                                              context: context,
+                                                              text:
+                                                                  'Grande 16 fl oz',
+                                                              textAlign:
+                                                                  TextAlign
+                                                                      .center,
+                                                              style: FontStyle.small(
+                                                                  context:
+                                                                      context,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  color: Colors
+                                                                      .black)),
+                                                        ),
+                                                        Container(
+                                                          height: 25,
+                                                          child: Icon(Icons
+                                                              .arrow_forward_ios_outlined),
+                                                        )
+                                                      ],
                                                     ),
                                                   )
                                                 ],
@@ -399,7 +421,7 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                                                                 context:
                                                                     context,
                                                                 text:
-                                                                    'Grande 16 fl oz',
+                                                                    'Venti® 20 fl. oz',
                                                                 textAlign:
                                                                     TextAlign
                                                                         .center,
@@ -410,12 +432,14 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                                                                         FontWeight
                                                                             .bold,
                                                                     color: Colors
-                                                                        .black)),
+                                                                        .black
+                                                                        .withOpacity(
+                                                                            0.8))),
                                                             CommonUI.text(
                                                                 context:
                                                                     context,
                                                                 text:
-                                                                    '4.99 JOD',
+                                                                    '5.24 JOD',
                                                                 textAlign:
                                                                     TextAlign
                                                                         .center,
@@ -426,10 +450,211 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                                                                         FontWeight
                                                                             .bold,
                                                                     color: Colors
-                                                                        .black)),
+                                                                        .black
+                                                                        .withOpacity(
+                                                                            0.8))),
                                                           ],
                                                         ),
                                                       ),
+                                                      ////////////////////////////////////
+                                                      Center(
+                                                        child: Container(
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          24),
+                                                              color: Colors.grey
+                                                                  .withOpacity(
+                                                                      0.5),
+                                                            ),
+                                                            height: 1,
+                                                            width: double
+                                                                    .maxFinite -
+                                                                80.0),
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .all(8.0),
+                                                        child: Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceBetween,
+                                                          children: [
+                                                            CommonUI.text(
+                                                                context:
+                                                                    context,
+                                                                text:
+                                                                    'Grande 16 fl. oz',
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .center,
+                                                                style: FontStyle.small(
+                                                                    context:
+                                                                        context,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold,
+                                                                    color: Colors
+                                                                        .black
+                                                                        .withOpacity(
+                                                                            0.8))),
+                                                            CommonUI.text(
+                                                                context:
+                                                                    context,
+                                                                text:
+                                                                    '3.89 JOD',
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .center,
+                                                                style: FontStyle.small(
+                                                                    context:
+                                                                        context,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold,
+                                                                    color: Colors
+                                                                        .black
+                                                                        .withOpacity(
+                                                                            0.8))),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                      /////////////////////////////////////
+                                                      Center(
+                                                        child: Container(
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          24),
+                                                              color: Colors.grey
+                                                                  .withOpacity(
+                                                                      0.5),
+                                                            ),
+                                                            height: 1,
+                                                            width: double
+                                                                    .maxFinite -
+                                                                80.0),
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .all(8.0),
+                                                        child: Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceBetween,
+                                                          children: [
+                                                            CommonUI.text(
+                                                                context:
+                                                                    context,
+                                                                text:
+                                                                    'Tall 12 fl. oz',
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .center,
+                                                                style: FontStyle.small(
+                                                                    context:
+                                                                        context,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold,
+                                                                    color: Colors
+                                                                        .black
+                                                                        .withOpacity(
+                                                                            0.8))),
+                                                            CommonUI.text(
+                                                                context:
+                                                                    context,
+                                                                text:
+                                                                    '2.99 JOD',
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .center,
+                                                                style: FontStyle.small(
+                                                                    context:
+                                                                        context,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold,
+                                                                    color: Colors
+                                                                        .black
+                                                                        .withOpacity(
+                                                                            0.8))),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                      ///////////////////////////////////
+                                                      Center(
+                                                        child: Container(
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          24),
+                                                              color: Colors.grey
+                                                                  .withOpacity(
+                                                                      0.5),
+                                                            ),
+                                                            height: 1,
+                                                            width: double
+                                                                    .maxFinite -
+                                                                80.0),
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .all(8.0),
+                                                        child: Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceBetween,
+                                                          children: [
+                                                            CommonUI.text(
+                                                                context:
+                                                                    context,
+                                                                text:
+                                                                    'Short 8 fl. oz',
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .center,
+                                                                style: FontStyle.small(
+                                                                    context:
+                                                                        context,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold,
+                                                                    color: Colors
+                                                                        .black
+                                                                        .withOpacity(
+                                                                            0.8))),
+                                                            CommonUI.text(
+                                                                context:
+                                                                    context,
+                                                                text:
+                                                                    '1.90 JOD',
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .center,
+                                                                style: FontStyle.small(
+                                                                    context:
+                                                                        context,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold,
+                                                                    color: Colors
+                                                                        .black
+                                                                        .withOpacity(
+                                                                            0.8))),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                      ///////////////////////////////
                                                     ],
                                                   )
                                                 : Container(),
