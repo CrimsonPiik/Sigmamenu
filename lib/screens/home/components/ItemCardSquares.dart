@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:sigmamenu/GeneralFunction/constaints.dart';
 import 'package:sigmamenu/language/logic/ProjectLanguage.dart';
 import 'package:sigmamenu/models/product.dart';
+import 'package:sigmamenu/screens/home/components/dropDown.dart';
 import 'package:sigmamenu/style/AssetsManager.dart';
 import 'package:sigmamenu/style/CommonUI.dart';
 import 'package:sigmamenu/style/ScreenUtil.dart';
@@ -20,6 +21,8 @@ class ItemCardSquares extends StatefulWidget {
 }
 
 class _ItemCardSquaresState extends State<ItemCardSquares> {
+  bool _menu = false;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -322,58 +325,96 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                                                         context: context,
                                                         fontWeight:
                                                             FontWeight.bold,
-                                                        color: Colors.black)),
-                                                CommonUI.text(
-                                                    context: context,
-                                                    text: 'Grande 16 fl oz',
-                                                    textAlign: TextAlign.center,
-                                                    style: FontStyle.small(
-                                                        context: context,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        color: Colors.black)),
-                                              ],
-                                            ),
-                                          ),
-                                          Center(
-                                            child: Container(
-                                                decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.circular(24),
-                                                  color: Colors.grey
-                                                      .withOpacity(0.5),
+                                                        color: Colors.black
+                                                            .withOpacity(0.8))),
+                                                GestureDetector(
+                                                  onTap: () {
+                                                    setState(() {
+                                                      _menu = !_menu;
+                                                    });
+                                                  },
+                                                  child: Container(
+                                                    padding:
+                                                        EdgeInsets.symmetric(
+                                                            horizontal: 30,
+                                                            vertical: 5),
+                                                    decoration: BoxDecoration(
+                                                        color: Colors.grey,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(10)),
+                                                    height: 25,
+                                                    width: 120,
+                                                    // child: DropDown()
+                                                  ),
                                                 ),
-                                                height: 1,
-                                                width: double.maxFinite - 20.0),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                CommonUI.text(
-                                                    context: context,
-                                                    text: 'Size',
-                                                    textAlign: TextAlign.center,
-                                                    style: FontStyle.small(
-                                                        context: context,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        color: Colors.black)),
-                                                CommonUI.text(
-                                                    context: context,
-                                                    text: 'Grande 16 fl oz',
-                                                    textAlign: TextAlign.center,
-                                                    style: FontStyle.small(
-                                                        context: context,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        color: Colors.black)),
                                               ],
                                             ),
                                           ),
+                                          _menu == true
+                                              ? Column(
+                                                  children: [
+                                                    Center(
+                                                      child: Container(
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        24),
+                                                            color: Colors.grey
+                                                                .withOpacity(
+                                                                    0.5),
+                                                          ),
+                                                          height: 1,
+                                                          width:
+                                                              double.maxFinite -
+                                                                  20.0),
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets.all(
+                                                              8.0),
+                                                      child: Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceBetween,
+                                                        children: [
+                                                          CommonUI.text(
+                                                              context: context,
+                                                              text: 'Size',
+                                                              textAlign:
+                                                                  TextAlign
+                                                                      .center,
+                                                              style: FontStyle.small(
+                                                                  context:
+                                                                      context,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  color: Colors
+                                                                      .black)),
+                                                          CommonUI.text(
+                                                              context: context,
+                                                              text:
+                                                                  'Grande 16 fl oz',
+                                                              textAlign:
+                                                                  TextAlign
+                                                                      .center,
+                                                              style: FontStyle.small(
+                                                                  context:
+                                                                      context,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  color: Colors
+                                                                      .black)),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ],
+                                                )
+                                              : Container(),
                                           Center(
                                             child: Container(
                                                 decoration: BoxDecoration(
