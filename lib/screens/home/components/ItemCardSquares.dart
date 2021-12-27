@@ -316,7 +316,7 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                                                         .withOpacity(0.5),
                                                   ),
                                                   height: 1,
-                                                  width: 200.0,
+                                                  width: 250,
                                                 ),
                                               ),
                                             ),
@@ -333,7 +333,7 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                                                       text: 'Size',
                                                       textAlign:
                                                           TextAlign.center,
-                                                      style: FontStyle.small(
+                                                      style: FontStyle.normal(
                                                           context: context,
                                                           fontWeight:
                                                               FontWeight.bold,
@@ -368,7 +368,7 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                                                               textAlign:
                                                                   TextAlign
                                                                       .center,
-                                                              style: FontStyle.small(
+                                                              style: FontStyle.normal(
                                                                   context:
                                                                       context,
                                                                   fontWeight:
@@ -404,9 +404,7 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                                                                       0.5),
                                                             ),
                                                             height: 1,
-                                                            width: double
-                                                                    .maxFinite -
-                                                                80.0),
+                                                            width: 250),
                                                       ),
                                                       Padding(
                                                         padding:
@@ -470,9 +468,7 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                                                                       0.5),
                                                             ),
                                                             height: 1,
-                                                            width: double
-                                                                    .maxFinite -
-                                                                80.0),
+                                                            width: 250),
                                                       ),
                                                       Padding(
                                                         padding:
@@ -536,9 +532,7 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                                                                       0.5),
                                                             ),
                                                             height: 1,
-                                                            width: double
-                                                                    .maxFinite -
-                                                                80.0),
+                                                            width: 250),
                                                       ),
                                                       Padding(
                                                         padding:
@@ -602,9 +596,7 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                                                                       0.5),
                                                             ),
                                                             height: 1,
-                                                            width: double
-                                                                    .maxFinite -
-                                                                80.0),
+                                                            width: 250),
                                                       ),
                                                       Padding(
                                                         padding:
@@ -684,7 +676,7 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                                                       text: 'Add-ins',
                                                       textAlign:
                                                           TextAlign.center,
-                                                      style: FontStyle.small(
+                                                      style: FontStyle.normal(
                                                           context: context,
                                                           fontWeight:
                                                               FontWeight.bold,
@@ -694,7 +686,7 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                                                       text: 'Regular Water',
                                                       textAlign:
                                                           TextAlign.center,
-                                                      style: FontStyle.small(
+                                                      style: FontStyle.normal(
                                                           context: context,
                                                           fontWeight:
                                                               FontWeight.bold,
@@ -728,7 +720,7 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                                                       text: 'Flavors',
                                                       textAlign:
                                                           TextAlign.center,
-                                                      style: FontStyle.small(
+                                                      style: FontStyle.normal(
                                                           context: context,
                                                           fontWeight:
                                                               FontWeight.bold,
@@ -738,7 +730,7 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                                                       text: 'Vanilla',
                                                       textAlign:
                                                           TextAlign.center,
-                                                      style: FontStyle.small(
+                                                      style: FontStyle.normal(
                                                           context: context,
                                                           fontWeight:
                                                               FontWeight.bold,
