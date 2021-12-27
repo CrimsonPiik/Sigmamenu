@@ -163,28 +163,28 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                     clipBehavior: Clip.none,
                     alignment: Alignment.topCenter,
                     children: [
-                      SingleChildScrollView(
-                        scrollDirection: Axis.vertical,
-                        child: Column(
-                          children: <Widget>[
-                            Stack(
-                              children: <Widget>[
-                                Container(
-                                  width: Responsive.isDesktop(context)
-                                      ? Responsive.width(context) / 2
-                                      : Responsive.width(context),
-                                  padding: EdgeInsets.only(
-                                    left: kDefaultPaddin * 1.1,
-                                    right: kDefaultPaddin * 1.1,
-                                    bottom: kDefaultPaddin * 1.1,
+                      Column(
+                        children: <Widget>[
+                          Stack(
+                            children: <Widget>[
+                              Container(
+                                width: Responsive.isDesktop(context)
+                                    ? Responsive.width(context) / 2
+                                    : Responsive.width(context),
+                                padding: EdgeInsets.only(
+                                  left: kDefaultPaddin * 1.1,
+                                  right: kDefaultPaddin * 1.1,
+                                  bottom: kDefaultPaddin * 1.1,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(24),
+                                    topRight: Radius.circular(24),
                                   ),
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(24),
-                                      topRight: Radius.circular(24),
-                                    ),
-                                  ),
+                                ),
+                                child: SingleChildScrollView(
+                                  scrollDirection: Axis.vertical,
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
@@ -759,10 +759,10 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                                     ],
                                   ),
                                 ),
-                              ],
-                            ),
-                          ],
-                        ),
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 12.0),
