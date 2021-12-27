@@ -15,6 +15,13 @@ class Product {
   bool isOnSale = false;
   Rating rating = Rating();
   int weight = 0;
+  // Map<String, Map<String, Map<String, dynamic>>> options = {
+  // 'options': {
+  //   'size': {'Small': 0, 'Medium': 0, 'Large': 0},
+  //   'add-ins': {'Water': 0, 'Soda': 0, 'Fries': 0},
+  //   'flavor': {'Vanilla ': 0, 'Chocolate': 0, 'Strawberry': 0, 'Caramel': 0},
+  // }
+  // };
 
   Map<String, dynamic> toMap() {
     return {
@@ -29,6 +36,19 @@ class Product {
       'descriptionAr': descriptionAr,
       'isPublished': isPublished,
       'isOnSale': isOnSale,
+      // 'options': options,
+      // {
+      //   'options': {
+      //     'size': {'Small': 0, 'Medium': 0, 'Large': 0},
+      //     'add-ins': {'Water': 0, 'Soda': 0, 'Fries': 0},
+      //     'flavor': {
+      //       'Vanilla ': 0,
+      //       'Chocolate': 0,
+      //       'Strawberry': 0,
+      //       'Caramel': 0
+      //     },
+      //   },
+      // },
     };
   }
 
@@ -47,6 +67,19 @@ class Product {
       'isPublished': isPublished,
       'isOnSale': isOnSale,
       'rating': rating.toMap(),
+      // 'options': options
+      // {
+      //   'options': {
+      //     'size': {'Small': 0, 'Medium': 0, 'Large': 0},
+      //     'add-ins': {'Water': 0, 'Soda': 0, 'Fries': 0},
+      //     'flavor': {
+      //       'Vanilla ': 0,
+      //       'Chocolate': 0,
+      //       'Strawberry': 0,
+      //       'Caramel': 0
+      //     },
+      //   },
+      // },
     };
   }
 
@@ -64,7 +97,18 @@ class Product {
         isOnSale = map['isOnSale'] ?? false,
         rating =
             map['rating'] != null ? Rating.fromMap(map['rating']) : Rating();
+  // options = map[
+  //   'options': {
+  //     'size': {'Small': 0, 'Medium': 0, 'Large': 0},
+  //     'add-ins': {'Water': 0, 'Soda': 0, 'Fries': 0},
+  //     'flavor': {
+  //       'Vanilla ': 0,
+  //       'Chocolate': 0,
+  //       'Strawberry': 0,
+  //       'Caramel': 0
+  //     },
 
+  // }];
   String toJson() => json.encode(toMap());
 
   factory Product.fromJson(String source) =>
@@ -90,6 +134,7 @@ class Product {
         other.descriptionAr == descriptionAr &&
         other.isPublished == isPublished &&
         other.isOnSale == isOnSale;
+    // other.options == options;
   }
 
   @override
@@ -104,5 +149,6 @@ class Product {
         descriptionAr.hashCode ^
         isPublished.hashCode ^
         isOnSale.hashCode;
+    // options.hashCode;
   }
 }

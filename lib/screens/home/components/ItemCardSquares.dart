@@ -137,7 +137,15 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
   }
 
   bool _fromTop = false;
+  String _selectedItem = 'Grande 16 fl oz';
+  String _selectedItem1 = 'Regular Water';
+  String _selectedItem2 = 'Vanilla';
+
+  bool _menu1 = false;
+  bool _menu2 = false;
   _animationDialog(context) {
+    String _selectedPrice = "${widget.product.price} JOD";
+
     showGeneralDialog(
       barrierDismissible: true,
       barrierLabel: "Product Animation",
@@ -199,7 +207,7 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                                                 width: 140,
                                                 height: 170,
                                                 padding: EdgeInsets.only(
-                                                  top: kDefaultPaddin * 1.3,
+                                                  top: kDefaultPaddin * 1.8,
                                                 ),
                                                 child: CommonUI.cachedImage(
                                                     widget.product.image,
@@ -295,8 +303,8 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                                           child: Center(
                                             child: CommonUI.text(
                                                 context: context,
-                                                text:
-                                                    "${widget.product.price} JOD",
+                                                text: _selectedPrice,
+                                                // "${widget.product.price} JOD",
                                                 textAlign: TextAlign.center,
                                                 style: FontStyle.title(
                                                     context: context,
@@ -331,140 +339,128 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                                               Padding(
                                                 padding:
                                                     const EdgeInsets.all(8.0),
-                                                child: Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  children: [
-                                                    CommonUI.text(
-                                                        context: context,
-                                                        text: 'Size',
-                                                        textAlign:
-                                                            TextAlign.center,
-                                                        style: FontStyle.normal(
-                                                            context: context,
-                                                            fontWeight:
-                                                                FontWeight.bold,
-                                                            color:
-                                                                Colors.black)),
-                                                    GestureDetector(
-                                                      onTap: () {
-                                                        setState(() {
-                                                          _menu = !_menu;
-                                                        });
-                                                      },
-                                                      child: Row(
+                                                child: GestureDetector(
+                                                  onTap: () {
+                                                    setState(() {
+                                                      _menu = !_menu;
+                                                    });
+                                                  },
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      CommonUI.text(
+                                                          context: context,
+                                                          text: 'Size',
+                                                          // widget
+                                                          //     .product
+                                                          //     .options['options']!
+                                                          //     .keys
+                                                          //     .elementAt(0)
+                                                          //     .toString(),
+
+                                                          textAlign:
+                                                              TextAlign.center,
+                                                          style:
+                                                              FontStyle.normal(
+                                                                  context:
+                                                                      context,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  color: Colors
+                                                                      .black)),
+                                                      Row(
                                                         children: [
-                                                          Container(
-                                                            padding: EdgeInsets
-                                                                .symmetric(
-                                                                    horizontal:
-                                                                        30,
-                                                                    vertical:
-                                                                        5),
-                                                            decoration: BoxDecoration(
-                                                                color: Colors
-                                                                        .orange[
-                                                                    300],
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            10)),
-                                                            height: 25,
-                                                            // width: 140,
-                                                            child: CommonUI.text(
-                                                                context:
-                                                                    context,
-                                                                text:
-                                                                    'Grande 16 fl oz',
-                                                                textAlign:
-                                                                    TextAlign
-                                                                        .center,
-                                                                style: FontStyle.normal(
-                                                                    context:
-                                                                        context,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .bold,
-                                                                    color: Colors
-                                                                        .black)),
-                                                          ),
-                                                          Container(
-                                                            height: 25,
-                                                            child: Icon(Icons
-                                                                .arrow_forward_ios_outlined),
+                                                          CommonUI.text(
+                                                              context: context,
+                                                              text:
+                                                                  _selectedItem,
+                                                              textAlign:
+                                                                  TextAlign
+                                                                      .center,
+                                                              style: FontStyle.normal(
+                                                                  context:
+                                                                      context,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  color: Colors
+                                                                          .orange[
+                                                                      300])),
+                                                          SizedBox(width: 5),
+                                                          Icon(
+                                                            Icons
+                                                                .arrow_forward_ios_outlined,
+                                                            size: 15,
+                                                            color: Colors
+                                                                .orange[300],
                                                           )
                                                         ],
-                                                      ),
-                                                    )
-                                                  ],
+                                                      )
+                                                    ],
+                                                  ),
                                                 ),
                                               ),
                                               _menu
                                                   ? Column(
                                                       children: [
-                                                        Center(
-                                                          child: Container(
-                                                              decoration:
-                                                                  BoxDecoration(
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            24),
-                                                                color: Colors
-                                                                    .grey
-                                                                    .withOpacity(
-                                                                        0.5),
-                                                              ),
-                                                              height: 1,
-                                                              width: 250),
-                                                        ),
                                                         Padding(
                                                           padding:
                                                               const EdgeInsets
                                                                   .all(8.0),
-                                                          child: Row(
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .spaceBetween,
-                                                            children: [
-                                                              CommonUI.text(
-                                                                  context:
-                                                                      context,
-                                                                  text:
-                                                                      'Venti® 20 fl. oz',
-                                                                  textAlign:
-                                                                      TextAlign
-                                                                          .center,
-                                                                  style: FontStyle.small(
-                                                                      context:
-                                                                          context,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .bold,
-                                                                      color: Colors
-                                                                          .black
-                                                                          .withOpacity(
-                                                                              0.8))),
-                                                              CommonUI.text(
-                                                                  context:
-                                                                      context,
-                                                                  text:
-                                                                      '5.24 JOD',
-                                                                  textAlign:
-                                                                      TextAlign
-                                                                          .center,
-                                                                  style: FontStyle.small(
-                                                                      context:
-                                                                          context,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .bold,
-                                                                      color: Colors
-                                                                          .black
-                                                                          .withOpacity(
-                                                                              0.8))),
-                                                            ],
+                                                          child:
+                                                              GestureDetector(
+                                                            onTap: () {
+                                                              setState(() {
+                                                                _selectedItem =
+                                                                    'Venti® 20 fl. oz';
+                                                                _selectedPrice =
+                                                                    '5.24 JOD';
+                                                              });
+                                                            },
+                                                            child: Row(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .spaceBetween,
+                                                              children: [
+                                                                CommonUI.text(
+                                                                    context:
+                                                                        context,
+                                                                    text:
+                                                                        'Venti® 20 fl. oz',
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .center,
+                                                                    style: FontStyle.small(
+                                                                        context:
+                                                                            context,
+                                                                        fontWeight:
+                                                                            FontWeight
+                                                                                .bold,
+                                                                        color: Colors
+                                                                            .black
+                                                                            .withOpacity(0.8))),
+                                                                CommonUI.text(
+                                                                    context:
+                                                                        context,
+                                                                    text:
+                                                                        '5.24 JOD',
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .center,
+                                                                    style: FontStyle.small(
+                                                                        context:
+                                                                            context,
+                                                                        fontWeight:
+                                                                            FontWeight
+                                                                                .bold,
+                                                                        color: Colors
+                                                                            .black
+                                                                            .withOpacity(0.8))),
+                                                              ],
+                                                            ),
                                                           ),
                                                         ),
                                                         ////////////////////////////////////
@@ -488,48 +484,57 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                                                           padding:
                                                               const EdgeInsets
                                                                   .all(8.0),
-                                                          child: Row(
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .spaceBetween,
-                                                            children: [
-                                                              CommonUI.text(
-                                                                  context:
-                                                                      context,
-                                                                  text:
-                                                                      'Grande 16 fl. oz',
-                                                                  textAlign:
-                                                                      TextAlign
-                                                                          .center,
-                                                                  style: FontStyle.small(
-                                                                      context:
-                                                                          context,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .bold,
-                                                                      color: Colors
-                                                                          .black
-                                                                          .withOpacity(
-                                                                              0.8))),
-                                                              CommonUI.text(
-                                                                  context:
-                                                                      context,
-                                                                  text:
-                                                                      '3.89 JOD',
-                                                                  textAlign:
-                                                                      TextAlign
-                                                                          .center,
-                                                                  style: FontStyle.small(
-                                                                      context:
-                                                                          context,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .bold,
-                                                                      color: Colors
-                                                                          .black
-                                                                          .withOpacity(
-                                                                              0.8))),
-                                                            ],
+                                                          child:
+                                                              GestureDetector(
+                                                            onTap: () {
+                                                              setState(() {
+                                                                _selectedItem =
+                                                                    'Grande 16 fl. oz';
+                                                                _selectedPrice =
+                                                                    '3.89 JOD';
+                                                              });
+                                                            },
+                                                            child: Row(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .spaceBetween,
+                                                              children: [
+                                                                CommonUI.text(
+                                                                    context:
+                                                                        context,
+                                                                    text:
+                                                                        'Grande 16 fl. oz',
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .center,
+                                                                    style: FontStyle.small(
+                                                                        context:
+                                                                            context,
+                                                                        fontWeight:
+                                                                            FontWeight
+                                                                                .bold,
+                                                                        color: Colors
+                                                                            .black
+                                                                            .withOpacity(0.8))),
+                                                                CommonUI.text(
+                                                                    context:
+                                                                        context,
+                                                                    text:
+                                                                        '3.89 JOD',
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .center,
+                                                                    style: FontStyle.small(
+                                                                        context:
+                                                                            context,
+                                                                        fontWeight:
+                                                                            FontWeight
+                                                                                .bold,
+                                                                        color: Colors
+                                                                            .black
+                                                                            .withOpacity(0.8))),
+                                                              ],
+                                                            ),
                                                           ),
                                                         ),
                                                         /////////////////////////////////////
@@ -553,48 +558,57 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                                                           padding:
                                                               const EdgeInsets
                                                                   .all(8.0),
-                                                          child: Row(
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .spaceBetween,
-                                                            children: [
-                                                              CommonUI.text(
-                                                                  context:
-                                                                      context,
-                                                                  text:
-                                                                      'Tall 12 fl. oz',
-                                                                  textAlign:
-                                                                      TextAlign
-                                                                          .center,
-                                                                  style: FontStyle.small(
-                                                                      context:
-                                                                          context,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .bold,
-                                                                      color: Colors
-                                                                          .black
-                                                                          .withOpacity(
-                                                                              0.8))),
-                                                              CommonUI.text(
-                                                                  context:
-                                                                      context,
-                                                                  text:
-                                                                      '2.99 JOD',
-                                                                  textAlign:
-                                                                      TextAlign
-                                                                          .center,
-                                                                  style: FontStyle.small(
-                                                                      context:
-                                                                          context,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .bold,
-                                                                      color: Colors
-                                                                          .black
-                                                                          .withOpacity(
-                                                                              0.8))),
-                                                            ],
+                                                          child:
+                                                              GestureDetector(
+                                                            onTap: () {
+                                                              setState(() {
+                                                                _selectedItem =
+                                                                    'Tall 12 fl. oz';
+                                                                _selectedPrice =
+                                                                    ' 2.99 JOD';
+                                                              });
+                                                            },
+                                                            child: Row(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .spaceBetween,
+                                                              children: [
+                                                                CommonUI.text(
+                                                                    context:
+                                                                        context,
+                                                                    text:
+                                                                        'Tall 12 fl. oz',
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .center,
+                                                                    style: FontStyle.small(
+                                                                        context:
+                                                                            context,
+                                                                        fontWeight:
+                                                                            FontWeight
+                                                                                .bold,
+                                                                        color: Colors
+                                                                            .black
+                                                                            .withOpacity(0.8))),
+                                                                CommonUI.text(
+                                                                    context:
+                                                                        context,
+                                                                    text:
+                                                                        '2.99 JOD',
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .center,
+                                                                    style: FontStyle.small(
+                                                                        context:
+                                                                            context,
+                                                                        fontWeight:
+                                                                            FontWeight
+                                                                                .bold,
+                                                                        color: Colors
+                                                                            .black
+                                                                            .withOpacity(0.8))),
+                                                              ],
+                                                            ),
                                                           ),
                                                         ),
                                                         ///////////////////////////////////
@@ -618,48 +632,57 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                                                           padding:
                                                               const EdgeInsets
                                                                   .all(8.0),
-                                                          child: Row(
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .spaceBetween,
-                                                            children: [
-                                                              CommonUI.text(
-                                                                  context:
-                                                                      context,
-                                                                  text:
-                                                                      'Short 8 fl. oz',
-                                                                  textAlign:
-                                                                      TextAlign
-                                                                          .center,
-                                                                  style: FontStyle.small(
-                                                                      context:
-                                                                          context,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .bold,
-                                                                      color: Colors
-                                                                          .black
-                                                                          .withOpacity(
-                                                                              0.8))),
-                                                              CommonUI.text(
-                                                                  context:
-                                                                      context,
-                                                                  text:
-                                                                      '1.90 JOD',
-                                                                  textAlign:
-                                                                      TextAlign
-                                                                          .center,
-                                                                  style: FontStyle.small(
-                                                                      context:
-                                                                          context,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .bold,
-                                                                      color: Colors
-                                                                          .black
-                                                                          .withOpacity(
-                                                                              0.8))),
-                                                            ],
+                                                          child:
+                                                              GestureDetector(
+                                                            onTap: () {
+                                                              setState(() {
+                                                                _selectedItem =
+                                                                    'Short 8 fl. oz';
+                                                                _selectedPrice =
+                                                                    '1.90 JOD';
+                                                              });
+                                                            },
+                                                            child: Row(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .spaceBetween,
+                                                              children: [
+                                                                CommonUI.text(
+                                                                    context:
+                                                                        context,
+                                                                    text:
+                                                                        'Short 8 fl. oz',
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .center,
+                                                                    style: FontStyle.small(
+                                                                        context:
+                                                                            context,
+                                                                        fontWeight:
+                                                                            FontWeight
+                                                                                .bold,
+                                                                        color: Colors
+                                                                            .black
+                                                                            .withOpacity(0.8))),
+                                                                CommonUI.text(
+                                                                    context:
+                                                                        context,
+                                                                    text:
+                                                                        '1.90 JOD',
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .center,
+                                                                    style: FontStyle.small(
+                                                                        context:
+                                                                            context,
+                                                                        fontWeight:
+                                                                            FontWeight
+                                                                                .bold,
+                                                                        color: Colors
+                                                                            .black
+                                                                            .withOpacity(0.8))),
+                                                              ],
+                                                            ),
                                                           ),
                                                         ),
                                                         ///////////////////////////////
@@ -682,36 +705,267 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                                               Padding(
                                                 padding:
                                                     const EdgeInsets.all(8.0),
-                                                child: Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  children: [
-                                                    CommonUI.text(
-                                                        context: context,
-                                                        text: 'Add-ins',
-                                                        textAlign:
-                                                            TextAlign.center,
-                                                        style: FontStyle.normal(
-                                                            context: context,
-                                                            fontWeight:
-                                                                FontWeight.bold,
-                                                            color:
-                                                                Colors.black)),
-                                                    CommonUI.text(
-                                                        context: context,
-                                                        text: 'Regular Water',
-                                                        textAlign:
-                                                            TextAlign.center,
-                                                        style: FontStyle.normal(
-                                                            context: context,
-                                                            fontWeight:
-                                                                FontWeight.bold,
-                                                            color:
-                                                                Colors.black)),
-                                                  ],
+                                                child: GestureDetector(
+                                                  onTap: () {
+                                                    setState(() {
+                                                      _menu1 = !_menu1;
+                                                    });
+                                                  },
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      CommonUI.text(
+                                                          context: context,
+                                                          text: 'Add-ins',
+                                                          textAlign:
+                                                              TextAlign.center,
+                                                          style:
+                                                              FontStyle.normal(
+                                                                  context:
+                                                                      context,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  color: Colors
+                                                                      .black)),
+                                                      Row(
+                                                        children: [
+                                                          CommonUI.text(
+                                                              context: context,
+                                                              text:
+                                                                  _selectedItem1,
+                                                              textAlign:
+                                                                  TextAlign
+                                                                      .center,
+                                                              style: FontStyle.normal(
+                                                                  context:
+                                                                      context,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  color: Colors
+                                                                          .orange[
+                                                                      300])),
+                                                          SizedBox(width: 5),
+                                                          Icon(
+                                                            Icons
+                                                                .arrow_forward_ios_outlined,
+                                                            size: 15,
+                                                            color: Colors
+                                                                .orange[300],
+                                                          )
+                                                        ],
+                                                      ),
+                                                    ],
+                                                  ),
                                                 ),
                                               ),
+                                              _menu1
+                                                  ? Column(
+                                                      children: [
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .all(8.0),
+                                                          child:
+                                                              GestureDetector(
+                                                            onTap: () {
+                                                              setState(() {
+                                                                _selectedItem1 =
+                                                                    'Soda';
+                                                              });
+                                                            },
+                                                            child: Row(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .spaceBetween,
+                                                              children: [
+                                                                CommonUI.text(
+                                                                    context:
+                                                                        context,
+                                                                    text:
+                                                                        'Soda',
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .center,
+                                                                    style: FontStyle.small(
+                                                                        context:
+                                                                            context,
+                                                                        fontWeight:
+                                                                            FontWeight
+                                                                                .bold,
+                                                                        color: Colors
+                                                                            .black
+                                                                            .withOpacity(0.8))),
+                                                                CommonUI.text(
+                                                                    context:
+                                                                        context,
+                                                                    text:
+                                                                        '1.24 JOD',
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .center,
+                                                                    style: FontStyle.small(
+                                                                        context:
+                                                                            context,
+                                                                        fontWeight:
+                                                                            FontWeight
+                                                                                .bold,
+                                                                        color: Colors
+                                                                            .black
+                                                                            .withOpacity(0.8))),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        ////////////////////////////////////
+                                                        Center(
+                                                          child: Container(
+                                                              decoration:
+                                                                  BoxDecoration(
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            24),
+                                                                color: Colors
+                                                                    .grey
+                                                                    .withOpacity(
+                                                                        0.5),
+                                                              ),
+                                                              height: 1,
+                                                              width: 250),
+                                                        ),
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .all(8.0),
+                                                          child:
+                                                              GestureDetector(
+                                                            onTap: () {
+                                                              setState(() {
+                                                                _selectedItem1 =
+                                                                    'Fries';
+                                                              });
+                                                            },
+                                                            child: Row(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .spaceBetween,
+                                                              children: [
+                                                                CommonUI.text(
+                                                                    context:
+                                                                        context,
+                                                                    text:
+                                                                        'Fries',
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .center,
+                                                                    style: FontStyle.small(
+                                                                        context:
+                                                                            context,
+                                                                        fontWeight:
+                                                                            FontWeight
+                                                                                .bold,
+                                                                        color: Colors
+                                                                            .black
+                                                                            .withOpacity(0.8))),
+                                                                CommonUI.text(
+                                                                    context:
+                                                                        context,
+                                                                    text:
+                                                                        '1.50 JOD',
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .center,
+                                                                    style: FontStyle.small(
+                                                                        context:
+                                                                            context,
+                                                                        fontWeight:
+                                                                            FontWeight
+                                                                                .bold,
+                                                                        color: Colors
+                                                                            .black
+                                                                            .withOpacity(0.8))),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        Center(
+                                                          child: Container(
+                                                              decoration:
+                                                                  BoxDecoration(
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            24),
+                                                                color: Colors
+                                                                    .grey
+                                                                    .withOpacity(
+                                                                        0.5),
+                                                              ),
+                                                              height: 1,
+                                                              width: 250),
+                                                        ),
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .all(8.0),
+                                                          child:
+                                                              GestureDetector(
+                                                            onTap: () {
+                                                              setState(() {
+                                                                _selectedItem1 =
+                                                                    'Regular Water';
+                                                              });
+                                                            },
+                                                            child: Row(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .spaceBetween,
+                                                              children: [
+                                                                CommonUI.text(
+                                                                    context:
+                                                                        context,
+                                                                    text:
+                                                                        'Regular Water',
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .center,
+                                                                    style: FontStyle.small(
+                                                                        context:
+                                                                            context,
+                                                                        fontWeight:
+                                                                            FontWeight
+                                                                                .bold,
+                                                                        color: Colors
+                                                                            .black
+                                                                            .withOpacity(0.8))),
+                                                                CommonUI.text(
+                                                                    context:
+                                                                        context,
+                                                                    text:
+                                                                        '0.50 JOD',
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .center,
+                                                                    style: FontStyle.small(
+                                                                        context:
+                                                                            context,
+                                                                        fontWeight:
+                                                                            FontWeight
+                                                                                .bold,
+                                                                        color: Colors
+                                                                            .black
+                                                                            .withOpacity(0.8))),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                        )
+                                                      ],
+                                                    )
+                                                  : Container(),
                                               Center(
                                                 child: Container(
                                                     decoration: BoxDecoration(
@@ -728,34 +982,61 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                                               Padding(
                                                 padding:
                                                     const EdgeInsets.all(8.0),
-                                                child: Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  children: [
-                                                    CommonUI.text(
-                                                        context: context,
-                                                        text: 'Flavors',
-                                                        textAlign:
-                                                            TextAlign.center,
-                                                        style: FontStyle.normal(
-                                                            context: context,
-                                                            fontWeight:
-                                                                FontWeight.bold,
-                                                            color:
-                                                                Colors.black)),
-                                                    CommonUI.text(
-                                                        context: context,
-                                                        text: 'Vanilla',
-                                                        textAlign:
-                                                            TextAlign.center,
-                                                        style: FontStyle.normal(
-                                                            context: context,
-                                                            fontWeight:
-                                                                FontWeight.bold,
-                                                            color:
-                                                                Colors.black)),
-                                                  ],
+                                                child: GestureDetector(
+                                                  onTap: () {
+                                                    setState(() {
+                                                      _menu2 = !_menu2;
+                                                    });
+                                                  },
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      CommonUI.text(
+                                                          context: context,
+                                                          text: 'Flavors',
+                                                          textAlign:
+                                                              TextAlign.center,
+                                                          style:
+                                                              FontStyle.normal(
+                                                                  context:
+                                                                      context,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  color: Colors
+                                                                      .black)),
+                                                      Row(
+                                                        children: [
+                                                          CommonUI.text(
+                                                              context: context,
+                                                              text:
+                                                                  _selectedItem2,
+                                                              textAlign:
+                                                                  TextAlign
+                                                                      .center,
+                                                              style: FontStyle.normal(
+                                                                  context:
+                                                                      context,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  color: Colors
+                                                                          .orange[
+                                                                      300])),
+                                                          SizedBox(width: 5),
+                                                          Icon(
+                                                            Icons
+                                                                .arrow_forward_ios_outlined,
+                                                            size: 15,
+                                                            color: Colors
+                                                                .orange[300],
+                                                          )
+                                                        ],
+                                                      ),
+                                                    ],
+                                                  ),
                                                 ),
                                               ),
                                               Center(
@@ -771,6 +1052,281 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                                                     width: double.maxFinite -
                                                         20.0),
                                               ),
+                                              _menu2
+                                                  ? Column(
+                                                      children: [
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .all(8.0),
+                                                          child:
+                                                              GestureDetector(
+                                                            onTap: () {
+                                                              setState(() {
+                                                                _selectedItem2 =
+                                                                    'Vanilla';
+                                                              });
+                                                            },
+                                                            child: Row(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .spaceBetween,
+                                                              children: [
+                                                                CommonUI.text(
+                                                                    context:
+                                                                        context,
+                                                                    text:
+                                                                        'Vanilla',
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .center,
+                                                                    style: FontStyle.small(
+                                                                        context:
+                                                                            context,
+                                                                        fontWeight:
+                                                                            FontWeight
+                                                                                .bold,
+                                                                        color: Colors
+                                                                            .black
+                                                                            .withOpacity(0.8))),
+                                                                CommonUI.text(
+                                                                    context:
+                                                                        context,
+                                                                    text:
+                                                                        '0.50 JOD',
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .center,
+                                                                    style: FontStyle.small(
+                                                                        context:
+                                                                            context,
+                                                                        fontWeight:
+                                                                            FontWeight
+                                                                                .bold,
+                                                                        color: Colors
+                                                                            .black
+                                                                            .withOpacity(0.8))),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        ////////////////////////////////////
+                                                        Center(
+                                                          child: Container(
+                                                              decoration:
+                                                                  BoxDecoration(
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            24),
+                                                                color: Colors
+                                                                    .grey
+                                                                    .withOpacity(
+                                                                        0.5),
+                                                              ),
+                                                              height: 1,
+                                                              width: 250),
+                                                        ),
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .all(8.0),
+                                                          child:
+                                                              GestureDetector(
+                                                            onTap: () {
+                                                              setState(() {
+                                                                _selectedItem2 =
+                                                                    'Strawberry';
+                                                              });
+                                                            },
+                                                            child: Row(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .spaceBetween,
+                                                              children: [
+                                                                CommonUI.text(
+                                                                    context:
+                                                                        context,
+                                                                    text:
+                                                                        'Strawberry',
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .center,
+                                                                    style: FontStyle.small(
+                                                                        context:
+                                                                            context,
+                                                                        fontWeight:
+                                                                            FontWeight
+                                                                                .bold,
+                                                                        color: Colors
+                                                                            .black
+                                                                            .withOpacity(0.8))),
+                                                                CommonUI.text(
+                                                                    context:
+                                                                        context,
+                                                                    text:
+                                                                        '0.50 JOD',
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .center,
+                                                                    style: FontStyle.small(
+                                                                        context:
+                                                                            context,
+                                                                        fontWeight:
+                                                                            FontWeight
+                                                                                .bold,
+                                                                        color: Colors
+                                                                            .black
+                                                                            .withOpacity(0.8))),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        Center(
+                                                          child: Container(
+                                                              decoration:
+                                                                  BoxDecoration(
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            24),
+                                                                color: Colors
+                                                                    .grey
+                                                                    .withOpacity(
+                                                                        0.5),
+                                                              ),
+                                                              height: 1,
+                                                              width: 250),
+                                                        ),
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .all(8.0),
+                                                          child:
+                                                              GestureDetector(
+                                                            onTap: () {
+                                                              setState(() {
+                                                                _selectedItem2 =
+                                                                    'Chocolate';
+                                                              });
+                                                            },
+                                                            child: Row(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .spaceBetween,
+                                                              children: [
+                                                                CommonUI.text(
+                                                                    context:
+                                                                        context,
+                                                                    text:
+                                                                        'Chocolate',
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .center,
+                                                                    style: FontStyle.small(
+                                                                        context:
+                                                                            context,
+                                                                        fontWeight:
+                                                                            FontWeight
+                                                                                .bold,
+                                                                        color: Colors
+                                                                            .black
+                                                                            .withOpacity(0.8))),
+                                                                CommonUI.text(
+                                                                    context:
+                                                                        context,
+                                                                    text:
+                                                                        '0.50 JOD',
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .center,
+                                                                    style: FontStyle.small(
+                                                                        context:
+                                                                            context,
+                                                                        fontWeight:
+                                                                            FontWeight
+                                                                                .bold,
+                                                                        color: Colors
+                                                                            .black
+                                                                            .withOpacity(0.8))),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        Center(
+                                                          child: Container(
+                                                              decoration:
+                                                                  BoxDecoration(
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            24),
+                                                                color: Colors
+                                                                    .grey
+                                                                    .withOpacity(
+                                                                        0.5),
+                                                              ),
+                                                              height: 1,
+                                                              width: 250),
+                                                        ),
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .all(8.0),
+                                                          child:
+                                                              GestureDetector(
+                                                            onTap: () {
+                                                              setState(() {
+                                                                _selectedItem2 =
+                                                                    'Caramel';
+                                                              });
+                                                            },
+                                                            child: Row(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .spaceBetween,
+                                                              children: [
+                                                                CommonUI.text(
+                                                                    context:
+                                                                        context,
+                                                                    text:
+                                                                        'Caramel',
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .center,
+                                                                    style: FontStyle.small(
+                                                                        context:
+                                                                            context,
+                                                                        fontWeight:
+                                                                            FontWeight
+                                                                                .bold,
+                                                                        color: Colors
+                                                                            .black
+                                                                            .withOpacity(0.8))),
+                                                                CommonUI.text(
+                                                                    context:
+                                                                        context,
+                                                                    text:
+                                                                        '0.50 JOD',
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .center,
+                                                                    style: FontStyle.small(
+                                                                        context:
+                                                                            context,
+                                                                        fontWeight:
+                                                                            FontWeight
+                                                                                .bold,
+                                                                        color: Colors
+                                                                            .black
+                                                                            .withOpacity(0.8))),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                        )
+                                                      ],
+                                                    )
+                                                  : Container(),
                                               SizedBox(height: 50),
                                             ],
                                           ),
