@@ -148,6 +148,7 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
         return Dismissible(
           direction: DismissDirection.down,
           onDismissed: (_) {
+            _menu = false;
             Navigator.pop(context);
           },
           key: Key("key"),
