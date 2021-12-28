@@ -84,17 +84,26 @@ class _AdminPanelDrawerState extends State<AdminPanelDrawer> {
                       EditStaggerdGridView(),
                     ],
                   )
-                : //USERS
-                Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(height: 25),
-                      // user.role == 'admin' ? AddUserButton() : Container(),
-                      SizedBox(height: 12),
-                      AllUsers(),
-                      AddUserButton(),
-                      // user.role == 'admin' ? AllUsers() : MyUser(user: user)
-                    ],
-                  );
+                : item == 3 // PRODUCT OPTIONS
+                    ? Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          // SizedBox(height: 5),
+                          // AddDashboardButton(),
+                          // EditStaggerdGridView(),
+                        ],
+                      )
+                    : //USERS
+                    Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SizedBox(height: 25),
+                          // user.role == 'admin' ? AddUserButton() : Container(),
+                          SizedBox(height: 12),
+                          AllUsers(),
+                          AddUserButton(),
+                          // user.role == 'admin' ? AllUsers() : MyUser(user: user)
+                        ],
+                      );
   }
 }

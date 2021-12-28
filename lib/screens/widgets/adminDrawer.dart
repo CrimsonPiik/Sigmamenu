@@ -137,8 +137,9 @@ class _MenuWidgetState extends State<MenuWidget> {
           sliderItem('Banners', Icons.photo_size_select_actual_outlined,
               selectedIndex, 1),
           sliderItem('Dashboard', Icons.dashboard, selectedIndex, 2),
-          sliderItem('Users', Icons.person, selectedIndex, 3),
-          sliderItem('LogOut', Icons.arrow_back_ios, selectedIndex, 4)
+          sliderItem('Product Options', Icons.settings, selectedIndex, 3),
+          sliderItem('Users', Icons.person, selectedIndex, 4),
+          sliderItem('LogOut', Icons.arrow_back_ios, selectedIndex, 5)
         ],
       ),
     );
@@ -160,8 +161,10 @@ class _MenuWidgetState extends State<MenuWidget> {
               myState(1);
             } else if (title == 'Dashboard') {
               myState(2);
-            } else if (title == 'Users') {
+            } else if (title == 'Product Options') {
               myState(3);
+            } else if (title == 'Users') {
+              myState(4);
             } else if (title == 'LogOut') {
               Navigator.pushNamed(context, '/');
             }
@@ -179,7 +182,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                 Icon(
                   icons,
                   size: 20,
-                  color: Colors.white,
+                  color: Colors.black,
                 ),
                 SizedBox(
                   width: 16,
@@ -187,7 +190,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                 Text(
                   title,
                   style: TextStyle(
-                      color: Colors.white, fontFamily: 'BalsamiqSans_Regular'),
+                      color: Colors.black, fontFamily: 'BalsamiqSans_Regular'),
                 ),
               ],
             ),

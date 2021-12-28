@@ -13,15 +13,11 @@ class Product {
   String descriptionAr = 'descriptionAr';
   bool isPublished = true;
   bool isOnSale = false;
+  bool checkOptions = false;
+
   Rating rating = Rating();
   int weight = 0;
-  // Map<String, Map<String, Map<String, dynamic>>> options = {
-  // 'options': {
-  //   'size': {'Small': 0, 'Medium': 0, 'Large': 0},
-  //   'add-ins': {'Water': 0, 'Soda': 0, 'Fries': 0},
-  //   'flavor': {'Vanilla ': 0, 'Chocolate': 0, 'Strawberry': 0, 'Caramel': 0},
-  // }
-  // };
+  Map<String, dynamic> options = {};
 
   Map<String, dynamic> toMap() {
     return {
@@ -36,19 +32,8 @@ class Product {
       'descriptionAr': descriptionAr,
       'isPublished': isPublished,
       'isOnSale': isOnSale,
-      // 'options': options,
-      // {
-      //   'options': {
-      //     'size': {'Small': 0, 'Medium': 0, 'Large': 0},
-      //     'add-ins': {'Water': 0, 'Soda': 0, 'Fries': 0},
-      //     'flavor': {
-      //       'Vanilla ': 0,
-      //       'Chocolate': 0,
-      //       'Strawberry': 0,
-      //       'Caramel': 0
-      //     },
-      //   },
-      // },
+      'options': options,
+      'checkOptions': checkOptions,
     };
   }
 
@@ -67,19 +52,8 @@ class Product {
       'isPublished': isPublished,
       'isOnSale': isOnSale,
       'rating': rating.toMap(),
-      // 'options': options
-      // {
-      //   'options': {
-      //     'size': {'Small': 0, 'Medium': 0, 'Large': 0},
-      //     'add-ins': {'Water': 0, 'Soda': 0, 'Fries': 0},
-      //     'flavor': {
-      //       'Vanilla ': 0,
-      //       'Chocolate': 0,
-      //       'Strawberry': 0,
-      //       'Caramel': 0
-      //     },
-      //   },
-      // },
+      'options': options,
+      'checkOptions': checkOptions,
     };
   }
 
@@ -96,19 +70,10 @@ class Product {
         isPublished = map['isPublished'] ?? true,
         isOnSale = map['isOnSale'] ?? false,
         rating =
-            map['rating'] != null ? Rating.fromMap(map['rating']) : Rating();
-  // options = map[
-  //   'options': {
-  //     'size': {'Small': 0, 'Medium': 0, 'Large': 0},
-  //     'add-ins': {'Water': 0, 'Soda': 0, 'Fries': 0},
-  //     'flavor': {
-  //       'Vanilla ': 0,
-  //       'Chocolate': 0,
-  //       'Strawberry': 0,
-  //       'Caramel': 0
-  //     },
+            map['rating'] != null ? Rating.fromMap(map['rating']) : Rating(),
+        options = map['options'],
+        checkOptions = map['checkOptions'];
 
-  // }];
   String toJson() => json.encode(toMap());
 
   factory Product.fromJson(String source) =>
@@ -133,8 +98,9 @@ class Product {
         other.descriptionEn == descriptionEn &&
         other.descriptionAr == descriptionAr &&
         other.isPublished == isPublished &&
-        other.isOnSale == isOnSale;
-    // other.options == options;
+        other.isOnSale == isOnSale &&
+        other.options == options &&
+        other.checkOptions == checkOptions;
   }
 
   @override
@@ -148,7 +114,8 @@ class Product {
         descriptionEn.hashCode ^
         descriptionAr.hashCode ^
         isPublished.hashCode ^
-        isOnSale.hashCode;
-    // options.hashCode;
+        isOnSale.hashCode ^
+        options.hashCode ^
+        checkOptions.hashCode;
   }
 }
