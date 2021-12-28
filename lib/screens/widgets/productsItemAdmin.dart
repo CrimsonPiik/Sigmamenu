@@ -86,8 +86,9 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
             backgroundColor:
                 widget.product.weight >= 1 ? Colors.red : Colors.green,
             foregroundColor: Colors.white,
-            icon:
-                widget.product.weight >= 1 ? Icons.toggle_off_outlined : Icons.toggle_on_outlined,
+            icon: widget.product.weight >= 1
+                ? Icons.toggle_off_outlined
+                : Icons.toggle_on_outlined,
             label: widget.product.weight >= 1 ? "Unpublish" : "Publish",
             autoClose: true,
           ),
@@ -564,7 +565,7 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           fontSize: 12,
-                                          color: Colors.brown[400]),
+                                          color: Colors.orange[300]),
                                     ),
                                     SizedBox(height: 4),
                                     StatefulBuilder(
@@ -572,17 +573,18 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                         child: SliderTheme(
                                           data:
                                               SliderTheme.of(context).copyWith(
-                                            activeTrackColor: Colors.brown[700],
+                                            activeTrackColor:
+                                                Colors.orange[700],
                                             inactiveTrackColor:
-                                                Colors.brown[100],
+                                                Colors.orange[100],
                                             trackShape:
                                                 RectangularSliderTrackShape(),
                                             trackHeight: 4.0,
-                                            thumbColor: Colors.brown[400],
+                                            thumbColor: Colors.orange[300],
                                             thumbShape: RoundSliderThumbShape(
                                                 enabledThumbRadius: 12.0),
                                             overlayColor:
-                                                Colors.brown.withAlpha(32),
+                                                Colors.orange.withAlpha(32),
                                             overlayShape:
                                                 RoundSliderOverlayShape(
                                                     overlayRadius: 28.0),
@@ -654,7 +656,7 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                   _imageController = TextEditingController(
                                       text: widget.product.image);
                                 });
-                                    Navigator.pop(context);
+                                Navigator.pop(context);
                               },
                               style: ButtonStyle(
                                 backgroundColor:
@@ -743,7 +745,7 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
         return Dismissible(
           direction: DismissDirection.down,
           onDismissed: (_) {
-                                    Navigator.pop(context);
+            Navigator.pop(context);
           },
           key: Key("key"),
           child: SafeArea(

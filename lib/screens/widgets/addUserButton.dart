@@ -143,7 +143,7 @@ class _AddUserButtonState extends State<AddUserButton> {
                                               hidePassword
                                                   ? Icons.visibility
                                                   : Icons.visibility_off,
-                                              color: Colors.brown,
+                                              color: Colors.orange,
                                             ),
                                           ),
                                           enabledBorder: OutlineInputBorder(
@@ -161,7 +161,7 @@ class _AddUserButtonState extends State<AddUserButton> {
                                           hintText:
                                               translate(context, "password"),
                                           prefixIcon: Icon(Icons.lock,
-                                              color: Colors.brown),
+                                              color: Colors.orange),
                                           hintStyle: FontStyle.normal(
                                             context: context,
                                             // color:
@@ -221,7 +221,7 @@ class _AddUserButtonState extends State<AddUserButton> {
                                                 fontWeight: FontWeight.bold,
                                                 color: Colors.white)
                                             : null,
-                                        color: Colors.brown,
+                                        color: Colors.orange,
                                         textColor: Colors.white),
                                   ],
                                 ),

@@ -65,7 +65,7 @@ class _CategoriesState extends State<Categories> {
               ),
               decoration: BoxDecoration(
                 color: selectedIndex == index
-                    ? Colors.brown[400]
+                    ? Colors.orange[300]
                     : Colors.grey.withOpacity(0.3),
                 borderRadius: BorderRadius.circular(16),
               ),

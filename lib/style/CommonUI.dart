@@ -462,7 +462,7 @@ class CommonUI {
       required void Function()? click}) {
     color ??= Style.primary;
     final ButtonStyle style = ElevatedButton.styleFrom(
-        primary: Colors.brown,
+        primary: Colors.orange,
         onPrimary: textColor,
         // shadowColor: color,
         elevation: elevation,

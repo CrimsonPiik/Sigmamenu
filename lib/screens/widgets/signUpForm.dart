@@ -126,7 +126,7 @@ class _SignUpFormState extends State<SignUpForm> {
                           hidePassword
                               ? Icons.visibility
                               : Icons.visibility_off,
-                          color: Colors.brown,
+                          color: Colors.orange,
                         ),
                       ),
                       enabledBorder: OutlineInputBorder(
@@ -140,7 +140,7 @@ class _SignUpFormState extends State<SignUpForm> {
                         // borderSide: BorderSide(color: Colors.brown),
                       ),
                       hintText: translate(context, "password"),
-                      prefixIcon: Icon(Icons.lock, color: Colors.brown),
+                      prefixIcon: Icon(Icons.lock, color: Colors.orange),
                       hintStyle: FontStyle.normal(
                         context: context,
                         // color:
@@ -197,7 +197,7 @@ class _SignUpFormState extends State<SignUpForm> {
                       fontWeight: FontWeight.bold,
                       color: Colors.white)
                   : null,
-              color: Colors.brown,
+              color: Colors.orange,
               textColor: Colors.white),
           SizedBox(height: 16),
           VSpace(),
@@ -209,7 +209,7 @@ class _SignUpFormState extends State<SignUpForm> {
                 translate(context, "haveAccount"),
                 style: FontStyle.normal(
                     context: context,
-                    color: Colors.brown[300],
+                    color: Colors.orange[300],
                     fontWeight: FontWeight.bold),
               ),
               SizedBox(width: 8),
@@ -220,7 +220,7 @@ class _SignUpFormState extends State<SignUpForm> {
                     style: FontStyle.normal(
                         context: context,
                         fontWeight: FontWeight.bold,
-                        color: Colors.brown),
+                        color: Colors.orange),
                   ))
             ],
           )

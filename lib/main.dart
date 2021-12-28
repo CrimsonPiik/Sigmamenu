@@ -92,7 +92,7 @@ class _MyAppState extends State<MyApp> {
               theme: ThemeData(
                 // primaryColor: Colors.brown,
                 colorScheme: ColorScheme.fromSwatch(
-                  primarySwatch: Colors.brown,
+                  primarySwatch: Colors.orange,
                 ).copyWith(),
 
                 textTheme: Theme.of(context).textTheme.apply(

@@ -292,7 +292,7 @@ class _AddProductButtonState extends State<AddProductButton> {
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 12,
-                                color: Colors.brown[400]),
+                                color: Colors.orange[300]),
                           ),
                         ),
                         SizedBox(height: 4),
@@ -300,14 +300,14 @@ class _AddProductButtonState extends State<AddProductButton> {
                           builder: (context, state) => Center(
                             child: SliderTheme(
                               data: SliderTheme.of(context).copyWith(
-                                activeTrackColor: Colors.brown[700],
-                                inactiveTrackColor: Colors.brown[100],
+                                activeTrackColor: Colors.orange[700],
+                                inactiveTrackColor: Colors.orange[100],
                                 trackShape: RectangularSliderTrackShape(),
                                 trackHeight: 4.0,
-                                thumbColor: Colors.brown[400],
+                                thumbColor: Colors.orange[300],
                                 thumbShape: RoundSliderThumbShape(
                                     enabledThumbRadius: 12.0),
-                                overlayColor: Colors.brown.withAlpha(32),
+                                overlayColor: Colors.orange.withAlpha(32),
                                 overlayShape: RoundSliderOverlayShape(
                                     overlayRadius: 28.0),
                               ),

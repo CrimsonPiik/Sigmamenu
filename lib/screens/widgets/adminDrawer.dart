@@ -89,7 +89,7 @@ class _MenuWidgetState extends State<MenuWidget> {
     final bool _isDesktop = _size.width >= screenLg;
 
     return Container(
-      decoration: BoxDecoration(color: Colors.brown),
+      decoration: BoxDecoration(color: Colors.orange[300]),
       width: _isDesktop ? sideBarDesktopWidth : sideBarMobileWidth,
       padding:
           EdgeInsets.symmetric(vertical: 24, horizontal: _isDesktop ? 24 : 12),

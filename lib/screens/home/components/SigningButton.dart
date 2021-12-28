@@ -41,7 +41,7 @@ class SigningButton extends StatelessWidget {
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(radius))),
           backgroundColor: color ?? Colors.transparent,
-          side: BorderSide(color: borderColor ?? Colors.brown, width: 1.1),
+          side: BorderSide(color: borderColor ?? Colors.orange, width: 1.1),
         ),
         onPressed: onPressed,
         child: Padding(
