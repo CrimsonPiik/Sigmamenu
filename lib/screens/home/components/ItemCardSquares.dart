@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:sigmamenu/GeneralFunction/constaints.dart';
 import 'package:sigmamenu/language/logic/ProjectLanguage.dart';
 import 'package:sigmamenu/models/product.dart';
-import 'package:sigmamenu/screens/home/components/dropDown.dart';
 import 'package:sigmamenu/style/AssetsManager.dart';
 import 'package:sigmamenu/style/CommonUI.dart';
 import 'package:sigmamenu/style/ScreenUtil.dart';
@@ -1039,19 +1038,19 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                                                   ),
                                                 ),
                                               ),
-                                              Center(
-                                                child: Container(
-                                                    decoration: BoxDecoration(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              24),
-                                                      color: Colors.grey
-                                                          .withOpacity(0.5),
-                                                    ),
-                                                    height: 1,
-                                                    width: double.maxFinite -
-                                                        20.0),
-                                              ),
+                                              // Center(
+                                              //   child: Container(
+                                              //       decoration: BoxDecoration(
+                                              //         borderRadius:
+                                              //             BorderRadius.circular(
+                                              //                 24),
+                                              //         color: Colors.grey
+                                              //             .withOpacity(0.5),
+                                              //       ),
+                                              //       height: 1,
+                                              //       width: double.maxFinite -
+                                              //           20.0),
+                                              // ),
                                               _menu2
                                                   ? Column(
                                                       children: [

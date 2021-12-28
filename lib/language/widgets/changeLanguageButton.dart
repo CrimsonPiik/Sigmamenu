@@ -24,7 +24,7 @@ class _ChangeLanguageButtonState extends State<ChangeLanguageButton> {
         ///This will go to 'Provider of RhinoLanguageChangeNotifier'
         ///and change the locale to new one and notify the main to rebuild
         ProjectLanguage.changeLanguage();
-        Provider.of<ProjectLanguageChangeNotifier>(context, listen: true)
+        Provider.of<ProjectLanguageChangeNotifier>(context, listen: false)
             .setlocale(ProjectLanguage.locale);
       },
       child: Stack(

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:sigmamenu/GeneralFunction/constaints.dart';
+import 'package:sigmamenu/language/logic/ProjectLanguage.dart';
 import 'package:sigmamenu/style/ScreenUtil.dart';
 import 'package:sigmamenu/style/Session.dart';
 
@@ -131,57 +132,111 @@ class ShimmerForCustomerScreen extends StatelessWidget {
                 child: GridView.builder(
                   itemCount: 6,
                   itemBuilder: (context, index) {
-                    return Container(
-                      margin: EdgeInsets.only(bottom: 20),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        color: Colors.grey.withOpacity(0.1),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(0.1),
-                            spreadRadius: 2,
-                            blurRadius: 9,
-                            offset: Offset(0, 4),
-                          ),
-                        ],
-                      ),
-                      child: Row(
-                        children: [
-                          Container(
-                            width: 150.0,
-                            height: double.maxFinite,
-                            // color: Colors.white,
+                    return ProjectLanguage.isLTR()
+                        ? Container(
+                            margin: EdgeInsets.only(bottom: 20),
                             decoration: BoxDecoration(
-                              color: Theme.of(context).cardColor,
+                              borderRadius: BorderRadius.circular(12),
+                              color: Colors.grey.withOpacity(0.1),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.1),
+                                  spreadRadius: 2,
+                                  blurRadius: 9,
+                                  offset: Offset(0, 4),
+                                ),
+                              ],
                             ),
-                          ),
-                          SizedBox(
-                            width: 16,
-                          ),
-                          // Expanded(
-                          //   child: Column(
-                          //     crossAxisAlignment: CrossAxisAlignment.start,
-                          //     children: [
-                          //       SizedBox(height: 10),
-                          //       Container(
-                          //         width: 90,
-                          //         height: 8.0,
-                          //         color: Colors.white,
-                          //       ),
-                          //       SizedBox(
-                          //         height: 6,
-                          //       ),
-                          //       Container(
-                          //         width: 30,
-                          //         height: 8.0,
-                          //         color: Colors.white,
-                          //       ),
-                          //     ],
-                          //   ),
-                          // )
-                        ],
-                      ),
-                    );
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Container(
+                                  width: 150.0,
+                                  height: double.maxFinite,
+                                  // color: Colors.white,
+                                  decoration: BoxDecoration(
+                                    color: Theme.of(context).cardColor,
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 16,
+                                ),
+                                // Expanded(
+                                //   child: Column(
+                                //     crossAxisAlignment: CrossAxisAlignment.start,
+                                //     children: [
+                                //       SizedBox(height: 10),
+                                //       Container(
+                                //         width: 90,
+                                //         height: 8.0,
+                                //         color: Colors.white,
+                                //       ),
+                                //       SizedBox(
+                                //         height: 6,
+                                //       ),
+                                //       Container(
+                                //         width: 30,
+                                //         height: 8.0,
+                                //         color: Colors.white,
+                                //       ),
+                                //     ],
+                                //   ),
+                                // )
+                              ],
+                            ),
+                          )
+                        : Container(
+                            margin: EdgeInsets.only(bottom: 20),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(12),
+                              color: Colors.grey.withOpacity(0.1),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.1),
+                                  spreadRadius: 2,
+                                  blurRadius: 9,
+                                  offset: Offset(0, 4),
+                                ),
+                              ],
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                Container(
+                                  width: 150.0,
+                                  height: double.maxFinite,
+                                  // color: Colors.white,
+                                  decoration: BoxDecoration(
+                                    color: Theme.of(context).cardColor,
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 16,
+                                ),
+                                // Expanded(
+                                //   child: Column(
+                                //     crossAxisAlignment: CrossAxisAlignment.start,
+                                //     children: [
+                                //       SizedBox(height: 10),
+                                //       Container(
+                                //         width: 90,
+                                //         height: 8.0,
+                                //         color: Colors.white,
+                                //       ),
+                                //       SizedBox(
+                                //         height: 6,
+                                //       ),
+                                //       Container(
+                                //         width: 30,
+                                //         height: 8.0,
+                                //         color: Colors.white,
+                                //       ),
+                                //     ],
+                                //   ),
+                                // )
+                              ],
+                            ),
+                          );
                   },
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 1,
