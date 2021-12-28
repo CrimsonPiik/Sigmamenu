@@ -986,7 +986,7 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                                                   onTap: () {
                                                     setState(() {
                                                       _menu2 = !_menu2;
-                                                      _scroll = !_scroll;
+                                                      // _scroll = !_scroll;
                                                     });
                                                   },
                                                   child: Row(
@@ -1331,9 +1331,9 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                                                       child: Container(),
                                                     ),
                                               SizedBox(height: 50),
-                                              _scroll
-                                                  ? SizedBox(height: 50)
-                                                  : Container(),
+                                              // _scroll
+                                              // ? SizedBox(height: 50)
+                                              // : Container(),
                                             ],
                                           ),
                                         ),
