@@ -136,7 +136,10 @@ class ShimmerForCustomerScreen extends StatelessWidget {
                         ? Container(
                             margin: EdgeInsets.only(bottom: 20),
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(12),
+                              borderRadius: BorderRadius.only(
+                                topRight: Radius.circular(24),
+                                bottomRight: Radius.circular(24),
+                              ),
                               color: Colors.grey.withOpacity(0.1),
                               boxShadow: [
                                 BoxShadow(
@@ -152,7 +155,7 @@ class ShimmerForCustomerScreen extends StatelessWidget {
                               children: [
                                 Container(
                                   width: 150.0,
-                                  height: double.maxFinite,
+                                  height: 140,
                                   // color: Colors.white,
                                   decoration: BoxDecoration(
                                     color: Theme.of(context).cardColor,
@@ -188,7 +191,10 @@ class ShimmerForCustomerScreen extends StatelessWidget {
                         : Container(
                             margin: EdgeInsets.only(bottom: 20),
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(12),
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(24),
+                                bottomLeft: Radius.circular(24),
+                              ),
                               color: Colors.grey.withOpacity(0.1),
                               boxShadow: [
                                 BoxShadow(
@@ -202,17 +208,18 @@ class ShimmerForCustomerScreen extends StatelessWidget {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
+                                SizedBox(
+                                  width: 16,
+                                ),
                                 Container(
                                   width: 150.0,
-                                  height: double.maxFinite,
+                                  height: 140,
                                   // color: Colors.white,
                                   decoration: BoxDecoration(
                                     color: Theme.of(context).cardColor,
                                   ),
                                 ),
-                                SizedBox(
-                                  width: 16,
-                                ),
+
                                 // Expanded(
                                 //   child: Column(
                                 //     crossAxisAlignment: CrossAxisAlignment.start,
