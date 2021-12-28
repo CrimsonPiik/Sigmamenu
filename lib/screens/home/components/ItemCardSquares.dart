@@ -1055,7 +1055,7 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                                                   ? Padding(
                                                       padding:
                                                           const EdgeInsets.only(
-                                                              bottom: 30.0),
+                                                              bottom: 42.0),
                                                       child: Column(
                                                         children: [
                                                           Padding(
@@ -1325,7 +1325,7 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                                                   : Padding(
                                                       padding:
                                                           const EdgeInsets.only(
-                                                              bottom: 30.0),
+                                                              bottom: 42.0),
                                                       child: Container(),
                                                     ),
                                               SizedBox(height: 50),
