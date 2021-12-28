@@ -135,6 +135,7 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
     );
   }
 
+  bool _scroll = false;
   bool _fromTop = false;
   String _selectedItem = 'Grande 16 fl oz';
   String _selectedItem1 = 'Regular Water';
@@ -985,6 +986,7 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                                                   onTap: () {
                                                     setState(() {
                                                       _menu2 = !_menu2;
+                                                      _scroll = !_scroll;
                                                     });
                                                   },
                                                   child: Row(
@@ -1329,6 +1331,9 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                                                       child: Container(),
                                                     ),
                                               SizedBox(height: 50),
+                                              _scroll
+                                                  ? SizedBox(height: 50)
+                                                  : Container(),
                                             ],
                                           ),
                                         ),
