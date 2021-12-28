@@ -47,7 +47,7 @@ class _ItemCardRectangleState extends State<ItemCardRectangle> {
             ),
           ],
         ),
-        child: ProjectLanguage.isLTR()
+        child: ProjectLanguage.isLTR() // EN
             ? Row(
                 children: [
                   Container(
@@ -84,14 +84,6 @@ class _ItemCardRectangleState extends State<ItemCardRectangle> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Text('JOD ',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: Responsive.isMiniMobile(context)
-                                        ? 12
-                                        : 14,
-                                    color: Colors.black)),
                             Text(widget.product.price.toString(),
                                 textAlign: TextAlign.center,
                                 maxLines: 2,
@@ -100,7 +92,15 @@ class _ItemCardRectangleState extends State<ItemCardRectangle> {
                                     fontSize: Responsive.isMiniMobile(context)
                                         ? 12
                                         : 14,
-                                    color: Colors.red)),
+                                    color: Colors.black)),
+                            Text(' JOD',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: Responsive.isMiniMobile(context)
+                                        ? 12
+                                        : 14,
+                                    color: Colors.black)),
                           ],
                         ),
                         SizedBox(
@@ -122,6 +122,7 @@ class _ItemCardRectangleState extends State<ItemCardRectangle> {
                 ],
               )
             : Row(
+                // AR
                 children: [
                   Expanded(
                     child: Column(
@@ -145,14 +146,6 @@ class _ItemCardRectangleState extends State<ItemCardRectangle> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            Text('JOD ',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: Responsive.isMiniMobile(context)
-                                        ? 12
-                                        : 14,
-                                    color: Colors.black)),
                             Text(widget.product.price.toString(),
                                 textAlign: TextAlign.center,
                                 maxLines: 2,
@@ -161,7 +154,15 @@ class _ItemCardRectangleState extends State<ItemCardRectangle> {
                                     fontSize: Responsive.isMiniMobile(context)
                                         ? 12
                                         : 14,
-                                    color: Colors.red)),
+                                    color: Colors.black)),
+                            Text(' JOD',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: Responsive.isMiniMobile(context)
+                                        ? 12
+                                        : 14,
+                                    color: Colors.black)),
                           ],
                         ),
                         SizedBox(

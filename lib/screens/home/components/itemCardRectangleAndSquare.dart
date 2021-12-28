@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sigmamenu/GeneralFunction/constaints.dart';
+import 'package:sigmamenu/language/widgets/changeLanguageButton.dart';
 import 'package:sigmamenu/models/product.dart';
 import 'package:sigmamenu/screens/home/components/ItemCardRectangle.dart';
 import 'package:sigmamenu/screens/home/components/ItemCardSquares.dart';
@@ -51,6 +52,8 @@ class _ItemCardRectangleAndSquareState extends State<ItemCardRectangleAndSquare>
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
+              // ChangeLanguageButton(),
+
               // Align(
               // alignment: Alignment.topRight,
               // padding: const EdgeInsets.symmetric(horizontal: 6),
@@ -74,13 +77,13 @@ class _ItemCardRectangleAndSquareState extends State<ItemCardRectangleAndSquare>
           ),
           Session.isList
               ? Expanded(
-                child: Padding(
+                  child: Padding(
                     padding:
                         const EdgeInsets.symmetric(horizontal: kDefaultPaddin),
                     child: GridView.builder(
                       // physics: NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
-              
+
                       itemCount: products.length,
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: Responsive.isDesktop(context)
@@ -102,9 +105,9 @@ class _ItemCardRectangleAndSquareState extends State<ItemCardRectangleAndSquare>
                       ),
                     ),
                   ),
-              )
+                )
               : Expanded(
-                child: Padding(
+                  child: Padding(
                     padding:
                         const EdgeInsets.symmetric(horizontal: kDefaultPaddin),
                     child: GridView.builder(
@@ -127,7 +130,7 @@ class _ItemCardRectangleAndSquareState extends State<ItemCardRectangleAndSquare>
                       ),
                     ),
                   ),
-              ),
+                ),
         ],
       ),
     );
