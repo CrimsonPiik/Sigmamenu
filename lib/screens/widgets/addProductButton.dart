@@ -374,7 +374,7 @@ class _AddProductButtonState extends State<AddProductButton> {
                               _nameEnController.clear();
                               _nameArController.clear();
 
-                                    Navigator.pop(context);
+                              Navigator.pop(context);
                             },
                             style: ButtonStyle(
                               backgroundColor:
@@ -414,7 +414,7 @@ class _AddProductButtonState extends State<AddProductButton> {
                                   'price': _priceController.text,
                                   'rate': 0,
                                   'weight': _value.round(),
-                                  'checkOptions': false,
+                                  'options': {},
                                   //subCategory: ---
                                 }).whenComplete(() {
                                   id = generateId();
@@ -426,7 +426,7 @@ class _AddProductButtonState extends State<AddProductButton> {
                                   _nameEnController.clear();
                                   _nameArController.clear();
 
-                                    Navigator.pop(context);
+                                  Navigator.pop(context);
 
                                   CommonUI.successDialog(context,
                                       message: "Added Successfully");

@@ -13,7 +13,7 @@ class Product {
   String descriptionAr = 'descriptionAr';
   bool isPublished = true;
   bool isOnSale = false;
-  bool checkOptions = false;
+  // bool checkOptions = false;
 
   Rating rating = Rating();
   int weight = 0;
@@ -33,7 +33,7 @@ class Product {
       'isPublished': isPublished,
       'isOnSale': isOnSale,
       'options': options,
-      'checkOptions': checkOptions,
+      // 'checkOptions': checkOptions,
     };
   }
 
@@ -53,7 +53,7 @@ class Product {
       'isOnSale': isOnSale,
       'rating': rating.toMap(),
       'options': options,
-      'checkOptions': checkOptions,
+      // 'checkOptions': checkOptions,
     };
   }
 
@@ -71,8 +71,8 @@ class Product {
         isOnSale = map['isOnSale'] ?? false,
         rating =
             map['rating'] != null ? Rating.fromMap(map['rating']) : Rating(),
-        options = map['options'],
-        checkOptions = map['checkOptions'];
+        options = map['options'];
+  // checkOptions = map['checkOptions'];
 
   String toJson() => json.encode(toMap());
 
@@ -99,8 +99,8 @@ class Product {
         other.descriptionAr == descriptionAr &&
         other.isPublished == isPublished &&
         other.isOnSale == isOnSale &&
-        other.options == options &&
-        other.checkOptions == checkOptions;
+        other.options == options;
+    // other.checkOptions == checkOptions;
   }
 
   @override
@@ -115,7 +115,7 @@ class Product {
         descriptionAr.hashCode ^
         isPublished.hashCode ^
         isOnSale.hashCode ^
-        options.hashCode ^
-        checkOptions.hashCode;
+        options.hashCode;
+    // checkOptions.hashCode;
   }
 }
