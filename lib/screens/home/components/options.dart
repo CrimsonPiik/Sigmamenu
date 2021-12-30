@@ -18,30 +18,18 @@ class Options extends StatefulWidget {
 
 class _OptionsState extends State<Options> {
   bool _menu = false;
-  // String _selectedItem = '';
   int counter = 0;
   int subCounter = 0;
-
+  String noName = '';
   void countItemBaby() {
     for (var v in widget.product.options.keys) {
       counter++;
-      // print(v);
     }
   }
-
-  // void countSubItemBaby() {
-  //   for (int i = 0; i >= counter; i++) {
-  //     if (widget.product.options.keys.elementAt(i) != '') {
-  //       subCounter++;
-  //     }
-  //   }
-  // }
 
   @override
   void initState() {
     countItemBaby();
-    // countSubItemBaby();
-
     super.initState();
   }
 
@@ -75,6 +63,7 @@ class _OptionsState extends State<Options> {
                 child: GestureDetector(
                   onTap: () {
                     subCounter = 0;
+                    noName = '${widget.product.options.keys.elementAt(index)}';
                     for (var v in widget
                         .product
                         .options[
@@ -153,71 +142,77 @@ class _OptionsState extends State<Options> {
                   width: double.maxFinite,
                 ),
               ),
-              _menu
-                  ? ListView.builder(
-                      physics: ScrollPhysics(),
-                      shrinkWrap: true,
-                      scrollDirection: Axis.vertical,
-                      itemCount: subCounter,
-                      itemBuilder: (context, indexx) => Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  // _selectedItem = 'Venti® 20 fl. oz';
-                                  // _selectedPrice = '5.24 JOD';
-                                });
-                              },
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  CommonUI.text(
-                                      context: context,
-                                      text: widget
-                                          .product
-                                          .options[widget.product.options.keys
-                                              .elementAt(index)]
-                                          .keys
-                                          .elementAt(indexx),
-                                      textAlign: TextAlign.center,
-                                      style: FontStyle.small(
-                                          context: context,
-                                          fontWeight: FontWeight.bold,
-                                          color:
-                                              Colors.black.withOpacity(0.8))),
-                                  CommonUI.text(
-                                      context: context,
-                                      text: widget
-                                              .product
-                                              .options[widget
-                                                  .product.options.keys
-                                                  .elementAt(index)]
-                                              .values
-                                              .elementAt(indexx) +
-                                          ' JOD',
-                                      textAlign: TextAlign.center,
-                                      style: FontStyle.small(
-                                          context: context,
-                                          fontWeight: FontWeight.bold,
-                                          color:
-                                              Colors.black.withOpacity(0.8))),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    )
-                  : Container(),
             ],
           ),
         ),
+        dropdownOptions(noName),
         SizedBox(height: 50),
       ],
     );
+  }
+
+  Widget dropdownOptions(String noNAme) {
+    return ListView.builder(
+      physics: ScrollPhysics(),
+      shrinkWrap: true,
+      scrollDirection: Axis.vertical,
+      itemCount: subCounter,
+      itemBuilder: (context, indexx) => _menu
+          ? Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: GestureDetector(
+                    onTap: () {
+                      // setState(() {
+                      // _selectedItem = 'Venti® 20 fl. oz';
+                      // _selectedPrice = '5.24 JOD';
+                      // });
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        CommonUI.text(
+                            context: context,
+                            text: widget
+                                .product
+                                .options[noNAme
+
+                                    // widget.product.options.keys
+                                    //   .elementAt(index)
+                                    ]
+                                .keys
+                                .elementAt(indexx),
+                            textAlign: TextAlign.center,
+                            style: FontStyle.small(
+                                context: context,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black.withOpacity(0.8))),
+                        CommonUI.text(
+                            context: context,
+                            text: widget
+                                    .product
+                                    .options[noNAme
+                                        // widget.product.options.keys
+                                        //   .elementAt(index)
+                                        ]
+                                    .values
+                                    .elementAt(indexx) +
+                                ' JOD',
+                            textAlign: TextAlign.center,
+                            style: FontStyle.small(
+                                context: context,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black.withOpacity(0.8))),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            )
+          : Container(),
+    );
+    // : Container();
   }
 }
 
