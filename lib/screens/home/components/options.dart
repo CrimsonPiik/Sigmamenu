@@ -67,7 +67,7 @@ class _OptionsState extends State<Options> {
           physics: ScrollPhysics(),
           shrinkWrap: true,
           scrollDirection: Axis.vertical,
-          itemCount: 1,
+          itemCount: counter,
           itemBuilder: (context, index) => Column(
             children: [
               Padding(
@@ -80,12 +80,8 @@ class _OptionsState extends State<Options> {
                         .options[
                             '${widget.product.options.keys.elementAt(index)}']
                         .keys) {
-                      // for (int i = 0; i >= counter; i++) {
-                      // if (widget.product.options.keys.elementAt(index) != '') {
                       subCounter++;
-
                       print(subCounter);
-                      // }
                     }
 
                     setState(() {
@@ -126,8 +122,8 @@ class _OptionsState extends State<Options> {
                               text: // _selectedItem,
                                   widget
                                       .product
-                                      .options[widget.product.options.keys
-                                          .elementAt(index)]
+                                      .options[
+                                          '${widget.product.options.keys.elementAt(index)}']
                                       .keys
                                       .elementAt(index),
                               textAlign: TextAlign.center,
@@ -147,17 +143,16 @@ class _OptionsState extends State<Options> {
                   ),
                 ),
               ),
-              // Center(
-              //   child: Container(
-              //     decoration: BoxDecoration(
-              //       borderRadius: BorderRadius.circular(24),
-              //       color: Colors.grey.withOpacity(0.5),
-              //     ),
-              //     height: 1,
-              //     width: double.maxFinite,
-              //   ),
-              // ),
-
+              Center(
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(24),
+                    color: Colors.grey.withOpacity(0.5),
+                  ),
+                  height: 1,
+                  width: double.maxFinite,
+                ),
+              ),
               _menu
                   ? ListView.builder(
                       physics: ScrollPhysics(),
