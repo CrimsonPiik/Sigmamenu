@@ -44,55 +44,6 @@ class _ItemCardWithoutImageState extends State<ItemCardWithoutImage> {
         child: ProjectLanguage.isLTR() // EN
             ? Row(
                 children: [
-                  // Expanded(
-                  //   child: Row(
-                  //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  //     children: [
-
-                  //       Padding(
-                  //         padding: const EdgeInsets.only(left: 16.0),
-                  //         child: Text(
-                  //           ProjectLanguage.isLTR()
-                  //               ? widget.product.nameEn
-                  //               : widget.product.nameAr,
-                  //           overflow: TextOverflow.ellipsis,
-                  //           maxLines: 2,
-                  //           style: TextStyle(
-                  //               fontWeight: FontWeight.bold,
-                  //               fontSize:
-                  //                   Responsive.isMiniMobile(context) ? 18 : 20),
-                  //         ),
-                  //       ),
-
-                  //       Padding(
-                  //         padding: const EdgeInsets.only(right: 16.0),
-                  //         child: Row(
-                  //           mainAxisAlignment: MainAxisAlignment.start,
-                  //           children: [
-                  //             Text(widget.product.price.toString(),
-                  //                 textAlign: TextAlign.center,
-                  //                 maxLines: 2,
-                  //                 style: TextStyle(
-                  //                     fontWeight: FontWeight.bold,
-                  //                     fontSize: Responsive.isMiniMobile(context)
-                  //                         ? 19
-                  //                         : 23,
-                  //                     color: Colors.black)),
-                  //             Text(' JOD',
-                  //                 textAlign: TextAlign.center,
-                  //                 style: TextStyle(
-                  //                     fontWeight: FontWeight.bold,
-                  //                     fontSize: Responsive.isMiniMobile(context)
-                  //                         ? 19
-                  //                         : 23,
-                  //                     color: Colors.black)),
-                  //           ],
-                  //         ),
-                  //       ),
-                  //     ],
-                  //   ),
-                  // )
-
                   Expanded(
                     child: Padding(
                       padding:
@@ -112,6 +63,7 @@ class _ItemCardWithoutImageState extends State<ItemCardWithoutImage> {
                                     Responsive.isMiniMobile(context) ? 18 : 20),
                           ),
                           Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Padding(
                                 padding: const EdgeInsets.only(top: 10.0),
