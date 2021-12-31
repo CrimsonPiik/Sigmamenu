@@ -414,7 +414,10 @@ class _AddProductButtonState extends State<AddProductButton> {
                                   'price': _priceController.text,
                                   'rate': 0,
                                   'weight': _value.round(),
-                                  'options': {},
+                                  'options1': {},
+                                  'options2': {},
+                                  'options3': {},
+
                                   //subCategory: ---
                                 }).whenComplete(() {
                                   id = generateId();
