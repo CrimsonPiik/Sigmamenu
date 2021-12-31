@@ -348,16 +348,8 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                                         ],
                                       )
                                     : Container(),
-                                Center(
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(24),
-                                      color: Colors.grey.withOpacity(0.5),
-                                    ),
-                                    height: 1,
-                                    width: double.maxFinite,
-                                  ),
-                                ),
+                      
+                                SizedBox(height: 150)
                               ],
                             ),
                           ),

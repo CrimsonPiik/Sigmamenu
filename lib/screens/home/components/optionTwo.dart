@@ -45,61 +45,61 @@ class _Options2State extends State<Options2> {
           itemCount: counter,
           itemBuilder: (context, index) => Column(
             children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: GestureDetector(
-                  onTap: () {
-                    subCounter = 0;
-                    noName = '${widget.product.options2.keys.elementAt(index)}';
-                    for (var v in widget
-                        .product
-                        .options2[
-                            '${widget.product.options2.keys.elementAt(index)}']
-                        .keys) {
-                      subCounter++;
-                      print(subCounter);
-                    }
-                    setState(() {
-                      _menu = !_menu;
-                    
-                    });
-                  },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      CommonUI.text(
-                          context: context,
-                          text: widget.product.options2.keys.elementAt(index),
-                          textAlign: TextAlign.center,
-                          style: FontStyle.normal(
-                              context: context,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black)),
-                      Row(
-                        children: [
-                          CommonUI.text(
-                              context: context,
-                              text: 
-                                  widget
-                                      .product
-                                      .options2[
-                                          '${widget.product.options2.keys.elementAt(index)}']
-                                      .keys
-                                      .elementAt(index),
-                              textAlign: TextAlign.center,
-                              style: FontStyle.normal(
-                                  context: context,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.orange[300])),
-                          SizedBox(width: 5),
-                          Icon(
-                            Icons.arrow_forward_ios_outlined,
-                            size: 15,
-                            color: Colors.orange[300],
-                          )
-                        ],
-                      )
-                    ],
+              GestureDetector(
+                onTap: () {
+                  subCounter = 0;
+                  noName = '${widget.product.options2.keys.elementAt(index)}';
+                  for (var v in widget
+                      .product
+                      .options2[
+                          '${widget.product.options2.keys.elementAt(index)}']
+                      .keys) {
+                    subCounter++;
+                    print(subCounter);
+                  }
+                  setState(() {
+                    _menu = !_menu;
+                  });
+                },
+                child: Container(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        CommonUI.text(
+                            context: context,
+                            text: widget.product.options2.keys.elementAt(index),
+                            textAlign: TextAlign.center,
+                            style: FontStyle.normal(
+                                context: context,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black)),
+                        Row(
+                          children: [
+                            CommonUI.text(
+                                context: context,
+                                text: widget
+                                    .product
+                                    .options2[
+                                        '${widget.product.options2.keys.elementAt(index)}']
+                                    .keys
+                                    .elementAt(index),
+                                textAlign: TextAlign.center,
+                                style: FontStyle.normal(
+                                    context: context,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.orange[300])),
+                            SizedBox(width: 5),
+                            Icon(
+                              Icons.arrow_forward_ios_outlined,
+                              size: 15,
+                              color: Colors.orange[300],
+                            )
+                          ],
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -126,13 +126,13 @@ class _Options2State extends State<Options2> {
                 ),
               ),
               ListView.builder(
-          physics: NeverScrollableScrollPhysics(),
+                physics: NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
                 scrollDirection: Axis.vertical,
                 itemCount: subCounter,
                 itemBuilder: (context, indexx) => Column(
                   children: [
-                     Center(
+                    Center(
                       child: Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(24),
@@ -144,9 +144,7 @@ class _Options2State extends State<Options2> {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: GestureDetector(
-                        onTap: () {
-                      
-                        },
+                        onTap: () {},
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
