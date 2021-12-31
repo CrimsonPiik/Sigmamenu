@@ -62,23 +62,7 @@ class _Options3State extends State<Options3> {
 
                     setState(() {
                       _menu = !_menu;
-                      // _selectedItem = widget
-                      //     .product
-                      //     .options3[widget.product.options3.keys.elementAt(index)]
-                      //     .keys
-                      //     .elementAt(index);
                     });
-
-                    // String vvv =
-                    //     widget.product.options3.keys.elementAt(0); //Size
-                    // print('MAP: ' + vvv);
-                    // print('KEYS: ' +
-                    //     widget.product.options3[vvv].keys
-                    //         .elementAt(index)); // Index 0 in Size = 1.90
-
-                    // print('VALUES: ' +
-                    //     widget.product.options3[vvv].values
-                    //         .elementAt(index)); // Index 0 in Size = 1.90
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -123,12 +107,11 @@ class _Options3State extends State<Options3> {
           ),
         ),
         dropdownoptions3(noName),
-        // SizedBox(height: 50),
       ],
     );
   }
 
-  Widget dropdownoptions3(String noNAme) {
+  Widget dropdownoptions3(String noName) {
     return _menu
         ? Column(
             children: [
@@ -161,12 +144,7 @@ class _Options3State extends State<Options3> {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: GestureDetector(
-                        onTap: () {
-                          // setState(() {
-                          // _selectedItem = 'Venti® 20 fl. oz';
-                          // _selectedPrice = '5.24 JOD';
-                          // });
-                        },
+                        onTap: () {},
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -174,7 +152,7 @@ class _Options3State extends State<Options3> {
                                 context: context,
                                 text: widget
                                     .product
-                                    .options3[noNAme
+                                    .options3[noName
 
                                         // widget.product.options3.keys
                                         //   .elementAt(index)
@@ -190,7 +168,7 @@ class _Options3State extends State<Options3> {
                                 context: context,
                                 text: widget
                                         .product
-                                        .options3[noNAme
+                                        .options3[noName
                                             // widget.product.options3.keys
                                             //   .elementAt(index)
                                             ]

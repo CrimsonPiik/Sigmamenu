@@ -38,20 +38,7 @@ class _Options1State extends State<Options1> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // Padding(
-        //   padding: const EdgeInsets.only(top: 12.0),
-        //   child: Center(
-
-        //     child: Container(
-        //       decoration: BoxDecoration(
-        //         borderRadius: BorderRadius.circular(24),
-        //         color: Colors.grey.withOpacity(0.5),
-        //       ),
-        //       height: 1,
-        //       width: 250,
-        //     ),
-        //   ),
-        // ),
+      
         ListView.builder(
           physics: ScrollPhysics(),
           shrinkWrap: true,
@@ -76,23 +63,10 @@ class _Options1State extends State<Options1> {
 
                     setState(() {
                       _menu = !_menu;
-                      // _selectedItem = widget
-                      //     .product
-                      //     .options1[widget.product.options1.keys.elementAt(index)]
-                      //     .keys
-                      //     .elementAt(index);
+                   
                     });
 
-                    // String vvv =
-                    //     widget.product.options1.keys.elementAt(0); //Size
-                    // print('MAP: ' + vvv);
-                    // print('KEYS: ' +
-                    //     widget.product.options1[vvv].keys
-                    //         .elementAt(index)); // Index 0 in Size = 1.90
-
-                    // print('VALUES: ' +
-                    //     widget.product.options1[vvv].values
-                    //         .elementAt(index)); // Index 0 in Size = 1.90
+                  
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -109,7 +83,7 @@ class _Options1State extends State<Options1> {
                         children: [
                           CommonUI.text(
                               context: context,
-                              text: // _selectedItem,
+                              text: 
                                   widget
                                       .product
                                       .options1[
@@ -141,7 +115,7 @@ class _Options1State extends State<Options1> {
     );
   }
 
-  Widget dropdownoptions1(String noNAme) {
+  Widget dropdownoptions1(String noName) {
     return _menu
         ? Column(
             children: [
@@ -175,10 +149,6 @@ class _Options1State extends State<Options1> {
                       padding: const EdgeInsets.all(8.0),
                       child: GestureDetector(
                         onTap: () {
-                          // setState(() {
-                          // _selectedItem = 'Venti® 20 fl. oz';
-                          // _selectedPrice = '5.24 JOD';
-                          // });
                         },
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -187,7 +157,7 @@ class _Options1State extends State<Options1> {
                                 context: context,
                                 text: widget
                                     .product
-                                    .options1[noNAme
+                                    .options1[noName
 
                                         // widget.product.options1.keys
                                         //   .elementAt(index)
@@ -203,7 +173,7 @@ class _Options1State extends State<Options1> {
                                 context: context,
                                 text: widget
                                         .product
-                                        .options1[noNAme
+                                        .options1[noName
                                             // widget.product.options1.keys
                                             //   .elementAt(index)
                                             ]
