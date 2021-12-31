@@ -318,51 +318,51 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                                             width: 200,
                                           ),
                                         ),
-                                        widget.product.options1.isNotEmpty
-                                            ? Options1(product: widget.product)
-                                            : Container(),
-                                        widget.product.options2.isNotEmpty
-                                            ? Column(
-                                                children: [
-                                                  Center(
-                                                    child: Container(
-                                                      decoration: BoxDecoration(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(24),
-                                                        color: Colors.grey
-                                                            .withOpacity(0.5),
-                                                      ),
-                                                      height: 1,
-                                                      width: double.maxFinite,
-                                                    ),
-                                                  ),
-                                                  Options2(
-                                                      product: widget.product),
-                                                ],
-                                              )
-                                            : Container(),
-                                        widget.product.options3.isNotEmpty
-                                            ? Column(
-                                                children: [
-                                                  Center(
-                                                    child: Container(
-                                                      decoration: BoxDecoration(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(24),
-                                                        color: Colors.grey
-                                                            .withOpacity(0.5),
-                                                      ),
-                                                      height: 1,
-                                                      width: double.maxFinite,
-                                                    ),
-                                                  ),
-                                                  Options3(
-                                                      product: widget.product),
-                                                ],
-                                              )
-                                            : Container(),
+                                        // widget.product.options1.isNotEmpty
+                                        //     ? Options1(product: widget.product)
+                                        //     : Container(),
+                                        // widget.product.options2.isNotEmpty
+                                        //     ? Column(
+                                        //         children: [
+                                        //           Center(
+                                        //             child: Container(
+                                        //               decoration: BoxDecoration(
+                                        //                 borderRadius:
+                                        //                     BorderRadius
+                                        //                         .circular(24),
+                                        //                 color: Colors.grey
+                                        //                     .withOpacity(0.5),
+                                        //               ),
+                                        //               height: 1,
+                                        //               width: double.maxFinite,
+                                        //             ),
+                                        //           ),
+                                        //           Options2(
+                                        //               product: widget.product),
+                                        //         ],
+                                        //       )
+                                        //     : Container(),
+                                        // widget.product.options3.isNotEmpty
+                                        //     ? Column(
+                                        //         children: [
+                                        //           Center(
+                                        //             child: Container(
+                                        //               decoration: BoxDecoration(
+                                        //                 borderRadius:
+                                        //                     BorderRadius
+                                        //                         .circular(24),
+                                        //                 color: Colors.grey
+                                        //                     .withOpacity(0.5),
+                                        //               ),
+                                        //               height: 1,
+                                        //               width: double.maxFinite,
+                                        //             ),
+                                        //           ),
+                                        //           Options3(
+                                        //               product: widget.product),
+                                        //         ],
+                                        //       )
+                                        //     : Container(),
                                         // Center(
                                         //   child: Container(
                                         //     decoration: BoxDecoration(
