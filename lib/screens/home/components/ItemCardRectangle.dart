@@ -40,10 +40,10 @@ class _ItemCardRectangleState extends State<ItemCardRectangle> {
                 ),
           boxShadow: [
             BoxShadow(
-              color: Colors.grey.withOpacity(0.5),
-              spreadRadius: 2,
-              blurRadius: 9,
-              offset: Offset(1, 9),
+              color: Colors.grey.withOpacity(0.4),
+              spreadRadius: 1,
+              blurRadius: 6,
+              offset: Offset(1, 6),
             ),
           ],
         ),

@@ -29,21 +29,15 @@ class _ItemCardWithoutImageState extends State<ItemCardWithoutImage> {
         margin: EdgeInsets.only(bottom: 20),
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: // ProjectLanguage.isLTR()
-              // ?
-              BorderRadius.all(
+          borderRadius: BorderRadius.all(
             Radius.circular(18),
           ),
-          // : BorderRadius.only(
-          //     topLeft: Radius.circular(24),
-          //     bottomLeft: Radius.circular(24),
-          // ),
           boxShadow: [
             BoxShadow(
-              color: Colors.grey.withOpacity(0.5),
-              spreadRadius: 2,
-              blurRadius: 9,
-              offset: Offset(1, 9),
+              color: Colors.grey.withOpacity(0.4),
+              spreadRadius: 1,
+              blurRadius: 6,
+              offset: Offset(1, 6),
             ),
           ],
         ),
@@ -100,31 +94,29 @@ class _ItemCardWithoutImageState extends State<ItemCardWithoutImage> {
                   // )
 
                   Expanded(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Padding(
-                          padding:
-                              const EdgeInsets.fromLTRB(20.0, 30.0, 20.0, 10.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                    child: Padding(
+                      padding:
+                          const EdgeInsets.fromLTRB(20.0, 25.0, 20.0, 10.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            ProjectLanguage.isLTR()
+                                ? widget.product.nameEn
+                                : widget.product.nameAr,
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 2,
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize:
+                                    Responsive.isMiniMobile(context) ? 18 : 20),
+                          ),
+                          Row(
                             children: [
-                              Text(
-                                ProjectLanguage.isLTR()
-                                    ? widget.product.nameEn
-                                    : widget.product.nameAr,
-                                overflow: TextOverflow.ellipsis,
-                                maxLines: 2,
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: Responsive.isMiniMobile(context)
-                                        ? 18
-                                        : 20),
-                              ),
                               Padding(
                                 padding: const EdgeInsets.only(top: 10.0),
                                 child: Container(
-                                  width: 160,
+                                  width: 165,
                                   child: Text(
                                     ProjectLanguage.isLTR()
                                         ? widget.product.descriptionEn
@@ -140,35 +132,38 @@ class _ItemCardWithoutImageState extends State<ItemCardWithoutImage> {
                                   ),
                                 ),
                               ),
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                    top: 30.0, left: 30.0),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Text(widget.product.price.toString(),
+                                        textAlign: TextAlign.center,
+                                        maxLines: 2,
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize:
+                                                Responsive.isMiniMobile(context)
+                                                    ? 19
+                                                    : 23,
+                                            color: Colors.black)),
+                                    Text(' JOD',
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize:
+                                                Responsive.isMiniMobile(context)
+                                                    ? 19
+                                                    : 23,
+                                            color: Colors.black)),
+                                  ],
+                                ),
+                              ),
                             ],
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(right: 16.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Text(widget.product.price.toString(),
-                                  textAlign: TextAlign.center,
-                                  maxLines: 2,
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: Responsive.isMiniMobile(context)
-                                          ? 19
-                                          : 23,
-                                      color: Colors.black)),
-                              Text(' JOD',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: Responsive.isMiniMobile(context)
-                                          ? 19
-                                          : 23,
-                                      color: Colors.black)),
-                            ],
-                          ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   )
                 ],
