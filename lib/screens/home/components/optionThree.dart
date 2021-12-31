@@ -39,7 +39,7 @@ class _Options3State extends State<Options3> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         ListView.builder(
-          physics: ScrollPhysics(),
+          physics: NeverScrollableScrollPhysics(),
           shrinkWrap: true,
           scrollDirection: Axis.vertical,
           itemCount: counter,
@@ -126,7 +126,7 @@ class _Options3State extends State<Options3> {
                 ),
               ),
               ListView.builder(
-                physics: ScrollPhysics(),
+                physics: NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
                 scrollDirection: Axis.vertical,
                 itemCount: subCounter,

@@ -40,7 +40,7 @@ class _Options1State extends State<Options1> {
       children: [
       
         ListView.builder(
-          physics: ScrollPhysics(),
+          physics: NeverScrollableScrollPhysics(),
           shrinkWrap: true,
           scrollDirection: Axis.vertical,
           itemCount: counter,
@@ -130,7 +130,7 @@ class _Options1State extends State<Options1> {
                 ),
               ),
               ListView.builder(
-                physics: ScrollPhysics(),
+          physics: NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
                 scrollDirection: Axis.vertical,
                 itemCount: subCounter,
