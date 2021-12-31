@@ -13,11 +13,11 @@ class Product {
   String descriptionAr = 'descriptionAr';
   bool isPublished = true;
   bool isOnSale = false;
-  // bool checkOptions = false;
-
   Rating rating = Rating();
   int weight = 0;
-  Map<String, dynamic> options = {};
+  Map<String, dynamic> options1 = {};
+  Map<String, dynamic> options2 = {};
+  Map<String, dynamic> options3 = {};
 
   Map<String, dynamic> toMap() {
     return {
@@ -32,8 +32,9 @@ class Product {
       'descriptionAr': descriptionAr,
       'isPublished': isPublished,
       'isOnSale': isOnSale,
-      'options': options,
-      // 'checkOptions': checkOptions,
+      'options1': options1,
+      'options2': options2,
+      'options3': options3,
     };
   }
 
@@ -52,8 +53,9 @@ class Product {
       'isPublished': isPublished,
       'isOnSale': isOnSale,
       'rating': rating.toMap(),
-      'options': options,
-      // 'checkOptions': checkOptions,
+      'options1': options1,
+      'options2': options2,
+      'options3': options3,
     };
   }
 
@@ -71,8 +73,9 @@ class Product {
         isOnSale = map['isOnSale'] ?? false,
         rating =
             map['rating'] != null ? Rating.fromMap(map['rating']) : Rating(),
-        options = map['options'];
-  // checkOptions = map['checkOptions'];
+        options1 = map['options1'],
+        options2 = map['options2'],
+        options3 = map['options3'];
 
   String toJson() => json.encode(toMap());
 
@@ -99,8 +102,9 @@ class Product {
         other.descriptionAr == descriptionAr &&
         other.isPublished == isPublished &&
         other.isOnSale == isOnSale &&
-        other.options == options;
-    // other.checkOptions == checkOptions;
+        other.options1 == options1 &&
+        other.options2 == options2 &&
+        other.options3 == options3;
   }
 
   @override
@@ -115,7 +119,8 @@ class Product {
         descriptionAr.hashCode ^
         isPublished.hashCode ^
         isOnSale.hashCode ^
-        options.hashCode;
-    // checkOptions.hashCode;
+        options1.hashCode ^
+        options2.hashCode ^
+        options3.hashCode;
   }
 }

@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:sigmamenu/GeneralFunction/constaints.dart';
 import 'package:sigmamenu/language/logic/ProjectLanguage.dart';
 import 'package:sigmamenu/models/product.dart';
-import 'package:sigmamenu/screens/home/components/options.dart';
+import 'package:sigmamenu/screens/home/components/optionOne.dart';
+import 'package:sigmamenu/screens/home/components/optionThree.dart';
+import 'package:sigmamenu/screens/home/components/optionTwo.dart';
 import 'package:sigmamenu/style/AssetsManager.dart';
 import 'package:sigmamenu/style/CommonUI.dart';
 import 'package:sigmamenu/style/ScreenUtil.dart';
@@ -21,7 +23,6 @@ class ItemCardSquares extends StatefulWidget {
 }
 
 class _ItemCardSquaresState extends State<ItemCardSquares> {
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -136,7 +137,7 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
   }
 
   bool _fromTop = false;
- 
+
   _animationDialog(context) {
     String _selectedPrice = "${widget.product.price} JOD";
 
@@ -291,8 +292,8 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                                         ),
                                         // SizedBox(height: 25),
                                         Padding(
-                                          padding:
-                                              const EdgeInsets.only(top: 15.0),
+                                          padding: const EdgeInsets.only(
+                                              top: 15.0, bottom: 8.0),
                                           child: Center(
                                             child: CommonUI.text(
                                                 context: context,
@@ -305,14 +306,75 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                                                     color: Colors.black)),
                                           ),
                                         ),
-                                        Padding(
-                                          padding: const EdgeInsets.only(
-                                              bottom: 25.0),
-                                          child: widget
-                                                  .product.options.isNotEmpty
-                                              ? Options(product: widget.product)
-                                              : Container(),
+                                        Center(
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(24),
+                                              color:
+                                                  Colors.grey.withOpacity(0.5),
+                                            ),
+                                            height: 1,
+                                            width: 200,
+                                          ),
                                         ),
+                                        widget.product.options1.isNotEmpty
+                                            ? Options1(product: widget.product)
+                                            : Container(),
+                                        widget.product.options2.isNotEmpty
+                                            ? Column(
+                                                children: [
+                                                  Center(
+                                                    child: Container(
+                                                      decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(24),
+                                                        color: Colors.grey
+                                                            .withOpacity(0.5),
+                                                      ),
+                                                      height: 1,
+                                                      width: double.maxFinite,
+                                                    ),
+                                                  ),
+                                                  Options2(
+                                                      product: widget.product),
+                                                ],
+                                              )
+                                            : Container(),
+                                        widget.product.options3.isNotEmpty
+                                            ? Column(
+                                                children: [
+                                                  Center(
+                                                    child: Container(
+                                                      decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(24),
+                                                        color: Colors.grey
+                                                            .withOpacity(0.5),
+                                                      ),
+                                                      height: 1,
+                                                      width: double.maxFinite,
+                                                    ),
+                                                  ),
+                                                  Options3(
+                                                      product: widget.product),
+                                                ],
+                                              )
+                                            : Container(),
+                                        // Center(
+                                        //   child: Container(
+                                        //     decoration: BoxDecoration(
+                                        //       borderRadius:
+                                        //           BorderRadius.circular(24),
+                                        //       color:
+                                        //           Colors.grey.withOpacity(0.5),
+                                        //     ),
+                                        //     height: 1,
+                                        //     width: double.maxFinite,
+                                        //   ),
+                                        // ),
                                       ],
                                     ),
                                   ),
