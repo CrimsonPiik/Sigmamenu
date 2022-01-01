@@ -847,36 +847,144 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                     ],
                                   ),
                                   SizedBox(height: 25),
-                                  GestureDetector(
-                                    onTap: () {},
-                                    child: Container(
-                                      // width: 50,
-                                      // height: 50,
-                                      // decoration:
-                                      // BoxDecoration(color: Colors.red),
-                                      child: Row(
-                                        children: [
-                                          Text(widget.options
-                                              .elementAt(0)
-                                              .options
-                                              .keys
-                                              .first
-                                              .toString()),
-                                          Text(widget.options
-                                              .elementAt(1)
-                                              .options
-                                              .keys
-                                              .first
-                                              .toString()),
-                                          Text(widget.options
-                                              .elementAt(2)
-                                              .options
-                                              .keys
-                                              .first
-                                              .toString()),
-                                        ],
+                                  Column(
+                                    children: [
+                                      GestureDetector(
+                                        onTap: () async {
+                                          FirebaseFirestore.instance
+                                              .collection(
+                                                  widget.product.category)
+                                              .doc(widget.product.id)
+                                              .update({
+                                            'options1': {
+                                              widget.options
+                                                  .elementAt(0)
+                                                  .options
+                                                  .keys
+                                                  .first
+                                                  .toString(): {
+                                                'A': '1.00',
+                                                'B': '2.00',
+                                                'C': '3.00'
+                                              }
+                                            }
+                                          });
+                                        },
+                                        child: Container(
+                                          child: Text(
+                                            widget.options
+                                                .elementAt(0)
+                                                .options
+                                                .keys
+                                                .first
+                                                .toString(),
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .headline4!
+                                                .copyWith(
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize:
+                                                      Responsive.isMiniMobile(
+                                                              context)
+                                                          ? 16
+                                                          : 19,
+                                                ),
+                                            textAlign: TextAlign.start,
+                                          ),
+                                        ),
                                       ),
-                                    ),
+                                      GestureDetector(
+                                        onTap: () async {
+                                          FirebaseFirestore.instance
+                                              .collection(
+                                                  widget.product.category)
+                                              .doc(widget.product.id)
+                                              .update({
+                                            'options2': {
+                                              widget.options
+                                                  .elementAt(1)
+                                                  .options
+                                                  .keys
+                                                  .first
+                                                  .toString(): {
+                                                'A': '1.00',
+                                                'B': '2.00',
+                                                'C': '3.00'
+                                              }
+                                            }
+                                          });
+                                        },
+                                        child: Container(
+                                          child: Text(
+                                            widget.options
+                                                .elementAt(1)
+                                                .options
+                                                .keys
+                                                .first
+                                                .toString(),
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .headline4!
+                                                .copyWith(
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize:
+                                                      Responsive.isMiniMobile(
+                                                              context)
+                                                          ? 16
+                                                          : 19,
+                                                ),
+                                            textAlign: TextAlign.start,
+                                          ),
+                                        ),
+                                      ),
+                                      GestureDetector(
+                                        onTap: () async {
+                                          FirebaseFirestore.instance
+                                              .collection(
+                                                  widget.product.category)
+                                              .doc(widget.product.id)
+                                              .update({
+                                            'options3': {
+                                              widget.options
+                                                  .elementAt(2)
+                                                  .options
+                                                  .keys
+                                                  .first
+                                                  .toString(): {
+                                                'A': '1.00',
+                                                'B': '2.00',
+                                                'C': '3.00'
+                                              }
+                                            }
+                                          });
+                                        },
+                                        child: Container(
+                                          child: Text(
+                                            widget.options
+                                                .elementAt(2)
+                                                .options
+                                                .keys
+                                                .first
+                                                .toString(),
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .headline4!
+                                                .copyWith(
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize:
+                                                      Responsive.isMiniMobile(
+                                                              context)
+                                                          ? 16
+                                                          : 19,
+                                                ),
+                                            textAlign: TextAlign.start,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                   // Column(
                                   //   crossAxisAlignment:
