@@ -159,13 +159,13 @@ class _ProductOptionsState extends State<ProductOptions> {
                                           children: [
                                             CommonUI.text(
                                                 context: context,
-                                                text: 'II',
-                                                // options
-                                                //     .elementAt(index)
-                                                //     .options
-                                                //     .values
-                                                //     .elementAt(index)
-                                                //     .toString(),
+                                                text: options
+                                                    .elementAt(index)
+                                                    .options[
+                                                        '${options.elementAt(index).options.keys.first}']
+                                                    .keys
+                                                    .elementAt(indexx)
+                                                    .toString(),
                                                 textAlign: TextAlign.center,
                                                 style: FontStyle.small(
                                                     context: context,
@@ -174,16 +174,14 @@ class _ProductOptionsState extends State<ProductOptions> {
                                                         .withOpacity(0.8))),
                                             CommonUI.text(
                                                 context: context,
-                                                text: 'widget',
-                                                // options.elementAt(index)
-                                                //     .product
-                                                //     .options1[noName
-                                                //         // widget.product.options1.keys
-                                                //         //   .elementAt(index)
-                                                //         ]
-                                                //     .values
-                                                //     .elementAt(indexx) +
-                                                // ' JOD',
+                                                text: options
+                                                        .elementAt(index)
+                                                        .options[
+                                                            '${options.elementAt(index).options.keys.first}']
+                                                        .values
+                                                        .elementAt(indexx)
+                                                        .toString() +
+                                                    ' JOD',
                                                 textAlign: TextAlign.center,
                                                 style: FontStyle.small(
                                                     context: context,
