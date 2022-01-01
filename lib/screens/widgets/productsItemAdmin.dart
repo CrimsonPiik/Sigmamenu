@@ -6,6 +6,7 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:sigmamenu/GeneralFunction/firebase_uploader_web.dart';
 import 'package:sigmamenu/GeneralFunction/constaints.dart';
 import 'package:sigmamenu/language/logic/ProjectLanguage.dart';
+import 'package:sigmamenu/models/options.dart';
 import 'package:sigmamenu/models/product.dart';
 import 'package:sigmamenu/style/AssetsManager.dart';
 import 'package:sigmamenu/style/CommonUI.dart';
@@ -13,7 +14,8 @@ import 'package:sigmamenu/style/ScreenUtil.dart';
 
 class ProductsItemAdmin extends StatefulWidget {
   final Product product;
-  ProductsItemAdmin(this.product);
+  final List<OptionsModel> options;
+  ProductsItemAdmin(this.product, this.options);
 
   @override
   State<ProductsItemAdmin> createState() => _ProductsItemAdminState();
@@ -845,52 +847,83 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                     ],
                                   ),
                                   SizedBox(height: 25),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Container(
-                                        width: Responsive.isDesktop(context)
-                                            ? Responsive.width(context) / 2.2
-                                            : Responsive.width(context) / 1.35,
-                                        child: Text(
-                                          "Description",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .headline4!
-                                              .copyWith(
-                                                color: Colors.black,
-                                                fontWeight: FontWeight.bold,
-                                                fontSize:
-                                                    Responsive.isMiniMobile(
-                                                            context)
-                                                        ? 16
-                                                        : 19,
-                                              ),
-                                        ),
+                                  GestureDetector(
+                                    onTap: () {},
+                                    child: Container(
+                                      // width: 50,
+                                      // height: 50,
+                                      // decoration:
+                                      // BoxDecoration(color: Colors.red),
+                                      child: Row(
+                                        children: [
+                                          Text(widget.options
+                                              .elementAt(0)
+                                              .options
+                                              .keys
+                                              .first
+                                              .toString()),
+                                          Text(widget.options
+                                              .elementAt(1)
+                                              .options
+                                              .keys
+                                              .first
+                                              .toString()),
+                                          Text(widget.options
+                                              .elementAt(2)
+                                              .options
+                                              .keys
+                                              .first
+                                              .toString()),
+                                        ],
                                       ),
-                                      SizedBox(height: 12),
-                                      Container(
-                                        child: Text(
-                                          ProjectLanguage.isLTR()
-                                              ? "${widget.product.descriptionEn}"
-                                              : "${widget.product.descriptionAr}",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .headline3!
-                                              .copyWith(
-                                                color: Colors.black,
-                                                fontSize:
-                                                    Responsive.isMiniMobile(
-                                                            context)
-                                                        ? 10
-                                                        : 12,
-                                              ),
-                                        ),
-                                      ),
-                                      SizedBox(height: 350),
-                                    ],
+                                    ),
                                   ),
+                                  // Column(
+                                  //   crossAxisAlignment:
+                                  //       CrossAxisAlignment.start,
+                                  //   children: [
+                                  //     Container(
+                                  //       width: Responsive.isDesktop(context)
+                                  //           ? Responsive.width(context) / 2.2
+                                  //           : Responsive.width(context) / 1.35,
+                                  //       child: Text(
+                                  //         "Description",
+                                  //         style: Theme.of(context)
+                                  //             .textTheme
+                                  //             .headline4!
+                                  //             .copyWith(
+                                  //               color: Colors.black,
+                                  //               fontWeight: FontWeight.bold,
+                                  //               fontSize:
+                                  //                   Responsive.isMiniMobile(
+                                  //                           context)
+                                  //                       ? 16
+                                  //                       : 19,
+                                  //             ),
+                                  //       ),
+                                  //     ),
+                                  //     SizedBox(height: 12),
+                                  //     Container(
+                                  //       child: Text(
+                                  //         ProjectLanguage.isLTR()
+                                  //             ? "${widget.product.descriptionEn}"
+                                  //             : "${widget.product.descriptionAr}",
+                                  //         style: Theme.of(context)
+                                  //             .textTheme
+                                  //             .headline3!
+                                  //             .copyWith(
+                                  //               color: Colors.black,
+                                  //               fontSize:
+                                  //                   Responsive.isMiniMobile(
+                                  //                           context)
+                                  //                       ? 10
+                                  //                       : 12,
+                                  //             ),
+                                  //       ),
+                                  //     ),
+                                  //     SizedBox(height: 350),
+                                  //   ],
+                                  // ),
                                 ],
                               ),
                             ),
