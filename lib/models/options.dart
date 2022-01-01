@@ -24,7 +24,7 @@ class OptionsModel {
 
   @override
   String toString() {
-    return 'Product( options: $options';
+    return 'Options: $options';
   }
 
   @override
