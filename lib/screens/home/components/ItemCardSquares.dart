@@ -184,104 +184,73 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                           child: Container(
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(24),
-                              color: Colors.grey.withOpacity(0.5),
+                              color: Colors.orange[700],
                             ),
                             height: 4,
-                            width: 50.0,
+                            width: 30.0,
                           ),
                         ),
                         Expanded(
                           child: SingleChildScrollView(
                             scrollDirection: Axis.vertical,
                             child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.center,
                               children: <Widget>[
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
-                                    Container(
-                                        width: 140,
-                                        height: 170,
-                                        padding: EdgeInsets.only(
-                                          top: kDefaultPaddin * 1.2,
-                                        ),
-                                        child: CommonUI.cachedImage(
-                                            widget.product.image,
-                                            ImageAssets.foodplaceholder,
-                                            fit: BoxFit.cover)),
-                                    SizedBox(width: 20),
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                          top: kDefaultPaddin * 1.8),
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Container(
-                                            width:
+                                    Text(
+                                      ProjectLanguage.isLTR()
+                                          ? widget.product.nameEn
+                                          : widget.product.nameAr,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .headline4!
+                                          .copyWith(
+                                            color: Colors.cyan[900],
+                                            fontWeight: FontWeight.bold,
+                                            fontSize:
                                                 Responsive.isMiniMobile(context)
-                                                    ? 100
-                                                    : 140,
-                                            child: Text(
-                                              ProjectLanguage.isLTR()
-                                                  ? widget.product.nameEn
-                                                  : widget.product.nameAr,
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .headline4!
-                                                  .copyWith(
-                                                    color: Colors.black,
-                                                    fontWeight: FontWeight.bold,
-                                                    fontSize:
-                                                        Responsive.isMiniMobile(
-                                                                context)
-                                                            ? 16
-                                                            : 19,
-                                                  ),
-                                              maxLines: 3,
-                                              textAlign: TextAlign.start,
-                                            ),
+                                                    ? 20
+                                                    : 24,
                                           ),
-                                          //       CommonUI.text(
-                                          //           context: context,
-                                          //           text: ProjectLanguage
-                                          //                   .isLTR()
-                                          //               ? widget
-                                          //                   .product.nameEn
-                                          //               : widget
-                                          //                   .product.nameAr,
-                                          //           textAlign:
-                                          //               TextAlign.start,
-                                          //           style: FontStyle.subTitle(
-                                          //               context: context,
-                                          //               fontWeight:
-                                          //                   FontWeight.w600,
-                                          //               color:
-                                          //                   Colors.black)),
-                                          // ),
-                                          SizedBox(height: 6),
-                                          Container(
-                                            width: 155,
-                                            child: CommonUI.text(
-                                                context: context,
-                                                text: ProjectLanguage.isLTR()
-                                                    ? widget
-                                                        .product.descriptionEn
-                                                    : widget
-                                                        .product.descriptionAr,
-                                                textAlign: TextAlign.start,
-                                                style: FontStyle.smaller(
-                                                    context: context,
-                                                    fontWeight: FontWeight.w600,
-                                                    color: Colors.black)),
-                                          ),
-                                        ],
-                                      ),
+                                      maxLines: 3,
+                                      textAlign: TextAlign.start,
+                                    ),
+                                    // ),
+                                    //       CommonUI.text(
+                                    //           context: context,
+                                    //           text: ProjectLanguage
+                                    //                   .isLTR()
+                                    //               ? widget
+                                    //                   .product.nameEn
+                                    //               : widget
+                                    //                   .product.nameAr,
+                                    //           textAlign:
+                                    //               TextAlign.start,
+                                    //           style: FontStyle.subTitle(
+                                    //               context: context,
+                                    //               fontWeight:
+                                    //                   FontWeight.w600,
+                                    //               color:
+                                    //                   Colors.black)),
+                                    // ),
+                                    SizedBox(height: 6),
+                                    Padding(
+                                      padding: const EdgeInsets.all(12.0),
+                                      child: CommonUI.text(
+                                          context: context,
+                                          text: ProjectLanguage.isLTR()
+                                              ? widget.product.descriptionEn
+                                              : widget.product.descriptionAr,
+                                          textAlign: TextAlign.start,
+                                          style: FontStyle.smaller(
+                                              context: context,
+                                              fontWeight: FontWeight.w600,
+                                              color: Colors.black)),
                                     ),
                                   ],
                                 ),
-                                // SizedBox(height: 25),
                                 Padding(
                                   padding: const EdgeInsets.only(
                                       top: 15.0, bottom: 8.0),
@@ -293,6 +262,7 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                                         textAlign: TextAlign.center,
                                         style: FontStyle.title(
                                             context: context,
+                                            // fontFamily: ,
                                             fontWeight: FontWeight.bold,
                                             color: Colors.black)),
                                   ),
@@ -348,8 +318,7 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                                         ],
                                       )
                                     : Container(),
-                      
-                                SizedBox(height: 150)
+                                SizedBox(height: 210)
                               ],
                             ),
                           ),
@@ -364,11 +333,22 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
         );
       },
       transitionBuilder: (context, anim1, anim2, child) {
-        return SlideTransition(
-          position:
-              Tween(begin: Offset(0, _fromTop ? -1 : 1), end: Offset(0, 0.25))
+        return Stack(
+          children: [
+            Container(
+              width: double.maxFinite,
+              height: 280,
+              child: CommonUI.cachedImage(
+                  widget.product.image, ImageAssets.foodplaceholder,
+                  fit: BoxFit.cover),
+            ),
+            SlideTransition(
+              position: Tween(
+                      begin: Offset(0, _fromTop ? -1 : 1), end: Offset(0, 0.35))
                   .animate(anim1),
-          child: child,
+              child: child,
+            ),
+          ],
         );
       },
     );

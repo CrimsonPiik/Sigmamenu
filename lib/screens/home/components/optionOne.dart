@@ -90,12 +90,12 @@ class _Options1State extends State<Options1> {
                                 style: FontStyle.normal(
                                     context: context,
                                     fontWeight: FontWeight.bold,
-                                    color: Colors.orange[300])),
+                                    color: Colors.orange[700])),
                             SizedBox(width: 5),
                             Icon(
                               Icons.arrow_forward_ios_outlined,
                               size: 15,
-                              color: Colors.orange[300],
+                              color: Colors.orange[700],
                             )
                           ],
                         )
@@ -387,7 +387,7 @@ class _Options1State extends State<Options1> {
 //                         context,
 //                     fontWeight:
 //                         FontWeight.bold,
-//                     color: Colors.orange[300])),
+//                     color: Colors.orange[700])),
 //             SizedBox(
 //                 width:
 //                     5),
@@ -397,7 +397,7 @@ class _Options1State extends State<Options1> {
 //               size: 15,
 //               color: Colors
 //                       .orange[
-//                   300],
+//                   700],
 //             )
 //           ],
 //         ),
@@ -602,7 +602,7 @@ class _Options1State extends State<Options1> {
 //                         context,
 //                     fontWeight:
 //                         FontWeight.bold,
-//                     color: Colors.orange[300])),
+//                     color: Colors.orange[700])),
 //             SizedBox(
 //                 width:
 //                     5),
@@ -612,7 +612,7 @@ class _Options1State extends State<Options1> {
 //               size: 15,
 //               color: Colors
 //                       .orange[
-//                   300],
+//                   700],
 //             )
 //           ],
 //         ),
@@ -1020,7 +1020,7 @@ class _Options1State extends State<Options1> {
 //                         context,
 //                     fontWeight:
 //                         FontWeight.bold,
-//                     color: Colors.orange[300])),
+//                     color: Colors.orange[700])),
 //             SizedBox(
 //                 width:
 //                     5),
@@ -1030,7 +1030,7 @@ class _Options1State extends State<Options1> {
 //               size: 15,
 //               color: Colors
 //                       .orange[
-//                   300],
+//                   700],
 //             )
 //           ],
 //         ),
@@ -1235,7 +1235,7 @@ class _Options1State extends State<Options1> {
 //                         context,
 //                     fontWeight:
 //                         FontWeight.bold,
-//                     color: Colors.orange[300])),
+//                     color: Colors.orange[700])),
 //             SizedBox(
 //                 width:
 //                     5),
@@ -1245,7 +1245,7 @@ class _Options1State extends State<Options1> {
 //               size: 15,
 //               color: Colors
 //                       .orange[
-//                   300],
+//                   700],
 //             )
 //           ],
 //         ),
