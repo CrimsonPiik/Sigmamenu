@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:sigmamenu/models/options.dart';
 import 'package:sigmamenu/style/CommonUI.dart';
 import 'package:sigmamenu/style/ScreenUtil.dart';
-import '../../../style/Style.dart';
+import 'package:sigmamenu/style/Style.dart';
 
 class ProductOptions extends StatefulWidget {
   @override
@@ -92,7 +92,7 @@ class _ProductOptionsState extends State<ProductOptions> {
                                               .first
                                               .toString(),
                                           textAlign: TextAlign.center,
-                                          style: FontStyle.normal(
+                                          style: FontStylee.normal(
                                               context: context,
                                               fontWeight: FontWeight.bold,
                                               color: Colors.black)),
@@ -107,7 +107,7 @@ class _ProductOptionsState extends State<ProductOptions> {
                                               // .keys
                                               // .elementAt(index),
                                               textAlign: TextAlign.center,
-                                              style: FontStyle.normal(
+                                              style: FontStylee.normal(
                                                   context: context,
                                                   fontWeight: FontWeight.bold,
                                                   color: Colors.orange[700])),
@@ -174,7 +174,7 @@ class _ProductOptionsState extends State<ProductOptions> {
                                                         .elementAt(indexx)
                                                         .toString(),
                                                     textAlign: TextAlign.center,
-                                                    style: FontStyle.small(
+                                                    style: FontStylee.small(
                                                         context: context,
                                                         fontWeight:
                                                             FontWeight.bold,
@@ -191,7 +191,7 @@ class _ProductOptionsState extends State<ProductOptions> {
                                                             .toString() +
                                                         ' JOD',
                                                     textAlign: TextAlign.center,
-                                                    style: FontStyle.small(
+                                                    style: FontStylee.small(
                                                         context: context,
                                                         fontWeight:
                                                             FontWeight.bold,

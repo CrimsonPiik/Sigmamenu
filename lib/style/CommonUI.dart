@@ -166,7 +166,7 @@ class CommonUI {
             TextButton(
               child: Text(
                 MaterialLocalizations.of(context).okButtonLabel,
-                style: FontStyle.normal(context: context, color: Colors.red),
+                style: FontStylee.normal(context: context, color: Colors.red),
               ),
               onPressed: () {
                 if (onDone != null) {
@@ -221,7 +221,7 @@ class CommonUI {
                 ),
                 Text(
                   message,
-                  style: FontStyle.normal(context: context),
+                  style: FontStylee.normal(context: context),
                 ),
                 // TextButton(
                 //     onPressed: () => Navigator.pop(context),
@@ -273,7 +273,7 @@ class CommonUI {
             suffixIcon: isEdit ? Icon(Icons.edit_outlined) : null,
             labelText: hint,
             hintText: label,
-            hintStyle: FontStyle.normal(context: context),
+            hintStyle: FontStylee.normal(context: context),
             enabled: true),
         onChanged: onChange,
         validator: validate,
@@ -328,7 +328,7 @@ class CommonUI {
               enabledBorder: InputBorder.none,
               focusedBorder: InputBorder.none,
               labelText: labelText,
-              labelStyle: FontStyle.normal(
+              labelStyle: FontStylee.normal(
                   fontWeight: FontWeight.bold, context: context),
               floatingLabelBehavior: FloatingLabelBehavior.always,
               prefixIcon: Padding(
@@ -340,7 +340,7 @@ class CommonUI {
               ),
               suffixIcon: suffixIcon,
               hintText: hintText,
-              hintStyle: FontStyle.normal(context: context),
+              hintStyle: FontStylee.normal(context: context),
             ),
           ),
         ),
@@ -362,7 +362,7 @@ class CommonUI {
         minLines: minLines,
         maxLines: maxLines,
         textAlign: textAlign,
-        style: style ?? FontStyle.normal(context: context, color: Colors.white),
+        style: style ?? FontStylee.normal(context: context, color: Colors.white),
       );
     } else {
       return Text(
@@ -370,7 +370,7 @@ class CommonUI {
         maxLines: maxLines,
         textAlign: textAlign,
         softWrap: true,
-        style: style ?? FontStyle.normal(context: context, color: Colors.white),
+        style: style ?? FontStylee.normal(context: context, color: Colors.white),
       );
     }
   }
@@ -466,7 +466,7 @@ class CommonUI {
         onPrimary: textColor,
         // shadowColor: color,
         elevation: elevation,
-        textStyle: FontStyle.headline6(context: context),
+        textStyle: FontStylee.headline6(context: context),
         // shape: CommonShapes.obRounded(radius),
         minimumSize: Size(minWidth, minHight));
     return icon != null

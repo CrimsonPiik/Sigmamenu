@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sigmamenu/models/product.dart';
 import 'package:sigmamenu/style/CommonUI.dart';
-import '../../../style/Style.dart';
+import 'package:sigmamenu/style/Style.dart';
 
 class Options3 extends StatefulWidget {
   final Product product;
@@ -72,7 +72,7 @@ class _Options3State extends State<Options3> {
                             context: context,
                             text: widget.product.options3.keys.elementAt(index),
                             textAlign: TextAlign.center,
-                            style: FontStyle.normal(
+                            style: FontStylee.normal(
                                 context: context,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black)),
@@ -88,7 +88,7 @@ class _Options3State extends State<Options3> {
                                         .keys
                                         .elementAt(index),
                                 textAlign: TextAlign.center,
-                                style: FontStyle.normal(
+                                style: FontStylee.normal(
                                     context: context,
                                     fontWeight: FontWeight.bold,
                                     color: Colors.orange[700])),
@@ -162,7 +162,7 @@ class _Options3State extends State<Options3> {
                                     .keys
                                     .elementAt(indexx),
                                 textAlign: TextAlign.center,
-                                style: FontStyle.small(
+                                style: FontStylee.small(
                                     context: context,
                                     fontWeight: FontWeight.bold,
                                     color: Colors.black.withOpacity(0.8))),
@@ -178,7 +178,7 @@ class _Options3State extends State<Options3> {
                                         .elementAt(indexx) +
                                     ' JOD',
                                 textAlign: TextAlign.center,
-                                style: FontStyle.small(
+                                style: FontStylee.small(
                                     context: context,
                                     fontWeight: FontWeight.bold,
                                     color: Colors.black.withOpacity(0.8))),

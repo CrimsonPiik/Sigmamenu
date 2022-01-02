@@ -162,7 +162,7 @@ class _AddUserButtonState extends State<AddUserButton> {
                                               translate(context, "password"),
                                           prefixIcon: Icon(Icons.lock,
                                               color: Colors.orange),
-                                          hintStyle: FontStyle.normal(
+                                          hintStyle: FontStylee.normal(
                                             context: context,
                                             // color:
                                             //  Style.beigeCoffee
@@ -216,7 +216,7 @@ class _AddUserButtonState extends State<AddUserButton> {
                                           }
                                         },
                                         textStyle: Responsive.isDesktop(context)
-                                            ? FontStyle.small(
+                                            ? FontStylee.small(
                                                 context: context,
                                                 fontWeight: FontWeight.bold,
                                                 color: Colors.white)

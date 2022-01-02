@@ -15,7 +15,7 @@ class GuestLogin extends StatelessWidget {
         await ProjectFirebaseAuth().anonymousSignin();
       },
       textStyle: Responsive.isDesktop(context)
-          ? FontStyle.small(
+          ? FontStylee.small(
               context: context,
               fontWeight: FontWeight.bold,
               color: Style.primary)

@@ -9,7 +9,7 @@ import 'package:sigmamenu/screens/home/components/optionTwo.dart';
 import 'package:sigmamenu/style/AssetsManager.dart';
 import 'package:sigmamenu/style/CommonUI.dart';
 import 'package:sigmamenu/style/ScreenUtil.dart';
-import '../../../style/Style.dart';
+import 'package:sigmamenu/style/Style.dart';
 
 class ItemCardSquares extends StatefulWidget {
   final Product product;
@@ -87,7 +87,7 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                                     : widget.product.nameAr,
                                 maxLines: 1,
                                 textAlign: TextAlign.center,
-                                style: FontStyle.normal(
+                                style: FontStylee.normal(
                                     context: context,
                                     fontWeight: FontWeight.bold),
                               ),
@@ -107,7 +107,7 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                                       context: context,
                                       text: 'JOD ',
                                       textAlign: TextAlign.center,
-                                      style: FontStyle.normal(
+                                      style: FontStylee.normal(
                                           context: context,
                                           fontWeight: FontWeight.bold,
                                           color: Colors.black)),
@@ -115,7 +115,7 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                                       context: context,
                                       text: widget.product.price.toString(),
                                       textAlign: TextAlign.center,
-                                      style: FontStyle.normal(
+                                      style: FontStylee.normal(
                                           context: context,
                                           fontWeight: FontWeight.bold,
                                           color: Colors.red)),
@@ -244,7 +244,7 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                                               ? widget.product.descriptionEn
                                               : widget.product.descriptionAr,
                                           textAlign: TextAlign.start,
-                                          style: FontStyle.smaller(
+                                          style: FontStylee.smaller(
                                               context: context,
                                               fontWeight: FontWeight.w600,
                                               color: Colors.black)),
@@ -260,7 +260,7 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
                                         text: _selectedPrice,
                                         // "${widget.product.price} JOD",
                                         textAlign: TextAlign.center,
-                                        style: FontStyle.title(
+                                        style: FontStylee.title(
                                             context: context,
                                             // fontFamily: ,
                                             fontWeight: FontWeight.bold,

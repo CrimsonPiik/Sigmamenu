@@ -28,7 +28,7 @@ class Style {
   static const Color primaryBlue = Color(0xff00837b);
 }
 
-class FontStyle {
+class FontStylee {
   static var primaryFont = "<Montserrat>";
   static const secondaryFont = "OpenSans";
 

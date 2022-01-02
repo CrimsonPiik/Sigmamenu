@@ -141,7 +141,7 @@ class _SignUpFormState extends State<SignUpForm> {
                       ),
                       hintText: translate(context, "password"),
                       prefixIcon: Icon(Icons.lock, color: Colors.orange),
-                      hintStyle: FontStyle.normal(
+                      hintStyle: FontStylee.normal(
                         context: context,
                         // color:
                         //  Style.beigeCoffee
@@ -192,7 +192,7 @@ class _SignUpFormState extends State<SignUpForm> {
                 }
               },
               textStyle: Responsive.isDesktop(context)
-                  ? FontStyle.small(
+                  ? FontStylee.small(
                       context: context,
                       fontWeight: FontWeight.bold,
                       color: Colors.white)
@@ -207,7 +207,7 @@ class _SignUpFormState extends State<SignUpForm> {
             children: [
               Text(
                 translate(context, "haveAccount"),
-                style: FontStyle.normal(
+                style: FontStylee.normal(
                     context: context,
                     color: Colors.orange[300],
                     fontWeight: FontWeight.bold),
@@ -217,7 +217,7 @@ class _SignUpFormState extends State<SignUpForm> {
                   onTap: widget.click,
                   child: Text(
                     translate(context, "login"),
-                    style: FontStyle.normal(
+                    style: FontStylee.normal(
                         context: context,
                         fontWeight: FontWeight.bold,
                         color: Colors.orange),

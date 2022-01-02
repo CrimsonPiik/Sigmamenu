@@ -24,7 +24,7 @@ class FortgotPasswordButton extends StatelessWidget {
             );
           },
           child: Text(translate(context, "forgotPassword"),
-              style: FontStyle.normal(
+              style: FontStylee.normal(
                   context: context,
                   color: Colors.grey,
                   fontWeight: FontWeight.bold)),

@@ -121,7 +121,7 @@ class _LoginFormState extends State<LoginForm>
                                   "email",
                                 ),
                                 prefixIcon: Icon(Icons.email, color: Colors.black),
-                                hintStyle: FontStyle.normal(
+                                hintStyle: FontStylee.normal(
                                     context: context, color: Colors.black)),
                             validator: FormBuilderValidators.compose([
                               FormBuilderValidators.required(context),
@@ -159,7 +159,7 @@ class _LoginFormState extends State<LoginForm>
                                 ),
                                 hintText: translate(context, "password"),
                                 prefixIcon: Icon(Icons.lock, color: Colors.black),
-                                hintStyle: FontStyle.normal(
+                                hintStyle: FontStylee.normal(
                                     context: context, color: Colors.black)),
                             validator: FormBuilderValidators.compose([
                               FormBuilderValidators.required(context),
@@ -176,7 +176,7 @@ class _LoginFormState extends State<LoginForm>
                         text: translate(context, "login"),
                         onPressed: () => submit(),
                         textStyle: Responsive.isDesktop(context)
-                            ? FontStyle.small(
+                            ? FontStylee.small(
                                 context: context,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white)

@@ -219,7 +219,7 @@ class _MyUserState extends State<MyUser> {
   Widget buildTitle(BuildContext context, String title) {
     return CommonUI.text(
         text: title,
-        style: FontStyle.normal(
+        style: FontStylee.normal(
             context: context, color: Colors.brown, fontWeight: FontWeight.bold),
         context: context);
   }
