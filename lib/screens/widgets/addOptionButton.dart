@@ -434,11 +434,20 @@ class _AddOptionButtonState extends State<AddOptionButton> {
                         children: [
                           ElevatedButton(
                             onPressed: () {
-                              // id = generateId();
-                              // _imagevalue.value =
-                              //     _imageBannerController.text;
-
-                              // _imageBannerController.clear();
+                              id = generateId();
+                              _optionNameController.clear();
+                              _optionOneKeyController.clear();
+                              _optionOneValueController.clear();
+                              _optionTwoKeyController.clear();
+                              _optionTwoValueController.clear();
+                              _optionThreeKeyController.clear();
+                              _optionThreeValueController.clear();
+                              _optionFourKeyController.clear();
+                              _optionFourValueController.clear();
+                              _optionFiveKeyController.clear();
+                              _optionFiveValueController.clear();
+                              _optionSixKeyController.clear();
+                              _optionSixValueController.clear();
                               Navigator.pop(context);
                             },
                             style: ButtonStyle(
@@ -476,6 +485,14 @@ class _AddOptionButtonState extends State<AddOptionButton> {
                                   _optionOneValueController.clear();
                                   _optionTwoKeyController.clear();
                                   _optionTwoValueController.clear();
+                                  _optionThreeKeyController.clear();
+                                  _optionThreeValueController.clear();
+                                  _optionFourKeyController.clear();
+                                  _optionFourValueController.clear();
+                                  _optionFiveKeyController.clear();
+                                  _optionFiveValueController.clear();
+                                  _optionSixKeyController.clear();
+                                  _optionSixValueController.clear();
 
                                   Navigator.pop(context);
 
