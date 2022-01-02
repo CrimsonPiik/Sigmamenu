@@ -847,7 +847,7 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                     ],
                                   ),
                                   SizedBox(height: 25),
-                                  Column(
+                                  Row(
                                     children: [
                                       GestureDetector(
                                         onTap: () async {
@@ -870,30 +870,23 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                             }
                                           });
                                         },
-                                        child: Container(
+                                        child: CircleAvatar(
+                                          backgroundColor: Colors.green,
+                                          radius: 20,
                                           child: Text(
                                             widget.options
                                                 .elementAt(0)
                                                 .options
                                                 .keys
                                                 .first
-                                                .toString(),
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .headline4!
-                                                .copyWith(
-                                                  color: Colors.black,
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize:
-                                                      Responsive.isMiniMobile(
-                                                              context)
-                                                          ? 16
-                                                          : 19,
-                                                ),
-                                            textAlign: TextAlign.start,
+                                                .toString()
+                                                .substring(0, 1),
+                                            style:
+                                                TextStyle(color: Colors.white),
                                           ),
                                         ),
                                       ),
+                                      SizedBox(width: 5),
                                       GestureDetector(
                                         onTap: () async {
                                           FirebaseFirestore.instance
@@ -915,30 +908,22 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                             }
                                           });
                                         },
-                                        child: Container(
-                                          child: Text(
-                                            widget.options
-                                                .elementAt(1)
-                                                .options
-                                                .keys
-                                                .first
-                                                .toString(),
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .headline4!
-                                                .copyWith(
-                                                  color: Colors.black,
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize:
-                                                      Responsive.isMiniMobile(
-                                                              context)
-                                                          ? 16
-                                                          : 19,
-                                                ),
-                                            textAlign: TextAlign.start,
-                                          ),
-                                        ),
+                                        child: CircleAvatar(
+                                            backgroundColor: Colors.green,
+                                            radius: 20,
+                                            child: Text(
+                                              widget.options
+                                                  .elementAt(1)
+                                                  .options
+                                                  .keys
+                                                  .first
+                                                  .toString()
+                                                  .substring(0, 1),
+                                              style: TextStyle(
+                                                  color: Colors.white),
+                                            )),
                                       ),
+                                      SizedBox(width: 5),
                                       GestureDetector(
                                         onTap: () async {
                                           FirebaseFirestore.instance
@@ -960,29 +945,49 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                             }
                                           });
                                         },
-                                        child: Container(
+                                        child: CircleAvatar(
+                                          backgroundColor: Colors.green,
+                                          radius: 20,
                                           child: Text(
                                             widget.options
                                                 .elementAt(2)
                                                 .options
                                                 .keys
                                                 .first
-                                                .toString(),
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .headline4!
-                                                .copyWith(
-                                                  color: Colors.black,
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize:
-                                                      Responsive.isMiniMobile(
-                                                              context)
-                                                          ? 16
-                                                          : 19,
-                                                ),
-                                            textAlign: TextAlign.start,
+                                                .toString()
+                                                .substring(0, 1),
+                                            style:
+                                                TextStyle(color: Colors.white),
                                           ),
+                                          // Icon(
+                                          //   Icons.add,
+                                          //   color: Colors.white,
+                                          //   size: 20,
+                                          // ),
                                         ),
+                                        // Container(
+                                        //   child: Text(
+                                        //     widget.options
+                                        //         .elementAt(2)
+                                        //         .options
+                                        //         .keys
+                                        //         .first
+                                        //         .toString(),
+                                        //     style: Theme.of(context)
+                                        //         .textTheme
+                                        //         .headline4!
+                                        //         .copyWith(
+                                        //           color: Colors.black,
+                                        //           fontWeight: FontWeight.bold,
+                                        //           fontSize:
+                                        //               Responsive.isMiniMobile(
+                                        //                       context)
+                                        //                   ? 16
+                                        //                   : 19,
+                                        //         ),
+                                        //     textAlign: TextAlign.start,
+                                        //   ),
+                                        // ),
                                       ),
                                     ],
                                   ),
