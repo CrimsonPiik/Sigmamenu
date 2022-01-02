@@ -14,14 +14,27 @@ class AddOptionButton extends StatefulWidget {
 
 class _AddOptionButtonState extends State<AddOptionButton> {
   String id = generateId();
-  // String imageURL = 'assets/images/placeholder.jpg';
-  // TextEditingController _nameBannerController = TextEditingController();
-  // TextEditingController _categoryBannerController = TextEditingController();
-  // TextEditingController _imageBannerController = TextEditingController();
-  // ValueNotifier<String?> _imagevalue = ValueNotifier<String?>('');
+
+  TextEditingController _optionNameController = TextEditingController();
+  TextEditingController _optionOneKeyController = TextEditingController();
+  TextEditingController _optionOneValueController = TextEditingController();
+
+  TextEditingController _optionTwoKeyController = TextEditingController();
+  TextEditingController _optionTwoValueController = TextEditingController();
+
+  TextEditingController _optionThreeKeyController = TextEditingController();
+  TextEditingController _optionThreeValueController = TextEditingController();
+
+  TextEditingController _optionFourKeyController = TextEditingController();
+  TextEditingController _optionFourValueController = TextEditingController();
+
+  TextEditingController _optionFiveKeyController = TextEditingController();
+  TextEditingController _optionFiveValueController = TextEditingController();
+
+  TextEditingController _optionSixKeyController = TextEditingController();
+  TextEditingController _optionSixValueController = TextEditingController();
+
   final _formKey = GlobalKey<FormBuilderState>();
-  // String category = categoriesList.elementAt(0);
-  // bool error = false;
 
   @override
   Widget build(BuildContext context) {
@@ -55,263 +68,457 @@ class _AddOptionButtonState extends State<AddOptionButton> {
     );
   }
 
+  bool added = false;
+
   void showDialogWithFields() {
-    // Size size = MediaQuery.of(context).size;
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return FormBuilder(
-          key: _formKey,
-          child: Stack(
-            clipBehavior: Clip.none,
-            alignment: Alignment.topCenter,
-            children: [
-              AlertDialog(
-                // scrollable: true,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(4.0)),
-                content: Container(
-                  width: Responsive.isDesktop(context) ? 350 : 290,
-                  padding: EdgeInsets.all(20.0),
-                  margin: EdgeInsets.only(bottom: 20),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(18),
-                    ),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.4),
-                        spreadRadius: 1,
-                        blurRadius: 6,
-                        offset: Offset(1, 6),
+        return StatefulBuilder(
+          builder: (BuildContext context, StateSetter setState) {
+            return FormBuilder(
+              key: _formKey,
+              child: Stack(
+                clipBehavior: Clip.none,
+                alignment: Alignment.topCenter,
+                children: [
+                  AlertDialog(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(4.0)),
+                    content: Container(
+                      width: Responsive.isDesktop(context) ? 350 : 290,
+                      padding: EdgeInsets.all(20.0),
+                      margin: EdgeInsets.only(bottom: 20),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(18),
+                        ),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.4),
+                            spreadRadius: 1,
+                            blurRadius: 6,
+                            offset: Offset(1, 6),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
-                  child: Column(
-                    children: [
-                      GestureDetector(
-                        onTap: () {},
-                        child: Container(
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                CommonUI.text(
-                                    context: context,
-                                    text: 'options',
-                                    textAlign: TextAlign.center,
-                                    style: FontStylee.normal(
-                                        context: context,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.black)),
-                                Row(
+                      child: SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            GestureDetector(
+                              onTap: () {},
+                              child: Container(
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
-                                    CommonUI.text(
-                                        context: context,
-                                        text: 'Example!',
-                                        // .product
-                                        // .options1[
-                                        //     '${widget.product.options1.keys.elementAt(index)}']
-                                        // .keys
-                                        // .elementAt(index),
-                                        textAlign: TextAlign.center,
-                                        style: FontStylee.normal(
-                                            context: context,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.orange[700])),
-                                    SizedBox(width: 5),
-                                    Icon(
-                                      Icons.arrow_forward_ios_outlined,
-                                      size: 15,
-                                      color: Colors.orange[700],
+                                    // CommonUI.text(
+                                    //     context: context,
+                                    //     text: 'options',
+                                    //     textAlign: TextAlign.center,
+                                    //     style: FontStylee.normal(
+                                    //         context: context,
+                                    //         fontWeight: FontWeight.bold,
+                                    //         color: Colors.black)),
+                                    Expanded(
+                                      child: Container(
+                                        height: 50,
+                                        child: CommonUI.smallertextField(
+                                          context: context,
+                                          name: "Options",
+                                          hint: "Options",
+                                          // isEdit: true,
+                                          minlines: 1,
+                                          controller: _optionNameController,
+                                          validate:
+                                              FormBuilderValidators.compose([
+                                            FormBuilderValidators.required(
+                                                context),
+                                          ]),
+                                        ),
+                                      ),
+                                    ),
+                                    Row(
+                                      children: [
+                                        SizedBox(width: 5),
+                                        Icon(
+                                          Icons.arrow_forward_ios_outlined,
+                                          size: 15,
+                                          color: Colors.orange[700],
+                                        )
+                                      ],
                                     )
                                   ],
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                      Column(
-                        children: [
-                          Center(
-                            child: Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(24),
-                                color: Colors.grey.withOpacity(0.5),
+                                ),
                               ),
-                              height: 1,
-                              width: double.maxFinite,
                             ),
-                          ),
-                          ListView.builder(
-                            physics: NeverScrollableScrollPhysics(),
-                            shrinkWrap: true,
-                            scrollDirection: Axis.vertical,
-                            itemCount: 1, //TODO
-                            itemBuilder: (context, indexx) {
-                              return Column(
-                                children: [
-                                  Center(
-                                    child: Container(
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(24),
-                                          color: Colors.grey.withOpacity(0.2),
-                                        ),
-                                        height: 1,
-                                        width: double.maxFinite),
+                            Column(
+                              children: [
+                                Center(
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(24),
+                                      color: Colors.grey.withOpacity(0.5),
+                                    ),
+                                    height: 1,
+                                    width: double.maxFinite,
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: GestureDetector(
-                                      onTap: () {},
+                                ),
+
+                                Column(
+                                  children: [
+                                    Center(
+                                      child: Container(
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(24),
+                                            color: Colors.grey.withOpacity(0.2),
+                                          ),
+                                          height: 1,
+                                          width: double.maxFinite),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: 6.0),
                                       child: Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
-                                          CommonUI.text(
-                                              context: context,
-                                              text: 'options',
-                                              // .elementAt(index)
-                                              // .options[
-                                              //     '${options.elementAt(index).options.keys.first}']
-                                              // .keys
-                                              // .elementAt(indexx)
-                                              // .toString(),
-                                              textAlign: TextAlign.center,
-                                              style: FontStylee.small(
-                                                  context: context,
-                                                  fontWeight: FontWeight.bold,
-                                                  color: Colors.black
-                                                      .withOpacity(0.8))),
-                                          CommonUI.text(
-                                              context: context,
-                                              text: 'options' +
-                                                  // .elementAt(index)
-                                                  // .options[
-                                                  //     '${options.elementAt(index).options.keys.first}']
-                                                  // .values
-                                                  // .elementAt(indexx)
-                                                  // .toString() +
-                                                  ' JOD',
-                                              textAlign: TextAlign.center,
-                                              style: FontStylee.small(
-                                                  context: context,
-                                                  fontWeight: FontWeight.bold,
-                                                  color: Colors.black
-                                                      .withOpacity(0.8))),
+                                          Expanded(
+                                            child: Container(
+                                              height: 50,
+                                              child: CommonUI.smallertextField(
+                                                context: context,
+                                                name: "Key",
+                                                hint: "Key",
+                                                minlines: 1,
+                                                controller:
+                                                    _optionOneKeyController,
+                                                validate: FormBuilderValidators
+                                                    .compose([
+                                                  FormBuilderValidators
+                                                      .required(context),
+                                                ]),
+                                              ),
+                                            ),
+                                          ),
+                                          SizedBox(width: 10),
+                                          Expanded(
+                                            child: Container(
+                                              height: 50,
+                                              child: CommonUI.smallertextField(
+                                                context: context,
+                                                name: "Value",
+                                                hint: "Value",
+                                                minlines: 1,
+                                                controller:
+                                                    _optionOneValueController,
+                                                validate: FormBuilderValidators
+                                                    .compose([
+                                                  FormBuilderValidators
+                                                      .required(context),
+                                                ]),
+                                              ),
+                                            ),
+                                          ),
                                         ],
                                       ),
                                     ),
-                                  ),
-                                ],
-                              );
+
+                                    added
+                                        ? Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Expanded(
+                                                child: Container(
+                                                  height: 50,
+                                                  child:
+                                                      CommonUI.smallertextField(
+                                                    context: context,
+                                                    name: "Key (Optional)",
+                                                    hint: "Key (Optional)",
+                                                    minlines: 1,
+                                                    controller:
+                                                        _optionTwoKeyController,
+                                                  ),
+                                                ),
+                                              ),
+                                              SizedBox(width: 10),
+                                              Expanded(
+                                                child: Container(
+                                                  height: 50,
+                                                  child:
+                                                      CommonUI.smallertextField(
+                                                    context: context,
+                                                    name: "Value (Optional)",
+                                                    hint: "Value (Optional)",
+                                                    minlines: 1,
+                                                    controller:
+                                                        _optionTwoValueController,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          )
+                                        : Container(),
+                                    GestureDetector(
+                                      onTap: () {
+                                        setState(() {
+                                          added = true;
+                                        });
+                                      },
+                                      child: CircleAvatar(
+                                        backgroundColor: Colors.green,
+                                        radius: 20,
+                                        child: Icon(
+                                          Icons.add,
+                                          color: Colors.white,
+                                          size: 20,
+                                        ),
+                                      ),
+                                    ),
+                                    // Row(
+                                    //   mainAxisAlignment:
+                                    //       MainAxisAlignment.spaceBetween,
+                                    //   children: [
+                                    //     Expanded(
+                                    //       child: Container(
+                                    //         height: 50,
+                                    //         child: CommonUI.smallertextField(
+                                    //           context: context,
+                                    //           name: "Key (Optional)",
+                                    //           hint: "Key (Optional)",
+                                    //           minlines: 1,
+                                    //           controller:
+                                    //               _optionThreeKeyController,
+
+                                    //         ),
+                                    //       ),
+                                    //     ),
+                                    //     SizedBox(width: 10),
+                                    //     Expanded(
+                                    //       child: Container(
+                                    //         height: 50,
+                                    //         child: CommonUI.smallertextField(
+                                    //           context: context,
+                                    //           name: "Value (Optional)",
+                                    //           hint: "Value (Optional)",
+                                    //           minlines: 1,
+                                    //           controller:
+                                    //               _optionThreeValueController,
+
+                                    //         ),
+                                    //       ),
+                                    //     ),
+                                    //   ],
+                                    // ),
+                                    // Row(
+                                    //   mainAxisAlignment:
+                                    //       MainAxisAlignment.spaceBetween,
+                                    //   children: [
+                                    //     Expanded(
+                                    //       child: Container(
+                                    //         height: 50,
+                                    //         child: CommonUI.smallertextField(
+                                    //           context: context,
+                                    //           name: "Key (Optional)",
+                                    //           hint: "Key (Optional)",
+                                    //           minlines: 1,
+                                    //           controller:
+                                    //               _optionFourKeyController,
+
+                                    //         ),
+                                    //       ),
+                                    //     ),
+                                    //     SizedBox(width: 10),
+                                    //     Expanded(
+                                    //       child: Container(
+                                    //         height: 50,
+                                    //         child: CommonUI.smallertextField(
+                                    //           context: context,
+                                    //           name: "Value (Optional)",
+                                    //           hint: "Value (Optional)",
+                                    //           minlines: 1,
+                                    //           controller:
+                                    //               _optionFourValueController,
+
+                                    //         ),
+                                    //       ),
+                                    //     ),
+                                    //   ],
+                                    // ),
+                                    // Row(
+                                    //   mainAxisAlignment:
+                                    //       MainAxisAlignment.spaceBetween,
+                                    //   children: [
+                                    //     Expanded(
+                                    //       child: Container(
+                                    //         height: 50,
+                                    //         child: CommonUI.smallertextField(
+                                    //           context: context,
+                                    //           name: "Key (Optional)",
+                                    //           hint: "Key (Optional)",
+                                    //           minlines: 1,
+                                    //           controller:
+                                    //               _optionFiveKeyController,
+
+                                    //         ),
+                                    //       ),
+                                    //     ),
+                                    //     SizedBox(width: 10),
+                                    //     Expanded(
+                                    //       child: Container(
+                                    //         height: 50,
+                                    //         child: CommonUI.smallertextField(
+                                    //           context: context,
+                                    //           name: "Value (Optional)",
+                                    //           hint: "Value (Optional)",
+                                    //           minlines: 1,
+                                    //           controller:
+                                    //               _optionFiveValueController,
+
+                                    //         ),
+                                    //       ),
+                                    //     ),
+                                    //   ],
+                                    // ),
+                                    // Row(
+                                    //   mainAxisAlignment:
+                                    //       MainAxisAlignment.spaceBetween,
+                                    //   children: [
+                                    //     Expanded(
+                                    //       child: Container(
+                                    //         height: 50,
+                                    //         child: CommonUI.smallertextField(
+                                    //           context: context,
+                                    //           name: "Key (Optional)",
+                                    //           hint: "Key (Optional)",
+                                    //           minlines: 1,
+                                    //           controller:
+                                    //               _optionSixKeyController,
+
+                                    //         ),
+                                    //       ),
+                                    //     ),
+                                    //     SizedBox(width: 10),
+                                    //     Expanded(
+                                    //       child: Container(
+                                    //         height: 50,
+                                    //         child: CommonUI.smallertextField(
+                                    //           context: context,
+                                    //           name: "Value (Optional)",
+                                    //           hint: "Value (Optional)",
+                                    //           minlines: 1,
+                                    //           controller:
+                                    //               _optionSixValueController,
+
+                                    //         ),
+                                    //       ),
+                                    //     ),
+                                    //   ],
+                                    // ),
+                                  ],
+                                )
+                                // },
+                                // ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    actions: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          ElevatedButton(
+                            onPressed: () {
+                              // id = generateId();
+                              // _imagevalue.value =
+                              //     _imageBannerController.text;
+
+                              // _imageBannerController.clear();
+                              Navigator.pop(context);
                             },
+                            style: ButtonStyle(
+                              backgroundColor:
+                                  MaterialStateProperty.all(Colors.white),
+                            ),
+                            child: Text(
+                              'Cancel',
+                              style: TextStyle(color: Colors.black),
+                            ),
+                          ),
+                          SizedBox(width: 20),
+                          ElevatedButton(
+                            onPressed: () async {
+                              _formKey.currentState!.save();
+                              if (_formKey.currentState!.validate()) {
+                                FocusScope.of(context).unfocus();
+                                await FirebaseFirestore.instance
+                                    .collection('options')
+                                    .doc(id)
+                                    .set({
+                                  'id': id,
+                                  'options': {
+                                    _optionNameController.text: {
+                                      _optionOneKeyController.text:
+                                          _optionOneValueController.text,
+                                      _optionTwoKeyController.text:
+                                          _optionTwoValueController.text,
+                                    }
+                                  },
+                                }).whenComplete(() {
+                                  id = generateId();
+                                  _optionNameController.clear();
+                                  _optionOneKeyController.clear();
+                                  _optionOneValueController.clear();
+                                  _optionTwoKeyController.clear();
+                                  _optionTwoValueController.clear();
+
+                                  Navigator.pop(context);
+
+                                  CommonUI.successDialog(context,
+                                      message: "Added Successfully");
+                                }).onError((error, stackTrrace) => showDialog(
+                                          context: context,
+                                          builder: (_) {
+                                            return AlertDialog(
+                                              content: Text(error.toString()),
+                                            );
+                                          },
+                                        ));
+                              }
+                            },
+                            style: ButtonStyle(
+                              backgroundColor:
+                                  MaterialStateProperty.all(Colors.green),
+                            ),
+                            child: Text(
+                              'Create',
+                              style: TextStyle(color: Colors.white),
+                            ),
                           ),
                         ],
                       ),
                     ],
                   ),
-                ),
-                actions: [
-                  Padding(
-                    padding: const EdgeInsets.all(12.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        ElevatedButton(
-                          onPressed: () {
-                            // id = generateId();
-                            // _imagevalue.value =
-                            //     _imageBannerController.text;
-
-                            // _imageBannerController.clear();
-                            Navigator.pop(context);
-                          },
-                          style: ButtonStyle(
-                            backgroundColor:
-                                MaterialStateProperty.all(Colors.white),
-                          ),
-                          child: Text(
-                            'Cancel',
-                            style: TextStyle(color: Colors.black),
-                          ),
-                        ),
-                        SizedBox(width: 20),
-                        ElevatedButton(
-                          onPressed: () async {
-                            // if (_imagevalue.value!.isEmpty) {
-                            //   // setState(() {
-                            //   //   error = true;
-                            //   // });
-                            Navigator.pop(context);
-                            // } else {
-                            //   _formKey.currentState!.save();
-                            //   if (_formKey.currentState!.validate()) {
-                            //     FocusScope.of(context).unfocus();
-                            //     await FirebaseFirestore.instance
-                            //         .collection("Banner")
-                            //         .doc(id)
-                            //         .set({
-                            //       'id': id,
-                            //       'isPublished': true,
-                            //       'image': _imagevalue.value == ''
-                            //           ? 'assets/images/preview.png'
-                            //           : _imagevalue.value,
-                            //       //subCategory: ---
-                            //     }).whenComplete(() {
-                            //       id = generateId();
-                            //       _imagevalue.value =
-                            //           _imageBannerController.text;
-
-                            //       _imageBannerController.clear();
-                            //       Navigator.pop(context);
-
-                            //       CommonUI.successDialog(context,
-                            //           message: "Added successfully");
-                            //     }).onError((error, stackTrrace) =>
-                            //             showDialog(
-                            //               context: context,
-                            //               builder: (_) {
-                            //                 return AlertDialog(
-                            //                   content: Text(
-                            //                       error.toString()),
-                            //                 );
-                            //               },
-                            //             ));
-                            //   }
-                            // }
-                          },
-                          style: ButtonStyle(
-                            backgroundColor:
-                                MaterialStateProperty.all(Colors.green),
-                          ),
-                          child: Text(
-                            'Create',
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                  // Positioned(
+                  //     top: 180,
+                  //     child: CircleAvatar(
+                  //       backgroundColor: Colors.green,
+                  //       radius: 30,
+                  //       child: Icon(
+                  //         Icons.add,
+                  //         color: Colors.white,
+                  //         size: 30,
+                  //       ),
+                  //     )),
                 ],
               ),
-              Positioned(
-                  top: 0,
-                  child: CircleAvatar(
-                    backgroundColor: Colors.green,
-                    radius: 30,
-                    child: Icon(
-                      Icons.add,
-                      color: Colors.white,
-                      size: 30,
-                    ),
-                  )),
-            ],
-          ),
+            );
+          },
         );
       },
     );

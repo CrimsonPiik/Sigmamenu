@@ -105,10 +105,10 @@ class _AddProductButtonState extends State<AddProductButton> {
                   //     style: TextStyle(
                   //         fontWeight: FontWeight.bold, color: Colors.black)),
                   content: Container(
-                    width: Responsive.isDesktop(context) ? 350 : 290,
+                    width: Responsive.isDesktop(context) ? 700 : 600,
                     padding: EdgeInsets.all(6),
                     decoration: BoxDecoration(
-                      // color: Colors.grey.withOpacity(0.1),
+                      color: Colors.grey.withOpacity(0.1),
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Column(
