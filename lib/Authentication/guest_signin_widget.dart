@@ -23,7 +23,3 @@ class GuestLogin extends StatelessWidget {
     );
   }
 }
-
-//  Container(
-//                   child: Image.asset('assets/images/sigma.jpeg'),
-//                 ),
