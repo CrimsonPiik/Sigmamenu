@@ -1,21 +1,29 @@
 import 'dart:convert';
 
+import 'package:sigmamenu/GeneralFunction/random_id_generator.dart';
+
 class OptionsModel {
+  String id = generateId();
+
   Map<String, dynamic> options = {};
 
   Map<String, dynamic> toMap() {
     return {
+      'id': id,
       'options': options,
     };
   }
 
   Map<String, dynamic> createNewProduct() {
     return {
+      'id': id,
       'options': options,
     };
   }
 
-  OptionsModel.fromMap(Map<String, dynamic> map) : options = map['options'];
+  OptionsModel.fromMap(Map<String, dynamic> map)
+      : id = map['id'] ?? '',
+        options = map['options'];
 
   String toJson() => json.encode(toMap());
 
@@ -31,11 +39,11 @@ class OptionsModel {
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is OptionsModel && other.options == options;
+    return other is OptionsModel && other.id == id && other.options == options;
   }
 
   @override
   int get hashCode {
-    return options.hashCode;
+    return id.hashCode ^ options.hashCode;
   }
 }
