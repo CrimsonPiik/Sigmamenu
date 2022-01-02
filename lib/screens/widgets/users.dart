@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sigmamenu/GeneralFunction/constaints.dart';
 import 'package:sigmamenu/models/user.dart';
-import 'package:sigmamenu/screens/home/components/usersCard.dart';
+import 'package:sigmamenu/screens/widgets/usersCard.dart';
 import 'package:sigmamenu/style/CommonUI.dart';
 import 'package:sigmamenu/style/ScreenUtil.dart';
 

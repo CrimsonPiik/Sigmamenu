@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sigmamenu/language/logic/ProjectLanguage.dart';
-import 'package:sigmamenu/screens/home/components/SigningButton.dart';
+import 'package:sigmamenu/screens/widgets/SigningButton.dart';
 import 'package:sigmamenu/style/ScreenUtil.dart';
 import 'package:sigmamenu/style/Style.dart';
 

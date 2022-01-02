@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:sigmamenu/Authentication/ProjectFirebaseAuth.dart';
 import 'package:sigmamenu/language/logic/ProjectLanguage.dart';
-import 'package:sigmamenu/screens/home/components/SigningButton.dart';
+import 'package:sigmamenu/screens/widgets/SigningButton.dart';
 import 'package:sigmamenu/style/CommonUI.dart';
 import 'package:sigmamenu/style/ScreenUtil.dart';
 import 'package:sigmamenu/style/Style.dart';

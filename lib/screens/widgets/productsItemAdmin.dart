@@ -959,84 +959,13 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                             style:
                                                 TextStyle(color: Colors.white),
                                           ),
-                                          // Icon(
-                                          //   Icons.add,
-                                          //   color: Colors.white,
-                                          //   size: 20,
-                                          // ),
+                                       
                                         ),
-                                        // Container(
-                                        //   child: Text(
-                                        //     widget.options
-                                        //         .elementAt(2)
-                                        //         .options
-                                        //         .keys
-                                        //         .first
-                                        //         .toString(),
-                                        //     style: Theme.of(context)
-                                        //         .textTheme
-                                        //         .headline4!
-                                        //         .copyWith(
-                                        //           color: Colors.black,
-                                        //           fontWeight: FontWeight.bold,
-                                        //           fontSize:
-                                        //               Responsive.isMiniMobile(
-                                        //                       context)
-                                        //                   ? 16
-                                        //                   : 19,
-                                        //         ),
-                                        //     textAlign: TextAlign.start,
-                                        //   ),
-                                        // ),
+                                       
                                       ),
                                     ],
                                   ),
-                                  // Column(
-                                  //   crossAxisAlignment:
-                                  //       CrossAxisAlignment.start,
-                                  //   children: [
-                                  //     Container(
-                                  //       width: Responsive.isDesktop(context)
-                                  //           ? Responsive.width(context) / 2.2
-                                  //           : Responsive.width(context) / 1.35,
-                                  //       child: Text(
-                                  //         "Description",
-                                  //         style: Theme.of(context)
-                                  //             .textTheme
-                                  //             .headline4!
-                                  //             .copyWith(
-                                  //               color: Colors.black,
-                                  //               fontWeight: FontWeight.bold,
-                                  //               fontSize:
-                                  //                   Responsive.isMiniMobile(
-                                  //                           context)
-                                  //                       ? 16
-                                  //                       : 19,
-                                  //             ),
-                                  //       ),
-                                  //     ),
-                                  //     SizedBox(height: 12),
-                                  //     Container(
-                                  //       child: Text(
-                                  //         ProjectLanguage.isLTR()
-                                  //             ? "${widget.product.descriptionEn}"
-                                  //             : "${widget.product.descriptionAr}",
-                                  //         style: Theme.of(context)
-                                  //             .textTheme
-                                  //             .headline3!
-                                  //             .copyWith(
-                                  //               color: Colors.black,
-                                  //               fontSize:
-                                  //                   Responsive.isMiniMobile(
-                                  //                           context)
-                                  //                       ? 10
-                                  //                       : 12,
-                                  //             ),
-                                  //       ),
-                                  //     ),
-                                  //     SizedBox(height: 350),
-                                  //   ],
-                                  // ),
+                                  
                                 ],
                               ),
                             ),

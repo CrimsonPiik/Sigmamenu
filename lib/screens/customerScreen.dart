@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:sigmamenu/GeneralFunction/storageManager.dart';
 import 'package:sigmamenu/provider/darkLightMode.dart';
 import 'package:sigmamenu/screens/adminPanel.dart';
-import 'package:sigmamenu/screens/home/components/categories.dart';
-import 'package:sigmamenu/screens/home/components/itemCardData.dart';
+import 'package:sigmamenu/screens/widgets/categories.dart';
+import 'package:sigmamenu/screens/widgets/itemCardData.dart';
 import 'package:sigmamenu/screens/widgets/bannerWithDotsIndicator.dart';
 import 'package:sigmamenu/style/CommonUI.dart';
 

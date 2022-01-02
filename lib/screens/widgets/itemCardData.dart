@@ -181,8 +181,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sigmamenu/models/product.dart';
 import 'package:sigmamenu/screens/adminPanel.dart';
-import 'package:sigmamenu/screens/home/components/itemCardRectangleAndSquare.dart';
-import 'package:sigmamenu/screens/home/components/shimmerForCustomerScreen.dart';
+import 'package:sigmamenu/screens/widgets/itemCardRectangleAndSquare.dart';
+import 'package:sigmamenu/screens/widgets/shimmerForCustomerScreen.dart';
 import 'package:sigmamenu/style/CommonUI.dart';
 
 class ItemCardData extends StatefulWidget {
