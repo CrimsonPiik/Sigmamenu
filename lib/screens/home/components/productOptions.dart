@@ -137,7 +137,7 @@ class _ProductOptionsState extends State<ProductOptions> {
                                   ),
                                 ),
                                 ListView.builder(
-                                  physics: NeverScrollableScrollPhysics(),
+                                  // physics: ScrollPhysics(),
                                   shrinkWrap: true,
                                   scrollDirection: Axis.vertical,
                                   itemCount: counter, //TODO
@@ -173,13 +173,15 @@ class _ProductOptionsState extends State<ProductOptions> {
                                                         .keys
                                                         .elementAt(indexx)
                                                         .toString(),
-                                                    textAlign: TextAlign.center,
+                                                    textAlign:
+                                                        TextAlign.center,
                                                     style: FontStylee.small(
                                                         context: context,
                                                         fontWeight:
                                                             FontWeight.bold,
                                                         color: Colors.black
-                                                            .withOpacity(0.8))),
+                                                            .withOpacity(
+                                                                0.8))),
                                                 CommonUI.text(
                                                     context: context,
                                                     text: options
@@ -190,13 +192,15 @@ class _ProductOptionsState extends State<ProductOptions> {
                                                             .elementAt(indexx)
                                                             .toString() +
                                                         ' JOD',
-                                                    textAlign: TextAlign.center,
+                                                    textAlign:
+                                                        TextAlign.center,
                                                     style: FontStylee.small(
                                                         context: context,
                                                         fontWeight:
                                                             FontWeight.bold,
                                                         color: Colors.black
-                                                            .withOpacity(0.8))),
+                                                            .withOpacity(
+                                                                0.8))),
                                               ],
                                             ),
                                           ),

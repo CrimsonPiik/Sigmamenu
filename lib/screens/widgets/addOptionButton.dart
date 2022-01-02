@@ -68,7 +68,11 @@ class _AddOptionButtonState extends State<AddOptionButton> {
     );
   }
 
-  bool added = false;
+  bool option2 = false;
+  bool option3 = false;
+  bool option4 = false;
+  bool option5 = false;
+  bool option6 = false;
 
   void showDialogWithFields() {
     showDialog(
@@ -224,8 +228,7 @@ class _AddOptionButtonState extends State<AddOptionButton> {
                                         ],
                                       ),
                                     ),
-
-                                    added
+                                    option2
                                         ? Row(
                                             mainAxisAlignment:
                                                 MainAxisAlignment.spaceBetween,
@@ -236,7 +239,7 @@ class _AddOptionButtonState extends State<AddOptionButton> {
                                                   child:
                                                       CommonUI.smallertextField(
                                                     context: context,
-                                                    name: "Key (Optional)",
+                                                    name: "Key (Optional)2",
                                                     hint: "Key (Optional)",
                                                     minlines: 1,
                                                     controller:
@@ -251,7 +254,7 @@ class _AddOptionButtonState extends State<AddOptionButton> {
                                                   child:
                                                       CommonUI.smallertextField(
                                                     context: context,
-                                                    name: "Value (Optional)",
+                                                    name: "Value (Optional)2",
                                                     hint: "Value (Optional)",
                                                     minlines: 1,
                                                     controller:
@@ -262,162 +265,248 @@ class _AddOptionButtonState extends State<AddOptionButton> {
                                             ],
                                           )
                                         : Container(),
-                                    GestureDetector(
-                                      onTap: () {
-                                        setState(() {
-                                          added = true;
-                                        });
-                                      },
-                                      child: CircleAvatar(
-                                        backgroundColor: Colors.green,
-                                        radius: 20,
-                                        child: Icon(
-                                          Icons.add,
-                                          color: Colors.white,
-                                          size: 20,
-                                        ),
-                                      ),
-                                    ),
-                                    // Row(
-                                    //   mainAxisAlignment:
-                                    //       MainAxisAlignment.spaceBetween,
-                                    //   children: [
-                                    //     Expanded(
-                                    //       child: Container(
-                                    //         height: 50,
-                                    //         child: CommonUI.smallertextField(
-                                    //           context: context,
-                                    //           name: "Key (Optional)",
-                                    //           hint: "Key (Optional)",
-                                    //           minlines: 1,
-                                    //           controller:
-                                    //               _optionThreeKeyController,
-
-                                    //         ),
-                                    //       ),
-                                    //     ),
-                                    //     SizedBox(width: 10),
-                                    //     Expanded(
-                                    //       child: Container(
-                                    //         height: 50,
-                                    //         child: CommonUI.smallertextField(
-                                    //           context: context,
-                                    //           name: "Value (Optional)",
-                                    //           hint: "Value (Optional)",
-                                    //           minlines: 1,
-                                    //           controller:
-                                    //               _optionThreeValueController,
-
-                                    //         ),
-                                    //       ),
-                                    //     ),
-                                    //   ],
-                                    // ),
-                                    // Row(
-                                    //   mainAxisAlignment:
-                                    //       MainAxisAlignment.spaceBetween,
-                                    //   children: [
-                                    //     Expanded(
-                                    //       child: Container(
-                                    //         height: 50,
-                                    //         child: CommonUI.smallertextField(
-                                    //           context: context,
-                                    //           name: "Key (Optional)",
-                                    //           hint: "Key (Optional)",
-                                    //           minlines: 1,
-                                    //           controller:
-                                    //               _optionFourKeyController,
-
-                                    //         ),
-                                    //       ),
-                                    //     ),
-                                    //     SizedBox(width: 10),
-                                    //     Expanded(
-                                    //       child: Container(
-                                    //         height: 50,
-                                    //         child: CommonUI.smallertextField(
-                                    //           context: context,
-                                    //           name: "Value (Optional)",
-                                    //           hint: "Value (Optional)",
-                                    //           minlines: 1,
-                                    //           controller:
-                                    //               _optionFourValueController,
-
-                                    //         ),
-                                    //       ),
-                                    //     ),
-                                    //   ],
-                                    // ),
-                                    // Row(
-                                    //   mainAxisAlignment:
-                                    //       MainAxisAlignment.spaceBetween,
-                                    //   children: [
-                                    //     Expanded(
-                                    //       child: Container(
-                                    //         height: 50,
-                                    //         child: CommonUI.smallertextField(
-                                    //           context: context,
-                                    //           name: "Key (Optional)",
-                                    //           hint: "Key (Optional)",
-                                    //           minlines: 1,
-                                    //           controller:
-                                    //               _optionFiveKeyController,
-
-                                    //         ),
-                                    //       ),
-                                    //     ),
-                                    //     SizedBox(width: 10),
-                                    //     Expanded(
-                                    //       child: Container(
-                                    //         height: 50,
-                                    //         child: CommonUI.smallertextField(
-                                    //           context: context,
-                                    //           name: "Value (Optional)",
-                                    //           hint: "Value (Optional)",
-                                    //           minlines: 1,
-                                    //           controller:
-                                    //               _optionFiveValueController,
-
-                                    //         ),
-                                    //       ),
-                                    //     ),
-                                    //   ],
-                                    // ),
-                                    // Row(
-                                    //   mainAxisAlignment:
-                                    //       MainAxisAlignment.spaceBetween,
-                                    //   children: [
-                                    //     Expanded(
-                                    //       child: Container(
-                                    //         height: 50,
-                                    //         child: CommonUI.smallertextField(
-                                    //           context: context,
-                                    //           name: "Key (Optional)",
-                                    //           hint: "Key (Optional)",
-                                    //           minlines: 1,
-                                    //           controller:
-                                    //               _optionSixKeyController,
-
-                                    //         ),
-                                    //       ),
-                                    //     ),
-                                    //     SizedBox(width: 10),
-                                    //     Expanded(
-                                    //       child: Container(
-                                    //         height: 50,
-                                    //         child: CommonUI.smallertextField(
-                                    //           context: context,
-                                    //           name: "Value (Optional)",
-                                    //           hint: "Value (Optional)",
-                                    //           minlines: 1,
-                                    //           controller:
-                                    //               _optionSixValueController,
-
-                                    //         ),
-                                    //       ),
-                                    //     ),
-                                    //   ],
-                                    // ),
+                                    !option2
+                                        ? GestureDetector(
+                                            onTap: () {
+                                              setState(() {
+                                                option2 = true;
+                                              });
+                                            },
+                                            child: CircleAvatar(
+                                              backgroundColor: Colors.green,
+                                              radius: 20,
+                                              child: Icon(
+                                                Icons.add,
+                                                color: Colors.white,
+                                                size: 20,
+                                              ),
+                                            ),
+                                          )
+                                        : Container(),
+                                    option3
+                                        ? Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Expanded(
+                                                child: Container(
+                                                  height: 50,
+                                                  child:
+                                                      CommonUI.smallertextField(
+                                                    context: context,
+                                                    name: "Key (Optional)3",
+                                                    hint: "Key (Optional)",
+                                                    minlines: 1,
+                                                    controller:
+                                                        _optionThreeKeyController,
+                                                  ),
+                                                ),
+                                              ),
+                                              SizedBox(width: 10),
+                                              Expanded(
+                                                child: Container(
+                                                  height: 50,
+                                                  child:
+                                                      CommonUI.smallertextField(
+                                                    context: context,
+                                                    name: "Value (Optional)3",
+                                                    hint: "Value (Optional)",
+                                                    minlines: 1,
+                                                    controller:
+                                                        _optionThreeValueController,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          )
+                                        : Container(),
+                                    option2 && !option3
+                                        ? GestureDetector(
+                                            onTap: () {
+                                              setState(() {
+                                                option3 = true;
+                                              });
+                                            },
+                                            child: CircleAvatar(
+                                              backgroundColor: Colors.green,
+                                              radius: 20,
+                                              child: Icon(
+                                                Icons.add,
+                                                color: Colors.white,
+                                                size: 20,
+                                              ),
+                                            ),
+                                          )
+                                        : Container(),
+                                    option4
+                                        ? Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Expanded(
+                                                child: Container(
+                                                  height: 50,
+                                                  child:
+                                                      CommonUI.smallertextField(
+                                                    context: context,
+                                                    name: "Key (Optional)4",
+                                                    hint: "Key (Optional)",
+                                                    minlines: 1,
+                                                    controller:
+                                                        _optionFourKeyController,
+                                                  ),
+                                                ),
+                                              ),
+                                              SizedBox(width: 10),
+                                              Expanded(
+                                                child: Container(
+                                                  height: 50,
+                                                  child:
+                                                      CommonUI.smallertextField(
+                                                    context: context,
+                                                    name: "Value (Optional)4",
+                                                    hint: "Value (Optional)",
+                                                    minlines: 1,
+                                                    controller:
+                                                        _optionFourValueController,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          )
+                                        : Container(),
+                                    option2 && option3 && !option4
+                                        ? GestureDetector(
+                                            onTap: () {
+                                              setState(() {
+                                                option4 = true;
+                                              });
+                                            },
+                                            child: CircleAvatar(
+                                              backgroundColor: Colors.green,
+                                              radius: 20,
+                                              child: Icon(
+                                                Icons.add,
+                                                color: Colors.white,
+                                                size: 20,
+                                              ),
+                                            ),
+                                          )
+                                        : Container(),
+                                    option5
+                                        ? Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Expanded(
+                                                child: Container(
+                                                  height: 50,
+                                                  child:
+                                                      CommonUI.smallertextField(
+                                                    context: context,
+                                                    name: "Key (Optional)5",
+                                                    hint: "Key (Optional)",
+                                                    minlines: 1,
+                                                    controller:
+                                                        _optionFiveKeyController,
+                                                  ),
+                                                ),
+                                              ),
+                                              SizedBox(width: 10),
+                                              Expanded(
+                                                child: Container(
+                                                  height: 50,
+                                                  child:
+                                                      CommonUI.smallertextField(
+                                                    context: context,
+                                                    name: "Value (Optional)5",
+                                                    hint: "Value (Optional)",
+                                                    minlines: 1,
+                                                    controller:
+                                                        _optionFiveValueController,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          )
+                                        : Container(),
+                                    option2 && option3 && option4 && !option5
+                                        ? GestureDetector(
+                                            onTap: () {
+                                              setState(() {
+                                                option5 = true;
+                                              });
+                                            },
+                                            child: CircleAvatar(
+                                              backgroundColor: Colors.green,
+                                              radius: 20,
+                                              child: Icon(
+                                                Icons.add,
+                                                color: Colors.white,
+                                                size: 20,
+                                              ),
+                                            ),
+                                          )
+                                        : Container(),
+                                    option6
+                                        ? Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Expanded(
+                                                child: Container(
+                                                  height: 50,
+                                                  child:
+                                                      CommonUI.smallertextField(
+                                                    context: context,
+                                                    name: "Key (Optional)6",
+                                                    hint: "Key (Optional)",
+                                                    minlines: 1,
+                                                    controller:
+                                                        _optionSixKeyController,
+                                                  ),
+                                                ),
+                                              ),
+                                              SizedBox(width: 10),
+                                              Expanded(
+                                                child: Container(
+                                                  height: 50,
+                                                  child:
+                                                      CommonUI.smallertextField(
+                                                    context: context,
+                                                    name: "Value (Optional)6",
+                                                    hint: "Value (Optional)",
+                                                    minlines: 1,
+                                                    controller:
+                                                        _optionSixValueController,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          )
+                                        : Container(),
+                                    option2 &&
+                                            option3 &&
+                                            option4 &&
+                                            option5 &&
+                                            !option6
+                                        ? GestureDetector(
+                                            onTap: () {
+                                              setState(() {
+                                                option6 = true;
+                                              });
+                                            },
+                                            child: CircleAvatar(
+                                              backgroundColor: Colors.green,
+                                              radius: 20,
+                                              child: Icon(
+                                                Icons.add,
+                                                color: Colors.white,
+                                                size: 20,
+                                              ),
+                                            ),
+                                          )
+                                        : Container(),
                                   ],
                                 )
                                 // },
@@ -462,50 +551,345 @@ class _AddOptionButtonState extends State<AddOptionButton> {
                           SizedBox(width: 20),
                           ElevatedButton(
                             onPressed: () async {
-                              _formKey.currentState!.save();
-                              if (_formKey.currentState!.validate()) {
-                                FocusScope.of(context).unfocus();
-                                await FirebaseFirestore.instance
-                                    .collection('options')
-                                    .doc(id)
-                                    .set({
-                                  'id': id,
-                                  'options': {
-                                    _optionNameController.text: {
-                                      _optionOneKeyController.text:
-                                          _optionOneValueController.text,
-                                      _optionTwoKeyController.text:
-                                          _optionTwoValueController.text,
-                                    }
-                                  },
-                                }).whenComplete(() {
-                                  id = generateId();
-                                  _optionNameController.clear();
-                                  _optionOneKeyController.clear();
-                                  _optionOneValueController.clear();
-                                  _optionTwoKeyController.clear();
-                                  _optionTwoValueController.clear();
-                                  _optionThreeKeyController.clear();
-                                  _optionThreeValueController.clear();
-                                  _optionFourKeyController.clear();
-                                  _optionFourValueController.clear();
-                                  _optionFiveKeyController.clear();
-                                  _optionFiveValueController.clear();
-                                  _optionSixKeyController.clear();
-                                  _optionSixValueController.clear();
+                              if (_optionTwoKeyController.text == '' ||
+                                  _optionTwoValueController.text == '') {
+                                _formKey.currentState!.save();
+                                if (_formKey.currentState!.validate()) {
+                                  FocusScope.of(context).unfocus();
+                                  await FirebaseFirestore.instance
+                                      .collection('options')
+                                      .doc(id)
+                                      .set({
+                                    'id': id,
+                                    'options': {
+                                      _optionNameController.text: {
+                                        _optionOneKeyController.text:
+                                            _optionOneValueController.text,
 
-                                  Navigator.pop(context);
+                                        // _optionTwoKeyController.text:
+                                        //     _optionTwoValueController.text,
 
-                                  CommonUI.successDialog(context,
-                                      message: "Added Successfully");
-                                }).onError((error, stackTrrace) => showDialog(
-                                          context: context,
-                                          builder: (_) {
-                                            return AlertDialog(
-                                              content: Text(error.toString()),
-                                            );
-                                          },
-                                        ));
+                                        // _optionThreeKeyController.text:
+                                        //     _optionThreeValueController.text,
+                                        // _optionFourKeyController.text:
+                                        //     _optionFourValueController.text,
+                                        // _optionFiveKeyController.text:
+                                        //     _optionFiveValueController.text,
+                                        // _optionSixKeyController.text:
+                                        //     _optionSixValueController.text,
+                                      }
+                                    },
+                                  }).whenComplete(() {
+                                    id = generateId();
+                                    _optionNameController.clear();
+                                    _optionOneKeyController.clear();
+                                    _optionOneValueController.clear();
+                                    _optionTwoKeyController.clear();
+                                    _optionTwoValueController.clear();
+                                    _optionThreeKeyController.clear();
+                                    _optionThreeValueController.clear();
+                                    _optionFourKeyController.clear();
+                                    _optionFourValueController.clear();
+                                    _optionFiveKeyController.clear();
+                                    _optionFiveValueController.clear();
+                                    _optionSixKeyController.clear();
+                                    _optionSixValueController.clear();
+
+                                    Navigator.pop(context);
+
+                                    CommonUI.successDialog(context,
+                                        message: "Added Successfully");
+                                  }).onError((error, stackTrrace) => showDialog(
+                                            context: context,
+                                            builder: (_) {
+                                              return AlertDialog(
+                                                content: Text(error.toString()),
+                                              );
+                                            },
+                                          ));
+                                }
+                              } else if (_optionThreeKeyController.text == '' ||
+                                  _optionThreeValueController.text == '') {
+                                _formKey.currentState!.save();
+                                if (_formKey.currentState!.validate()) {
+                                  FocusScope.of(context).unfocus();
+                                  await FirebaseFirestore.instance
+                                      .collection('options')
+                                      .doc(id)
+                                      .set({
+                                    'id': id,
+                                    'options': {
+                                      _optionNameController.text: {
+                                        _optionOneKeyController.text:
+                                            _optionOneValueController.text,
+
+                                        _optionTwoKeyController.text:
+                                            _optionTwoValueController.text,
+
+                                        // _optionThreeKeyController.text:
+                                        //     _optionThreeValueController.text,
+                                        // _optionFourKeyController.text:
+                                        //     _optionFourValueController.text,
+                                        // _optionFiveKeyController.text:
+                                        //     _optionFiveValueController.text,
+                                        // _optionSixKeyController.text:
+                                        //     _optionSixValueController.text,
+                                      }
+                                    },
+                                  }).whenComplete(() {
+                                    id = generateId();
+                                    _optionNameController.clear();
+                                    _optionOneKeyController.clear();
+                                    _optionOneValueController.clear();
+                                    _optionTwoKeyController.clear();
+                                    _optionTwoValueController.clear();
+                                    _optionThreeKeyController.clear();
+                                    _optionThreeValueController.clear();
+                                    _optionFourKeyController.clear();
+                                    _optionFourValueController.clear();
+                                    _optionFiveKeyController.clear();
+                                    _optionFiveValueController.clear();
+                                    _optionSixKeyController.clear();
+                                    _optionSixValueController.clear();
+
+                                    Navigator.pop(context);
+
+                                    CommonUI.successDialog(context,
+                                        message: "Added Successfully");
+                                  }).onError((error, stackTrrace) => showDialog(
+                                            context: context,
+                                            builder: (_) {
+                                              return AlertDialog(
+                                                content: Text(error.toString()),
+                                              );
+                                            },
+                                          ));
+                                }
+                              } else if (_optionFourKeyController.text == '' ||
+                                  _optionFourValueController.text == '') {
+                                _formKey.currentState!.save();
+                                if (_formKey.currentState!.validate()) {
+                                  FocusScope.of(context).unfocus();
+                                  await FirebaseFirestore.instance
+                                      .collection('options')
+                                      .doc(id)
+                                      .set({
+                                    'id': id,
+                                    'options': {
+                                      _optionNameController.text: {
+                                        _optionOneKeyController.text:
+                                            _optionOneValueController.text,
+
+                                        _optionTwoKeyController.text:
+                                            _optionTwoValueController.text,
+
+                                        _optionThreeKeyController.text:
+                                            _optionThreeValueController.text,
+                                        // _optionFourKeyController.text:
+                                        //     _optionFourValueController.text,
+                                        // _optionFiveKeyController.text:
+                                        //     _optionFiveValueController.text,
+                                        // _optionSixKeyController.text:
+                                        //     _optionSixValueController.text,
+                                      }
+                                    },
+                                  }).whenComplete(() {
+                                    id = generateId();
+                                    _optionNameController.clear();
+                                    _optionOneKeyController.clear();
+                                    _optionOneValueController.clear();
+                                    _optionTwoKeyController.clear();
+                                    _optionTwoValueController.clear();
+                                    _optionThreeKeyController.clear();
+                                    _optionThreeValueController.clear();
+                                    _optionFourKeyController.clear();
+                                    _optionFourValueController.clear();
+                                    _optionFiveKeyController.clear();
+                                    _optionFiveValueController.clear();
+                                    _optionSixKeyController.clear();
+                                    _optionSixValueController.clear();
+
+                                    Navigator.pop(context);
+
+                                    CommonUI.successDialog(context,
+                                        message: "Added Successfully");
+                                  }).onError((error, stackTrrace) => showDialog(
+                                            context: context,
+                                            builder: (_) {
+                                              return AlertDialog(
+                                                content: Text(error.toString()),
+                                              );
+                                            },
+                                          ));
+                                }
+                              } else if (_optionFiveKeyController.text == '' ||
+                                  _optionFiveValueController.text == '') {
+                                _formKey.currentState!.save();
+                                if (_formKey.currentState!.validate()) {
+                                  FocusScope.of(context).unfocus();
+                                  await FirebaseFirestore.instance
+                                      .collection('options')
+                                      .doc(id)
+                                      .set({
+                                    'id': id,
+                                    'options': {
+                                      _optionNameController.text: {
+                                        _optionOneKeyController.text:
+                                            _optionOneValueController.text,
+
+                                        _optionTwoKeyController.text:
+                                            _optionTwoValueController.text,
+
+                                        _optionThreeKeyController.text:
+                                            _optionThreeValueController.text,
+                                        _optionFourKeyController.text:
+                                            _optionFourValueController.text,
+                                        // _optionFiveKeyController.text:
+                                        //     _optionFiveValueController.text,
+                                        // _optionSixKeyController.text:
+                                        //     _optionSixValueController.text,
+                                      }
+                                    },
+                                  }).whenComplete(() {
+                                    id = generateId();
+                                    _optionNameController.clear();
+                                    _optionOneKeyController.clear();
+                                    _optionOneValueController.clear();
+                                    _optionTwoKeyController.clear();
+                                    _optionTwoValueController.clear();
+                                    _optionThreeKeyController.clear();
+                                    _optionThreeValueController.clear();
+                                    _optionFourKeyController.clear();
+                                    _optionFourValueController.clear();
+                                    _optionFiveKeyController.clear();
+                                    _optionFiveValueController.clear();
+                                    _optionSixKeyController.clear();
+                                    _optionSixValueController.clear();
+
+                                    Navigator.pop(context);
+
+                                    CommonUI.successDialog(context,
+                                        message: "Added Successfully");
+                                  }).onError((error, stackTrrace) => showDialog(
+                                            context: context,
+                                            builder: (_) {
+                                              return AlertDialog(
+                                                content: Text(error.toString()),
+                                              );
+                                            },
+                                          ));
+                                }
+                              } else if (_optionSixKeyController.text == '' ||
+                                  _optionSixValueController.text == '') {
+                                _formKey.currentState!.save();
+                                if (_formKey.currentState!.validate()) {
+                                  FocusScope.of(context).unfocus();
+                                  await FirebaseFirestore.instance
+                                      .collection('options')
+                                      .doc(id)
+                                      .set({
+                                    'id': id,
+                                    'options': {
+                                      _optionNameController.text: {
+                                        _optionOneKeyController.text:
+                                            _optionOneValueController.text,
+
+                                        _optionTwoKeyController.text:
+                                            _optionTwoValueController.text,
+
+                                        _optionThreeKeyController.text:
+                                            _optionThreeValueController.text,
+                                        _optionFourKeyController.text:
+                                            _optionFourValueController.text,
+                                        _optionFiveKeyController.text:
+                                            _optionFiveValueController.text,
+                                        // _optionSixKeyController.text:
+                                        //     _optionSixValueController.text,
+                                      }
+                                    },
+                                  }).whenComplete(() {
+                                    id = generateId();
+                                    _optionNameController.clear();
+                                    _optionOneKeyController.clear();
+                                    _optionOneValueController.clear();
+                                    _optionTwoKeyController.clear();
+                                    _optionTwoValueController.clear();
+                                    _optionThreeKeyController.clear();
+                                    _optionThreeValueController.clear();
+                                    _optionFourKeyController.clear();
+                                    _optionFourValueController.clear();
+                                    _optionFiveKeyController.clear();
+                                    _optionFiveValueController.clear();
+                                    _optionSixKeyController.clear();
+                                    _optionSixValueController.clear();
+
+                                    Navigator.pop(context);
+
+                                    CommonUI.successDialog(context,
+                                        message: "Added Successfully");
+                                  }).onError((error, stackTrrace) => showDialog(
+                                            context: context,
+                                            builder: (_) {
+                                              return AlertDialog(
+                                                content: Text(error.toString()),
+                                              );
+                                            },
+                                          ));
+                                }
+                              } else {
+                                _formKey.currentState!.save();
+                                if (_formKey.currentState!.validate()) {
+                                  FocusScope.of(context).unfocus();
+                                  await FirebaseFirestore.instance
+                                      .collection('options')
+                                      .doc(id)
+                                      .set({
+                                    'id': id,
+                                    'options': {
+                                      _optionNameController.text: {
+                                        _optionOneKeyController.text:
+                                            _optionOneValueController.text,
+                                        _optionTwoKeyController.text:
+                                            _optionTwoValueController.text,
+                                        _optionThreeKeyController.text:
+                                            _optionThreeValueController.text,
+                                        _optionFourKeyController.text:
+                                            _optionFourValueController.text,
+                                        _optionFiveKeyController.text:
+                                            _optionFiveValueController.text,
+                                        _optionSixKeyController.text:
+                                            _optionSixValueController.text,
+                                      }
+                                    },
+                                  }).whenComplete(() {
+                                    id = generateId();
+                                    _optionNameController.clear();
+                                    _optionOneKeyController.clear();
+                                    _optionOneValueController.clear();
+                                    _optionTwoKeyController.clear();
+                                    _optionTwoValueController.clear();
+                                    _optionThreeKeyController.clear();
+                                    _optionThreeValueController.clear();
+                                    _optionFourKeyController.clear();
+                                    _optionFourValueController.clear();
+                                    _optionFiveKeyController.clear();
+                                    _optionFiveValueController.clear();
+                                    _optionSixKeyController.clear();
+                                    _optionSixValueController.clear();
+
+                                    Navigator.pop(context);
+
+                                    CommonUI.successDialog(context,
+                                        message: "Added Successfully");
+                                  }).onError((error, stackTrrace) => showDialog(
+                                            context: context,
+                                            builder: (_) {
+                                              return AlertDialog(
+                                                content: Text(error.toString()),
+                                              );
+                                            },
+                                          ));
+                                }
                               }
                             },
                             style: ButtonStyle(
