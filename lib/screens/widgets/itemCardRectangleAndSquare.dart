@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:sigmamenu/GeneralFunction/constaints.dart';
 import 'package:sigmamenu/models/product.dart';
 import 'package:sigmamenu/screens/widgets/ItemCardRectangle.dart';
-import 'package:sigmamenu/screens/widgets/ItemCardSquares.dart';
 import 'package:sigmamenu/screens/widgets/itemCardWithoutImage.dart';
 import 'package:sigmamenu/style/ScreenUtil.dart';
 import 'package:sigmamenu/style/Session.dart';
@@ -76,64 +75,7 @@ class _ItemCardRectangleAndSquareState extends State<ItemCardRectangleAndSquare>
             ],
           ),
           Session.isList
-              ?
-
-              //  Expanded(
-              //     child: Padding(
-              //       padding:
-              //           const EdgeInsets.symmetric(horizontal: kDefaultPaddin),
-              //       child: GridView.builder(
-              //         // physics: NeverScrollableScrollPhysics(),
-              //         // physics: ClampingScrollPhysics(),
-              //         shrinkWrap: true,
-              //         scrollDirection: Axis.vertical,
-              //         itemCount: products.length,
-              //         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              //             crossAxisCount: 1,
-              //             childAspectRatio: Responsive.isDesktop(context)
-              //                 ? 8.2
-              //                 : Responsive.isMobile(context)
-              //                     ? 2.40
-              //                     : Responsive.isMiniMobile(context)
-              //                         ? 2.0
-              //                         : 4.0),
-              //         itemBuilder: (context, index) => ItemCardWithoutImage(
-              //           product: products[index],
-              //         ),
-              //       ),
-              //     ),
-              //   )
-              Expanded(
-                  child: Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: kDefaultPaddin),
-                    child: GridView.builder(
-                      // physics: NeverScrollableScrollPhysics(),
-                      shrinkWrap: true,
-
-                      itemCount: products.length,
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: Responsive.isDesktop(context)
-                              ? 7
-                              : Responsive.isTablet(context)
-                                  ? 4
-                                  : 2,
-                          mainAxisSpacing: kDefaultPaddin,
-                          crossAxisSpacing: kDefaultPaddin,
-                          childAspectRatio: Responsive.isDesktop(context)
-                              ? 0.75
-                              : Responsive.isMobile(context)
-                                  ? 0.75
-                                  : Responsive.isMiniMobile(context)
-                                      ? 0.65
-                                      : 0.80),
-                      itemBuilder: (context, index) => ItemCardSquares(
-                        product: products[index],
-                      ),
-                    ),
-                  ),
-                )
-              : Expanded(
+              ? Expanded(
                   child: Padding(
                     padding:
                         const EdgeInsets.symmetric(horizontal: kDefaultPaddin),
@@ -157,7 +99,32 @@ class _ItemCardRectangleAndSquareState extends State<ItemCardRectangleAndSquare>
                       ),
                     ),
                   ),
-                ),
+                )
+              : Expanded(
+                  child: Padding(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: kDefaultPaddin),
+                    child: GridView.builder(
+                      // physics: NeverScrollableScrollPhysics(),
+                      // physics: ClampingScrollPhysics(),
+                      shrinkWrap: true,
+                      scrollDirection: Axis.vertical,
+                      itemCount: products.length,
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 1,
+                          childAspectRatio: Responsive.isDesktop(context)
+                              ? 8.2
+                              : Responsive.isMobile(context)
+                                  ? 2.40
+                                  : Responsive.isMiniMobile(context)
+                                      ? 2.0
+                                      : 4.0),
+                      itemBuilder: (context, index) => ItemCardWithoutImage(
+                        product: products[index],
+                      ),
+                    ),
+                  ),
+                )
         ],
       ),
     );

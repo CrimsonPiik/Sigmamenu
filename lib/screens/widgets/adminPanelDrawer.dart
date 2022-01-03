@@ -15,7 +15,6 @@ import 'package:sigmamenu/screens/widgets/addCategoryButton.dart';
 import 'package:sigmamenu/screens/widgets/addProductButton.dart';
 import 'package:sigmamenu/screens/widgets/addUserButton.dart';
 import 'package:sigmamenu/screens/widgets/adminPanelBanners.dart';
-import 'package:sigmamenu/style/ScreenUtil.dart';
 
 class AdminPanelDrawer extends StatefulWidget {
   final Stream<int> menu;
@@ -86,20 +85,13 @@ class _AdminPanelDrawerState extends State<AdminPanelDrawer> {
                     ],
                   )
                 : item == 3 // PRODUCT OPTIONS
-                    ? SingleChildScrollView(
-                        scrollDirection: Axis.vertical,
-                        child: SizedBox(
-                          height: double.maxFinite,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              SizedBox(height: 25),
-                              AddOptionButton(),
-                              SizedBox(height: 12),
-                              ProductOptions(),
-                            ],
-                          ),
-                        ),
+                    ? ListView(
+                        children: [
+                          SizedBox(height: 25),
+                          AddOptionButton(),
+                          SizedBox(height: 12),
+                          ProductOptions(),
+                        ],
                       )
                     : //USERS
                     Column(

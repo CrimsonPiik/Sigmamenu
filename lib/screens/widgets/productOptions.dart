@@ -140,7 +140,7 @@ class _ProductOptionsState extends State<ProductOptions> {
                                   // physics: ScrollPhysics(),
                                   shrinkWrap: true,
                                   scrollDirection: Axis.vertical,
-                                  itemCount: counter, //TODO
+                                  itemCount: counter, 
                                   itemBuilder: (context, indexx) {
                                     return Column(
                                       children: [

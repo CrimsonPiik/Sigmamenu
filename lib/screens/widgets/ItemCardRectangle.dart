@@ -3,9 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:sigmamenu/GeneralFunction/constaints.dart';
 import 'package:sigmamenu/language/logic/ProjectLanguage.dart';
 import 'package:sigmamenu/models/product.dart';
+import 'package:sigmamenu/screens/widgets/optionOne.dart';
+import 'package:sigmamenu/screens/widgets/optionThree.dart';
+import 'package:sigmamenu/screens/widgets/optionTwo.dart';
 import 'package:sigmamenu/style/AssetsManager.dart';
 import 'package:sigmamenu/style/CommonUI.dart';
 import 'package:sigmamenu/style/ScreenUtil.dart';
+import 'package:sigmamenu/style/Style.dart';
 
 class ItemCardRectangle extends StatefulWidget {
   final Product product;
@@ -203,9 +207,12 @@ class _ItemCardRectangleState extends State<ItemCardRectangle> {
   }
 
   bool _fromTop = false;
+
   _animationDialog(context) {
+    String _selectedPrice = "${widget.product.price} JOD";
+
     showGeneralDialog(
-      barrierDismissible: true,
+      barrierDismissible: false,
       barrierLabel: "Product Animation",
       barrierColor: Colors.black.withOpacity(0.5),
       transitionDuration: Duration(milliseconds: 300),
@@ -217,209 +224,201 @@ class _ItemCardRectangleState extends State<ItemCardRectangle> {
             Navigator.pop(context);
           },
           key: Key("key"),
-          child: SafeArea(
-            child: SizedBox.expand(
-              child: Center(
-                child: Stack(
-                  clipBehavior: Clip.none,
-                  alignment: Alignment.topCenter,
-                  children: [
-                    Column(
-                      children: <Widget>[
-                        Stack(
-                          children: <Widget>[
-                            Container(
-                              width: Responsive.isDesktop(context)
-                                  ? Responsive.width(context) / 2
-                                  : Responsive.width(context),
-                              padding: EdgeInsets.only(
-                                  left: kDefaultPaddin * 1.5,
-                                  right: kDefaultPaddin * 1.5,
-                                  bottom: kDefaultPaddin),
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(24),
-                                  topRight: Radius.circular(24),
-                                ),
-                              ),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  Row(
-                                    children: [
-                                      Container(
-                                          width: 140,
-                                          height: 170,
-                                          padding: EdgeInsets.only(
-                                            top: kDefaultPaddin * 2,
-                                          ),
-                                          child: CommonUI.cachedImage(
-                                              widget.product.image,
-                                              ImageAssets.foodplaceholder,
-                                              fit: BoxFit.cover)),
-                                      SizedBox(width: 20),
-                                      Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          SizedBox(height: 6),
-                                          Container(
-                                            width:
-                                                Responsive.isMiniMobile(context)
-                                                    ? 100
-                                                    : 140,
-                                            child: Text(
-                                              ProjectLanguage.isLTR()
-                                                  ? widget.product.nameEn
-                                                  : widget.product.nameAr,
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .headline4!
-                                                  .copyWith(
-                                                    color: Colors.black,
-                                                    fontWeight: FontWeight.bold,
-                                                    fontSize:
-                                                        Responsive.isMiniMobile(
-                                                                context)
-                                                            ? 16
-                                                            : 19,
-                                                  ),
-                                              maxLines: 3,
-                                              textAlign: TextAlign.start,
-                                            ),
-                                          ),
-                                          SizedBox(height: 9),
-                                          RichText(
-                                            text: TextSpan(
-                                              children: [
-                                                TextSpan(
-                                                    text:
-                                                        ProjectLanguage.isLTR()
-                                                            ? "Price\n"
-                                                            : "السعر\n"),
-                                                TextSpan(
-                                                  text:
-                                                      "${widget.product.price} JOD",
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .headline6!
-                                                      .copyWith(
-                                                        color: Colors.black,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                      ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                  SizedBox(height: 25),
-                                  Padding(
-                                    padding:
-                                        const EdgeInsets.only(bottom: 25.0),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Container(
-                                          width: Responsive.isDesktop(context)
-                                              ? Responsive.width(context) / 2.2
-                                              : Responsive.width(context) /
-                                                  1.35,
-                                          child: Text(
-                                            ProjectLanguage.isLTR()
-                                                ? "Description"
-                                                : "الوصف",
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .headline4!
-                                                .copyWith(
-                                                  color: Colors.black,
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize:
-                                                      Responsive.isMiniMobile(
-                                                              context)
-                                                          ? 16
-                                                          : 19,
-                                                ),
-                                          ),
-                                        ),
-                                        SizedBox(height: 12),
-                                        Container(
-                                          child: Text(
-                                            ProjectLanguage.isLTR()
-                                                ? "${widget.product.descriptionEn}"
-                                                : "${widget.product.descriptionAr}",
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .headline3!
-                                                .copyWith(
-                                                  color: Colors.black,
-                                                  fontSize:
-                                                      Responsive.isMiniMobile(
-                                                              context)
-                                                          ? 10
-                                                          : 12,
-                                                ),
-                                          ),
-                                        ),
-                                        SizedBox(height: 350),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
+          child: StatefulBuilder(
+              builder: (BuildContext context, StateSetter setState) {
+            return SafeArea(
+              child: SizedBox.expand(
+                child: Center(
+                  child: Container(
+                    height: double.maxFinite,
+                    width: Responsive.isDesktop(context)
+                        ? Responsive.width(context) / 2
+                        : Responsive.width(context),
+                    padding: EdgeInsets.only(
+                      left: kDefaultPaddin * 1.1,
+                      right: kDefaultPaddin * 1.1,
+                      bottom: kDefaultPaddin * 1.1,
+                    ),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(24),
+                        topRight: Radius.circular(24),
+                      ),
+                    ),
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding:
+                              const EdgeInsets.only(top: 10.0, bottom: 8.0),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(24),
+                              color: Colors.orange[700],
                             ),
-                          ],
+                            height: 4,
+                            width: 30.0,
+                          ),
+                        ),
+                        Expanded(
+                          child: SingleChildScrollView(
+                            scrollDirection: Axis.vertical,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: <Widget>[
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      ProjectLanguage.isLTR()
+                                          ? widget.product.nameEn
+                                          : widget.product.nameAr,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .headline4!
+                                          .copyWith(
+                                            color: Colors.cyan[900],
+                                            fontWeight: FontWeight.bold,
+                                            fontSize:
+                                                Responsive.isMiniMobile(context)
+                                                    ? 20
+                                                    : 24,
+                                          ),
+                                      maxLines: 3,
+                                      textAlign: TextAlign.start,
+                                    ),
+                                    // ),
+                                    //       CommonUI.text(
+                                    //           context: context,
+                                    //           text: ProjectLanguage
+                                    //                   .isLTR()
+                                    //               ? widget
+                                    //                   .product.nameEn
+                                    //               : widget
+                                    //                   .product.nameAr,
+                                    //           textAlign:
+                                    //               TextAlign.start,
+                                    //           style: FontStyle.subTitle(
+                                    //               context: context,
+                                    //               fontWeight:
+                                    //                   FontWeight.w600,
+                                    //               color:
+                                    //                   Colors.black)),
+                                    // ),
+                                    SizedBox(height: 6),
+                                    Padding(
+                                      padding: const EdgeInsets.all(12.0),
+                                      child: CommonUI.text(
+                                          context: context,
+                                          text: ProjectLanguage.isLTR()
+                                              ? widget.product.descriptionEn
+                                              : widget.product.descriptionAr,
+                                          textAlign: TextAlign.start,
+                                          style: FontStylee.smaller(
+                                              context: context,
+                                              fontWeight: FontWeight.w600,
+                                              color: Colors.black)),
+                                    ),
+                                  ],
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      top: 15.0, bottom: 8.0),
+                                  child: Center(
+                                    child: CommonUI.text(
+                                        context: context,
+                                        text: _selectedPrice,
+                                        // "${widget.product.price} JOD",
+                                        textAlign: TextAlign.center,
+                                        style: FontStylee.title(
+                                            context: context,
+                                            // fontFamily: ,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.black)),
+                                  ),
+                                ),
+                                Center(
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(24),
+                                      color: Colors.grey.withOpacity(0.5),
+                                    ),
+                                    height: 1,
+                                    width: 200,
+                                  ),
+                                ),
+                                widget.product.options1.isNotEmpty
+                                    ? Options1(product: widget.product)
+                                    : Container(),
+                                widget.product.options2.isNotEmpty
+                                    ? Column(
+                                        children: [
+                                          Center(
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(24),
+                                                color: Colors.grey
+                                                    .withOpacity(0.5),
+                                              ),
+                                              height: 1,
+                                              width: double.maxFinite,
+                                            ),
+                                          ),
+                                          Options2(product: widget.product),
+                                        ],
+                                      )
+                                    : Container(),
+                                widget.product.options3.isNotEmpty
+                                    ? Column(
+                                        children: [
+                                          Center(
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(24),
+                                                color: Colors.grey
+                                                    .withOpacity(0.5),
+                                              ),
+                                              height: 1,
+                                              width: double.maxFinite,
+                                            ),
+                                          ),
+                                          Options3(product: widget.product),
+                                        ],
+                                      )
+                                    : Container(),
+                                SizedBox(height: 210)
+                              ],
+                            ),
+                          ),
                         ),
                       ],
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 12.0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(24),
-                          color: Colors.grey.withOpacity(0.5),
-                        ),
-                        height: 6,
-                        width: 100.0,
-                      ),
-                    ),
-                    // Positioned(
-                    //     top: -30,
-                    //     child: Center(
-                    //       child: CircleAvatar(
-                    //         backgroundColor: Colors.grey,
-                    //         radius: 30,
-                    //         child: GestureDetector(
-                    //           onTap: () {
-                    //             Navigator.of(context).pop();
-                    //           },
-                    //           child: Icon(
-                    //             Icons.keyboard_arrow_down_sharp,
-                    //             color: Colors.white,
-                    //             size: 35,
-                    //           ),
-                    //         ),
-                    //       ),
-                    //     )),
-                  ],
+                  ),
                 ),
               ),
-            ),
-          ),
+            );
+          }),
         );
       },
       transitionBuilder: (context, anim1, anim2, child) {
-        return SlideTransition(
-          position:
-              Tween(begin: Offset(0, _fromTop ? -1 : 1), end: Offset(0, 0.25))
+        return Stack(
+          children: [
+            Container(
+              width: double.maxFinite,
+              height: 280,
+              child: CommonUI.cachedImage(
+                  widget.product.image, ImageAssets.foodplaceholder,
+                  fit: BoxFit.cover),
+            ),
+            SlideTransition(
+              position: Tween(
+                      begin: Offset(0, _fromTop ? -1 : 1), end: Offset(0, 0.35))
                   .animate(anim1),
-          child: child,
+              child: child,
+            ),
+          ],
         );
       },
     );
