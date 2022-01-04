@@ -133,7 +133,8 @@ class ShimmerForCustomerScreen extends StatelessWidget {
                 physics: ClampingScrollPhysics(),
                 primary: false,
                 shrinkWrap: true,
-                itemCount: 6,
+                itemCount: 6,  
+                
                 itemBuilder: (context, index) {
                   return ProjectLanguage.isLTR()
                       ? Container(
