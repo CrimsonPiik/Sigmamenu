@@ -22,6 +22,7 @@ class _AddBannerButtonState extends State<AddBannerButton> {
   final _formKey = GlobalKey<FormBuilderState>();
   // String category = categoriesList.elementAt(0);
   // bool error = false;
+  bool showProgress = false;
 
   @override
   Widget build(BuildContext context) {
@@ -92,110 +93,120 @@ class _AddBannerButtonState extends State<AddBannerButton> {
                               valueListenable: _imagevalue,
                               builder: (BuildContext context, dynamic value,
                                   Widget? child) {
-                                return Center(
-                                  child: GestureDetector(
-                                    onTap: () async {
-                                      _imagevalue.value =
-                                          await fireBaseUploadFileWeb(id);
-                                      // if (_imageBannerController.text != '') {
-                                      //   _imagevalue.value =
-                                      //       _imageBannerController.text;
-                                      // } else if (_imageBannerController.text ==
-                                      //     '') {
-                                      //   _imagevalue.value =
-                                      //       ImageAssets.placeholder;
-                                      // }
-                                      // _imagevalue.value =
-                                      //     _imageBannerController.text;
-                                    },
-                                    child: Center(
-                                      child: Container(
-                                        height: 150,
-                                        width: 250,
-                                        child: Stack(children: [
-                                          _imagevalue.value != ''
-                                              ? Stack(
-                                                  //There's Image
-                                                  children: [
-                                                    Container(
-                                                      height: 150,
-                                                      width: 250,
-                                                      decoration: BoxDecoration(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(4),
-                                                      ),
-                                                      child: InteractiveViewer(
-                                                        child: Image.network(
-                                                          value,
-                                                          fit: BoxFit.cover,
-                                                          loadingBuilder: (context,
-                                                              child,
-                                                              loadingProgress) {
-                                                            if (loadingProgress ==
-                                                                null) {
-                                                              return child;
-                                                            }
-                                                            return Center(
-                                                              child:
-                                                                  CircularProgressIndicator(),
-                                                            );
-                                                          },
+                                return StatefulBuilder(
+                                  builder: (context, state) => Center(
+                                    child: GestureDetector(
+                                      onTap: () async {
+                                        state(() {
+                                          showProgress = true;
+                                        });
+                                        _imagevalue.value =
+                                            await fireBaseUploadFileWeb(id);
+                                        if (_imagevalue.value == '') {
+                                          state(() {
+                                            showProgress = false;
+                                          });
+                                        }
+                                        // if (_imageBannerController.text != '') {
+                                        //   _imagevalue.value =
+                                        //       _imageBannerController.text;
+                                        // } else if (_imageBannerController.text ==
+                                        //     '') {
+                                        //   _imagevalue.value =
+                                        //       ImageAssets.placeholder;
+                                        // }
+                                        // _imagevalue.value =
+                                        //     _imageBannerController.text;
+                                      },
+                                      child: Center(
+                                        child: Container(
+                                          height: 150,
+                                          width: 250,
+                                          child: Stack(children: [
+                                            _imagevalue.value != ''
+                                                ? Stack(
+                                                    //There's Image
+                                                    children: [
+                                                      Container(
+                                                        height: 150,
+                                                        width: 250,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(4),
+                                                        ),
+                                                        child:
+                                                            InteractiveViewer(
+                                                          child: Image.network(
+                                                            value,
+                                                            fit: BoxFit.cover,
+                                                            loadingBuilder:
+                                                                (context, child,
+                                                                    loadingProgress) {
+                                                              if (loadingProgress ==
+                                                                  null) {
+                                                                return child;
+                                                              }
+                                                              return Center(
+                                                                child:
+                                                                    CircularProgressIndicator(),
+                                                              );
+                                                            },
+                                                          ),
                                                         ),
                                                       ),
-                                                    ),
-                                                    Padding(
-                                                      padding: EdgeInsets.only(
-                                                          top: 115),
-                                                      child: Container(
-                                                          height: 35,
-                                                          width: 250,
-                                                          decoration:
-                                                              BoxDecoration(
-                                                                  color: Color(
-                                                                      0x4D000000)),
-                                                          child: Center(
-                                                              child: Icon(
-                                                                  Icons
-                                                                      .edit_outlined,
-                                                                  color: Colors
-                                                                      .white))),
-                                                    ),
-                                                  ],
-                                                )
-                                              : Container(
-                                                  // There's no Image
-                                                  height: 150,
-                                                  width: 250,
-                                                  decoration: BoxDecoration(
-                                                    color: Colors.white,
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            4),
-                                                    boxShadow: [
-                                                      BoxShadow(
-                                                        color: Colors.grey
-                                                            .withOpacity(0.5),
-                                                        spreadRadius: 2,
-                                                        blurRadius: 9,
-                                                        offset: Offset(0, 4),
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsets.only(
+                                                                top: 115),
+                                                        child: Container(
+                                                            height: 35,
+                                                            width: 250,
+                                                            decoration:
+                                                                BoxDecoration(
+                                                                    color: Color(
+                                                                        0x4D000000)),
+                                                            child: Center(
+                                                                child: Icon(
+                                                                    Icons
+                                                                        .edit_outlined,
+                                                                    color: Colors
+                                                                        .white))),
                                                       ),
                                                     ],
-                                                  ),
-                                                  child: // _imagevalue.value ==
-                                                      // '' &&
-                                                      // showProgress
-                                                      // ? Center(
-                                                      // child:
-                                                      // CircularProgressIndicator())
-                                                      // :
-                                                      Icon(
-                                                    Icons.add,
-                                                    color: Colors.black,
-                                                    size: 60,
-                                                  ),
-                                                ),
-                                        ]),
+                                                  )
+                                                : Container(
+                                                    // There's no Image
+                                                    height: 150,
+                                                    width: 250,
+                                                    decoration: BoxDecoration(
+                                                      color: Colors.white,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              4),
+                                                      boxShadow: [
+                                                        BoxShadow(
+                                                          color: Colors.grey
+                                                              .withOpacity(0.5),
+                                                          spreadRadius: 2,
+                                                          blurRadius: 9,
+                                                          offset: Offset(0, 4),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    child: showProgress
+                                                        ? Center(
+                                                            child:
+                                                                CircularProgressIndicator(),
+                                                          )
+                                                        : Icon(
+                                                            Icons.add,
+                                                            color: Colors.black,
+                                                            size: 60,
+                                                          )),
+                                          ]),
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -211,12 +222,15 @@ class _AddBannerButtonState extends State<AddBannerButton> {
                                 children: [
                                   ElevatedButton(
                                     onPressed: () {
+                                      setState(() {
+                                        showProgress = false;
+                                      });
                                       id = generateId();
                                       _imagevalue.value =
                                           _imageBannerController.text;
 
                                       _imageBannerController.clear();
-                                    Navigator.pop(context);
+                                      Navigator.pop(context);
                                     },
                                     style: ButtonStyle(
                                       backgroundColor:
@@ -231,11 +245,11 @@ class _AddBannerButtonState extends State<AddBannerButton> {
                                   SizedBox(width: 20),
                                   ElevatedButton(
                                     onPressed: () async {
+                                      setState(() {
+                                        showProgress = false;
+                                      });
                                       if (_imagevalue.value!.isEmpty) {
-                                        // setState(() {
-                                        //   error = true;
-                                        // });
-                                    Navigator.pop(context);
+                                        Navigator.pop(context);
                                       } else {
                                         _formKey.currentState!.save();
                                         if (_formKey.currentState!.validate()) {
@@ -256,7 +270,7 @@ class _AddBannerButtonState extends State<AddBannerButton> {
                                                 _imageBannerController.text;
 
                                             _imageBannerController.clear();
-                                    Navigator.pop(context);
+                                            Navigator.pop(context);
 
                                             CommonUI.successDialog(context,
                                                 message: "Added successfully");

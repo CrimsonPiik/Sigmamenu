@@ -134,6 +134,11 @@ class _AddProductButtonState extends State<AddProductButton> {
                                           });
                                           _imagevalue.value =
                                               await fireBaseUploadFileWeb(id);
+                                          if (_imagevalue.value == '') {
+                                            state(() {
+                                              showProgress = false;
+                                            });
+                                          }
                                         },
                                         child: Center(
                                           child: Container(
@@ -362,6 +367,9 @@ class _AddProductButtonState extends State<AddProductButton> {
                         children: [
                           ElevatedButton(
                             onPressed: () {
+                              setState(() {
+                                showProgress = false;
+                              });
                               id = generateId();
                               _imagevalue.value = _imageController.text;
                               _descriptionEnController.clear();
@@ -385,6 +393,9 @@ class _AddProductButtonState extends State<AddProductButton> {
                           SizedBox(width: 20),
                           ElevatedButton(
                             onPressed: () async {
+                              setState(() {
+                                showProgress = false;
+                              });
                               _formKey.currentState!.save();
                               if (_formKey.currentState!.validate()) {
                                 FocusScope.of(context).unfocus();

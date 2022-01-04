@@ -395,6 +395,7 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                         _imagevalue.value =
                                             widget.product.image;
                                       }
+                                      
                                     },
                                     child: Center(
                                       child: Container(
@@ -880,7 +881,8 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                                 .keys
                                                 .first
                                                 .toString()
-                                                .substring(0, 1),
+                                                .substring(0, 1)
+                                                .toUpperCase(),
                                             style:
                                                 TextStyle(color: Colors.white),
                                           ),
@@ -918,7 +920,8 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                                   .keys
                                                   .first
                                                   .toString()
-                                                  .substring(0, 1),
+                                                  .substring(0, 1)
+                                                  .toUpperCase(),
                                               style: TextStyle(
                                                   color: Colors.white),
                                             )),
@@ -955,17 +958,15 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                                 .keys
                                                 .first
                                                 .toString()
-                                                .substring(0, 1),
+                                                .substring(0, 1)
+                                                .toUpperCase(),
                                             style:
                                                 TextStyle(color: Colors.white),
                                           ),
-                                       
                                         ),
-                                       
                                       ),
                                     ],
                                   ),
-                                  
                                 ],
                               ),
                             ),
