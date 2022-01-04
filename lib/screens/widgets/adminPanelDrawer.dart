@@ -86,6 +86,7 @@ class _AdminPanelDrawerState extends State<AdminPanelDrawer> {
                   )
                 : item == 3 // PRODUCT OPTIONS
                     ? ListView(
+                        scrollDirection: Axis.vertical,
                         children: [
                           SizedBox(height: 25),
                           AddOptionButton(),
