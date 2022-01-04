@@ -395,14 +395,13 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                         _imagevalue.value =
                                             widget.product.image;
                                       }
-                                      
                                     },
                                     child: Center(
                                       child: Container(
                                         height: 130,
                                         width: 130,
                                         child: Column(children: [
-                                          _imagevalue.value != null
+                                          _imagevalue.value != ''
                                               ? Stack(children: [
                                                   Container(
                                                     height: 130,

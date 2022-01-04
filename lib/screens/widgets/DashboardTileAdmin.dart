@@ -333,7 +333,7 @@ class _DashBoardTileAdminState extends State<DashBoardTileAdmin> {
                                         height: 130,
                                         width: 130,
                                         child: Column(children: [
-                                          _imagevalue.value != null
+                                          _imagevalue.value != ''
                                               ? Stack(children: [
                                                   Container(
                                                     height: 130,
@@ -591,7 +591,7 @@ class _DashBoardTileAdminState extends State<DashBoardTileAdmin> {
                                   _imageController =
                                       TextEditingController(text: widget.image);
                                 });
-                                    Navigator.pop(context);
+                                Navigator.pop(context);
                               },
                               style: ButtonStyle(
                                 backgroundColor:
