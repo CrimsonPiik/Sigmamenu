@@ -133,8 +133,7 @@ class ShimmerForCustomerScreen extends StatelessWidget {
                 physics: ClampingScrollPhysics(),
                 primary: false,
                 shrinkWrap: true,
-                itemCount: 6,  
-                
+                itemCount: 6,
                 itemBuilder: (context, index) {
                   return ProjectLanguage.isLTR()
                       ? Container(
@@ -291,43 +290,43 @@ class ShimmerForCustomerScreen extends StatelessWidget {
                               ),
                             ],
                           ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Container(
-                                width: 150.0,
-                                height: 140,
-                                // color: Colors.white,
-                                decoration: BoxDecoration(
-                                  color: Theme.of(context).cardColor,
-                                ),
-                              ),
-                              SizedBox(
-                                width: 16,
-                              ),
-                              // Expanded(
-                              //   child: Column(
-                              //     crossAxisAlignment: CrossAxisAlignment.start,
-                              //     children: [
-                              //       SizedBox(height: 10),
-                              //       Container(
-                              //         width: 90,
-                              //         height: 8.0,
-                              //         color: Colors.white,
-                              //       ),
-                              //       SizedBox(
-                              //         height: 6,
-                              //       ),
-                              //       Container(
-                              //         width: 30,
-                              //         height: 8.0,
-                              //         color: Colors.white,
-                              //       ),
-                              //     ],
-                              //   ),
-                              // )
-                            ],
-                          ),
+                          // child: Row(
+                          //   mainAxisAlignment: MainAxisAlignment.start,
+                          //   children: [
+                          //     Container(
+                          //       width: 150.0,
+                          //       height: 140,
+                          //       // color: Colors.white,
+                          //       decoration: BoxDecoration(
+                          //         color: Theme.of(context).cardColor,
+                          //       ),
+                          //     ),
+                          //     SizedBox(
+                          //       width: 16,
+                          //     ),
+                          //     // Expanded(
+                          //     //   child: Column(
+                          //     //     crossAxisAlignment: CrossAxisAlignment.start,
+                          //     //     children: [
+                          //     //       SizedBox(height: 10),
+                          //     //       Container(
+                          //     //         width: 90,
+                          //     //         height: 8.0,
+                          //     //         color: Colors.white,
+                          //     //       ),
+                          //     //       SizedBox(
+                          //     //         height: 6,
+                          //     //       ),
+                          //     //       Container(
+                          //     //         width: 30,
+                          //     //         height: 8.0,
+                          //     //         color: Colors.white,
+                          //     //       ),
+                          //     //     ],
+                          //     //   ),
+                          //     // )
+                          //   ],
+                          // ),
                         )
                       : Container(
                           margin: EdgeInsets.only(bottom: 20),
