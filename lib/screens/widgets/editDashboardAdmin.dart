@@ -28,6 +28,7 @@ class _EditStaggerdGridViewState extends State<EditStaggerdGridView> {
   TextEditingController _imageDashboardController = TextEditingController();
   ValueNotifier<String?> _imagevalue = ValueNotifier<String?>('');
   final _formKey = GlobalKey<FormBuilderState>();
+  bool showProgress = false;
 
   @override
   Widget build(BuildContext context) {
@@ -226,109 +227,118 @@ class _EditStaggerdGridViewState extends State<EditStaggerdGridView> {
                             valueListenable: _imagevalue,
                             builder: (BuildContext context, dynamic value,
                                 Widget? child) {
-                              return Center(
-                                child: GestureDetector(
-                                  onTap: () async {
-                                    _imagevalue.value =
-                                        await fireBaseUploadFileWeb(id);
-                                    // if (_imageBannerController.text != '') {
-                                    //   _imagevalue.value =
-                                    //       _imageBannerController.text;
-                                    // } else if (_imageBannerController.text ==
-                                    //     '') {
-                                    //   _imagevalue.value =
-                                    //       ImageAssets.placeholder;
-                                    // }
-                                    // _imagevalue.value =
-                                    //     _imageBannerController.text;
-                                  },
-                                  child: Center(
-                                    child: Container(
-                                      width: 130,
-                                      height: 130,
-                                      child: Stack(children: [
-                                        _imagevalue.value != ''
-                                            ? Stack(
-                                                //There's Image
-                                                children: [
-                                                  Container(
-                                                    height: 130,
-                                                    width: 130,
-                                                    decoration: BoxDecoration(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              4),
-                                                    ),
-                                                    child: InteractiveViewer(
-                                                      child: Image.network(
-                                                        value,
-                                                        fit: BoxFit.cover,
-                                                        loadingBuilder: (context,
-                                                            child,
-                                                            loadingProgress) {
-                                                          if (loadingProgress ==
-                                                              null) {
-                                                            return child;
-                                                          }
-                                                          return Center(
-                                                            child:
-                                                                CircularProgressIndicator(),
-                                                          );
-                                                        },
+                              return StatefulBuilder(
+                                builder: (context, state) => Center(
+                                  child: GestureDetector(
+                                    onTap: () async {
+                                      state(() {
+                                        showProgress = true;
+                                      });
+                                      _imagevalue.value =
+                                          await fireBaseUploadFileWeb(id);
+                                      if (_imagevalue.value == '') {
+                                        state(() {
+                                          showProgress = false;
+                                        });
+                                      }
+                                      // if (_imageBannerController.text != '') {
+                                      //   _imagevalue.value =
+                                      //       _imageBannerController.text;
+                                      // } else if (_imageBannerController.text ==
+                                      //     '') {
+                                      //   _imagevalue.value =
+                                      //       ImageAssets.placeholder;
+                                      // }
+                                      // _imagevalue.value =
+                                      //     _imageBannerController.text;
+                                    },
+                                    child: Center(
+                                      child: Container(
+                                        width: 130,
+                                        height: 130,
+                                        child: Stack(children: [
+                                          _imagevalue.value != ''
+                                              ? Stack(
+                                                  //There's Image
+                                                  children: [
+                                                    Container(
+                                                      height: 130,
+                                                      width: 130,
+                                                      decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(4),
+                                                      ),
+                                                      child: InteractiveViewer(
+                                                        child: Image.network(
+                                                          value,
+                                                          fit: BoxFit.cover,
+                                                          loadingBuilder: (context,
+                                                              child,
+                                                              loadingProgress) {
+                                                            if (loadingProgress ==
+                                                                null) {
+                                                              return child;
+                                                            }
+                                                            return Center(
+                                                              child:
+                                                                  CircularProgressIndicator(),
+                                                            );
+                                                          },
+                                                        ),
                                                       ),
                                                     ),
-                                                  ),
-                                                  Padding(
-                                                    padding: EdgeInsets.only(
-                                                        top: 95),
-                                                    child: Container(
-                                                        height: 35,
-                                                        width: 130,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                                color: Color(
-                                                                    0x4D000000)),
-                                                        child: Center(
-                                                            child: Icon(
-                                                                Icons
-                                                                    .edit_outlined,
-                                                                color: Colors
-                                                                    .white))),
-                                                  ),
-                                                ],
-                                              )
-                                            : Container(
-                                                // There's no Image
-                                                height: 130,
-                                                width: 130,
-                                                decoration: BoxDecoration(
-                                                  color: Colors.white,
-                                                  borderRadius:
-                                                      BorderRadius.circular(4),
-                                                  boxShadow: [
-                                                    BoxShadow(
-                                                      color: Colors.grey
-                                                          .withOpacity(0.5),
-                                                      spreadRadius: 2,
-                                                      blurRadius: 9,
-                                                      offset: Offset(0, 4),
+                                                    Padding(
+                                                      padding: EdgeInsets.only(
+                                                          top: 95),
+                                                      child: Container(
+                                                          height: 35,
+                                                          width: 130,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                                  color: Color(
+                                                                      0x4D000000)),
+                                                          child: Center(
+                                                              child: Icon(
+                                                                  Icons
+                                                                      .edit_outlined,
+                                                                  color: Colors
+                                                                      .white))),
                                                     ),
                                                   ],
+                                                )
+                                              : Container(
+                                                  // There's no Image
+                                                  height: 130,
+                                                  width: 130,
+                                                  decoration: BoxDecoration(
+                                                    color: Colors.white,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            4),
+                                                    boxShadow: [
+                                                      BoxShadow(
+                                                        color: Colors.grey
+                                                            .withOpacity(0.5),
+                                                        spreadRadius: 2,
+                                                        blurRadius: 9,
+                                                        offset: Offset(0, 4),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  child: showProgress
+                                                      ? Center(
+                                                          child:
+                                                              CircularProgressIndicator(),
+                                                        )
+                                                      : Icon(
+                                                          Icons.add,
+                                                          color: Colors.black,
+                                                          size: 60,
+                                                        ),
                                                 ),
-                                                child: // _imagevalue.value ==
-                                                    // '' &&
-                                                    // showProgress
-                                                    // ? Center(
-                                                    // child:
-                                                    // CircularProgressIndicator())
-                                                    // :
-                                                    Icon(
-                                                  Icons.add,
-                                                  color: Colors.black,
-                                                  size: 60,
-                                                ),
-                                              ),
-                                      ]),
+                                        ]),
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -406,6 +416,9 @@ class _EditStaggerdGridViewState extends State<EditStaggerdGridView> {
                       children: [
                         ElevatedButton(
                           onPressed: () {
+                            setState(() {
+                              showProgress = false;
+                            });
                             id = generateId();
                             _imagevalue.value = _imageDashboardController.text;
 
@@ -414,7 +427,7 @@ class _EditStaggerdGridViewState extends State<EditStaggerdGridView> {
                             _nameArDashboardController.clear();
                             _routeDashboardController.clear();
                             _superCategoryDashboardController.clear();
-                                    Navigator.pop(context);
+                            Navigator.pop(context);
                           },
                           style: ButtonStyle(
                             backgroundColor:
@@ -428,6 +441,9 @@ class _EditStaggerdGridViewState extends State<EditStaggerdGridView> {
                         SizedBox(width: 20),
                         ElevatedButton(
                           onPressed: () async {
+                            setState(() {
+                              showProgress = false;
+                            });
                             _formKey.currentState!.save();
                             if (_formKey.currentState!.validate()) {
                               FocusScope.of(context).unfocus();
@@ -462,7 +478,7 @@ class _EditStaggerdGridViewState extends State<EditStaggerdGridView> {
                                 _routeDashboardController.clear();
                                 _superCategoryDashboardController.clear();
 
-                                    Navigator.pop(context);
+                                Navigator.pop(context);
 
                                 CommonUI.successDialog(context,
                                     message: "Saved successfully");
