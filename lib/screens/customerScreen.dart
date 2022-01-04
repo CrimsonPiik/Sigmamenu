@@ -72,8 +72,11 @@ class _CustomerScreenState extends State<CustomerScreen>
           }
           print("Categories : " + categoriesList.toString());
 
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          return ListView(
+            scrollDirection: Axis.vertical,
+            shrinkWrap: true,
+            primary: false,
+            // crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               SizedBox(height: 15),
               BannerWithDotsIndicator(),

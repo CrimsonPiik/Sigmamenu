@@ -213,7 +213,7 @@ class _SignUpFormState extends State<SignUpForm> {
                     fontWeight: FontWeight.bold),
               ),
               SizedBox(width: 8),
-              InkWell(
+              GestureDetector(
                   onTap: widget.click,
                   child: Text(
                     translate(context, "login"),

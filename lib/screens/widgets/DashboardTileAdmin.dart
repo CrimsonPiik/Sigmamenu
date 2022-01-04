@@ -310,7 +310,7 @@ class _DashBoardTileAdminState extends State<DashBoardTileAdmin> {
                                 child: Ink(
                                   width: 130,
                                   height: 130,
-                                  child: InkWell(
+                                  child: GestureDetector(
                                     onTap: () async {
                                       _imageController.text =
                                           await fireBaseUploadFileWeb(

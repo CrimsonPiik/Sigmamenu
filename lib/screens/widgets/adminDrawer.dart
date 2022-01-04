@@ -149,7 +149,7 @@ class _MenuWidgetState extends State<MenuWidget> {
       String title, IconData icons, int selectedIndex, int index) {
     return SizedBox(
         height: 56,
-        child: InkWell(
+        child: GestureDetector(
           onTap: () {
             setState(() {
               selectedIndex = index;

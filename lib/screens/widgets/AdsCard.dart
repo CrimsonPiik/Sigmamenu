@@ -20,7 +20,7 @@ class AdsCard extends StatelessWidget {
         shape: CommonShapes.b16pxRadius,
         clipBehavior: Clip.antiAlias,
         elevation: 1,
-        child: InkWell(
+        child: GestureDetector(
           // onTap: click,
           child: Stack(
             children: [

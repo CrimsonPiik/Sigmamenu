@@ -125,279 +125,279 @@ class ShimmerForCustomerScreen extends StatelessWidget {
         //     ),
         //   )
 
-        Expanded(
-            //Rectangle
-            child: Shimmer.fromColors(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: kDefaultPaddin, vertical: kDefaultPaddin * 2),
-                child: GridView.builder(
-                  itemCount: 6,
-                  itemBuilder: (context, index) {
-                    return ProjectLanguage.isLTR()
-                        ? Container(
-                            margin: EdgeInsets.only(bottom: 20),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.only(
-                                topRight: Radius.circular(24),
-                                bottomRight: Radius.circular(24),
+        Shimmer.fromColors(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(
+                  horizontal: kDefaultPaddin, vertical: kDefaultPaddin * 2),
+              child: GridView.builder(
+                physics: ClampingScrollPhysics(),
+                primary: false,
+                shrinkWrap: true,
+                itemCount: 6,
+                itemBuilder: (context, index) {
+                  return ProjectLanguage.isLTR()
+                      ? Container(
+                          margin: EdgeInsets.only(bottom: 20),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.only(
+                              topRight: Radius.circular(24),
+                              bottomRight: Radius.circular(24),
+                            ),
+                            color: Colors.grey.withOpacity(0.1),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.1),
+                                spreadRadius: 2,
+                                blurRadius: 9,
+                                offset: Offset(0, 4),
                               ),
-                              color: Colors.grey.withOpacity(0.1),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.grey.withOpacity(0.1),
-                                  spreadRadius: 2,
-                                  blurRadius: 9,
-                                  offset: Offset(0, 4),
+                            ],
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Container(
+                                width: 150.0,
+                                height: 140,
+                                // color: Colors.white,
+                                decoration: BoxDecoration(
+                                  color: Theme.of(context).cardColor,
                                 ),
-                              ],
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Container(
-                                  width: 150.0,
-                                  height: 140,
-                                  // color: Colors.white,
-                                  decoration: BoxDecoration(
-                                    color: Theme.of(context).cardColor,
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: 16,
-                                ),
-                                // Expanded(
-                                //   child: Column(
-                                //     crossAxisAlignment: CrossAxisAlignment.start,
-                                //     children: [
-                                //       SizedBox(height: 10),
-                                //       Container(
-                                //         width: 90,
-                                //         height: 8.0,
-                                //         color: Colors.white,
-                                //       ),
-                                //       SizedBox(
-                                //         height: 6,
-                                //       ),
-                                //       Container(
-                                //         width: 30,
-                                //         height: 8.0,
-                                //         color: Colors.white,
-                                //       ),
-                                //     ],
-                                //   ),
-                                // )
-                              ],
-                            ),
-                          )
-                        : Container(
-                            margin: EdgeInsets.only(bottom: 20),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(24),
-                                bottomLeft: Radius.circular(24),
                               ),
-                              color: Colors.grey.withOpacity(0.1),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.grey.withOpacity(0.1),
-                                  spreadRadius: 2,
-                                  blurRadius: 9,
-                                  offset: Offset(0, 4),
-                                ),
-                              ],
+                              SizedBox(
+                                width: 16,
+                              ),
+                              // Expanded(
+                              //   child: Column(
+                              //     crossAxisAlignment: CrossAxisAlignment.start,
+                              //     children: [
+                              //       SizedBox(height: 10),
+                              //       Container(
+                              //         width: 90,
+                              //         height: 8.0,
+                              //         color: Colors.white,
+                              //       ),
+                              //       SizedBox(
+                              //         height: 6,
+                              //       ),
+                              //       Container(
+                              //         width: 30,
+                              //         height: 8.0,
+                              //         color: Colors.white,
+                              //       ),
+                              //     ],
+                              //   ),
+                              // )
+                            ],
+                          ),
+                        )
+                      : Container(
+                          margin: EdgeInsets.only(bottom: 20),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(24),
+                              bottomLeft: Radius.circular(24),
                             ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                SizedBox(
-                                  width: 16,
+                            color: Colors.grey.withOpacity(0.1),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.1),
+                                spreadRadius: 2,
+                                blurRadius: 9,
+                                offset: Offset(0, 4),
+                              ),
+                            ],
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              SizedBox(
+                                width: 16,
+                              ),
+                              Container(
+                                width: 150.0,
+                                height: 140,
+                                // color: Colors.white,
+                                decoration: BoxDecoration(
+                                  color: Theme.of(context).cardColor,
                                 ),
-                                Container(
-                                  width: 150.0,
-                                  height: 140,
-                                  // color: Colors.white,
-                                  decoration: BoxDecoration(
-                                    color: Theme.of(context).cardColor,
-                                  ),
-                                ),
+                              ),
 
-                                // Expanded(
-                                //   child: Column(
-                                //     crossAxisAlignment: CrossAxisAlignment.start,
-                                //     children: [
-                                //       SizedBox(height: 10),
-                                //       Container(
-                                //         width: 90,
-                                //         height: 8.0,
-                                //         color: Colors.white,
-                                //       ),
-                                //       SizedBox(
-                                //         height: 6,
-                                //       ),
-                                //       Container(
-                                //         width: 30,
-                                //         height: 8.0,
-                                //         color: Colors.white,
-                                //       ),
-                                //     ],
-                                //   ),
-                                // )
-                              ],
-                            ),
-                          );
-                  },
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 1,
-                      childAspectRatio: Responsive.isDesktop(context)
-                          ? 8.2
-                          : Responsive.isMobile(context)
-                              ? 2.30
-                              : Responsive.isMiniMobile(context)
-                                  ? 2.0
-                                  : 4.0),
-                ),
+                              // Expanded(
+                              //   child: Column(
+                              //     crossAxisAlignment: CrossAxisAlignment.start,
+                              //     children: [
+                              //       SizedBox(height: 10),
+                              //       Container(
+                              //         width: 90,
+                              //         height: 8.0,
+                              //         color: Colors.white,
+                              //       ),
+                              //       SizedBox(
+                              //         height: 6,
+                              //       ),
+                              //       Container(
+                              //         width: 30,
+                              //         height: 8.0,
+                              //         color: Colors.white,
+                              //       ),
+                              //     ],
+                              //   ),
+                              // )
+                            ],
+                          ),
+                        );
+                },
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 1,
+                    childAspectRatio: Responsive.isDesktop(context)
+                        ? 8.2
+                        : Responsive.isMobile(context)
+                            ? 2.30
+                            : Responsive.isMiniMobile(context)
+                                ? 2.0
+                                : 4.0),
               ),
-              baseColor: Colors.grey.withOpacity(0.4),
-              highlightColor: Colors.grey.withOpacity(0.2),
             ),
+            baseColor: Colors.grey.withOpacity(0.4),
+            highlightColor: Colors.grey.withOpacity(0.2),
           )
-        : Expanded(
-            //Rectangle
-            child: Shimmer.fromColors(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: kDefaultPaddin, vertical: kDefaultPaddin * 2),
-                child: GridView.builder(
-                  itemCount: 6,
-                  itemBuilder: (context, index) {
-                    return ProjectLanguage.isLTR()
-                        ? Container(
-                            margin: EdgeInsets.only(bottom: 20),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.only(
-                                topRight: Radius.circular(24),
-                                bottomRight: Radius.circular(24),
+        : Shimmer.fromColors(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(
+                  horizontal: kDefaultPaddin, vertical: kDefaultPaddin * 2),
+              child: GridView.builder(
+                physics: ClampingScrollPhysics(),
+                primary: false,
+                shrinkWrap: true,
+                itemCount: 6,
+                itemBuilder: (context, index) {
+                  return ProjectLanguage.isLTR()
+                      ? Container(
+                          margin: EdgeInsets.only(bottom: 20),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.only(
+                              topRight: Radius.circular(24),
+                              bottomRight: Radius.circular(24),
+                            ),
+                            color: Colors.grey.withOpacity(0.1),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.1),
+                                spreadRadius: 2,
+                                blurRadius: 9,
+                                offset: Offset(0, 4),
                               ),
-                              color: Colors.grey.withOpacity(0.1),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.grey.withOpacity(0.1),
-                                  spreadRadius: 2,
-                                  blurRadius: 9,
-                                  offset: Offset(0, 4),
+                            ],
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Container(
+                                width: 150.0,
+                                height: 140,
+                                // color: Colors.white,
+                                decoration: BoxDecoration(
+                                  color: Theme.of(context).cardColor,
                                 ),
-                              ],
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Container(
-                                  width: 150.0,
-                                  height: 140,
-                                  // color: Colors.white,
-                                  decoration: BoxDecoration(
-                                    color: Theme.of(context).cardColor,
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: 16,
-                                ),
-                                // Expanded(
-                                //   child: Column(
-                                //     crossAxisAlignment: CrossAxisAlignment.start,
-                                //     children: [
-                                //       SizedBox(height: 10),
-                                //       Container(
-                                //         width: 90,
-                                //         height: 8.0,
-                                //         color: Colors.white,
-                                //       ),
-                                //       SizedBox(
-                                //         height: 6,
-                                //       ),
-                                //       Container(
-                                //         width: 30,
-                                //         height: 8.0,
-                                //         color: Colors.white,
-                                //       ),
-                                //     ],
-                                //   ),
-                                // )
-                              ],
-                            ),
-                          )
-                        : Container(
-                            margin: EdgeInsets.only(bottom: 20),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(24),
-                                bottomLeft: Radius.circular(24),
                               ),
-                              color: Colors.grey.withOpacity(0.1),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.grey.withOpacity(0.1),
-                                  spreadRadius: 2,
-                                  blurRadius: 9,
-                                  offset: Offset(0, 4),
-                                ),
-                              ],
+                              SizedBox(
+                                width: 16,
+                              ),
+                              // Expanded(
+                              //   child: Column(
+                              //     crossAxisAlignment: CrossAxisAlignment.start,
+                              //     children: [
+                              //       SizedBox(height: 10),
+                              //       Container(
+                              //         width: 90,
+                              //         height: 8.0,
+                              //         color: Colors.white,
+                              //       ),
+                              //       SizedBox(
+                              //         height: 6,
+                              //       ),
+                              //       Container(
+                              //         width: 30,
+                              //         height: 8.0,
+                              //         color: Colors.white,
+                              //       ),
+                              //     ],
+                              //   ),
+                              // )
+                            ],
+                          ),
+                        )
+                      : Container(
+                          margin: EdgeInsets.only(bottom: 20),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(24),
+                              bottomLeft: Radius.circular(24),
                             ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                SizedBox(
-                                  width: 16,
+                            color: Colors.grey.withOpacity(0.1),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.1),
+                                spreadRadius: 2,
+                                blurRadius: 9,
+                                offset: Offset(0, 4),
+                              ),
+                            ],
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              SizedBox(
+                                width: 16,
+                              ),
+                              Container(
+                                width: 150.0,
+                                height: 140,
+                                // color: Colors.white,
+                                decoration: BoxDecoration(
+                                  color: Theme.of(context).cardColor,
                                 ),
-                                Container(
-                                  width: 150.0,
-                                  height: 140,
-                                  // color: Colors.white,
-                                  decoration: BoxDecoration(
-                                    color: Theme.of(context).cardColor,
-                                  ),
-                                ),
+                              ),
 
-                                // Expanded(
-                                //   child: Column(
-                                //     crossAxisAlignment: CrossAxisAlignment.start,
-                                //     children: [
-                                //       SizedBox(height: 10),
-                                //       Container(
-                                //         width: 90,
-                                //         height: 8.0,
-                                //         color: Colors.white,
-                                //       ),
-                                //       SizedBox(
-                                //         height: 6,
-                                //       ),
-                                //       Container(
-                                //         width: 30,
-                                //         height: 8.0,
-                                //         color: Colors.white,
-                                //       ),
-                                //     ],
-                                //   ),
-                                // )
-                              ],
-                            ),
-                          );
-                  },
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 1,
-                      childAspectRatio: Responsive.isDesktop(context)
-                          ? 8.2
-                          : Responsive.isMobile(context)
-                              ? 2.30
-                              : Responsive.isMiniMobile(context)
-                                  ? 2.0
-                                  : 4.0),
-                ),
+                              // Expanded(
+                              //   child: Column(
+                              //     crossAxisAlignment: CrossAxisAlignment.start,
+                              //     children: [
+                              //       SizedBox(height: 10),
+                              //       Container(
+                              //         width: 90,
+                              //         height: 8.0,
+                              //         color: Colors.white,
+                              //       ),
+                              //       SizedBox(
+                              //         height: 6,
+                              //       ),
+                              //       Container(
+                              //         width: 30,
+                              //         height: 8.0,
+                              //         color: Colors.white,
+                              //       ),
+                              //     ],
+                              //   ),
+                              // )
+                            ],
+                          ),
+                        );
+                },
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 1,
+                    childAspectRatio: Responsive.isDesktop(context)
+                        ? 8.2
+                        : Responsive.isMobile(context)
+                            ? 2.30
+                            : Responsive.isMiniMobile(context)
+                                ? 2.0
+                                : 4.0),
               ),
-              baseColor: Colors.grey.withOpacity(0.4),
-              highlightColor: Colors.grey.withOpacity(0.2),
             ),
+            baseColor: Colors.grey.withOpacity(0.4),
+            highlightColor: Colors.grey.withOpacity(0.2),
           );
   }
 }

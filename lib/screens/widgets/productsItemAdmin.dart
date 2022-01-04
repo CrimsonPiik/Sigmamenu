@@ -143,7 +143,7 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
 
       // The child of the Slidable is what the user sees when the
       // component is not dragged.
-      child: InkWell(
+      child: GestureDetector(
         onTap: () {
           _animationDialog(context);
         },
@@ -377,7 +377,7 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                 child: Ink(
                                   width: 130,
                                   height: 130,
-                                  child: InkWell(
+                                  child: GestureDetector(
                                     onTap: () async {
                                       _imageController.text =
                                           await fireBaseUploadFileWeb(

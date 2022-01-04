@@ -127,7 +127,7 @@ class _AddProductButtonState extends State<AddProductButton> {
                                     child: Ink(
                                       width: 130,
                                       height: 130,
-                                      child: InkWell(
+                                      child: GestureDetector(
                                         onTap: () async {
                                           state(() {
                                             showProgress = true;

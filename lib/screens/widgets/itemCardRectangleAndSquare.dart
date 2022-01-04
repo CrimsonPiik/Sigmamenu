@@ -45,88 +45,80 @@ class _ItemCardRectangleAndSquareState extends State<ItemCardRectangleAndSquare>
   @override
   Widget build(BuildContext context) {
     List<Product> products = widget.productList;
-    return Expanded(
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              // ChangeLanguageButton(),
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            // ChangeLanguageButton(),
 
-              // Align(
-              // alignment: Alignment.topRight,
-              // padding: const EdgeInsets.symmetric(horizontal: 6),
-              // /child:
-              IconButton(
-                icon: AnimatedIcon(
-                  icon: AnimatedIcons.view_list,
-                  progress: animationController,
-                ),
-                onPressed: () {
-                  ///toggle controls the animation Forward and Backward
-                  toggle();
-                  setState(() {
-                    Session.isList = !Session.isList;
-                  });
-                },
-                // )
+            // Align(
+            // alignment: Alignment.topRight,
+            // padding: const EdgeInsets.symmetric(horizontal: 6),
+            // /child:
+            IconButton(
+              icon: AnimatedIcon(
+                icon: AnimatedIcons.view_list,
+                progress: animationController,
               ),
-              SizedBox(width: 20),
-            ],
-          ),
-          Session.isList
-              ? Expanded(
-                  child: Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: kDefaultPaddin),
-                    child: GridView.builder(
-                      // physics: NeverScrollableScrollPhysics(),
-                      // physics: ClampingScrollPhysics(),
-                      shrinkWrap: true,
-                      scrollDirection: Axis.vertical,
-                      itemCount: products.length,
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 1,
-                          childAspectRatio: Responsive.isDesktop(context)
-                              ? 8.2
-                              : Responsive.isMobile(context)
-                                  ? 2.30
-                                  : Responsive.isMiniMobile(context)
-                                      ? 2.0
-                                      : 4.0),
-                      itemBuilder: (context, index) => ItemCardRectangle(
-                        product: products[index],
-                      ),
-                    ),
+              onPressed: () {
+                ///toggle controls the animation Forward and Backward
+                toggle();
+                setState(() {
+                  Session.isList = !Session.isList;
+                });
+              },
+              // )
+            ),
+            SizedBox(width: 20),
+          ],
+        ),
+        Session.isList
+            ? Padding(
+                padding: const EdgeInsets.symmetric(horizontal: kDefaultPaddin),
+                child: GridView.builder(
+                  physics: ClampingScrollPhysics(),
+                  primary: false,
+                  shrinkWrap: true,
+                  scrollDirection: Axis.vertical,
+                  itemCount: products.length,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 1,
+                      childAspectRatio: Responsive.isDesktop(context)
+                          ? 8.2
+                          : Responsive.isMobile(context)
+                              ? 2.30
+                              : Responsive.isMiniMobile(context)
+                                  ? 2.0
+                                  : 4.0),
+                  itemBuilder: (context, index) => ItemCardRectangle(
+                    product: products[index],
                   ),
-                )
-              : Expanded(
-                  child: Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: kDefaultPaddin),
-                    child: GridView.builder(
-                      // physics: NeverScrollableScrollPhysics(),
-                      // physics: ClampingScrollPhysics(),
-                      shrinkWrap: true,
-                      scrollDirection: Axis.vertical,
-                      itemCount: products.length,
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 1,
-                          childAspectRatio: Responsive.isDesktop(context)
-                              ? 8.2
-                              : Responsive.isMobile(context)
-                                  ? 2.40
-                                  : Responsive.isMiniMobile(context)
-                                      ? 2.0
-                                      : 4.0),
-                      itemBuilder: (context, index) => ItemCardWithoutImage(
-                        product: products[index],
-                      ),
-                    ),
+                ),
+              )
+            : Padding(
+                padding: const EdgeInsets.symmetric(horizontal: kDefaultPaddin),
+                child: GridView.builder(
+                  physics: ClampingScrollPhysics(),
+                  primary: false,
+                  shrinkWrap: true,
+                  scrollDirection: Axis.vertical,
+                  itemCount: products.length,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 1,
+                      childAspectRatio: Responsive.isDesktop(context)
+                          ? 8.2
+                          : Responsive.isMobile(context)
+                              ? 2.40
+                              : Responsive.isMiniMobile(context)
+                                  ? 2.0
+                                  : 4.0),
+                  itemBuilder: (context, index) => ItemCardWithoutImage(
+                    product: products[index],
                   ),
-                )
-        ],
-      ),
+                ),
+              )
+      ],
     );
   }
 }

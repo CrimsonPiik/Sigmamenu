@@ -64,7 +64,7 @@ class _CategoriesWithDeleteButtonState
       child: Stack(
         children: [
           Ink(
-            child: InkWell(
+            child: GestureDetector(
               onTap: () {
                 setState(() {
                   selectedIndex = index;
@@ -92,7 +92,7 @@ class _CategoriesWithDeleteButtonState
           ),
           Align(
             alignment: Alignment(1, -1.9),
-            child: InkWell(
+            child: GestureDetector(
               onTap: () {
                 setState(() {
                   selectedIndex = index;

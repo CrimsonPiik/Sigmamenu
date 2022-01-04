@@ -39,7 +39,7 @@ class _ItemCardSquaresState extends State<ItemCardSquares> {
       ),
       child: Stack(
         children: [
-          InkWell(
+          GestureDetector(
             onTap: () => {_animationDialog(context)},
             child: Container(
               child: Column(

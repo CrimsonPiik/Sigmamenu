@@ -54,7 +54,7 @@ class CommonUI {
           Positioned(
               bottom: 0,
               right: 0,
-              child: InkWell(
+              child: GestureDetector(
                 onTap: click,
                 child: Container(
                   height: 40,
