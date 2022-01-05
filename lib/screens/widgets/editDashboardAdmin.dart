@@ -1,14 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:sigmamenu/GeneralFunction/Strings.dart';
-import 'package:sigmamenu/GeneralFunction/firebase_uploader_web.dart';
 import 'package:sigmamenu/GeneralFunction/random_id_generator.dart';
 import 'package:sigmamenu/models/staggerd.dart';
 import 'package:sigmamenu/screens/widgets/DashboardTileAdmin.dart';
 import 'package:sigmamenu/style/CommonUI.dart';
-import 'package:sigmamenu/style/ScreenUtil.dart';
 
 class EditStaggerdGridView extends StatefulWidget {
   @override
@@ -19,15 +15,15 @@ List<Widget> tiles = [];
 
 class _EditStaggerdGridViewState extends State<EditStaggerdGridView> {
   String id = generateId();
-  TextEditingController _nameDashboardController = TextEditingController();
-  TextEditingController _nameArDashboardController = TextEditingController();
-  TextEditingController _routeDashboardController = TextEditingController();
-  TextEditingController _superCategoryDashboardController =
-      TextEditingController();
+  // TextEditingController _nameDashboardController = TextEditingController();
+  // TextEditingController _nameArDashboardController = TextEditingController();
+  // TextEditingController _routeDashboardController = TextEditingController();
+  // TextEditingController _superCategoryDashboardController =
+  //     TextEditingController();
 
-  TextEditingController _imageDashboardController = TextEditingController();
-  ValueNotifier<String?> _imagevalue = ValueNotifier<String?>('');
-  final _formKey = GlobalKey<FormBuilderState>();
+  // TextEditingController _imageDashboardController = TextEditingController();
+  // ValueNotifier<String?> _imagevalue = ValueNotifier<String?>('');
+  // final _formKey = GlobalKey<FormBuilderState>();
   bool showProgress = false;
 
   @override
