@@ -11,6 +11,7 @@ import 'package:sigmamenu/models/product.dart';
 import 'package:sigmamenu/style/AssetsManager.dart';
 import 'package:sigmamenu/style/CommonUI.dart';
 import 'package:sigmamenu/style/ScreenUtil.dart';
+import 'package:sigmamenu/style/Style.dart';
 
 class ProductsItemAdmin extends StatefulWidget {
   final Product product;
@@ -735,6 +736,10 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
         });
   }
 
+// =====  =====  ===== =====  =====  ===== =====  =====  ===== =====  =====  ===== =====  =====
+// =====                                    PRODUCT DIALOG                                =====
+// =====  =====  ===== =====  =====  ===== =====  =====  ===== =====  =====  ===== =====  =====
+
   bool _fromTop = false;
   _animationDialog(context) {
     showGeneralDialog(
@@ -848,124 +853,590 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                   ),
                                   SizedBox(height: 25),
                                   Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      GestureDetector(
-                                        onTap: () async {
-                                          FirebaseFirestore.instance
-                                              .collection(
-                                                  widget.product.category)
-                                              .doc(widget.product.id)
-                                              .update({
-                                            'options1': {
-                                              widget.options
-                                                  .elementAt(0)
-                                                  .options
-                                                  .keys
-                                                  .first
-                                                  .toString(): {
-                                                'A': '1.00',
-                                                'B': '2.00',
-                                                'C': '3.00'
-                                              }
-                                            }
-                                          });
-                                        },
-                                        child: CircleAvatar(
-                                          backgroundColor: Colors.green,
-                                          radius: 20,
-                                          child: Text(
-                                            widget.options
-                                                .elementAt(0)
-                                                .options
-                                                .keys
-                                                .first
-                                                .toString()
-                                                .substring(0, 1)
-                                                .toUpperCase(),
-                                            style:
-                                                TextStyle(color: Colors.white),
-                                          ),
-                                        ),
+                                      Icon(
+                                        Icons.arrow_back_ios_new_outlined,
+                                        color: Colors.black,
+                                        size: 20,
                                       ),
-                                      SizedBox(width: 5),
-                                      GestureDetector(
-                                        onTap: () async {
-                                          FirebaseFirestore.instance
-                                              .collection(
-                                                  widget.product.category)
-                                              .doc(widget.product.id)
-                                              .update({
-                                            'options2': {
-                                              widget.options
-                                                  .elementAt(1)
-                                                  .options
-                                                  .keys
-                                                  .first
-                                                  .toString(): {
-                                                'A': '1.00',
-                                                'B': '2.00',
-                                                'C': '3.00'
-                                              }
-                                            }
-                                          });
-                                        },
-                                        child: CircleAvatar(
-                                            backgroundColor: Colors.green,
-                                            radius: 20,
-                                            child: Text(
-                                              widget.options
-                                                  .elementAt(1)
-                                                  .options
-                                                  .keys
-                                                  .first
-                                                  .toString()
-                                                  .substring(0, 1)
-                                                  .toUpperCase(),
-                                              style: TextStyle(
-                                                  color: Colors.white),
-                                            )),
+                                      SizedBox(width: 15),
+                                      SizedBox(
+                                        height: 70,
+                                        // width: 500,
+                                        child: ListView.builder(
+                                            physics:
+                                                NeverScrollableScrollPhysics(),
+                                            shrinkWrap: true,
+                                            scrollDirection: Axis.horizontal,
+                                            itemCount: widget.options.length,
+                                            itemBuilder: (context, index) {
+                                              return Row(
+                                                children: [
+                                                  GestureDetector(
+                                                    onTap: () async {
+                                                      FirebaseFirestore.instance
+                                                          .collection(widget
+                                                              .product.category)
+                                                          .doc(
+                                                              widget.product.id)
+                                                          .update({
+                                                        'options1': {
+                                                          widget.options
+                                                              .elementAt(index)
+                                                              .options
+                                                              .keys
+                                                              .first
+                                                              .toString(): {
+                                                            'A': '1.00',
+                                                            'B': '2.00',
+                                                            'C': '3.00'
+                                                          }
+                                                        }
+                                                      });
+                                                    },
+                                                    child: CircleAvatar(
+                                                      backgroundColor:
+                                                          Colors.green,
+                                                      radius: 20,
+                                                      child: Text(
+                                                        widget.options
+                                                            .elementAt(index)
+                                                            .options
+                                                            .keys
+                                                            .first
+                                                            .toString()
+                                                            .substring(0, 1)
+                                                            .toUpperCase(),
+                                                        style: TextStyle(
+                                                            color:
+                                                                Colors.white),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  SizedBox(width: 5),
+                                                ],
+                                              );
+                                            }),
                                       ),
-                                      SizedBox(width: 5),
-                                      GestureDetector(
-                                        onTap: () async {
-                                          FirebaseFirestore.instance
-                                              .collection(
-                                                  widget.product.category)
-                                              .doc(widget.product.id)
-                                              .update({
-                                            'options3': {
-                                              widget.options
-                                                  .elementAt(2)
-                                                  .options
-                                                  .keys
-                                                  .first
-                                                  .toString(): {
-                                                'A': '1.00',
-                                                'B': '2.00',
-                                                'C': '3.00'
-                                              }
-                                            }
-                                          });
-                                        },
-                                        child: CircleAvatar(
-                                          backgroundColor: Colors.green,
-                                          radius: 20,
-                                          child: Text(
-                                            widget.options
-                                                .elementAt(2)
-                                                .options
-                                                .keys
-                                                .first
-                                                .toString()
-                                                .substring(0, 1)
-                                                .toUpperCase(),
-                                            style:
-                                                TextStyle(color: Colors.white),
-                                          ),
-                                        ),
+                                      SizedBox(width: 15),
+                                      Icon(
+                                        Icons.arrow_forward_ios_outlined,
+                                        color: Colors.black,
+                                        size: 20,
                                       ),
                                     ],
                                   ),
+                                  ///////////////////
+
+                                  // OPTION 1
+                                  Padding(
+                                    padding: const EdgeInsets.all(6.0),
+                                    child: Container(
+                                      margin: EdgeInsets.only(bottom: 20),
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(18),
+                                        ),
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Colors.grey.withOpacity(0.4),
+                                            spreadRadius: 1,
+                                            blurRadius: 6,
+                                            offset: Offset(1, 6),
+                                          ),
+                                        ],
+                                      ),
+                                      child: Column(
+                                        children: [
+                                          Container(
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.all(8.0),
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  CommonUI.text(
+                                                      context: context,
+                                                      text: widget.options
+                                                          .elementAt(0) //change
+                                                          .options
+                                                          .keys
+                                                          .first
+                                                          .toString(),
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                      style: FontStylee.normal(
+                                                          context: context,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          color: Colors.black)),
+                                                  Row(
+                                                    children: [
+                                                      CommonUI.text(
+                                                          context: context,
+                                                          text:
+                                                              // widget
+                                                              //     .options
+                                                              //     .elementAt(
+                                                              //         index)
+                                                              //     .options
+                                                              //     .keys
+                                                              //     .first,
+                                                              'Example!',
+                                                          // .product
+                                                          // .options1[
+                                                          //     '${widget.product.options1.keys.elementAt(index)}']
+                                                          // .keys
+                                                          // .elementAt(index),
+                                                          textAlign:
+                                                              TextAlign.center,
+                                                          style:
+                                                              FontStylee.normal(
+                                                                  context:
+                                                                      context,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  color: Colors
+                                                                          .orange[
+                                                                      700])),
+                                                      SizedBox(width: 5),
+                                                      Icon(
+                                                        Icons
+                                                            .arrow_forward_ios_outlined,
+                                                        size: 15,
+                                                        color:
+                                                            Colors.orange[700],
+                                                      )
+                                                    ],
+                                                  )
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                          Column(
+                                            children: [
+                                              Center(
+                                                child: Container(
+                                                  decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            24),
+                                                    color: Colors.grey
+                                                        .withOpacity(0.5),
+                                                  ),
+                                                  height: 1,
+                                                  width: double.maxFinite,
+                                                ),
+                                              ),
+                                              ListView.builder(
+                                                // physics: ScrollPhysics(),
+                                                shrinkWrap: true,
+                                                scrollDirection: Axis.vertical,
+                                                itemCount: 1, // ERROR
+                                                itemBuilder: (context, indexx) {
+                                                  return Column(
+                                                    children: [
+                                                      Center(
+                                                        child: Container(
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          24),
+                                                              color: Colors.grey
+                                                                  .withOpacity(
+                                                                      0.2),
+                                                            ),
+                                                            height: 1,
+                                                            width: double
+                                                                .maxFinite),
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .all(8.0),
+                                                        child: GestureDetector(
+                                                          onTap: () {},
+                                                          child: Row(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .spaceBetween,
+                                                            children: [
+                                                              CommonUI.text(
+                                                                  context:
+                                                                      context,
+                                                                  text: widget
+                                                                      .options
+                                                                      .elementAt(
+                                                                          indexx)
+                                                                      .options[
+                                                                          '${widget.options.elementAt(indexx).options.keys.first}']
+                                                                      .keys
+                                                                      .elementAt(
+                                                                          indexx)
+                                                                      .toString(),
+                                                                  textAlign:
+                                                                      TextAlign
+                                                                          .center,
+                                                                  style: FontStylee.small(
+                                                                      context:
+                                                                          context,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold,
+                                                                      color: Colors
+                                                                          .black
+                                                                          .withOpacity(
+                                                                              0.8))),
+                                                              CommonUI.text(
+                                                                  context:
+                                                                      context,
+                                                                  text: widget
+                                                                          .options
+                                                                          .elementAt(
+                                                                              indexx)
+                                                                          .options[
+                                                                              '${widget.options.elementAt(indexx).options.keys.first}']
+                                                                          .values
+                                                                          .elementAt(
+                                                                              indexx)
+                                                                          .toString() +
+                                                                      ' JOD',
+                                                                  textAlign:
+                                                                      TextAlign
+                                                                          .center,
+                                                                  style: FontStylee.small(
+                                                                      context:
+                                                                          context,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold,
+                                                                      color: Colors
+                                                                          .black
+                                                                          .withOpacity(
+                                                                              0.8))),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  );
+                                                },
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  // OPTION 1
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Container(
+                                      margin: EdgeInsets.only(bottom: 20),
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(18),
+                                        ),
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Colors.grey.withOpacity(0.4),
+                                            spreadRadius: 1,
+                                            blurRadius: 6,
+                                            offset: Offset(1, 6),
+                                          ),
+                                        ],
+                                      ),
+                                      child: Column(
+                                        children: [
+                                          Container(
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.all(8.0),
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  CommonUI.text(
+                                                      context: context,
+                                                      text: widget.options
+                                                          .elementAt(1) //change
+                                                          .options
+                                                          .keys
+                                                          .first
+                                                          .toString(),
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                      style: FontStylee.normal(
+                                                          context: context,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          color: Colors.black)),
+                                                  Row(
+                                                    children: [
+                                                      CommonUI.text(
+                                                          context: context,
+                                                          text:
+                                                              // widget
+                                                              //     .options
+                                                              //     .elementAt(
+                                                              //         index)
+                                                              //     .options
+                                                              //     .keys
+                                                              //     .first,
+                                                              'Example!',
+                                                          // .product
+                                                          // .options1[
+                                                          //     '${widget.product.options1.keys.elementAt(index)}']
+                                                          // .keys
+                                                          // .elementAt(index),
+                                                          textAlign:
+                                                              TextAlign.center,
+                                                          style:
+                                                              FontStylee.normal(
+                                                                  context:
+                                                                      context,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  color: Colors
+                                                                          .orange[
+                                                                      700])),
+                                                      SizedBox(width: 5),
+                                                      Icon(
+                                                        Icons
+                                                            .arrow_forward_ios_outlined,
+                                                        size: 15,
+                                                        color:
+                                                            Colors.orange[700],
+                                                      )
+                                                    ],
+                                                  )
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  // OPTION 1
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Container(
+                                      margin: EdgeInsets.only(bottom: 20),
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(18),
+                                        ),
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Colors.grey.withOpacity(0.4),
+                                            spreadRadius: 1,
+                                            blurRadius: 6,
+                                            offset: Offset(1, 6),
+                                          ),
+                                        ],
+                                      ),
+                                      child: Column(
+                                        children: [
+                                          Container(
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.all(8.0),
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  CommonUI.text(
+                                                      context: context,
+                                                      text: widget.options
+                                                          .elementAt(2) //change
+                                                          .options
+                                                          .keys
+                                                          .first
+                                                          .toString(),
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                      style: FontStylee.normal(
+                                                          context: context,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          color: Colors.black)),
+                                                  Row(
+                                                    children: [
+                                                      CommonUI.text(
+                                                          context: context,
+                                                          text:
+                                                              // widget
+                                                              //     .options
+                                                              //     .elementAt(
+                                                              //         index)
+                                                              //     .options
+                                                              //     .keys
+                                                              //     .first,
+                                                              'Example!',
+                                                          // .product
+                                                          // .options1[
+                                                          //     '${widget.product.options1.keys.elementAt(index)}']
+                                                          // .keys
+                                                          // .elementAt(index),
+                                                          textAlign:
+                                                              TextAlign.center,
+                                                          style:
+                                                              FontStylee.normal(
+                                                                  context:
+                                                                      context,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  color: Colors
+                                                                          .orange[
+                                                                      700])),
+                                                      SizedBox(width: 5),
+                                                      Icon(
+                                                        Icons
+                                                            .arrow_forward_ios_outlined,
+                                                        size: 15,
+                                                        color:
+                                                            Colors.orange[700],
+                                                      )
+                                                    ],
+                                                  )
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  // Column(
+                                  //   children: [
+                                  //     Center(
+                                  //       child: Container(
+                                  //         decoration: BoxDecoration(
+                                  //           borderRadius:
+                                  //               BorderRadius
+                                  //                   .circular(24),
+                                  //           color: Colors.grey
+                                  //               .withOpacity(0.5),
+                                  //         ),
+                                  //         height: 1,
+                                  //         width: double.maxFinite,
+                                  //       ),
+                                  //     ),
+                                  //     ListView.builder(
+                                  //       // physics: ScrollPhysics(),
+                                  //       shrinkWrap: true,
+                                  //       scrollDirection:
+                                  //           Axis.vertical,
+                                  //       itemCount: 1, // ERROR
+                                  //       itemBuilder:
+                                  //           (context, indexx) {
+                                  //         return Column(
+                                  //           children: [
+                                  //             Center(
+                                  //               child: Container(
+                                  //                   decoration:
+                                  //                       BoxDecoration(
+                                  //                     borderRadius:
+                                  //                         BorderRadius
+                                  //                             .circular(
+                                  //                                 24),
+                                  //                     color: Colors
+                                  //                         .grey
+                                  //                         .withOpacity(
+                                  //                             0.2),
+                                  //                   ),
+                                  //                   height: 1,
+                                  //                   width: double
+                                  //                       .maxFinite),
+                                  //             ),
+                                  //             Padding(
+                                  //               padding:
+                                  //                   const EdgeInsets
+                                  //                       .all(8.0),
+                                  //               child:
+                                  //                   GestureDetector(
+                                  //                 onTap: () {},
+                                  //                 child: Row(
+                                  //                   mainAxisAlignment:
+                                  //                       MainAxisAlignment
+                                  //                           .spaceBetween,
+                                  //                   children: [
+                                  //                     CommonUI.text(
+                                  //                         context:
+                                  //                             context,
+                                  //                         text: widget
+                                  //                             .options
+                                  //                             .elementAt(
+                                  //                                 indexx)
+                                  //                             .options[
+                                  //                                 '${widget.options.elementAt(indexx).options.keys.first}']
+                                  //                             .keys
+                                  //                             .elementAt(
+                                  //                                 indexx)
+                                  //                             .toString(),
+                                  //                         textAlign:
+                                  //                             TextAlign
+                                  //                                 .center,
+                                  //                         style: FontStylee.small(
+                                  //                             context:
+                                  //                                 context,
+                                  //                             fontWeight: FontWeight
+                                  //                                 .bold,
+                                  //                             color: Colors
+                                  //                                 .black
+                                  //                                 .withOpacity(0.8))),
+                                  //                     CommonUI.text(
+                                  //                         context:
+                                  //                             context,
+                                  //                         text: widget
+                                  //                                 .options
+                                  //                                 .elementAt(
+                                  //                                     indexx)
+                                  //                                 .options[
+                                  //                                     '${widget.options.elementAt(indexx).options.keys.first}']
+                                  //                                 .values
+                                  //                                 .elementAt(
+                                  //                                     indexx)
+                                  //                                 .toString() +
+                                  //                             ' JOD',
+                                  //                         textAlign:
+                                  //                             TextAlign
+                                  //                                 .center,
+                                  //                         style: FontStylee.small(
+                                  //                             context:
+                                  //                                 context,
+                                  //                             fontWeight: FontWeight
+                                  //                                 .bold,
+                                  //                             color: Colors
+                                  //                                 .black
+                                  //                                 .withOpacity(0.8))),
+                                  //                   ],
+                                  //                 ),
+                                  //               ),
+                                  //             ),
+                                  //           ],
+                                  //         );
+                                  //       },
+                                  //     ),
+                                  //   ],
+                                  // ),
+
+                                  // },
+                                  // ),
                                 ],
                               ),
                             ),
@@ -984,24 +1455,6 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                         width: 100.0,
                       ),
                     ),
-                    // Positioned(
-                    //     top: -30,
-                    //     child: Center(
-                    //       child: CircleAvatar(
-                    //         backgroundColor: Colors.grey,
-                    //         radius: 30,
-                    //         child: GestureDetector(
-                    //           onTap: () {
-                    //             Navigator.of(context).pop();
-                    //           },
-                    //           child: Icon(
-                    //             Icons.keyboard_arrow_down_sharp,
-                    //             color: Colors.white,
-                    //             size: 35,
-                    //           ),
-                    //         ),
-                    //       ),
-                    //     )),
                   ],
                 ),
               ),
