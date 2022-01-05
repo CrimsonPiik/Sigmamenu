@@ -109,7 +109,6 @@ class _AddOptionButtonState extends State<AddOptionButton> {
                       ),
                       child: SingleChildScrollView(
                         child: Column(
-                          // crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             GestureDetector(
                               onTap: () {},
@@ -171,7 +170,6 @@ class _AddOptionButtonState extends State<AddOptionButton> {
                                 ),
 
                                 Column(
-                                  // crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Center(
                                       child: Container(
@@ -223,34 +221,51 @@ class _AddOptionButtonState extends State<AddOptionButton> {
                                       ],
                                     ),
                                     option2
-                                        ? Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
+                                        ? Column(
                                             children: [
-                                              Container(
-                                                width: 120,
-                                                height: 40,
-                                                child: CommonUI.textField(
-                                                  context: context,
-                                                  name: "Key (Optional)2",
-                                                  hint: "Key (Optional)",
-                                                  minlines: 1,
-                                                  controller:
-                                                      _optionTwoKeyController,
-                                                ),
+                                              Center(
+                                                child: Container(
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              24),
+                                                      color: Colors.grey
+                                                          .withOpacity(0.2),
+                                                    ),
+                                                    height: 1,
+                                                    width: double.maxFinite),
                                               ),
-                                              SizedBox(width: 10),
-                                              Container(
-                                                width: 120,
-                                                height: 40,
-                                                child: CommonUI.textField(
-                                                  context: context,
-                                                  name: "Value (Optional)2",
-                                                  hint: "Value (Optional)",
-                                                  minlines: 1,
-                                                  controller:
-                                                      _optionTwoValueController,
-                                                ),
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  Container(
+                                                    width: 120,
+                                                    height: 40,
+                                                    child: CommonUI.textField(
+                                                      context: context,
+                                                      name: "Key 2",
+                                                      hint: "Key",
+                                                      minlines: 1,
+                                                      controller:
+                                                          _optionTwoKeyController,
+                                                    ),
+                                                  ),
+                                                  SizedBox(width: 10),
+                                                  Container(
+                                                    width: 120,
+                                                    height: 40,
+                                                    child: CommonUI.textField(
+                                                      context: context,
+                                                      name: "Value 2",
+                                                      hint: "Value",
+                                                      minlines: 1,
+                                                      controller:
+                                                          _optionTwoValueController,
+                                                    ),
+                                                  ),
+                                                ],
                                               ),
                                             ],
                                           )
@@ -274,34 +289,51 @@ class _AddOptionButtonState extends State<AddOptionButton> {
                                           )
                                         : Container(),
                                     option3
-                                        ? Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
+                                        ? Column(
                                             children: [
-                                              Container(
-                                                width: 120,
-                                                height: 40,
-                                                child: CommonUI.textField(
-                                                  context: context,
-                                                  name: "Key (Optional)3",
-                                                  hint: "Key (Optional)",
-                                                  minlines: 1,
-                                                  controller:
-                                                      _optionThreeKeyController,
-                                                ),
+                                              Center(
+                                                child: Container(
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              24),
+                                                      color: Colors.grey
+                                                          .withOpacity(0.2),
+                                                    ),
+                                                    height: 1,
+                                                    width: double.maxFinite),
                                               ),
-                                              SizedBox(width: 10),
-                                              Container(
-                                                width: 120,
-                                                height: 40,
-                                                child: CommonUI.textField(
-                                                  context: context,
-                                                  name: "Value (Optional)3",
-                                                  hint: "Value (Optional)",
-                                                  minlines: 1,
-                                                  controller:
-                                                      _optionThreeValueController,
-                                                ),
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  Container(
+                                                    width: 120,
+                                                    height: 40,
+                                                    child: CommonUI.textField(
+                                                      context: context,
+                                                      name: "Key 3",
+                                                      hint: "Key",
+                                                      minlines: 1,
+                                                      controller:
+                                                          _optionThreeKeyController,
+                                                    ),
+                                                  ),
+                                                  SizedBox(width: 10),
+                                                  Container(
+                                                    width: 120,
+                                                    height: 40,
+                                                    child: CommonUI.textField(
+                                                      context: context,
+                                                      name: "Value 3",
+                                                      hint: "Value ",
+                                                      minlines: 1,
+                                                      controller:
+                                                          _optionThreeValueController,
+                                                    ),
+                                                  ),
+                                                ],
                                               ),
                                             ],
                                           )
@@ -325,34 +357,51 @@ class _AddOptionButtonState extends State<AddOptionButton> {
                                           )
                                         : Container(),
                                     option4
-                                        ? Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
+                                        ? Column(
                                             children: [
-                                              Container(
-                                                width: 120,
-                                                height: 40,
-                                                child: CommonUI.textField(
-                                                  context: context,
-                                                  name: "Key (Optional)4",
-                                                  hint: "Key (Optional)",
-                                                  minlines: 1,
-                                                  controller:
-                                                      _optionFourKeyController,
-                                                ),
+                                              Center(
+                                                child: Container(
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              24),
+                                                      color: Colors.grey
+                                                          .withOpacity(0.2),
+                                                    ),
+                                                    height: 1,
+                                                    width: double.maxFinite),
                                               ),
-                                              SizedBox(width: 10),
-                                              Container(
-                                                width: 120,
-                                                height: 40,
-                                                child: CommonUI.textField(
-                                                  context: context,
-                                                  name: "Value (Optional)4",
-                                                  hint: "Value (Optional)",
-                                                  minlines: 1,
-                                                  controller:
-                                                      _optionFourValueController,
-                                                ),
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  Container(
+                                                    width: 120,
+                                                    height: 40,
+                                                    child: CommonUI.textField(
+                                                      context: context,
+                                                      name: "Key 4",
+                                                      hint: "Key",
+                                                      minlines: 1,
+                                                      controller:
+                                                          _optionFourKeyController,
+                                                    ),
+                                                  ),
+                                                  SizedBox(width: 10),
+                                                  Container(
+                                                    width: 120,
+                                                    height: 40,
+                                                    child: CommonUI.textField(
+                                                      context: context,
+                                                      name: "Value 4",
+                                                      hint: "Value",
+                                                      minlines: 1,
+                                                      controller:
+                                                          _optionFourValueController,
+                                                    ),
+                                                  ),
+                                                ],
                                               ),
                                             ],
                                           )
@@ -376,34 +425,51 @@ class _AddOptionButtonState extends State<AddOptionButton> {
                                           )
                                         : Container(),
                                     option5
-                                        ? Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
+                                        ? Column(
                                             children: [
-                                              Container(
-                                                width: 120,
-                                                height: 40,
-                                                child: CommonUI.textField(
-                                                  context: context,
-                                                  name: "Key (Optional)5",
-                                                  hint: "Key (Optional)",
-                                                  minlines: 1,
-                                                  controller:
-                                                      _optionFiveKeyController,
-                                                ),
+                                              Center(
+                                                child: Container(
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              24),
+                                                      color: Colors.grey
+                                                          .withOpacity(0.2),
+                                                    ),
+                                                    height: 1,
+                                                    width: double.maxFinite),
                                               ),
-                                              SizedBox(width: 10),
-                                              Container(
-                                                width: 120,
-                                                height: 40,
-                                                child: CommonUI.textField(
-                                                  context: context,
-                                                  name: "Value (Optional)5",
-                                                  hint: "Value (Optional)",
-                                                  minlines: 1,
-                                                  controller:
-                                                      _optionFiveValueController,
-                                                ),
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  Container(
+                                                    width: 120,
+                                                    height: 40,
+                                                    child: CommonUI.textField(
+                                                      context: context,
+                                                      name: "Key 5",
+                                                      hint: "Key",
+                                                      minlines: 1,
+                                                      controller:
+                                                          _optionFiveKeyController,
+                                                    ),
+                                                  ),
+                                                  SizedBox(width: 10),
+                                                  Container(
+                                                    width: 120,
+                                                    height: 40,
+                                                    child: CommonUI.textField(
+                                                      context: context,
+                                                      name: "Value 5",
+                                                      hint: "Value",
+                                                      minlines: 1,
+                                                      controller:
+                                                          _optionFiveValueController,
+                                                    ),
+                                                  ),
+                                                ],
                                               ),
                                             ],
                                           )
@@ -427,34 +493,51 @@ class _AddOptionButtonState extends State<AddOptionButton> {
                                           )
                                         : Container(),
                                     option6
-                                        ? Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
+                                        ? Column(
                                             children: [
-                                              Container(
-                                                width: 120,
-                                                height: 40,
-                                                child: CommonUI.textField(
-                                                  context: context,
-                                                  name: "Key (Optional)6",
-                                                  hint: "Key (Optional)",
-                                                  minlines: 1,
-                                                  controller:
-                                                      _optionSixKeyController,
-                                                ),
+                                              Center(
+                                                child: Container(
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              24),
+                                                      color: Colors.grey
+                                                          .withOpacity(0.2),
+                                                    ),
+                                                    height: 1,
+                                                    width: double.maxFinite),
                                               ),
-                                              SizedBox(width: 10),
-                                              Container(
-                                                width: 120,
-                                                height: 40,
-                                                child: CommonUI.textField(
-                                                  context: context,
-                                                  name: "Value (Optional)6",
-                                                  hint: "Value (Optional)",
-                                                  minlines: 1,
-                                                  controller:
-                                                      _optionSixValueController,
-                                                ),
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  Container(
+                                                    width: 120,
+                                                    height: 40,
+                                                    child: CommonUI.textField(
+                                                      context: context,
+                                                      name: "Key 6",
+                                                      hint: "Key",
+                                                      minlines: 1,
+                                                      controller:
+                                                          _optionSixKeyController,
+                                                    ),
+                                                  ),
+                                                  SizedBox(width: 10),
+                                                  Container(
+                                                    width: 120,
+                                                    height: 40,
+                                                    child: CommonUI.textField(
+                                                      context: context,
+                                                      name: "Value 6",
+                                                      hint: "Value",
+                                                      minlines: 1,
+                                                      controller:
+                                                          _optionSixValueController,
+                                                    ),
+                                                  ),
+                                                ],
                                               ),
                                             ],
                                           )
