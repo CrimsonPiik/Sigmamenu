@@ -256,8 +256,7 @@ class CommonUI {
       TextInputType? keyboardtype}) {
     return Padding(
       // padding: const EdgeInsets.only(bottom: 15),
-      // padding: EdgeInsets.all(8.0),
-      padding: EdgeInsets.only(left: 50.0, right: 50.0),
+      padding: EdgeInsets.all(8.0),
       child: FormBuilderTextField(
         enabled: enable,
         maxLines: maxlines,
@@ -269,7 +268,7 @@ class CommonUI {
             contentPadding: EdgeInsets.all(8.0),
             // border: InputBorder.none,
             border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(16),
+              borderRadius: BorderRadius.circular(8.0),
               borderSide: BorderSide(color: Colors.black),
             ),
             // OutlineInputBorder(borderRadius: BorderRadius.circular(10.0)),
