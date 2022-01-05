@@ -1,10 +1,8 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slider_drawer/flutter_slider_drawer.dart';
 import 'package:sigmamenu/GeneralFunction/constaints.dart';
 import 'package:sigmamenu/screens/staggeredGridView.dart';
 import 'package:sigmamenu/screens/widgets/adminPanelDrawer.dart';
-import 'package:sigmamenu/style/CommonUI.dart';
 
 class AdminPanel extends StatefulWidget {
   @override
@@ -22,57 +20,42 @@ class _AdminPanelState extends State<AdminPanel> {
     super.initState();
   }
 
-  @override
-  void dispose() {
-    streamControllerSideBar.done;
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   streamControllerSideBar.done;
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<QuerySnapshot>(
-        stream: FirebaseFirestore.instance.collection('Categories').snapshots(),
-        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-          if (snapshot.hasError) {
-            return CommonUI.error(snapshot.error.toString());
-          }
-          if (snapshot.connectionState == ConnectionState.waiting)
-            return CommonUI.loading(context);
-
-          List<DocumentSnapshot> shots = snapshot.data!.docs;
-          for (var item in shots) {
-            categoriesList.add(item.id.toString());
-          }
-          print("Categories : " + categoriesList.toString());
-          // DateTime.now().millisecondsSinceEpoch.toString());
-
-          return Scaffold(
-            body: SliderMenuContainer(
-              appBarColor: Colors.white,
-              key: _key,
-              sliderMenuOpenSize: 200,
-              title: Text(
-                title,
-                style: TextStyle(fontSize: 22, fontWeight: FontWeight.w700),
-              ),
-              sliderMenu: MenuWidget(
-                onItemClick: (title) {
-                  _key.currentState!.closeDrawer();
-                  setState(() {
-                    this.title = title;
-                  });
-                },
-              ),
-              sliderMain:
-                  // Row(
-                  // children: [
-                  AdminPanelDrawer(streamControllerSideBar.stream),
-              // ],
-              // )
-            ),
-            // ),
-          );
-        });
+   
+    return Scaffold(
+      body: SliderMenuContainer(
+        appBarColor: Colors.white,
+        key: _key,
+        sliderMenuOpenSize: 200,
+        title: Text(
+          title,
+          style: TextStyle(fontSize: 22, fontWeight: FontWeight.w700),
+        ),
+        sliderMenu: MenuWidget(
+          onItemClick: (title) {
+            _key.currentState!.closeDrawer();
+            setState(() {
+              this.title = title;
+            });
+          },
+        ),
+        sliderMain:
+            // Row(
+            // children: [
+            AdminPanelDrawer(streamControllerSideBar.stream),
+        // ],
+        // )
+      ),
+      // ),
+    );
+    // });
   }
 }
 

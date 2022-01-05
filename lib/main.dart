@@ -7,9 +7,9 @@ import 'package:sigmamenu/language/logic/ProjectLanguage.dart';
 import 'package:sigmamenu/provider/ProjectLanguageProvider.dart';
 import 'package:sigmamenu/provider/darkLightMode.dart';
 import 'package:sigmamenu/provider/userStateProvider.dart';
+import 'package:sigmamenu/screens/adminPanel.dart';
 import 'package:sigmamenu/screens/home/home_screen.dart';
 import 'package:sigmamenu/screens/staggeredGridView.dart';
-import 'package:sigmamenu/screens/widgets/adminDrawer.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -106,7 +106,7 @@ class _MyAppState extends State<MyApp> {
               routes: {
                 '/dashboard': (context) => StaggerdGridView(),
                 '/customer': (context) => HomeScreen(),
-                '/admin': (context) => AdminPanel()
+                '/admin': (context) => AdminPanelCategories()
                 // When navigating to the "/" route, build the FirstScreen widget.
                 // '/': (context) => const FirstScreen(),
                 // When navigating to the "/second" route, build the SecondScreen widget.
