@@ -572,390 +572,408 @@ class _AddOptionButtonState extends State<AddOptionButton> {
                       ),
                     ),
                     actions: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          ElevatedButton(
-                            onPressed: () {
-                              id = generateId();
-                              _optionNameController.clear();
-                              _optionOneKeyController.clear();
-                              _optionOneValueController.clear();
-                              _optionTwoKeyController.clear();
-                              _optionTwoValueController.clear();
-                              _optionThreeKeyController.clear();
-                              _optionThreeValueController.clear();
-                              _optionFourKeyController.clear();
-                              _optionFourValueController.clear();
-                              _optionFiveKeyController.clear();
-                              _optionFiveValueController.clear();
-                              _optionSixKeyController.clear();
-                              _optionSixValueController.clear();
-                              Navigator.pop(context);
-                            },
-                            style: ButtonStyle(
-                              backgroundColor:
-                                  MaterialStateProperty.all(Colors.white),
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 8.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            ElevatedButton(
+                              onPressed: () {
+                                id = generateId();
+                                _optionNameController.clear();
+                                _optionOneKeyController.clear();
+                                _optionOneValueController.clear();
+                                _optionTwoKeyController.clear();
+                                _optionTwoValueController.clear();
+                                _optionThreeKeyController.clear();
+                                _optionThreeValueController.clear();
+                                _optionFourKeyController.clear();
+                                _optionFourValueController.clear();
+                                _optionFiveKeyController.clear();
+                                _optionFiveValueController.clear();
+                                _optionSixKeyController.clear();
+                                _optionSixValueController.clear();
+                                Navigator.pop(context);
+                              },
+                              style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStateProperty.all(Colors.white),
+                              ),
+                              child: Text(
+                                'Cancel',
+                                style: TextStyle(color: Colors.black),
+                              ),
                             ),
-                            child: Text(
-                              'Cancel',
-                              style: TextStyle(color: Colors.black),
+                            SizedBox(width: 20),
+                            ElevatedButton(
+                              onPressed: () async {
+                                if (_optionTwoKeyController.text == '' ||
+                                    _optionTwoValueController.text == '') {
+                                  _formKey.currentState!.save();
+                                  if (_formKey.currentState!.validate()) {
+                                    FocusScope.of(context).unfocus();
+                                    await FirebaseFirestore.instance
+                                        .collection('options')
+                                        .doc(id)
+                                        .set({
+                                      'id': id,
+                                      'options': {
+                                        _optionNameController.text: {
+                                          _optionOneKeyController.text:
+                                              _optionOneValueController.text,
+
+                                          // _optionTwoKeyController.text:
+                                          //     _optionTwoValueController.text,
+
+                                          // _optionThreeKeyController.text:
+                                          //     _optionThreeValueController.text,
+                                          // _optionFourKeyController.text:
+                                          //     _optionFourValueController.text,
+                                          // _optionFiveKeyController.text:
+                                          //     _optionFiveValueController.text,
+                                          // _optionSixKeyController.text:
+                                          //     _optionSixValueController.text,
+                                        }
+                                      },
+                                    }).whenComplete(() {
+                                      id = generateId();
+                                      _optionNameController.clear();
+                                      _optionOneKeyController.clear();
+                                      _optionOneValueController.clear();
+                                      _optionTwoKeyController.clear();
+                                      _optionTwoValueController.clear();
+                                      _optionThreeKeyController.clear();
+                                      _optionThreeValueController.clear();
+                                      _optionFourKeyController.clear();
+                                      _optionFourValueController.clear();
+                                      _optionFiveKeyController.clear();
+                                      _optionFiveValueController.clear();
+                                      _optionSixKeyController.clear();
+                                      _optionSixValueController.clear();
+
+                                      Navigator.pop(context);
+
+                                      CommonUI.successDialog(context,
+                                          message: "Added Successfully");
+                                    }).onError((error, stackTrrace) =>
+                                            showDialog(
+                                              context: context,
+                                              builder: (_) {
+                                                return AlertDialog(
+                                                  content:
+                                                      Text(error.toString()),
+                                                );
+                                              },
+                                            ));
+                                  }
+                                } else if (_optionThreeKeyController.text ==
+                                        '' ||
+                                    _optionThreeValueController.text == '') {
+                                  _formKey.currentState!.save();
+                                  if (_formKey.currentState!.validate()) {
+                                    FocusScope.of(context).unfocus();
+                                    await FirebaseFirestore.instance
+                                        .collection('options')
+                                        .doc(id)
+                                        .set({
+                                      'id': id,
+                                      'options': {
+                                        _optionNameController.text: {
+                                          _optionOneKeyController.text:
+                                              _optionOneValueController.text,
+
+                                          _optionTwoKeyController.text:
+                                              _optionTwoValueController.text,
+
+                                          // _optionThreeKeyController.text:
+                                          //     _optionThreeValueController.text,
+                                          // _optionFourKeyController.text:
+                                          //     _optionFourValueController.text,
+                                          // _optionFiveKeyController.text:
+                                          //     _optionFiveValueController.text,
+                                          // _optionSixKeyController.text:
+                                          //     _optionSixValueController.text,
+                                        }
+                                      },
+                                    }).whenComplete(() {
+                                      id = generateId();
+                                      _optionNameController.clear();
+                                      _optionOneKeyController.clear();
+                                      _optionOneValueController.clear();
+                                      _optionTwoKeyController.clear();
+                                      _optionTwoValueController.clear();
+                                      _optionThreeKeyController.clear();
+                                      _optionThreeValueController.clear();
+                                      _optionFourKeyController.clear();
+                                      _optionFourValueController.clear();
+                                      _optionFiveKeyController.clear();
+                                      _optionFiveValueController.clear();
+                                      _optionSixKeyController.clear();
+                                      _optionSixValueController.clear();
+
+                                      Navigator.pop(context);
+
+                                      CommonUI.successDialog(context,
+                                          message: "Added Successfully");
+                                    }).onError((error, stackTrrace) =>
+                                            showDialog(
+                                              context: context,
+                                              builder: (_) {
+                                                return AlertDialog(
+                                                  content:
+                                                      Text(error.toString()),
+                                                );
+                                              },
+                                            ));
+                                  }
+                                } else if (_optionFourKeyController.text ==
+                                        '' ||
+                                    _optionFourValueController.text == '') {
+                                  _formKey.currentState!.save();
+                                  if (_formKey.currentState!.validate()) {
+                                    FocusScope.of(context).unfocus();
+                                    await FirebaseFirestore.instance
+                                        .collection('options')
+                                        .doc(id)
+                                        .set({
+                                      'id': id,
+                                      'options': {
+                                        _optionNameController.text: {
+                                          _optionOneKeyController.text:
+                                              _optionOneValueController.text,
+
+                                          _optionTwoKeyController.text:
+                                              _optionTwoValueController.text,
+
+                                          _optionThreeKeyController.text:
+                                              _optionThreeValueController.text,
+                                          // _optionFourKeyController.text:
+                                          //     _optionFourValueController.text,
+                                          // _optionFiveKeyController.text:
+                                          //     _optionFiveValueController.text,
+                                          // _optionSixKeyController.text:
+                                          //     _optionSixValueController.text,
+                                        }
+                                      },
+                                    }).whenComplete(() {
+                                      id = generateId();
+                                      _optionNameController.clear();
+                                      _optionOneKeyController.clear();
+                                      _optionOneValueController.clear();
+                                      _optionTwoKeyController.clear();
+                                      _optionTwoValueController.clear();
+                                      _optionThreeKeyController.clear();
+                                      _optionThreeValueController.clear();
+                                      _optionFourKeyController.clear();
+                                      _optionFourValueController.clear();
+                                      _optionFiveKeyController.clear();
+                                      _optionFiveValueController.clear();
+                                      _optionSixKeyController.clear();
+                                      _optionSixValueController.clear();
+
+                                      Navigator.pop(context);
+
+                                      CommonUI.successDialog(context,
+                                          message: "Added Successfully");
+                                    }).onError((error, stackTrrace) =>
+                                            showDialog(
+                                              context: context,
+                                              builder: (_) {
+                                                return AlertDialog(
+                                                  content:
+                                                      Text(error.toString()),
+                                                );
+                                              },
+                                            ));
+                                  }
+                                } else if (_optionFiveKeyController.text ==
+                                        '' ||
+                                    _optionFiveValueController.text == '') {
+                                  _formKey.currentState!.save();
+                                  if (_formKey.currentState!.validate()) {
+                                    FocusScope.of(context).unfocus();
+                                    await FirebaseFirestore.instance
+                                        .collection('options')
+                                        .doc(id)
+                                        .set({
+                                      'id': id,
+                                      'options': {
+                                        _optionNameController.text: {
+                                          _optionOneKeyController.text:
+                                              _optionOneValueController.text,
+
+                                          _optionTwoKeyController.text:
+                                              _optionTwoValueController.text,
+
+                                          _optionThreeKeyController.text:
+                                              _optionThreeValueController.text,
+                                          _optionFourKeyController.text:
+                                              _optionFourValueController.text,
+                                          // _optionFiveKeyController.text:
+                                          //     _optionFiveValueController.text,
+                                          // _optionSixKeyController.text:
+                                          //     _optionSixValueController.text,
+                                        }
+                                      },
+                                    }).whenComplete(() {
+                                      id = generateId();
+                                      _optionNameController.clear();
+                                      _optionOneKeyController.clear();
+                                      _optionOneValueController.clear();
+                                      _optionTwoKeyController.clear();
+                                      _optionTwoValueController.clear();
+                                      _optionThreeKeyController.clear();
+                                      _optionThreeValueController.clear();
+                                      _optionFourKeyController.clear();
+                                      _optionFourValueController.clear();
+                                      _optionFiveKeyController.clear();
+                                      _optionFiveValueController.clear();
+                                      _optionSixKeyController.clear();
+                                      _optionSixValueController.clear();
+
+                                      Navigator.pop(context);
+
+                                      CommonUI.successDialog(context,
+                                          message: "Added Successfully");
+                                    }).onError((error, stackTrrace) =>
+                                            showDialog(
+                                              context: context,
+                                              builder: (_) {
+                                                return AlertDialog(
+                                                  content:
+                                                      Text(error.toString()),
+                                                );
+                                              },
+                                            ));
+                                  }
+                                } else if (_optionSixKeyController.text == '' ||
+                                    _optionSixValueController.text == '') {
+                                  _formKey.currentState!.save();
+                                  if (_formKey.currentState!.validate()) {
+                                    FocusScope.of(context).unfocus();
+                                    await FirebaseFirestore.instance
+                                        .collection('options')
+                                        .doc(id)
+                                        .set({
+                                      'id': id,
+                                      'options': {
+                                        _optionNameController.text: {
+                                          _optionOneKeyController.text:
+                                              _optionOneValueController.text,
+
+                                          _optionTwoKeyController.text:
+                                              _optionTwoValueController.text,
+
+                                          _optionThreeKeyController.text:
+                                              _optionThreeValueController.text,
+                                          _optionFourKeyController.text:
+                                              _optionFourValueController.text,
+                                          _optionFiveKeyController.text:
+                                              _optionFiveValueController.text,
+                                          // _optionSixKeyController.text:
+                                          //     _optionSixValueController.text,
+                                        }
+                                      },
+                                    }).whenComplete(() {
+                                      id = generateId();
+                                      _optionNameController.clear();
+                                      _optionOneKeyController.clear();
+                                      _optionOneValueController.clear();
+                                      _optionTwoKeyController.clear();
+                                      _optionTwoValueController.clear();
+                                      _optionThreeKeyController.clear();
+                                      _optionThreeValueController.clear();
+                                      _optionFourKeyController.clear();
+                                      _optionFourValueController.clear();
+                                      _optionFiveKeyController.clear();
+                                      _optionFiveValueController.clear();
+                                      _optionSixKeyController.clear();
+                                      _optionSixValueController.clear();
+
+                                      Navigator.pop(context);
+
+                                      CommonUI.successDialog(context,
+                                          message: "Added Successfully");
+                                    }).onError((error, stackTrrace) =>
+                                            showDialog(
+                                              context: context,
+                                              builder: (_) {
+                                                return AlertDialog(
+                                                  content:
+                                                      Text(error.toString()),
+                                                );
+                                              },
+                                            ));
+                                  }
+                                } else {
+                                  _formKey.currentState!.save();
+                                  if (_formKey.currentState!.validate()) {
+                                    FocusScope.of(context).unfocus();
+                                    await FirebaseFirestore.instance
+                                        .collection('options')
+                                        .doc(id)
+                                        .set({
+                                      'id': id,
+                                      'options': {
+                                        _optionNameController.text: {
+                                          _optionOneKeyController.text:
+                                              _optionOneValueController.text,
+                                          _optionTwoKeyController.text:
+                                              _optionTwoValueController.text,
+                                          _optionThreeKeyController.text:
+                                              _optionThreeValueController.text,
+                                          _optionFourKeyController.text:
+                                              _optionFourValueController.text,
+                                          _optionFiveKeyController.text:
+                                              _optionFiveValueController.text,
+                                          _optionSixKeyController.text:
+                                              _optionSixValueController.text,
+                                        }
+                                      },
+                                    }).whenComplete(() {
+                                      id = generateId();
+                                      _optionNameController.clear();
+                                      _optionOneKeyController.clear();
+                                      _optionOneValueController.clear();
+                                      _optionTwoKeyController.clear();
+                                      _optionTwoValueController.clear();
+                                      _optionThreeKeyController.clear();
+                                      _optionThreeValueController.clear();
+                                      _optionFourKeyController.clear();
+                                      _optionFourValueController.clear();
+                                      _optionFiveKeyController.clear();
+                                      _optionFiveValueController.clear();
+                                      _optionSixKeyController.clear();
+                                      _optionSixValueController.clear();
+
+                                      Navigator.pop(context);
+
+                                      CommonUI.successDialog(context,
+                                          message: "Added Successfully");
+                                    }).onError((error, stackTrrace) =>
+                                            showDialog(
+                                              context: context,
+                                              builder: (_) {
+                                                return AlertDialog(
+                                                  content:
+                                                      Text(error.toString()),
+                                                );
+                                              },
+                                            ));
+                                  }
+                                }
+                              },
+                              style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStateProperty.all(Colors.green),
+                              ),
+                              child: Text(
+                                'Create',
+                                style: TextStyle(color: Colors.white),
+                              ),
                             ),
-                          ),
-                          SizedBox(width: 20),
-                          ElevatedButton(
-                            onPressed: () async {
-                              if (_optionTwoKeyController.text == '' ||
-                                  _optionTwoValueController.text == '') {
-                                _formKey.currentState!.save();
-                                if (_formKey.currentState!.validate()) {
-                                  FocusScope.of(context).unfocus();
-                                  await FirebaseFirestore.instance
-                                      .collection('options')
-                                      .doc(id)
-                                      .set({
-                                    'id': id,
-                                    'options': {
-                                      _optionNameController.text: {
-                                        _optionOneKeyController.text:
-                                            _optionOneValueController.text,
-
-                                        // _optionTwoKeyController.text:
-                                        //     _optionTwoValueController.text,
-
-                                        // _optionThreeKeyController.text:
-                                        //     _optionThreeValueController.text,
-                                        // _optionFourKeyController.text:
-                                        //     _optionFourValueController.text,
-                                        // _optionFiveKeyController.text:
-                                        //     _optionFiveValueController.text,
-                                        // _optionSixKeyController.text:
-                                        //     _optionSixValueController.text,
-                                      }
-                                    },
-                                  }).whenComplete(() {
-                                    id = generateId();
-                                    _optionNameController.clear();
-                                    _optionOneKeyController.clear();
-                                    _optionOneValueController.clear();
-                                    _optionTwoKeyController.clear();
-                                    _optionTwoValueController.clear();
-                                    _optionThreeKeyController.clear();
-                                    _optionThreeValueController.clear();
-                                    _optionFourKeyController.clear();
-                                    _optionFourValueController.clear();
-                                    _optionFiveKeyController.clear();
-                                    _optionFiveValueController.clear();
-                                    _optionSixKeyController.clear();
-                                    _optionSixValueController.clear();
-
-                                    Navigator.pop(context);
-
-                                    CommonUI.successDialog(context,
-                                        message: "Added Successfully");
-                                  }).onError((error, stackTrrace) => showDialog(
-                                            context: context,
-                                            builder: (_) {
-                                              return AlertDialog(
-                                                content: Text(error.toString()),
-                                              );
-                                            },
-                                          ));
-                                }
-                              } else if (_optionThreeKeyController.text == '' ||
-                                  _optionThreeValueController.text == '') {
-                                _formKey.currentState!.save();
-                                if (_formKey.currentState!.validate()) {
-                                  FocusScope.of(context).unfocus();
-                                  await FirebaseFirestore.instance
-                                      .collection('options')
-                                      .doc(id)
-                                      .set({
-                                    'id': id,
-                                    'options': {
-                                      _optionNameController.text: {
-                                        _optionOneKeyController.text:
-                                            _optionOneValueController.text,
-
-                                        _optionTwoKeyController.text:
-                                            _optionTwoValueController.text,
-
-                                        // _optionThreeKeyController.text:
-                                        //     _optionThreeValueController.text,
-                                        // _optionFourKeyController.text:
-                                        //     _optionFourValueController.text,
-                                        // _optionFiveKeyController.text:
-                                        //     _optionFiveValueController.text,
-                                        // _optionSixKeyController.text:
-                                        //     _optionSixValueController.text,
-                                      }
-                                    },
-                                  }).whenComplete(() {
-                                    id = generateId();
-                                    _optionNameController.clear();
-                                    _optionOneKeyController.clear();
-                                    _optionOneValueController.clear();
-                                    _optionTwoKeyController.clear();
-                                    _optionTwoValueController.clear();
-                                    _optionThreeKeyController.clear();
-                                    _optionThreeValueController.clear();
-                                    _optionFourKeyController.clear();
-                                    _optionFourValueController.clear();
-                                    _optionFiveKeyController.clear();
-                                    _optionFiveValueController.clear();
-                                    _optionSixKeyController.clear();
-                                    _optionSixValueController.clear();
-
-                                    Navigator.pop(context);
-
-                                    CommonUI.successDialog(context,
-                                        message: "Added Successfully");
-                                  }).onError((error, stackTrrace) => showDialog(
-                                            context: context,
-                                            builder: (_) {
-                                              return AlertDialog(
-                                                content: Text(error.toString()),
-                                              );
-                                            },
-                                          ));
-                                }
-                              } else if (_optionFourKeyController.text == '' ||
-                                  _optionFourValueController.text == '') {
-                                _formKey.currentState!.save();
-                                if (_formKey.currentState!.validate()) {
-                                  FocusScope.of(context).unfocus();
-                                  await FirebaseFirestore.instance
-                                      .collection('options')
-                                      .doc(id)
-                                      .set({
-                                    'id': id,
-                                    'options': {
-                                      _optionNameController.text: {
-                                        _optionOneKeyController.text:
-                                            _optionOneValueController.text,
-
-                                        _optionTwoKeyController.text:
-                                            _optionTwoValueController.text,
-
-                                        _optionThreeKeyController.text:
-                                            _optionThreeValueController.text,
-                                        // _optionFourKeyController.text:
-                                        //     _optionFourValueController.text,
-                                        // _optionFiveKeyController.text:
-                                        //     _optionFiveValueController.text,
-                                        // _optionSixKeyController.text:
-                                        //     _optionSixValueController.text,
-                                      }
-                                    },
-                                  }).whenComplete(() {
-                                    id = generateId();
-                                    _optionNameController.clear();
-                                    _optionOneKeyController.clear();
-                                    _optionOneValueController.clear();
-                                    _optionTwoKeyController.clear();
-                                    _optionTwoValueController.clear();
-                                    _optionThreeKeyController.clear();
-                                    _optionThreeValueController.clear();
-                                    _optionFourKeyController.clear();
-                                    _optionFourValueController.clear();
-                                    _optionFiveKeyController.clear();
-                                    _optionFiveValueController.clear();
-                                    _optionSixKeyController.clear();
-                                    _optionSixValueController.clear();
-
-                                    Navigator.pop(context);
-
-                                    CommonUI.successDialog(context,
-                                        message: "Added Successfully");
-                                  }).onError((error, stackTrrace) => showDialog(
-                                            context: context,
-                                            builder: (_) {
-                                              return AlertDialog(
-                                                content: Text(error.toString()),
-                                              );
-                                            },
-                                          ));
-                                }
-                              } else if (_optionFiveKeyController.text == '' ||
-                                  _optionFiveValueController.text == '') {
-                                _formKey.currentState!.save();
-                                if (_formKey.currentState!.validate()) {
-                                  FocusScope.of(context).unfocus();
-                                  await FirebaseFirestore.instance
-                                      .collection('options')
-                                      .doc(id)
-                                      .set({
-                                    'id': id,
-                                    'options': {
-                                      _optionNameController.text: {
-                                        _optionOneKeyController.text:
-                                            _optionOneValueController.text,
-
-                                        _optionTwoKeyController.text:
-                                            _optionTwoValueController.text,
-
-                                        _optionThreeKeyController.text:
-                                            _optionThreeValueController.text,
-                                        _optionFourKeyController.text:
-                                            _optionFourValueController.text,
-                                        // _optionFiveKeyController.text:
-                                        //     _optionFiveValueController.text,
-                                        // _optionSixKeyController.text:
-                                        //     _optionSixValueController.text,
-                                      }
-                                    },
-                                  }).whenComplete(() {
-                                    id = generateId();
-                                    _optionNameController.clear();
-                                    _optionOneKeyController.clear();
-                                    _optionOneValueController.clear();
-                                    _optionTwoKeyController.clear();
-                                    _optionTwoValueController.clear();
-                                    _optionThreeKeyController.clear();
-                                    _optionThreeValueController.clear();
-                                    _optionFourKeyController.clear();
-                                    _optionFourValueController.clear();
-                                    _optionFiveKeyController.clear();
-                                    _optionFiveValueController.clear();
-                                    _optionSixKeyController.clear();
-                                    _optionSixValueController.clear();
-
-                                    Navigator.pop(context);
-
-                                    CommonUI.successDialog(context,
-                                        message: "Added Successfully");
-                                  }).onError((error, stackTrrace) => showDialog(
-                                            context: context,
-                                            builder: (_) {
-                                              return AlertDialog(
-                                                content: Text(error.toString()),
-                                              );
-                                            },
-                                          ));
-                                }
-                              } else if (_optionSixKeyController.text == '' ||
-                                  _optionSixValueController.text == '') {
-                                _formKey.currentState!.save();
-                                if (_formKey.currentState!.validate()) {
-                                  FocusScope.of(context).unfocus();
-                                  await FirebaseFirestore.instance
-                                      .collection('options')
-                                      .doc(id)
-                                      .set({
-                                    'id': id,
-                                    'options': {
-                                      _optionNameController.text: {
-                                        _optionOneKeyController.text:
-                                            _optionOneValueController.text,
-
-                                        _optionTwoKeyController.text:
-                                            _optionTwoValueController.text,
-
-                                        _optionThreeKeyController.text:
-                                            _optionThreeValueController.text,
-                                        _optionFourKeyController.text:
-                                            _optionFourValueController.text,
-                                        _optionFiveKeyController.text:
-                                            _optionFiveValueController.text,
-                                        // _optionSixKeyController.text:
-                                        //     _optionSixValueController.text,
-                                      }
-                                    },
-                                  }).whenComplete(() {
-                                    id = generateId();
-                                    _optionNameController.clear();
-                                    _optionOneKeyController.clear();
-                                    _optionOneValueController.clear();
-                                    _optionTwoKeyController.clear();
-                                    _optionTwoValueController.clear();
-                                    _optionThreeKeyController.clear();
-                                    _optionThreeValueController.clear();
-                                    _optionFourKeyController.clear();
-                                    _optionFourValueController.clear();
-                                    _optionFiveKeyController.clear();
-                                    _optionFiveValueController.clear();
-                                    _optionSixKeyController.clear();
-                                    _optionSixValueController.clear();
-
-                                    Navigator.pop(context);
-
-                                    CommonUI.successDialog(context,
-                                        message: "Added Successfully");
-                                  }).onError((error, stackTrrace) => showDialog(
-                                            context: context,
-                                            builder: (_) {
-                                              return AlertDialog(
-                                                content: Text(error.toString()),
-                                              );
-                                            },
-                                          ));
-                                }
-                              } else {
-                                _formKey.currentState!.save();
-                                if (_formKey.currentState!.validate()) {
-                                  FocusScope.of(context).unfocus();
-                                  await FirebaseFirestore.instance
-                                      .collection('options')
-                                      .doc(id)
-                                      .set({
-                                    'id': id,
-                                    'options': {
-                                      _optionNameController.text: {
-                                        _optionOneKeyController.text:
-                                            _optionOneValueController.text,
-                                        _optionTwoKeyController.text:
-                                            _optionTwoValueController.text,
-                                        _optionThreeKeyController.text:
-                                            _optionThreeValueController.text,
-                                        _optionFourKeyController.text:
-                                            _optionFourValueController.text,
-                                        _optionFiveKeyController.text:
-                                            _optionFiveValueController.text,
-                                        _optionSixKeyController.text:
-                                            _optionSixValueController.text,
-                                      }
-                                    },
-                                  }).whenComplete(() {
-                                    id = generateId();
-                                    _optionNameController.clear();
-                                    _optionOneKeyController.clear();
-                                    _optionOneValueController.clear();
-                                    _optionTwoKeyController.clear();
-                                    _optionTwoValueController.clear();
-                                    _optionThreeKeyController.clear();
-                                    _optionThreeValueController.clear();
-                                    _optionFourKeyController.clear();
-                                    _optionFourValueController.clear();
-                                    _optionFiveKeyController.clear();
-                                    _optionFiveValueController.clear();
-                                    _optionSixKeyController.clear();
-                                    _optionSixValueController.clear();
-
-                                    Navigator.pop(context);
-
-                                    CommonUI.successDialog(context,
-                                        message: "Added Successfully");
-                                  }).onError((error, stackTrrace) => showDialog(
-                                            context: context,
-                                            builder: (_) {
-                                              return AlertDialog(
-                                                content: Text(error.toString()),
-                                              );
-                                            },
-                                          ));
-                                }
-                              }
-                            },
-                            style: ButtonStyle(
-                              backgroundColor:
-                                  MaterialStateProperty.all(Colors.green),
-                            ),
-                            child: Text(
-                              'Create',
-                              style: TextStyle(color: Colors.white),
-                            ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ],
                   ),
