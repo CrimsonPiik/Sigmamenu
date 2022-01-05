@@ -273,59 +273,12 @@ class CommonUI {
             ),
             // OutlineInputBorder(borderRadius: BorderRadius.circular(10.0)),
             filled: true,
-            fillColor: Colors.grey.withOpacity(0.1),
+            fillColor: Colors.white,
             icon: icon,
             suffixIcon: isEdit ? Icon(Icons.edit_outlined) : null,
             labelText: hint,
             hintText: label,
             hintStyle: FontStylee.normal(context: context),
-            enabled: true),
-        onChanged: onChange,
-        validator: validate,
-        keyboardType: keyboardtype,
-      ),
-    );
-  }
-
-  static Widget smallertextField(
-      {required BuildContext context,
-      required String name,
-      label,
-      hint,
-      bool enable = true,
-      int? maxlength,
-      int? maxlines,
-      int? minlines,
-      required TextEditingController? controller,
-      Widget? icon,
-      bool isEdit = false,
-      // keyboardType? keyboardtype = keyboardType
-      String? Function(String?)? validate,
-      Function(String?)? onChange,
-      TextInputType? keyboardtype}) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 15),
-      // padding: EdgeInsets.all(8.0),
-      child: FormBuilderTextField(
-        enabled: enable,
-        maxLines: maxlines,
-        maxLength: maxlength,
-        minLines: minlines,
-        name: name,
-        controller: controller,
-        decoration: InputDecoration(
-            isCollapsed: true,
-            isDense: true, // Added this
-            contentPadding: EdgeInsets.all(8.0), // Added this
-            border:
-                OutlineInputBorder(borderRadius: BorderRadius.circular(10.0)),
-            filled: true,
-            fillColor: Colors.white, //Colors.grey.withOpacity(0.1),
-            icon: icon,
-            suffixIcon: isEdit ? Icon(Icons.edit_outlined) : null,
-            labelText: hint,
-            hintText: label,
-            hintStyle: FontStylee.smaller(context: context),
             enabled: true),
         onChanged: onChange,
         validator: validate,

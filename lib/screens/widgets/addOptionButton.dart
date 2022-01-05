@@ -168,7 +168,6 @@ class _AddOptionButtonState extends State<AddOptionButton> {
                                     width: double.maxFinite,
                                   ),
                                 ),
-
                                 Column(
                                   children: [
                                     Center(
@@ -566,8 +565,6 @@ class _AddOptionButtonState extends State<AddOptionButton> {
                                         : Container(),
                                   ],
                                 )
-                                // },
-                                // ),
                               ],
                             ),
                           ],
