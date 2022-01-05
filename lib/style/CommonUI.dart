@@ -238,6 +238,55 @@ class CommonUI {
     );
   }
 
+  static Widget optionTextField(
+      {required BuildContext context,
+      required String name,
+      label,
+      hint,
+      bool enable = true,
+      int? maxlength,
+      int? maxlines,
+      int? minlines,
+      required TextEditingController? controller,
+      Widget? icon,
+      bool isEdit = false,
+      // keyboardType? keyboardtype = keyboardType
+      String? Function(String?)? validate,
+      Function(String?)? onChange,
+      TextInputType? keyboardtype}) {
+    return Padding(
+      // padding: const EdgeInsets.only(bottom: 15),
+      padding: EdgeInsets.all(8.0),
+      child: FormBuilderTextField(
+        enabled: enable,
+        maxLines: maxlines,
+        maxLength: maxlength,
+        minLines: minlines,
+        name: name,
+        controller: controller,
+        decoration: InputDecoration(
+            contentPadding: EdgeInsets.all(4.0),
+            // border: InputBorder.none,
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8.0),
+              borderSide: BorderSide(color: Colors.black),
+            ),
+            // OutlineInputBorder(borderRadius: BorderRadius.circular(10.0)),
+            filled: true,
+            fillColor: Colors.white,
+            icon: icon,
+            suffixIcon: isEdit ? Icon(Icons.edit_outlined) : null,
+            labelText: hint,
+            hintText: label,
+            hintStyle: FontStylee.smaller(context: context),
+            enabled: true),
+        onChanged: onChange,
+        validator: validate,
+        keyboardType: keyboardtype,
+      ),
+    );
+  }
+
   static Widget textField(
       {required BuildContext context,
       required String name,

@@ -125,14 +125,14 @@ class _AddOptionButtonState extends State<AddOptionButton> {
                                     //         fontWeight: FontWeight.bold,
                                     //         color: Colors.black)),
                                     Container(
-                                      width: 110,
+                                      width: 90,
                                       height: 40,
-                                      child: CommonUI.textField(
+                                      child: CommonUI.optionTextField(
                                         context: context,
                                         name: "Options",
                                         hint: "Options",
                                         // isEdit: true,
-                                        minlines: 1,
+                                        maxlines: 1,
                                         controller: _optionNameController,
                                         validate:
                                             FormBuilderValidators.compose([
@@ -184,13 +184,13 @@ class _AddOptionButtonState extends State<AddOptionButton> {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         Container(
-                                          width: 120,
+                                          width: 100,
                                           height: 40,
-                                          child: CommonUI.textField(
+                                          child: CommonUI.optionTextField(
                                             context: context,
                                             name: "Key",
                                             hint: "Key",
-                                            minlines: 1,
+                                            maxlines: 1,
                                             controller: _optionOneKeyController,
                                             validate:
                                                 FormBuilderValidators.compose([
@@ -200,13 +200,13 @@ class _AddOptionButtonState extends State<AddOptionButton> {
                                           ),
                                         ),
                                         Container(
-                                          width: 120,
+                                          width: 100,
                                           height: 40,
-                                          child: CommonUI.textField(
+                                          child: CommonUI.optionTextField(
                                             context: context,
                                             name: "Value",
                                             hint: "Value",
-                                            minlines: 1,
+                                            maxlines: 1,
                                             controller:
                                                 _optionOneValueController,
                                             validate:
@@ -239,26 +239,27 @@ class _AddOptionButtonState extends State<AddOptionButton> {
                                                         .spaceBetween,
                                                 children: [
                                                   Container(
-                                                    width: 120,
+                                                    width: 100,
                                                     height: 40,
-                                                    child: CommonUI.textField(
+                                                    child: CommonUI
+                                                        .optionTextField(
                                                       context: context,
                                                       name: "Key 2",
                                                       hint: "Key",
-                                                      minlines: 1,
+                                                      maxlines: 1,
                                                       controller:
                                                           _optionTwoKeyController,
                                                     ),
                                                   ),
-                                                  SizedBox(width: 10),
                                                   Container(
-                                                    width: 120,
+                                                    width: 100,
                                                     height: 40,
-                                                    child: CommonUI.textField(
+                                                    child: CommonUI
+                                                        .optionTextField(
                                                       context: context,
                                                       name: "Value 2",
                                                       hint: "Value",
-                                                      minlines: 1,
+                                                      maxlines: 1,
                                                       controller:
                                                           _optionTwoValueController,
                                                     ),
@@ -307,26 +308,27 @@ class _AddOptionButtonState extends State<AddOptionButton> {
                                                         .spaceBetween,
                                                 children: [
                                                   Container(
-                                                    width: 120,
+                                                    width: 100,
                                                     height: 40,
-                                                    child: CommonUI.textField(
+                                                    child: CommonUI
+                                                        .optionTextField(
                                                       context: context,
                                                       name: "Key 3",
                                                       hint: "Key",
-                                                      minlines: 1,
+                                                      maxlines: 1,
                                                       controller:
                                                           _optionThreeKeyController,
                                                     ),
                                                   ),
-                                                  SizedBox(width: 10),
                                                   Container(
-                                                    width: 120,
+                                                    width: 100,
                                                     height: 40,
-                                                    child: CommonUI.textField(
+                                                    child: CommonUI
+                                                        .optionTextField(
                                                       context: context,
                                                       name: "Value 3",
                                                       hint: "Value ",
-                                                      minlines: 1,
+                                                      maxlines: 1,
                                                       controller:
                                                           _optionThreeValueController,
                                                     ),
@@ -375,26 +377,27 @@ class _AddOptionButtonState extends State<AddOptionButton> {
                                                         .spaceBetween,
                                                 children: [
                                                   Container(
-                                                    width: 120,
+                                                    width: 100,
                                                     height: 40,
-                                                    child: CommonUI.textField(
+                                                    child: CommonUI
+                                                        .optionTextField(
                                                       context: context,
                                                       name: "Key 4",
                                                       hint: "Key",
-                                                      minlines: 1,
+                                                      maxlines: 1,
                                                       controller:
                                                           _optionFourKeyController,
                                                     ),
                                                   ),
-                                                  SizedBox(width: 10),
                                                   Container(
-                                                    width: 120,
+                                                    width: 100,
                                                     height: 40,
-                                                    child: CommonUI.textField(
+                                                    child: CommonUI
+                                                        .optionTextField(
                                                       context: context,
                                                       name: "Value 4",
                                                       hint: "Value",
-                                                      minlines: 1,
+                                                      maxlines: 1,
                                                       controller:
                                                           _optionFourValueController,
                                                     ),
@@ -443,26 +446,27 @@ class _AddOptionButtonState extends State<AddOptionButton> {
                                                         .spaceBetween,
                                                 children: [
                                                   Container(
-                                                    width: 120,
+                                                    width: 100,
                                                     height: 40,
-                                                    child: CommonUI.textField(
+                                                    child: CommonUI
+                                                        .optionTextField(
                                                       context: context,
                                                       name: "Key 5",
                                                       hint: "Key",
-                                                      minlines: 1,
+                                                      maxlines: 1,
                                                       controller:
                                                           _optionFiveKeyController,
                                                     ),
                                                   ),
-                                                  SizedBox(width: 10),
                                                   Container(
-                                                    width: 120,
+                                                    width: 100,
                                                     height: 40,
-                                                    child: CommonUI.textField(
+                                                    child: CommonUI
+                                                        .optionTextField(
                                                       context: context,
                                                       name: "Value 5",
                                                       hint: "Value",
-                                                      minlines: 1,
+                                                      maxlines: 1,
                                                       controller:
                                                           _optionFiveValueController,
                                                     ),
@@ -511,26 +515,27 @@ class _AddOptionButtonState extends State<AddOptionButton> {
                                                         .spaceBetween,
                                                 children: [
                                                   Container(
-                                                    width: 120,
+                                                    width: 100,
                                                     height: 40,
-                                                    child: CommonUI.textField(
+                                                    child: CommonUI
+                                                        .optionTextField(
                                                       context: context,
                                                       name: "Key 6",
                                                       hint: "Key",
-                                                      minlines: 1,
+                                                      maxlines: 1,
                                                       controller:
                                                           _optionSixKeyController,
                                                     ),
                                                   ),
-                                                  SizedBox(width: 10),
                                                   Container(
-                                                    width: 120,
+                                                    width: 100,
                                                     height: 40,
-                                                    child: CommonUI.textField(
+                                                    child: CommonUI
+                                                        .optionTextField(
                                                       context: context,
                                                       name: "Value 6",
                                                       hint: "Value",
-                                                      minlines: 1,
+                                                      maxlines: 1,
                                                       controller:
                                                           _optionSixValueController,
                                                     ),
