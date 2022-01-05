@@ -47,10 +47,10 @@ class FirebaseUserStreamBuilder extends StatelessWidget {
                 //   // return EditProfile();
 
                 //   case 'admin':
-                    return AdminDrawer();
+                return AdminPanel();
 
-                  // default:
-                  // return AdminPanel();
+                // default:
+                // return AdminPanel();
                 // }
               }
               //  else {
@@ -62,12 +62,12 @@ class FirebaseUserStreamBuilder extends StatelessWidget {
                   child: CommonUI.loading(context),
                 );
               }
-//  if no users are found, it creates a new user 
+//  if no users are found, it creates a new user
               // if (snapshot.data!.docs.isEmpty) {
               //   FirebaseAuth.instance.signOut();
               // }
 
-              return AdminDrawer();
+              return AdminPanel();
             }),
       ),
     );

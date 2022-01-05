@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:sigmamenu/models/user.dart';
 import 'package:sigmamenu/provider/userStateProvider.dart';
 import 'package:sigmamenu/screens/customerScreen.dart';
+import 'package:sigmamenu/screens/widgets/addDashboardButton.dart';
 import 'package:sigmamenu/screens/widgets/categoriesWithDeleteButton.dart';
 import 'package:sigmamenu/screens/widgets/productOptions.dart';
 import 'package:sigmamenu/screens/widgets/addOptionButton.dart';
@@ -81,6 +82,9 @@ class _AdminPanelDrawerState extends State<AdminPanelDrawer> {
                 ? Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      SizedBox(height: 25),
+                      AddDashboardButton(),
+                      SizedBox(height: 15),
                       EditStaggerdGridView(),
                     ],
                   )
