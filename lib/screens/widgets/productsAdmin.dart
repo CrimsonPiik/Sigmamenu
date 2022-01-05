@@ -102,8 +102,7 @@ class _ProductsAdminState extends State<ProductsAdmin> {
                               color: Colors.grey.withOpacity(0.1),
                               borderRadius: BorderRadius.circular(12),
                             ),
-                            child: ProductsItemAdmin(
-                                products[index], options)),
+                            child: ProductsItemAdmin(products[index], options)),
                       )),
                 );
               });
