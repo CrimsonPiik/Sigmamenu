@@ -8,7 +8,9 @@ class Product {
   String image = 'assets/images/placeholder.jpg';
   String nameEn = 'productNameEn';
   String nameAr = 'productNameAr';
-  String category = 'categoryId';
+  String category = 'category';
+  String subCategory = 'subCategory';
+  String superCategory = 'superCategory';
   String descriptionEn = 'descriptionEn';
   String descriptionAr = 'descriptionAr';
   bool isPublished = true;
@@ -28,6 +30,8 @@ class Product {
       'nameEn': nameEn,
       'nameAr': nameAr,
       'category': category,
+      'subCategory': subCategory,
+      'superCategory': superCategory,
       'descriptionEn': descriptionEn,
       'descriptionAr': descriptionAr,
       'isPublished': isPublished,
@@ -48,6 +52,8 @@ class Product {
       'nameEn': nameEn,
       'nameAr': nameAr,
       'category': category,
+      'subCategory': subCategory,
+      'superCategory': superCategory,
       'descriptionEn': descriptionEn,
       'descriptionAr': descriptionAr,
       'isPublished': isPublished,
@@ -67,6 +73,8 @@ class Product {
         nameEn = map['nameEn'] ?? '',
         nameAr = map['nameAr'] ?? '',
         category = map['category'] ?? '',
+        subCategory = map['subCategory'] ?? '',
+        superCategory = map['superCategory'] ?? '',
         descriptionEn = map['descriptionEn'] ?? '',
         descriptionAr = map['descriptionAr'] ?? '',
         isPublished = map['isPublished'] ?? true,
@@ -98,6 +106,9 @@ class Product {
         other.weight == weight &&
         other.nameEn == nameEn &&
         other.nameAr == nameAr &&
+        other.category == category &&
+        other.subCategory == subCategory &&
+        other.superCategory == superCategory &&
         other.descriptionEn == descriptionEn &&
         other.descriptionAr == descriptionAr &&
         other.isPublished == isPublished &&
@@ -115,6 +126,9 @@ class Product {
         image.hashCode ^
         nameEn.hashCode ^
         nameAr.hashCode ^
+        category.hashCode ^
+        superCategory.hashCode ^
+        subCategory.hashCode ^
         descriptionEn.hashCode ^
         descriptionAr.hashCode ^
         isPublished.hashCode ^

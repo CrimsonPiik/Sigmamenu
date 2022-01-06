@@ -28,12 +28,11 @@ class _AdminPanelState extends State<AdminPanel> {
 
   @override
   Widget build(BuildContext context) {
-   
     return Scaffold(
       body: SliderMenuContainer(
         appBarColor: Colors.white,
         key: _key,
-        sliderMenuOpenSize: 200,
+        sliderMenuOpenSize: 230,
         title: Text(
           title,
           style: TextStyle(fontSize: 22, fontWeight: FontWeight.w700),

@@ -3,11 +3,9 @@ import 'package:flutter/material.dart';
 
 class BackGroundTile extends StatelessWidget {
   final String background;
-  final String text;
-  final String routeName;
+  final String name;
 
-  BackGroundTile(
-      {required this.background, required this.text, required this.routeName});
+  BackGroundTile({required this.background, required this.name});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +16,7 @@ class BackGroundTile extends StatelessWidget {
         Center(
           child: GestureDetector(
             onTap: () {
-              Navigator.pushNamed(context, '/' + routeName);
+              Navigator.pushNamed(context, '/' + name);
             },
             child: Stack(
               children: [
@@ -31,7 +29,7 @@ class BackGroundTile extends StatelessWidget {
                   decoration: BoxDecoration(color: Color(0x4D303030)),
                   child: Center(
                       child: Text(
-                    text, // .toCapitalized(),
+                    name, // .toCapitalized(),
                     style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,

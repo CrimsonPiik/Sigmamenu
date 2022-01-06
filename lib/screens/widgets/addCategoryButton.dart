@@ -13,6 +13,8 @@ class AddCategoryButton extends StatefulWidget {
 
 class _AddCategoryButtonState extends State<AddCategoryButton> {
   TextEditingController newCollectionNameController = TextEditingController();
+  TextEditingController newCollectionNameArController = TextEditingController();
+
   final _formKey = GlobalKey<FormBuilderState>();
 
   @override
@@ -92,15 +94,29 @@ class _AddCategoryButtonState extends State<AddCategoryButton> {
                               ]),
                             ),
                           ),
+                          Container(
+                            padding: EdgeInsets.fromLTRB(24, 16, 24, 1),
+                            child: CommonUI.textField(
+                              context: context,
+                              name: "Category Arabic Name",
+                              hint: 'e.g مشروبات',
+                              maxlines: 1,
+                              controller: newCollectionNameArController,
+                              validate: FormBuilderValidators.compose([
+                                FormBuilderValidators.required(context),
+                              ]),
+                            ),
+                          ),
                           Padding(
                             padding: const EdgeInsets.all(12.0),
                             child: ElevatedButton(
                               onPressed: () async {
                                 _formKey.currentState!.save();
-                
+
                                 if (_formKey.currentState!.validate()) {
                                   await FirebaseFirestore.instance
-                                      .collection(newCollectionNameController.text
+                                      .collection(newCollectionNameController
+                                          .text
                                           .toLowerCase()
                                           .toTitleCase())
                                       .add({});
@@ -110,10 +126,13 @@ class _AddCategoryButtonState extends State<AddCategoryButton> {
                                       .doc(newCollectionNameController.text
                                           .toLowerCase()
                                           .toTitleCase())
-                                      .set({}).whenComplete(() {
+                                      .set({
+                                    'nameAr': newCollectionNameArController.text
+                                  }).whenComplete(() {
                                     Navigator.pop(context);
                                     newCollectionNameController.clear();
-                
+                                    newCollectionNameArController.clear();
+
                                     CommonUI.successDialog(context,
                                         message: "Added successfully");
                                   }).onError(
@@ -163,113 +182,4 @@ class _AddCategoryButtonState extends State<AddCategoryButton> {
       },
     );
   }
-
-  // void _showAddCollectionDialog() {
-  //   showDialog(
-  //       context: context,
-  //       builder: (BuildContext context) {
-  //         return FormBuilder(
-  //           key: _formKey,
-  //           child: AlertDialog(
-  //             title: Text(
-  //               'Add Category',
-  //               style: TextStyle(fontWeight: FontWeight.bold),
-  //             ),
-  //             actions: [
-  //               Column(
-  //                 crossAxisAlignment: CrossAxisAlignment.start,
-  //                 children: [
-  //                   Container(
-  //                     padding: EdgeInsets.all(16),
-  //                     child: CommonUI.textField(
-  //                       context: context,
-  //                       name: "Name",
-  //                       hint: 'Name',
-  //                       maxlines: 1,
-  //                       controller: newCollectionNameController,
-  //                       validate: FormBuilderValidators.compose([
-  //                         FormBuilderValidators.required(context),
-  //                       ]),
-  //                     ),
-  //                   ),
-  //                   Row(
-  //                     mainAxisAlignment: MainAxisAlignment.end,
-  //                     children: [
-  //                       Container(
-  //                         padding: EdgeInsets.all(4),
-  //                         child: TextButton(
-  //                           onPressed: () async {
-  //                             _formKey.currentState!.save();
-
-  //                             if (_formKey.currentState!.validate()) {
-  //                               await FirebaseFirestore.instance
-  //                                   .collection(newCollectionNameController.text
-  //                                       .toLowerCase()
-  //                                       .toTitleCase())
-  //                                   .add({});
-  //                               FocusScope.of(context).unfocus();
-  //                               await FirebaseFirestore.instance
-  //                                   .collection('Categories')
-  //                                   .doc(newCollectionNameController.text
-  //                                       .toLowerCase()
-  //                                       .toTitleCase())
-  //                                   .set({}).whenComplete(() {
-  //                                 Navigator.of(context).pop();
-  //                                 newCollectionNameController.clear();
-
-  //                                 CommonUI.successDialog(context,
-  //                                     message: "Saved successfully");
-  //                               }).onError(
-  //                                 (error, stackTrrace) => showDialog(
-  //                                   context: context,
-  //                                   builder: (_) {
-  //                                     return AlertDialog(
-  //                                       content: Text(error.toString()),
-  //                                     );
-  //                                   },
-  //                                 ),
-  //                               );
-  //                             }
-  //                           },
-  //                           child: Text(
-  //                             'Add',
-  //                             style: TextStyle(
-  //                                 fontWeight: FontWeight.bold,
-  //                                 color: Colors.black),
-  //                           ),
-  //                         ),
-  //                         decoration: BoxDecoration(
-  //                           color: Colors.grey.withOpacity(0.2),
-  //                           borderRadius: BorderRadius.circular(16),
-  //                         ),
-  //                       ),
-  //                       SizedBox(width: 10),
-  //                       Container(
-  //                         padding: EdgeInsets.all(4),
-  //                         child: TextButton(
-  //                           onPressed: () {
-  //                             newCollectionNameController.clear();
-  //                             Navigator.of(context).pop();
-  //                           },
-  //                           child: Text(
-  //                             'Cancel',
-  //                             style: TextStyle(
-  //                                 fontWeight: FontWeight.bold,
-  //                                 color: Colors.black),
-  //                           ),
-  //                         ),
-  //                         decoration: BoxDecoration(
-  //                           color: Colors.grey.withOpacity(0.2),
-  //                           borderRadius: BorderRadius.circular(16),
-  //                         ),
-  //                       ),
-  //                     ],
-  //                   ),
-  //                 ],
-  //               ),
-  //             ],
-  //           ),
-  //         );
-  //       });
-  // }
 }

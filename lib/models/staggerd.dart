@@ -5,9 +5,9 @@ class Staggerd {
   String name = 'AdsName';
   String nameAr = 'AdsName';
   String id = 'id';
-  int indexKey = 0;
-  String superCategory = 'superCategory';
-  String route = 'route';
+  // int indexKey = 0;
+  // String superCategory = 'superCategory';
+  // String route = 'route';
   bool isPublished = true;
 
   Map<String, dynamic> toMap() {
@@ -16,9 +16,9 @@ class Staggerd {
       'name': name,
       'nameAr': nameAr,
       'id': id,
-      'indexKey': indexKey,
-      'superCategory': superCategory,
-      'route': route,
+      // 'indexKey': indexKey,
+      // 'superCategory': superCategory,
+      // 'route': route,
       'isPublished': isPublished.toString() == 'true' ? true : false,
     };
   }
@@ -30,9 +30,9 @@ class Staggerd {
         name = map['name'] ?? '',
         nameAr = map['nameAr'] ?? '',
         id = map['id'] ?? '',
-        indexKey = map['0'] ?? 0,
-        superCategory = map['superCategory'] ?? '',
-        route = map['route'] ?? '',
+        // indexKey = map['0'] ?? 0,
+        // superCategory = map['superCategory'] ?? '',
+        // route = map['route'] ?? '',
         isPublished = map['isPublished'].toString() == 'true' ? true : false;
 
   String toJson() => json.encode(toMap());
@@ -42,7 +42,7 @@ class Staggerd {
 
   @override
   String toString() {
-    return 'BannerModel( image: $image,id: $id,name: $name,nameAr: $nameAr,superCategory: $superCategory,route: $route)';
+    return 'BannerModel( image: $image,id: $id,name: $name,nameAr: $nameAr,)';
   }
 
   @override
@@ -54,9 +54,9 @@ class Staggerd {
         other.name == name &&
         other.nameAr == nameAr &&
         other.id == id &&
-        other.indexKey == indexKey &&
-        other.superCategory == superCategory &&
-        other.route == route &&
+        // other.indexKey == indexKey &&
+        // other.superCategory == superCategory &&
+        // other.route == route &&
         other.isPublished == isPublished;
   }
 
@@ -66,9 +66,9 @@ class Staggerd {
         name.hashCode ^
         nameAr.hashCode ^
         id.hashCode ^
-        indexKey.hashCode ^
-        superCategory.hashCode ^
-        route.hashCode ^
+        // indexKey.hashCode ^
+        // superCategory.hashCode ^
+        // route.hashCode ^
         isPublished.hashCode;
   }
 }

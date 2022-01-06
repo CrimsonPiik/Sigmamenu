@@ -115,8 +115,7 @@ class _StaggerdGridViewState extends State<StaggerdGridView> {
                       itemBuilder: (BuildContext context, int index) =>
                           BackGroundTile(
                               background: staggerd[index].image,
-                              routeName: staggerd[index].route,
-                              text: staggerd[index].name),
+                              name: staggerd[index].name),
                       staggeredTileBuilder: (index) => staggerd.length == 10
                           ? index == staggerd.length - 1 // 10 DONE
                               ? StaggeredTile.count(2, 2.1)

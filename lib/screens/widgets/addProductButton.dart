@@ -71,7 +71,7 @@ class _AddProductButtonState extends State<AddProductButton> {
                   color: Colors.white,
                 ),
                 label: Text(
-                  'Product  ',
+                  '$category Product  ',
                   style: TextStyle(
                       color: Colors.white, fontWeight: FontWeight.bold),
                 )),
@@ -400,7 +400,7 @@ class _AddProductButtonState extends State<AddProductButton> {
                               if (_formKey.currentState!.validate()) {
                                 FocusScope.of(context).unfocus();
                                 await FirebaseFirestore.instance
-                                    .collection(category)
+                                    .collection('products')
                                     .doc(id)
                                     .set({
                                   'id': id,
@@ -425,8 +425,8 @@ class _AddProductButtonState extends State<AddProductButton> {
                                   'options1': {},
                                   'options2': {},
                                   'options3': {},
-
-                                  //subCategory: ---
+                                  'superCategory': 'Food',
+                                  'subCategory': 'subCategory',
                                 }).whenComplete(() {
                                   id = generateId();
                                   _imagevalue.value = _imageController.text;

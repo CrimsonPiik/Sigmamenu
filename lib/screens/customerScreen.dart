@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:sigmamenu/GeneralFunction/storageManager.dart';
+import 'package:sigmamenu/models/category.dart';
 import 'package:sigmamenu/provider/darkLightMode.dart';
 import 'package:sigmamenu/screens/staggeredGridView.dart';
 import 'package:sigmamenu/screens/widgets/categories.dart';
@@ -11,6 +12,7 @@ import 'package:sigmamenu/style/CommonUI.dart';
 
 StreamController<int> streamController = StreamController<int>.broadcast();
 bool isLight = true;
+List<CategoryModel> categoriesARnames= [];
 
 class CustomerScreen extends StatefulWidget {
   final ThemeNotifier theme;
@@ -67,11 +69,17 @@ class _CustomerScreenState extends State<CustomerScreen>
             return CommonUI.loading(context);
 
           List<DocumentSnapshot> shots = snapshot.data!.docs;
+          // List<CategoryModel> productsARnamesList = [];
+
           for (var item in shots) {
             categoriesList.add(item.id.toString());
           }
           print("Categories : " + categoriesList.toString());
 
+          for (var item in shots) {
+            categoriesARnames.add(
+                CategoryModel.fromMap(item.data() as Map<String, dynamic>));
+          }
           return ListView(
             scrollDirection: Axis.vertical,
             shrinkWrap: true,
@@ -87,3 +95,4 @@ class _CustomerScreenState extends State<CustomerScreen>
         });
   }
 }
+

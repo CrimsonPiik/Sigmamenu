@@ -10,12 +10,12 @@ import 'package:sigmamenu/style/ScreenUtil.dart';
 class DashBoardTileAdmin extends StatefulWidget {
   final String image;
   final String text;
-  final String routeName;
+  // final String routeName;
   final String id;
   final String name;
   final String nameAr;
-  final String route;
-  final String superCategory;
+  // final String route;
+  // final String superCategory;
 
   final bool isPublished;
 
@@ -23,12 +23,13 @@ class DashBoardTileAdmin extends StatefulWidget {
       {required this.id,
       required this.name,
       required this.nameAr,
-      required this.route,
-      required this.superCategory,
+      // required this.route,
+      // required this.superCategory,
       required this.isPublished,
       required this.image,
       required this.text,
-      required this.routeName});
+      // required this.routeName
+      });
 
   @override
   State<DashBoardTileAdmin> createState() => _DashBoardTileAdminState();
@@ -39,10 +40,10 @@ class _DashBoardTileAdminState extends State<DashBoardTileAdmin> {
       TextEditingController(text: _name);
   late TextEditingController _nameArController =
       TextEditingController(text: _nameAr);
-  late TextEditingController _routeController =
-      TextEditingController(text: _route);
-  late TextEditingController _superCategoryController =
-      TextEditingController(text: _superCategory);
+  // late TextEditingController _routeController =
+  //     TextEditingController(text: _route);
+  // late TextEditingController _superCategoryController =
+  //     TextEditingController(text: _superCategory);
   late TextEditingController _imageController =
       TextEditingController(text: _image);
   ValueNotifier<String?> _imagevalue = ValueNotifier<String?>('');
@@ -52,16 +53,16 @@ class _DashBoardTileAdminState extends State<DashBoardTileAdmin> {
   late String _name;
   late String _nameAr;
 
-  late String _route;
-  late String _superCategory;
+  // late String _route;
+  // late String _superCategory;
   late String _image;
 
   @override
   void initState() {
     _name = widget.name;
     _nameAr = widget.nameAr;
-    _route = widget.route;
-    _superCategory = widget.superCategory;
+    // _route = widget.route;
+    // _superCategory = widget.superCategory;
     _image = widget.image;
     super.initState();
   }
@@ -539,33 +540,33 @@ class _DashBoardTileAdminState extends State<DashBoardTileAdmin> {
                           //       )
                           //     : Container(),
                           // SizedBox(height: 4),
-                          Container(
-                            child: CommonUI.textField(
-                              context: context,
-                              name: "Route",
-                              hint: "Route",
-                              isEdit: true,
-                              minlines: 1,
-                              controller: _routeController,
-                              validate: FormBuilderValidators.compose([
-                                FormBuilderValidators.required(context),
-                              ]),
-                            ),
-                          ),
-                          SizedBox(height: 4),
-                          Container(
-                            child: CommonUI.textField(
-                              context: context,
-                              name: "Super Category",
-                              hint: "Super Category",
-                              isEdit: true,
-                              minlines: 1,
-                              controller: _superCategoryController,
-                              validate: FormBuilderValidators.compose([
-                                FormBuilderValidators.required(context),
-                              ]),
-                            ),
-                          ),
+                          // Container(
+                          //   child: CommonUI.textField(
+                          //     context: context,
+                          //     name: "Route",
+                          //     hint: "Route",
+                          //     isEdit: true,
+                          //     minlines: 1,
+                          //     controller: _routeController,
+                          //     validate: FormBuilderValidators.compose([
+                          //       FormBuilderValidators.required(context),
+                          //     ]),
+                          //   ),
+                          // ),
+                          // SizedBox(height: 4),
+                          // Container(
+                          //   child: CommonUI.textField(
+                          //     context: context,
+                          //     name: "Super Category",
+                          //     hint: "Super Category",
+                          //     isEdit: true,
+                          //     minlines: 1,
+                          //     controller: _superCategoryController,
+                          //     validate: FormBuilderValidators.compose([
+                          //       FormBuilderValidators.required(context),
+                          //     ]),
+                          //   ),
+                          // ),
                         ],
                       ),
                     ),
@@ -583,11 +584,11 @@ class _DashBoardTileAdminState extends State<DashBoardTileAdmin> {
 
                                   _nameArController = TextEditingController(
                                       text: widget.nameAr);
-                                  _superCategoryController =
-                                      TextEditingController(
-                                          text: widget.superCategory);
-                                  _routeController =
-                                      TextEditingController(text: widget.route);
+                                  // _superCategoryController =
+                                  //     TextEditingController(
+                                  //         text: widget.superCategory);
+                                  // _routeController =
+                                  //     TextEditingController(text: widget.route);
                                   _imageController =
                                       TextEditingController(text: widget.image);
                                 });
@@ -614,9 +615,9 @@ class _DashBoardTileAdminState extends State<DashBoardTileAdmin> {
                                       .update({
                                     'name': _nameController.text,
                                     'nameAr': _nameArController.text,
-                                    'route': _routeController.text,
-                                    'superCategory':
-                                        _superCategoryController.text,
+                                    // 'route': _routeController.text,
+                                    // 'superCategory':
+                                        // _superCategloryController.text,
                                     'image': _imageController.text,
                                   }).whenComplete(() {
                                     Navigator.pop(context);

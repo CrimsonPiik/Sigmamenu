@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:sigmamenu/language/logic/ProjectLanguage.dart';
 import 'package:sigmamenu/screens/customerScreen.dart';
 import 'package:sigmamenu/screens/staggeredGridView.dart';
 
@@ -57,7 +58,9 @@ class _CategoriesState extends State<Categories> {
             Container(
               padding: EdgeInsets.all(10),
               child: Text(
-                categoriesList.elementAt(index),
+                ProjectLanguage.isLTR()
+                    ? categoriesList.elementAt(index)
+                    : categoriesARnames.elementAt(index).nameAr,
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: selectedIndex == index ? Colors.white : Colors.black,

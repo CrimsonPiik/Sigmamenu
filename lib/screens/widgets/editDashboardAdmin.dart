@@ -48,10 +48,10 @@ class _EditStaggerdGridViewState extends State<EditStaggerdGridView> {
               nameAr: staggerdAdmin[index].nameAr,
               id: staggerdAdmin[index].id,
               isPublished: staggerdAdmin[index].isPublished,
-              superCategory: staggerdAdmin[index].superCategory,
-              route: staggerdAdmin[index].route,
+              // superCategory: staggerdAdmin[index].superCategory,
+              // route: staggerdAdmin[index].route,
               image: staggerdAdmin[index].image,
-              routeName: staggerdAdmin[index].route,
+              // routeName: staggerdAdmin[index].route,
               text: staggerdAdmin[index].name,
             ));
           }
@@ -68,12 +68,12 @@ class _EditStaggerdGridViewState extends State<EditStaggerdGridView> {
                       DashBoardTileAdmin(
                           name: staggerdAdmin[index].name,
                           nameAr: staggerdAdmin[index].nameAr,
-                          route: staggerdAdmin[index].route,
-                          superCategory: staggerdAdmin[index].superCategory,
+                          // route: staggerdAdmin[index].route,
+                          // superCategory: staggerdAdmin[index].superCategory,
                           id: staggerdAdmin[index].id,
                           isPublished: staggerdAdmin[index].isPublished,
                           image: staggerdAdmin[index].image,
-                          routeName: staggerdAdmin[index].route,
+                          // routeName: staggerdAdmin[index].route,
                           text: staggerdAdmin[index].name),
                   staggeredTileBuilder: (index) => staggerdAdmin.length == 10
                       ? index == staggerdAdmin.length - 1 // 10 DONE

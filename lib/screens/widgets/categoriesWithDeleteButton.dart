@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:sigmamenu/language/logic/ProjectLanguage.dart';
 import 'package:sigmamenu/screens/customerScreen.dart';
 import 'package:sigmamenu/screens/staggeredGridView.dart';
 import 'package:sigmamenu/style/ScreenUtil.dart';
@@ -75,7 +76,9 @@ class _CategoriesWithDeleteButtonState
               child: Container(
                 padding: EdgeInsets.all(10),
                 child: Text(
-                  categoriesList.elementAt(index),
+                  ProjectLanguage.isLTR()
+                      ? categoriesList.elementAt(index)
+                      : categoriesARnames.elementAt(index).nameAr,
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     color: selectedIndex == index ? Colors.white : Colors.black,

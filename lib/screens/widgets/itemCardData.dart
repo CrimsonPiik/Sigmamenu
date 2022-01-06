@@ -210,9 +210,10 @@ class _ItemCardDataState extends State<ItemCardData> {
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance
-            .collection(category)
-            .where('weight', isGreaterThan: 0)
-            .orderBy('weight', descending: true)
+            .collection('products') //TODO
+            .where('category', isEqualTo: category)
+            // .where('weight', isGreaterThan: 0)
+            // .orderBy('weight', descending: true)
             .snapshots(),
         builder: (context, snapshot) {
           if (snapshot.hasError) {
