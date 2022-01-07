@@ -4,19 +4,25 @@ import 'package:flutter/material.dart';
 import 'package:sigmamenu/GeneralFunction/storageManager.dart';
 import 'package:sigmamenu/models/category.dart';
 import 'package:sigmamenu/provider/darkLightMode.dart';
-import 'package:sigmamenu/screens/staggeredGridView.dart';
 import 'package:sigmamenu/screens/widgets/categories.dart';
 import 'package:sigmamenu/screens/widgets/itemCardData.dart';
 import 'package:sigmamenu/screens/widgets/bannerWithDotsIndicator.dart';
 import 'package:sigmamenu/style/CommonUI.dart';
 
 StreamController<int> streamController = StreamController<int>.broadcast();
+StreamController<int> superstreamController = StreamController<int>.broadcast();
+
 bool isLight = true;
-List<CategoryModel> categoriesARnames= [];
+Set<String> categoriesList = {};
+
+Set<CategoryModel> categoriesARnames = {};
+Set<String> superCat = {};
+Set<CategoryModel> superCatAR = {};
 
 class CustomerScreen extends StatefulWidget {
+  final String name;
   final ThemeNotifier theme;
-  CustomerScreen({required this.theme});
+  CustomerScreen({required this.theme, required this.name});
   @override
   State<CustomerScreen> createState() => _CustomerScreenState();
 }
@@ -27,6 +33,7 @@ class _CustomerScreenState extends State<CustomerScreen>
   bool isList = true;
   @override
   void initState() {
+    print(widget.name.toString());
     animationController =
         AnimationController(vsync: this, duration: Duration(milliseconds: 500));
     super.initState();
@@ -60,7 +67,11 @@ class _CustomerScreenState extends State<CustomerScreen>
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
-        stream: FirebaseFirestore.instance.collection('Categories').snapshots(),
+        stream: FirebaseFirestore.instance
+            .collection('SuperCategories')
+            .doc(widget.name)
+            .collection(widget.name)
+            .snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasError) {
             return CommonUI.error(snapshot.error.toString());
@@ -70,16 +81,19 @@ class _CustomerScreenState extends State<CustomerScreen>
 
           List<DocumentSnapshot> shots = snapshot.data!.docs;
           // List<CategoryModel> productsARnamesList = [];
+          categoriesList.clear();
 
           for (var item in shots) {
             categoriesList.add(item.id.toString());
+            // context.read<CategoriesProvider>().addItem(item.id.toString());
           }
-          print("Categories : " + categoriesList.toString());
+          print("Super Categories : " + categoriesList.toString());
 
           for (var item in shots) {
             categoriesARnames.add(
                 CategoryModel.fromMap(item.data() as Map<String, dynamic>));
           }
+
           return ListView(
             scrollDirection: Axis.vertical,
             shrinkWrap: true,
@@ -92,7 +106,7 @@ class _CustomerScreenState extends State<CustomerScreen>
               ItemCardData(streamController.stream),
             ],
           );
+          // });
         });
   }
 }
-

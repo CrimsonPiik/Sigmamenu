@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slider_drawer/flutter_slider_drawer.dart';
 import 'package:sigmamenu/GeneralFunction/constaints.dart';
+import 'package:sigmamenu/screens/customerScreen.dart';
 import 'package:sigmamenu/screens/staggeredGridView.dart';
 import 'package:sigmamenu/screens/widgets/adminPanelDrawer.dart';
 
 class AdminPanel extends StatefulWidget {
+  final Stream<int> stream;
+  AdminPanel(this.stream);
   @override
   _AdminPanelState createState() => _AdminPanelState();
 }
@@ -13,12 +16,25 @@ class _AdminPanelState extends State<AdminPanel> {
   GlobalKey<SliderMenuContainerState> _key =
       new GlobalKey<SliderMenuContainerState>();
   late String title;
+  String supercategory = superCat.elementAt(0);
 
   @override
   void initState() {
-    title = "Dashboard";
+    title = "Products";
+
     super.initState();
+    // widget.stream.listen((index) {
+    //   mySetState(index);
+    // });
   }
+
+  // void mySetState(int index) {
+  //   if (!mounted) return;
+
+  //   setState(() {
+  //     supercategory = superCat.elementAt(index);
+  //   });
+  // }
 
   // @override
   // void dispose() {
@@ -28,6 +44,30 @@ class _AdminPanelState extends State<AdminPanel> {
 
   @override
   Widget build(BuildContext context) {
+    // return StreamBuilder<QuerySnapshot>(
+    //     stream: FirebaseFirestore.instance
+    //         .collection('SuperCategories')
+    //         .doc(supercategory)
+    //         .collection(supercategory)
+    //         .snapshots(),
+    //     builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+    //       if (snapshot.hasError) {
+    //         return CommonUI.error(snapshot.error.toString());
+    //       }
+    //       if (snapshot.connectionState == ConnectionState.waiting)
+    //         return CommonUI.loading(context);
+
+    //       List<DocumentSnapshot> shots = snapshot.data!.docs;
+
+    //       for (var item in shots) {
+    //         categoriesList.add(item.id.toString());
+    //       }
+    //       print("Categories : " + categoriesList.toString());
+
+    //       for (var item in shots) {
+    //         categoriesARnames.add(
+    //             CategoryModel.fromMap(item.data() as Map<String, dynamic>));
+    //       }
     return Scaffold(
       body: SliderMenuContainer(
         appBarColor: Colors.white,
@@ -45,14 +85,9 @@ class _AdminPanelState extends State<AdminPanel> {
             });
           },
         ),
-        sliderMain:
-            // Row(
-            // children: [
-            AdminPanelDrawer(streamControllerSideBar.stream),
-        // ],
-        // )
+        sliderMain: AdminPanelDrawer(
+            streamControllerSideBar.stream, superstreamController.stream),
       ),
-      // ),
     );
     // });
   }

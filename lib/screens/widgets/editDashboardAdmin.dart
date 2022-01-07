@@ -58,77 +58,84 @@ class _EditStaggerdGridViewState extends State<EditStaggerdGridView> {
 
           print("DASHBOARD ADMIN: " + staggerdAdmin.toString());
           return Expanded(
-            child: Container(
-                height: double.maxFinite,
-                width: 400,
-                child: StaggeredGridView.countBuilder(
-                  crossAxisCount: 4,
-                  itemCount: staggerdAdmin.length,
-                  itemBuilder: (BuildContext context, int index) =>
-                      DashBoardTileAdmin(
-                          name: staggerdAdmin[index].name,
-                          nameAr: staggerdAdmin[index].nameAr,
-                          // route: staggerdAdmin[index].route,
-                          // superCategory: staggerdAdmin[index].superCategory,
-                          id: staggerdAdmin[index].id,
-                          isPublished: staggerdAdmin[index].isPublished,
-                          image: staggerdAdmin[index].image,
-                          // routeName: staggerdAdmin[index].route,
-                          text: staggerdAdmin[index].name),
-                  staggeredTileBuilder: (index) => staggerdAdmin.length == 10
-                      ? index == staggerdAdmin.length - 1 // 10 DONE
-                          ? StaggeredTile.count(2, 2.1)
-                          : StaggeredTile.count(2, index.isEven ? 2.7 : 2.85)
-                      : staggerdAdmin.length == 9
-                          ? index == staggerdAdmin.length - 1 // 9 DONE
-                              ? StaggeredTile.count(2, 3.2)
-                              : StaggeredTile.count(2, index.isEven ? 2.5 : 3.3)
-                          : staggerdAdmin.length == 8
-                              ? index == staggerdAdmin.length - 1 // 8 DONE
-                                  ? StaggeredTile.count(2, 2.25)
-                                  : StaggeredTile.count(
-                                      2, index.isEven ? 2.7 : 2.85)
-                              : staggerdAdmin.length == 7
-                                  ? index == staggerdAdmin.length - 1 // 7 DONE
-                                      ? StaggeredTile.count(2, 2.4)
-                                      : StaggeredTile.count(
-                                          2, index.isEven ? 2.5 : 3.3)
-                                  : staggerdAdmin.length == 6
-                                      ? index ==
-                                              staggerdAdmin.length - 1 // 6 DONE
-                                          ? StaggeredTile.count(2, 2.1)
-                                          : StaggeredTile.count(
-                                              2, index.isEven ? 2.9 : 3.3)
-                                      : staggerdAdmin.length == 5
-                                          ? index ==
-                                                  staggerdAdmin.length -
-                                                      1 // 5 DONE
-                                              ? StaggeredTile.count(2, 3.15)
-                                              : StaggeredTile.count(
-                                                  2, index.isEven ? 2.5 : 4.08)
-                                          : staggerdAdmin.length == 4 // 4 DONE
-                                              ? StaggeredTile.count(
-                                                  2, index.isOdd ? 3.95 : 4.18)
-                                              : staggerdAdmin.length == 3
-                                                  ? index ==
-                                                          staggerdAdmin.length -
-                                                              1 // 3 DONE
-                                                      ? StaggeredTile.count(
-                                                          2, 4.4)
-                                                      : StaggeredTile.count(
-                                                          2,
-                                                          index.isEven
-                                                              ? 3.75
-                                                              : 8.13)
-                                                  : staggerdAdmin.length ==
-                                                          2 // 2 DONE
-                                                      ? StaggeredTile.count(
-                                                          2, 8.14)
-                                                      : StaggeredTile // 1 DONE
-                                                          .count(4, 8.14),
-                  mainAxisSpacing: 4.0,
-                  crossAxisSpacing: 4.0,
-                )),
+            child: Center(
+              child: Container(
+                  height: double.maxFinite,
+                  width: 400,
+                  child: StaggeredGridView.countBuilder(
+                    crossAxisCount: 4,
+                    itemCount: staggerdAdmin.length,
+                    itemBuilder: (BuildContext context, int index) =>
+                        DashBoardTileAdmin(
+                            name: staggerdAdmin[index].name,
+                            nameAr: staggerdAdmin[index].nameAr,
+                            // route: staggerdAdmin[index].route,
+                            // superCategory: staggerdAdmin[index].superCategory,
+                            id: staggerdAdmin[index].id,
+                            isPublished: staggerdAdmin[index].isPublished,
+                            image: staggerdAdmin[index].image,
+                            // routeName: staggerdAdmin[index].route,
+                            text: staggerdAdmin[index].name),
+                    staggeredTileBuilder: (index) => staggerdAdmin.length == 10
+                        ? index == staggerdAdmin.length - 1 // 10 DONE
+                            ? StaggeredTile.count(2, 2.1)
+                            : StaggeredTile.count(2, index.isEven ? 2.7 : 2.85)
+                        : staggerdAdmin.length == 9
+                            ? index == staggerdAdmin.length - 1 // 9 DONE
+                                ? StaggeredTile.count(2, 3.2)
+                                : StaggeredTile.count(
+                                    2, index.isEven ? 2.5 : 3.3)
+                            : staggerdAdmin.length == 8
+                                ? index == staggerdAdmin.length - 1 // 8 DONE
+                                    ? StaggeredTile.count(2, 2.25)
+                                    : StaggeredTile.count(
+                                        2, index.isEven ? 2.7 : 2.85)
+                                : staggerdAdmin.length == 7
+                                    ? index ==
+                                            staggerdAdmin.length - 1 // 7 DONE
+                                        ? StaggeredTile.count(2, 2.4)
+                                        : StaggeredTile.count(
+                                            2, index.isEven ? 2.5 : 3.3)
+                                    : staggerdAdmin.length == 6
+                                        ? index ==
+                                                staggerdAdmin.length -
+                                                    1 // 6 DONE
+                                            ? StaggeredTile.count(2, 2.1)
+                                            : StaggeredTile.count(
+                                                2, index.isEven ? 2.9 : 3.3)
+                                        : staggerdAdmin.length == 5
+                                            ? index ==
+                                                    staggerdAdmin.length -
+                                                        1 // 5 DONE
+                                                ? StaggeredTile.count(2, 3.15)
+                                                : StaggeredTile.count(2,
+                                                    index.isEven ? 2.5 : 4.08)
+                                            : staggerdAdmin.length ==
+                                                    4 // 4 DONE
+                                                ? StaggeredTile.count(2,
+                                                    index.isOdd ? 3.95 : 4.18)
+                                                : staggerdAdmin.length == 3
+                                                    ? index ==
+                                                            staggerdAdmin
+                                                                    .length -
+                                                                1 // 3 DONE
+                                                        ? StaggeredTile.count(
+                                                            2, 4.4)
+                                                        : StaggeredTile.count(
+                                                            2,
+                                                            index.isEven
+                                                                ? 3.75
+                                                                : 8.13)
+                                                    : staggerdAdmin.length ==
+                                                            2 // 2 DONE
+                                                        ? StaggeredTile.count(
+                                                            2, 8.14)
+                                                        : StaggeredTile // 1 DONE
+                                                            .count(4, 8.14),
+                    mainAxisSpacing: 4.0,
+                    crossAxisSpacing: 4.0,
+                  )),
+            ),
           );
         });
   }

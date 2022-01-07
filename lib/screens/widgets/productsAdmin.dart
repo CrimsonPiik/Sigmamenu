@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:sigmamenu/GeneralFunction/constaints.dart';
 import 'package:sigmamenu/models/options.dart';
 import 'package:sigmamenu/models/product.dart';
-import 'package:sigmamenu/screens/staggeredGridView.dart';
+import 'package:sigmamenu/screens/customerScreen.dart';
 import 'package:sigmamenu/screens/widgets/productsItemAdmin.dart';
 import 'package:sigmamenu/style/CommonUI.dart';
 import 'package:sigmamenu/style/ScreenUtil.dart';
@@ -40,8 +40,9 @@ class _ProductsAdminState extends State<ProductsAdmin> {
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance
-            .collection(category)
-            // .where('category', isEqualTo: category)
+            .collection('products')
+            .where('category', isEqualTo: category)
+            .where('isPublished', isEqualTo: true)
             .orderBy('weight', descending: true)
             .snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {

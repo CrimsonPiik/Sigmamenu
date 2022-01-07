@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:sigmamenu/animation/page_slide_widget.dart';
+import 'package:sigmamenu/screens/home/home_screen.dart';
 
 class BackGroundTile extends StatelessWidget {
   final String background;
@@ -16,7 +18,9 @@ class BackGroundTile extends StatelessWidget {
         Center(
           child: GestureDetector(
             onTap: () {
-              Navigator.pushNamed(context, '/' + name);
+              // categoriesList.clear();
+              // Navigator.pushNamed(context, '/' + name);
+              Navigator.of(context).push(createRoute(HomeScreen(name: name)));
             },
             child: Stack(
               children: [

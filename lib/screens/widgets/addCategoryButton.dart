@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:sigmamenu/GeneralFunction/Strings.dart';
+import 'package:sigmamenu/screens/customerScreen.dart';
 import 'package:sigmamenu/style/CommonUI.dart';
 import 'package:sigmamenu/style/ScreenUtil.dart';
 
@@ -111,21 +112,26 @@ class _AddCategoryButtonState extends State<AddCategoryButton> {
                             padding: const EdgeInsets.all(12.0),
                             child: ElevatedButton(
                               onPressed: () async {
+                                superCat.add(newCollectionNameController.text);
                                 _formKey.currentState!.save();
 
                                 if (_formKey.currentState!.validate()) {
-                                  await FirebaseFirestore.instance
-                                      .collection(newCollectionNameController
-                                          .text
-                                          .toLowerCase()
-                                          .toTitleCase())
-                                      .add({});
+                                  // await FirebaseFirestore.instance
+                                  //     .collection(newCollectionNameController
+                                  //         .text
+                                  //         .toLowerCase()
+                                  //         .toTitleCase())
+                                  //     .add({});
+
                                   FocusScope.of(context).unfocus();
                                   await FirebaseFirestore.instance
-                                      .collection('Categories')
-                                      .doc(newCollectionNameController.text
-                                          .toLowerCase()
-                                          .toTitleCase())
+                                      .collection('SuperCategories')
+                                      .doc('Drinks')
+                                      .collection('Drinks')
+                                      .doc(newCollectionNameController.text)
+                                      // .toLowerCase()
+                                      // .toTitleCase()
+
                                       .set({
                                     'nameAr': newCollectionNameArController.text
                                   }).whenComplete(() {

@@ -1,8 +1,12 @@
 {
   "indexes": [
     {
-      "collectionId": "Drinks",
+      "collectionId": "products",
       "fields": [
+        {
+          "fieldPath": "category",
+          "mode": "DESCENDING"
+        },
         {
           "fieldPath": "isPublished",
           "mode": "DESCENDING"
@@ -11,82 +15,9 @@
           "fieldPath": "weight",
           "mode": "DESCENDING"
         }
-      ]
-    },
-    {
-      "collectionId": "Appetizers",
-      "fields": [
-        {
-          "fieldPath": "isPublished",
-          "mode": "DESCENDING"
-        },
-        {
-          "fieldPath": "weight",
-          "mode": "DESCENDING"
-        }
-      
-        
-      ]
-    },
-    {
-      "collectionId": "Brunch",
-      "fields": [
-        {
-          "fieldPath": "isPublished",
-          "mode": "DESCENDING"
-        },
-        {
-          "fieldPath": "weight",
-          "mode": "DESCENDING"
-        }
-      
-        
-      ]
-    },
-    {
-      "collectionId": "Desserts",
-      "fields": [
-        {
-          "fieldPath": "isPublished",
-          "mode": "DESCENDING"
-        },
-        {
-          "fieldPath": "weight",
-          "mode": "DESCENDING"
-        }
-      
-        
-      ]
-    },
-    {
-      "collectionId": "Main Courses",
-      "fields": [
-        {
-          "fieldPath": "isPublished",
-          "mode": "DESCENDING"
-        },
-        {
-          "fieldPath": "weight",
-          "mode": "DESCENDING"
-        }
-      
-        
-      ]
-    },
-    {
-      "collectionId": "Salads",
-      "fields": [
-        {
-          "fieldPath": "isPublished",
-          "mode": "DESCENDING"
-        },
-        {
-          "fieldPath": "weight",
-          "mode": "DESCENDING"
-        }
-      
         
       ]
     }
+   
   ]
 }

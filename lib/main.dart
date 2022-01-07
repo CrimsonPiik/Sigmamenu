@@ -8,7 +8,6 @@ import 'package:sigmamenu/provider/ProjectLanguageProvider.dart';
 import 'package:sigmamenu/provider/darkLightMode.dart';
 import 'package:sigmamenu/provider/userStateProvider.dart';
 import 'package:sigmamenu/screens/adminPanel.dart';
-import 'package:sigmamenu/screens/home/home_screen.dart';
 import 'package:sigmamenu/screens/staggeredGridView.dart';
 
 void main() async {
@@ -57,6 +56,7 @@ class _MyAppState extends State<MyApp> {
           // ChangeNotifierProvider<Tiles>(
           //   create: (_) => Tiles(),
           // ),
+          // ChangeNotifierProvider<CategoriesProvider>(create: (_) => CategoriesProvider()),
           ChangeNotifierProvider<ProjectLanguageChangeNotifier>(
             create: (_) => ProjectLanguageChangeNotifier(),
           ),
@@ -105,8 +105,9 @@ class _MyAppState extends State<MyApp> {
               initialRoute: '/',
               routes: {
                 '/dashboard': (context) => StaggerdGridView(),
-                '/customer': (context) => HomeScreen(),
-                '/admin': (context) => AdminPanelCategories()
+                '/customer': (context) => StaggerdGridView(),
+                '/admin': (context) =>
+                    AdminPanelCategories()
                 // When navigating to the "/" route, build the FirstScreen widget.
                 // '/': (context) => const FirstScreen(),
                 // When navigating to the "/second" route, build the SecondScreen widget.

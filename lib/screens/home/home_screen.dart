@@ -4,6 +4,8 @@ import 'package:sigmamenu/provider/darkLightMode.dart';
 import 'package:sigmamenu/screens/customerScreen.dart';
 
 class HomeScreen extends StatelessWidget {
+  final String name;
+  HomeScreen({required this.name});
   @override
   Widget build(BuildContext context) {
     return Consumer<ThemeNotifier>(
@@ -13,6 +15,7 @@ class HomeScreen extends StatelessWidget {
               home: Scaffold(
                 // appBar: buildAppBar(),
                 body: CustomerScreen(
+                  name: name,
                   theme: theme,
                 ),
               ),

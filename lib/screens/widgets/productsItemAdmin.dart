@@ -78,11 +78,11 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
             onPressed: (context) async {
               widget.product.weight >= 1
                   ? await FirebaseFirestore.instance
-                      .collection(widget.product.category)
+                      .collection('products')
                       .doc(widget.product.id)
                       .update({'weight': 0})
                   : await FirebaseFirestore.instance
-                      .collection(widget.product.category)
+                      .collection('products')
                       .doc(widget.product.id)
                       .update({'weight': 1});
             },
@@ -300,7 +300,7 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                 ElevatedButton(
                                   onPressed: () async {
                                     FirebaseFirestore.instance
-                                        .collection(widget.product.category)
+                                        .collection('products')
                                         .doc(widget.product.id)
                                         .delete();
                                     Navigator.pop(context);
@@ -677,7 +677,7 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                 if (_formKey.currentState!.validate()) {
                                   FocusScope.of(context).unfocus();
                                   await FirebaseFirestore.instance
-                                      .collection(widget.product.category)
+                                      .collection('products')
                                       .doc(widget.product.id)
                                       .update({
                                     'nameEn': _nameEnController.text,
@@ -876,8 +876,8 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                                   GestureDetector(
                                                     onTap: () async {
                                                       FirebaseFirestore.instance
-                                                          .collection(widget
-                                                              .product.category)
+                                                          .collection(
+                                                              'products')
                                                           .doc(
                                                               widget.product.id)
                                                           .update({
@@ -1248,106 +1248,99 @@ class _ProductsItemAdminState extends State<ProductsItemAdmin> {
                                   //         ''
                                   //     // null
                                   //     ?
-                                       Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Container(
-                                            margin: EdgeInsets.only(bottom: 20),
-                                            decoration: BoxDecoration(
-                                              color: Colors.white,
-                                              borderRadius: BorderRadius.all(
-                                                Radius.circular(18),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Container(
+                                      margin: EdgeInsets.only(bottom: 20),
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(18),
+                                        ),
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Colors.grey.withOpacity(0.4),
+                                            spreadRadius: 1,
+                                            blurRadius: 6,
+                                            offset: Offset(1, 6),
+                                          ),
+                                        ],
+                                      ),
+                                      child: Column(
+                                        children: [
+                                          Container(
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.all(8.0),
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  CommonUI.text(
+                                                      context: context,
+                                                      text: widget.options
+                                                          .elementAt(2) //change
+                                                          .options
+                                                          .keys
+                                                          .first
+                                                          .toString(),
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                      style: FontStylee.normal(
+                                                          context: context,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          color: Colors.black)),
+                                                  Row(
+                                                    children: [
+                                                      CommonUI.text(
+                                                          context: context,
+                                                          text:
+                                                              // widget
+                                                              //     .options
+                                                              //     .elementAt(
+                                                              //         index)
+                                                              //     .options
+                                                              //     .keys
+                                                              //     .first,
+                                                              'Example!',
+                                                          // .product
+                                                          // .options1[
+                                                          //     '${widget.product.options1.keys.elementAt(index)}']
+                                                          // .keys
+                                                          // .elementAt(index),
+                                                          textAlign:
+                                                              TextAlign.center,
+                                                          style:
+                                                              FontStylee.normal(
+                                                                  context:
+                                                                      context,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  color: Colors
+                                                                          .orange[
+                                                                      700])),
+                                                      SizedBox(width: 5),
+                                                      Icon(
+                                                        Icons
+                                                            .arrow_forward_ios_outlined,
+                                                        size: 15,
+                                                        color:
+                                                            Colors.orange[700],
+                                                      )
+                                                    ],
+                                                  )
+                                                ],
                                               ),
-                                              boxShadow: [
-                                                BoxShadow(
-                                                  color: Colors.grey
-                                                      .withOpacity(0.4),
-                                                  spreadRadius: 1,
-                                                  blurRadius: 6,
-                                                  offset: Offset(1, 6),
-                                                ),
-                                              ],
-                                            ),
-                                            child: Column(
-                                              children: [
-                                                Container(
-                                                  child: Padding(
-                                                    padding:
-                                                        const EdgeInsets.all(
-                                                            8.0),
-                                                    child: Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceBetween,
-                                                      children: [
-                                                        CommonUI.text(
-                                                            context: context,
-                                                            text: widget.options
-                                                                .elementAt(
-                                                                    2) //change
-                                                                .options
-                                                                .keys
-                                                                .first
-                                                                .toString(),
-                                                            textAlign: TextAlign
-                                                                .center,
-                                                            style: FontStylee.normal(
-                                                                context:
-                                                                    context,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
-                                                                color: Colors
-                                                                    .black)),
-                                                        Row(
-                                                          children: [
-                                                            CommonUI.text(
-                                                                context:
-                                                                    context,
-                                                                text:
-                                                                    // widget
-                                                                    //     .options
-                                                                    //     .elementAt(
-                                                                    //         index)
-                                                                    //     .options
-                                                                    //     .keys
-                                                                    //     .first,
-                                                                    'Example!',
-                                                                // .product
-                                                                // .options1[
-                                                                //     '${widget.product.options1.keys.elementAt(index)}']
-                                                                // .keys
-                                                                // .elementAt(index),
-                                                                textAlign:
-                                                                    TextAlign
-                                                                        .center,
-                                                                style: FontStylee.normal(
-                                                                    context:
-                                                                        context,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .bold,
-                                                                    color: Colors
-                                                                            .orange[
-                                                                        700])),
-                                                            SizedBox(width: 5),
-                                                            Icon(
-                                                              Icons
-                                                                  .arrow_forward_ios_outlined,
-                                                              size: 15,
-                                                              color: Colors
-                                                                  .orange[700],
-                                                            )
-                                                          ],
-                                                        )
-                                                      ],
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
                                             ),
                                           ),
-                                        )
-                                      // : Container()
+                                        ],
+                                      ),
+                                    ),
+                                  )
+                                  // : Container()
                                   // Column(
                                   //   children: [
                                   //     Center(

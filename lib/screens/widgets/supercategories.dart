@@ -5,18 +5,20 @@ import 'package:sigmamenu/language/logic/ProjectLanguage.dart';
 import 'package:sigmamenu/screens/customerScreen.dart';
 import 'package:sigmamenu/style/ScreenUtil.dart';
 
-class CategoriesWithDeleteButton extends StatefulWidget {
+int selectedIndexsuper = 0;
+int selectedIndex = 0;
+
+class SuperCategories extends StatefulWidget {
   final Stream<int> stream;
-  CategoriesWithDeleteButton(this.stream);
+  final Stream<int> superstream;
+
+  SuperCategories(this.stream, this.superstream);
   @override
-  _CategoriesWithDeleteButtonState createState() =>
-      _CategoriesWithDeleteButtonState();
+  _SuperCategoriesState createState() => _SuperCategoriesState();
 }
 
-class _CategoriesWithDeleteButtonState
-    extends State<CategoriesWithDeleteButton> {
-  int selectedIndex = 0;
-
+class _SuperCategoriesState extends State<SuperCategories> {
+  String supercategory = superCat.elementAt(0);
   String category = categoriesList.elementAt(0);
 
   @override
@@ -24,6 +26,9 @@ class _CategoriesWithDeleteButtonState
     super.initState();
     widget.stream.listen((index) {
       mySetState(index);
+    });
+    widget.superstream.listen((index) {
+      mySuperSetState(index);
     });
   }
 
@@ -35,15 +40,21 @@ class _CategoriesWithDeleteButtonState
     });
   }
 
-  // String s = superCat.elementAt(selectedIndexsuper);
+  void mySuperSetState(int index) {
+    if (!mounted) return;
+
+    setState(() {
+      supercategory = superCat.elementAt(index);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     // return StreamBuilder<QuerySnapshot>(
     //     stream: FirebaseFirestore.instance
     //         .collection('SuperCategories')
-    //         .doc('Wine')
-    //         .collection('Wine')
+    //         .doc(supercategory)
+    //         .collection(supercategory)
     //         .snapshots(),
     //     builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
     //       if (snapshot.hasError) {
@@ -53,13 +64,9 @@ class _CategoriesWithDeleteButtonState
     //         return CommonUI.loading(context);
 
     //       List<DocumentSnapshot> shots = snapshot.data!.docs;
-    //       // List<CategoryModel> productsARnamesList = [];
 
     //       for (var item in shots) {
     //         categoriesList.add(item.id.toString());
-    //         // context
-    //         //     .read<CategoriesProvider>()
-    //         // .addItem(item.id.toString());
     //       }
     //       print("Categories : " + categoriesList.toString());
 
@@ -67,28 +74,98 @@ class _CategoriesWithDeleteButtonState
     //         categoriesARnames.add(
     //             CategoryModel.fromMap(item.data() as Map<String, dynamic>));
     //       }
-    return SizedBox(
-      height: 60,
-      child: ScrollConfiguration(
-        behavior: ScrollConfiguration.of(context).copyWith(
-          dragDevices: {
-            PointerDeviceKind.touch,
-            PointerDeviceKind.mouse,
-          },
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        SizedBox(
+          height: 56,
+          child: ScrollConfiguration(
+              behavior: ScrollConfiguration.of(context).copyWith(
+                dragDevices: {
+                  PointerDeviceKind.touch,
+                  PointerDeviceKind.mouse,
+                },
+              ),
+              child: ListView.builder(
+                physics: ScrollPhysics(),
+                shrinkWrap: true,
+                scrollDirection: Axis.horizontal,
+                itemCount: superCat.length,
+                itemBuilder: (context, index) => buildSuperCategory(index),
+              )),
         ),
-        child: ListView.builder(
-          physics: ScrollPhysics(),
-          shrinkWrap: true,
-          scrollDirection: Axis.horizontal,
-          itemCount: categoriesList.length,
-          itemBuilder: (context, index) => buildCategory(index),
-        ),
-      ),
+        SizedBox(
+          height: 60,
+          child: ScrollConfiguration(
+              behavior: ScrollConfiguration.of(context).copyWith(
+                dragDevices: {
+                  PointerDeviceKind.touch,
+                  PointerDeviceKind.mouse,
+                },
+              ),
+              child:
+                  //  categoriesList.isNotEmpty
+                  // ?
+                  ListView.builder(
+                physics: ScrollPhysics(),
+                shrinkWrap: true,
+                scrollDirection: Axis.horizontal,
+                itemCount: categoriesList.length,
+                itemBuilder: (context, indexx) => buildSubCategory(indexx),
+              )
+              // : Container(),
+              ),
+        )
+      ],
     );
     // });
   }
 
-  Widget buildCategory(int index) {
+  Widget buildSuperCategory(int index) {
+    return GestureDetector(
+      onTap: () {
+        categoriesList.clear();
+        setState(() {
+          selectedIndex = 0;
+        });
+        setState(() {
+          selectedIndexsuper = index;
+        });
+        superstreamController.add(selectedIndexsuper);
+        print('Super-Category ' + index.toString());
+      },
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 3.0),
+        child: Row(
+          children: [
+            SizedBox(width: 7),
+            Container(
+              padding: EdgeInsets.all(10),
+              child: Text(
+                ProjectLanguage.isLTR()
+                    ? superCat.elementAt(index)
+                    : superCatAR.elementAt(index).nameAr,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color:
+                      selectedIndexsuper == index ? Colors.white : Colors.black,
+                ),
+              ),
+              decoration: BoxDecoration(
+                color: selectedIndexsuper == index
+                    ? Colors.orange[300]
+                    : Colors.grey.withOpacity(0.3),
+                borderRadius: BorderRadius.circular(16),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget buildSubCategory(int index) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
       child: Stack(
@@ -100,7 +177,7 @@ class _CategoriesWithDeleteButtonState
                   selectedIndex = index;
                 });
                 streamController.add(selectedIndex);
-                print(index.toString());
+                print('Sub-Category ' + index.toString());
               },
               child: Container(
                 padding: EdgeInsets.all(10),
@@ -153,7 +230,7 @@ class _CategoriesWithDeleteButtonState
   }
 
 // =====  =====  ===== =====  =====  ===== =====  =====  ===== =====  =====  ===== =====  =====
-// =====                                    DELETE                                        =====
+// =====                                    DELETE CATEGORY                               =====
 // =====  =====  ===== =====  =====  ===== =====  =====  ===== =====  =====  ===== =====  =====
 
   _showDeleteCategoryDialog() {
@@ -205,6 +282,9 @@ class _CategoriesWithDeleteButtonState
                               children: [
                                 ElevatedButton(
                                   onPressed: () {
+                                    // setState(() {
+                                    //   selectedIndex = 0;
+                                    // });
                                     Navigator.pop(context);
                                   },
                                   style: ButtonStyle(
@@ -221,8 +301,12 @@ class _CategoriesWithDeleteButtonState
                                   onPressed: () async {
                                     categoriesList.remove(category);
 
+                                    print('supercategory **********' +
+                                        supercategory);
                                     await FirebaseFirestore.instance
-                                        .collection('Categories')
+                                        .collection('SuperCategories')
+                                        .doc('Drinks')
+                                        .collection('Drinks')
                                         .doc(category)
                                         .delete();
 

@@ -2,7 +2,6 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:sigmamenu/language/logic/ProjectLanguage.dart';
 import 'package:sigmamenu/screens/customerScreen.dart';
-import 'package:sigmamenu/screens/staggeredGridView.dart';
 
 class Categories extends StatefulWidget {
   @override

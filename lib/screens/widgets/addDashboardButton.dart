@@ -19,9 +19,9 @@ class _AddDashboardButtonState extends State<AddDashboardButton> {
   String id = generateId();
   TextEditingController _nameDashboardController = TextEditingController();
   TextEditingController _nameArDashboardController = TextEditingController();
-  // TextEditingController _routeDashboardController = TextEditingController();
+  TextEditingController _firstSubCategoryController = TextEditingController();
   // TextEditingController _superCategoryDashboardController =
-      // TextEditingController();
+  // TextEditingController();
 
   TextEditingController _imageDashboardController = TextEditingController();
   ValueNotifier<String?> _imagevalue = ValueNotifier<String?>('');
@@ -258,6 +258,19 @@ class _AddDashboardButtonState extends State<AddDashboardButton> {
                             ),
                           ),
                           SizedBox(height: 4),
+                          Container(
+                            child: CommonUI.textField(
+                              context: context,
+                              name: "First Sub-Category",
+                              hint: "First Sub-Category",
+                              isEdit: true,
+                              minlines: 1,
+                              controller: _firstSubCategoryController,
+                              validate: FormBuilderValidators.compose([
+                                FormBuilderValidators.required(context),
+                              ]),
+                            ),
+                          ),
 
                           // Container(
                           //   child: CommonUI.textField(
@@ -307,7 +320,7 @@ class _AddDashboardButtonState extends State<AddDashboardButton> {
                             _imageDashboardController.clear();
                             _nameDashboardController.clear();
                             _nameArDashboardController.clear();
-                            // _routeDashboardController.clear();
+                            _firstSubCategoryController.clear();
                             // _superCategoryDashboardController.clear();
                             Navigator.pop(context);
                           },
@@ -334,6 +347,15 @@ class _AddDashboardButtonState extends State<AddDashboardButton> {
                                 .set({
                               'nameAr': _nameArDashboardController.text
                             });
+                            await FirebaseFirestore.instance
+                                .collection('SuperCategories')
+                                .doc(_nameDashboardController.text
+                                    .toLowerCase()
+                                    .toTitleCase())
+                                .collection(_nameDashboardController.text)
+                                .doc(_firstSubCategoryController.text)
+                                .set({});
+
                             _formKey.currentState!.save();
                             if (_formKey.currentState!.validate()) {
                               FocusScope.of(context).unfocus();
@@ -352,7 +374,7 @@ class _AddDashboardButtonState extends State<AddDashboardButton> {
                                         .toCapitalized(),
                                 // 'route': _routeDashboardController.text,
                                 // 'superCategory':
-                                    // _superCategoryDashboardController.text,
+                                // _superCategoryDashboardController.text,
                                 'isPublished': true,
                                 'image': _imagevalue.value == ''
                                     ? 'assets/images/preview.png'
@@ -365,7 +387,7 @@ class _AddDashboardButtonState extends State<AddDashboardButton> {
                                 _imageDashboardController.clear();
                                 _nameDashboardController.clear();
                                 _nameArDashboardController.clear();
-                                // _routeDashboardController.clear();
+                                _firstSubCategoryController.clear();
                                 // _superCategoryDashboardController.clear();
 
                                 Navigator.pop(context);

@@ -11,8 +11,6 @@ import 'package:sigmamenu/screens/widgets/LoginForm.dart';
 import 'package:sigmamenu/style/CommonUI.dart';
 import 'package:sigmamenu/style/ScreenUtil.dart';
 
-Set<String> categoriesList = {};
-
 StreamController<int> streamControllerSideBar =
     StreamController<int>.broadcast();
 
@@ -22,6 +20,8 @@ class StaggerdGridView extends StatefulWidget {
 }
 
 class _StaggerdGridViewState extends State<StaggerdGridView> {
+ 
+
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
