@@ -106,8 +106,7 @@ class _MyAppState extends State<MyApp> {
               routes: {
                 '/dashboard': (context) => StaggerdGridView(),
                 '/customer': (context) => StaggerdGridView(),
-                '/admin': (context) =>
-                    AdminPanelCategories()
+                '/admin': (context) => AdminPanelCategories()
                 // When navigating to the "/" route, build the FirstScreen widget.
                 // '/': (context) => const FirstScreen(),
                 // When navigating to the "/second" route, build the SecondScreen widget.

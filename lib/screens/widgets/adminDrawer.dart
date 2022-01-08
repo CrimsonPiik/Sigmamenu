@@ -6,8 +6,8 @@ import 'package:sigmamenu/screens/staggeredGridView.dart';
 import 'package:sigmamenu/screens/widgets/adminPanelDrawer.dart';
 
 class AdminPanel extends StatefulWidget {
-  final Stream<int> stream;
-  AdminPanel(this.stream);
+  // final Stream<int> stream;
+  // AdminPanel(this.stream);
   @override
   _AdminPanelState createState() => _AdminPanelState();
 }
@@ -16,7 +16,7 @@ class _AdminPanelState extends State<AdminPanel> {
   GlobalKey<SliderMenuContainerState> _key =
       new GlobalKey<SliderMenuContainerState>();
   late String title;
-  String supercategory = superCat.elementAt(0);
+  // String supercategory = superCat.elementAt(0);
 
   @override
   void initState() {

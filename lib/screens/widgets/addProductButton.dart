@@ -7,6 +7,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:sigmamenu/GeneralFunction/firebase_uploader_web.dart';
 import 'package:sigmamenu/GeneralFunction/random_id_generator.dart';
 import 'package:sigmamenu/screens/customerScreen.dart';
+import 'package:sigmamenu/screens/widgets/supercategories.dart';
 import 'package:sigmamenu/style/CommonUI.dart';
 import 'package:sigmamenu/style/ScreenUtil.dart';
 
@@ -20,6 +21,8 @@ class AddProductButton extends StatefulWidget {
 }
 
 class _AddProductButtonState extends State<AddProductButton> {
+  String supercategory = superCat.elementAt(selectedIndexsuper);
+
   String id = generateId();
   String imageURL = 'assets/images/placeholder.jpg';
   TextEditingController _nameEnController = TextEditingController();
@@ -425,7 +428,7 @@ class _AddProductButtonState extends State<AddProductButton> {
                                   'options1': {},
                                   'options2': {},
                                   'options3': {},
-                                  'superCategory': 'Food',
+                                  'superCategory': supercategory,
                                   'subCategory': 'subCategory',
                                 }).whenComplete(() {
                                   id = generateId();

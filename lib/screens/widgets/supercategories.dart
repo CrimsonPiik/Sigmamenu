@@ -18,7 +18,7 @@ class SuperCategories extends StatefulWidget {
 }
 
 class _SuperCategoriesState extends State<SuperCategories> {
-  String supercategory = superCat.elementAt(0);
+  String supercategory = superCat.elementAt(selectedIndexsuper);
   String category = categoriesList.elementAt(0);
 
   @override
@@ -26,9 +26,6 @@ class _SuperCategoriesState extends State<SuperCategories> {
     super.initState();
     widget.stream.listen((index) {
       mySetState(index);
-    });
-    widget.superstream.listen((index) {
-      mySuperSetState(index);
     });
   }
 
@@ -40,41 +37,8 @@ class _SuperCategoriesState extends State<SuperCategories> {
     });
   }
 
-  void mySuperSetState(int index) {
-    if (!mounted) return;
-
-    setState(() {
-      supercategory = superCat.elementAt(index);
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
-    // return StreamBuilder<QuerySnapshot>(
-    //     stream: FirebaseFirestore.instance
-    //         .collection('SuperCategories')
-    //         .doc(supercategory)
-    //         .collection(supercategory)
-    //         .snapshots(),
-    //     builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-    //       if (snapshot.hasError) {
-    //         return CommonUI.error(snapshot.error.toString());
-    //       }
-    //       if (snapshot.connectionState == ConnectionState.waiting)
-    //         return CommonUI.loading(context);
-
-    //       List<DocumentSnapshot> shots = snapshot.data!.docs;
-
-    //       for (var item in shots) {
-    //         categoriesList.add(item.id.toString());
-    //       }
-    //       print("Categories : " + categoriesList.toString());
-
-    //       for (var item in shots) {
-    //         categoriesARnames.add(
-    //             CategoryModel.fromMap(item.data() as Map<String, dynamic>));
-    //       }
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -282,9 +246,6 @@ class _SuperCategoriesState extends State<SuperCategories> {
                               children: [
                                 ElevatedButton(
                                   onPressed: () {
-                                    // setState(() {
-                                    //   selectedIndex = 0;
-                                    // });
                                     Navigator.pop(context);
                                   },
                                   style: ButtonStyle(
@@ -305,8 +266,8 @@ class _SuperCategoriesState extends State<SuperCategories> {
                                         supercategory);
                                     await FirebaseFirestore.instance
                                         .collection('SuperCategories')
-                                        .doc('Drinks')
-                                        .collection('Drinks')
+                                        .doc(supercategory)
+                                        .collection(supercategory)
                                         .doc(category)
                                         .delete();
 

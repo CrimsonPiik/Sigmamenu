@@ -2,12 +2,14 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:sigmamenu/GeneralFunction/Strings.dart';
 import 'package:sigmamenu/screens/customerScreen.dart';
+import 'package:sigmamenu/screens/widgets/supercategories.dart';
 import 'package:sigmamenu/style/CommonUI.dart';
 import 'package:sigmamenu/style/ScreenUtil.dart';
 
 class AddCategoryButton extends StatefulWidget {
+  // final Stream<int> superstream;
+  // AddCategoryButton(this.superstream);
   @override
   State<AddCategoryButton> createState() => _AddCategoryButtonState();
 }
@@ -17,6 +19,24 @@ class _AddCategoryButtonState extends State<AddCategoryButton> {
   TextEditingController newCollectionNameArController = TextEditingController();
 
   final _formKey = GlobalKey<FormBuilderState>();
+
+  String supercategory = superCat.elementAt(selectedIndexsuper);
+
+  // @override
+  // void initState() {
+  //   widget.superstream.listen((index) {
+  //     mySuperSetState(index);
+  //   });
+  //   super.initState();
+  // }
+
+  // void mySuperSetState(int index) {
+  //   if (!mounted) return;
+
+  //   setState(() {
+  //     supercategory = superCat.elementAt(index);
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -112,7 +132,8 @@ class _AddCategoryButtonState extends State<AddCategoryButton> {
                             padding: const EdgeInsets.all(12.0),
                             child: ElevatedButton(
                               onPressed: () async {
-                                superCat.add(newCollectionNameController.text);
+                                print("****" + supercategory.toString());
+                                // superCat.add(newCollectionNameController.text);
                                 _formKey.currentState!.save();
 
                                 if (_formKey.currentState!.validate()) {
@@ -126,8 +147,8 @@ class _AddCategoryButtonState extends State<AddCategoryButton> {
                                   FocusScope.of(context).unfocus();
                                   await FirebaseFirestore.instance
                                       .collection('SuperCategories')
-                                      .doc('Drinks')
-                                      .collection('Drinks')
+                                      .doc(supercategory)
+                                      .collection(supercategory)
                                       .doc(newCollectionNameController.text)
                                       // .toLowerCase()
                                       // .toTitleCase()
