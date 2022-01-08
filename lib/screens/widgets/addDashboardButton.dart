@@ -352,8 +352,12 @@ class _AddDashboardButtonState extends State<AddDashboardButton> {
                                 .doc(_nameDashboardController.text
                                     .toLowerCase()
                                     .toTitleCase())
-                                .collection(_nameDashboardController.text)
-                                .doc(_firstSubCategoryController.text)
+                                .collection(_nameDashboardController.text
+                                    .toLowerCase()
+                                    .toTitleCase())
+                                .doc(_firstSubCategoryController.text
+                                    .toLowerCase()
+                                    .toTitleCase())
                                 .set({});
 
                             _formKey.currentState!.save();

@@ -163,31 +163,35 @@ class _SuperCategoriesState extends State<SuperCategories> {
               ),
             ),
           ),
-          Align(
-            alignment: Alignment(1, -1.9),
-            child: GestureDetector(
-              onTap: () {
-                setState(() {
-                  selectedIndex = index;
-                });
-                streamController.add(selectedIndex);
-                _showDeleteCategoryDialog();
-              },
-              child: Container(
-                width: 22.0,
-                height: 22.0,
-                child: Icon(
-                  Icons.close,
-                  color: Colors.black,
-                  size: 22,
-                ),
-                decoration: BoxDecoration(boxShadow: [
-                  BoxShadow(
-                      color: Colors.black, offset: Offset(0, 1), blurRadius: 2),
-                ], shape: BoxShape.circle, color: Colors.white),
-              ),
-            ),
-          ),
+          categoriesList.length != 1
+              ? Align(
+                  alignment: Alignment(1, -1.9),
+                  child: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        selectedIndex = index;
+                      });
+                      streamController.add(selectedIndex);
+                      _showDeleteCategoryDialog();
+                    },
+                    child: Container(
+                      width: 22.0,
+                      height: 22.0,
+                      child: Icon(
+                        Icons.close,
+                        color: Colors.black,
+                        size: 22,
+                      ),
+                      decoration: BoxDecoration(boxShadow: [
+                        BoxShadow(
+                            color: Colors.black,
+                            offset: Offset(0, 1),
+                            blurRadius: 2),
+                      ], shape: BoxShape.circle, color: Colors.white),
+                    ),
+                  ),
+                )
+              : Container(),
         ],
       ),
     );

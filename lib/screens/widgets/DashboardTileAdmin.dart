@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:sigmamenu/GeneralFunction/firebase_uploader_web.dart';
+import 'package:sigmamenu/screens/customerScreen.dart';
 import 'package:sigmamenu/style/AssetsManager.dart';
 import 'package:sigmamenu/style/CommonUI.dart';
 import 'package:sigmamenu/style/ScreenUtil.dart';
@@ -19,17 +20,17 @@ class DashBoardTileAdmin extends StatefulWidget {
 
   final bool isPublished;
 
-  DashBoardTileAdmin(
-      {required this.id,
-      required this.name,
-      required this.nameAr,
-      // required this.route,
-      // required this.superCategory,
-      required this.isPublished,
-      required this.image,
-      required this.text,
-      // required this.routeName
-      });
+  DashBoardTileAdmin({
+    required this.id,
+    required this.name,
+    required this.nameAr,
+    // required this.route,
+    // required this.superCategory,
+    required this.isPublished,
+    required this.image,
+    required this.text,
+    // required this.routeName
+  });
 
   @override
   State<DashBoardTileAdmin> createState() => _DashBoardTileAdminState();
@@ -234,6 +235,12 @@ class _DashBoardTileAdminState extends State<DashBoardTileAdmin> {
                                     await FirebaseFirestore.instance
                                         .collection('dashboard')
                                         .doc(widget.id)
+                                        .delete();
+
+                                    superCat.remove(widget.name);
+                                    await FirebaseFirestore.instance
+                                        .collection('SuperCategories')
+                                        .doc(widget.name)
                                         .delete();
 
                                     Navigator.pop(context);
@@ -617,7 +624,7 @@ class _DashBoardTileAdminState extends State<DashBoardTileAdmin> {
                                     'nameAr': _nameArController.text,
                                     // 'route': _routeController.text,
                                     // 'superCategory':
-                                        // _superCategloryController.text,
+                                    // _superCategloryController.text,
                                     'image': _imageController.text,
                                   }).whenComplete(() {
                                     Navigator.pop(context);
