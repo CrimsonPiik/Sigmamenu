@@ -179,11 +179,13 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:sigmamenu/GeneralFunction/constaints.dart';
 import 'package:sigmamenu/models/product.dart';
 import 'package:sigmamenu/screens/customerScreen.dart';
-import 'package:sigmamenu/screens/widgets/itemCardRectangleAndSquare.dart';
+import 'package:sigmamenu/screens/widgets/ItemCardRectangle.dart';
 import 'package:sigmamenu/screens/widgets/shimmerForCustomerScreen.dart';
 import 'package:sigmamenu/style/CommonUI.dart';
+import 'package:sigmamenu/style/ScreenUtil.dart';
 
 class ItemCardData extends StatefulWidget {
   final Stream<int> stream;
@@ -232,7 +234,30 @@ class _ItemCardDataState extends State<ItemCardData> {
           }
 
           print("Client Side : " + productsList.toString());
-          return ItemCardRectangleAndSquare(productList: productsList);
+
+          return Padding(
+            padding: const EdgeInsets.symmetric(
+                horizontal: kDefaultPaddin, vertical: kDefaultPaddin),
+            child: GridView.builder(
+              physics: ClampingScrollPhysics(),
+              primary: false,
+              shrinkWrap: true,
+              scrollDirection: Axis.vertical,
+              itemCount: productsList.length,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 1,
+                  childAspectRatio: Responsive.isDesktop(context)
+                      ? 8.2
+                      : Responsive.isMobile(context)
+                          ? 2.30
+                          : Responsive.isMiniMobile(context)
+                              ? 2.0
+                              : 4.0),
+              itemBuilder: (context, index) => ItemCardRectangle(
+                product: productsList[index],
+              ),
+            ),
+          );
         });
   }
 }
