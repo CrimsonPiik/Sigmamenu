@@ -212,8 +212,9 @@ class _ItemCardDataState extends State<ItemCardData> {
         stream: FirebaseFirestore.instance
             .collection('products') //TODO
             .where('category', isEqualTo: category)
-            // .where('weight', isGreaterThan: 0)
-            // .orderBy('weight', descending: true)
+            .where('isPublished', isEqualTo: true)
+            .where('weight', isGreaterThan: 0)
+            .orderBy('weight', descending: true)
             .snapshots(),
         builder: (context, snapshot) {
           if (snapshot.hasError) {
