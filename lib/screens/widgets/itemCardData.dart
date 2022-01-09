@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:sigmamenu/GeneralFunction/constaints.dart';
 import 'package:sigmamenu/models/product.dart';
 import 'package:sigmamenu/screens/customerScreen.dart';
 import 'package:sigmamenu/screens/widgets/ItemCardRectangle.dart';
@@ -166,7 +165,7 @@ class _ItemCardDataState extends State<ItemCardData> {
 
             List<DocumentSnapshot> shots = snapshot.data!;
             _productsList = [];
-            
+
             for (var item in shots) {
               _productsList
                   .add(Product.fromMap(item.data() as Map<String, dynamic>));
@@ -177,6 +176,7 @@ class _ItemCardDataState extends State<ItemCardData> {
                     padding: EdgeInsets.only(left: 20, right: 20, top: 20),
                     child: _products.isNotEmpty
                         ? GridView.builder(
+                            // physics: ScrollPhysics(),
                             shrinkWrap: true,
                             itemCount: snapshot.data!.length,
                             gridDelegate:

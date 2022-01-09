@@ -38,11 +38,6 @@ class _CustomerScreenState extends State<CustomerScreen>
 
   @override
   void initState() {
-
-
-
-
-
     print(widget.name.toString());
     animationController =
         AnimationController(vsync: this, duration: Duration(milliseconds: 500));
@@ -94,8 +89,8 @@ class _CustomerScreenState extends State<CustomerScreen>
           categoriesList.clear();
 
           for (var item in shots) {
-              categoriesList.add(item.id.toString());
-            
+            categoriesList.add(item.id.toString());
+
             // context.read<CategoriesProvider>().addItem(item.id.toString());
           }
           print("Super Categories : " + categoriesList.toString());
@@ -105,18 +100,19 @@ class _CustomerScreenState extends State<CustomerScreen>
                 CategoryModel.fromMap(item.data() as Map<String, dynamic>));
           }
 
-          return ListView(
-            scrollDirection: Axis.vertical,
-            shrinkWrap: true,
-            primary: false,
+          return SingleChildScrollView(
+              child: Column(
+            // scrollDirection: Axis.vertical,
+            // shrinkWrap: true,
+            // primary: false,
             // crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
+            children: [
               SizedBox(height: 15),
               BannerWithDotsIndicator(),
               Categories(),
               ItemCardData(streamController.stream),
             ],
-          );
+          ));
           // });
         });
   }
