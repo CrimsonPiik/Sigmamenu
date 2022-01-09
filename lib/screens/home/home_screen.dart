@@ -16,6 +16,7 @@ class HomeScreen extends StatelessWidget {
                 // appBar: buildAppBar(),
                 body: CustomerScreen(
                   name: name,
+                  
                   theme: theme,
                 ),
               ),
