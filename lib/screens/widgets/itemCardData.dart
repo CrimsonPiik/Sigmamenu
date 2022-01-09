@@ -166,6 +166,7 @@ class _ItemCardDataState extends State<ItemCardData> {
 
             List<DocumentSnapshot> shots = snapshot.data!;
             _productsList = [];
+            
             for (var item in shots) {
               _productsList
                   .add(Product.fromMap(item.data() as Map<String, dynamic>));
