@@ -31,8 +31,18 @@ class _CustomerScreenState extends State<CustomerScreen>
     with SingleTickerProviderStateMixin {
   late AnimationController animationController;
   bool isList = true;
+
+//   StreamSubscription<DocumentSnapshot>? subscription;
+// final DocumentReference documentReference =
+//     FirebaseFirestore.instance.collection('products').;
+
   @override
   void initState() {
+
+
+
+
+
     print(widget.name.toString());
     animationController =
         AnimationController(vsync: this, duration: Duration(milliseconds: 500));
@@ -84,7 +94,8 @@ class _CustomerScreenState extends State<CustomerScreen>
           categoriesList.clear();
 
           for (var item in shots) {
-            categoriesList.add(item.id.toString());
+              categoriesList.add(item.id.toString());
+            
             // context.read<CategoriesProvider>().addItem(item.id.toString());
           }
           print("Super Categories : " + categoriesList.toString());

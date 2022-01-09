@@ -20,11 +20,12 @@ class ItemCardData extends StatefulWidget {
 }
 
 class _ItemCardDataState extends State<ItemCardData> {
-  String category = categoriesList.elementAt(selectedIndex);
+  String category = categoriesList.elementAt(0);
 
   StreamController<List<DocumentSnapshot>> _streamController =
       StreamController<List<DocumentSnapshot>>();
   List<DocumentSnapshot> _products = [];
+  List<Product> _productsList = [];
 
   bool _isRequesting = false;
   bool _isFinish = false;
@@ -56,7 +57,7 @@ class _ItemCardDataState extends State<ItemCardData> {
     }
   }
 
-  void requestNextPage() async {
+  void requestNextPage(String category) async {
     if (!_isRequesting && !_isFinish) {
       QuerySnapshot querySnapshot;
       _isRequesting = true;
@@ -81,7 +82,7 @@ class _ItemCardDataState extends State<ItemCardData> {
             .get();
       }
 
-      if (querySnapshot != null) {
+      if (querySnapshot.docs.isNotEmpty) {
         int oldSize = _products.length;
         _products.addAll(querySnapshot.docs);
         int newSize = _products.length;
@@ -97,6 +98,7 @@ class _ItemCardDataState extends State<ItemCardData> {
 
   @override
   void initState() {
+    print('# category :  ' + category);
     widget.stream.listen((index) {
       if (!mounted) return;
       setState(() {
@@ -104,6 +106,9 @@ class _ItemCardDataState extends State<ItemCardData> {
         print('# category :  ' + category);
         print('# Super Selected index :  ' + selectedIndexsuper.toString());
         print('# Selected index :  ' + selectedIndex.toString());
+        _products = [];
+        // _productsList = [];
+        requestNextPage(category);
       });
     });
 
@@ -113,7 +118,9 @@ class _ItemCardDataState extends State<ItemCardData> {
         .snapshots()
         .listen((data) => onChangeData(data.docChanges));
 
-    requestNextPage();
+    // requestNextPage();
+
+    requestNextPage(category);
 
     /// a listener to the index for categorries
     /// so it update it with a new list of products
@@ -132,7 +139,7 @@ class _ItemCardDataState extends State<ItemCardData> {
     return NotificationListener<ScrollNotification>(
         onNotification: (ScrollNotification scrollInfo) {
           if (scrollInfo.metrics.maxScrollExtent == scrollInfo.metrics.pixels) {
-            requestNextPage();
+            requestNextPage(category);
           }
           return true;
         },
@@ -145,35 +152,34 @@ class _ItemCardDataState extends State<ItemCardData> {
             }
             if (snapshot.connectionState == ConnectionState.waiting)
               return ShimmerForCustomerScreen();
-            List<Product> _productsList = [];
 
             List<DocumentSnapshot> shots = snapshot.data!;
-
+            _productsList = [];
             for (var item in shots) {
               _productsList
                   .add(Product.fromMap(item.data() as Map<String, dynamic>));
             }
-
             return Padding(
-              padding: const EdgeInsets.symmetric(
-                  horizontal: kDefaultPaddin, vertical: kDefaultPaddin),
-              child: GridView.builder(
-                shrinkWrap: true,
-                itemCount: snapshot.data!.length,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 1,
-                    childAspectRatio: Responsive.isDesktop(context)
-                        ? 8.2
-                        : Responsive.isMobile(context)
-                            ? 2.30
-                            : Responsive.isMiniMobile(context)
-                                ? 2.0
-                                : 4.0),
-                itemBuilder: (context, index) => ItemCardRectangle(
-                  product: _productsList[index],
-                ),
-              ),
-            );
+                padding: const EdgeInsets.symmetric(
+                    horizontal: kDefaultPaddin, vertical: kDefaultPaddin),
+                child: _products.isNotEmpty
+                    ? GridView.builder(
+                        shrinkWrap: true,
+                        itemCount: snapshot.data!.length,
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 1,
+                            childAspectRatio: Responsive.isDesktop(context)
+                                ? 8.2
+                                : Responsive.isMobile(context)
+                                    ? 2.30
+                                    : Responsive.isMiniMobile(context)
+                                        ? 2.0
+                                        : 4.0),
+                        itemBuilder: (context, index) => ItemCardRectangle(
+                          product: _productsList[index],
+                        ),
+                      )
+                    : Container());
           },
         ));
   }
