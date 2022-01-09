@@ -8,6 +8,7 @@ import 'package:sigmamenu/models/product.dart';
 import 'package:sigmamenu/screens/customerScreen.dart';
 import 'package:sigmamenu/screens/widgets/ItemCardRectangle.dart';
 import 'package:sigmamenu/screens/widgets/shimmerForCustomerScreen.dart';
+import 'package:sigmamenu/screens/widgets/shimmerForPaginatedProducts.dart';
 import 'package:sigmamenu/screens/widgets/supercategories.dart';
 import 'package:sigmamenu/style/CommonUI.dart';
 import 'package:sigmamenu/style/ScreenUtil.dart';
@@ -26,7 +27,7 @@ class _ItemCardDataState extends State<ItemCardData> {
       StreamController<List<DocumentSnapshot>>();
   List<DocumentSnapshot> _products = [];
   List<Product> _productsList = [];
-
+  bool isLoading = false;
   bool _isRequesting = false;
   bool _isFinish = false;
 
@@ -58,6 +59,12 @@ class _ItemCardDataState extends State<ItemCardData> {
   }
 
   void requestNextPage(String category) async {
+    if (isLoading) {
+      return;
+    }
+    setState(() {
+      isLoading = true;
+    });
     if (!_isRequesting && !_isFinish) {
       QuerySnapshot querySnapshot;
       _isRequesting = true;
@@ -88,11 +95,17 @@ class _ItemCardDataState extends State<ItemCardData> {
         int newSize = _products.length;
         if (oldSize != newSize) {
           _streamController.add(_products);
+          setState(() {
+            isLoading = false;
+          });
         } else {
           _isFinish = true;
         }
       }
       _isRequesting = false;
+      setState(() {
+        isLoading = false;
+      });
     }
   }
 
@@ -117,8 +130,6 @@ class _ItemCardDataState extends State<ItemCardData> {
         .collection('products')
         .snapshots()
         .listen((data) => onChangeData(data.docChanges));
-
-    // requestNextPage();
 
     requestNextPage(category);
 
@@ -159,27 +170,45 @@ class _ItemCardDataState extends State<ItemCardData> {
               _productsList
                   .add(Product.fromMap(item.data() as Map<String, dynamic>));
             }
-            return Padding(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: kDefaultPaddin, vertical: kDefaultPaddin),
-                child: _products.isNotEmpty
-                    ? GridView.builder(
-                        shrinkWrap: true,
-                        itemCount: snapshot.data!.length,
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 1,
-                            childAspectRatio: Responsive.isDesktop(context)
-                                ? 8.2
-                                : Responsive.isMobile(context)
-                                    ? 2.30
-                                    : Responsive.isMiniMobile(context)
-                                        ? 2.0
-                                        : 4.0),
-                        itemBuilder: (context, index) => ItemCardRectangle(
-                          product: _productsList[index],
-                        ),
-                      )
-                    : Container());
+            return Column(
+              children: [
+                Padding(
+                    padding: EdgeInsets.only(left: 20, right: 20, top: 20),
+                    child: _products.isNotEmpty
+                        ? GridView.builder(
+                            shrinkWrap: true,
+                            itemCount: snapshot.data!.length,
+                            gridDelegate:
+                                SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: 1,
+                                    childAspectRatio: Responsive.isDesktop(
+                                            context)
+                                        ? 8.2
+                                        : Responsive.isMobile(context)
+                                            ? 2.30
+                                            : Responsive.isMiniMobile(context)
+                                                ? 2.0
+                                                : 4.0),
+                            itemBuilder: (context, index) => ItemCardRectangle(
+                              product: _productsList[index],
+                            ),
+                          )
+                        : Container()),
+                isLoading ? ShimmerForPaginatedProducts() : Container(),
+                // Container(
+                //     width: MediaQuery.of(context).size.width,
+                //     padding: EdgeInsets.all(5),
+                //     color: Colors.yellowAccent,
+                //     child: Text(
+                //       'Loading',
+                //       textAlign: TextAlign.center,
+                //       style: TextStyle(
+                //         fontWeight: FontWeight.bold,
+                //       ),
+                //     ),
+                //   )
+              ],
+            );
           },
         ));
   }

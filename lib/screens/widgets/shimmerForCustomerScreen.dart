@@ -128,7 +128,7 @@ class ShimmerForCustomerScreen extends StatelessWidget {
         Shimmer.fromColors(
             child: Padding(
               padding: const EdgeInsets.symmetric(
-                  horizontal: kDefaultPaddin, vertical: kDefaultPaddin * 2),
+                  horizontal: kDefaultPaddin, vertical: kDefaultPaddin),
               child: GridView.builder(
                 physics: ClampingScrollPhysics(),
                 primary: false,
@@ -264,8 +264,7 @@ class ShimmerForCustomerScreen extends StatelessWidget {
           )
         : Shimmer.fromColors(
             child: Padding(
-              padding: const EdgeInsets.symmetric(
-                  horizontal: kDefaultPaddin, vertical: kDefaultPaddin * 2),
+              padding: const EdgeInsets.symmetric(horizontal: kDefaultPaddin),
               child: GridView.builder(
                 physics: ClampingScrollPhysics(),
                 primary: false,
