@@ -176,7 +176,7 @@ class _ItemCardDataState extends State<ItemCardData> {
                     padding: EdgeInsets.only(left: 20, right: 20, top: 20),
                     child: _products.isNotEmpty
                         ? GridView.builder(
-                            // physics: ScrollPhysics(),
+                            // physics: NeverScrollableScrollPhysics(),
                             shrinkWrap: true,
                             itemCount: snapshot.data!.length,
                             gridDelegate:
@@ -195,7 +195,15 @@ class _ItemCardDataState extends State<ItemCardData> {
                             ),
                           )
                         : Container()),
-                isLoading ? ShimmerForPaginatedProducts() : Container(),
+                isLoading
+                    ? Padding(
+                        padding: const EdgeInsets.only(top: 6.0),
+                        child: Container(
+                            height: 30,
+                            width: 30,
+                            child: CircularProgressIndicator()),
+                      )
+                    : Container(),
                 // Container(
                 //     width: MediaQuery.of(context).size.width,
                 //     padding: EdgeInsets.all(5),
